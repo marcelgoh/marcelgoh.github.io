@@ -8,6 +8,8 @@ title:            'Marcel Goh'
 description:      'A Computer Science and Linguistics student at McGill University'
 # url:            https://marcelgoh.github.io
 
+# baseurl:        https://marcelgoh.github.io
+
 author:
   name:           'Marcel Goh'
   url:            'https://marcelgoh.github.io'
