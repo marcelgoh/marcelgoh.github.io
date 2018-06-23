@@ -2,6 +2,11 @@
 # Use a comment to ensure Jekyll reads the file to be transformed into CSS later
 # only main files contain this front matter, not partials.
 ---
+.center-image {
+    margin: 0 auto;
+    display: block;
+}
+
 $red: #ff005f;
 $green: #a6e22e;
 $teal: #039699;
@@ -18,6 +23,6 @@ $body-bg: $beige;
 $code-font-family: "Fira Mono", Menlo, Monaco, "Courier New", monospace;
 $code-color: $dark-grey;
 
-$hover-color: $orange;
+$hover-color: $green;
 
 @import "hydeout";

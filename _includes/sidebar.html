@@ -10,8 +10,12 @@
     </{% if page.layout == "index" %}h1{% else %}div{% endif %}>
     <p class="lead">{{ site.description }}</p>
   </header>
-  {% include sidebar-nav-links.html %}
+  <p>
+    <a class=sidebar-nav-item href="{{ site.baseurl }}/about/">About</a>
+  </p>
 
-  {% include sidebar-icon-links.html %}
-  {% include copyright.html %}
+  <p>
+    &copy; {{ site.time | date: '%Y' }}.
+    <a href="{{ site.baseurl }}/licence/">Licence.</a>
+  </p>
 </div>
