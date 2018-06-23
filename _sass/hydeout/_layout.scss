@@ -31,6 +31,16 @@ body {
   min-height: 100vh;
 }
 
+p {
+  a.side-link {
+      &:hover {
+          color: $side-hover-color;
+          text-decoration: none;
+      }
+  }
+}
+
+
 #sidebar {
   flex: 0 0 auto;
   padding: $section-spacing;
@@ -51,6 +61,14 @@ body {
 
     .back-arrow { margin-right: 0.5rem; }
   }
+
+  .side-link {
+      a {
+        &:hover { color: $side-hover-color; 
+                  text-decoration: none; }
+      }
+  }
+
 }
 
 // Container is flexbox as well -- we want content div to stretch and fill
@@ -220,7 +238,8 @@ body {
   }
 
   &:hover, &:focus {
-    text-decoration: underline;
+    color: $side-hover-color;
+    text-decoration: none;
     &.icon {
       text-decoration: none;
     }
