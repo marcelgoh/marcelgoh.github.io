@@ -2,10 +2,22 @@
 # Use a comment to ensure Jekyll reads the file to be transformed into CSS later
 # only main files contain this front matter, not partials.
 ---
+$red: #ff005f;
+$green: #a6e22e;
+$teal: #039699;
+$purple: #a22eea;
+$orange: #fd9720;
+$beige: #fff3db;
+$dark-grey: #313131;
 
-$sidebar-bg-color: #202020;
-$sidebar_sticky: true;
-$layout-reverse: false;
-$link-color: #268bd2;
+
+$sidebar-bg-color: $red;
+$layout-reverse: true;
+$link-color: $teal;
+$body-bg: $beige;
+$code-font-family: "Fira Mono", Menlo, Monaco, "Courier New", monospace;
+$code-color: $dark-grey;
+
+$hover-color: $orange;
 
 @import "hydeout";

@@ -3,14 +3,20 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-title:            Marcel Goh
-tagline:          'Computer Science Student'
+title:            'Marcel Goh'
+# tagline:        ''
 description:      'A Computer Science and Linguistics student at McGill University'
-url:              https://marcelgoh.github.io
+# url:            https://marcelgoh.github.io
 
 author:
   name:           'Marcel Goh'
-  url:            https:github.com/marcelgoh
+  url:            'https://marcelgoh.github.io'
+  email:          'marcel_goh@yahoo.ca'
+  github:         'https://github.com/marcelgoh'
+  instagram:      'https://www.instagram.com/marcelgoh'
+  facebook:       'https://www.facebook.com/marcel.goh.1'
+  linkedin:       'https://www.linkedin.com/in/marcel-goh-463ba2149'
+
 
 paginate:         5
 # paginate_path:    '/page:num'
