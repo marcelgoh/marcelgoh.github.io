@@ -3,6 +3,7 @@
 *.swp
 *.dSYM
 
-# Compiled source #
-*.out
-*.o
+# Jekyll #
+_site
+.sass-cache
+.jekyll-metadata
