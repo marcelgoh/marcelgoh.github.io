@@ -16,6 +16,7 @@
 
     // No underline because it looks weird with badge
     &:hover {
+      color: $hover-color;
       text-decoration: none;
       opacity: 1;
     }

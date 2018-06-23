@@ -31,11 +31,6 @@ body {
   min-height: 100vh;
 }
 
-/* To center images */
-.center {
-    text-align: center;
-}
-
 #sidebar {
   flex: 0 0 auto;
   padding: $section-spacing;
@@ -50,7 +45,8 @@ body {
 
     a {
       color: inherit;
-      &:hover { color: $hover-color; }
+      &:hover { color: $side-hover-color; 
+                text-decoration: none;}
     }
 
     .back-arrow { margin-right: 0.5rem; }

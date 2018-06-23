@@ -2,6 +2,11 @@
 //
 // Update the foundational and global aspects of the page.
 
+a.side-link {
+    color: $side-hover-color;
+    text-decoration: none;
+}
+
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -39,12 +44,18 @@ a {
   // `:focus` is linked to `:hover` for basic accessibility
   &:hover,
   &:focus {
-    text-decoration: underline;
+    color: $hover-color;
+    text-decoration: none;
   }
 
   strong {
     color: inherit;
   }
+}
+
+a:hover {
+    color: $hover-color;
+    text-decoration: none;
 }
 
 img {
@@ -97,7 +108,7 @@ button, input[type="submit"] {
   &:hover {
     background: $link-color;
     border-color: $link-color;
-    color: white;
+    color: $hover-color;
     box-shadow: $default-box-shadow;
   }
 }

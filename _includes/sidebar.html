@@ -8,14 +8,20 @@
         {{ site.title }}
       </a>
     </{% if page.layout == "index" %}h1{% else %}div{% endif %}>
+
     <p class="lead">{{ site.description }}</p>
   </header>
+
   <p>
-    <a class=sidebar-nav-item href="{{ site.baseurl }}/about/">About</a>
+    <a class="side-link"
+       href="{{ site.baseurl }}/about/">About</a>
   </p>
+
+{% assign current = page.url | downcase | split: '/' %}
 
   <p>
     &copy; {{ site.time | date: '%Y' }}.
-    <a href="{{ site.baseurl }}/licence/">Licence.</a>
+    <a class="side-link"
+       href="{{ site.baseurl }}/licence/">Licence.</a>
   </p>
 </div>
