@@ -40,10 +40,12 @@ p {
   }
 }
 
-.side-icon {
-    width: 52px;
-    display: inline;
-    padding: 4px;
+img {
+    .side-icon {
+        width: 52px;
+        display: inline;
+        padding: 4px;
+    }
 }
 
 #sidebar {
