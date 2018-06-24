@@ -2,8 +2,8 @@
 layout: page
 title: Licence
 ---
-Theme: <a href="https://fongandrew.github.io/hydeout" target="blank">Hydeout</a> by Andrew Fong.  
+Theme: [Hydeout](https://fongandrew.github.io/hydeout) by Andrew Fong.  
 
-Built using <a href="http://jekyllrb.com" target="blank">Jekyll</a>.  
+Built using [Jekyll](http://jekyllrb.com)  
 
 &copy; 2018 Marcel Goh

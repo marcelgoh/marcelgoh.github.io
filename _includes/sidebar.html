@@ -13,11 +13,13 @@
   </header>
 
   <p>
-    <a class="side-link"
+    <a class="side-link{% if page.url != '/about/' and
+                             page.url != '/code/' and
+                             page.url != '/licence/' %} active{% endif %}"
        href="{{ site.baseurl }}/">Blog</a><br/>
-    <a class="side-link"
+    <a class="side-link{% if page.url == '/about/' %} active{% endif %}"
        href="{{ site.baseurl }}/about/">About</a><br/>
-    <a class="side-link"
+    <a class="side-link{% if page.url == '/code/' %} active{% endif %}"
        href="{{ site.baseurl }}/code/">Code</a><br/>
   </p>
 
