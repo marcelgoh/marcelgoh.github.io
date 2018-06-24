@@ -61,6 +61,16 @@ p {
 
     .back-arrow { margin-right: 0.5rem; }
   }
+  
+  #icon-bar {
+      text-align: center;
+  }
+
+  .side-icon {
+      width: 52px;
+      display: inline;
+      padding: 4px;
+  }
 
   .side-link {
       a {

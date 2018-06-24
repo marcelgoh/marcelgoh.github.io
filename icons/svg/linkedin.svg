@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="300"
+   width="300"
+   version="1.0"
+   id="svg17"
+   sodipodi:docname="Linkedin.svg"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <metadata
+     id="metadata21">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="723"
+     id="namedview19"
+     showgrid="false"
+     inkscape:zoom="1.18"
+     inkscape:cx="-161.01695"
+     inkscape:cy="100"
+     inkscape:window-x="0"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg17" />
+  <defs
+     id="defs7">
+    <linearGradient
+       id="linearGradient3003"
+       y2="425.39999"
+       gradientUnits="userSpaceOnUse"
+       x2="-395.85001"
+       gradientTransform="matrix(-0.62918996,0,0,0.62925298,-160.2241,-173.53634)"
+       y1="274.70999"
+       x1="-344.14999">
+      <stop
+         stop-color="#FFF"
+         offset="0"
+         id="stop2" />
+      <stop
+         stop-color="#FFF"
+         stop-opacity="0"
+         offset="1"
+         id="stop4" />
+    </linearGradient>
+  </defs>
+  <path
+     id="path831"
+     style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.84862077"
+     d="M 300,150 A 150,150 0 0 1 150,300 150,150 0 0 1 0,150 150,150 0 0 1 150,0 150,150 0 0 1 300,150 Z m -174.11,84.81946 h 37.76 v -63.44885 c 0,-3.39571 0.2454,-6.78793 1.24248,-9.21529 2.72975,-6.78456 8.94274,-13.81139 19.37375,-13.81139 13.66375,0 19.13,10.41892 19.13,25.69257 v 60.78233 h 37.75749 v -65.14651 c 0,-34.8985 -18.62875,-51.13637 -43.4725,-51.13637 -20.37,0 -29.31375,11.38727 -34.2825,19.14317 h 0.25213 v -16.4779 h -37.76 c 0.49551,10.66106 0,113.61636 0,113.61636 z m -20.9,0 V 121.20309 H 67.23 V 234.81946 Z M 86.115,105.68154 c 13.1675,0 21.36375,-8.724497 21.36375,-19.626957 C 107.23335,74.90609 99.283,66.423867 86.365,66.423867 c -12.91625,0 -21.3625,8.482348 -21.3625,19.630716 0,10.90309 8.194125,19.626957 20.86625,19.626957 h 0.245413 z"
+     inkscape:export-filename="/Users/cheyennegoh/Desktop/linkedin-white.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+</svg>

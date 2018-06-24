@@ -20,11 +20,47 @@
        href="{{ site.baseurl }}/code/">Code</a><br/>
   </p>
 
-{% assign current = page.url | downcase | split: '/' %}
+  {% assign current = page.url | downcase | split: '/' %}
+  
+<p id="icon-bar">
+  <a href="mailto:{{ site.author.email }}">
+    <img class="side-icon"
+         alt="mail" src="/icons/png/email-white.png" width="40"
+         onmouseover="this.src='/icons/png/email-green.png'"
+         onmouseout="this.src='/icons/png/email-white.png'">
+  </a>
+  <a href="{{ site.author.facebook }}">
+    <img class="side-icon"
+         alt="fb" src="/icons/png/facebook-white.png" width="40"
+         onmouseover="this.src='/icons/png/facebook-green.png'"
+         onmouseout="this.src='/icons/png/facebook-white.png'">
+  </a>
+  <a href="{{ site.author.instagram }}">
+    <img class="side-icon"
+         alt="insta" src="/icons/png/instagram-white.png" width="40"
+         onmouseover="this.src='/icons/png/instagram-green.png'"
+         onmouseout="this.src='/icons/png/instagram-white.png'">
+  </a>
+  <a href="{{ site.author.linkedin }}">
+    <img class="side-icon"
+         alt="in" src="/icons/png/linkedin-white.png" width="40"
+         onmouseover="this.src='/icons/png/linkedin-green.png'"
+         onmouseout="this.src='/icons/png/linkedin-white.png'">
+  </a>
+  <a href="{{ site.author.github }}">
+    <img class="side-icon"
+         alt="gh" src="/icons/png/github-white.png" width="40"
+         onmouseover="this.src='/icons/png/github-green.png'"
+         onmouseout="this.src='/icons/png/github-white.png'">
+  </a>
+</p>
 
   <p>
-    &copy; {{ site.time | date: '%Y' }}.
+    &copy; 2018.
     <a class="side-link"
        href="{{ site.baseurl }}/licence/">Licence.</a>
   </p>
+
+
+
 </div>
