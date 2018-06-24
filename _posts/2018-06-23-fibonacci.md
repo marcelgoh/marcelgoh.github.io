@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A Fibonacci Proof
+date: 2018-06-23
 excerpt_separator:  <!--more-->
 ---
 For the last couple of months, I have been working though the exercises in [*Structure and Interpretation of Computer Programs*](https://mitpress.mit.edu/sites/default/files/sicp/index.html) by Abelson and Sussman. I generally try not to skip any exercises but every now and then I encounter one that is a bit too difficult. Today I return to a question from the first chapter that I had originally skipped.  

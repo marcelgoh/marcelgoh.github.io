@@ -16,9 +16,15 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css" />
-  {% include font-includes.html %}
+  {% comment %}
+    Separate partial for Google Webfont include, so we can override with
+    different fonts as applicable.
+  {% endcomment %}
+
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:bold" rel="stylesheet">
 
   <!-- Icons -->
-  {% include favicons.html %}
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.baseurl }}/    favicon.png" />
+  <link rel="shortcut icon" href="{{ site.baseurl }}/favicon.ico" />
 
 </head>
