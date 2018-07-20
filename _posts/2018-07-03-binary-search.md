@@ -2,6 +2,7 @@
 layout: post
 title: The Error-prone-ness of Binary Search
 date: 2018-07-03
+published: true
 excerpt_separator:  <!--more-->
 ---
 Yesterday I started the [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1) course on Coursera, taught by Prof. Robert Sedgewick of Princeton University. In a lecture on algorithmic complexity he goes over the binary search algorithm and its advantages, while also warning the student that the algorithm is not necessarily trivial to implement. In the lecture slide, he claims that the first binary search was published in 1946, but the first bug-free one would not be published until 1962. Today I tried to implement the algorithm for the first time in MIT Scheme.  

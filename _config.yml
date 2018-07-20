@@ -20,7 +20,7 @@ author:
   linkedin:       'https://www.linkedin.com/in/marcel-goh-463ba2149'
 
 
-paginate:         5
+paginate:         3
 # paginate_path:    '/page:num'
                     # Or '/blog/page:num' if you want to move your index pages
 
@@ -37,3 +37,5 @@ sidebar_home_link:  true
                                 # to enable a separate blog link.
 github:
   repo:             https://github.com/marcelgoh
+
+future: true
