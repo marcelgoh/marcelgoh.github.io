@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Error-prone-ness of Binary Search
+title: The Error-proneness of Binary Search
 date: 2018-07-03
 published: true
 excerpt_separator:  <!--more-->
@@ -8,7 +8,7 @@ excerpt_separator:  <!--more-->
 Yesterday I started the [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1) course on Coursera, taught by Prof. Robert Sedgewick of Princeton University. In a lecture on algorithmic complexity he goes over the binary search algorithm and its advantages, while also warning the student that the algorithm is not necessarily trivial to implement. In the lecture slide, he claims that the first binary search was published in 1946, but the first bug-free one would not be published until 1962. Today I tried to implement the algorithm for the first time in MIT Scheme.  
 <!--more-->
 
-A [blog post](https://reprog.wordpress.com/2010/04/19/are-you-one-of-the-10-percent/) I found, written by Mike Taylor, talks about the error-prone-ness of binary search. In his post, which claims that 90% of programmers write faulty versions of binary search, he challenges the reader to implement the algorithm in the high-level language of his/her choice and to start testing only when sure of the program's correctness.  
+A [blog post](https://reprog.wordpress.com/2010/04/19/are-you-one-of-the-10-percent/) I found, written by Mike Taylor, talks about the error-proneness of binary search. In his post, which claims that 90% of programmers write faulty versions of binary search, he challenges the reader to implement the algorithm in the high-level language of his/her choice and to start testing only when sure of the program's correctness.  
 
 So I tried to write out the program on paper without looking up any implementations of the algorithm beforehand (besides the Java one I briefly saw in Prof. Sedgewick's lecture earlier, which was iterative rather than recursive anyway). I did allow myself to have the Edwin Scheme interpreter open so I could check the syntax of certain primitive functions. After 44 minutes, this is what I came up with:  
 
