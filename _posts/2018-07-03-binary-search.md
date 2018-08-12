@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Error-proneness of Binary Search
+title: The error-proneness of binary search
 date: 2018-07-03
 published: true
 excerpt_separator:  <!--more-->

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A Fibonacci Proof
+title: A Fibonacci proof
 date: 2018-06-23
 published: true
 excerpt_separator:  <!--more-->

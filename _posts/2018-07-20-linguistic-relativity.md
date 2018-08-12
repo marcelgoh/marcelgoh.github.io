@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linguistic Relativity and Programming Languages
+title: Linguistic relativity and programming languages
 date: 2018-07-20
 published: true
 excerpt_separator:  <!--more-->
