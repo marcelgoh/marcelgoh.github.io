@@ -29,7 +29,7 @@ groupFromOperation ints operation =
 ```
 So we can do something like this:
 ```
-*Main> tenGroup = groupFromOperation [1,3,7,9] (\x y -> (x*y) `mod` 10)
+*Main> tenGroup = groupFromOperation [x | x <- [0..9], gcd x 10 == 1] (\x y -> (x*y) `mod` 10)
 *Main> printCayley tenGroup
   * |   1   3   7   9
 ----------------------
