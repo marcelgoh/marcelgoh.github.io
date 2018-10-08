@@ -90,7 +90,7 @@ getInv elem (Group set rows) =
       findInv :: Element -> [Element] -> [Element] -> Maybe Element
       findInv id setLeft rowsLeft =
         case rowsLeft of
-          []   -> Nothin
+          []   -> Nothing
           e:es -> if e == id then Just (head setLeft) else findInv id (tail setLeft) es
   in case (identity, rowOfElem) of
        (Just id, Just elems) -> let possibleInv = findInv id set elems
