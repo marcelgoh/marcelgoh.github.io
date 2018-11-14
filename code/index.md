@@ -2,12 +2,15 @@
 layout: page
 title: Code
 ---
+## Hackathons
+
+### [HackPrinceton Fall 2018](https://github.com/marcelgoh/hackprinceton-2018)
+My team created CourseTalk, a discussion and collaboration platform for students. A blog post describing the process and functionality can be found [here](https://marcelgoh.github.io/2018/11/14/coursetalk.html).
+
 ## Learning programming
 
 ### [Natural-Language Parser](https://github.com/marcelgoh/nl-parser)
 A program that generates syntax trees for English sentences, written in Haskell. A blog post detailing the approach as well as the limitations of the program can be found [here](https://marcelgoh.github.io/2018/08/12/naive-parser.html)
-### [PICO-8 Projects](https://github.com/marcelgoh/pico-8)
-A collection of projects for the [PICO-8](https://www.lexaloffle.com/pico-8.php) fantasy console.
 ### [SICP Exercise Solutions](https://github.com/marcelgoh/sicp-exercises)
 Solutions to selected exercises from [*Structure and Interpretation of Computer Programs*](https://mitpress.mit.edu/sites/default/files/sicp/index.html) by Hal Abelson and Gerald Sussman.
 ### [Miscellaneous Programs](https://github.com/marcelgoh/misc-programs)
