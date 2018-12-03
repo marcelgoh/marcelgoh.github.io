@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2018
+- (03.12.2018) [The ring of subsets](https://marcelgoh.github.io/2018/12/03/subset-ring.html)
 - (14.11.2018) [HackPrinceton and CourseTalk](https://marcelgoh.github.io/2018/11/14/coursetalk.html)
 - (06.10.2018) [Fun with Cayley tables](https://marcelgoh.github.io/2018/10/06/cayley-tables.html)
 - (12.08.2018) [A naïve parsing algorithm](https://marcelgoh.github.io/2018/08/12/naive-parser.html)
