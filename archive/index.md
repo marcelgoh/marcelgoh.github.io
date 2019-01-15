@@ -2,6 +2,9 @@
 layout: page
 title: Blog Archive
 ---
+## 2019
+- (15.01.2019) [A classic weather theorem](https://marcelgoh.github.io/2019/01/15/weather-theorem.html)
+
 ## 2018
 - (03.12.2018) [The ring of subsets](https://marcelgoh.github.io/2018/12/03/subset-ring.html)
 - (14.11.2018) [HackPrinceton and CourseTalk](https://marcelgoh.github.io/2018/11/14/coursetalk.html)
