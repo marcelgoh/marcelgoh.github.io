@@ -43,4 +43,5 @@ At 15:15:00 GMT on 2019-01-15,
 and both have temperature 23.0 degrees Celsius.
 ```
 Because the Earth is humongous, 4,700 data stations can't really get a great match, and I printed the error as a percentage partially to hide the fact that the error is pretty massive. The 0.1399% error we just got above, when multiplied by half the circumference of the Earth, is a substantial 28km! Of course, the program would do better with more data, but according to the [World Meteorological Organization](https://public.wmo.int/en), there are only about 10,000 weather stations, so even if we had access to all of them, we would likely still have an error of a couple kilometres.  
+
 In any case, I hope you &mdash; and my dad &mdash; can be satisfied with the result we got. The important take-away here is that even though technological limitations prevent us from actually finding the antipodal points with the same temperature, the Borsuk-Ulam theorem (we actually only really used the 1-dimensional case, the [intermediate value theorem](https://en.wikipedia.org/wiki/Intermediate_value_theorem)) assures us that they have to exist.
