@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2019
+- (03.02.2019) [Bits and doughnuts](https://marcelgoh.github.io/2019/02/03/bits-and-doughnuts.html)
 - (15.01.2019) [A classic weather theorem](https://marcelgoh.github.io/2019/01/15/weather-theorem.html)
 
 ## 2018
