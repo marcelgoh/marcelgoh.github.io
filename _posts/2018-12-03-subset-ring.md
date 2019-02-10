@@ -161,7 +161,7 @@ $$ (A\cdot B)\cdot C = (A\cap B)\cap C = A\cap (B\cap C) = A\cdot(B\cdot C) $$
 Multiplication is associative.
 
 #### Distributivity of multiplication over addition
-Let $A,B,C\in P(S)$. We will prove that $A\cdot(B+C)=(A\cdot C)+(B\cdot C).
+Let $A,B,C\in P(S)$. We will prove that $A\cdot(B+C)=(A\cdot C)+(B\cdot C)$.
 
 $$
 \begin{align*}

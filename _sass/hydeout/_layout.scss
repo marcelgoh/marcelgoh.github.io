@@ -33,6 +33,7 @@ body {
 
 p {
   a.side-link {
+      font-family: $biolinum;
       &:hover {
           color: $side-hover-color;
           text-decoration: none;
@@ -80,6 +81,7 @@ img {
   }
 
   .side-link {
+      //font-family: $biolinum;
       a {
         &:hover { color: $side-hover-color; 
                   text-decoration: none; }
@@ -100,7 +102,11 @@ img {
 }
 
 .content {
+  font-family: $libertine;
   background: $body-bg;
+  h1, h2, h3, h4 {
+    font-family: $biolinum;
+  }
   color: $body-color;
   padding: $section-spacing;
 }
@@ -126,7 +132,8 @@ img {
           $section-spacing
           $section-spacing;
 
-  h1, h2 {
+  h1, h2, h3 {
+    //font-family: $biolinum;
     color: white;
 
     &:last-child {
@@ -202,6 +209,7 @@ img {
     }
 
     p.lead, header ~ * {
+      font-family: $biolinum;
       display: block;
     }
 

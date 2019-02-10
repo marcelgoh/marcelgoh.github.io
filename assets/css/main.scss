@@ -14,13 +14,13 @@ $purple: #a22eea;
 $orange: #fd9720;
 $beige: #fff3db;
 $dark-grey: #313131;
-
+$inconsolata: "LocalInconsolata", Menlo, Monaco, "Courier New", monospace !default;
 
 $sidebar-bg-color: $red;
 $layout-reverse: true;
 $link-color: $teal;
 $body-bg: $beige;
-$code-font-family: "Fira Mono", Menlo, Monaco, "Courier New", monospace;
+$code-font-family: $inconsolata;
 $code-color: $dark-grey;
 
 $hover-color: $purple;

@@ -34,15 +34,19 @@ layout: default
       {% endcapture %}
 
       {% if content_words != excerpt_words %}
+      <h4>
         <a href="{{ site.baseurl }}{{ post.url }}">More &hellip;</a>
+      </h4>
       {% endif %}
     {% endif %}
   </article>
   {% endfor %}
   <article>
+      <h3>
       <a href="{{ site.baseurl }}/archive/">
         <div style="text-align:center">Full blog archive</div>
       </a>
+      </h3>
   </article>
 
 

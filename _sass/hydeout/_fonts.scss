@@ -1,0 +1,37 @@
+// Local fonts
+
+@font-face {
+    font-family: "LocalLibertine";
+    src: url("../fonts/LinLibertine_R.ttf");
+}
+@font-face {
+    font-family: "LocalLibertine";
+    src: url("../fonts/LinLibertine_RB.ttf");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "LocalLibertine";
+    src: url("../fonts/LinLibertine_R.ttf");
+    font-style: italic, oblique;
+}
+@font-face {
+    font-family: "LocalLibertine";
+    src: url("../fonts/LinLibertine_RB.ttf");
+    font-weight: bold;
+    font-style: italic, oblique;
+}
+
+@font-face {
+    font-family: "LocalBiolinum";
+    src: url("../fonts/LinBiolinum_R.ttf");
+}
+@font-face {
+    font-family: "LocalBiolinum";
+    src: url("../fonts/LinBiolinum_RB.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "LocalInconsolata";
+    src: url("../fonts/Inconsolata-Regular.ttf");
+}

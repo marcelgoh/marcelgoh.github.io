@@ -14,13 +14,13 @@
                              page.url != '/code/' and
                              page.url != '/archive/' and
                              page.url != '/licence/' %} active{% endif %}"
-       href="{{ site.baseurl }}/">Blog</a><br/>
+       href="{{ site.baseurl }}/">Blog</a></br>
     <a class="side-link{% if page.url == '/about/' %} active{% endif %}"
-       href="{{ site.baseurl }}/about/">About</a><br/>
+       href="{{ site.baseurl }}/about/">About</a></br>
     <a class="side-link{% if page.url == '/code/' %} active{% endif %}"
-       href="{{ site.baseurl }}/code/">Code</a><br/>
+       href="{{ site.baseurl }}/code/">Code</a></br>
     <a class="side-link{% if page.url == '/archive/' %} active{% endif %}"
-       href="{{ site.baseurl }}/archive/">Archive</a><br/>
+       href="{{ site.baseurl }}/archive/">Archive</a></ul></br>
   </p>
 
   {% assign current = page.url | downcase | split: '/' %}
