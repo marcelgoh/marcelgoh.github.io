@@ -9,6 +9,7 @@ A program that generates syntax trees for English sentences, written in Haskell.
 
 #### [Miscellaneous Programs](https://github.com/marcelgoh/misc-programs)
 A collection of small programs and scripts I wrote while learning new languages. Many are solutions to coding puzzles and challenges. Some of the most fleshed-out are:
++ [A calculator, implemented as a stack-based virtual machine](https://github.com/marcelgoh/misc-programs/tree/master/ocaml/ocalc) (OCaml)
 + [A program that collects and analyses weather data](https://github.com/marcelgoh/misc-programs/tree/master/haskell/Borsuk-Ulam) (Haskell)
 + [An implementation of some abstract data structures](https://github.com/marcelgoh/misc-programs/tree/master/c/data_structures) (C)
 + [A tool for analysing/generating Cayley tables](https://github.com/marcelgoh/misc-programs/tree/master/haskell/Cayley)  (Haskell)
