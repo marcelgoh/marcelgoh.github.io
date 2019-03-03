@@ -67,7 +67,7 @@ Answer:
     -22.000000
 ```
 
-When you type a string into OCalc, all the program sees is a list of characters. First the programs __lexes__ the string into a list of tokens, ignoring whitespaces and other things that largely don't matter. For instance, the string `"3*(5 + 4)"` becomes the following list of tokens:
+When you type a string into OCalc, all the program sees is a list of characters. First the program __lexes__ the string into a list of tokens, ignoring whitespaces and other things that largely don't matter. For instance, the string `"3*(5 + 4)"` becomes the following list of tokens:
 
 ```ocaml
 [(NUMBER "3"), (OP "*"), (LPAREN "("), (NUMBER "5"), (OP "+"), (NUMBER "4"), (RPAREN ")")]
