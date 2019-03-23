@@ -38,3 +38,10 @@ En tant que VP Academic, une partie de mon rôle serait de combler l'écart entr
 Merci d'avoir considéré ma plateforme ! Si vous avez une question ou un commentaire, n'hésitez pas à me contacter : je suis actuellement en échange à Prague, mais vous pouvez m'[envoyer un message](https://www.facebook.com/marcel.goh.1) ou me [contacter par courriel](mailto:marcel.goh@mail.mcgill.ca). J'espère vous avoir de mon côté lorsque les urnes s'ouvriront du 27 au 28 mars.
 
 <center>* * *</center>
+<br>
+<center>
+<p>
+    <a class="side-link"
+       href="/">Back to homepage.</a>
+</p>
+</center>
