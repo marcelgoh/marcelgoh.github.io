@@ -24,11 +24,11 @@ $$
 \end{align*}
 $$
 
-Functio $\eta$ superiectiva est. Volumus demonstrare $\eta$ iniectivam esse. Sint $g_1K,g_2K\in G/K$ ut $\eta(g_1K)=\eta(g_2K)$. Tum $\phi(g_1)=\phi(g_2)$. Itaque $\phi(g_1^{-1}g_2) = e$ et $g_1^{-1}g_2\in \text{ker}\ \phi$; ergo, $g_1^{-1}g_2K = K$, aut $g_1K=g_2K$. Quod erat demonstrandum.
+Functio $\eta$ superiectiva est. Volumus demonstrare $\eta$ iniectivam esse. Sint $g_1K,g_2K\in G/K$ ut $\eta(g_1K)=\eta(g_2K)$. Tum $\phi(g_1)=\phi(g_2)$. Itaque $\phi(g_1^{-1}g_2) = e$ et $g_1^{-1}g_2\in \text{ker}\ \phi$; ergo, $g_1^{-1}g_2K = K$, aut $g_1K=g_2K$, et $\eta$ isomorphismus est. Quod erat demonstrandum.
 
 
 ## Irrationalitas numeri $\sqrt{2}$
 
 __Theorema.__ Numerus $\sqrt{2}$ irrationalis est.
 
-_Demonstratio._ Demonstramus rationalitam numeri $\sqrt{2}$ contradictionem implicare. Si $\sqrt{2}$ rationalis est, existunt numeri integri $p$ et $q$ ut $\sqrt{2} = \frac{p}{q}$, ubi $p$ and $q$ factores primos aequales non habent. Tum $2 = p^2/q^2$ et $p^2=2q^2$; ergo $a$ est numerus par, et existit numerus integer $r$ ut $p=2r$. A prima aequatione sequitur $2q^2 = (2r)^2 = 4r^2$, ergo $q^2 = 2r^2$ et $q$ est numerus par. Absurdum est quia $p$ et $q$ factores primos aequales habere non possunt. Itaque coniectura falsa est et $\sqrt{2}$ irrationalis est. Quod erat demonstrandum.
+_Demonstratio._ Demonstramus rationalitam numeri $\sqrt{2}$ contradictionem implicare. Si $\sqrt{2}$ rationalis est, existunt numeri integri $p$ et $q$ ut $\sqrt{2} = \frac{p}{q}$, ubi $p$ and $q$ factores primos aequales non habent. Tum $2 = p^2/q^2$ et $p^2=2q^2$; ergo $p$ est numerus par, et existit numerus integer $r$ ut $p=2r$. A prima aequatione sequitur $2q^2 = (2r)^2 = 4r^2$, ergo $q^2 = 2r^2$ et $q$ est numerus par. Absurdum est quia $p$ et $q$ factores primos aequales habere non possunt. Itaque coniectura falsa est et $\sqrt{2}$ irrationalis est. Quod erat demonstrandum.
