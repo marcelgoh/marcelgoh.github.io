@@ -17,9 +17,9 @@ A collection of small programs and scripts I wrote while learning new languages.
 ## Hackathons
 
 #### [ConUHacks IV](https://github.com/conudihedral4/nim)
-My team implemented [Nim](https://en.wikipedia.org/wiki/Nim), a mathematical game of strategy, using the [Processing](https://processing.org) programming language and platform. I wrote more about it [here](https://marcelgoh.github.io/2019/02/03/bits-and-doughnuts.html). (January 2019)
+My team implemented [Nim](https://en.wikipedia.org/wiki/Nim), a mathematical game of strategy, using the [Processing](https://processing.org) programming language and platform. I wrote more about it [here]({{ site.baseurl }}/2019/02/03/bits-and-doughnuts.html). (January 2019)
 #### [HackPrinceton Fall 2018](https://github.com/marcelgoh/hackprinceton-2018)
-My team created CourseTalk, a discussion and collaboration platform for students. A blog post describing the process and functionality can be found [here](https://marcelgoh.github.io/2018/11/14/coursetalk.html). (November 2018)
+My team created CourseTalk, a discussion and collaboration platform for students. A blog post describing the process and functionality can be found [here]({{ site.baseurl }}/2018/11/14/coursetalk.html). (November 2018)
 
 ## Study
 
