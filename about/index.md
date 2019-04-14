@@ -12,3 +12,5 @@ I'm probably most familiar with Java because it's what we use most at school, bu
 As a certified First Responder, I volunteer with the [McGill Student Emergency Response Team](www.msert.ca).
 
 When I'm not writing programs or attending school, I enjoy hiking, travelling, photography, and playing video games.
+
+_If you would like a copy of my CV, please send me an email by clicking on the envelope icon in the sidebar._
