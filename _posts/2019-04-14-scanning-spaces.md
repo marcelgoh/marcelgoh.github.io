@@ -72,6 +72,6 @@ and the original code we had would tokenise into
 
 which can easily be handled by the parser.  
 
-I hope this post gave you a little insight into how languages that use significant whitespace can be lexed to produce grammars that an $LL(1)$ or $LR(1)$ parser can deterministically read. I simplified the algorithm description here for presentation's sake, but if you want to see the gory details in OCaml, you can check out the [lexer file](https://github.com/marcelgoh/opythn/blob/master/src/lexer.mll) I wrote for OPythn. I the article was a little on the dry side this time, so if you made it this far, here's a reward: a little photo I took of the street outside my school in Prague!
+I hope this post gave you a little insight into how languages that use significant whitespace can be lexed to produce grammars that an $LL(1)$ or $LR(1)$ parser can deterministically read. I simplified the algorithm description here for presentation's sake, but if you want to see the gory details in OCaml, you can check out the [lexer file](https://github.com/marcelgoh/opythn/blob/master/src/lexer.mll) I wrote for OPythn. I know the article was a little on the dry side this time, so if you made it this far, here's a reward: a little photo I took of the street outside my school in Prague!
 
 ![mala-strana]({{ site.baseurl }}/media/scanning-spaces/mala-strana.jpg)
