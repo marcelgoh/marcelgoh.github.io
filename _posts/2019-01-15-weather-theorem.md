@@ -8,7 +8,7 @@ excerpt_separator:  <!--more-->
 ---
 While on holiday with my family over the break, I thought about a classic application of the [Borsuk-Ulam theorem](https://en.wikipedia.org/wiki/Borsuk–Ulam_theorem): There are always two antipodal (exactly opposite) points on the globe with equal temperature. I recited this theorem and its proof to my parents and brother, whose first reaction was to exclaim: "You spend way too much time thinking about pointless math!" &mdash; a valid opinion. Then my dad, still not entirely convinced, asked me: "Okay well, where are these two points?". Like most existence theorems, the Borsuk-Ulam theorem doesn't help much in finding the actual points that it concerns, so I decided to write [a program](https://github.com/marcelgoh/misc-programs/tree/master/haskell/Borsuk-Ulam) to find these antipodal points using data from the web.
 <!--more-->
-## The theorem
+### The theorem
 Before we get into the program, let's get the theorem and proof out of the way. We need to assume that temperature varies continuously over the globe, i.e. if you walk from a point with temperature $a$ to another point with temperature $b$, then you passed through all the temperatures between $a$ and $b$. For the most part, this is a sensible thing to assume. Also, it's worth it to note that the statement can be made stronger by either restricting the points to any [great circle](https://en.wikipedia.org/wiki/Great_circle) (e.g. the equator) on the globe or by introducing barometric pressure alongside temperature (on the whole globe). Details can be found on the Wikipedia article I linked at the very top of the article, but in any case the following statement is enough for our purposes:  
 
 __Theorem.__ At any moment in time, there is a point on the globe that has the exact same temperature as its antipode (the opposite point on the globe).  
@@ -18,7 +18,7 @@ _Proof._ For every point $p$ on the planet, assign a number $f(p)$ by subtractin
 Now pick any point $a$ and call its antipode $b$. If $f(a)=0$, we're done because then $a$ and $b$ have the same temperature. So assume it's not zero and assume $a$ is colder than $b$ (rename the points if you have to). So $f(a)$ is negative and $f(b)$ is positive. Now draw a line on the globe from point $a$ to point $b$. Because the line starts at a point with negative value of $f$ and ends at one with a positive value, there must be some point $c$ on this line such that $f(c)=0$. This $c$ is the point we're looking for, because $f(c)$ being zero means that it's the same temperature as its antipode!  
 $$\tag*{$\Box$}$$
 
-## The code
+### The code
 The [Haskell program](https://github.com/marcelgoh/misc-programs/tree/master/haskell/Borsuk-Ulam) I wrote collects [data from roughly 4,700 weather stations](https://aviationweather.gov) around the world and does a brute-force search for the two points that best match the criteria of the theorem. The file `Point.hs` defines a couple of simple data structures and the main loop and data-fetching procedures are defined in `Main.hs`. Here's what it looks like in action:
 ```
 ****************************************

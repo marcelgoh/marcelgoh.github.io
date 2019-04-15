@@ -11,7 +11,7 @@ Calculators were great fun as a kid. You could add one and one and then race a f
 
 _Note: when a word appears in __bold__, it has an entry in the glossary at the bottom of the page._
 
-## Computers like postfix notation
+### Computers like postfix notation
 
 As we learned in grade school, evaluating the expression $2 + (-3) * 4^2 / (7 - 5)$, from left to right will not produce the correct answer. Instead, we need to do the operations in _brackets_ first, then the _exponents_, then _division and multiplication_ in left-to-right order, then _addition_ and _subtraction_ in left-to-right order. (The acronym I learned is BEDMAS, though variations exist.) Applying these rules, we can represent the above expression as the following tree.
 
@@ -39,7 +39,7 @@ Not only have the brackets disappeared, we now get a very clear idea of the orde
 
 This is what we would have done on paper, but in a sequence of steps that a computer can easily understand. This conversion from infix to postfix notation can be done using the shunting-yard algorithm, so called because it uses two __stacks__ and the process of __pushing__ and __popping__ from these stacks resembles shunting cars at a railyard. You can read about the algorithm on [Wikipedia](https://en.wikipedia.org/wiki/Shunting-yard_algorithm), or see the [version I wrote](https://github.com/marcelgoh/misc-programs/blob/master/ocaml/ocalc/src/parser.ml) as part of the calculator I made, which I'll get into next.
 
-## An overengineered calculator
+### An overengineered calculator
 
 I created [OCalc](https://github.com/marcelgoh/misc-programs/tree/master/ocaml/ocalc), an OCaml program that takes in a mathematical expression as input, and simulates a stack-based machine to calculate the answer. For example, we can enter our toy example into OCalc:
 
@@ -81,7 +81,7 @@ Next the list of tokens is __parsed__ into an abstract syntax tree like the one 
 
 Whenever the machine sees a `LOAD` instruction with a value, it pushes the value onto its stack, stored in memory. Then whenever it sees an operation, it pops the correct number of arguments off the stack, performs the operation, the pushes the result back onto the stack. After the final instruction, provided the expression given was well-formed, there will be only one number left on the stack, which is the value the machine will return.
 
-## The jump to programming languages
+### The jump to programming languages
 
 Our calculator might have seemed like a very long-winded way of telling a computer to do math &mdash; and it is! &mdash; but this process is exactly the way many programming languages are implemented. For example, take the following Python procedure that performs an important calculation:
 
@@ -124,11 +124,11 @@ If you load the function into the Python interpreter and disassemble the functio
 
 These are the instructions that the Python interpreter executes whenever the `okay` function is called, and because the Python interpreter is usually implemented as a stack machine, the code looks very similar to what we had above with OCalc!
 
-## Conclusion
+### Conclusion
 
 The calculator I created is a really slow and complicated way of getting a computer to do math, but I hope that it illustrates a little bit how human-readable instructions might be read, understood, and executed by a machine. In the near future, I plan to write my own version of the Python interpreter and hopefully the procedures used in implementing OCalc can be scaled and generalised to accomplish this.
 
-## Glossary
+### Glossary
 
 + A __binary__ operation takes two values as input. Most of the common-or-garden arithmetic operators are binary, such as $+$ and $-$.
 + A __unary__ operation takes one value as input. An example is negation, as in $-3$.

@@ -8,7 +8,7 @@ excerpt_separator:  <!--more-->
 ---
 After focusing on groups for the first half of the semester, we've finally started to tackle rings and fields in my algebra class. Because there are so many different types of rings, I've been trying to wrap my head around them by looking up concrete examples of rings with different properties. In the book _Rings and Ideals_ by Neal H. McCoy, I found the interesting example of the ring of subsets of an arbitrary set. Unlike most rings, whose elements are numbers of some sort, this ring has sets as its elements! Let's dive into some cool properties of this wacky ring.
 <!--more-->
-## Some preliminaries about sets
+### Some preliminaries about sets
 In this post we will be dealing with sets. If you've seen sets before, feel free to skip this little section. If you haven't dealt with them much before, don't worry! It's actually a pretty natural concept (that can get super complicated if you dig really deep into it). A set is just a collection of objects. Here are a couple of definitions we'll need regarding sets:
 + If an element $x$ is in a set $S$, we write $x\in S$.
 + A set $A$ is a __subset__ of a set $B$ if every element in $A$ is also in $B$. We write $A\subset B$ to denote this. Of course, $A\subset A$, because every element of $A$ is an element of $A$. In the diagram below, the sets $A,B,C$ are all subsets of the set $S$ (the big square).
@@ -22,7 +22,7 @@ In this post we will be dealing with sets. If you've seen sets before, feel free
 
 There are a bunch of rules concerning how these basic operations can be combined, which you can consult at this [Wikipedia page](https://en.wikipedia.org/wiki/Algebra_of_sets). We'll be using some of these rules later.
 
-## What is a ring?
+### What is a ring?
 Next, it's worth mentioning what a rings actually are. Again, if you're already comfortable with rings, you can skip this little section. Informally, a ring is a set of objects, most often numbers of some kind, which follow the rules of addition and multiplication we know and love. The set of integers $$\mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\}$$ form probably the most familiar ring. Formally, a __ring__ $(R,+,\cdot)$ is a set $R$ on which are defined two operations $+$ and $\cdot$ such that the following rules apply.
 + (_Additive identity_) There is a unique element in $R$, usually denoted $0$, such that for all elements $a\in R$, $a+0=a=0+a$.
 + (_Additive inverses_) For every element $a\in R$, there is a unique element $-a\in R$ such that $a+-a=0=-a+a$.
@@ -38,7 +38,7 @@ then $R$ is a __commutative ring__. Furthermore, if $R$ is a ring, not necessari
 
 then $R$ is a __ring with unity__. The integers form a commutative ring with unity $(\mathbb{Z},+,\cdot)$, which is why these rules are so intuitive. (They're also an integral domain, but we won't get into that in this post.) An example of a ring with unity that is not commutative is the set of 2-by-2 matrices under addition and matrix multiplication.
 
-## The power set forms a ring
+### The power set forms a ring
 What does this have to do with sets? Well, after being introduced to the operations on sets above, you might have wondered if we can make a ring of sets. Concretely, if we have a set of sets, say $P(S)$, does $(P(S),\cup,\cap)$ form a ring? Sadly, this doesn't work, because there is no additive inverse for any non-$\emptyset$ element. If $A\in P(S)$ is a non-empty set, then we want to find a $-A$ such that $A\cup -A=\emptyset$. But $A$ is non-empty, so the union of $A$ with any other set must contain at least $A$. So $-A$ does not exist in $P(S)$ and $(P(S), \cup, \cap)$ is not a ring.
 
 Don't get too disappointed though. With a small modification to our definition of addition, we can construct a ring! If we have two sets $A$ and $B$, define their sum as the set of all things in $A$ or in $B$, _but not both_. Formally, addition now looks like this:
@@ -76,7 +76,7 @@ then congratulations! You understand how addition and multiplication work in our
 
 I hope this will be a fun exercise. You can find the answers in the following proof.
 
-## Proof of ringhood
+### Proof of ringhood
 We will prove that $(P(S),+,\cdot)$ is a ring by verifying that it satisfies all the ring properties one-by-one using equality rules from the algebra of sets.
 #### Additive identity
 $\emptyset\subset S$ so $\emptyset \in P(S)$. Then for any set $A$ in $P(S)$,
@@ -178,7 +178,7 @@ $$
 
 So multiplication distributes over addition and we are happy. The proof for $(A+B)\cdot C=(A\cdot C)+(B\cdot C)$ so I will leave it out. Try it for yourself if you want. In any case, we have proven that $(P(S),+,\cdot)$ is a ring.
 
-## But wait, there's more!
+### But wait, there's more!
 Before we go, we'll prove a couple more things about the ring of subsets. We will prove that it is a __commutative ring with unity__ by showing that multiplication is commutative, and that the ring contains a multiplicative identity (an element that acts like $1$ does for the integers). Finally, we'll also see that the ring of subsets is a Boolean ring.
 #### Commutativity of multiplication
 There's nothing too exciting here, because intersection is already defined to be commutative in the algebra of sets that we're using. So $A\cdot B=A\cap B=B\cap A=B\cdot A$ and we're done.
