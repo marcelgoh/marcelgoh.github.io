@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2019
+- (28.04.2019) [Four is cosmic]({{ site.baseurl }}/2019/04/28/four-is-cosmic.html)
 - (14.04.2019) [Scanning syntactically significant spaces]({{ site.baseurl }}/2019/04/14/scanning-spaces.html)
 - (03.03.2019) [Overengineering a calculator]({{ site.baseurl }}/2019/03/03/overengineering-calculator.html)
 - (03.02.2019) [Bits and doughnuts]({{ site.baseurl }}/2019/02/03/bits-and-doughnuts.html)
