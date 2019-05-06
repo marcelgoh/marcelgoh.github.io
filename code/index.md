@@ -19,6 +19,8 @@ A collection of small programs and scripts I wrote while learning new languages.
 
 ## Hackathons
 
+#### [HackPrague 2019](https://github.com/mattonicorp/mattoni)
+My teammate and I created Mattoni, a program that allows you to generate and interact with escape-time fractals. We used the SDL2 graphics library and wrote the program in C. I wrote more about it [here]({{ site.baseurl }}/2019/05/06/escape-time-fractals.html). (May 2019)
 #### [ConUHacks IV](https://github.com/conudihedral4/nim)
 My team implemented [Nim](https://en.wikipedia.org/wiki/Nim), a mathematical strategy game, using the [Processing](https://processing.org) programming language and platform. I wrote more about it [here]({{ site.baseurl }}/2019/02/03/bits-and-doughnuts.html). (January 2019)
 #### [HackPrinceton Fall 2018](https://github.com/marcelgoh/hackprinceton-2018)

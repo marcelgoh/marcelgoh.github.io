@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2019
+- (06.05.2019) [Escape-time fractals in SDL2]({{ site.baseurl }}/2019/05/06/escape-time-fractals.html)
 - (28.04.2019) [Four is cosmic]({{ site.baseurl }}/2019/04/28/four-is-cosmic.html)
 - (14.04.2019) [Scanning syntactically significant spaces]({{ site.baseurl }}/2019/04/14/scanning-spaces.html)
 - (03.03.2019) [Overengineering a calculator]({{ site.baseurl }}/2019/03/03/overengineering-calculator.html)
