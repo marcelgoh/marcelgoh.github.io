@@ -28,8 +28,11 @@ My team created CourseTalk, a discussion and collaboration platform for students
 
 ## Study
 
-#### [SICP Exercise Solutions](https://github.com/marcelgoh/sicp-exercises)
-Solutions to exercises from [*Structure and Interpretation of Computer Programs*](https://mitpress.mit.edu/sites/default/files/sicp/index.html) by Hal Abelson and Gerald Sussman.
+#### [SICP Exercises](https://github.com/marcelgoh/sicp-exercises)
+Solutions to exercises from [*Structure and Interpretation of Computer Programs*](https://mitpress.mit.edu/sites/default/files/sicp/index.html) by Hal Abelson and Gerald Sussman. Written in Scheme.
+
+#### [TAOCP Exercises](https://github.com/marcelgoh/misc-programs/tree/master/mix)
+Solutions to exercises from [*The Art of Computer Programming*](https://www-cs-faculty.stanford.edu/~knuth/taocp.html) by Donald Knuth. Written in MIX Assembly.
 
 #### [COMP 206 Winter 2018](https://github.com/marcelgoh/comp-206-winter-2018)
 Assignments from [COMP 206 Introduction to Software Systems](https://www.mcgill.ca/study/2017-2018/courses/comp-206) at McGill University. Posted after the course end date with permission from Prof. David Meger.
