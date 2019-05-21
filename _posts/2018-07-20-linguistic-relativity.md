@@ -32,7 +32,7 @@ The deciding factor may be the special place language occupies in the brain. Peo
 
 On the other hand, programming languages are learned later in life, usually for a specific purpose. A good analogy might be music. While all cultures have a musical heritage of some sort, music does not occupy quite the same level in the brain as natural language. So the path people take to learning to produce music may have a profound impact on the way they view the art. A child raised learning Beethoven's concertos on the piano will have a different perception of music from a rock musician raised on the electric guitar. While natural languages are different ways of expressing the same human condition, different musical instruments are different ways of creating different types of music.
 
-> "It is not only the violin that shapes the violinist; we are all shaped by the tools we train ourselves to use, and in this respect programming languages have a devious influence: they shape our thinking habits.
+> "It is not only the violin that shapes the violinist; we are all shaped by the tools we train ourselves to use, and in this respect programming languages have a devious influence: they shape our thinking habits."
 >
 > &mdash; Edsger W. Dijkstra
 
