@@ -7,7 +7,7 @@ mathjax: true
 excerpt_separator:  <!--more-->
 ---
 
-I was going through my archives earlier and reread a post I wrote on 3 July 2018, titled ["The error-proneness of binary search"]({{ site.baseurl }}/2018/07/03/binary-search.html). I had heard that binary search was an algorithm whose implementation many programmers get wrong, so I attempted to code it by hand in Scheme without making any errors. Like [90% of programmers](https://reprog.wordpress.com/2010/04/19/are-you-one-of-the-10-percent/), I failed. In fact, because I was working with Scheme lists,  I was doomed from the start! The $\log n$ binary search algorithm does not work on singly linked lists, because indexing into a linked list requires $O(n)$ time. So I decided to go through the exercise again, this time with sequentially allocated lists, in MIX Assembly Language.
+I was going through my archives earlier and reread a post I wrote on 3 July 2018, titled ["The error-proneness of binary search"]({{ site.baseurl }}/2018/07/03/binary-search.html). I had heard that binary search was an algorithm whose implementation many programmers get wrong, so I attempted to code it by hand in Scheme without making any errors. Like [90% of programmers](https://reprog.wordpress.com/2010/04/19/are-you-one-of-the-10-percent/), I failed. In fact, because I was working with Scheme lists,  I was doomed from the start! The logarithmic binary search algorithm does not work on singly linked lists, because indexing into a linked list requires linear time. So I decided to go through the exercise again, this time with sequentially allocated lists, in MIX Assembly Language.
 <!--more-->
 
 ### My attempt
@@ -44,7 +44,7 @@ X       CON     _
 12          JE      FOUND
 13          ENTA    0,2(0:2)        rA <- high.
 14          ST1     TEMP
-15          SUB     TEMP            rA <-. rA - low.
+15          SUB     TEMP            rA <- rA - low.
 16          JAZ     FAIL            If high = low, fail.
 17          JG      2F
 18          ENT2    -1,3(0:2)       high <- rI3 - 1.

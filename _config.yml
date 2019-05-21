@@ -20,9 +20,16 @@ author:
   linkedin:       'https://www.linkedin.com/in/marcel-goh-463ba2149'
 
 
-paginate:         3
+paginate:         5
 # paginate_path:    '/page:num'
                     # Or '/blog/page:num' if you want to move your index pages
+
+defaults:
+    scope:
+      path: ""        # empty string for all files
+      type: posts     # limit to posts
+    values:
+      is_post: true   # automatically set is_post=true for posts
 
 plugins:
   - jekyll-feed
