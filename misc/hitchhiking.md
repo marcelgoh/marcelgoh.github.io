@@ -58,7 +58,7 @@ After my last exam of first year, I spent a day preparing for the trip. I sent m
 
 ![giselle-wayne]({{ site.baseurl }}/media/hitchhiking/giselle-wayne.jpg)
 
-Along the way, Wayne told me stories of working in fly-in mining communities in Northern Saskatchewan and Giselle told me stories from her childhood in the Prairies, from strict teachers at the convent to nights at the drive-in theatre. We ended Day 3 in Thunder Bay, where I stayed in a motel that was unfortunately full of bedbugs.
+Along the way, Wayne told me stories of working in fly-in mining communities in northern Saskatchewan and Giselle told me stories from her childhood in the Prairies, from strict teachers at the convent to nights at the drive-in theatre. We ended Day 3 in Thunder Bay, where I stayed in a motel that was unfortunately full of bedbugs.
 
 ![tbay]({{ site.baseurl }}/media/hitchhiking/tbay.jpg)
 
