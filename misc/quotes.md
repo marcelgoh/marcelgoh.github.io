@@ -10,7 +10,7 @@ These are some of my favourite quotes about science/math, etc.
 > &mdash; <cite>Hal Abelson</cite>
 
 
-> "Als je in de fysica iets niet begrijpt, je kunt je altijd verschuilen achter de ongepelde diepte van de natuur. Je kunt altijd God de schuld geven. Je hebt zelf het niet zo ingewikkeld gemaakt. Maar als je programma niet werkt, nu heb je niemand om je achter te verschuilen. Je kunt je niet verschuilen achter onwillige natuur. Nee, een 0 is een 0 en een 1 is een 1, en als het niet werkt je heb gewoon fout gedaan."
+> "Als je in de fysica iets niet begrijpt, je kunt je altijd verschuilen achter de ongepelde diepte van de natuur. Je kunt altijd God de schuld geven. Je hebt zelf het niet zo ingewikkeld gemaakt. Maar als je programma niet werkt, nu heb je niemand om je achter te verschuilen. Je kunt je niet verschuilen achter onwillige natuur. Nee, een 0 is een 0 en een 1 is een 1, en als het niet werkt je hebt gewoon fout gedaan."
 >
 >(_"If in physics there is something you don't understand, you can always hide behind the unpeeled depth of nature. You can always blame God. You didn't make it so complicated yourself. But when your program doesn't work, you have no one to hide behind. You can't hide behind an obstinate nature. No, a 0 is a 0 and a 1 is a 1, and if it doesn't work you have simply messed up."_)
 >
