@@ -9,6 +9,7 @@ This is a landing page for things that, for whatever reason, might not have a pl
 
 + [Hitchhiking from Montréal to Edmonton]({{ site.baseurl }}/misc/hitchhiking.html)
 
-### Mathematics
+### Science and mathematics
 
 + [My favourite classic theorems]({{ site.baseurl }}/misc/theoremata.html)
++ [My favourite quotes]({{ site.baseurl }}/misc/quotes.html)

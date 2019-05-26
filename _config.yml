@@ -27,7 +27,7 @@ paginate:         5
 defaults:
     scope:
       path: ""        # empty string for all files
-      type: posts     # limit to posts
+      type: post     # limit to posts
     values:
       is_post: true   # automatically set is_post=true for posts
 
