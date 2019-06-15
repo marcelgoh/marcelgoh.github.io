@@ -1,0 +1,48 @@
+% Macros for creating documents
+% Written by Marcel Goh, unless otherwise specified.
+
+% FONTS
+\font\bigbold=cmbx12
+\font\bigsans=cmss12
+\font\smallheader=cmssbx10 % for section headers
+
+% Small caps
+\font\ninesc=cmcsc9
+\font\tensc=cmcsc10
+
+% Roman fonts
+\font\eightpt=cmr8
+\font\ninept=cmr9
+\font\twelvept=cmr12
+
+% Create header on non-first pages
+\def\leftrighttop#1#2{\headline{\ifnum\pageno=1\hfil\else{\ninept #1 \hfil #2}\fi}}
+
+% Create title, subtitle, name, and date
+\def\maketitle#1#2#3#4{
+  \centerline {\bigbold #1}
+  \medskip
+  \centerline {\eightpt #2}
+  \medskip
+  \centerline {\tensc #3}
+  \medskip
+  \centerline {\tensc #4}
+  \bigskip
+}
+
+% Create title, subtitle, and name
+\def\maketitlenodate#1#2#3{
+  \centerline {\bigbold #1}
+  \medskip
+  \centerline {\eightpt #2}
+  \medskip
+  \centerline {\tensc #3}
+  \bigskip
+}
+
+% Section header in heavy sans-serif font
+% Separate two of these in a row with \vskip -\medskipamount
+\def\section#1\par{
+  \bigskip\vskip\parskip
+  \leftline{\smallheader#1}\nobreak\medskip\noindent
+}
