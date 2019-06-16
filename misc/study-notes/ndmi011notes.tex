@@ -332,7 +332,7 @@ $$\eqalign{
 }$$
 To prove the vertex version of the theorem, for every vertex $v\in V'\setminus\{s,t\}$, we set a vertex capacity $d(v) = 1$. To prove the edge version of the theorem, we set $c(e) = 1$ for all edges in $E(G')$. Now we consider the vertex and edge cases separately.
 \medskip
-\item {1.} Assume that $st\notin E(G')$. Any s-t-vertex cut of $G'$ separates $G$; since any s-t-path in $G'$ is also a t-s-path, the s-t-vertex cut also separates $t$ from $s$. Let $T$ denote a minimum-cardinality s-t-vertex-cut in $G'$ and we get that $d(T) \geq \kappa(G)$. There exists a 0-1 flow with $|f|\geq \kappa(G)$. So at each vertex, the number of incoming edges is at most 1 and the number of outgoing edges is at most 1 as well. This implies that there are $|f|$ independent pats from $s$ to $t$. But by the max-flow min-cut theorem, $|f| = d(T) \geq \kappa(G) = k$. If it so happens that $st\in E(G)$, then $(s, st, t)$ is an additional independent s-t-path to those in $G-st$ and we know that $\kappa(G-st)\geq \kappa(G) - 1$. Hence $G$ being $k$-connected implies that there are at least $k$ independent paths between any $s, t$.
+\item {1.} Assume that $st\notin E(G')$. Any s-t-vertex cut of $G'$ separates $G$; since any s-t-path in $G'$ is also a t-s-path, the s-t-vertex cut also separates $t$ from $s$. Let $T$ denote a minimum-cardinality s-t-vertex-cut in $G'$ and we get that $d(T) \geq \kappa(G)$. There exists a 0-1 flow with $|f|\geq \kappa(G)$. So at each vertex, the number of incoming edges is at most 1 and the number of outgoing edges is at most 1 as well. This implies that there are $|f|$ independent paths from $s$ to $t$. But by the max-flow min-cut theorem, $|f| = d(T) \geq \kappa(G) = k$. If it so happens that $st\in E(G)$, then $(s, st, t)$ is an additional independent s-t-path to those in $G-st$ and we know that $\kappa(G-st)\geq \kappa(G) - 1$. Hence $G$ being $k$-connected implies that there are at least $k$ independent paths between any $s, t$.
 \smallskip
 \item {2.} In the case of edge capacities, any s-t-edge-cut separates $G$ as any t-s-path is also an s-t-path in G'. Let $S$ denote a minimum s-t-edge cut. Then $c(E)\geq \lambda(G)$. Again, there exists a 0-1 flow f with $|f|\geq \lambda(G)$, but this time it may be possible that a vertex has many incoming and outgoing edges. However, we know that the number of incoming edges that carry flow must equal the number of outgoing edges that carry flow at any vertex. Let $H=(V,F)$ be a subgraph of $G$, where $F = \{e\in E(G) : f(e) = 1\}$. While there exists an s-t-path $P$ in $H$, we can remove any all edges of $P$ from $H$ while maintaining flow conservation at every vertex $v\in V\setminus\{s,t\}$. We can repeat the algorithm as many times as there are edges coming out of $S$, so at least $|f|$ times. Hence $|f|\geq \lambda(G)\geq k$.\slug
 
@@ -467,7 +467,7 @@ Let $X$ be a finite point set and ${\cal L}\subseteq 2^X$ be a set of subsets of
 \medskip
 We call any $x\in X$ a {\it point} and any $L\in {\cal L}$ a {\it line}. Finite projective planes have very interesting ``symmetrical'' properties.
 
-\proclaim Lemma. Let $(X,{\cal L})$ be a finite projective plane. Then for all $L, L'\in {\cal L}$, there exists an $z\in L$ such that $x\notin L\cup L'$
+\proclaim Lemma. Let $(X,{\cal L})$ be a finite projective plane. Then for all $L, L'\in {\cal L}$, there exists an $z\in L$ such that $z\notin L\cup L'$
 
 \proof By (P0), there exists a set $F\subseteq X$ with $|F| = 4$ and $|F\cap L|\leq 2$ for a $|F\cap L'|\leq 2$. If $F$ is a proper subset of $L\cup L'$, then we're done, because $z\in F$. So assume $F\subset L\cup L'$: say $F = \{a, b,c,d\}$, $F\cap L = \{a, b\}$, and $F\cap L' = \{c, d\}$. Then by (P2), there exist lines $L_1 = \overline{ac}$ and $L_2 = \overline{bd}$; and by (P1), there exists a point $z\in L_1\cap L_2$. We claim that $z\notin L\cup L'$.
 
@@ -481,7 +481,7 @@ Now we prove that $\phi$ is a bijection. Let $y\in L'$ be given. It suffices to 
 
 The {\it order} of a finite projective plane $(X, {\cal L})$ is $|L| - 1$ for any $L\in X$.
 
-\proclaim Theorem. Let $(X,{\cal L})$ be a finite projective plane of order $n$. Then the following all hold:
+\proclaim Theorem. Let $(X,{\cal L})$ be a finite projective plane of order $n$. Then the following statements all hold:
 \medskip
 \item {1.} Exactly $n+1$ lines pass through any point $x\in X$.
 \smallskip
@@ -496,14 +496,14 @@ Let $x\in X$ be given and let $L$ be a line in ${\cal L}$ such that $x\notin L$.
 \medskip
 \item {1.} For all $y\in L$, there exists a line $\overline{xy}$ passing through $x$. There are $n+1$ points $y\in L$, so there are at least $n+1$ lines passing through $x$. Now for all $L'\in{\cal L}$ such that $x\in L'$, $|L\cap L'| = 1$ by (P1), so $L'$ was already counted above. So there are exactly $n+1$ lines through $x$.
 \smallskip
-\item {2.} Let $L_1 = \overline{xx_i}$ where $x_i\in L, i\in\{1,\ldots, n+1\}$. By (P1), $L_i\cap L_j = \{x\}$ for all $i\neq j$. As $|L_i\setminus\{x\}| = n$ we have
+\item {2.} Let $L_i = \overline{xx_i}$ where $x_i\in L, i\in\{1,\ldots, n+1\}$. By (P1), $L_i\cap L_j = \{x\}$ for all $i\neq j$. As $|L_i\setminus\{x\}| = n$ we have
     $$|X|\geq |\bigcup_{i=1}^{n+1} L_i| = (n+1)n + 1 = n^2 + n + 1,$$
     so $|X|\geq n^2 + n + 1$.
-    Now we show that for all $p\in X$, there exists an $i\in \{1,\ldots,n+1\}$ such that $p\in L_i$. If $p=x$. this is clearly true, so assume $p\neq x$. Then $\overline{px}\cap L = \{x_i\}$ for some $i$ by (P1). So $\overline{px} = L_i$ for some $i$ and we already counted $p$ above. So $|X| = n^2 + n + 1$.
+    Now we show that for all $p\in X$, there exists an $i\in \{1,\ldots,n+1\}$ such that $p\in L_i$. If $p=x$, this is clearly true, so assume $p\neq x$. Then $\overline{px}\cap L = \{x_i\}$ for some $i$ by (P1). So $\overline{px} = L_i$ for some $i$ and we already counted $p$ above. So $|X| = n^2 + n + 1$.
 \smallskip
 \item {3.} This follows from item 2 and duality, which we will introduce next.\slug
 
-The {\it incidence graph} of a finite projective plane $(X,{\cal L})$, is a bipartite graph $G = (V, E)$ with $V = X\cup {\cal L}$ and $E = \{xL : if x\in L\}$. The concept of duality involves switching the roles of $X$ and ${\cal L}$ in this bipartite graph, interpreting $X$ as lines and ${\cal L}$ as points.
+The {\it incidence graph} of a finite projective plane $(X,{\cal L})$, is a bipartite graph $G = (V, E)$ with $V = X\cup {\cal L}$ and $E = \{xL : \hbox{for all pairs}\ x,L\ \hbox{such that}\ x\in L\}$. The concept of duality involves switching the roles of $X$ and ${\cal L}$ in this bipartite graph, interpreting $X$ as lines and ${\cal L}$ as points.
 
 Formally, the {\it dual} of a finite projective plane $(X,{\cal L})$ is the set system $({\cal L}, \Lambda)$ where $\Lambda\in 2^{\cal L}$ contains an element $\{L\in {\cal L} : x\in L\}$ for every $x\in X$.
 
@@ -511,11 +511,11 @@ Formally, the {\it dual} of a finite projective plane $(X,{\cal L})$ is the set 
 
 \proof We show that $({\cal L}, \Lambda)$ satisfies each of (P0), (P1), and (P2).
 \medskip
-\item {(P1)} We need to find lines $L_1, L_2, L_3, L_4$ such that any for any $\lambda\in \Lambda$, with $\lambda = \{L\in {\cal L} : x\in L\}$ for some $x\in X$, the point $x$ is contained in at most two of $L_1, L_2, L_3, L_4$. Let $F = \{a,b,c,d\}$ be the set given by applying (P0) to $(X,{\cal L})$. Let $L_1 = \overline{ab}, L_2 = \overline{cd}, L_3 = \overline{ad}, L_4 = \overline{bc}$. Suppose, towards a contradiction, that $x$ is in three of these lines. Without loss of generality, suppose $x\in L_1\cap L_2\cap L_3$. By (P1) for $(X,{\cal L})$, $|L_i\cap L_j|$ for all $i\neq j$. Since $x\in L_1\cap L_3$, we have that $x = a$. But since $x\in L_2\cap L_3$, we have that $x = d$. This is a contradiction, since $a\neq d$. The same is true for any other triple of these four lines.
+\item {P1)} We need to find lines $L_1, L_2, L_3, L_4$ such that any for any $\lambda\in \Lambda$, with $\lambda = \{L\in {\cal L} : x\in L\}$ for some $x\in X$, the point $x$ is contained in at most two of $L_1, L_2, L_3, L_4$. Let $F = \{a,b,c,d\}$ be the set given by applying (P0) to $(X,{\cal L})$. Let $L_1 = \overline{ab}, L_2 = \overline{cd}, L_3 = \overline{ad}, L_4 = \overline{bc}$. Suppose, towards a contradiction, that $x$ is in three of these lines. Without loss of generality, suppose $x\in L_1\cap L_2\cap L_3$. By (P1) for $(X,{\cal L})$, $|L_i\cap L_j|$ for all $i\neq j$. Since $x\in L_1\cap L_3$, we have that $x = a$. But since $x\in L_2\cap L_3$, we have that $x = d$. This is a contradiction, since $a\neq d$. The same is true for any other triple of these four lines.
 \smallskip
-\item {(P2)} Let $\lambda_1,\lambda_2\in \Lambda, \lambda_1\neq\lambda_2$ be given, i.e.\  $\lambda_1 = \{ L\in {\cal L} : x_1\in L\}$ and $\lambda_2 = \{L\in {\cal L} : x_2\in L\}$ for some points $x_1\neq x_2$. We need that $|\lambda_1\cap\lambda_2| = 1$, but this follows from (P2) for $(X,{\cal L})$, since $x_1$ and $x_2$ intersect at exactly one line.
+\item {P2)} Let $\lambda_1,\lambda_2\in \Lambda, \lambda_1\neq\lambda_2$ be given, i.e.\  $\lambda_1 = \{ L\in {\cal L} : x_1\in L\}$ and $\lambda_2 = \{L\in {\cal L} : x_2\in L\}$ for some points $x_1\neq x_2$. We need that $|\lambda_1\cap\lambda_2| = 1$, but this follows from (P2) for $(X,{\cal L})$, since $x_1$ and $x_2$ intersect at exactly one line.
 \smallskip
-\item {(P3)} Let $L_1, L_2\in {\cal L}$ with $L_1\neq L_2$. It suffices to show that there exists a unique $\lambda \in \Lambda$ such that $L_1\in \lambda$ and $L_2\in \lambda$. But since $\lambda = \{L\in {\cal L} : x\in L\}$ for some $x$, this is exactly (P1) for $(X,{\cal L})$.\slug           
+\item {P3)} Let $L_1, L_2\in {\cal L}$ with $L_1\neq L_2$. It suffices to show that there exists a unique $\lambda \in \Lambda$ such that $L_1\in \lambda$ and $L_2\in \lambda$. But since $\lambda = \{L\in {\cal L} : x\in L\}$ for some $x$, this is exactly (P1) for $(X,{\cal L})$.\slug           
                 
 \proclaim Corollary. The order of the dual finite projective plane is the same as the order of the original.
 
@@ -541,14 +541,12 @@ A {\it Latin square} of order $n$ is a matrix $A \in \{1,\ldots, n\}^{n\times n}
 
 \proof Let $A,B$ be orthogonal Latin squares of order $n$ and let $\pi$ be some permutation of $\{1,\ldots,n\}$. Consider $A'$ where $A'_{ij} = \pi(A_{ij})$. Note that $(A'_{ij}, B_{ij}) = (A'_{xy}, B_{xy})$ if and only if $(A'_{ij}, B_{ij}) = (A'_{xy}, B_{xy})$. So $A'$ and $B$ are also orthogonal.
 
-So let $M = \{A_1, \ldots, A_t\}$ and for each $A_i\in M$, permute the entries such that the first row of the resulting Latin square $A'_i$ is $(1,2,3,\ldots,n)$. By our earlier observation, $A'_1,\ldots,A'_k$ are pairwise orthogonal. Now we zoom in on the second row, first column if $A'_i$ for some $i$. Call this cell $k$. First we notice that $k\neq 1$, since the first element of the first row is 1. Then since comparing any two $A'_i$ pairwise, we get all the pairs $(1,1), (2,2), \ldots, (n,n)$ in the first row, each of $2,3,\ldots,n$ can appear in the second row, first column of at most one $A'_i$. So $t = |M|\leq n-1$.\slug
+So let $M = \{A_1, \ldots, A_t\}$ and for each $A_i\in M$, permute the $n$ columns such that the first row of the resulting Latin square $A'_i$ is $(1,2,3,\ldots,n)$. By our earlier observation, $A'_1,\ldots,A'_k$ are pairwise orthogonal. Now we zoom in on the second row, first column if $A'_i$ for some $i$. Call this cell $k$. First we notice that $k\neq 1$, since the first element of the first row is 1. Then since comparing any two $A'_i$ pairwise, we get all the pairs $(1,1), (2,2), \ldots, (n,n)$ in the first row, each of $2,3,\ldots,n$ can appear in the second row, first column of at most one $A'_i$. So $t = |M|\leq n-1$.\slug
 
 The following theorem relates orthogonal Latin squares to finite projective planes.
 
 \proclaim Theorem.
     For $n\geq 2$, a finite projective plane of order $n$ exists if and only if there exists a set of $n-1$ pairwise orthogonal Latin squares of order $n$.
-
-
 
 \section 7. RAMSEY THEORY
 
@@ -563,7 +561,7 @@ In a graph $G=(V,E)$, an {\it independent set} is a set $I\subseteq V$ such that
 \proof By induction on $k+l$. In the base case $k = 1$ or $l=1$, all the theorem says is that there is an independent set or clique of size 4. For the inductive step, let $k,l\geq 2$ and assume that the claim holds for $k,l-1$ or $k-1,l$. By Pascal's formula,
 $${k+l-2\choose k-1} = {k+l-3\choose k-1} + {k+l-3\choose k-2}.$$
 Call the left-hand side $n$ and from the right-hand side, call the first summand $n_1$ and the second summand $n_2$. Now pick any vertex $u\in V$. Let $B = N(u)$ and $A = V\setminus(B\cup \{u\})$. First note that it is impossible that both $|A| < n_1$ and $|B|<n_2$ since that would imply that
-$$n = 1 + |A| + |B| \leq 1 + (n_1-1) + (n_2=1) = n-1,$$
+$$n = 1 + |A| + |B| \leq 1 + (n_1-1) + (n_2-1) = n-1,$$
 a contradiction. So either $|A|\geq n_1$ or $|B|\geq n_2$.
 
 If $|A|\geq n_1$, by the induction hypothesis $\omega(G[A])\geq k$ or $\alpha(G[A])\geq l-1$. Then a clique in $G[A]$ is also a clique in $G$, for the first case; and for the second case, adding the vertex $u$ to an independent set in $G[A]$ gives an independent set in $G$, so $\alpha(G)\geq l$.
@@ -585,7 +583,7 @@ $$\Pr[\alpha(G) \geq k\ \hbox{or}\ \omega(G)\geq k : n\leq k^{k/2}] < 1.$$
 Let $A$ be a subset of vertices with $|A|=k$. Let $K_A$ denote the proposition ``A forms a clique'' and let $I_A$ denote the proposition ``A forms an independent set". Then let $X_A = K_A \cup I_A$. $\Pr[K_A] = (1/2)^{k\choose 2} = \Pr[I_A]$ and since $K_A \cap I_A = \emptyset$,
 $$X_A = 2\cdot\left({1\over 2}\right)^{k\choose 2} = 2^{1-{k\choose 2}}.$$
 Let $\Pr(Y)$ denote the probability that $\alpha(G) \geq k$ or $\omega(G) \geq k$. This is equal to the probablilty that $X_A$ holds for some $A\subseteq V$ with $|A|\geq k$. So
-$$\Pr[Y] \leq \sum_{A\subseteq V, |A|\geq k} 2^{1-{k\choose 2}} = {n\choose 2}2^{1-{k\choose 2}} \leq {n^k\over k!}2^{1-{k\choose 2}},$$
+$$\Pr[Y] \leq \sum_{A\subseteq V\atop |A|\geq k} 2^{1-{k\choose 2}} = {n\choose 2}2^{1-{k\choose 2}} \leq {n^k\over k!}2^{1-{k\choose 2}},$$
 and we can further derive the strict inequality
 $${n^k\over k!}2^{1-{k\choose 2}} < {n^k\over {2^{k/2+1}}}2^{1-(k^2/2-k/2)} = \left({n\over 2^{k/2}}\right)^k,$$
 which is less than $1$, since $n\leq 2^{k/2}$. \slug
@@ -596,7 +594,9 @@ Given a finite sequence $S = (x_1, x_2, \ldots, x_n)$ of numbers, an {\it increa
 
 \thmparens{E}{Erd\H os-Szekeres} For any finite sequence $S$ of at least $(r+1)(s+1) + 1$ numbers, there is an increasing subsequence of length $r$ or a decreasing subsequence of length $s$.
 
-\proof Suppose, towards a contradiction, that every increasing/decreasing subsequence has length at most $r-1$/$s-1$ respectively. Then we label each $x_i$ of $S$ with a pair $(a_i, b_i)$ where $a_i$/$b_i$ is the length of the longest increasing/decreasing subsequence ending in $x_i$. (Note that each of the numbers $x_i, x_j$ have different labels.) Without loss of generality, assume $i<j$. If $x_i\leq x_j$, then $a_i < a_j$, as any increasing subsequence ending in $x_i$ can be extended by $x_j$. Likewise, if $x_j\leq x_i$, then $a_j < a_i$, as any increasing subsequence ending in $x_j$ can be extended by $x_i$.
+\proof Suppose, towards a contradiction, that every increasing/decreasing subsequence has length at most $r-1$/$s-1$ respectively. Then we label each $x_i$ of $S$ with a pair $(a_i, b_i)$ where $a_i$/$b_i$ is the length of the longest increasing/decreasing subsequence ending in $x_i$.
+
+We claim that each of the numbers $x_i, x_j$ have different labels. Let $i\neq j$ and without loss of generality, assume $i<j$. If $x_i\leq x_j$, then $a_i < a_j$, as any increasing subsequence ending in $x_i$ can be extended by $x_j$. Likewise, if $x_i\geq x_j$, then $b_j > b_i$, as any decreasing subsequence ending in $x_i$ can be extended by $x_j$.
 
 By our assumption, $a_i\leq r-1$ and $b_i\leq s-1$ for all $i$. So the number of labels $(a_i, b_i)\leq (r-1)(s-1)$ which implies that the length of the sequence $S$ is at most $(r-1)(s-1)$, a contradiction.\slug
 
@@ -604,7 +604,7 @@ The given bound is tight; there are sequences with length $(r-1)(s-1)$ numbers t
 
 \section 8. ERROR-CORRECTING CODES
 
-Suppose we have two people who need to communicate over a channel that is ``noisy'' in the sense that errors may be introduced into the message. To detect and solve this issue, checksums may be used. Suppose we have an alphabet $\Sigma = \{0,\ldots,q-1\}$ where $q$ is prime. Let $x$ denote a message $x\in \Sigma^k$ for some positive integer $k$. Then the {\it checksum} $c$ of $x$ is $\sum_{i=1}^k x_i \pmod{q}$. Then the message becomes $y\in {\bf F}_q^{k+1}$ where
+Suppose we have two people who need to communicate over a channel that is ``noisy'' in the sense that errors may be introduced into the message. To detect and solve this issue, checksums may be used. Suppose we have an alphabet $\Sigma = \{0,\ldots,q-1\}$ where $q$ is prime. Let $x$ denote a message $x\in \Sigma^k$ for some positive integer $k$. The {\it checksum} $c$ of $x$ is $\sum_{i=1}^k x_i \pmod{q}$ and we can encode te message as $y\in {\bf F}_q^{k+1}$ where
 $$ y_i = \cases{
     x_i & for $i\leq k$ \cr
     c   & for $i = k+1$
@@ -636,22 +636,24 @@ If, for a code $C$, we can be sure that at most $r$ errors occur during transmis
 
 The general aim is to construct codes with small $n$ and large $\Delta(C)$. For any finite projective plane $(X,{\cal L})$ of order $m$, we can construct a $(m^2+m+1, \log_2(m^2+m+1), 2m)_2$-code by associating every letter in the alphabet with a characteristic vector of $L\in {\cal L}$. For example, the letter associated with the line $\{1,5,6\}$ in the Fano plane will be coded as $1000110$. Since for any $L_1, L_2\in {\cal L}, L_1\neq L_2$, $|L_1\cap L_2| = 1$ and each of $L_1, L_2$ have $m+1$ points, $\Delta(y_{L_1}, y_{L_2}) = 2m$, where $y_{L_i}$ is the letter associated with the line $L_i$.
 
+\smallskip
+
 A {\it linear} code $C\subseteq {\bf F}_q^n$ is a linear subspace of ${\bf F}_q$, i.e.\  for all $x,y\in C$, $\alpha\in {\bf F}_q$, $\alpha x+y\in C$. There exist $k$ independent vectors $x_1,\ldots, x_k\in {\bf F}_q^n$ such that
-$$C = \{\sum_{i=1}^k \alpha_ix_i : \alpha_i,\ldots \alpha_n\in {\bf F}_q\}.$$
+$$C = \bigg\{\sum_{i=1}^k \alpha_ix_i : \alpha_i,\ldots \alpha_n\in {\bf F}_q\bigg\}.$$
 More succinctly, we can express $C$ using the generator matrix $G\in {\bf F}_q^{n\times k}$. The matrix $G = \matrix{ x_1 & \cdots & x_k }$ and $C = \{G_\alpha : \alpha \in {\bf F}_q^k\}$. (Multiplying any message by $G$ on the left encodes it.)
 
-Alternatively, represent $C$ by the {\it null space}. Recall that for any $k$-dimensional linear subspace $C$, there is an $(n-k)$-dimensional linear subspace $C^\perp$ such that for all $x\in C, y\in C^\perp$, $x^Ty = 0$. Using the generator matrix $H\in {\bf F}_k^{n\times (n-k)}$ of $C^\perp$, express $C = \{ x : x^TH = 0\}$. Then $H$ is called the {\it parity check} matrix of $C$. In a sense, linear codes are simple because we can detect errors simply by computing $x^TH$.
+Alternatively, we may represent $C$ as the {\it null space} of a matrix. Recall that for any $k$-dimensional linear subspace $C$, there is an $(n-k)$-dimensional linear subspace $C^\perp$ such that for all $x\in C, y\in C^\perp$, $x^Ty = 0$. Using the generator matrix $H\in {\bf F}_k^{n\times (n-k)}$ of $C^\perp$, express $C = \{ x : x^TH = 0\}$. Then $H$ is called the {\it parity check} matrix of $C$. In a sense, linear codes are simple because we can detect errors simply by computing $x^TH$.
 
-The {\it support} of a vector $x$ is the set $\{i : x_i \neq 0\}$ and the {\it Hamming weight} of $x$ is $\hbox{wt} x = |\{i : x_i \neq 0\}|$.
+The {\it support} of a vector $x$ is the set $\{i : x_i \neq 0\}$ and the {\it Hamming weight} of $x$ is $\hbox{wt}\,x = |\{i : x_i \neq 0\}|$.
 
 \proclaim Theorem. For a linear code $C$,
-$$ \Delta(C) = \min\{\hbox{wt} x : x\in C\ \hbox{and}\ x\neq 0\}.$$
+$$ \Delta(C) = \min\{\hbox{wt}\,x : x\in C\ \hbox{and}\ x\neq 0\}.$$
 
-\proof For ease of notation, let $d$ denote $\min\{\hbox{wt} x : x\in C\ \hbox{and}\ x\neq 0\}$. First we show that $d\leq \Delta(C)$. Let $y,z\in C$ be such that $\Delta(y,z)$ = $\Delta(C)$. Since $C$ is linear, $x = y-z \in C$. Note that $\Delta(y,z) = |\{i : x_i \neq 0\}|$, so $d \leq \hbox{wt} x = \Delta(C)$.
+\proof For ease of notation, let $d$ denote $\min\{\hbox{wt}\,x : x\in C\ \hbox{and}\ x\neq 0\}$. First we show that $d\leq \Delta(C)$. Let $y,z\in C$ be such that $\Delta(y,z)$ = $\Delta(C)$. Since $C$ is linear, $x = y-z \in C$. Note that $\Delta(y,z) = |\{i : x_i \neq 0\}|$, so $d \leq \hbox{wt}\,x = \Delta(C)$.
 
-Now we show that $d\geq \Delta(C)$. Note that $0\in C$. Let $x\neq 0$ be such that $\hbox{wt} x = d$. Then $\Delta(C)\leq \Delta(0,x) = |\{i : x_i \neq 0\}| = \hbox{wt} x = d$.\slug
+Now we show that $d\geq \Delta(C)$. Note that $0\in C$. Let $x\neq 0$ be such that $\hbox{wt}\,x = d$. Then $\Delta(C)\leq \Delta(0,x) = |\{i : x_i \neq 0\}| = \hbox{wt}\,x = d$.\slug
 
-We can use this theorem to construct a linear code with $\Delta(C) \geq 3$. We find a parity check matrix $H$ such that $x^TH \neq 0$ for any non-zero $x$ with $\hbox{wt} x\in \{1,2\}$. For simplicity, we will work with $q=2$. If $\hbox{wt} x = 1$, then $X$ has exactly one 1-entry, say it is at position $i$. So $x^TH$ is the $i$-th row $H_i$ of $H$. We need that $H_i$ is non-zero for every $i$. If $\hbox{wt} x = 2$, then $x^T$ has exactly two non-zero elements, say they are at positions $i$ and $j$. Then $x^TH$ = $(H_i + H_j)^T$ hence we need $H_i\neq H_j$ for all $i\neq j$.
+We can use this theorem to construct a linear code with $\Delta(C) \geq 3$. We find a parity check matrix $H$ such that $x^TH \neq 0$ for any non-zero $x$ with $\hbox{wt} x\in \{1,2\}$. For simplicity, we will work with $q=2$. If $\hbox{wt}\,x = 1$, then $X$ has exactly one 1-entry, say it is at position $i$. So $x^TH$ is the $i$-th row $H_i$ of $H$. We need that $H_i$ is non-zero for every $i$. If $\hbox{wt}\,x = 2$, then $x^T$ has exactly two non-zero elements, say they are at positions $i$ and $j$. Then $x^TH$ = $(H_i + H_j)^T$ hence we need $H_i\neq H_j$ for all $i\neq j$.
 
 If all rows of $H$ are distinct and non-zero, then we get $\Delta(C) \geq 3$. The largest number of such rows if $H\in {\bf F}_2^{n\times l}$ is $2^l-1$ so $n = 2^l-1$ for any $l = n-k$. Hence we obtain an $(n, n-\log_2(n+1), 3)_2$-code called the {\it Hamming code}.
 
@@ -661,12 +663,12 @@ The {\it volume} of such a ball is
 $$\hbox{vol}(r,n) = |B(x,r)| = \sum_{i=0}^r {n\choose i} (q-1)^i.$$
 
 \thmparens{S}{Hamming bound} If an $(n,k,d)_q$-code exists, then
-$$q^k\cdot\hbox{vol}\left(\lfloor {d-1\over 2} \rfloor, n\right) \leq q^n.$$
+$$q^k\cdot\hbox{\rm vol}\left(\left\lfloor {d-1\over 2} \right\rfloor, n\right) \leq q^n.$$
 
 \proof Let $r = \lfloor (d-1)/2 \rfloor$ and consider $\bigcup_{x\in C} B(x,r)\subset \{1,\ldots,q\}^n$. By observation,
-$$|\bigcup_{x\in C} B(x,r)| = \sum_{x\in C} \hbox{vol}(r,n) = q^k\cdot \hbox{vol}(r,n) \leq q_n.\noskipslug$$
+$$\left|\bigcup_{x\in C} B(x,r)\right| = \sum_{x\in C} \hbox{vol}\,(r,n) = q^k\cdot \hbox{vol}\,(r,n) \leq q^n.\noskipslug$$
 
-Note that if $d = 3$ and $q = 2$ then the Hamming bound is $2^k(n+1)\leq 2^n$ and the Hamming code matches this bound with equality as $k=n-log_2(n+1)$. An $(n,k,d)_2$-code is called {\it perfect} if $q^k\cdot\hbox{vol}(\lfloor (d-1)/2 \rfloor, n) = q^n$. There are no codes with larger size $k$ than a $(n, n-d+1, d)_2$-code (even if we let $q>2$), as the following theorem shows.
+Note that if $d = 3$ and $q = 2$ then the Hamming bound is $2^k(n+1)\leq 2^n$ and the Hamming code matches this bound with equality as $k=n-log_2(n+1)$. An $(n,k,d)_2$-code is called {\it perfect} if $q^k\cdot\hbox{vol}\,(\lfloor (d-1)/2 \rfloor, n) = q^n$. There are no codes with larger size $k$ than a $(n, n-d+1, d)_2$-code (even if we let $q>2$), as the following theorem shows.
 
 \thmparens{B}{Singleton bound} If $C$ is an $(n,k,d)_q$-code, then $k\leq n-d+1$.
 
