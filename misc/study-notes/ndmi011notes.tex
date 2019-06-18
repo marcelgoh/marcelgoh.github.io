@@ -8,7 +8,7 @@
 
 \leftrighttop{NDMI011 COMBINATORICS AND GRAPH THEORY}{MARCEL GOH}
 
-\maketitle{NDMI011 Combinatorics and Graph Theory}{Notes by}{Marcel K. Goh {\rm (Prague, Czech Rep.)}}{10 June 2019}
+\maketitle{NDMI011 Combinatorics and Graph Theory\footnote{$^*$}{\eightpt Course given by Prof. Andreas Feldmann at Charles University in Prague}}{Notes by}{Marcel K. Goh {\rm (Prague, Czech Rep.)}}{10 June 2019}
 
 \section 1. PRELIMINARIES
 
@@ -211,7 +211,7 @@ Suppose, towards a contradiction, that $t\in S$. Then there exists a sequence of
 For each $i$, define a small real number $\epsilon_i$ given by
 $$\epsilon_i = \cases{
     c(v_iv_{i+1}) - f(v_iv_{i+1}) & \hbox{if case (a) holds}\cr
-    f(v_{i+1}) & \hbox{if case (b) holds}
+    f(v_{i+1}v_i) & \hbox{if case (b) holds}
 }$$
 Then we can let $\epsilon = \min\{e_i : 0\leq i\leq k-1\}$. Note that, by construction, $\epsilon > 0$.
 
@@ -541,7 +541,7 @@ A {\it Latin square} of order $n$ is a matrix $A \in \{1,\ldots, n\}^{n\times n}
 
 \proof Let $A,B$ be orthogonal Latin squares of order $n$ and let $\pi$ be some permutation of $\{1,\ldots,n\}$. Consider $A'$ where $A'_{ij} = \pi(A_{ij})$. Note that $(A'_{ij}, B_{ij}) = (A'_{xy}, B_{xy})$ if and only if $(A'_{ij}, B_{ij}) = (A'_{xy}, B_{xy})$. So $A'$ and $B$ are also orthogonal.
 
-So let $M = \{A_1, \ldots, A_t\}$ and for each $A_i\in M$, permute the $n$ columns such that the first row of the resulting Latin square $A'_i$ is $(1,2,3,\ldots,n)$. By our earlier observation, $A'_1,\ldots,A'_k$ are pairwise orthogonal. Now we zoom in on the second row, first column if $A'_i$ for some $i$. Call this cell $k$. First we notice that $k\neq 1$, since the first element of the first row is 1. Then since comparing any two $A'_i$ pairwise, we get all the pairs $(1,1), (2,2), \ldots, (n,n)$ in the first row, each of $2,3,\ldots,n$ can appear in the second row, first column of at most one $A'_i$. So $t = |M|\leq n-1$.\slug
+So let $M = \{A_1, \ldots, A_t\}$ and for each $A_i\in M$, permute the $n$ elements such that the first row of the resulting Latin square $A'_i$ is $(1,2,3,\ldots,n)$. By our earlier observation, $A'_1,\ldots,A'_k$ are pairwise orthogonal. Now we zoom in on the second row, first column if $A'_i$ for some $i$. Call this cell $k$. First we notice that $k\neq 1$, since the first element of the first row is 1. Then since comparing any two $A'_i$ pairwise, we get all the pairs $(1,1), (2,2), \ldots, (n,n)$ in the first row, each of $2,3,\ldots,n$ can appear in the second row, first column of at most one $A'_i$. So $t = |M|\leq n-1$.\slug
 
 The following theorem relates orthogonal Latin squares to finite projective planes.
 
@@ -600,11 +600,11 @@ We claim that each of the numbers $x_i, x_j$ have different labels. Let $i\neq j
 
 By our assumption, $a_i\leq r-1$ and $b_i\leq s-1$ for all $i$. So the number of labels $(a_i, b_i)\leq (r-1)(s-1)$ which implies that the length of the sequence $S$ is at most $(r-1)(s-1)$, a contradiction.\slug
 
-The given bound is tight; there are sequences with length $(r-1)(s-1)$ numbers that neither have an increasing subsequence of length $r$, nor have a decreasing subsequence of length $s$. To construct one, take a grid of $(r-1)(s-1)$ points in the plane and rotate it {\it very} slightly counterclockwise such that no two points are on the same horizontal or vertical line. Then we have a set of points $(x_i, y_i),\ldots(x_n,y_n)$ where $n=(r-1)(s-1)$. Now order the $y$-coordinates {\it by the value of the $x$-coordinates}. Any increasing subsequence can take at most one element from each column, so at most $r-1$, and any decreasing subsequence can take at most one element from each row, so at most $s-1$.
+The given bound is tight; there are sequences with length $(r-1)(s-1)$ numbers that neither have an increasing subsequence of length $r$, nor have a decreasing subsequence of length $s$. To construct one, take a grid of $(r-1)(s-1)$ points in the plane and rotate it {\it very} slightly counterclockwise such that no two points are on the same horizontal or vertical line. Then we have a set of points $(x_i, y_i),\ldots(x_n,y_n)$ where $n=(r-1)(s-1)$. Now order the $y$-coordinates {\sl by the value of the $x$-coordinates}. Any increasing subsequence can take at most one element from each column, so at most $r-1$, and any decreasing subsequence can take at most one element from each row, so at most $s-1$.
 
 \section 8. ERROR-CORRECTING CODES
 
-Suppose we have two people who need to communicate over a channel that is ``noisy'' in the sense that errors may be introduced into the message. To detect and solve this issue, checksums may be used. Suppose we have an alphabet $\Sigma = \{0,\ldots,q-1\}$ where $q$ is prime. Let $x$ denote a message $x\in \Sigma^k$ for some positive integer $k$. The {\it checksum} $c$ of $x$ is $\sum_{i=1}^k x_i \pmod{q}$ and we can encode te message as $y\in {\bf F}_q^{k+1}$ where
+Suppose we have two people who need to communicate over a channel that is ``noisy'' in the sense that errors may be introduced into the message. To detect and solve this issue, checksums may be used. Suppose we have an alphabet $\Sigma = \{0,\ldots,q-1\}$ where $q$ is prime. Let $x$ denote a message $x\in \Sigma^k$ for some positive integer $k$. The {\it checksum} $c$ of $x$ is $\sum_{i=1}^k x_i \pmod{q}$ and we can encode the message as $y\in {\bf F}_q^{k+1}$ where
 $$ y_i = \cases{
     x_i & for $i\leq k$ \cr
     c   & for $i = k+1$
@@ -640,7 +640,7 @@ The general aim is to construct codes with small $n$ and large $\Delta(C)$. For 
 
 A {\it linear} code $C\subseteq {\bf F}_q^n$ is a linear subspace of ${\bf F}_q$, i.e.\  for all $x,y\in C$, $\alpha\in {\bf F}_q$, $\alpha x+y\in C$. There exist $k$ independent vectors $x_1,\ldots, x_k\in {\bf F}_q^n$ such that
 $$C = \bigg\{\sum_{i=1}^k \alpha_ix_i : \alpha_i,\ldots \alpha_n\in {\bf F}_q\bigg\}.$$
-More succinctly, we can express $C$ using the generator matrix $G\in {\bf F}_q^{n\times k}$. The matrix $G = \matrix{ x_1 & \cdots & x_k }$ and $C = \{G_\alpha : \alpha \in {\bf F}_q^k\}$. (Multiplying any message by $G$ on the left encodes it.)
+More succinctly, we can express $C$ using the generator matrix $G = \left[\matrix{ x_1 & \cdots & x_k }\right]\in {\bf F}_q^{n\times k}$. Multiplying any message by $G$ on the left encodes it and $C = \{G_\alpha : \alpha \in {\bf F}_q^k\}$.
 
 Alternatively, we may represent $C$ as the {\it null space} of a matrix. Recall that for any $k$-dimensional linear subspace $C$, there is an $(n-k)$-dimensional linear subspace $C^\perp$ such that for all $x\in C, y\in C^\perp$, $x^Ty = 0$. Using the generator matrix $H\in {\bf F}_k^{n\times (n-k)}$ of $C^\perp$, express $C = \{ x : x^TH = 0\}$. Then $H$ is called the {\it parity check} matrix of $C$. In a sense, linear codes are simple because we can detect errors simply by computing $x^TH$.
 
@@ -672,7 +672,7 @@ Note that if $d = 3$ and $q = 2$ then the Hamming bound is $2^k(n+1)\leq 2^n$ an
 
 \thmparens{B}{Singleton bound} If $C$ is an $(n,k,d)_q$-code, then $k\leq n-d+1$.
 
-\proof Define a function $f:\Sigma^n\rightarrow\Sigma^{k-1}$ such that $f(x_1,\ldots, x_n) = (x_1,\dots, x_{k-1})$. As $|\Sigma^{k-1}| = q^{k-1}$ and $|C| = q^k > q^{k-1}$, there are $x,y\in C$, with $x\neq y$ and $f(x) = f(y)$. So $x$ and $y$ can only differ in the last $n-k+1$ entries. Since $d = \Delta(C) \leq \Delta(x,y) \leq n-k+1$, $k\leq n-d+1$.\slug
+\proof Define a function $f:\Sigma^n\rightarrow\Sigma^{k-1}$ such that $f(x_1,\ldots, x_n) = (x_1,\dots, x_{k-1})$. As $|\Sigma^{k-1}| = q^{k-1}$ and $|C| = q^k > q^{k-1}$, there are $x,y\in C$, with $x\neq y$ and $f(x) = f(y)$. So $x$ and $y$ can only differ in the last $n-k+1$ entries. Since $d = \Delta(C) \leq \Delta(x,y) \leq n-k+1$, we get $k\leq n-d+1$.\slug
 
 An $(n,k,d)_q$ code is called {\it maximum-distance separable} or MDS if $k = n-d+1$.
 
