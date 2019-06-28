@@ -5,7 +5,10 @@ title: Code
 ## Projects
 
 #### [OPythn](https://github.com/marcelgoh/opythn)
-A compiler and bytecode interpreter for a sizeable subset of Python, written in OCaml (with the help of Ocamllex and Menhir for lexing and parsing). Created as an individual semester-long software project under the supervision of instructor Adam Dingle at Charles University in Prague. (Expected completion: June 2019)
+A compiler and bytecode interpreter for a sizeable subset of Python, written in OCaml (with the help of Ocamllex and Menhir for lexing and parsing). Created as an individual semester-long software project under the supervision of Adam Dingle at Charles University in Prague.
+
+#### [Alonzo](https://github.com/marcelgoh/alonzo)
+An interactive lambda-calculus interpreter that performs normal-order beta-reduction and includes support for variable bindings.
 
 #### [Natural-Language Parser](https://github.com/marcelgoh/nl-parser)
 A program that generates syntax trees for English sentences, written in Haskell. A blog post detailing the approach as well as the limitations of the program can be found [here](https://marcelgoh.github.io/2018/08/12/naive-parser.html).
