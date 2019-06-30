@@ -5,7 +5,7 @@ title: Code
 ## Projects
 
 #### [OPythn](https://github.com/marcelgoh/opythn)
-A compiler and bytecode interpreter for a sizeable subset of Python, written in OCaml (with the help of Ocamllex and Menhir for lexing and parsing). Created as an individual semester-long software project under the supervision of Adam Dingle at Charles University in Prague.
+A compiler and bytecode interpreter for a sizeable subset of Python, written in OCaml (with the help of Ocamllex and Menhir for lexing and parsing). Created as an individual semester-long software project under the supervision of Adam Dingle at Charles University in Prague. Relevant blog posts: [1]({{ site.baseurl }}/2019/04/14/scanning-spaces.html), [2]({{ site.baseurl }}/2019/06/30/generating-stack-machine-bytecode.html).
 
 #### [Alonzo](https://github.com/marcelgoh/alonzo)
 An interactive lambda-calculus interpreter that performs normal-order beta-reduction and includes support for variable bindings.

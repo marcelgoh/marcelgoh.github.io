@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2019
+- (30.06.2019) [Generating stack-machine bytecode]({{ site.baseurl }}/2019/06/30/generating-stack-machine-bytecode.html)
 - (21.05.2019) [Binary search, reMIXed]({{ site.baseurl }}/2019/05/21/binary-search-remixed.html)
 - (06.05.2019) [Escape-time fractals in SDL2]({{ site.baseurl }}/2019/05/06/escape-time-fractals.html)
 - (28.04.2019) [Four is cosmic]({{ site.baseurl }}/2019/04/28/four-is-cosmic.html)
