@@ -186,7 +186,7 @@ This last example of jump-laden bytecode might come as a bit of a surprise. But 
 
 ```python
 node = None
-if node != None and node.info == 0
+if node != None and node.info == 0:
     print("Zero node")
 ```
 
