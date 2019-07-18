@@ -16,17 +16,16 @@ We say that a function $f(n)$ is $O\big(g(n)\big)$ (read ``big-oh of $g(n)$'') i
 
 Let $G=(V,E)$ be a graph. The graph $G'=(V',E')$ is a {\it subgraph} of $G$ if $V'\subseteq V$ and $E'\subseteq E$. A {it cycle} is a graph on $v_1, \ldots, v_n$ with edges $\{v_1, v_2\}, \ldots, \{v_{n-1}, v_n\}$. A {\it tree} is a connected graph that contains no cycle (i.e\  does not have a cycle as a subgraph).
 
-\proclaim Theorem. In any graph $G=(V,E)$,
+\proclaim Theorem D. In any graph $G=(V,E)$,
 $$\displaystyle\sum_{v\in V} \deg v = 2\cdot|E|$$
 
 \proof Every edge $\{u, v\}\in E$ adds 1 to the degree of $u$ and adds 1 to the degree of $v$. Hence if you sum over all vertices, each edge gets counted twice.\slug
 
-\proclaim Theorem.
-The number of vertices with odd degree is even.
+\proclaim Theorem E. The number of vertices with odd degree is even.
 
 \proof Divide $V$ into $V_1$ and $V_2$ where $V_1$ is the set of vertices with odd degree and $V_2$ is the set of vertices with even degree. Then we have $\sum_{v\in V} \deg v = \sum_{v\in V_1} \deg v + \sum_{v\in V_2} \deg v$. Observe that the sum over all odd vertices $\sum_{v\in V_1}\deg v$ equals $2\cdot|E| - \sum_{v\in V_2}\deg v = 2(|E| - x)$ for some $x$, meaning it is even. Since the sum is even but each vertex has an odd degree, the number of vertices must be even.\slug
 
-\proclaim Theorem.
+\proclaim Theorem T.
 A tree with $n$ vertices has $n-1$ edges.
 
 \proof Let $G = (V,E)$ be a tree and let $n$ denote $|V|$, the number of vertices. Using induction on $n$, we show that it has $n-1$ vertices. The base case $n = 1$ is easy, since a tree with only one vertex has no edges. Now assume that a tree with $n$ vertices has $n-1$ edges and we consider the case where $G$ has $n+1$ vertices. Let us create $G'$ by removing a vertex from $G$. We cannot remove an internal vertex, since then $G'$ would not be connected. So we must remove a leaf, along with the edge that connected it to $G$. Now $G'$ has $n$ vertices, so by the induction hypothesis it has $n-1$ edges. This implies that $G$ had $n$ edges.
@@ -49,7 +48,7 @@ For $r\in \R$ and $k\in \N$, the {\it binomial coefficient} is given by
 $${r\choose k} = \left(\prod_{i=0}^{k-1} (r-i)\right) /k!$$
 where ${r\choose 0} = 1$. If $r\in \N$, then we can think of ${r\choose k}$ as the number of ways to choose $k$ objects out of a pool of $r$ objects.
 
-\thmparens{}{Generalised binomial theorem} For any $r\in \R$,
+\thmparens{G}{Generalised binomial theorem} For any $r\in \R$,
 $$\sum_{i\geq 0} {r\choose i} x^i = (1 + x)^r.$$
 
 \proof In this proof we will gloss over technicalities relating to convergence. Let $a(x)$ denote $(1+x)^r$. Then the derivative of $a(x)$ is $a'(x)=r(1+x)^{r-1}$, the second derivative $a''(x)$ is $r(r-1)(1+x)^{r-2}$, and so on. Generally,
@@ -67,7 +66,7 @@ which is what we wanted.\slug
 
 It is clear from the theorem above that the generating function for the sequence ${r\choose 1}, {r\choose 2}, \ldots$ is $(1+x)^r$. We may wonder what kinds of sequences have a {\it closed form} generating function. The following theorem, presented without proof, answers this question.
 
-\proclaim Theorem. Let $(a_i)_{i=0}^\infty$ be a sequence of reals such that there exists some $k>0$ for which $|a_i|\leq k^i$ for every $i\geq 1$. Then for all $x$ in the interval $(-1/k, 1/k)$, the power series
+\proclaim Theorem S. Let $(a_i)_{i=0}^\infty$ be a sequence of reals such that there exists some $k>0$ for which $|a_i|\leq k^i$ for every $i\geq 1$. Then for all $x$ in the interval $(-1/k, 1/k)$, the power series
 $$a(x) = \sum_{i=0}^\infty a_ix^i$$
 converges, so the generating function $a(x)$ has a closed form. Moreover, for any arbitrarily small $\epsilon >0$, the values of $a(x)$ for $x$ in the interval $(-\epsilon, \epsilon)$ uniquely determine the sequence $(a_i)_{i=0}^\infty$ where, by Taylor's theorem, $a_i = a^{(i)}(0)/i!$\slug
 
@@ -168,7 +167,7 @@ The intuitive way to check that a flow is maximal is to study ``bottlenecks''. C
 $$ c\big(\delta^+(S)\big) = \sum_{uv\in \delta^+(S)} c(uv).$$
 Then we can define a {\it min-cut} to be an s-t-cut with minimum capacity.
 
-\proclaim Lemma. For any s-t-flow $f$ and s-t-cut $\delta^+(S)$,
+\proclaim Lemma D. For any s-t-flow $f$ and s-t-cut $\delta^+(S)$,
 $$|f| = \sum_{e\in \delta^+(S)} f(e) - \sum_{e\in \delta^-(S)} f(e),$$
 where $\delta^-(S)$ is the set $\{uv : u\notin S, v\in S\}$.
 
@@ -196,7 +195,7 @@ We can use this to derive an easy corollary:
 
 In fact, the value of a max-flow {\it equals} the capacity of a min-cut, but the other inequality requires a more involved proof.
 
-\proclaim Theorem. If $f$ is a max-flow and $\delta^+(S)$ is a min-cut, then $|f| = c\big(\delta^+(S)\big)$.
+\proclaim Theorem C. If $f$ is a max-flow and $\delta^+(S)$ is a min-cut, then $|f| = c\big(\delta^+(S)\big)$.
 
 \proof By the preceding corollary, it suffices to show that $|f| \geq c\big(\delta^+(S)\big)$. For any max-flow $f$, the idea is to construct some s-t-cut $\delta^+(S)$ with $|f| = \delta^+(S)$. This would imply that any {\it min-cut} would have capacity no greater than $|f|$.
 
@@ -239,7 +238,7 @@ So to determine if a flow is maximal, we can figure out what $S$ is and see if $
 
 It is clear that if the algorithm terminates, it will output the correct answer. So it is natural to wonder when the algorithm is sure to terminate. In the case of integer capacities, termination is easy to prove:
 
-\proclaim Theorem. If for all $e\in E$, $c(e)\in \N_0$, then the capacity $n$ of the min-cut is integral and Algorithm M terminates in at most $n$ iterations.
+\proclaim Theorem I. If for all $e\in E$, $c(e)\in \N_0$, then the capacity $n$ of the min-cut is integral and Algorithm M terminates in at most $n$ iterations.
 
 \proof We prove, by induction on $i$, that at every step of the algorithm, $|f_i|\in \N_0$. The base case is simple because the algorithm starts with $|f_0|=0$. Now assume that $f_i\in \N_0$. In the step that increases $i$ to $i+1$, we choose $\epsilon$ to be the minimum value computed over a path $P$ of edges. So for some $e\in P$, either $\epsilon = c(e) - f_i(e)$ or $\epsilon = f_i(e)$. Since both $c(e), f_i(e)\in \N_0$, we have that $\epsilon\in \N_0$ and the value of the flow at each iteration is integral.
 
@@ -251,7 +250,7 @@ Instead of constraining flow at the edges, we can instead assign capacities $d(v
 
 Now we define an {\it s-t-vertex-cut} to be a set $T\subseteq V\setminus\{s,t\}$ such that the graph $G\setminus T$ has no path from $s$ to $t$. For ease of notation, let $d(T) = \sum_{v\in T} d(v)$.
 
-\proclaim Theorem. Let $f$ be a max-flow in a network with vertex capacities. If $T$ is a min-cut, then $|f| = d(T)$, and furthermore, if all capacities are integers, then there is an integer max-flow.
+\proclaim Theorem J. Let $f$ be a max-flow in a network with vertex capacities. If $T$ is a min-cut, then $|f| = d(T)$, and furthermore, if all capacities are integers, then there is an integer max-flow.
 
 \proof We simply convert our vertex-constrained network to an edge-constrained one. Replace each constrained vertex $v_i$ with two new vertices $v_{i1}$ and $v_{i2}$. Connect these vertices with a single edge $e_i$ with $c(e_i) = d(v_i)$. Set the capacties of all other edges in the new graph to $+\infty$. Then the theorem follows from our previous theorems regarding edge-constrained networks.\slug
 
@@ -261,7 +260,7 @@ A graph $G=(V,E)$ is {\it bipartite} if $V$ can be split into disjoint subsets $
 
 Consider the so-called {\it marriage problem}. Given a set $A$ of boys and $B$ of girls, can we marry off all boys to girls that they know? We can model this problem with a bipartite graph $(A\cup B, E)$, where an edge exists between a boy and a girl if they know each other. First we define the set of {\it neigbours} of a vertex set $S\subseteq A$ to be $N(S) = \{v\in B : uv\in E\ \hbox{and}\ u\in S\}$. Then the following theorem tells us exactly when the marriage problem is solvable.
 
-\thmparens{}{Hall} A bipartite graph $G=(A\cup B, E)$ (with $A$ and $B$ disjoint) has a matching $M\subseteq E$ of size $|M| = |A|$ if and only if $|N(S)|\geq |S|$ for all $S\subseteq A$.
+\thmparens{H}{Hall} A bipartite graph $G=(A\cup B, E)$ (with $A$ and $B$ disjoint) has a matching $M\subseteq E$ of size $|M| = |A|$ if and only if $|N(S)|\geq |S|$ for all $S\subseteq A$.
 
 \proof The ``only if'' direction is obvious. We prove the ``if'' direction by contrapositive, i.e.\  if there is no matching of size $|A|$ then there exists some $S\subseteq A$ such that $|N(S) < |S|$.
 
@@ -273,7 +272,7 @@ But we assumed that no matching of size $|A|$ exists, so $|f| < |A|$. Let $T$ be
 
 In a graph $G = (V,E)$, a {\it vertex cover} is a set $C\subseteq V$ such that every edge is incident to at least one vertex in $C$. A {\it minimum vertex cover} is a vertex cover of minimum cardinality. Notice that every vertex cover of $G$ is an s-t-vertex cut in $H$, otherwise there would be a path from $s$ to $t$. So we can derive the following theorem as a corollary.
 
-\thmparens{}{K\H onig's theorem} Let $G$ be a bipartite graph with maximum matching $M$ and minimum vertex cover $C$. Then $|M| = |C|$.\slug
+\thmparens{K}{K\H onig's theorem} Let $G$ be a bipartite graph with maximum matching $M$ and minimum vertex cover $C$. Then $|M| = |C|$.\slug
 
 \section 3.3. Graph connectivity
 
@@ -287,11 +286,11 @@ A graph $G=(V,E)$ is {\it k-connected} if $|V|>k$ and no vertex set $W\subseteq 
 
 The {\it connectivity} of a graph $G$, denoted $\kappa(G)$, is the maximum $k\in \N$ such that $G$ is $k$-connected. Likewise, the {\it edge-connectivity} $\lambda(G)$ of a graph $G$ is the maximum $k$ such that $G$ is $k$-edge-connected. Note that if $G$ is not a complete graph, then both $\kappa(G)$ and $\lambda(G)$ are at most $|V|-2$.
 
-\proclaim Lemma. Let $G=(V,E)$ be a graph. Then for all edges $uv\in E$, $\kappa(G\setminus\{uv\})\geq \kappa(G) - 1$.
+\proclaim Lemma K. Let $G=(V,E)$ be a graph. Then for all edges $uv\in E$, $\kappa(G\setminus\{uv\})\geq \kappa(G) - 1$.
 
 \proof Remove an edge $uv$ from $G$. Now we find a set of vertices $W$, with $|W| = \kappa(G\setminus\{uv\})$, that disconnects $G$. So $V$ has been split into three disjoint subsets $L\cup W\cup R$. If $u$ and $v$ both lie in $L$ or both lie in $R$, then $\kappa(G) \leq |W| = \kappa(G\setminus\{uv\})$. If $u\in L$ and $v\in R$ (or vice-versa), then if there exists a vertex $w\neq u\in L$, then $W\cup \{u\}$ separates $G$, implying that $\kappa(G)\leq |W\cup \{u\}|\leq \kappa(G\setminus\{u,v\}) + 1$. The last case is if $L = \{u\}$ and $R=\{v\}$. Then $|V| = |W\cup\{u,v\}|\leq \kappa(G\setminus\{u,v\} + 2$, meaning that $\kappa(G)\leq |V|-1 \leq \kappa(G\setminus\{u,v\})+1$. \slug
 
-\proclaim Lemma. Let $G=(V,E)$ be a graph with $|V|=n$. Then the following both hold:
+\proclaim Lemma R. Let $G=(V,E)$ be a graph with $|V|=n$. Then the following both hold:
 \medskip
 \item {1.} $\kappa(G) - 1 \leq \kappa(G-v)$ for all $v\in V$.
 \smallskip
@@ -306,7 +305,7 @@ The {\it connectivity} of a graph $G$, denoted $\kappa(G)$, is the maximum $k\in
 
 To summarise, removing an edge from $G$ causes both $\kappa(G)$, $\lambda(G)$ to decrease by {\it at most} 1. Removing a vertex from $G$ can cause $\kappa(G)$ to decrease by at most 1 as well, but may cause $\lambda(G)$ to decrease a lot (possibly down to 0). The next lemma describes the relationship between vertex- and edge-connectivity.
 
-\proclaim Lemma. Let $G=(V,E)$ be a graph and let $\delta(G)$ denote the minimum degree over all vertices in $G$. Then
+\proclaim Lemma C. Let $G=(V,E)$ be a graph and let $\delta(G)$ denote the minimum degree over all vertices in $G$. Then
 $$ \kappa(G) \leq \lambda(G) \leq \delta(G).$$
 
 \proof The inequality $\lambda(G) \leq \delta(G)$ is easy, because if $v$ is the vertex of minimum degree in $G$, then removing the $\delta(G)$ edges adjacent to $v$ separates $v$ from the rest of the graph.
@@ -340,7 +339,7 @@ To prove the vertex version of the theorem, for every vertex $v\in V'\setminus\{
 
 An {\it ear decomposition} of a graph $G$ is a sequence $G_0, G_1, \ldots, G_k$ of subgraphs of $G$ such that $G_0$ is a cycle and for any $i\in \{1,\ldots,k\}$, the graph $G_i$ is obtained from $G_{i-1}$ by adding a path $P_i$ to $G_{i-1}$ such that $P_i$ shares exactly its endpoints with $G_{i-1}$. Each of these paths $P_i$ is called an {\it ear}.
 
-\proclaim Theorem. A graph is 2-connected if and only if it has an ear decomposition.
+\proclaim Theorem E. A graph is 2-connected if and only if it has an ear decomposition.
 
 \proof The only way for a graph to not be 2-connected is for it to have a cut vertex. So the ``if'' direction is easy, because if there is an ear decomposition, there is no cut vertex.
 
@@ -388,7 +387,7 @@ $$ T(K_n) = n^{n-2}.$$
 
 The following theorem gives a formula for the number of spanning trees of $K_n$, after a single edge is removed.
 
-\proclaim Theorem. Let $e$ be an edge in $K_n$. Then
+\proclaim Theorem L. Let $e$ be an edge in $K_n$. Then
 $$ T(K_n-e) = (n-2)n^{n-3}.$$
 
 \proof The idea is to double-count the number of edges in all spanning trees of $K_n$. Each spanning tree has $n-1$ edges so the total number of edges is $(n-1)n^{n-2}$. Now let $k_e$ denote the number of spanning trees of $K_n$ containing $e$. By symmetry, this is the same for any choice of $e$ in $K_n$. There are ${n\choose 2}$ edges in $K_n$, each contained in $k_e$ trees. This implies that
@@ -410,7 +409,7 @@ This section deals with the general question: ``What is the extremal (maximum/mi
 
 A harder question is ``What is the maximum number of edges in a graph not containing $C_3$ as a subgraph?'' First let us consider a class of graphs that definitely do not contain $C_3$ as a subgraph: bipartite graphs (they do not contain any odd cycles). What is the maximum number of edges in a bipartite graph? Well, the complete bipartite graph $K_{a,b}$ has $ab$ edges, so we want to maximise the product $ab$ when $a+b =n$. Intuitively this is when $a$ and $b$ are as close to $n/2$ as possible. So we get that the number of edges in $K_{a,b}$ is at least $\lfloor n^2/4 \rfloor$, thus we have a lower bound for the number of edges in a graph not containing $C_3$. The following theorem proves that the bound is tight.
 
-\proclaim Theorem. The maximum number of edges of any graph $G$ not containing $C_3$ as a subgraph is at most $\lfloor n^2/4 \rfloor$.
+\proclaim Theorem T. The maximum number of edges of any graph $G$ not containing $C_3$ as a subgraph is at most $\lfloor n^2/4 \rfloor$.
 
 \proof We want to show that there exist $a,b\in \N$ such that $|E(G)|\leq |E(K_{a,b})| \leq \lfloor n^2/4 \rfloor$. To this end, we find disjoint subsets $A,B\subseteq V(G)$ such that $A\cup B = V(G)$. and let $H$ = $K_{a,b}$ on $A$ and $B$.
 
@@ -418,7 +417,7 @@ Then it suffices to show that for any $v\in V(G)$, $\deg_G(v) \leq \deg_H(v)$, s
 
 Compared to ${n\choose 2}$, $\lfloor n^2/4 \rfloor$ is still quite a lot, but remember that disallowing any cycles at all, we have a much smaller bound of $n-1$. A natural question is ``How long do forbidden cycles have to be so that the maximum number of edges is much smaller than ${n\choose 2}$?'' As we will see from the following theorem, disallowing $C_4$ lowers this bound quite a bit.
 
-\proclaim Theorem. The maximum number of edges of any graph $G$ not containing $C_4$ as a subgraph is at most $(n^{3/2} + n) / 2$. 
+\proclaim Theorem F. The maximum number of edges of any graph $G$ not containing $C_4$ as a subgraph is at most $(n^{3/2} + n) / 2$.
 
 \proof The idea is to double-count the size of the set $M$ of pairs $(\{u, u'\}, v)$, where $u\neq\ u'\neq v$ and $uv, u'v\in E$. Note that for any set $\{u, u'\}$, there is at most one $v\in V$ such that $(\{u, u'\}, v)\in M$, because otherwise we would have a cycle of length 4, which is forbidden. This implies that $|M|\leq {n\choose 2}$, which is the number of sets $\{u, u'\}$.
 
@@ -467,13 +466,13 @@ Let $X$ be a finite point set and ${\cal L}\subseteq 2^X$ be a set of subsets of
 \medskip
 We call any $x\in X$ a {\it point} and any $L\in {\cal L}$ a {\it line}. Finite projective planes have very interesting ``symmetrical'' properties.
 
-\proclaim Lemma. Let $(X,{\cal L})$ be a finite projective plane. Then for all $L, L'\in {\cal L}$, there exists an $z\in L$ such that $z\notin L\cup L'$
+\proclaim Lemma Z. Let $(X,{\cal L})$ be a finite projective plane. Then for all $L, L'\in {\cal L}$, there exists an $z\in L$ such that $z\notin L\cup L'$
 
 \proof By (P0), there exists a set $F\subseteq X$ with $|F| = 4$ and $|F\cap L|\leq 2$ for a $|F\cap L'|\leq 2$. If $F$ is a proper subset of $L\cup L'$, then we're done, because $z\in F$. So assume $F\subset L\cup L'$: say $F = \{a, b,c,d\}$, $F\cap L = \{a, b\}$, and $F\cap L' = \{c, d\}$. Then by (P2), there exist lines $L_1 = \overline{ac}$ and $L_2 = \overline{bd}$; and by (P1), there exists a point $z\in L_1\cap L_2$. We claim that $z\notin L\cup L'$.
 
 Suppose, towards a contradiction, that $z\in L$. Then since, by (P1), $|L\cap L_1| = 1$ and $z\in L_1$, we have that $z = a$. This implies that $L_2$ contains $a,b,d$. So $|F\cap L_2| \geq 3$, a contradiction to (P0). An analogous argument can be made for $L'$ so we are done. \slug
 
-\proclaim Lemma. Let $(X,{\cal L})$ be a finite projective plane. Then for all $L,L'\in {\cal L}$, $|L| = |L'|$.
+\proclaim Lemma C. Let $(X,{\cal L})$ be a finite projective plane. Then for all $L,L'\in {\cal L}$, $|L| = |L'|$.
 
 \proof The idea is to find a bijection $\phi : L \rightarrow L'$. By the preceding lemma, there exists some $z\notin L\cup L'$, so for any $x\in L$, we let $\phi(x)$ be the point in $L'\cap \overline{zx}$. The function $\phi$ is well-defined, since $\overline{zx}$ exists by (P2), and $|L' \cap \overline{zx}| = 1$ by (P1).
 
@@ -481,7 +480,7 @@ Now we prove that $\phi$ is a bijection. Let $y\in L'$ be given. It suffices to 
 
 The {\it order} of a finite projective plane $(X, {\cal L})$ is $|L| - 1$ for any $L\in X$.
 
-\proclaim Theorem. Let $(X,{\cal L})$ be a finite projective plane of order $n$. Then the following statements all hold:
+\proclaim Theorem F. Let $(X,{\cal L})$ be a finite projective plane of order $n$. Then the following statements all hold:
 \medskip
 \item {1.} Exactly $n+1$ lines pass through any point $x\in X$.
 \smallskip
@@ -507,7 +506,7 @@ The {\it incidence graph} of a finite projective plane $(X,{\cal L})$, is a bipa
 
 Formally, the {\it dual} of a finite projective plane $(X,{\cal L})$ is the set system $({\cal L}, \Lambda)$ where $\Lambda\in 2^{\cal L}$ contains an element $\{L\in {\cal L} : x\in L\}$ for every $x\in X$.
 
-\proclaim Lemma. The dual $({\cal L}, \Lambda)$ of a finite projective plane $(X,{\cal L})$ is also a finite projective plane.
+\proclaim Lemma D. The dual $({\cal L}, \Lambda)$ of a finite projective plane $(X,{\cal L})$ is also a finite projective plane.
 
 \proof We show that $({\cal L}, \Lambda)$ satisfies each of (P0), (P1), and (P2).
 \medskip
@@ -515,15 +514,15 @@ Formally, the {\it dual} of a finite projective plane $(X,{\cal L})$ is the set 
 \smallskip
 \item {P2)} Let $\lambda_1,\lambda_2\in \Lambda, \lambda_1\neq\lambda_2$ be given, i.e.\  $\lambda_1 = \{ L\in {\cal L} : x_1\in L\}$ and $\lambda_2 = \{L\in {\cal L} : x_2\in L\}$ for some points $x_1\neq x_2$. We need that $|\lambda_1\cap\lambda_2| = 1$, but this follows from (P2) for $(X,{\cal L})$, since $x_1$ and $x_2$ intersect at exactly one line.
 \smallskip
-\item {P3)} Let $L_1, L_2\in {\cal L}$ with $L_1\neq L_2$. It suffices to show that there exists a unique $\lambda \in \Lambda$ such that $L_1\in \lambda$ and $L_2\in \lambda$. But since $\lambda = \{L\in {\cal L} : x\in L\}$ for some $x$, this is exactly (P1) for $(X,{\cal L})$.\slug           
-                
+\item {P3)} Let $L_1, L_2\in {\cal L}$ with $L_1\neq L_2$. It suffices to show that there exists a unique $\lambda \in \Lambda$ such that $L_1\in \lambda$ and $L_2\in \lambda$. But since $\lambda = \{L\in {\cal L} : x\in L\}$ for some $x$, this is exactly (P1) for $(X,{\cal L})$.\slug
+
 \proclaim Corollary. The order of the dual finite projective plane is the same as the order of the original.
 
 \proof For any $\lambda \in \Lambda$ of the dual, $|\{L\in {\cal L} : x\in L\}| = n+1$. This implies that the order or $({\cal L}, \Lambda)$ is $n$.\slug
 
 One may wonder whether there is a finite projective plane of any order. The answer is no. There are no finite projective planes of order 1, 6, or 10. There are finite projective planes of order 3, 4, 5, 7, 8, 9, and 11. Whether there is a finite projective plane of order 12 is an open problem. The existence of finite projective planes of some higer orders is known though, as stated by the following theorem.
 
-\proclaim Theorem. A finite projective plane exists of order $n$ if $n$ is a prime power.
+\proclaim Theorem P. A finite projective plane exists of order $n$ if $n$ is a prime power.
 
 We will not present the proof, which follows from ${\bf F}_n$ being a field.\slug
 
@@ -537,7 +536,7 @@ A corollary of this theorem is that there are infinitely many finite projective 
 
 A {\it Latin square} of order $n$ is a matrix $A \in \{1,\ldots, n\}^{n\times n}$ such that for any row $r$, $A_{ri} \neq A_{rj}$ if $i\neq j$ and for any column $c$, $A_{ic}\neq A_{jc}$ if $i\neq j$. Two Latin squares $A$ and $B$ are {\it orthogonal} if $(A_{ij}, B_{ij}) \neq (A_{xy}, B_{xy})$ whenever $i\neq x$ or $j\neq y$. Note that the number of ordered pairs of $\{1,\ldots,n\}$ is $n^2$ and there are only $n^2$ cells, so if all the pairs are different, each pair appears exactly once.
 
-\proclaim Theorem. Let $M$ be a set of pairwise orthogonal Latin squares of order $n$. Then $|M|\leq n-1$.
+\proclaim Theorem L. Let $M$ be a set of pairwise orthogonal Latin squares of order $n$. Then $|M|\leq n-1$.
 
 \proof Let $A,B$ be orthogonal Latin squares of order $n$ and let $\pi$ be some permutation of $\{1,\ldots,n\}$. Consider $A'$ where $A'_{ij} = \pi(A_{ij})$. Note that $(A'_{ij}, B_{ij}) = (A'_{xy}, B_{xy})$ if and only if $(A'_{ij}, B_{ij}) = (A'_{xy}, B_{xy})$. So $A'$ and $B$ are also orthogonal.
 
@@ -545,7 +544,7 @@ So let $M = \{A_1, \ldots, A_t\}$ and for each $A_i\in M$, permute the $n$ eleme
 
 The following theorem relates orthogonal Latin squares to finite projective planes.
 
-\proclaim Theorem.
+\proclaim Theorem O.
     For $n\geq 2$, a finite projective plane of order $n$ exists if and only if there exists a set of $n-1$ pairwise orthogonal Latin squares of order $n$.
 
 \section 7. RAMSEY THEORY
@@ -556,7 +555,7 @@ Ramsey theory deals with the general question: ``How big must a mathematical str
 
 In a graph $G=(V,E)$, an {\it independent set} is a set $I\subseteq V$ such that $uv\notin E$ for all $u,v\in I$. A {\it clique} is a set $K\subseteq V$ such that $uv\in E$ for all $u,v\in K, u\neq v$. The {\it independent set number} $\alpha(G)$ is the maximum size of any independent set and the {\it clique number} $\omega(G)$ is the maximum size of any clique in $G$.
 
-\proclaim Theorem. Let $G=(V,E)$ be a graph. If $|V|\geq {k-l-2\choose k-1} = {k+l-2\choose l-1}$, then $\alpha(G)\geq l$ or $\omega(G)\geq k$.
+\proclaim Theorem R. Let $G=(V,E)$ be a graph. If $|V|\geq {k-l-2\choose k-1} = {k+l-2\choose l-1}$, then $\alpha(G)\geq l$ or $\omega(G)\geq k$.
 
 \proof By induction on $k+l$. In the base case $k = 1$ or $l=1$, all the theorem says is that there is an independent set or clique of size 4. For the inductive step, let $k,l\geq 2$ and assume that the claim holds for $k,l-1$ or $k-1,l$. By Pascal's formula,
 $${k+l-2\choose k-1} = {k+l-3\choose k-1} + {k+l-3\choose k-2}.$$
@@ -574,7 +573,7 @@ For each $k,l\in \N$, the {\it Ramsey number} $r(k,l)$ is the minimum $n$ such t
 
 Very little is known about Ramsey numbers. By observation, we have that $r(k,1) = r(1,l) = 1$; $r(2,l) = l$ and $r(k,2) = k$. For $k=l$, we only know that $r(3,3) = 6$ and $r(4,4) = 18$. The exact values of $r(n,n)$ for $n\geq 5$ are unknown. The above corollary gave an upper bound and the next theorem gives a lower bound.
 
-\proclaim Theorem. For $k\geq 3$, $r(k,k)>2^{k/2}$.
+\proclaim Theorem L. For $k\geq 3$, $r(k,k)>2^{k/2}$.
 
 \proof First we introduce some basic notions from probability that we will need. Let $\Omega$ be a probability space and let $X$ be an event. Then $\Pr[X] = |X|/|\Omega| < 1$ if and only if $|X| < |\Omega|$, which would imply that $\neg X \neq \emptyset$.
 
@@ -646,7 +645,7 @@ Alternatively, we may represent $C$ as the {\it null space} of a matrix. Recall 
 
 The {\it support} of a vector $x$ is the set $\{i : x_i \neq 0\}$ and the {\it Hamming weight} of $x$ is $\hbox{wt}\,x = |\{i : x_i \neq 0\}|$.
 
-\proclaim Theorem. For a linear code $C$,
+\proclaim Theorem L. For a linear code $C$,
 $$ \Delta(C) = \min\{\hbox{wt}\,x : x\in C\ \hbox{and}\ x\neq 0\}.$$
 
 \proof For ease of notation, let $d$ denote $\min\{\hbox{wt}\,x : x\in C\ \hbox{and}\ x\neq 0\}$. First we show that $d\leq \Delta(C)$. Let $y,z\in C$ be such that $\Delta(y,z)$ = $\Delta(C)$. Since $C$ is linear, $x = y-z \in C$. Note that $\Delta(y,z) = |\{i : x_i \neq 0\}|$, so $d \leq \hbox{wt}\,x = \Delta(C)$.
@@ -662,7 +661,7 @@ $$B(x,r) = \{y\in {\bf F}_q^n : \Delta(x,y) \leq r\}.$$
 The {\it volume} of such a ball is
 $$\hbox{vol}(r,n) = |B(x,r)| = \sum_{i=0}^r {n\choose i} (q-1)^i.$$
 
-\thmparens{S}{Hamming bound} If an $(n,k,d)_q$-code exists, then
+\thmparens{H}{Hamming bound} If an $(n,k,d)_q$-code exists, then
 $$q^k\cdot\hbox{\rm vol}\left(\left\lfloor {d-1\over 2} \right\rfloor, n\right) \leq q^n.$$
 
 \proof Let $r = \lfloor (d-1)/2 \rfloor$ and consider $\bigcup_{x\in C} B(x,r)\subset \{1,\ldots,q\}^n$. By observation,
@@ -670,7 +669,7 @@ $$\left|\bigcup_{x\in C} B(x,r)\right| = \sum_{x\in C} \hbox{vol}\,(r,n) = q^k\c
 
 Note that if $d = 3$ and $q = 2$ then the Hamming bound is $2^k(n+1)\leq 2^n$ and the Hamming code matches this bound with equality as $k=n-log_2(n+1)$. An $(n,k,d)_2$-code is called {\it perfect} if $q^k\cdot\hbox{vol}\,(\lfloor (d-1)/2 \rfloor, n) = q^n$. There are no codes with larger size $k$ than a $(n, n-d+1, d)_2$-code (even if we let $q>2$), as the following theorem shows.
 
-\thmparens{B}{Singleton bound} If $C$ is an $(n,k,d)_q$-code, then $k\leq n-d+1$.
+\thmparens{S}{Singleton bound} If $C$ is an $(n,k,d)_q$-code, then $k\leq n-d+1$.
 
 \proof Define a function $f:\Sigma^n\rightarrow\Sigma^{k-1}$ such that $f(x_1,\ldots, x_n) = (x_1,\dots, x_{k-1})$. As $|\Sigma^{k-1}| = q^{k-1}$ and $|C| = q^k > q^{k-1}$, there are $x,y\in C$, with $x\neq y$ and $f(x) = f(y)$. So $x$ and $y$ can only differ in the last $n-k+1$ entries. Since $d = \Delta(C) \leq \Delta(x,y) \leq n-k+1$, we get $k\leq n-d+1$.\slug
 
