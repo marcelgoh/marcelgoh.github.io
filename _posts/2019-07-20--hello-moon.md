@@ -7,16 +7,16 @@ mathjax: true
 excerpt_separator:  <!--more-->
 ---
 
-On 20 July 1969, the Apollo 11 mission put humankind on the moon for the very first time. It was one of the most inspiring technological achievements in history. However, the moon landing happened relatively early in the timeline of computing, and the systems on board were incredibly underpowered by today’s standards. To celebrate the fiftieth anniversary of the moon landing, this article will cover some historical and technical details of the Apollo Guidance Computer before diving into the meaty details of the machine to allow us to write our own small program.
+On 20 July 1969, the Apollo 11 mission put a man on the moon for the very first time. It was one of the most inspiring technological achievements in human history. However, the moon landing happened relatively early in the timeline of computing, and the systems on board were incredibly underpowered by today’s standards. To celebrate the fiftieth anniversary of the moon landing, this article will cover some historical and technical details of the Apollo Guidance Computer before diving into the meaty details of the machine to allow us to write our own small program.
 <!--more-->
 
 ### The machine
 
-The Apollo Guidance Computer, or AGC, was first developed in the early 1960s. It boasted 4 kilobytes of RAM and around 70 kilobytes of read-only memory. Astronauts interacted with the computer via a mostly numeric display and keypad called the DSKY. Although high-level programming languages such as FORTRAN and ALGOL existed at the time, space and performance concerns meant that most routines were written for the AGC in an assembly language. The distinction is that lines of assembly code usually have a one-to-one correspondence with a machine instruction. Each instruction took roughly 12 microseconds to execute; in comparison, a modern computer can perform roughly 24,000 instructions in that time.
+The Apollo Guidance Computer, or AGC, was first developed in the early 1960s. It boasted 4 kilobytes of RAM and around 70 kilobytes of read-only memory. Astronauts interacted with the computer via a mostly numeric display and keypad called the DSKY. Although high-level programming languages such as FORTRAN and ALGOL existed at the time, space and performance concerns meant that most routines were written for the AGC in an assembly language. The distinction is that a line of assembly code usually has a one-to-one correspondence with a machine instruction. An instruction that accesses memory took roughly 11 microseconds to execute on the AGC; even a modest modern personal computer accesses its RAM thousands of times faster.
 
 ![agc-dsky]({{ site.baseurl }}/media/hello-moon/agc-dsky.jpg){: .center-image}
 
-The AGC had only four 16-bit central registers, each of which had a slightly different purpose. Most computations were performed by means of a single accumulator register. Every addressable location in the AGC's RAM was also 16 bits, or 2 modern-day bytes, long but only 15 bits were actually used to store data (this will become important when we compose our example program later). Data that wouldn't have to be modified during a program's execution, including the program's code itself, was usually manually woven into read-only [core rope memory](https://en.wikipedia.org/wiki/Core_rope_memory).
+The AGC had only four 16-bit central registers, each of which had a slightly different purpose. Most computations were performed by means of a single accumulator register. Every addressable location in the AGC's RAM was also 16 bits &mdash; or 2 modern-day bytes &mdash; long but only 15 bits were actually used to store data. This will become important when we compose our example program later. Data that wouldn't have to be modified during a program's execution, including the program's code itself, was usually manually woven into read-only [core rope memory](https://en.wikipedia.org/wiki/Core_rope_memory).
 
 ### Writing programs for the AGC
 
@@ -24,15 +24,15 @@ It often takes several lines of machine code to accomplish what a high-level lan
 
 ![hamilton]({{ site.baseurl }}/media/hello-moon/hamilton.jpg){: .center-image}
 
-Over the decades, most of this code has been painstakingly transcribed by volunteers and is publicly available in [this repository](https://github.com/chrislgarry/Apollo-11). While assembly language is rather difficult to read and understand, the in-line comments that accompany the listings are quite entertaining to sift through. The jokes and quirky remarks suggest that Hamilton and her team of programmers had quite a bit of fun writing this code during what must surely have been an exhausting and stressful project. My personal favourite is [here](https://github.com/chrislgarry/Apollo-11/blob/27e2acf88a6345e2b1064c8b006a154363937050/Luminary099/LUNAR_LANDING_GUIDANCE_EQUATIONS.agc#L179-L180): a “temporary” solution that ended up being sent to the moon anyway and that's now immortalised on GitHub!  
+Over the decades, most of this code has been painstakingly transcribed by volunteers and is publicly available in [this repository](https://github.com/chrislgarry/Apollo-11). While assembly language is rather difficult to read and understand, the in-line comments that accompany the listings are quite entertaining to sift through. The jokes and quirky remarks suggest that Hamilton and her team of programmers had quite a bit of fun writing this code during what must surely have been an exhausting and stressful project. My personal favourite snippet is [here](https://github.com/chrislgarry/Apollo-11/blob/27e2acf88a6345e2b1064c8b006a154363937050/Luminary099/LUNAR_LANDING_GUIDANCE_EQUATIONS.agc#L179-L180): a “temporary” solution that ended up being sent to the moon anyway and that's now immortalised on GitHub!  
 
 Considering the scope of the project, it is remarkable that Apollo 11's guidance software was largely bug-free. The terrifying alarms that went off in the seconds before landing were the result of a known design flaw in a radar peripheral, which added unnecessary load to the machine. Without the benefit of a proper operating system like most computers have today, the team had to design their own multi-tasking priority system. This innovation allowed the most important control and guidance procedures to run unaffected by the hardware error, saving the mission.
 
 ### Hello, moon?
 
-The AGC was phased out by the mid-1970s. By the end of that decade, it would have been so outdated that home computers like as the Apple II could have given it a run for its money. In honour of the AGC's legacy, I thought it would be fun to write a short program in AGC's assembly code. When learning a new language, it is customary for programmers to write a "Hello, world!" program that simply prints those two words to the console. Since the DSKY only prints numbers, we're going to print the number 07734 to the seven-segment display. (In a real test-run, we would then radio to tell the astronaut to flip him- or herself upside-down to read the greeting. I reckon this is easily done in outer space.)  
+The AGC was phased out by the mid-1970s. By the end of that decade, it would have been so outdated that home computers like the Apple II could have given it a run for its money. In honour of the AGC's legacy, I thought it would be fun to write a short program in AGC assembly language. When learning a new language, it is customary for programmers to write a "Hello, world!" program that simply prints those two words to the console. Since the DSKY only prints numbers, we're going to print the number 07734 to the seven-segment display. (In a real test-run, we would then radio to tell the astronaut to flip himself upside-down to read the greeting. I reckon this is easily done in outer space.)  
 
-First we need to understand how the AGC deals with data. This section refers heavily to the [developer info](https://www.ibiblio.org/apollo/developer.html) that can be found in the documentation of Ronald Burkey's AGC simulator. (The diagrams below are also from his website.) As I mentioned earlier, a word in memory is 15 bits long and is usually written in octal (base-8) representation. Since $8 = 2^3$, a 15-bit number can be represented with exactly 5 octal digits, by converting the bits in groups of three:
+First we need to understand how the AGC deals with data. This section refers heavily to the [developer info](https://www.ibiblio.org/apollo/developer.html) that can be found in the documentation of Ronald Burkey's AGC simulator. (The diagrams below are also from his website.) As I mentioned earlier, a word in memory is 15 bits long and is usually written in octal (base-8) representation. Since $8 = 2^3$, a 15-bit number can be represented with exactly $15/3 = 5$ octal digits, by converting the bits in groups of three:
 
 ```
 Binary: 100 010 110 101 001
@@ -60,7 +60,7 @@ So the three words we will need to send to the DSKY are:
  0110 0 11011 01101     Sets digit 14 to 3 and digit 15 to 4.
 ```
 
-To clear the accumulator register and load a new word from, say, memory address `K` into it, we use the instruction `CA K`. Then to actually send these messages to the DSKY, we use the `WRITE` instruction, which takes as its argument a channel number &mdash; in particular, channel 10 (octal) refers to the DSKY. The instruction causes the contents of the accumulator register to be sent over the channel.  Now we can organise our data, converting the signals into octal representation, and compose the full routine:
+To clear the accumulator register and load a new word from, say, memory address `K` into it, we use the instruction `CA K`. Then to actually send these messages to the DSKY, we use the `WRITE` instruction, which takes as its argument a channel number. In particular, channel 10 (octal) refers to the DSKY. The instruction causes the contents of the accumulator register to be sent over the channel.  Now we can organise our data, converting the signals into octal representation, and compose the full routine:
 
 ```
 # CONSTANTS AND VARIABLES
@@ -85,7 +85,7 @@ CHAN10  EQUALS  10          # DSKY CHANNEL.
 
 Upon running this routine, the DSKY should display the numbers 07734 on the first five-digit display.
 
-__Disclaimer:__ _I was not able to actually test this code on the yaAGC simulator, as it has rather poor compatibility with newer Macs. The simulator reportedly works fine on most other platforms, so I'd really appreciate if anyone who has a working simulator could run the above routine to verify that no errors were made._
+__Disclaimer:__ _I have not actually run this code on a real Apollo spacecraft. I was also unable to test this code on the yaAGC simulator, as it has rather poor compatibility with newer Macs. The simulator reportedly works fine on most other platforms, so I'd really appreciate if anyone who has a working simulator could run the above routine to verify that no mistakes were made._
 
 ### Conclusion
 
@@ -99,4 +99,5 @@ As a whole, the moon missions of the sixties and seventies will continue to insp
 + [Margaret Hamilton (software engineer) &mdash; Wikipedia](https://en.wikipedia.org/wiki/Margaret_Hamilton_(software_engineer))
 + [Apollo Guidance Computer &mdash; Wikipedia](https://en.wikipedia.org/wiki/Apollo_Guidance_Computer)
 + [Apollo 11 Had a Hidden Hero: Software &mdash; Wall Street Journal](https://www.wsj.com/articles/apollo-11-had-a-hidden-hero-software-11563153001)
++ [Don Eyles presents his paper copy of Apollo source code &mdash; YouTube](https://www.youtube.com/watch?v=H0ITFbDuJz0)
 + [AGC Simulator Project](https://www.ibiblio.org/apollo/index.html)
