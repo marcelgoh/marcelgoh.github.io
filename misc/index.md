@@ -13,6 +13,7 @@ This is a landing page for things that, for whatever reason, might not have a pl
 
 + [My favourite classic theorems]({{ site.baseurl }}/misc/theoremata.html)
 + [My favourite quotes]({{ site.baseurl }}/misc/quotes.html)
++ [_Disquisitiones Arithmeticae_, transcribed]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.pdf) ([TeX]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.tex))
 
 ## School
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
