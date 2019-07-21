@@ -14,7 +14,7 @@
 
 We say that a function $f(n)$ is $O\big(g(n)\big)$ (read ``big-oh of $g(n)$'') if there exist constants $n_0$ and $C$ such that for all $n\geq n_0$, $f(n)\leq C\cdot g(n)$. If the ratio ${f(n)\over g(n)}$ approaches 0 as n approaches infinity, then we say $f(n)$ is $o\big(g(n)\big)$ (read ``little-oh of $g(n)$''). If $f(n)$ is both $O\big(g(n)\big)$ and $o\big(g(n)\big)$, then $f(n)$ is $\Theta\big(g(n)\big)$ (read ``big-theta of $g\big(n)\big)$''). Finally, if the ratio ${f(n)\over g(n)}$ approaches 1 as $n$ approaches infinity, then we write $f(n) \sim g(n)$.
 
-Let $G=(V,E)$ be a graph. The graph $G'=(V',E')$ is a {\it subgraph} of $G$ if $V'\subseteq V$ and $E'\subseteq E$. A {it cycle} is a graph on $v_1, \ldots, v_n$ with edges $\{v_1, v_2\}, \ldots, \{v_{n-1}, v_n\}$. A {\it tree} is a connected graph that contains no cycle (i.e\  does not have a cycle as a subgraph).
+Let $G=(V,E)$ be a graph. The graph $G'=(V',E')$ is a {\it subgraph} of $G$ if $V'\subseteq V$ and $E'\subseteq E$. A {\it cycle} is a graph on $v_1, \ldots, v_n$ with edges $\{v_1, v_2\}, \ldots, \{v_{n-1}, v_n\}$. A {\it tree} is a connected graph that contains no cycle (i.e\  does not have a cycle as a subgraph).
 
 \proclaim Theorem D. In any graph $G=(V,E)$,
 $$\displaystyle\sum_{v\in V} \deg v = 2\cdot|E|$$
