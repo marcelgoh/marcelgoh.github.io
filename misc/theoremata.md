@@ -48,7 +48,7 @@ Multiplicare hanc aequationem cum $p$, habemus $a^p \equiv p\ (\text{mod}\ p)$. 
 
 __Theorema.__ Si $S$ est sequentia finita longitudine $\geq (r-1)(s-1)+1$, erit subsequentia crescens longitudine $r$ vel subsequentia decrescens longitudine $s$.
 
-_Demonstratio._ Theorema demonstratur contrapostione. Assumumimus omne sequentia crescens longitudinem $\leq r-1$ habere et omne sequentia decrescens longitudinem $\leq s-1$ habere. Omni $x_i\in S$ assignamus pittacium $(a_i, b_i)$, ubi $a_i$ designat longitudinem longissimae sequentiae _crescentis_ qui terminatur $x_i$ et $b_i$ designat longitudinem longissimae sequentiae _decrescentis_ qui terminatur $x_i$.
+_Demonstratio._ Theorema demonstratur contrapositione. Assumumimus omne sequentia crescens longitudinem $\leq r-1$ habere et omne sequentia decrescens longitudinem $\leq s-1$ habere. Omni $x_i\in S$ assignamus pittacium $(a_i, b_i)$, ubi $a_i$ designat longitudinem longissimae sequentiae _crescentis_ qui terminatur $x_i$ et $b_i$ designat longitudinem longissimae sequentiae _decrescentis_ qui terminatur $x_i$.
 
 Affirmamus pittacia numerorum $x_i$ inter se differre. Sint $i$ et $j$ numeri differentes; sine detrimento generalitate, $i < j$ habetur. Si $x_i\leq x_j$, erit $a_i < a_j$, quia omnis sequentia crescens qui $x_i$ terminatur $x_j$ extendi potest. Similiter, si $x_i\geq x_j$, erit $b_j > b_i$, quia omnis sequentia decrescens qui $x_i$ terminatur $x_j$ extendi potest.
 
