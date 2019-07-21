@@ -1,0 +1,76 @@
+\input fontmac
+\input mathmac
+
+\centerline {\bigbold Disquitiones Arithmeticae}
+\medskip
+\centerline {\eightpt auctore}
+\medskip
+\centerline {\tensc D. Carolo Friderico Gauss}
+
+\bigskip
+
+\def\ssection #1\par {
+    \section #1\par
+    \vskip -\medskipamount
+}
+
+\def\numsection #1. {
+    \medskip
+    \centerline {#1.}
+    \smallskip
+}
+
+% INTRODUCTION
+\ssection I. DE NUMERORUM CONGRUENTIA IN GENERE
+
+\ssection Numeri congrui, moduli, residua et nonresidua
+
+\numsection 1. Si numerus $a$ numerorum $b,c$ differentiam metitur, $b$ et $c$ {\it secundum $a$ congrui} dicuntur, sin minus, {\it incongrui}: ipsum {\it a modulum} appellamus. Uterque numerorum $b,c$ priori in casu alterius {\it residuum}, in posteriori vero {\it nonresiduum} vocatur.
+
+Hae notiones de omnibus numeris integris tam positivis quam negativis valent\footnote{$^1$}{Modulus manifesto semper {\it absolute} i. e. sine omni signo est sumendus.}, neque vero ad fractos sunt extendendae. E. g.\ $-9$ et $16$ secundum modulum $5$ sunt congrui; $-7$ ipsius $15$ secundum modulum $11$ residuum, secondum modulum $3$ vero nonresiduum. Ceterum quoniam cifram numerus quisque metitur, omnis numerus tamquam sibi ipsi congruus secundum modulum quemcunque est spectandus.
+
+\numsection 2. Omnia numeri dati $a$ residua secundum modulum $m$ sub formula $a+km$ comprehenduntur, designante $k$ numerum integrum indeterminatum. Propositionum quas post trademus faciliores nullo negotio hinc demonstrari possunt: sed istarum quidem veritatem aeque facile quivis intuendo poterit perspicere.
+
+Numerorum congruentiam hoc signo, $\equiv$, in posterum denotabimus, modulum ubi opus erit in clausulis adiungentes: $-16\equiv 9 \pmod{5}$, $-7\equiv 15 \pmod{11}$\footnote{$^2$}{Hoc signum propter magnam analogiam quae inter aequalitatem atque congruentiam invenitur adoptavimus. Ob eandem caussam ill.\ Le Gendre in comment.\ infra saepius laudanda ipsum aequalitatis signum pro congruentia retinuit, quod nos ne ambiguitas oriatur imitari dubitavimus.}.
+
+\numsection 3.
+
+\proclaim Theorema. Propositis $m$ numeris integris successivis
+$$ a, a+1, a+2, \ldots, a+m-1$$
+alioque $A$, illorum aliquis huic secundum modulum $m$ congruus erit, et quidem unicus tantum.
+
+Si enim ${a-A\over m}$ integer, erit $a\equiv A$, sin fractus, sit integer proxime maior (aut quando est negativus, proxime {\it minor}, si ad signum non respiciatur) aequalis $k$, cadetque $A+km$ inter $a$ et $a+m$, quare erit numerus quaesitus. Et manifestum est omnes quotientes ${a-A \over m}$, ${a+1-A\over m}$, ${a+2-A\over m}$ etc.\ inter $k-1$ et $k+1$ sitos esse; quare plures quam unus integri esse nequeunt.
+
+\ssection Residua minima
+
+\numsection 4. Quisque igitur numerus residuum habebit tum in hac serie, $0,1,2,\ldots,m-1$, tum in hac, $0,-1,-2,\ldots,\allowbreak -(m-1)$, quae {\it residua minima} dicemus, patetque, nisi $0$ fuerit residuum, bina semper dari, {\it positivum} alterum, alterum {\it negativum}. Quae si magnitudine sunt inaequalia, alterum erit minus quam ${m\over 2}$, sin secus utrumque ${m\over 2}$ aequalis, signi respectu non habito. Unde patet, quemvis numerum residuum habere moduli semissem non superans quod {\it absolute minimum} vocabitur.
+
+E. g.\ $-13$ secundum modulum $5$, habet residuum minimum positivum $2$, quod simul est absolute minimum, $-3$ vero residuum minimum negativum; $5$ secundum modulum $7$ sui ipsius est residuum minimum positivum, $-2$ negativum, simulque absolute minimum.
+
+\ssection Propositiones elementares de congruentiis
+
+\numsection 5. His notionibus stabilitis eas numerorum congruorum propietates quae prima fronte se offerunt colligamus.
+
+{\sl Qui numeri secundum modulum compositum sunt congrui, etiam secundum quemvis eius divisorem congrui. Si plures numeri eidem numero secundum eundem modulum sunt congrui, inter se erunt congrui (secundum eundem modulum).}
+
+Haec modulorum indentitas etiam in sequentibus est subintelligenda.
+
+{\sl Numeri congrui residua minima habent eadem, incongrui diversa.}
+
+\numsection 6. {\sl Si habentur quotcunque numeri $A,B,C$ etc.\ totidemque alii $a,b,c$ etc.\ illus secundum modulum quemque congrui
+$$A\equiv a, B\equiv b,\hbox{etc., erit}\ A+B+C+\hbox{etc.}\equiv a+b+c+\hbox{etc.}$$}
+Si $A\equiv a, B\equiv b$, erit $A-B \equiv a-b$.
+
+\numsection 7. {\sl Si $A\equiv a$, erit quoque $kA\equiv ka$.}
+
+Si $k$ numerus positivus, hoc est tantummodo casus particularis propos.\ art.\ praec.\ ponendo ibi $A=B=C=\hbox{etc.}$, $a=b=c\ \hbox{etc.}$ Si $k$ negativus, erit $-k$ positivus, adeoque $-kA\equiv -ka$, unde $kA \equiv ka$.
+
+{\sl Si $A\equiv a$, $B\equiv b$, erit $AB\equiv ab$. Namque $AB\equiv Ab\equiv ba$.}
+
+\numsection 8. {\sl Si habentur quotcunque numeri $A,B,C,\hbox{etc.}$ totidemque alii $a,b,c,\hbox{etc.}$ his congrui, $A\equiv a$, $B\equiv b,\hbox{etc.}$, producta ex utrisque erunt congrua, $ABC\ \hbox{etc.}\equiv abc\ \hbox{etc.}$}
+
+Ex artic.\ praec.\ $AB\equiv ab$, et ob eandem rationem $ABC\equiv abc$; eodemque modo quotcunque alii factores accedere possunt.
+
+Si omnes numeri $A,B,C,\ldots$ aequales assumuntur, nec non respondentes $a,b,c,\ldots$ habetur hoc theorema: {\sl Si $A\equiv a$ et $k$ integer positivus, erit $A^k\equiv a^k$.}
+
+\end
