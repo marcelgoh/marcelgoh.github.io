@@ -15,5 +15,13 @@ This is a landing page for things that, for whatever reason, might not have a pl
 + [My favourite quotes]({{ site.baseurl }}/misc/quotes.html)
 + [_Disquisitiones Arithmeticae_, transcribed]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.pdf) ([TeX]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.tex))
 
-## School
+## Notes
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
++ [_On the probability that two integers are relatively prime_]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/coprime-probability.tex))
+
+## TeX macros
+
+If you wish to compile my sources from TeX, you'll need to download these macros and typeset using the Plain TeX engine. Feel free to use and modify them for your own purposes as well. Just `\input fontmac` and `\input mathmac` at the beginning of your TeX file.
+
++ [fontmac.tex]({{ site.baseurl }}/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
++ [mathmac.tex]({{ site.baseurl }}/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
