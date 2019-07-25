@@ -50,7 +50,7 @@ $$\eqalignno{
 }$$
 We will want to put asymptotic bounds on these rearranged sums. First, note that for all positive real $x$,
 $$x^2 - \lfloor x\rfloor^2 = O(x).\oldno 2$$
-For $x^2 - \lfloor x\rfloor ^2$ can be rewritten $(x + \lfloor x\rfloor)(x-\lfloor x\rfloor)$, which is less than $2x$. Next, we use standard formulas to analyse the asymptotic behaviour of the series $\sum_{k>n}(n/k)^2$:
+For $x^2 - \lfloor x\rfloor ^2$ can be rewritten $(x + \lfloor x\rfloor)(x-\lfloor x\rfloor)$, which is less than $2x+1$. Next, we use standard formulas to analyse the asymptotic behaviour of the series $\sum_{k>n}(n/k)^2$:
 $$\eqalign{
      \sum_{k>n} \left({n\over k}\right)^2 &= \sum_{k\geq 1} \left({n\over k}\right)^2 - \sum_{k=1}^n \left({n\over k}\right)^2 \cr
     &= {n^2\pi^2\over 6} - n^2\left({\pi^2\over 6} -  {1\over n} + O( n^{-2} )\right) \cr
