@@ -19,7 +19,7 @@ $$\mu(n)=
     0 & otherwise.
 }$$
 
-If two integers $u,v$ have no prime factors in common (i.e.\ $\gcd(u,v) = 1$), we say they are {\it relatively prime} and write $u\perp v$. For any positive integer $n$, let $q_n$ denote the number of ordered pairs of integers $(u,v)$ such that $1\leq u,v\leq n$and $u\perp v$. Then the probability that any pair of integers $u,v$ lying in the range $[1\ ..\ n]$ are relatively prime is $q_n/n^2$. Our goal is to find out what happens when $u$ and $v$ may be {\it any} positive integers. In other words, we will investigate the behaviour of $q_n/n^2$ as $n\rightarrow \infty$. We begin with the following lemma:
+If two integers $u,v$ have no prime factors in common (i.e.\ $\gcd(u,v) = 1$), we say they are {\it relatively prime} and write $u\perp v$. For any positive integer $n$, let $q_n$ denote the number of ordered pairs of integers $(u,v)$ such that $1\leq u,v\leq n$ and $u\perp v$. Then the probability that any pair of integers $u,v$ lying in the range $[1\ ..\ n]$ are relatively prime is $q_n/n^2$. Our goal is to find out what happens when $u$ and $v$ may be {\it any} positive integers. In other words, we will investigate the behaviour of $q_n/n^2$ as $n\rightarrow \infty$. We begin with the following lemma:
 
 \proclaim Lemma A. For any positive integer $n$, we have
 $$q_n = \sum_{k\geq 1} \mu(k)\left\lfloor {n\over k}\right\rfloor^2,$$
@@ -79,7 +79,7 @@ which equals 0. (We will not prove this claim, but one may be convinced of this 
 We are now ready for the final lemma.
 
 \proclaim Lemma C.
-$$\biggl(\sum_{k\geq 1} {\mu(k) \over k^2}\biggr) \biggl( \sum_{m \geq 1} {1\over m^2}\biggr) = 1$$.
+$$\biggl(\sum_{k\geq 1} {\mu(k) \over k^2}\biggr) \biggl( \sum_{m \geq 1} {1\over m^2}\biggr) = 1.$$
 
 \proof Both series in the product are absolutely convergent, so we may make use of the identity
 $$\biggl(\sum_{k\geq 1} {a_k\over k^z}\biggr) \biggl(\sum_{m\geq 1} {b_m\over m^z}\biggr) = \sum_{n\geq 1}\biggl( \sum_{d\backslash n} a_d b_{n/d}\biggr) \bigg/ n^z,$$
