@@ -555,7 +555,7 @@ Ramsey theory deals with the general question: ``How big must a mathematical str
 
 In a graph $G=(V,E)$, an {\it independent set} is a set $I\subseteq V$ such that $uv\notin E$ for all $u,v\in I$. A {\it clique} is a set $K\subseteq V$ such that $uv\in E$ for all $u,v\in K, u\neq v$. The {\it independent set number} $\alpha(G)$ is the maximum size of any independent set and the {\it clique number} $\omega(G)$ is the maximum size of any clique in $G$.
 
-\proclaim Theorem R. Let $G=(V,E)$ be a graph. If $|V|\geq {k-l-2\choose k-1} = {k+l-2\choose l-1}$, then $\alpha(G)\geq l$ or $\omega(G)\geq k$.
+\proclaim Theorem R. Let $G=(V,E)$ be a graph. If $|V|\geq {k+l-2\choose k-1} = {k+l-2\choose l-1}$, then $\alpha(G)\geq l$ or $\omega(G)\geq k$.
 
 \proof By induction on $k+l$. In the base case $k = 1$ or $l=1$, all the theorem says is that there is an independent set or clique of size 4. For the inductive step, let $k,l\geq 2$ and assume that the claim holds for $k,l-1$ or $k-1,l$. By Pascal's formula,
 $${k+l-2\choose k-1} = {k+l-3\choose k-1} + {k+l-3\choose k-2}.$$
