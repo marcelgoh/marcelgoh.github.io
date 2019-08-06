@@ -26,4 +26,13 @@ $code-color: $dark-grey;
 $hover-color: $purple;
 $side-hover-color: $green;
 
+.secret-side-link {
+    color: $red;
+    font-size: smaller;
+    a {
+      &:hover { color: $side-hover-color;
+                text-decoration: none; }
+    }
+  }
+
 @import "hydeout";

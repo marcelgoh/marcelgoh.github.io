@@ -88,14 +88,6 @@ img {
       }
     }
 
-  .secret-side-link {
-      color: $red;
-      font-size: smaller;
-      a {
-        &:hover { color: $side-hover-color;
-                  text-decoration: none; }
-      }
-    }
 
 }
 
