@@ -557,7 +557,7 @@ In a graph $G=(V,E)$, an {\it independent set} is a set $I\subseteq V$ such that
 
 \proclaim Theorem R. Let $G=(V,E)$ be a graph. If $|V|\geq {k+l-2\choose k-1} = {k+l-2\choose l-1}$, then $\alpha(G)\geq l$ or $\omega(G)\geq k$.
 
-\proof By induction on $k+l$. In the base case $k = 1$ or $l=1$, all the theorem says is that there is an independent set or clique of size 4. For the inductive step, let $k,l\geq 2$ and assume that the claim holds for $k,l-1$ or $k-1,l$. By Pascal's formula,
+\proof By induction on $k+l$. In the base case $k = 1$ or $l=1$, all the theorem says is that there is an independent set or clique of size 1. For the inductive step, let $k,l\geq 2$ and assume that the claim holds for $k,l-1$ or $k-1,l$. By Pascal's formula,
 $${k+l-2\choose k-1} = {k+l-3\choose k-1} + {k+l-3\choose k-2}.$$
 Call the left-hand side $n$ and from the right-hand side, call the first summand $n_1$ and the second summand $n_2$. Now pick any vertex $u\in V$. Let $B = N(u)$ and $A = V\setminus(B\cup \{u\})$. First note that it is impossible that both $|A| < n_1$ and $|B|<n_2$ since that would imply that
 $$n = 1 + |A| + |B| \leq 1 + (n_1-1) + (n_2-1) = n-1,$$

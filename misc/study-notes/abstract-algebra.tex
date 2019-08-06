@@ -8,6 +8,7 @@
 % Useful functions
 
 \def\Sym{\mathop{\rm Sym}\nolimits}
+\def\Aut{\mathop{\rm Aut}\nolimits}
 
 \leftrighttop{NOTES ON ABSTRACT ALGEBRA}{MARCEL GOH}
 
@@ -48,8 +49,8 @@ $$I =
 \pmatrix{
     1 & 0 & \cdots & 0 \cr
     0 & 1 & \cdots & 0 \cr
-    \vdots & \vdots \ddots & 0 \cr
-    0 0 0 & \cdots & 1
+    \vdots & \vdots & \ddots & \vdots \cr
+    0 & 0 & \cdots & 1
 }$$
 is called the {\it identity matrix} and has the property that $AI = IA = A$ for any matrix $A$. [When no ambiguity can arise, we often omit the $\cdot$ symbol when denoting a product.]
 
@@ -87,14 +88,116 @@ A {\it group} $G$ is a set on which is defined a rule of combination such that t
 \smallskip
 \item {c)} For every element $g\in G$, there exists an inverse element $g^{-1}$ such that $gg^{-1} = g^{-1}g = e$.
 \medskip
-If $gh = hg$ for all $g,h\in G$, then we say the group $G$ is {\it commutative} or {\it abelian}.
+If $gh = hg$ for all $g,h\in G$, then we say the group $G$ is {\it commutative} or {\it abelian}. The number of elements in $G$ is called its {\it order} and this value, also denoted $|G|$, need not be finite.
 
 The most familiar abelian group is the set of all integers, denoted $\Z$, under the operation of addition. It has $1$ as its identity, inverses $-a$ for every whole number $a$, and the commutative property; likewise, any vector space $V$ is also an abelian group under vector addition.
 
-Group theory is intimately connected to the study of symmetries of an object. Let $T$ be a set and let $\Sym(T)$ denote the set of all bijections from $T$ to itself. This is called the {\it symmetric group} on $T$ as, under composition of functions, it obeys all the group axioms: It contains the identity transformation $e$ and every bijection $f$ has an inverse bijection $f^{-1}$. In some sense, the symmetric group is the most general group, because all other groups arise from adding restrictions to these bijections. For instance, $GL_n(\R) \subset \Sym(\R^n)$. If $T = \{1,\ldots,n\}$, then $\Sym(T)$ is called the symmetric group on $n$ letters and is denoted $S_n$. This group has $n!$ elements and is non-abelian when $n\geq 3$.
+Group theory is intimately connected to the study of symmetries of an object. Let $T$ be a set and let $\Sym(T)$ denote the set of all bijections from $T$ to itself. This is called the {\it symmetric group} on $T$ as, under composition of functions, it obeys all the group axioms: It contains the identity transformation $e$ and every bijection $f$ has an inverse bijection $f^{-1}$. In some sense, the symmetric group is the most general group, because all other groups arise from adding restrictions to these bijections. For instance, $GL_n(\R) \subset \Sym(\R^n)$. If $T = \{1,\ldots,n\}$, then $\Sym(T)$ is called the symmetric group on $n$ letters and is denoted $S_n$.
 
 \section 2.2 Subgroups
 
+Let $G$ be a group. We call a nonempty subset $H\subset G$ a {\it subgroup} and write $H\leq G$ provided that
+\medskip
+\item {a)} The set $H$ is closed under the multiplication operation of $G$.
+\smallskip
+\item {b)} Whenever $H$ contains an element $a\in G$, $H$ contains its inverse $a^{-1}$ as well.
+\medskip
+It is immediate from these requirements that a subgroup $H$ contains the identity element. Since $H$ is nonempty, it contains an element $h$ as well as its inverse $h^{-1}$. Then from closure of multiplication we conclude that $hh^{-1} = e\in H$.
 
+We turn our attention to $S_3$, the permutation group on three letters. Notice that this group is not commutative, since the elements
+$$\sigma = \pmatrix{1 & 2 & 3\cr 2 & 3 & 1} \quad \hbox{and} \quad
+  \tau = \pmatrix{1 & 2 & 3\cr 2 & 1 & 3}$$
+do not commute:
+$$\sigma\tau = \pmatrix{1 & 2 & 3 \cr 3 & 2 & 1}, \quad \hbox{but} \quad
+  \tau\sigma = \pmatrix{1 & 2 & 3 \cr 1 & 3 & 2}.$$
+Note that for $k\leq n$, $S_k\leq S_n$ because we can simply fix the letters $k+1,k+2,\ldots,n$. An easy corollary, then, is that $S_n$ does not commute for $n\geq 3$. This is because $S_3\leq S_n$ and we can simply take $\sigma$ and $\tau$ as elements of the larger group $S_n$ that do not commute.
+
+Another example of a subgroup is the set of $2\times 2$ matrices that stabilise the line $y=0$ (vectors lying on this line remain on this line after transformation). In terms of matrices, this set looks like
+$$S = \biggl\{ \pmatrix{a & c \cr 0 & d} : ad\neq 0\biggr\}.$$
+Showing that this set is closed is a simple matter of computing
+$$\pmatrix{a & c \cr 0 & d}\pmatrix{a' & c' \cr 0 & d'}
+  = \pmatrix{aa' & ac' + cd' \cr 0 & dd'},$$
+and observing that the determinant of this matrix is nonzero since all of $a,a',d,d'$ were assumed to be nonzero. (Closure under inversion is also easily derived.)
+
+It is not always easy to characterise all subgroups of a given group. For the additive group of integers, however, the following proposition does so nicely.
+
+\proclaim Proposition S. The subgroups of $\Z$ under addition are precisely given by $b\Z$, where $b$ is a fixed integer.
+
+\proof First, we fix an integer $b$ and show that $b\Z$ is a subgroup. Adding two integers $bm + bn$ gives a third integer $b(m+n)$, which is also in $b\Z$, so the set is closed under the operation of addition; likewise $-(bm) = b(-m)$, so the set is closed under additive inverse.
+
+Now we must show that these $b\Z$ are all the possible subgroups. Let $H\leq \Z$. It is possible that $H$ contains only the identity $0$, in which case $H = 0\Z$. If not, let $b$ be the smallest positive integer contained in $H$. We know from closure that every multiple of $b$ is in $H$, so $b\Z\subset H$. Now let $h$ be any element in $H$. By the Euclidean division algorithm, we can divide $h$ by $b$ to get $h = mb + r$, where $mb$ is some multiple of $b$ and $r$ is a remainder lying in the range $0\leq r < b$. Since $r = (-mb) + h$, we have $r\in H$. But then necessarily we have $r=0$, since $b$ is the smallest positive integer in $H$. So $h$ is an integer multiple of $b$ and we have shown that $H \subset b\Z$. \slug
+
+Finally, we introduce a specific class of subgroup. If $G$ is a group with an element $g$, the {\it cyclic subgroup} generated by $g$ is the set
+$$\langle g\rangle = \{ g^m : m\in \Z\}.$$
+This is a subgroup because $g^mg^n = g^{m+n}$ and $(g^m)^{-1} = g^{-m}$. Note that not all powers are distinct! For example, in the group $S_3$, the cyclic subgroup generated by $\tau$ contains only the identity element and $\tau$ itself. If $g^m = e$ and $m$ is the smallest positive integer for which this holds, we say that the {\it order} of $g$ is $m$ and write $|g| = m$. If no such $m$ exists, then we say $g$ has infinite order.
+
+If $G$ is a group containing an element $g$ such that $\langle g\rangle = G$, then $G$ is called a {\it cyclic group}.
+
+\section 2.3 Isomorphisms and homomorphisms
+
+Consider the group $G_1 = \{\pm 1, \pm i\}$ under complex multiplication alongside the group $G_2 = \langle\rho\rangle\leq S_4$, where $\rho$ is the permutation that takes $1\mapsto 2$, $2\mapsto 3$, $3\mapsto 4$, and $4\mapsto 1$. The groups have the following multiplication tables:
+% Each cell is right-aligned in the first table, centred in the second.
+$$G_1{\rm :}\quad\vcenter{\vbox{\offinterlineskip
+    \halign{ 
+        \hfil $#$ & \hfil\vrule# \hfil \enskip &
+        \hfil $#$ & \hfil $#$ & \hfil $#$ & \hfil $#$ \cr
+        %\hfil $#$ \hfil & \hfil\vrule# \hfil \enskip &
+        %\hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil \cr
+        && 1 & i & -1 & -i \cr
+        & height4pt &&& \cr
+        \noalign{\hrule}
+        & height4pt &&&\cr
+        1 && 1 & i & -1 & -i \cr
+        & height4pt &&&\cr
+        i && i & -1 & -i & 1 \cr
+        & height4pt &&&\cr
+        -1 && -1 & -i & 1 & i \cr
+        & height4pt &&&\cr
+        -i && -i & 1 & i & -1 \cr
+    }
+}} \qquad
+G_2{\rm :}\quad\vcenter{\vbox{\offinterlineskip
+    \halign{ 
+        \hfil $#$ \hfil & \hfil\vrule# \hfil \enskip &
+        \hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil \cr
+        && e & \rho & \rho^2 & \rho^3 \cr
+        & height2pt &&& \cr
+        \noalign{\hrule}
+        & height2pt &&&\cr
+        e && e & \rho & \rho^2 & \rho^3 \cr
+        & height2pt &&&\cr
+        \rho && \rho & \rho^2 & \rho^3 & e \cr
+        & height2pt &&&\cr
+        \rho^2 && \rho^2 & \rho^3 & e & \rho \cr
+        & height2pt &&&\cr
+        \rho^3 && \rho^3 & e & \rho & \rho^2 \cr
+    }
+}}
+$$
+It doesn't take long to realise that these two multiplication tables are the same, up to relabeling $1 \equiv e$, $i\equiv \rho$, $-1 \equiv \rho^2$, and $-i \equiv \rho^3$. This is an example of the concept of isomorphisms between groups.
+
+Formally, an {\it isomorphism} is a bijection $f:G\rightarrow G'$ from a group to another such that
+$$f(x\cdot y) = f(x) \cdot f(y).$$
+The multiplication on the left-hand side is taking place in $G$ while the right-hand multiplication takes place in $G'$. In the above example, the function $f : G_1 \rightarrow G_2$ that takes $i^k \mapsto \rho^k$ for $k=0,1,2,3$ gives an explicit isomorphism. If there exists an isomorphism between two groups, we say that they are {\it isomorphic}.
+
+Any two cyclic groups of order $n$ are isomorphic. We will not formally prove this, but it is clear that if $G_1$ and $G_2$ are cyclic groups of the same order generated by $g_1$ and $g_2$ respectively, then the function $f : G_1 \rightarrow G_2$ given by $f({g_1}^k) = {g_2}^k$ for any integer $k$ will be a well-defined isomorphism.
+
+As a perhaps surprising example, the group of real numbers under addition and the group of positive real numbers under multiplication are isomorphic to one another. The function $f(x) = e^x$ is a bijection from $\R$ to $\R^+$ and $e^{x+y} = e^xe^y$ for real numbers $x$ and $y$.
+
+If two groups $G_1$ and $G_2$ are isomorphic, then
+\medskip
+\item {a)} The groups have the same order, i.e.\ $|G_1| = |G_2|$.
+\smallskip
+\item {b)} Either $G_1$ and $G_2$ are both abelian or they are both non-abelian.
+\smallskip
+\item {c)} Both groups have the same number of elements of every order.
+\medskip
+These properties are useful in showing that two groups are not isomorphic. For example, $S_3$ has no element of order $6$, so it is not isomorphic to the cyclic group of order $6$, which has two such elements: 1 and 5.
+
+An isomorphism from a set to itself is called an {\it automorphism}. Given a group $G$, we can construct a set $\Aut(G)$ of all automorphisms of $G$ and in fact, it is easily verifiable that $\Aut(G)$ is a group under function composition.
+
+We may obtain a generalisation of an isomorphism by relaxing the requirement that the function be bijective. Any map $f : G_1 \rightarrow G_2$ between groups that satisfies $f(x\cdot y) = f(x)\cdot f(y)$ for all $x,y\in G_1$ is called a {\it homomorphism}, and an isomorphism is simply a bijective homomorphism. It follows from the definition that any homomorphism maps the identity of the first group to the identity of the second, and that inverses are mapped to inverses. The simplest example of a homomorphism is the trivial homomorphism that maps every element of $G_1$ to the identity of $G_2$. Another homomorphism that is not an isomorphism is the map from $\Z$ to $S_2$ that takes all even integers to the identity and all odd integers to the permutation that switches 1 and 2.
+
+The {\it kernel} of a homomorphism is a the set of all elements in the domain that map to the identity in the target group. The {\it image} of a homomorphism $f: G_1\rightarrow G_2$ is the set of all elements in $G_2$ that equal $f(x)$ for some $x\in G_1$.
 
 \end
