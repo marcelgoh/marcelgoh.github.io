@@ -21,7 +21,7 @@ This is a landing page for things that, for whatever reason, might not have a pl
 
 ## TeX macros
 
-If you wish to compile my sources from TeX, you'll need to download these macros and typeset using the Plain TeX engine. Feel free to use and modify them for your own purposes as well. Just `\input fontmac` and `\input mathmac` at the beginning of your TeX file.
+If you wish to compile my sources from TeX, you'll need to download these macros and typeset using the Plain TeX engine. Feel free to use and modify them for your own purposes as well.
 
 + [fontmac.tex]({{ site.baseurl }}/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
 + [mathmac.tex]({{ site.baseurl }}/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)

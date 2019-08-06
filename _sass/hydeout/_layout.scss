@@ -83,10 +83,19 @@ img {
   .side-link {
       //font-family: $biolinum;
       a {
-        &:hover { color: $side-hover-color; 
+        &:hover { color: $side-hover-color;
                   text-decoration: none; }
       }
-  }
+    }
+
+  .secret-side-link {
+      color: $red;
+      font-size: smaller;
+      a {
+        &:hover { color: $side-hover-color;
+                  text-decoration: none; }
+      }
+    }
 
 }
 
