@@ -33,13 +33,7 @@ body {
 
 p {
   a.side-link {
-      #secret {
-          color: #ff005f;
-          &:hover {
-            color: $side-hover-color;
-            text-decoration: none;
-          }
-      }
+      
       font-family: $biolinum;
       &:hover {
           color: $side-hover-color;
