@@ -25,7 +25,3 @@ If you wish to compile my sources from TeX, you'll need to download these macros
 
 + [fontmac.tex]({{ site.baseurl }}/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
 + [mathmac.tex]({{ site.baseurl }}/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
-
-## Community flairs
-
-[![Mathematics Stack Exchange profile](https://math.stackexchange.com/users/flair/691096.png)](https://math.stackexchange.com/users/691096/marcelgoh) [![Project Euler progress](https://projecteuler.net/profile/marcelgoh.png)](https://projecteuler.net/progress=marcelgoh)
