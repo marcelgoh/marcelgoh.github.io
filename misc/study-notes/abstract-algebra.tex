@@ -16,9 +16,9 @@
 
 \section 1. PRELIMINARY NOTIONS FROM LINEAR ALGEBRA
 
-This $\lneq$ set of notes assumes that the reader has had some exposure to linear algebra; the most crucial notions will be outlined in this section.
+This set of notes assumes that the reader has had some exposure to linear algebra; the most crucial notions will be outlined in this section.
 
-\section 1.1. Basic properties of square matrices
+\section 1.1. Basic Properties of Square Matrices
 
 We shall mainly concern ourselves with matrices of the form
 $$\pmatrix{
@@ -28,7 +28,7 @@ $$\pmatrix{
 }$$
 where $n$ is some positive integer and each entry $a_{ij}\in \R$. We call the set of all $n\times n$ matrices with real entries $M_n(\R)$.
 
-For two matrices $A$ and $B$, we may form their {\it sum} $A+B = (a_{ij} + b_{ij})$. (This notation means that at the $i$th row and $j$th column, the entry is the sum of $a_{ij}$ and $b_{ij}.)$. Given a real number $\alpha$, we obtain the scalar product $\alpha A  = (\alpha\cdot a_{ij})$ by multiplying every entry in $A$ by $\alpha$.
+For two matrices $A$ and $B$, we may form their {\it sum} $A+B = (a_{ij} + b_{ij})$. (This notation means that at the $i$th row and $j$th column, the entry is the sum of $a_{ij}$ and $b_{ij}.)$ Given a real number $\alpha$, we obtain the scalar product $\alpha A  = (\alpha\cdot a_{ij})$ by multiplying every entry in $A$ by $\alpha$.
 
 We can also {\it multiply} $n\times n$ matrices $A$ and $B$ with the following formula:
 $$A\cdot B = (c_{ij})\quad\hbox{where } c_{ij} = \sum_{k=1}^n a_{ik}\cdot b_{kj}.\oldno 1$$
@@ -62,7 +62,7 @@ and we can multiply both sides by $1/(ad-bc)$ to obtain the identity on the righ
 
 In general, there exists a function $\det : M_n(\R) \rightarrow \R$ such that a matrix $A\in M_n(\R)$ is invertible if and only if $\det A\neq 0$. This determinant can be calculated as a sum over $n!$ terms; this formula will not be useful for our purposes.
 
-\section 1.2. The general linear group
+\section 1.2. The General Linear Group
 
 Let us now restrict our attention to a certain subset of square matrices, namely those whose determinant is nonzero. This set is called the {\it general linear group of degree $n$} and is denoted $GL_n(\R)$ when all matrix entries are real numbers. Remark that, since $(-1) + (1) = (0)$, this set is not closed under addition; scalar multiplication is also no longer a safe operation, since multiplying any matrix by $0$ results in a singular matrix.
 
@@ -78,7 +78,7 @@ Thus the set $GL_n(\R)$, under the operation of matrix multiplication, has a mul
 
 \vskip -\medskipamount
 
-\section 2.1. Properties and basic examples
+\section 2.1. Properties and Basic Examples
 
 A {\it group} $G$ is a set on which is defined a rule of combination such that the product of two elements $g,h\in G$, denoted $g\cdot h$ or $gh$, is also in $G$. Furthermore, the following three properties must hold:
 \medskip
@@ -133,7 +133,7 @@ This is a subgroup because $g^mg^n = g^{m+n}$ and $(g^m)^{-1} = g^{-m}$. Note th
 
 If $G$ is a group containing an element $g$ such that $\langle g\rangle = G$, then $G$ is called a {\it cyclic group}.
 
-\section 2.3 Isomorphisms and homomorphisms
+\section 2.3 Isomorphisms and Homomorphisms
 
 Consider the group $G_1 = \{\pm 1, \pm i\}$ under complex multiplication alongside the group $G_2 = \langle\rho\rangle\leq S_4$, where $\rho$ is the permutation that takes $1\mapsto 2$, $2\mapsto 3$, $3\mapsto 4$, and $4\mapsto 1$. The groups have the following multiplication tables:
 % Each cell is right-aligned in the first table, centred in the second.
@@ -199,5 +199,24 @@ An isomorphism from a set to itself is called an {\it automorphism}. Given a gro
 We may obtain a generalisation of an isomorphism by relaxing the requirement that the function be bijective. Any map $f : G_1 \rightarrow G_2$ between groups that satisfies $f(x\cdot y) = f(x)\cdot f(y)$ for all $x,y\in G_1$ is called a {\it homomorphism}, and an isomorphism is simply a bijective homomorphism. It follows from the definition that any homomorphism maps the identity of the first group to the identity of the second, and that inverses are mapped to inverses. The simplest example of a homomorphism is the trivial homomorphism that maps every element of $G_1$ to the identity of $G_2$. Another homomorphism that is not an isomorphism is the map from $\Z$ to $S_2$ that takes all even integers to the identity and all odd integers to the permutation that switches 1 and 2.
 
 The {\it kernel} of a homomorphism is a the set of all elements in the domain that map to the identity in the target group. The {\it image} of a homomorphism $f: G_1\rightarrow G_2$ is the set of all elements in $G_2$ that equal $f(x)$ for some $x\in G_1$.
+
+\section ?.?. Group Actions on Sets
+
+Let $G$ be a group and $S$ a set of elements. We say that $G$ {\it acts on} $S$ if there exists a map from $G\times S\rightarrow S$ (whose pairs $(g,s)$ are written $g(s)$) such that, for all $s\in S$, $e(s) = s$ and $(gh)(s) = g\big(h(s)\big)$ for every $g,h\in G$. For any element $s\in S$, the {\it orbit} is set of elements in $S$ to which $s$ may be taken by $G$:
+$$O_s = \{g(s)\in S : g\in G\}$$
+If there exists an $s$ such that $O_s = S$, then we say that $G$ acts {\it transitively} on $S$. In fact, because the orbits of a group action partition the set $S$ into equivalence classes, transitivity of a group action implies there is only one orbit, and for any $s,s'\in S$, there exists some $g\in G$ such that $g(s) = s'$.
+
+The {\it stabiliser} of $s$ is the set of all elements in $G$ that leave $s$ fixed:
+$$G_s = \{g\in G : g(s) = s\}$$
+
+Consider a model example of a transitive action. Let $G$ be a group with a subgroup $H\leq G$; let $S$ be the set $\{aH : a\in G\}$ of left cosets of $H$. The group $G$ acts on $S$ by taking a coset $aH$ to $gaH$. This action is transitive: For any $a, a'$, there exists some $g$ such that $g(a) = a'$, so we can take any $aH$ to $a'H$ via $g$ as well. The closure property of subgroups gives us $G_H = H$, and the stabiliser of an arbitrary coset $aH$ is the set $\{g\in G : gaH = aH\}$. We find that this is exactly the conjugate subgroup $aHa^{-1}$. More generally, if $G$ acts transitively on a set $S$ and $g(s) = s'$, then $G_{s'} = gG_sg^{-1}\subset G$.
+
+\section ?.?. The Sylow Theorems
+
+Suppose that a group $G$ acts on itself by conjugation:
+$$ s\mapsto gsg^{-1}.$$
+Then the orbit of an element $s$ is its conjugacy class and its stabiliser is the set $\{g\in G : gsg^{-1}\}$, also called the centraliser. Let $\overline H$ denote the set of all subgroups of $G$. Then $G$ also acts on $\overline H$ by conjugation: $g(H) = gHg^{-1}$. In this action, the stabiliser of a subgroup $H$ is the set
+$$ G_H = \{ g \in G : gHg^{-1} = H\}.$$
+Note that this is not the centraliser of $H$; elements may not be taken to themselves pointwise, so long as the sets $gHg^{-1}$ and $H$ are equal. This subset of $G$ is called the {\it normaliser} of $H$ and is itself a subgroup, denoted $N(H)$.
 
 \end

@@ -1,0 +1,36 @@
+% Macros for drawing proof trees
+% Written by Marcel Goh
+
+\font\ninerm=cmr9
+\font\ninei=cmmi9
+\font\ninesy=cmsy9
+\font\sixsy=cmsy7
+\font\fivesy=cmsy6
+
+
+\def\ninept{
+        \textfont0=\ninerm
+        \textfont1=\ninei
+        \textfont2=\ninesy
+        \scriptfont2=\sixsy
+        \scriptscriptfont2=\fivesy
+}
+
+\def\true#1{
+    #1\ {\rm true}
+}
+
+% All arguments math-mode
+%         #1
+%    ------------ #3
+%         #2
+\def\pftree#1#2#3{
+    \vbox{\tabskip=0pt \offinterlineskip
+        \halign{
+            \hfil##\hfil & \hskip1pt ## \cr
+            $#1$ & \cr
+            \leaders\hrule height3pt depth-2.75pt \hfill & \hbox{\ninept $#3$} \cr
+            $#2$ & \cr
+        }
+    }
+}
