@@ -25,4 +25,4 @@ If you wish to compile my sources from TeX, you'll need to download these macros
 
 + [fontmac.tex]({{ site.baseurl }}/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
 + [mathmac.tex]({{ site.baseurl }}/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
-+ [mathmac.tex]({{ site.baseurl }}/misc/tex-macros/proofmac.tex) (Proof figures)
++ [proofmac.tex]({{ site.baseurl }}/misc/tex-macros/proofmac.tex) (Proof figures)
