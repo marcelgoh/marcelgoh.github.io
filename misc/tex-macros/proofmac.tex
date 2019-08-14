@@ -1,12 +1,12 @@
-% Macros for drawing proof trees
-% Written by Marcel Goh
+% Macros for drawing proof trees.
+% Written by Marcel Goh.
 
+% Small font used in side-labels.
 \font\ninerm=cmr9
 \font\ninei=cmmi9
 \font\ninesy=cmsy9
 \font\sixsy=cmsy7
 \font\fivesy=cmsy6
-
 
 \def\ninept{
         \textfont0=\ninerm
@@ -16,21 +16,61 @@
         \scriptscriptfont2=\fivesy
 }
 
+% (All arguments math-mode.)
+
+% Truth judgement.
 \def\true#1{
     #1\ {\rm true}
 }
 
-% All arguments math-mode
+% Draws the proof tree:
 %         #1
 %    ------------ #3
 %         #2
 \def\pftree#1#2#3{
+    \vbox{\tabskip=0pt\offinterlineskip
+        \halign{
+            ##& \hskip0pt ## \cr
+            \hfil$#1$\hfil & \cr
+            \leaders\hrule height2.85pt depth-2.55pt \hfill & \hbox{\ninept $#3$} \cr
+            \hfil$#2$\hfil & \cr
+        }
+    }
+}
+
+% Places #2, under hypothesis #1.
+\def\underhyp#1#2{
+    \vbox{\tabskip=0pt\offinterlineskip
+        \halign{
+            ## & \hskip-4pt ## \cr
+            \leaders\hrule height2.85pt depth-2.55pt \hfill & \hbox{\ninept $#1$} \cr
+            \hfil$#2$\hfil & \cr
+        }
+    }
+}
+
+% Floats #1 over #2.
+\def\floatover#1#2{
     \vbox{\tabskip=0pt \offinterlineskip
         \halign{
-            \hfil##\hfil & \hskip1pt ## \cr
-            $#1$ & \cr
-            \leaders\hrule height3pt depth-2.75pt \hfill & \hbox{\ninept $#3$} \cr
-            $#2$ & \cr
+            ##\cr
+            \hfil$#1$\hfil \cr
+            \noalign{\vskip 5pt}
+            \hfil$#2$\hfil \cr
+        }
+    }
+}
+
+% Floats #1 over #2 with vertical dots in-between.
+\def\somehow#1#2{
+    \vbox{\tabskip=0pt \offinterlineskip
+        \halign{
+            ##\cr
+            \hfil$#1$\hfil \cr
+            \noalign{\vskip -2pt}
+            \hfil$\vdots$\hfil \cr
+            \noalign{\vskip 5pt}
+            \hfil$#2$\hfil \cr
         }
     }
 }
