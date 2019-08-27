@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2019
+- (27.08.2019) [Consonant voicing and Mandarin pop music]({{ site.baseurl }}/2019/08/27/voiced-initial.html)
 - (20.07.2019) [Hello, moon!]({{ site.baseurl }}/2019/07/20/hello-moon.html)
 - (30.06.2019) [Generating stack-machine bytecode]({{ site.baseurl }}/2019/06/30/generating-stack-machine-bytecode.html)
 - (21.05.2019) [Binary search, reMIXed]({{ site.baseurl }}/2019/05/21/binary-search-remixed.html)
