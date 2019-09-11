@@ -1,9 +1,74 @@
----
-layout: page
-title: Mathjax test
-mathjax: true
----
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>Marcel Goh's Home Page</title>
+<link rel="icon" href="https://marcelgoh.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://marcelgoh.github.io/favicon.ico">
+<style type="text/css">
+h1 {
+  font-size: xx-large;
+}
 
+h2 {
+  font-size: x-large;
+}
+
+h3 {
+  font-size: large;
+}
+
+h4 {
+  font-size: medium;
+}
+
+div {
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+    background-color: #fff3db;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+</style>
+</head>
+
+<body>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script
+    type="text/javascript"
+    charset="utf-8"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  >
+  </script>
+  <script
+    type="text/javascript"
+    charset="utf-8"
+    src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+  >
+  </script>
+
+<a href="../home/">Back</a>
+
+<hr>
+<img src="https://marcelgoh.github.io/media/home/construction.gif" alt="Construction" class="center">
 Considering that you want an upper bound, it is reasonable to work with
 
 $$\sum_{i=1}^\frac{\sqrt{2n+2}-1}{2} \frac{n-i}{2i}-i+1,$$
@@ -49,3 +114,15 @@ $$
 So, returning to your original sum, we find that
 
 $$\sum_{i=1}^\frac{\sqrt{2n+2}-1}{2} \frac{n-i}{1+2i}-i+1 = O(\frac{1}{4}n\ln n).$$
+
+
+<hr>
+<a style="position:absolute; right:80px" href="https://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+    <div>
+        <h2><a href="https://marcelgoh.github.io"><img alt="Back to main blog" src="/media/home/home.gif"></a></h2>
+        <h4>Copyright &copy; 2018-19 Marcel Goh</h4>
+    </div>
+</body>
+
+</html>
+
