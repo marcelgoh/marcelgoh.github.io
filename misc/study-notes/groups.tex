@@ -1,5 +1,4 @@
-% Abstract Algebra Notes
-% Based on lectures given in Fall 2003 by Prof. Benedict Gross
+% Group Theory Notes
 % Notes by Marcel Goh
 
 \input fontmac
@@ -9,10 +8,12 @@
 
 \def\Sym{\mathop{\rm Sym}\nolimits}
 \def\Aut{\mathop{\rm Aut}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
 
-\leftrighttop{NOTES ON ABSTRACT ALGEBRA}{MARCEL GOH}
+\leftrighttop{NOTES ON THE THEORY OF GROUPS}{MARCEL GOH}
 
-\maketitlenodate{Notes on Abstract Algebra\footnote{$^1$}{\eightpt Based on a series of lectures given at Harvard University in Fall 2003 by Prof. Benedict Gross.}}{by}{Marcel K.\ Goh}
+\maketitlenodate{Notes on the Theory of Groups}{by}{Marcel K.\ Goh}
 
 \section 1. PRELIMINARY NOTIONS FROM LINEAR ALGEBRA
 
@@ -72,7 +73,7 @@ In return for these two forfeited closure properties, we get closure under matri
 
 \proof Consider $B^{-1}A^{-1}$ and the product $(B^{-1}A^{-1})(AB)$. By associativity of multiplication, this becomes $B^{-1}(A^{-1}A)B = B^{-1}IB = IB^{-1}B = II = I$. Alternatively, use the fact that $\det(AB) = \det(A)\det(B)$, which is nonzero because both $\det(A)$ and $\det(B)$ are nonzero.\slug
 
-Thus the set $GL_n(\R)$, under the operation of matrix multiplication, has a multiplicative inverse $A^{_1}$ for every matrix $A$. It also contains an identity element $I$ and the multiplication operation is associative. These are the properties of a group.
+Thus the set $GL_n(\R)$, under the operation of matrix multiplication, has a multiplicative inverse $A^{-1}$ for every matrix $A$. It also contains an identity element $I$ and the multiplication operation is associative. These are the properties of a group.
 
 \section 2. GROUPS
 
@@ -88,13 +89,54 @@ A {\it group} $G$ is a set on which is defined a rule of combination such that t
 \smallskip
 \item {c)} For every element $g\in G$, there exists an inverse element $g^{-1}$ such that $gg^{-1} = g^{-1}g = e$.
 \medskip
-If $gh = hg$ for all $g,h\in G$, then we say the group $G$ is {\it commutative} or {\it abelian}. The number of elements in $G$ is called its {\it order} and this value, also denoted $|G|$, need not be finite.
+An immediate consequence of the axioms is that the identity $e$ is unique. For if both $e$ and $e'$ are the identity of a group, then $e = ee' = e'$.
 
-The most familiar abelian group is the set of all integers, denoted $\Z$, under the operation of addition. It has $1$ as its identity, inverses $-a$ for every whole number $a$, and the commutative property; likewise, any vector space $V$ is also an abelian group under vector addition.
+The term {\it order} serves a somewhat dual purpose in group theory. The order of a group $G$ is the number of elements it contains and and this value, also denoted $|G|$, need not be finite. On the other hand, we define the order of a group {\it element} $g$ to be the smallest $k>0$ such that $g^k=e$. If no such $k$ exists, then $g$ is said to have infinite order.
 
-Group theory is intimately connected to the study of symmetries of an object. Let $T$ be a set and let $\Sym(T)$ denote the set of all bijections from $T$ to itself. This is called the {\it symmetric group} on $T$ as, under composition of functions, it obeys all the group axioms: It contains the identity transformation $e$ and every bijection $f$ has an inverse bijection $f^{-1}$. In some sense, the symmetric group is the most general group, because all other groups arise from adding restrictions to these bijections. For instance, $GL_n(\R) \subset \Sym(\R^n)$. If $T = \{1,\ldots,n\}$, then $\Sym(T)$ is called the symmetric group on $n$ letters and is denoted $S_n$.
+Probably the most familiar group is the set of all integers, denoted $\Z$, under the operation of addition. It has $1$ as its identity, inverses $-a$ for every whole number $a$, and the commutative property; likewise, any vector space $V$ is also a group under vector addition. The set of nonzero real numbers forms a group under multiplication. In these examples, the binary operation has the property that for any $g,h\in G$, the products $gh$ and $hg$ are equal. A group where this holds is called an {\it abelian} or {\it commutative} group. An example of a non-abelian group is the group $Q_8$ of quaternions with identity $1$, governed by the identities $(-1)^2 = 1$ and $i^2 = j^2 = k^2 = ijk = -1$. It has the following multiplication table:
+% Right-aligned table with some extra spacing
+$$\vcenter{\vbox{\offinterlineskip
+    \halign{
+        \hfil $#$ & \hfil\vrule# \hfil \enskip &
+        \hfil $\;#\;$ & \hfil $\;#\;$ & \hfil $\;#\;$ & \hfil $\;#\;$ &
+        \hfil $\;#\;$ & \hfil $\;#\;$ & \hfil $\;#\;$ & \hfil $\;#\;$ \cr
+        && 1 & -1 & i & -i & j & -j & k & - k \cr
+        & height4pt &&&&&&& \cr
+        \noalign{\hrule}
+        & height4pt &&&&&&& \cr
+        1 && 1 & -1 & i & -i & j & -j & k & - k \cr
+        & height4pt &&&&&&& \cr
+        -1 && -1 & 1 & -i & i & -j & j & -k & k \cr
+        & height4pt &&&&&&& \cr
+        i && i & -i & -1 & 1 & k & -k & -j & j \cr
+        & height4pt &&&&&&& \cr
+        -i && -i & i & 1 & -1 & -k & k & j & -j \cr
+        & height4pt &&&&&&& \cr
+        j && j & -j & -k & k & -1 & 1 & i & -i \cr
+        & height4pt &&&&&&& \cr
+        -j && -j & j & k & -k & 1 & -1 & -i & i \cr
+        & height4pt &&&&&&& \cr
+        k && k & -k & j & -j & -i & i & -1 & 1 \cr
+        & height4pt &&&&&&& \cr
+        -k && -k & k & -j & j & i & -i & 1 & -1 \cr
+    }
+}}$$
+The general linear group $GL_n(\R)$ of invertible $n\times n$ matrices is another example of a non-abelian group, whenever $n>1$.
 
-\section 2.2 Subgroups
+Group theory is intimately connected to the study of symmetries of an object. Let $T$ be a set and let $\Sym(T)$ denote the set of all bijections from $T$ to itself. This is called the {\it symmetric group} on $T$ as, under composition of functions, it obeys all the group axioms: It contains the identity transformation $\Id_T$ and every bijection $f$ has an inverse bijection $f^{-1}$. In some sense, the symmetric group is the most general group, because all other groups arise from adding restrictions to these bijections. For instance, $GL_n(\R) \subset \Sym(\R^n)$.
+
+\section 2.2. Permutation Groups
+
+A bijection $\sigma$ from a set $T$ to itself is also called a {\it permutation}. We will focus on the case where $T$ is finite and we may simply number the elements of $T=\{1,\ldots,n\}$. Then the set of permutations of $T$ is denoted $S_n$ and called the {\it symmetric group on $n$ letters} or, alternatively, the {\it permutation group on $n$ letters}. An element $\sigma$ of this group may be explicitly presented in such a way that we see where each element is taken to by $\sigma$:
+$$\sigma = \pmatrix{1 & 2 & \cdots & n \cr \sigma(1) & \sigma(2) & \cdots & \sigma(n)}$$
+It is easy to see that there are $n! = n(n-1)(n-2)\cdots 1$ different permutations of $n$ letters. There are $n$ choices for $\sigma(1)$; subsequently there remain $n-1$ choices for $\sigma(2)$, $n-2$ choices for $\sigma(3)$ and so on until our hand is forced for $\sigma(n)$. So $|S_n| = n!$.
+Let us now consider the concrete example of the permutation
+$$\sigma = \pmatrix{1 & 2 & 3 & 4 & 5 & 6 & 7 \cr 1 & 7 & 6 & 4 & 5 & 2 & 3},$$
+which is an element of $S_7$. Notice that the elements 1, 4, and 5 are untouched by the permutation and the remaining four items are permuted in the cycle $2\mapsto 7$, $7\mapsto 3$, $3\mapsto 6$, and $6\mapsto 2$. This suggests a more concise notation for $\sigma$, since this cycle $(2\,7\,3\,6)$ completely determines the permutation. Notation-wise, $(2\,7\,3\,6)$ denotes exactly the same cycle as $(3\,6\,2\,7)$; to avoid confusion, we usually select the one that starts with the smallest number. Not every permutation is a cycle; for example the permutation
+$$\tau = \pmatrix{1 & 2 & 3 & 4 \cr 4 & 3 & 2 & 1}$$
+cannot be represented as a single cycle. However, it contains two cycles, $(1\,4)$ and $(2\,3)$, so we can simply represent $\tau$ as $(1\,4)(2\,3)$. When two cycles permute disjoint sets of elements, the cycles commute, so $(1\,4)(2\,3) = (2\,3)(1\,4)$. Every permutation can be represented as a product of disjoint cycles. In particular, the identity permutation can be represented as $(1)$, but we will often simply denote it $e$ or $()$.
+
+\section 2.3. Subgroups
 
 Let $G$ be a group. We call a nonempty subset $H\subset G$ a {\it subgroup} and write $H\leq G$ provided that
 \medskip
@@ -104,12 +146,8 @@ Let $G$ be a group. We call a nonempty subset $H\subset G$ a {\it subgroup} and 
 \medskip
 It is immediate from these requirements that a subgroup $H$ contains the identity element. Since $H$ is nonempty, it contains an element $h$ as well as its inverse $h^{-1}$. Then from closure of multiplication we conclude that $hh^{-1} = e\in H$.
 
-We turn our attention to $S_3$, the permutation group on three letters. Notice that this group is not commutative, since the elements
-$$\sigma = \pmatrix{1 & 2 & 3\cr 2 & 3 & 1} \quad \hbox{and} \quad
-  \tau = \pmatrix{1 & 2 & 3\cr 2 & 1 & 3}$$
-do not commute:
-$$\sigma\tau = \pmatrix{1 & 2 & 3 \cr 3 & 2 & 1}, \quad \hbox{but} \quad
-  \tau\sigma = \pmatrix{1 & 2 & 3 \cr 1 & 3 & 2}.$$
+We turn our attention to $S_3$. This group is not commutative, since the elements $\sigma = (1\,2\,3)$ and $\tau=(1\,2)$ do not commute. Multiplying $\sigma\tau$ we get $(1\,3)$ whereas the product $\tau\sigma = (2\,3)$.
+
 Note that for $k\leq n$, $S_k\leq S_n$ because we can simply fix the letters $k+1,k+2,\ldots,n$. An easy corollary, then, is that $S_n$ does not commute for $n\geq 3$. This is because $S_3\leq S_n$ and we can simply take $\sigma$ and $\tau$ as elements of the larger group $S_n$ that do not commute.
 
 Another example of a subgroup is the set of $2\times 2$ matrices that stabilise the line $y=0$ (vectors lying on this line remain on this line after transformation). In terms of matrices, this set looks like
@@ -133,12 +171,32 @@ This is a subgroup because $g^mg^n = g^{m+n}$ and $(g^m)^{-1} = g^{-m}$. Note th
 
 If $G$ is a group containing an element $g$ such that $\langle g\rangle = G$, then $G$ is called a {\it cyclic group}.
 
-\section 2.3 Isomorphisms and Homomorphisms
+\section 2.4. Cosets and Normal Subgroups
+
+Let $H$ be a subgroup of a group $G$. For any $g\in G$, we can form a {\it left coset} of $H$ by multiplying every element of $H$ by $g$ on the left:
+$$gH = \{ gh : h\in H\}$$
+Symmetrically, we could form a {\it right coset} $Hg$ of $H$. Now we prove that the cosets partition the group $G$.
+
+\proclaim Lemma P. Let $H$ be a subgroup of a group $G$. Then every element of $G$ is in exactly one left coset of $H$.
+
+\proof Let $g\in G$ be given. We commence by noting that since $H$ contains the identity element $e$, the element $g$ is in at least one coset, namely $gH$. Now we show that any two cosets are either disjoint or equal. Suppose $aH$ and $bH$ are two cosets that are not disjoint. This implies that there exist $h_1, h_2\in H$ such that $ah_1 = bh_2$. We can manipulate this identity to obtain $a^{-1}b = h_1h_2^{-1}$. So $a^{-1}b\in H$. Then from closure properties of subgroups, the cosets must be equal, since
+$$aH = a(a^{-1}bH) = (aa^{-1})bH = bH.$$
+Thus $g$ is in exactly one coset of $H$.\slug
+
+Any two cosets have the same size, namely the size of $H$, since the for any coset $aH$, the function $f:H\rightarrow aH$ given by $a\mapsto aH$ establishes a bijection. This gives us some information about $H$, since it induces a partition of $G$ into equally-sized disjoint cosets. In fact, we have just proved the following famous theorem:
+
+\thmparens L {Lagrange} Let $H$ be a subgroup of a group $G$. Then the order of $H$ must divide the order of $G$.\slug
+
+Thus the value $|G|/|H|$ is an integer; it is called the {\it index} of $H$ in $G$ and denoted $[G:H]$. Lagrange's theorem also tells us that, for any element $g$ of a group $G$ with order $n$, the order of the cyclic subgroup $\langle g\rangle$ must divide $n$, so the order of the element $g$ divides $n$. Consequently, we know $g^n=e$ for any element $g\in G$.
+
+We now know that a subgroup $H$ can partition a group $G$ in two ways, namely into left cosets of the form $aH$ or into right cosets of the form $Ha$. Remark that in general, the left cosets {\it do not equal} the right cosets.
+
+\section 2.5. Isomorphisms and Homomorphisms
 
 Consider the group $G_1 = \{\pm 1, \pm i\}$ under complex multiplication alongside the group $G_2 = \langle\rho\rangle\leq S_4$, where $\rho$ is the permutation that takes $1\mapsto 2$, $2\mapsto 3$, $3\mapsto 4$, and $4\mapsto 1$. The groups have the following multiplication tables:
 % Each cell is right-aligned in the first table, centred in the second.
 $$G_1{\rm :}\quad\vcenter{\vbox{\offinterlineskip
-    \halign{ 
+    \halign{
         \hfil $#$ & \hfil\vrule# \hfil \enskip &
         \hfil $#$ & \hfil $#$ & \hfil $#$ & \hfil $#$ \cr
         %\hfil $#$ \hfil & \hfil\vrule# \hfil \enskip &
@@ -157,7 +215,7 @@ $$G_1{\rm :}\quad\vcenter{\vbox{\offinterlineskip
     }
 }} \qquad
 G_2{\rm :}\quad\vcenter{\vbox{\offinterlineskip
-    \halign{ 
+    \halign{
         \hfil $#$ \hfil & \hfil\vrule# \hfil \enskip &
         \hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil \cr
         && e & \rho & \rho^2 & \rho^3 \cr
@@ -198,7 +256,7 @@ An isomorphism from a set to itself is called an {\it automorphism}. Given a gro
 
 We may obtain a generalisation of an isomorphism by relaxing the requirement that the function be bijective. Any map $f : G_1 \rightarrow G_2$ between groups that satisfies $f(x\cdot y) = f(x)\cdot f(y)$ for all $x,y\in G_1$ is called a {\it homomorphism}, and an isomorphism is simply a bijective homomorphism. It follows from the definition that any homomorphism maps the identity of the first group to the identity of the second, and that inverses are mapped to inverses. The simplest example of a homomorphism is the trivial homomorphism that maps every element of $G_1$ to the identity of $G_2$. Another homomorphism that is not an isomorphism is the map from $\Z$ to $S_2$ that takes all even integers to the identity and all odd integers to the permutation that switches 1 and 2.
 
-The {\it kernel} of a homomorphism is a the set of all elements in the domain that map to the identity in the target group. The {\it image} of a homomorphism $f: G_1\rightarrow G_2$ is the set of all elements in $G_2$ that equal $f(x)$ for some $x\in G_1$.
+Let $f:G\rightarrow G'$. The {\it kernel} of $f$, denoted $\ker(f)$, is a the set of all elements in the $G$ that map to the identity $e'$ of the target group $G'$. The {\it image} of $f$, denoted $\Im(f)$, is the set of all elements in $G'$ that equal $f(g)$ for some $g\in G$. Then the homomorphism $f$ is an isomorphism if and only if $\ker(f) = \{e\}$ and $\Im(f) = G'$. It is an easy exercise to verify that $\ker(f)$ and $\Im(f)$ are subgroups of $G$ and $G'$ respectively. In fact, the kernel of a homomorphism is a normal subgroup.
 
 \section ?.?. Group Actions on Sets
 
@@ -218,5 +276,9 @@ $$ s\mapsto gsg^{-1}.$$
 Then the orbit of an element $s$ is its conjugacy class and its stabiliser is the set $\{g\in G : gsg^{-1}\}$, also called the centraliser. Let $\overline H$ denote the set of all subgroups of $G$. Then $G$ also acts on $\overline H$ by conjugation: $g(H) = gHg^{-1}$. In this action, the stabiliser of a subgroup $H$ is the set
 $$ G_H = \{ g \in G : gHg^{-1} = H\}.$$
 Note that this is not the centraliser of $H$; elements may not be taken to themselves pointwise, so long as the sets $gHg^{-1}$ and $H$ are equal. This subset of $G$ is called the {\it normaliser} of $H$ and is itself a subgroup, denoted $N(H)$.
+
+\section REFERENCES
+
+The contents of this document are heavily based on the following three sets of lectures: Math 122 given by Benedict Gross at Harvard University, Fall 2003; MATH 235 given by Dani Wise at McGill University, Fall 2018; and MATH 456 given by Mika\"el Pichot at McGill University, Fall 2019.
 
 \end
