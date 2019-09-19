@@ -89,7 +89,9 @@ A {\it group} $G$ is a set on which is defined a rule of combination such that t
 \smallskip
 \item {c)} For every element $g\in G$, there exists an inverse element $g^{-1}$ such that $gg^{-1} = g^{-1}g = e$.
 \medskip
-An immediate consequence of the axioms is that the identity $e$ is unique. For if both $e$ and $e'$ are the identity of a group, then $e = ee' = e'$.
+An immediate consequence of the axioms is that the identity $e$ is unique. For if both $e$ and $e'$ are the identity of a group, then $e = ee' = e'$. Likewise, any element $g$ has a unique inverse, in the sense that if two elements $h$ and $h'$ are both inverses of $g$, then
+$$h = he = h(gh') = (hg)h' = eh' = h',$$
+and they were the same to begin with.
 
 The term {\it order} serves a somewhat dual purpose in group theory. The order of a group $G$ is the number of elements it contains and and this value, also denoted $|G|$, need not be finite. On the other hand, we define the order of a group {\it element} $g$ to be the smallest $k>0$ such that $g^k=e$. If no such $k$ exists, then $g$ is said to have infinite order.
 
@@ -134,7 +136,11 @@ Let us now consider the concrete example of the permutation
 $$\sigma = \pmatrix{1 & 2 & 3 & 4 & 5 & 6 & 7 \cr 1 & 7 & 6 & 4 & 5 & 2 & 3},$$
 which is an element of $S_7$. Notice that the elements 1, 4, and 5 are untouched by the permutation and the remaining four items are permuted in the cycle $2\mapsto 7$, $7\mapsto 3$, $3\mapsto 6$, and $6\mapsto 2$. This suggests a more concise notation for $\sigma$, since this cycle $(2\,7\,3\,6)$ completely determines the permutation. Notation-wise, $(2\,7\,3\,6)$ denotes exactly the same cycle as $(3\,6\,2\,7)$; to avoid confusion, we usually select the one that starts with the smallest number. Not every permutation is a cycle; for example the permutation
 $$\tau = \pmatrix{1 & 2 & 3 & 4 \cr 4 & 3 & 2 & 1}$$
-cannot be represented as a single cycle. However, it contains two cycles, $(1\,4)$ and $(2\,3)$, so we can simply represent $\tau$ as $(1\,4)(2\,3)$. When two cycles permute disjoint sets of elements, the cycles commute, so $(1\,4)(2\,3) = (2\,3)(1\,4)$. Every permutation can be represented as a product of disjoint cycles. In particular, the identity permutation can be represented as $(1)$, but we will often simply denote it $e$ or $()$.
+cannot be represented as a single cycle. However, it contains two cycles, $(1\,4)$ and $(2\,3)$, so we can simply represent $\tau$ as $(1\,4)(2\,3)$. When two cycles permute disjoint sets of elements, the cycles commute, so $(1\,4)(2\,3) = (2\,3)(1\,4)$. Every permutation can be represented as a product of disjoint cycles. The identity permutation can be represented as a singleton cycle, e.g\ $(1)$, but we will often simply denote it $e$ or $()$. A cycle that moves $k$ elements is called a $k$-cycle; a 2-cycle is also called a {\it transposition}.
+
+Every cycle can be expressed as a product of transpositions in the following manner:
+$$(x_1\,x_2\,x_3\,\ldots\,x_{n-1}\,x_n) = (x_1\,x_2)(x_2\,x_3)\cdots(x_{n-1}\,x_n)$$
+A consequence of this is that every permutation $\sigma\in S_n$ can be expressed as a product $\sigma = \tau_1\tau_2\cdots\tau_k$ of transpositions. We can classify permutations as {\it even} or {\it odd} depending on the parity of $k$. In particular, the identity permutation $()$ is a product of 0 cycles, so it is even. Thus the set of even permutations of $n$ elements has a group structure. It is called the {\it alternating group on $n$ letters} and is denoted $A_n$. Because the set $A_n$ is a a subset of $S_n$ and $A_n$ is a group under the same binary operation that defines $S_n$, $A_n$ is an example of a subgroup.
 
 \section 2.3. Subgroups
 
@@ -183,13 +189,16 @@ Symmetrically, we could form a {\it right coset} $Hg$ of $H$. Now we prove that 
 $$aH = a(a^{-1}bH) = (aa^{-1})bH = bH.$$
 Thus $g$ is in exactly one coset of $H$.\slug
 
-Any two cosets have the same size, namely the size of $H$, since the for any coset $aH$, the function $f:H\rightarrow aH$ given by $a\mapsto aH$ establishes a bijection. This gives us some information about $H$, since it induces a partition of $G$ into equally-sized disjoint cosets. In fact, we have just proved the following famous theorem:
+Any two cosets have the same size, namely the size of $H$, since the for any coset $aH$, the function $f:H\rightarrow aH$ given by $h\mapsto ah$ establishes a bijection. This gives us some information about $H$, since it induces a partition of $G$ into equally-sized disjoint cosets. In fact, we have just proved the following famous theorem:
 
 \thmparens L {Lagrange} Let $H$ be a subgroup of a group $G$. Then the order of $H$ must divide the order of $G$.\slug
 
 Thus the value $|G|/|H|$ is an integer; it is called the {\it index} of $H$ in $G$ and denoted $[G:H]$. Lagrange's theorem also tells us that, for any element $g$ of a group $G$ with order $n$, the order of the cyclic subgroup $\langle g\rangle$ must divide $n$, so the order of the element $g$ divides $n$. Consequently, we know $g^n=e$ for any element $g\in G$.
 
-We now know that a subgroup $H$ can partition a group $G$ in two ways, namely into left cosets of the form $aH$ or into right cosets of the form $Ha$. Remark that in general, the left cosets {\it do not equal} the right cosets.
+We now know that a subgroup $H$ can partition a group $G$ in two ways, namely into left cosets of the form $aH$ or into right cosets of the form $Ha$. Remark that in general, the left cosets {\it do not equal} the right cosets. As an example, let $H = \{(), (1\,2)\} \leq S_3$. Then we have
+$$(1\,3)H = \{(1\,3), (1\,2\,3)\} \neq \{(1\,3),(1\,3\,2)\} = H(1\,3).$$
+However, there do exist subgroups whose left cosets equal their right cosets. If $N$ is a subgroup of a group $G$ with the property that $aN = Na$ for all $a\in G$, then we call $N$ a {\it normal} subgroup. Normal subgroups have the property that the product of two cosets is itself a coset:
+$$aH\cdot bH = a\cdot Hb\cdot H = a \cdot bH \cdot H = (ab)\cdot HH = (ab)H$$
 
 \section 2.5. Isomorphisms and Homomorphisms
 
