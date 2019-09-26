@@ -46,3 +46,25 @@
   \bigskip\vskip\parskip
   \leftline{\smallheader#1}\nobreak\medskip\noindent
 }
+
+% From manmac.tex by Knuth
+\catcode`@=11
+\chardef\other=12
+\def\ttverbatim{\begingroup
+  \catcode`\\=\other
+  \catcode`\{=\other
+  \catcode`\}=\other
+  \catcode`\$=\other
+  \catcode`\&=\other
+  \catcode`\#=\other
+  \catcode`\%=\other
+  \catcode`\~=\other
+  \catcode`\_=\other
+  \catcode`\^=\other
+  \obeyspaces \obeylines \tt}
+
+\outer\def\begintt{$$\let\par=\endgraf \ttverbatim \parskip=\z@
+  \catcode`\|=0 \rightskip-5pc \ttfinish}
+{\catcode`\|=0 |catcode`|\=\other % | is temporary escape character
+  |obeylines % end of line is active
+  |gdef|ttfinish#1^^M#2\endtt{#1|vbox{#2}|endgroup$$}}
