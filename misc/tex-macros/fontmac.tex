@@ -16,7 +16,14 @@
 \font\twelvept=cmr12
 
 % Create header on non-first pages
-\def\leftrighttop#1#2{\headline{\ifnum\pageno=1\hfil\else{\ninept #1 \hfil #2}\fi}}
+\def\leftrighttop#1#2{
+  \headline{\ifnum\pageno=1\hfil\else{\ninept #1 \hfil #2}\fi}
+}
+
+% No page numbers on first page
+\def\firstnopagenum{
+  \footline{\ifnum\pageno=1 \hfil \else \hfil\number\pageno\hfil\fi}
+}
 
 % Create title, subtitle, name, and date
 \def\maketitle#1#2#3#4{
@@ -40,6 +47,18 @@
   \bigskip
 }
 
+% Create floating text box with specified width in inches.
+% Useful for abstracts (6 true inches is good):
+% \floattext 6 Abstract. text...
+\outer\def\floattext#1 #2. #3\par{
+  $$
+  \vbox{
+    \hsize #1 true in
+    \noindent{\bf #2.}\enskip #3
+  }
+  $$
+}
+
 % Section header in heavy sans-serif font
 % Separate two of these in a row with \vskip -\medskipamount
 \def\section#1\par{
@@ -47,8 +66,10 @@
   \leftline{\smallheader#1}\nobreak\medskip\noindent
 }
 
-% From manmac.tex by Knuth
-\catcode`@=11
+% From manmac.tex by Knuth: Verbatim teletype blocks
+\catcode`@=11  % Use at signs from plain
+
+% macros for verbatim scanning
 \chardef\other=12
 \def\ttverbatim{\begingroup
   \catcode`\\=\other
@@ -68,3 +89,9 @@
 {\catcode`\|=0 |catcode`|\=\other % | is temporary escape character
   |obeylines % end of line is active
   |gdef|ttfinish#1^^M#2\endtt{#1|vbox{#2}|endgroup$$}}
+
+\catcode`\|=\active
+{\obeylines \gdef|{\ttverbatim \spaceskip\ttglue \let^^M=\  \let|=\endgroup}}
+\catcode`\|=11
+
+\catcode`@=12 %At signs no longer letters 
