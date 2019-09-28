@@ -66,32 +66,33 @@
   \leftline{\smallheader#1}\nobreak\medskip\noindent
 }
 
-% From manmac.tex by Knuth: Verbatim teletype blocks
-\catcode`@=11  % Use at signs from plain
+% From the TeXbook: Verbatim typewriter text
+% Modified to have ~ be escape character instead of ~
+\newskip\ttglue
+\ttglue=.5em plus.25em minus.15em
 
-% macros for verbatim scanning
+\outer\def\begindisplay{\obeylines\startdisplay}
+{\obeylines\gdef\startdisplay#1
+  {\catcode`\^^M=5$$#1\halign\bgroup\indent##\hfil&&\qquad##\hfil\cr}}
+\outer\def\enddisplay{\crcr\egroup$$}
+
 \chardef\other=12
-\def\ttverbatim{\begingroup
-  \catcode`\\=\other
-  \catcode`\{=\other
-  \catcode`\}=\other
-  \catcode`\$=\other
-  \catcode`\&=\other
-  \catcode`\#=\other
-  \catcode`\%=\other
-  \catcode`\~=\other
-  \catcode`\_=\other
-  \catcode`\^=\other
+\def\ttverbatim{\begingroup \catcode`\\=\other \catcode`\{=\other
+  \catcode`\}=\other \catcode`\$=\other \catcode`\&=\other
+  \catcode`\#=\other \catcode`\%=\other \catcode`\|=\other
+  \catcode`\_=\other \catcode`\^=\other
   \obeyspaces \obeylines \tt}
 
-\outer\def\begintt{$$\let\par=\endgraf \ttverbatim \parskip=\z@
-  \catcode`\|=0 \rightskip-5pc \ttfinish}
-{\catcode`\|=0 |catcode`|\=\other % | is temporary escape character
-  |obeylines % end of line is active
-  |gdef|ttfinish#1^^M#2\endtt{#1|vbox{#2}|endgroup$$}}
+{\obeyspaces\gdef {\ }} % \obeyspaces now gives \ , not \space
 
-\catcode`\|=\active
-{\obeylines \gdef|{\ttverbatim \spaceskip\ttglue \let^^M=\  \let|=\endgroup}}
-\catcode`\|=11
+\outer\def\begintt{$$\let\par=\endgraf \ttverbatim \parskip=0pt
+  \catcode`\~=0 \rightskip=-5pc \ttfinish}
+{\catcode`\~=0 ~catcode`~\=\other % ~ is temporary escape character
+  ~obeylines % end of line is active
+  ~gdef~ttfinish#1^^M#2\endtt{#1~vbox{#2}~endgroup$$}}
 
-\catcode`@=12 %At signs no longer letters 
+\catcode`\~=\active {\obeylines\gdef~{\ttverbatim\spaceskip=\ttglue\let^^M=\ \let~=\endgroup}}
+
+% Block of left-justified text, in "poetry-mode"
+\def\begintext{\par\begingroup\nobreak\medskip \obeylines}
+\def\endtext{\endgroup\medbreak\noindent}
