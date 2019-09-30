@@ -8,6 +8,9 @@
 \font\sixsy=cmsy7
 \font\fivesy=cmsy6
 
+% Optional block-font
+\font\ninecsc=cmcsc9
+
 \def\ninept{
         \textfont0=\ninerm
         \textfont1=\ninei
@@ -31,9 +34,9 @@
     \vbox{\tabskip=0pt\offinterlineskip
         \halign{
             ##& \hskip0pt ## \cr
-            \hfil$#1$\hfil & \cr
-            \leaders\hrule height2.85pt depth-2.55pt \hfill & \hbox{\ninept $#3$} \cr
-            \hfil$#2$\hfil & \cr
+            \hfil#1\hfil & \cr
+            \leaders\hrule height2.85pt depth-2.55pt \hfill & \hbox{\ninept #3} \cr
+            \hfil#2\hfil & \cr
         }
     }
 }
@@ -43,8 +46,8 @@
     \vbox{\tabskip=0pt\offinterlineskip
         \halign{
             ## & \hskip-4pt ## \cr
-            \leaders\hrule height2.85pt depth-2.55pt \hfill & \hbox{\ninept $#1$} \cr
-            \hfil$#2$\hfil & \cr
+            \leaders\hrule height2.85pt depth-2.55pt \hfill & \hbox{\ninept #1} \cr
+            \hfil#2\hfil & \cr
         }
     }
 }
@@ -54,9 +57,9 @@
     \vbox{\tabskip=0pt \offinterlineskip
         \halign{
             ##\cr
-            \hfil$#1$\hfil \cr
+            \hfil#1\hfil \cr
             \noalign{\vskip 5pt}
-            \hfil$#2$\hfil \cr
+            \hfil#2\hfil \cr
         }
     }
 }
@@ -66,11 +69,11 @@
     \vbox{\tabskip=0pt \offinterlineskip
         \halign{
             ##\cr
-            \hfil$#1$\hfil \cr
+            \hfil#1\hfil \cr
             \noalign{\vskip -2pt}
             \hfil$\vdots$\hfil \cr
             \noalign{\vskip 5pt}
-            \hfil$#2$\hfil \cr
+            \hfil#2\hfil \cr
         }
     }
 }

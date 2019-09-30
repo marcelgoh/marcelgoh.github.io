@@ -191,7 +191,7 @@ Thus $g$ is in exactly one coset of $H$.\slug
 
 Any two cosets have the same size, namely the size of $H$, since the for any coset $aH$, the function $f:H\rightarrow aH$ given by $h\mapsto ah$ establishes a bijection. This gives us some information about $H$, since it induces a partition of $G$ into equally-sized disjoint cosets. In fact, we have just proved the following famous theorem:
 
-\thmparens L {Lagrange} Let $H$ be a subgroup of a group $G$. Then the order of $H$ must divide the order of $G$.\slug
+\parenproclaim Theorem L (Lagrange). Let $H$ be a subgroup of a group $G$. Then the order of $H$ must divide the order of $G$.\slug
 
 Thus the value $|G|/|H|$ is an integer; it is called the {\it index} of $H$ in $G$ and denoted $[G:H]$. Lagrange's theorem also tells us that, for any element $g$ of a group $G$ with order $n$, the order of the cyclic subgroup $\langle g\rangle$ must divide $n$, so the order of the element $g$ divides $n$. Consequently, we know $g^n=e$ for any element $g\in G$.
 
@@ -199,6 +199,16 @@ We now know that a subgroup $H$ can partition a group $G$ in two ways, namely in
 $$(1\,3)H = \{(1\,3), (1\,2\,3)\} \neq \{(1\,3),(1\,3\,2)\} = H(1\,3).$$
 However, there do exist subgroups whose left cosets equal their right cosets. If $N$ is a subgroup of a group $G$ with the property that $aN = Na$ for all $a\in G$, then we call $N$ a {\it normal} subgroup. Normal subgroups have the property that the product of two cosets is itself a coset:
 $$aH\cdot bH = a\cdot Hb\cdot H = a \cdot bH \cdot H = (ab)\cdot HH = (ab)H$$
+
+Now we introduce the concept of conjugacy, which is closely intertwined with normal subgroups. For elements $a$ and $b$ of a group $G$, we say $a$ is {\it conjugate} to $b$ if there exists an element $g\in G$ such that $gag^{-1} = b$. It is easy to see that this relation is reflexive (with $g=e$) and symmetric (replace any $g$ with its inverse), so it makes sense to say that $a$ and $b$ are conjugate elements of a group. We can also prove transitivity: If there exists $g\in G$ such that $gag^{-1} = b$ and $h\in G$ such that $hbh^{-1} = c$, then $hgag^{-1}h^{-1}= (hg)a(hg)^{-1} = c$. Thus conjugacy is an equivalence relation that partitions a group into {\it conjugacy classes}.
+
+The following lemma describes the link between conjugacy and normal subgroups.
+
+\proclaim Lemma C. Normal subgroups are exactly the subgroups that are stable under conjugation.
+
+\proof Let $H$ be a normal subgroup of a group $G$. Let $g\in G$ and $h\in H$ be arbitrarily chosen. Since $gH=Hg$, there is an element $h'\in H$ such that $gh = h'g$. Then we see that $ghg^{-1} = h'$, an element in $H$. So we conclude that normal subgroups are stable under conjugation.
+
+On the other hand, suppose $H$ is a subgroup such that, for any $g\in G$ and $h\in H$, $ghg^{-1}\in H$. Then $gHg^{-1}\subset H$ and we can conclude that $gH\subset Hg$. But $g^{-1}$ is also an element of $G$, so we can apply our hypothesis to get that $g^{-1}Hg\subset H$ and $Hg \subset gH$. So $gH=Hg$ for all $g\in G$ and $H$ is normal.\slug
 
 \section 2.5. Isomorphisms and Homomorphisms
 
@@ -265,7 +275,13 @@ An isomorphism from a set to itself is called an {\it automorphism}. Given a gro
 
 We may obtain a generalisation of an isomorphism by relaxing the requirement that the function be bijective. Any map $f : G_1 \rightarrow G_2$ between groups that satisfies $f(x\cdot y) = f(x)\cdot f(y)$ for all $x,y\in G_1$ is called a {\it homomorphism}, and an isomorphism is simply a bijective homomorphism. It follows from the definition that any homomorphism maps the identity of the first group to the identity of the second, and that inverses are mapped to inverses. The simplest example of a homomorphism is the trivial homomorphism that maps every element of $G_1$ to the identity of $G_2$. Another homomorphism that is not an isomorphism is the map from $\Z$ to $S_2$ that takes all even integers to the identity and all odd integers to the permutation that switches 1 and 2.
 
-Let $f:G\rightarrow G'$. The {\it kernel} of $f$, denoted $\ker(f)$, is a the set of all elements in the $G$ that map to the identity $e'$ of the target group $G'$. The {\it image} of $f$, denoted $\Im(f)$, is the set of all elements in $G'$ that equal $f(g)$ for some $g\in G$. Then the homomorphism $f$ is an isomorphism if and only if $\ker(f) = \{e\}$ and $\Im(f) = G'$. It is an easy exercise to verify that $\ker(f)$ and $\Im(f)$ are subgroups of $G$ and $G'$ respectively. In fact, the kernel of a homomorphism is a normal subgroup.
+Let $f:G\rightarrow G'$. The {\it kernel} of $f$, denoted $\ker(f)$, is a the set of all elements in the $G$ that map to the identity $e'$ of the target group $G'$. The {\it image} of $f$, denoted $\Im(f)$, is the set of all elements in $G'$ that equal $f(g)$ for some $g\in G$. Then the homomorphism $f$ is an isomorphism if and only if $\ker(f) = \{e\}$ and $\Im(f) = G'$. It is an easy exercise to verify that $\ker(f)$ and $\Im(f)$ are subgroups of $G$ and $G'$ respectively. In fact, the kernel of a homomorphism is a normal subgroup, as we shall now prove.
+
+\proclaim Theorem K. Let $f:G\rightarrow G'$ be a group homomorphism. Then $K = \ker(f)$ is a normal subgroup of $G$.
+
+\proof By Lemma 2.4.C, we need only show that $K$ is stable under conjugation. Let $k\in K$ be given and let us conjugate it by an element $a\in G$ to get $aka^{-1}$. Applying the homomorphism $f$ to $aka^{-1}$, we find that
+$$f(aka^{-1}) = f(a)f(k)f(a^{-1}) = f(a)e'f(a)^{-1},$$
+where $e'$ is the identity of $G'$. But $f(a)e'f(a)^{-1} = e'$, so $aka^{-1}\in \ker(f) = K$.\slug
 
 \section ?.?. Group Actions on Sets
 

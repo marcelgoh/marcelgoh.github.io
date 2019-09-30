@@ -23,7 +23,7 @@
   \hskip-\parindent\fi
   \hbox to\algindent{\bf\hfil #1.\kern.25em}%
   \hangindent=\algindent\hangafter=1\ignorespaces}
-  
+
 % ================ END KNUTH ================ %
 
 % Sets of numbers
@@ -36,13 +36,7 @@
 % Number an equation oldstyle
 \def\oldno#1{\eqno({\oldstyle#1})}
 
-% Theorems and lemmas
-\outer\def\thm #1#2\par{\medbreak
-  \noindent{\bf Theorem #1.}~\ignorespaces{\sl #2\par}
-  \ifdim\lastskip<\medskipamount \removelastskip\penalty55\medskip\fi}
-\outer\def\thmparens #1#2#3\par{\medbreak
-  \noindent{\bf Theorem #1}\enspace\rm({\it #2\/}).~\ignorespaces{\sl #3\par}
-  \ifdim\lastskip<\medskipamount \removelastskip\penalty55\medskip\fi}
-\outer\def\lemparens #1#2#3\par{\medbreak
-  \noindent{\bf Lemma #1}\enspace\rm({\it #2\/}).~\ignorespaces{\sl #3\par}
+% Proclaim with parentheses in italics
+\outer\def\parenproclaim #1 (#2).#3\par{\medbreak
+  \noindent{\bf #1}\enspace\rm({\it #2\/}).\nobreak\ \ignorespaces{\sl #3\par}
   \ifdim\lastskip<\medskipamount \removelastskip\penalty55\medskip\fi}

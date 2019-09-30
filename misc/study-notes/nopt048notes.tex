@@ -70,7 +70,7 @@ Let $P = \{x: Ax\leq b\}$ be a polyhedron. An inequality $\alpha^Tx \leq \beta$ 
 
 The {\it dimension} of a polyhedron $P$, denoted $\dim P$, is the largest dimension of a ball inside $P$. A {\it vertex} is a face of dimension 0, an {\it edge} is a face of dimension 1, and a {\it facet} is a face of dimension $\dim P - 1$. A point $x\in P$ is called an {\it extreme point} if it is not a convex combination of points of $P$. Note that a point $x$ is an extreme point if and only if it is a vertex.
 
-\thmparens{M}{Minkowski-Weyl} A set of points $P$ is a polyhedron if and only if there exist finite sets $V$ and $Y$ such that $P = \conv V + \cone Y$ where the sum $A + B$ denotes the set $\{a + b : a\in A, b\in B\}$.
+\parenproclaim Theorem M (Minkowski-Weyl). A set of points $P$ is a polyhedron if and only if there exist finite sets $V$ and $Y$ such that $P = \conv V + \cone Y$ where the sum $A + B$ denotes the set $\{a + b : a\in A, b\in B\}$.
 
 \section 1.3. Simplex method
 
@@ -125,10 +125,10 @@ $$\matrix{
 }$$
 The original linear program is called the {\it primal} and this new one is called the {\it dual}. Any feasible solution of the dual linear program gives an upper bound on the primal and the optimum of the dual is equal to the optimum of the original program.
 
-\thmparens{W}{Weak Duality Theorem} Let $P$ and $D$ be primal and dual linear programs of the above form and let $x$ and $y$ be respective feasible solutions. Then $c^Tx \leq b^Ty$.
+\parenproclaim Theorem W (Weak Duality Theorem). Let $P$ and $D$ be primal and dual linear programs of the above form and let $x$ and $y$ be respective feasible solutions. Then $c^Tx \leq b^Ty$.
 
 
-\thmparens{S}{Strong Duality Theorem} Let $P$ and $D$ be primal and dual linear programs. Then exactly one of the following holds:
+\parenproclaim Theorem S (Strong Duality Theorem). Let $P$ and $D$ be primal and dual linear programs. Then exactly one of the following holds:
 \medskip
 \item {i)} P infeasible, D infeasible
 \smallskip
@@ -140,16 +140,14 @@ The original linear program is called the {\it primal} and this new one is calle
 \medskip
 
 
-\lemparens{F}{Farkas lemma}
-For an arbitrary matrix $A$ and vector $b$, exactly one of the following holds:
+\parenproclaim Lemma F (Farkas lemma). For an arbitrary matrix $A$ and vector $b$, exactly one of the following holds:
 \medskip
 \item {i)} There exists a vector $x$ such that $Ax = b$ and $x \geq 0$.
 \smallskip
 \item {ii)} There exists a vector $y$ such that $A^Ty \geq 0$ and $b^Ty< 0$.
 \medskip
 
-\lemparens{G}{Farkas lemma 2.0}
-For an arbitrary matrix $A$ and vector $b$, exactly one of the following holds:
+\parenproclaim Lemma G (Farkas lemma 2.0). For an arbitrary matrix $A$ and vector $b$, exactly one of the following holds:
 \medskip
 \item {i)} There exists a vector $x$ such that $Ax \leq b$ and $x \geq 0$.
 \smallskip
@@ -176,8 +174,8 @@ $$\matrix{
     &                   &       & y_v \geq 0        \hfill  &\hbox{for all}\ v\in V.\hfill
 }$$
     Given a graph $G=(V,E)$, a {\it vertex cover} is a set $S \subset V$ such that for all $\{u, v\}\in E$, $\{u,v\}\cap S\geq 1$. The dual linear program above finds the minimum vertex cover in a bipartite graph. The duality of these two programs results in K\H{o}nig's theorem.
-\thmparens{K}{K\H{o}nig's theorem}
-    Suppose $G=(V,E)$ is a bipartite graph. Let $M\subset E$ denote the maximum matching and let $S\subset V$ denote the minimum vertex cover. Then $|M|=|S|$.\slug
+
+\parenproclaim Theorem K (K\H{o}nig's theorem). Suppose $G=(V,E)$ is a bipartite graph. Let $M\subset E$ denote the maximum matching and let $S\subset V$ denote the minimum vertex cover. Then $|M|=|S|$.\slug
 
 
 \section 1.5.2. Matching in weighted graphs
@@ -284,7 +282,7 @@ Property 3 above is called {\it submodularity}. If $r$ is the rank function of a
 
 Matroids can be directly characterised by the rank function.
 
-\thmparens{R}{Rank characterisation of matroids} Let $E$ be a finite set and suppose that $r : {\cal P}(E)\rightarrow \R$ satisfies the three peoperties of the rank function. Then $M=(E,I)$, with
+\parenproclaim Theorem R (Rank characterisation of matroids). Let $E$ be a finite set and suppose that $r : {\cal P}(E)\rightarrow \R$ satisfies the three peoperties of the rank function. Then $M=(E,I)$, with
 $$I = \{Y \subset E : |Y| = r(Y)\},$$
 is a matroid with $r$ as its rank function.
 
@@ -301,7 +299,7 @@ The following two theorems establishes a certain equivalence between matroids an
 
 \proclaim Theorem G. Let $M=(E,I)$ be a matroid with rank function $r$. The weighted greedy algorithm finds the maximum weighted independent set $S_k$ of cardinality $k$ for each $1\leq k\leq r(E)$.\slug
 
-\thmparens{E}{Greedy equivalence} Let $M=(E,I)$ be an independence system. Then if the weighted greedy algorithm works for all (non-negative) weights, then $M$ is a matroid.\slug
+\parenproclaim Theorem E (Greedy equivalence). Let $M=(E,I)$ be an independence system. Then if the weighted greedy algorithm works for all (non-negative) weights, then $M$ is a matroid.\slug
 
 It is worth it to note that spanning trees and matroids have corresponding polytopes. For a graph $G=(V,E)$, the spanning tree polytope $ST(G)$ is the set of all vectors $x\in \R^{|E|}$ that satisfy
 \medskip
