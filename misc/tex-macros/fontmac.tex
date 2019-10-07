@@ -15,9 +15,6 @@
 \font\ninept=cmr9
 \font\twelvept=cmr12
 
-% Sans-serif fonts
-\font\tenss=cmss10
-
 % Create header on non-first pages
 \def\leftrighttop#1#2{
   \headline{\ifnum\pageno=1\hfil\else{\ninept #1 \hfil #2}\fi}
@@ -25,7 +22,7 @@
 
 % No page numbers on first page
 \def\firstnopagenum{
-  \footline{\ifnum\pageno=1 \hfil \else \hfil\number\pageno\hfil\fi}
+  \footline{\ifnum\pageno=1 \hfil \else \hfil{\rm \number\pageno}\hfil\fi}
 }
 
 % Create title, subtitle, name, and date
@@ -60,6 +57,14 @@
     \noindent{\bf #2.}\enskip #3
   }
   $$
+}
+
+% Math version of floattext, no bold label
+\def\mathfloattext#1#2{
+  \vbox{
+    \hsize #1 true in
+    \noindent #2
+  }
 }
 
 % Section header in heavy sans-serif font
