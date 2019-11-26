@@ -214,6 +214,8 @@ The following lemma describes the link between conjugacy and normal subgroups.
 
 On the other hand, suppose $H$ is a subgroup such that, for any $g\in G$ and $h\in H$, $ghg^{-1}\in H$. Then $gHg^{-1}\subset H$ and we can conclude that $gH\subset Hg$. But $g^{-1}$ is also an element of $G$, so we can apply our hypothesis to get that $g^{-1}Hg\subset H$ and $Hg \subset gH$. So $gH=Hg$ for all $g\in G$ and $H$ is normal.\slug
 
+Let $G$ be a group, $H$ a subgroup of $G$, and let $S$ be a non-empty set of elements of $G$. The set of $h\in H$ such that $hSh^{-1} = H$ is called the {\it normaliser of $S$ in $H$}, denoted $N_H(S)$. The set of $h\in H$ such that $hsh^{-1} = s$ for all $s\in S$ is called the {\it centraliser of $S$ in $H$}, denoted $Z_H(S)$. It is easy to check that these are both subgroups of $H$. Note that if $S$ consists only of one element, then the centraliser and normaliser are equal and the inclusion $Z_H(S) \subset N_H(S)$ always holds. If $H = G$, then we may omit the subscript and simply call the subgroups the normaliser and centraliser of $S$.
+
 \section 2.5. Isomorphisms and Homomorphisms
 
 Consider the group $G_1 = \{\pm 1, \pm i\}$ under complex multiplication alongside the group $G_2 = \langle\rho\rangle\leq S_4$, where $\rho$ is the permutation that takes $1\mapsto 2$, $2\mapsto 3$, $3\mapsto 4$, and $4\mapsto 1$. The groups have the following multiplication tables:
@@ -307,7 +309,7 @@ is an automorphism. Such automorphisms, which conjugate the group by a fixed ele
 $$f_af_b(s) = a(bsb^{-1})a^{-1} = (ab)s(ab)^{-1} = f_{ab}(s)$$
 The image of the homomorphism $\phi$ is denoted $\Inn(G)$.
 
-The {\it centre} of a group $G$ is the subgroup
+The {\it centre} of a group $G$ is defined as the centraliser of $G$ in itself:
 $$Z(G) = \{z\in G : zg = gz\ \hbox{for all}\ g\in G\}.$$
 
 \proclaim Lemma Z. The centre of $G$ is the kernel of the map from $G$ to $\Aut(G)$ given by $a\mapsto f_a$.
@@ -383,7 +385,7 @@ The contradiction in both cases implies that $\tau$ moves three symbols or less.
 
 \section ?.?. Group Actions on Sets
 
-Let $G$ be a group and $S$ a set of elements. We say that $G$ {\it acts on} $S$ if there exists a map from $G\times S\rightarrow S$ (whose pairs $(g,s)$ are written $g(s)$ or sometimes $gs$) such that, for all $s\in S$, $e(s) = s$ and $(gh)(s) = g\big(h(s)\big)$ for every $g,h\in G$. For any element $s\in S$, the {\it orbit} is set of elements in $S$ to which $s$ may be taken by $G$:
+Let $G$ be a group and $S$ a set of elements. We say that $G$ {\it acts on} $S$ if there exists a map from $G\times S\rightarrow S$ (whose pairs $(g,s)$ are written $g(s)$ or $gs$) such that, for all $s\in S$, $e(s) = s$ and $(gh)(s) = g\big(h(s)\big)$ for every $g,h\in G$. For any element $s\in S$, the {\it orbit} is set of elements in $S$ to which $s$ may be taken by $G$:
 $$O_s = \{g(s)\in S : g\in G\}$$
 If there exists an $s$ such that $O_s = S$, then we say that $G$ acts {\it transitively} on $S$. In fact, because the orbits of a group action partition the set $S$ into equivalence classes, transitivity of a group action implies there is only one orbit, and for any $s,s'\in S$, there exists some $g\in G$ such that $g(s) = s'$.
 
@@ -392,13 +394,19 @@ $$G_s = \{g\in G : g(s) = s\}$$
 
 Consider a model example of a transitive action. Let $G$ be a group with a subgroup $H\leq G$; let $S$ be the set $\{aH : a\in G\}$ of left cosets of $H$. The group $G$ acts on $S$ by taking a coset $aH$ to $gaH$. This action is transitive: For any $a, a'$, there exists some $g$ such that $g(a) = a'$, so we can take any $aH$ to $a'H$ via $g$ as well. The closure property of subgroups gives us $G_H = H$, and the stabiliser of an arbitrary coset $aH$ is the set $\{g\in G : gaH = aH\}$. We find that this is exactly the conjugate subgroup $aHa^{-1}$. More generally, if $G$ acts transitively on a set $S$ and $g(s) = s'$, then $G_{s'} = gG_sg^{-1}\subset G$.
 
+We can equivalently describe a group action of $G$ on a set $S$ as a homomorphism from $G$ to $\Sym(S)$. If this map is injective, we say the action is {\it faithful}. Most group actions that we will study are faithful, and a very simple one is given by the following theorem.
+
+\parenproclaim Theorem C (Cayley). Let $G$ be a finite group. Then $G$ is isomorphic to a subgroup of $\Sym(G)$.
+
+\proof For every element $g$ of $G$, let $\sigma_g : G\leftarrow \Sym(G)$ be given by $x\mapsto gx$. The map $\sigma_g$ is injective, since in $G$, $g_1x = g_2x$ implies that $g_1 = g_2$. For any given $x\in G$, we have $\sigma_g(g^{-1}x) = x$, so the map is also surjective. Then we also have $\sigma_{gh}(x) = (gh)x = g(hx) = \sigma_g(\sigma_h(x)) = (\sigma_g\circ\sigma_h)(x)$, establishing the isomorphism.\slug
+
+The injection from $G$ to $\Sym(G)$ is faithful, since if $\sigma_{g_1} = \sigma_{g_2}$, then $\sigma_{g_1}(e) = g_1e = g_2e = \sigma_{g_2}(e)$, and $g_1 = g_2$. We also observe that $\sigma_e$ is the identity permutation. This action of a group $G$ on itself is called the {\it left Cayley action} or {\it left regular action}. We could also have described an isomorphism given by $g \mapsto (x \mapsto g)$, but this does not give a homomorphism since now, $\sigma_{gh} = \sigma_h\circ\sigma_g$. This can be mended by letting $\sigma_g$ be given by $\sigma_g(x) = xg^{-1}$. This is called the {\it right regular action}.
+
 \section ?.?. The Sylow Theorems
 
 Suppose that a group $G$ acts on itself by conjugation:
 $$ s\mapsto gsg^{-1}.$$
-Then the orbit of an element $s$ is its conjugacy class and its stabiliser is the set $\{g\in G : gsg^{-1}\}$, also called the centraliser. Let $\overline H$ denote the set of all subgroups of $G$. Then $G$ also acts on $\overline H$ by conjugation: $g(H) = gHg^{-1}$. In this action, the stabiliser of a subgroup $H$ is the set
-$$ G_H = \{ g \in G : gHg^{-1} = H\}.$$
-Note that this is not the centraliser of $H$; elements may not be taken to themselves pointwise, so long as the sets $gHg^{-1}$ and $H$ are equal. This subset of $G$ is called the {\it normaliser} of $H$ and is itself a subgroup, denoted $N(H)$.
+Then the orbit of an element $s$ is its conjugacy class and its stabiliser is its centraliser. Let $\overline H$ denote the set of all subgroups of $G$. Then $G$ also acts on $\overline H$ by conjugation: $g(H) = gHg^{-1}$. In this action, the stabiliser of a subgroup $H$ is $N(H)$, its normaliser.
 
 \section REFERENCES
 
