@@ -1,0 +1,121 @@
+% LING 360 Notes
+% Notes by Marcel Goh
+
+\input fontmac
+\input mathmac
+
+% Useful functions
+
+\def\Sym{\mathop{\rm Sym}\nolimits}
+\def\Aut{\mathop{\rm Aut}\nolimits}
+\def\Out{\mathop{\rm Out}\nolimits}
+\def\Inn{\mathop{\rm Inn}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\lexent#1#2{{\it #1}|{\rm #2}}
+
+\leftrighttop{LING 360 INTRODUCTION TO SEMANTICS}{MARCEL GOH}
+
+\maketitle{LING 360 Introduction to Semantics\footnote{$^*$}{\eightpt Course given by Prof.\ Brendan S.\ Gillon at McGill University. These notes are heavily based on the textbook.}}{Notes by}{Marcel K. Goh {\rm (Montr\'eal, Qu\'ebec)}}{1 December 2019}
+
+\section 1. INTRODUCTION
+
+This set of notes assumes that the reader has knowledge of basic set theory, logic, and English grammar. When those topics come up, only course-specific terms and concepts will be included.
+
+\section 1.1. Linguistics and Psychology
+
+The study of language has existed in various forms since prehistory. Early on, the study of grammar was mostly {\it prescriptivist}, establishing and defending an idealised ``correct'' version of language. It was only in the last two centuries a modern view of linguistic study began to emerge. At the beginning of the twentieth century, Ferdinand de Saussure noted that the study of language can be undertaken in two distinct ways. One can study language at a certain point in time ({\it synchronic}), or over a period of time ({\it diachronic}).
+
+The connection between language and psychology has been evident since Wilhelm Wundt established psychology as an empirical science. (Previously, psychology was a subfield of philosophy.) It was Leonard Bloomfield who first saw linguistics as an independent branch of psychology and even today, most linguists view their field as a domain of psychology. In the early twentieth century, psychology was under the influence of {\it behaviourism}, initiated by the psychologist John B. Watson. Behaviourism rejects all appeal to unobservable entities (instinct in animals, the mind in humans) and focuses on measurable data. Behaviourists study an organism's stimuli and responses.
+
+By the end of World War Two, behaviourism was falling out of fashion and it was once again acceptable to scientifically study instinct. This led to the rise of {\it ethology}, the study of animal behaviour that grew out of the work of zoologists like Nikolaas Tinbergen. It attempts to determine what behaviours are innate (instictive) and which are acquired (learned). Ethologists are especially interested in what is known as a {\it fixed action pattern}, in which a determinate sequence of actions, once initiated, goes to completion. One way to find out if this sequence of actions is innate or acquired is to perform a {\it deprivation expermient}. A young animal is raised in isolation from other animals of its species and one studies its behaviour. Those that are present are deemed to be innate. One can also figure out what experience is required to cause learned behaviours to emerge.
+
+Human language is different from animal communicative behaviour in that it is both {\it discrete} and {\it infinite}. Both types of communication are present in the animal kingdom. An example of discrete communication is the vervet monkey, which has three distinct vocal signals: one to signal a leopard, one for a python, and a third for an eagle. An example of infinite, but continuous communicaton, is the honeybee, which can do a waggle dance. The axis of the dance indicates the direction of nectar and the rate indicates the distance. Human communication is also able to express an infinite amount of ideas, but it is made up of discrete components. Infinity is achieved via recursion.
+
+\section 1.2. Chomsky and the Poverty of the Stimulus Argument
+
+Unlike his predecessor Bloomfield, Noam Chomsky was a critic of behaviourism. His criticism of B. F. Skinner in the late 1950s was an influential text in linguistics. Chomsky hypothesised that human language relies on an innate {\it language acquisition device} that is unique to our species. To support his theory, he exposes the poverty of the stimulus argument with a number of observations:
+\medskip
+\item{i)} The structure of language is complex and abstract from its actual acoustic signal. While the sounds may be linear, the actual structure of sentences is tree-like.
+\smallskip
+\item{ii)} A child acquires grammatical competence in a very short span of time. This means that some of the capacity to speak and understand language must be innate.
+\smallskip
+\item{iii)} A child can learn grammar perfectly even if he/she has little exposure to every single relevant structure and even when the utterances are defective.
+\smallskip
+\item{iv)} Even though the utterances that each individual child hears can be very different, children of the same language converge upon the same grammatical competence.
+\smallskip
+\item{v)} The grammatical rules that people actually use to speak are not taught. For example, speakers of English learn how to form plurals long before the rule is taught (imperfectly) in school. Children will append a [z] to the word ``dog'', [s] to the word ``cat'', and [iz] to the word ``horse'', even though no parent would actually explicitly teach their child that these are the rules.
+\smallskip
+\item{vi)} A child's acquisition of language is independent of most other developmental factors, including intelligence, motivation, and emotional disposition.
+\smallskip
+\item{vii)} Children are not genetically predisposed to learn any one language over another. A child born to speakers of Mandarin will learn English perfectly if raised by fluent English speakers.
+\medskip
+In addition to these observations, it appears there is a {\it critical period} during which a child can acquire language. It is unethical to perform a deprivation experiment on a human infant, but there have been a number of cases throughout history that support this idea. Children raised without being exposed to language end up never learning to speak properly, even with extensive training as an adult.
+
+\section 1.3. Grammar and Structure
+
+Ovee 2500 years ago, unknown thinkers in Indo-Aryan tribes in what is now Pakistan and northwest India had a deep interest in their language, Sanskrit. They formulated what is now known as a {\it generative grammar}. Either written or compiled by someone named P\=a\d nini, the {\sl A\d s\d t\=adhy\=ay\=\i} comprised a finite set of rules and a finite set of minimal expressions from which each and every expression of Sanskrit could be derived in a finite number of steps. It was not until the middle of the twentieth century that generative grammars of other languages were formulated by linguists.
+
+The key insight in the development of a grammar is that the set of grammatical expressions is infinite and thus impossible to learn one-by-one. Structuralist linguists such as Leonard Bloomfield generalised the work of P\=a\d nini, observing that complex expressions are made out of smaller expressions and so on, and the meaning of these smaller expressions contributes to the meaning of the larger expression. Central to structuralism is the notion of {\it immediate constituency analysis}:
+\medskip
+\item{i)} Each complex expression can be analysed into immediate subexpressions, typically two, which can themselves be analysed in the same manner until the minimal constituents are reached.
+\smallskip
+\item{ii)} Each expression can be put into a set of expressions that can be substituted one for another without affecting acceptability.
+\smallskip
+\item{iii)} Each of these sets of expressions can be assigned a syntactic category.
+\medskip
+Recursion, the property whereby a constituent of a certain type can contain another constituent of the same type is a property of every known human language. It is the means by which one can generate an infinite number of expressions from a finite set of rules. Two types of recursive specification are usually employed by linguists: {\it constituency grammar} and {\it categorial grammar}.
+
+Constituency grammar arose out of the study of language itself, having its origins in P\=a\d nini's {\sl A\d s\d t\=adhy\=ay\=\i}. Bloomfield studied P\=a\d nini's grammar and applied his techniques not only to phonology and morphology, but also to syntax. His work was extended by others, including Zellig Harris, Charles Hockett, and Rulon Wells.
+
+Categorial grammar, on the other hand, arose out of the study of logic. It was devised by Kazimierz Ajdukiewicz to mathematically characterise the notation used in classical quantificational logic. He anecdotally pointed out some of its connections to natural language structure, but his main concern was with logic. Yehoshua Bar-Hillel was the first person to apply notions of categorial grammar to natural language. Later on, this work was generalised by the mathematical Joachim Lambek in his {\it Lambek calculus}. The study of how semantic values are assigned to syntactic structure is based on a subdiscipline of logic known as {\it model theory}. Its founder, Alfred Tarski, noted how model theory might be pertinent to studying how the meaning of an expression can described in terms of the meanings of constituent expressions, though he did not formalise such an application himself.
+
+When studying grammar at an abstract level, we deal with idealisations of natural language. In particular, it is important to distinguish an individual's {\it competence} from his/her {\it performance}. Indeed, a person may have perfect grammatical competence despite mispronunciations, hesitation, stuttering, etc.
+
+\section 1.4. Hypothesis Testing
+
+When dealing with empirical evidence, such as linguistic data, a key method we use is Mill's method of agreement and difference, formulated by John Stuart Mill in 1843. The {\it method of agreement} states that if multiple instances of a phenomenon have only one circumstance in common, then that circumstance must be the effect or cause of the phenomenon. Similarly, the {\it method of difference} states that if an instance in which a phenomenon occurs and one in which it does not occur have every circumstance in common except one, then that circumstance must be the effect or cause of the phenomenon. An example of the method of difference is the {\it minimal pair}. For example, consider the sentences
+$$\hbox{``Whales eat plankton.''}\quad\hbox{and}\quad \hbox{``Asteroids eat plankton.''}$$
+They differ only in the first word and have different meanings, so we conclude that the words ``whales'' and ``asteroids'' have different semantic value.
+
+\section 2. BASIC SET THEORY
+
+Most of the concepts in this chapter will be familiar to the mathematically-inclined reader. Only the more obscure or hard-to-remember definitions are listed here.
+
+Let $R = \langle X,Y,G\rangle$ be a binary relation. It is {\it left total} if for each $x\in X$, there exists $y\in Y$ such that $xRy$. The relation is {\it left monogamous} if for every $x\in X$, if $y,z\in Y$ are such that $xRy$ and $xRz$, then $y=z$. The definitions of right totality and right monogamy are analogous. A function is a relation that is left total and left monogamous.
+
+Let $X$ be a set with a subset $Y\subseteq X$. The {\it characteristic function} of $Y$ is the map $f:X\rightarrow\{0,1\}$ given by
+$$f(x) = \cases{1 & if  $x\in Y$;\cr 0 & if $x \notin Y$.}$$
+
+A function $f$ is a {\it near-variant} of a function $g$ if their domains and codomains are equal and if the domain contains at most one element $x$ such that $f(x) \neq g(x)$. A consequence of the definition is that every function is a near-variant of itself.
+
+\section 3. BASIC ENGLISH GRAMMAR
+
+We gloss over preliminaries regarding English grammar and parts of speech and discuss constituency grammars.
+
+Let $L$ be a language. Then $G = \langle {\rm BX}, {\rm CT}, {\rm LX}, {\rm FR}\rangle$ is a (synthesis) {\it constituency grammar} of $L$ if and only if
+\medskip
+\item{i)} ${\rm BX}$ is a nonempty, finite set of the basic expressions of $L$.
+\smallskip
+\item{ii)} ${\rm CT}$ is a nonempty, finite set of the categories of $L$.
+\smallskip
+\item{iii)} ${\rm LX}$ is a nonempty, finite set of ordered pairs $\lexent{v}{{\it C}}$, where $v\in {\rm BX}$ and $C\in {\rm CT}$. These are the lexical entries of $L$.
+\smallskip
+\item{iv)} ${\rm FR}$ is a nonempty, finite set of constituency formation rules of $L$, where each rule has the form $C_1\ldots C_n \rightarrow C$ and $C,C_1,\ldots,C_n$ are in ${\rm CT}$.
+\medskip
+When an expression accomodates more than one constituency analysis, it is said to be {\it structurally ambiguous} or {\it amphibolous}. For example, the sentence ``Alice met a friend of Bob's mother'' is amphibolous.
+
+\section 4. LANGUAGE AND CONTEXT
+
+An expression whose full understanding requires knowledge of the setting is called an {\it exophor}. Examples include the pronouns ``I'' and ``you''. One needs to know who is speaking and who is the addressee to fully understand the meaning that the pronouns convey. English exophoric expressions can often require knowledge of person, temporal order, or spatial location.
+
+An expression whose understanding relies on other expressions uttered before or after it (the cotext) is called an {\it endophor} or a {\it proform}. Third-person pronouns are a good example of this, but demonstrative pronouns like ``this'' and ``that'' are also endophors.
+
+\section REFERENCES
+\frenchspacing
+
+\item{} B. S. Gillon, {\sl Natural Language Semantics: Formation and Valuation}, 2019, MIT Press.
+
+\bye
+
+
