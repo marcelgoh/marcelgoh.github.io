@@ -81,9 +81,16 @@ body {
 <hr>
 
 <img src="/media/home/note.gif" alt="Note">
-<ul>
-<li>Suppose $G$ acts on a set $S$ and let $s\in S$. The <i>orbit</i> $O_s$ of $s$ is the set of all elements $s'\in S$ such that $s' = g(s)$ for some $g\in G$. The <i>stabiliser</i> $G_s$ of $s$ is the set of all $g\in G$ such that $g(s) = s$. If $O_s = S$ for some $s\in S$, then we say $G$ acts <i>transitively</i> on $S$.</li>
-</ul>
+
+<p>
+    Let $\Omega$ be a ground set. A class $\mathcal{S} \subseteq \mathcal{P}(\Omega)$ is called a <i>semialgebra</i> if
+    <ul>
+        <li>$\emptyset\in \mathcal{S}$ and $\Omega\in\mathcal{S}$;</li>
+        <li>for any $A,B\in\mathcal{S}$, $A\cap B\in \mathcal{S}$;</li>
+        <li>and for any $A,B\in \mathcal{S}$, there exists a finite collection $\{C_i\}_{i=1}^n$ of sets in $\mathcal{S}$ such that $A\setminus B = \bigcup_{i=1}^n C_i$.</li>
+    </ul>
+    A class $\mathcal{A}\subseteq\mathcal{P}(\Omega)$ is called an <i>algebra</i> if $\Omega\in \mathcal{A}$ and $\mathcal{A}$ is closed under complementation and finite intersection. An algebra that is closed under countable unions is called a <i>$\sigma$-algebra</i>.
+</p>
 
 <img src="/media/home/coollinks.gif" alt="Links">
 <ul>
