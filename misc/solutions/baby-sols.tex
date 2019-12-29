@@ -1,0 +1,38 @@
+\input fontmac
+\input mathmac
+
+\font\bigboldsl=cmbxsl12
+\font\eightsl=cmsl8
+
+\maketitlenodate{Answers to Selected Exercises in {\bigboldsl Principles of Mathematical Analysis}\footnote{$^*$}{\frenchspacing \eightpt Walter Rudin. 1986. {\eightsl Principles of Mathematical Analysis, 3rd ed}. McGraw-Hill, Inc., USA.}}{Solutions by}{Marcel K.\ Goh}
+
+\section CHAPTER 2. BASIC TOPOLOGY
+
+\proclaim 1. Prove that the empty set is a subset of every set.
+
+\proof Let $S$ be an arbitrary set. Then every element of $\emptyset$ is an element of $S$. So $\emptyset \subseteq S$.\slug
+
+\proclaim 2. A complex number $z$ is said to be algebraic if there are integers $a_0,\ldots,a_n$, not all zero, such that
+$$a_0z^n + a_1z^{n-1} + \cdots + a_{n-1}z + a_n = 0.$$
+Prove that the set of all algebraic numbers is countable. {\it Hint:} For every positive integer $N$, there are only finitely many equations with
+$$n + |a_0| + |a_1| + \cdots + |a_n| = N$$
+
+\proof Let $A$ denote the set of all algebraic numbers and partition $A$ as follows: For each $z\in A$, calculate the positive integer $N$ that corresponds to its equation and place it in a set $E_N$. So
+$$A = \bigcup_{N\in \N} E_N,$$
+where each $E_N$ is finite. Then apply the corollary of Theorem 2.12 to find that $A$ is countable.\slug
+
+\proclaim 3. Prove that there exist real numbers which are not algebraic.
+
+\proof Let $A$ denote the set of all algebraic numbers and suppose, towards a contradiction, that all real numbers are algebraic. Then ${\bf R}\subset A$. But the set of real numbers is uncountable and we know from Problem 2 that $A$ is countable. The contradiction completes the proof.\slug
+
+\proclaim 4. Is the set of all irrational real numbers countable?
+
+The answer is no.
+
+\proof If $\R \setminus \Q$ is countable, then $\R = \Q \cup (\R\setminus\Q)$, is countable, which we know to be false.\slug
+
+\proclaim 5. Construct a bounded set of real numbers with exactly three limit points.
+
+$\{{1\over n} : n\in \N\} \cup\{{1\over n} + 2: n\in \N\} \cup \{{1\over n} + 4: n\in \N\}$ has limit points 0, 2, and 4. It is bounded above by 6 and below by 0.
+
+\bye

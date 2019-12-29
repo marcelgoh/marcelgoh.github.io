@@ -1,0 +1,21 @@
+\input fontmac
+\input mathmac
+
+\font\bigboldsl=cmbxsl12
+\font\eightsl=cmsl8
+
+\maketitlenodate{Answers to Selected Exercises in {\bigboldsl Real and Complex Analysis}\footnote{$^*$}{\frenchspacing \eightpt Walter Rudin. 1987. {\eightsl Real and complex analysis, 3rd ed}. McGraw-Hill, Inc., USA.}}{Solutions by}{Marcel K.\ Goh}
+
+\section CHAPTER 1. ABSTRACT INTEGRATION
+
+\proclaim 1. Does there exist an infinite $\sigma$-algebra which has only countably many members?
+
+The answer is no.
+
+\proof Let $X$ be a ground set and let ${\cal F}$ be a $\sigma$-algebra (over $X$) with infinitely many members. First we claim that we can always find a set $E\neq \emptyset$ such that the set $\{ F \cap E^c : F\in {\cal F}\}$ is infinite. If this did not hold, then take any $E\neq \emptyset$ in ${\cal F}$. Then by assumption, ${\cal S}_1 = \{ F \cap E^c : F\in {\cal F}\}$ is finite and because $E^c\in {\cal F}$, ${\cal S}_2 = \{ F \cap E : F\in {\cal F}\}$ is finite as well. Since any member of ${\cal F}$ can be expressed as a union of an element of ${\cal S}_1$ with an element of ${\cal S}_2$, the implies that ${\cal F}$ is finite, a contradiction.
+
+Now we may use the claim to construct a countable sequence of pairwise disjoint elements of ${\cal F}$. Let $G_1$ be the set $E$ given by the claim. Now the infinite set ${\cal S}_1$ we constructed before is also a $\sigma$-algebra, so repeat the argument to get a set $G_2$, disjoint from $G_1$. Continuing in this manner, we obtain a sequence $G_1, G_2,\ldots$ where the $G_i$ are pairwise disjoint. Now we see that the map from the power set of the natural numbers to ${\cal F}$ given by
+$$ A \mapsto \bigcup_{i\in A} G_i $$
+is injective. So the uncountability of ${\cal F}$ follows from the uncountability of ${\cal P}({\bf N})$.\slug
+
+\bye
