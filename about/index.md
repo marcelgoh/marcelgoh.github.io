@@ -11,6 +11,6 @@ I received a traditional Java-based programming education from which I may never
 
 As a certified First Responder, I volunteer with the [McGill Student Emergency Response Team](www.msert.ca).
 
-When I'm not writing programs or attending school, I enjoy hiking, travelling, photography, and playing video games.
+When I'm not writing programs or attending school, I enjoy bouldering, travelling, photography, and playing video games.
 
 _CV available upon request._

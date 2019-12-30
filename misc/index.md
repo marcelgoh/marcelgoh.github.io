@@ -13,6 +13,7 @@ This is a landing page for things that, for whatever reason, might not have a pl
 
 ## Notes
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
++ [Exercise solutions]({{ site.baseurl }}/misc/solutions.html)
 + [_On the probability that two integers are relatively prime_]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/coprime-probability.tex))
 
 ## TeX macros
