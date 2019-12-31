@@ -18,4 +18,58 @@ Now we may use the claim to construct a countable sequence of pairwise disjoint 
 $$ A \mapsto \bigcup_{i\in A} G_i $$
 is injective. So the uncountability of ${\cal F}$ follows from the uncountability of ${\cal P}({\bf N})$.\slug
 
+\proclaim 3. Prove that if $f$ is a real function on a measurable space $X$ such that $\{x:f(x)\geq r\}$ is measurable for every rational $r$, then $f$ is measurable.
+
+\proof We immediately infer that for rational $r$ and $s$, $f^{-1}\big([r,s)\big)$ is measurable, since
+$$f^{-1}\big([r,s)\big) = \{ x : f(x)\geq r\} \cap \{ x : f(x) \geq s\}^c.$$
+Next, let $I\subseteq \R$ be an open interval. Setting $J = I\cap \Q$, we can show that $f^{-1}(I)$ is measurable, since
+$$f^{-1}(I) = f^{-1}\bigg(\bigcup_{r\in J}\bigcup_{s\in J} [r,s)\bigg) = \bigcup_{r\in J}\bigcup_{s\in J} f^{-1}\big([r,s)\big)$$
+is a countable union of measurable sets.
+
+Now let $V\subseteq \R$ be open. By Lindel\"of's lemma, we can express $V$ as a countable union of open intervals $V=\bigcup_{n=1}^\infty I_n$. Then
+$$f^{-1}(V) = f^{-1}\bigg(\bigcup_{n=1}^\infty I_n\bigg) = \bigcup_{n=1}^\infty f^{-1}(I_n)$$
+is measurable.\slug
+
+\proclaim 5. Prove the following statements:
+\medskip
+\item{a)} If $f:X\rightarrow[-\infty,\infty]$ and $g:x\rightarrow[-\infty,\infty]$ are measurable, then the sets
+$$\{x : f(x) < g(x)\}\ \hbox{and}\ \{x : f(x) = g(x)\}$$
+are measurable.
+\item{b)} The set of points at which a sequence of measurable real-valued functions converges (to a finite limit) is measurable.
+
+\proof Observe that $f(x) < g(x)$ if and only if there exists a rational number $r$ such that $f(x) < r < g(x)$. So
+$$\{x : f(x) < g(x)\} = \bigcup_{r\in \Q} \big(\{x : f(x) < r\} \cap \{x : g(x) > r\}\big) = \bigcup_{r\in \Q} \Big(f^{-1}\big([-\infty,r)\big) \cap g^{-1}\big((r,\infty]\big)\Big)$$
+is a countable union of measurable sets (since $f$ and $g$ are measurable functions). Then
+$$\{x : f(x) = g(x)\} = \{x : f(x) < g(x)\}^c \cap \{x : g(x) < f(x)\}^c$$
+is measurable as well, proving (a).
+
+Let $(f_n)$ be a sequence of real-valued measurable functions. Then $(f_n)$ converges at a point $x$ if and only if it is Cauchy at $x$, i.e.\ for any $\epsilon > 0$ there exists $N\in \N$ such that for all $m,n\geq N$, $|f_m(x) - f_n(x)| < \epsilon$. By the Archimedean property, we can replace $\epsilon$ with $1/k$ for some $k\in \N$. So the set of all points at which $(f_n)$ converges can be written thus:
+$$\bigcap_{k=1}^\infty \bigcup_{N=1}^\infty \bigcap_{m=1}^\infty \bigcap_{n=1}^\infty \big\{x : |f_m(x) - f_n(x)| < 1/k\big\}$$
+Set $g_{m,n} = f_m - f_n$; this is a measurable function. Hence the set
+$$\big\{x : |f_m(x) - f_n(x)| < 1/k\big\} = \big\{x : |g_{m,n}(x)| < 1/k\big\} = {g_{m,n}}^{-1}\big((-1/k, 1/k)\big)$$
+is measurable for every $m$, $n$, and $k$. We have thus proved that the set of all points at which $(f_n)$ converges is a countable union of measurable sets.\slug
+
+\proclaim 6. Let $X$ be an uncountable set, let ${\cal M}$ be the collection of all sets $E\subseteq X$ such that either $E$ or $E^c$ is at most countable, and define $\mu(E) = 0$ in the first case, $\mu(E) = 1$ in the second. Prove that ${\cal M}$ is a $\sigma$-algebra in $X$ and that $\mu$ is a measure on ${\cal M}$. Describe the corresponding measurable functions and their integrals.
+
+First we prove that ${\cal M}$ is a $\sigma$-algebra and that $\mu$ is a measure.
+
+\proof Since $\emptyset$ is countable, $X\in {\cal M}$. Then for any set $E\in {\cal M}$, either $E$ or $E^c$ is at most countable; in any case $E^c\in {\cal M}$. Lastly, let $\{E_n\}$ be a collection of sets in ${\cal M}$. If every set $E_n$ is at most countable, then $\bigcup_{n=1}^\infty E_n$ is countable and thus in ${\cal M}$. Otherwise, there is some $k$ for which $E_k$ is uncountable. Then $E_k^c\in {\cal M}$ is at most countable and $\left(\bigcup_{n=1}^\infty E_n\right)^c = \bigcap_{n=1}^\infty E_n^c \subseteq E_k^c$ is countable, so $\bigcup_{n=1}^\infty E_n$ is in ${\cal M}$. This shows that ${\cal M}$ is a $\sigma$-algebra.
+
+It is clear that the range of $\mu$ is in $[0,\infty]$. To show that $\mu$ is countably additive, let $\{E_n\}$ be a disjoint collection of sets in ${\cal M}$. If every $E_n$ is at most countable, then $\bigcup_{n=1}^\infty E_n$ is at most countable and $\mu(\bigcup_{n=1}^\infty E_n) = 0 = \sum_{n=1}^\infty \mu(E_n)$. Otherwise, there exists $E_k$ such that $E_k^c$ is countable and thus we have $\mu(E_k) = 1$ and $\mu(E_k^c) = 0$. Since the $E_n$ are pairwise disjoint, $E_n\subseteq E_k^c$ for all $n\neq k$. So $\mu(E_n) = 0$ for all $n\neq k$. So $\mu(\bigcup_{n=1}^\infty E_n) = 1 = \sum_{n=1}^\infty \mu(E_n)$ and $\mu$ is a measure.\slug
+
+Now we claim that the measurable functions are those that are constant at all but countably many points.
+
+\proof It suffices to prove this for a real-valued function. Suppose $f:X\rightarrow[-\infty,\infty]$ is measurable. For any $a\in \R$, let $E_a = f^{-1}\big([-\infty,a)\big)$. Note that for any $a$, either $E_a$ is countable or $E_a^c$ is countable. Note also that if $a\leq b$, then $E_a \subseteq E_b$. So let there is a constant $c$ such that
+$$k = \sup\{a : E_a\ \hbox{is countable}\}.$$
+This supremum is not $-\infty$, since if it were, then $E_a^c$ would be countable for all $a\in \R$, and since $\bigcap_{n=0}^\infty E_{-n} = \emptyset$, $X = \bigcap_{n=0}^\infty E_{-n}^c$ is countable, a contradiction. By a similar argument, we know that the supremum is not $\infty$. So $k\in \R$ and there exists a sequence $(a_n)$ all of whose terms are less than $k$ and whose limit is $k$. Hence $E_k = \bigcup_{n=1}^\infty E_{a_n}$ is countable. Now let $(b_n)$ be a sequence that converges to $k$ such that $b_n > k$ for all $n$. Then note that if $f(x) > k$, then $f(x) \in [b_n, \infty) = E_{b_n}^c$ for some $n$. So
+$$\{x : f(x) \neq k\} = E_k \cup \{x : f(x) > k\} \subseteq E_k \cup \Big(\bigcup_{n=0}^\infty E_{b_n}^c\Big)$$
+is countable and $f$ equals $k$ at all but countably many points.\slug
+
+Lastly, we show that if $f$ is measurable and takes on the value $k$ at all but countably many points, then $\int_E f\,d\mu = k$ for all uncountable $E\in {\cal M}$. (If $E$ is countable then $\int_E f\,d\mu = 0$.)
+
+\proof Let $E\in {\cal M}$ be uncountable; so $\mu(E) = 1$. Let $s$ be a simple measurable function such that $0\leq s\leq f$. Suppose that $s$ takes values $\alpha_i$ on the $n$ disjoint sets $A_i$ that cover $X$. We know that one of the $\alpha_i$, call it $\alpha_j$, is equal to a constant $k_s$ and that $A_i$ is at most countable for all $i \neq j$. So for all $i \neq j$, $A_i \cap E$ is countable and $A_j \cap E$ must be uncountable. Then we have
+$$\int_E s\,d\mu = \sum_{i=1}^n \alpha_i \mu(A_i\cap E) = \alpha_j\mu(A_j\cap E) = k_s\cdot 1 = k_s,$$
+where $0\leq k_s \leq k$. So we have
+$$\int_E f\,d\mu = \sup \Big\{ \int_E s\,d\mu : 0 \leq s\leq f\Big\} = \sup \{k_s : 0\leq s \leq f\} = k,$$
+which is what we had to show.\slug
 \bye
