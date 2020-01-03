@@ -4,6 +4,8 @@
 \font\bigboldsl=cmbxsl12
 \font\eightsl=cmsl8
 
+\def\d{\,d}
+
 \maketitlenodate{Answers to Selected Exercises in {\bigboldsl Principles of Mathematical Analysis}\footnote{$^*$}{\frenchspacing \eightpt Walter Rudin. 1986. {\eightsl Principles of Mathematical Analysis, 3rd ed}. McGraw-Hill, Inc., USA.}}{Solutions by}{Marcel K.\ Goh}
 
 \section CHAPTER 2. BASIC TOPOLOGY
@@ -34,5 +36,15 @@ The answer is no.
 \proclaim 5. Construct a bounded set of real numbers with exactly three limit points.
 
 $\{{1\over n} : n\in \N\} \cup\{{1\over n} + 2: n\in \N\} \cup \{{1\over n} + 4: n\in \N\}$ has limit points 0, 2, and 4. It is bounded above by 6 and below by 0.
+
+\section CHAPTER 11. THE LEBESGUE THEORY
+
+\proclaim 1. If $f\geq 0$ and $\int_E f\d\mu = 0$, prove that $f(x) = 0$ almost everywhere on $E$. {\it Hint:} Let $E_n$ be the subset of $E$ on which $f(x)> 1/n$. Write $A = \bigcup_{n=1}^\infty E_n$. Then $\mu(A) = 0$ if and only if $\mu(E_n) = 0$ for every $n$.
+
+\proof First we claim that $\mu(E_n) = 0$ for every $n$. Suppose, towards a contradiction, that $\mu(E_n) > 0$ for some $n$. Then since $f(x) > 1/n$ for all $x\in E_n$, we find that
+$$\int_E f\d\mu \geq \int_{E_n} f \d\mu > {\mu(E_n)\over n} > 0,$$
+contradicting our hypothesis. Now since $\mu(E_n) = 0$ for all $n$, $\mu(A) \leq \sum_{n=1}^\infty \mu(E_n) = 0$. So $\mu(A) = 0$. Now we write
+$$\int_E f\d\mu = \int_{E\setminus A} f\d\mu + \int_{A} f\d\mu,$$
+and $f$ is equal to 0 on $E\setminus A$ by our construction of $A$.\slug
 
 \bye

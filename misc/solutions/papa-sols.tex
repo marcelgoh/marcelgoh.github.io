@@ -4,6 +4,8 @@
 \font\bigboldsl=cmbxsl12
 \font\eightsl=cmsl8
 
+\def\d{\,d}
+
 \maketitlenodate{Answers to Selected Exercises in {\bigboldsl Real and Complex Analysis}\footnote{$^*$}{\frenchspacing \eightpt Walter Rudin. 1987. {\eightsl Real and complex analysis, 3rd ed}. McGraw-Hill, Inc., USA.}}{Solutions by}{Marcel K.\ Goh}
 
 \section CHAPTER 1. ABSTRACT INTEGRATION
@@ -65,11 +67,24 @@ This supremum is not $-\infty$, since if it were, then $E_a^c$ would be countabl
 $$\{x : f(x) \neq k\} = E_k \cup \{x : f(x) > k\} \subseteq E_k \cup \Big(\bigcup_{n=0}^\infty E_{b_n}^c\Big)$$
 is countable and $f$ equals $k$ at all but countably many points.\slug
 
-Lastly, we show that if $f$ is measurable and takes on the value $k$ at all but countably many points, then $\int_E f\,d\mu = k$ for all uncountable $E\in {\cal M}$. (If $E$ is countable then $\int_E f\,d\mu = 0$.)
+Lastly, we show that if $f$ is measurable and takes on the value $k$ at all but countably many points, then $\int_E f\d\mu = k$ for all uncountable $E\in {\cal M}$. (If $E$ is countable then $\int_E f\d\mu = 0$.)
 
 \proof Let $E\in {\cal M}$ be uncountable; so $\mu(E) = 1$. Let $s$ be a simple measurable function such that $0\leq s\leq f$. Suppose that $s$ takes values $\alpha_i$ on the $n$ disjoint sets $A_i$ that cover $X$. We know that one of the $\alpha_i$, call it $\alpha_j$, is equal to a constant $k_s$ and that $A_i$ is at most countable for all $i \neq j$. So for all $i \neq j$, $A_i \cap E$ is countable and $A_j \cap E$ must be uncountable. Then we have
-$$\int_E s\,d\mu = \sum_{i=1}^n \alpha_i \mu(A_i\cap E) = \alpha_j\mu(A_j\cap E) = k_s\cdot 1 = k_s,$$
+$$\int_E s\d\mu = \sum_{i=1}^n \alpha_i \mu(A_i\cap E) = \alpha_j\mu(A_j\cap E) = k_s\cdot 1 = k_s,$$
 where $0\leq k_s \leq k$. So we have
-$$\int_E f\,d\mu = \sup \Big\{ \int_E s\,d\mu : 0 \leq s\leq f\Big\} = \sup \{k_s : 0\leq s \leq f\} = k,$$
+$$\int_E f\d\mu = \sup \Big\{ \int_E s\d\mu : 0 \leq s\leq f\Big\} = \sup \{k_s : 0\leq s \leq f\} = k,$$
 which is what we had to show.\slug
+
+\proclaim 7. Suppose $f_n : X\rightarrow[0,\infty]$ is measurable for $n=1,2,3,\ldots$, $f_1\geq f_2\geq f_3\geq\cdots\geq 0$, $f_n(x)\rightarrow f(x)$ as $n\rightarrow\infty$ for every $x\in X$, and $f_1\in L^1(\mu)$. Prove that then
+$$\lim_{n\rightarrow\infty} \int_X f_n \d\mu = \int_X f\d\mu$$
+and show that this conclusion does {\it not} follow if the condition ``$f_1\in L^1(\mu)$'' is omitted.
+
+\proof Consider the sequence of functions $(f_1 - f_n)$. This sequence is nonnegative, nondecreasing and for any $x\in X$, $\lim_{n\rightarrow\infty} (f_1 - f_n)(x) = f_1(x) - f(x)$. So by the monotone convergence theorem,
+$$= \lim_{n\rightarrow \infty} \int_X f_1 - f_n \d\mu = \int_X f_1 - f\d\mu.$$
+Since the integrals of $f_n$ are finite, we can apply Theorem 1.27 to get
+$$\int_X f_1\d\mu - \lim_{n\rightarrow \infty}\int_X f_n \d\mu = \int_X f_1\d\mu -  \int_X f \d\mu,$$
+which gives us what we want after subtracting $\int_X f_1 \d\mu$ (which is finite) and multiplying by $-1$.\slug
+
+The condition $f_1\in L^1(\mu)$ is necessary. Let $I = [0,1]$ and $f_n = {1\over nx^2}$, which converges to the constant function 0. Then $\lim_{n\rightarrow \infty} \int_I f_n \d\mu = +\infty$ but $\int_I 0\d\mu = 0$.
+
 \bye
