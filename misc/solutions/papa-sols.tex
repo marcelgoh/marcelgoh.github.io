@@ -87,4 +87,12 @@ which gives us what we want after subtracting $\int_X f_1 \d\mu$ (which is finit
 
 The condition $f_1\in L^1(\mu)$ is necessary. Let $I = [0,1]$ and $f_n = {1\over nx^2}$, which converges to the constant function 0. Then $\lim_{n\rightarrow \infty} \int_I f_n \d\mu = +\infty$ but $\int_I 0\d\mu = 0$.
 
+\proclaim 8. Put $f_n = \chi_E$ if $n$ is odd, $f_n = 1 - \chi_E$ if $n$ is even. What is the relevance of this example to Fatou's lemma?
+
+This gives an example of strict inequality arising. Let $X$ be a measure space such that $\mu(X) = 1$ and let $E\subseteq X$ be such that $\mu(E) = 2/3$. Then
+$$\int_X \liminf_{n\rightarrow\infty} f_n \d\mu = \int_X 0 \d\mu = 0,$$
+while on the other hand
+$$\liminf_{n\rightarrow\infty} \int_X f_n\d\mu = \int_X 1 - \chi_E \d\mu = \int_X 1 \d\mu - \int_X \chi_E \d\mu = \mu(X) - \mu(E) = {1\over 3},$$
+and we have $0<1/3$.
+
 \bye
