@@ -15,6 +15,10 @@
 \font\ninept=cmr9
 \font\twelvept=cmr12
 
+% Bold fonts
+\font\eightbold=cmbx8
+\font\ninebold=cmbx9
+
 % Create header on non-first pages
 \def\leftrighttop#1#2{
   \headline{\ifnum\pageno=1\hfil\else{\ninept #1 \hfil #2}\fi}
@@ -34,6 +38,17 @@
   \centerline {\tensc #3}
   \medskip
   \centerline {\tensc #4}
+  \bigskip
+}
+% Two-author version
+\def\maketitletwoauthor#1#2#3#4#5{
+  \centerline {\bigbold #1}
+  \medskip
+  \centerline {\eightpt #2}
+  \medskip
+  \centerline{\tensc #3\enspace \eightpt and\enspace \tensc #4}
+  \medskip
+  \centerline {\tensc #5}
   \bigskip
 }
 
@@ -73,6 +88,9 @@
   \bigskip\vskip\parskip
   \leftline{\smallheader#1}\nobreak\medskip\noindent
 }
+
+% Figure caption
+\def\caption Fig. #1. #2.{{\ninebold Fig.\ #1.}\enspace{\ninept #2.}}
 
 % From the TeXbook: Verbatim typewriter text
 % Modified to have ~ be escape character instead of ~
