@@ -89,6 +89,18 @@
   \leftline{\smallheader#1}\nobreak\medskip\noindent
 }
 
+% Centred version
+\def\csection#1\par{
+  \bigskip\vskip\parskip
+  \centerline{\smallheader#1}\nobreak\medskip\noindent
+}
+
+% Right-justified version
+\def\rsection#1\par{
+  \bigskip\vskip\parskip
+  \rightline{\smallheader#1}\nobreak\medskip\noindent
+}
+
 % Figure caption
 \def\caption Fig. #1. #2.{{\ninebold Fig.\ #1.}\enspace{\ninept #2.}}
 
@@ -122,3 +134,74 @@
 % Block of left-justified text, in "poetry-mode"
 \def\begintext{\par\begingroup\nobreak\medskip \obeylines}
 \def\endtext{\endgroup\medbreak\noindent}
+
+% Fraktur font
+\font\tenfrak=eufm10
+\font\sevenfrak=eufm7
+\font\fivefrak=eufm5
+\newfam\frakfam
+\textfont\frakfam=\tenfrak
+\scriptfont\frakfam=\sevenfrak
+\scriptscriptfont\frakfam=\fivefrak
+\def\frak#1{{\fam\frakfam #1}}
+
+% Old Standard text with Latin Modern extra math symbols
+\def\oldstandard{
+  \font\tenrm=OldStandard-Regular-tlf-t1 at 10pt % roman text
+  \font\sevenrm=OldStandard-Regular-tlf-t1 at 7pt
+  \font\fiverm=OldStandard-Regular-tlf-t1 at 5pt
+  \font\tensc=OldStandard-Regular-tlf-t1 at 10pt
+  \font\eightpt=OldStandard-Regular-tlf-t1 at 8pt % eight point
+  \font\ninept=OldStandard-Regular-tlf-t1 at 9pt
+
+  \font\tenbf=OldStandard-Bold-tlf-t1 at 10pt % boldface extended
+  \font\smallheader=OldStandard-Bold-tlf-t1 at 11pt
+  \font\sevenbf=OldStandard-Bold-tlf-t1 at 7pt
+  \font\fivebf=OldStandard-Bold-tlf-t1 at 5pt
+  \font\bigbold=OldStandard-Bold-tlf-t1 at 12pt
+
+  \font\tensl=OldStandard-Italic-tlf-t1 at 10pt % slanted roman
+
+  \font\tenit=OldStandard-Italic-tlf-t1 at 10pt % text italic
+
+  % Math family
+  \font\tenrmop=OldStandard-Regular-tlf-t1 at 10pt % roman text
+  \font\sevenrmop=OldStandard-Regular-tlf-t1 at 7pt
+  \font\fivermop=OldStandard-Regular-tlf-t1 at 5pt
+
+  \textfont0=\tenrmop
+  \scriptfont0=\sevenrmop
+  \scriptscriptfont0=\fivermop
+
+  \font\teni=OldStandard-Italic-tlf-t1 at 10pt
+  \font\seveni=OldStandard-Italic-tlf-t1 at 7pt
+  \font\fivei=OldStandard-Italic-tlf-t1 at 5pt
+
+  \font\tenlmmi=lmmi10 at 10pt % math symbols
+  \font\sevenlmmi=lmmi10 at 7pt
+  \font\fivelmmi=lmmi10 at 5pt
+
+  \font\tensy=lmsy10 at 10pt % math symbols
+  \font\sevensy=lmsy10 at 7pt
+  \font\fivesy=lmsy10 at 5pt
+
+  \font\tenex=lmex10 at 10pt % math extension
+
+  % Redefine all these boys
+  \textfont0=\tenrm \scriptfont0=\sevenrm \scriptscriptfont0=\fiverm
+  \textfont1=\tenlmmi \scriptfont1=\sevenlmmi \scriptscriptfont1=\fivelmmi
+  \textfont2=\tensy \scriptfont2=\sevensy \scriptscriptfont2=\fivesy
+  \textfont3=\tenex \scriptfont3=\tenex \scriptscriptfont3=\tenex
+  \textfont\itfam=\tenit
+  \textfont\slfam=\tensl
+  \textfont\bffam=\tenbf \scriptfont\bffam=\sevenbf
+  \scriptscriptfont\bffam=\fivebf
+  \textfont\ttfam=\tentt
+
+  \tenrm
+}
+
+% A janky small-caps
+\def\janksc#1#2 {#1{\eightpt#2}}
+\def\jankscsp#1#2 {#1{\eightpt#2}\ }
+\def\scproclaim#1.#2\par{\noindent\jankscsp #1.\enspace{\it#2\par}}
