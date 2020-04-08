@@ -1,0 +1,171 @@
+%!PS
+
+/r1 5.5 def   % radius of node circles
+/r2 6.5 def
+
+/CMR10 findfont 8 scalefont setfont
+
+0.35 setlinewidth
+
+/black {0 0 0 setrgbcolor} def
+/red {1 0 0 setrgbcolor} def
+/green {0 0.7 0 setrgbcolor} def
+/blue {0 0 1 setrgbcolor} def
+/orange {1 0.5 0 setrgbcolor} def
+
+/dot {
+    1.5 0 360 arc closepath fill
+} def
+
+% x y n lettercirc draws a circle, puts string n in it
+/lettercirc {
+    /n exch def
+    /y exch def
+    /x exch def
+    gsave
+        0.75 setlinewidth
+        /CMBX10 findfont 8 scalefont setfont
+        x y r1 0 360 arc closepath
+        stroke
+        newpath
+        x y moveto -2.25 -2.5 rmoveto
+        n show
+        stroke
+    grestore
+} def
+/llettercirc {
+    /n exch def
+    /y exch def
+    /x exch def
+    gsave
+        0.75 setlinewidth
+        /CMBX10 findfont 8 scalefont setfont
+        x y r2 0 360 arc closepath
+        stroke
+        newpath
+        x y moveto -4.5 -2.5 rmoveto
+        n show
+        stroke
+    grestore
+} def
+
+/arrowhead {  % x y size theta
+    /theta exch def
+    /s exch def
+    /y exch def
+    /x exch def
+    /h s 2 div def
+    gsave
+        x y translate
+        theta rotate
+        newpath
+            0 0 moveto
+            h 0 s h s s rcurveto
+            s neg s neg rmoveto
+            h 0 s h neg s s neg rcurveto
+        stroke
+    grestore
+} def
+
+% Nodes
+100 100 (0) lettercirc
+125 r1 add 100 (1) lettercirc
+
+% Arrows
+red
+newpath
+    100 r1 add 98 moveto
+    25 r1 sub 0 rlineto
+stroke
+125 100 2 sub 2.5 180 arrowhead
+
+green
+newpath
+    125 102 moveto
+    -25 r1 add 0 rlineto
+stroke
+100 r1 add 100 2 add 2.5 0 arrowhead
+
+blue
+90 100 8 36 324 arc stroke
+90 36 cos 8 mul add 100 36 sin 8 mul add 2.5 144 arrowhead
+
+orange
+135 r1 add 100 8 216 144 arc stroke
+135 r1 add 36 cos 8 mul sub 100 36 sin 8 mul add 2.5 36 arrowhead
+
+black
+
+% Arrow labels
+135 2 r1 mul add 3.5 add 97.5 moveto (1) show
+113.5 104.5 moveto (0) show
+113.5 90 moveto (1) show
+76.5 97.5 moveto (0) show
+stroke
+
+%%%%%%%% SECOND GRAPH %%%%%%%%
+% Nodes
+blue
+200 140 (00) llettercirc
+red
+240 140 (01) llettercirc
+green
+200 100 (10) llettercirc
+orange
+240 100 (11) llettercirc
+black
+
+newpath
+    200 r2 add 100 moveto
+    240 r2 sub 100 lineto
+stroke
+200 r2 add 100 2.5 0 arrowhead
+
+newpath
+    200 r2 add 140 moveto
+    240 r2 sub 140 lineto
+stroke
+240 r2 sub 140 2.5 180 arrowhead
+
+newpath
+    200 100 r2 add moveto
+    200 140 r2 sub lineto
+stroke
+200 140 r2 sub 2.5 270 arrowhead
+
+newpath
+    240 100 r2 add moveto
+    240 140 r2 sub lineto
+stroke
+240 100 r2 add 2.5 90 arrowhead
+
+newpath
+    200 r2 45 cos mul add 1.5 sub 100 r2 45 sin mul add 1.5 add moveto
+    240 r2 45 cos mul sub 1.5 sub 140 r2 45 sin mul sub 1.5 add lineto
+stroke
+240 r2 45 cos mul sub 1.5 sub 140 r2 45 sin mul sub 1.5 add 2.5 225 arrowhead
+
+newpath
+    200 r2 45 cos mul add 1.5 add 100 r2 45 sin mul add 1.5 sub moveto
+    240 r2 45 cos mul sub 1.5 add 140 r2 45 sin mul sub 1.5 sub lineto
+stroke
+200 r2 45 cos mul add 1.5 add 100 r2 45 sin mul add 1.5 sub 2.5 45 arrowhead
+
+247 93 8 180 90 arc stroke
+247 101 2.5 0 arrowhead
+
+193 147 8 0 270 arc stroke
+193 139 2.5 180 arrowhead
+
+% Arrow labels
+
+179.5 145 moveto (0) show
+256 90.5 moveto (1) show
+194 117.5 moveto (0) show
+242 117.5 moveto (1) show
+218.5 93 moveto (0) show
+218.5 142 moveto (1) show
+214 123 moveto (1) show
+223 114 moveto (0) show
+stroke
+showpage
