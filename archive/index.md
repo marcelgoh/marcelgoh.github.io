@@ -2,6 +2,10 @@
 layout: page
 title: Blog Archive
 ---
+## 2020
+- (08.04.2020) [Bit sequences and Hamiltonian cycles]({{ site.baseurl}}/2020/04/08/bit-sequences.html)
+
+
 ## 2019
 - (10.12.2019) [Putnam 2019]({{ site.baseurl }}/2019/12/10/putnam-2019.html)
 - (27.08.2019) [Consonant voicing and Mandarin pop music]({{ site.baseurl }}/2019/08/27/voiced-initial.html)
