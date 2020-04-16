@@ -15,6 +15,7 @@ This is a landing page for things that, for whatever reason, might not have a pl
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
 + [Exercise solutions]({{ site.baseurl }}/misc/solutions.html)
 + [_On the probability that two integers are relatively prime_]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/coprime-probability.tex))
++ [_The Burnside Problem_]({{ site.baseurl }}/misc/proofs/burnside.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/burnside.tex))
 
 ## TeX macros
 

@@ -1,0 +1,168 @@
+\input fontmac
+\input mathmac
+
+\def\d{\,d}
+\def\bar{\overline}
+\def\graph{\mathop{\rm graph}\nolimits}
+\def\ran{\mathop{\rm ran}\nolimits}
+\def\Stab{\mathop{\rm Stab}\nolimits}
+\def\Out{\mathop{\rm Out}\nolimits}
+\def\Aut{\mathop{\rm Aut}\nolimits}
+\def\Inn{\mathop{\rm Inn}\nolimits}
+\def\matr#1#2#3#4{
+    \big({#1\atop #3}{#2\atop #4}\big)
+}
+\def\tto{\longrightarrow}
+\def\m{\frak m}
+\def\inj{\hookrightarrow}
+\def\surj{\rightarrow\!\!\!\!\!\rightarrow}
+
+\input cyracc.def
+    \font\tencyr=wncyr10
+    \font\tencyri=wncyi10
+    \def\cyr{\tencyr\cyracc}
+    \def\cyri{\tencyri\cyracc}
+
+\maketitle{The Burnside Problem}{by}{Marcel K. Goh}{15 April 2020}
+
+\section 1. Introduction
+
+\jankscsp ONE\ OF\ THE oldest and most studied problems in group theory began life in a 1902 paper by William Burnside [3]. He wrote: ``A still undecided point in the theory of discontinuous groups is whether the order of a group may not be finite while the order of every operation it contains is finite.'' This question is now known as the {\it general} Burnside problem and it was solved in 1964 by E. S. Golod and I. R. Shafarevich [4], who found an example of an infinite finitely-generated group all of whose elements have finite order.
+
+A more specialised version of the problem, which Burnside himself tackled in his original paper, requires that the order of every element of the group be bounded by a {\it fixed} integer $n$. The problem of whether such groups are necessarily finite is called the Burnside problem and to solve it, we consider a specific class of groups. The {\it free Burnside group with $r$ generators of order $n$}, denoted $B(r,n)$, is the group with $r$ generators $x_1, \ldots, x_r$ such that for every $s\in B(r,n)$, $s^n = e$. It can be regarded as the quotient of the free group $F_r$ by the normal subgroup $\{s^n : s\in F_r\}$. Any group with $r$ generators and all orders dividing $n$ is the image of a homomorphism from $B(r,n)$, so the Burnside problem boils down to determining if $B(r,n)$ is finite for all $r$ and $n$.
+
+\section 2. Small Cases
+
+The simplest case occurs when $n=2$.
+
+\parenproclaim Theorem A (Burnside, {\rm 1902}). The order of $B(r,2)$ is $2^r$.
+
+\proof For every $s,t\in B(r,2)$, $s^2 = t^2 = (st)^2 = e$, since every element is an involution. Then from $stst = e$ we can multiply by $s$ on the left and $t$ on the right to obtain $ts = st$. Thus $B(r,2)$ is abelian and, having $r$ generators as a basis, is isomorphic to $(\Z/2\Z)^r$, with order $2^r$.\slug
+
+Burnside also proved that the order of $B(2,3)$ is $27$, that $B(2,4)$ has order at most $2^{12}$, and that $B(r,3)$ is finite for all $r$. Using a convoluted method that spans two and a half pages, Burnside proved that $|B(r,3)| \leq 3^{2^r-1}$, but finiteness of $|B(r,3)|$ can be shown more easily if we relax the bound. The following argument was presented by Marshall Hall, Jr.\ in his 1959 textbook {\sl The Theory of Groups} [6].
+
+\proclaim Theorem B. For $r\geq 1$, the order of $B(r,3)$ is of the form $3^{m(r)}$ for some integer $m(r) \leq 3^{r-1}$.
+
+\proof Because every non-identity element in $B(r,3)$ has order $3$, the group is a $3$-group and has order a power of $3$. We will perform induction on $r$. When $r=1$, the group is cyclic and its order is 3, so setting $m(1) = 0$ satisfies the inequality with equality. Now suppose that the theorem holds for some integer $k$; i.e.\ $|B(k,3)| = 3^{m(k)}$ and $m(k) \leq 3^{k-1}$. Note that for any Burnside group of exponent 3, the relation $(st)^3 = e$ implies that
+$$tst = s^{-1}t^{-1}s^{-1} \oldno 1$$
+for any $s,t$ in the group.
+
+We form $B(k+1,3)$ by adding a new generator $g$ to the generating set of $B(k,3)$. Let $s\in B(k+1,3)$ It can be expressed as a finite product of the form
+$$s = s_1g^{\pm 1}s_2g^{\pm 1} \cdots g^{\pm 1}s_n, \oldno 2$$
+where $n$ is some integer and the $s_i$ belong to $B(k,3)$. If, in this product, any two consecutive $g$'s have the same sign in the exponent, we can use the identity ({\oldstyle 1}) with $g = t$ to perform the following replacements, each reducing the total number of $g^{\pm 1}$ terms by one:
+$$gs_ig = {s_i}^{-1}g^{-1}{s_i}^{-1} \qquad \hbox{and}\qquad g^{-1}s_ig^{-1} = {s_i}^{-1}g{s_i}^{-1} \oldno 3$$
+In this way, $s$ can be reexpressed in the form ({\oldstyle 2}) but with the exponents of $g$ alternating in sign.
+
+But we can make further reductions. Since $g^3 = e$, we have $g^{-1} = g^2$ and we can perform surgery on $s$ as follows:
+$$\eqalign{
+s &= s_1\cdots s_i g s_{i+1} g^{-1} s_{i+2} g \cdots s_n\cr
+&= s_1\cdots s_i g s_{i+1} g\cdot g s_{i+2} g \cdots s_n\cr
+&= s_1\cdots (s_i {s_{i+1}}^{-1}) g^{-1} ({s_{i+1}}^{-1}{s_{i+2}}^{-1}) g^{-1} {s_{i+2}}^{-1} \cdots s_n,\cr
+}$$
+reducing the total instances of $g^{\pm 1}$ by one \big(the third line is due to ({\oldstyle 3})\big). An analogous reduction can be done when $s$ contains a $s_i g^{-1} s_{i+1} g s_{i+2} g^{-1}$, and in fact, in both cases we now have two consecutive matching exponents so we can immediately apply one of the identities in ({\oldstyle 3}) again. After doing this repeatedly, we find that any $s\in B(k+1,3)$ is of the form ({\oldstyle 2}) with at most two $g^{\pm 1}$s. As a final refinement, using $g = g^{-1}g^{-1}$ we can write
+$$s_1g^{-1}s_2gs_3 = s_1g^{-1}s_2g^{-1}g^{-1}s_3 = (s_1{s_2}^{-1})g{s_2}^{-1}g^{-1}s_3,$$
+so any $s\in B(k+1,3)$ can be written in one of the forms
+$$s_1,\quad s_1gs_2, \quad s_1g^{-1}s_2, \quad s_1gs_2g^{-1}s_3,$$
+where $s_1$, $s_2$, and $s_3$ are in $B(k,3)$. There are $3^{m(k)}$ possibilities for the first form, $3^{2m(k)}$ possibilites for each of the second and third forms, and $3^{3m(k)}$ for the fourth. Thus
+$$|B(k+1,3)| = 3^{m(k)} + 2\cdot3^{2m(k)} + 3^{3m(k)} < 3^{3m(k) + 1},$$
+so $m(k+1) \leq 3m(k)$ and $|B(k+1,3)| \leq 3^{3^{r-1}}$.\slug
+
+In 1933, F. W. Levi and B. L. van der Waerden [8] determined the exact value of the exponent to be
+$$m(r) = {r\choose 3} + {r\choose 2} + r.$$
+
+\section 3. Burnside Groups of Exponent Four
+
+For $n$ even just slightly larger than 2 or 3, much less is known about $B(r,n)$. For example, the exact orders of the groups $B(r,4)$ are only known for $r\leq 5$. It is known, however, that $B(r,4)$ is finite for all $r$. This result was proved by I. N. Sanov in 1940 [9], but since his paper is written in Russian, we present a treatment due to M. Hall [6]. The proof has been reorganised for the sake of clarity. We begin with a lemma.
+
+\proclaim Lemma C. Let $G$ be a finite group of order $M$, all of whose elements have orders dividing 4. Then if we adjoin to $G$ a new generator $g\notin G$ such that $g^2\in G$, the resulting group $G' = G \cup \langle g\rangle$ is finite, when divided by the normal subgroup $\{s^n : s\in G'\}$.
+
+\proof Since $g^{-1} = g^3$ and $(gs)^4 = e$ for any $s\in G'$, we have
+$$\eqalign{
+gsg &= s^{-1}g^{-1}s^{-1}g^{-1}s^{-1} \cr
+&= s^{-1}g (g^2 s^{-1} g^2) gs^{-1};\cr
+}$$
+since $g^2\in G$, we have, for any $s\in G'$,
+$$gsg = s^{-1}gs'gs^{-1} \oldno 4$$
+for some $s'\in G$.
+
+Armed with this identity, we proceed to fix some $s\in G'$, which, since $g = g^{-1}$, can be expressed as
+$$s = s_1gs_2g\cdots gs_n,$$
+where each $s_i\in G$. We will say that this word ``has length $n$'' because it consists of $n$ elements of $G$. Applying ({\oldstyle 4}) to some $s_i$ we get
+$$s = s_1g \cdots g (s_{i-1}{s_i}^{-1})g {s_i}' g ({s_i}^{-1}s_{i+1}) g \cdots gs_n,$$
+and this word has not increased in length. Note that $s_{i-1}$ has been replaced by $s_{i-1}{s_i}^{-1}$. If some $s_i = e$, then its two neighbouring $g$ terms combine to form an element of $G$, so the length of the word decreases by one.
+
+Repeatedly applying ({\oldstyle 4}), we can replace $s_{i-1}$ with $s_{i-1}{s_i}^{-1}$, then replace $s_{i-2}$ with $s_{i-2}(s_{i-1}{s_i}^{-1})^{-1} = s_{i-2}s_i{s_{i-1}}^{-1}$, etc. So, in particular, we can replace $s_2$ with any one of
+$$s_2, \quad s_2{s_3}^{-1}, \quad s_2s_4{s_3}^{-1},\quad s_2s_4{s_5}^{-1}{s_3}^{-1},\quad  \ldots\ \oldno 5$$
+(we repeat this $n-2$ times). Observe that the there is a pattern to the way new $s_i$'s appear. When $i$ is even, $s_i$ appears to the left of $s_{i-1}$ and when $i$ is odd, it appears to the right of $s_{i-1}$ and it is inverted. If any one of these products is the identity, we can reduce the length of the word.
+
+Suppose that $n\geq M+2$. Then in the list ({\oldstyle 5}) of $M$ possible replacements for $s_2$, either one of them is the identity or there is a repeated element, say
+$$s_2\cdots s_{2j}{s_{2j+1}}^{-1}\cdots {s_3}^{-1} = s_2 \cdots s_{2k}{s_{2k+1}}^{-1} \cdots {s_3}^{-1},$$
+where $j<k$. Then we can deduce that
+$$s_{2j+2}\cdots  s_{2k}{s_{2k+1}}^{-1} \cdots {s_{2j+3}}^{-1} = e.$$
+But it is possible, by repeated application of ({\oldstyle 4}), to replace $s_{2j+2}$ with this value, so we can shorten the representation of $s$. This handles the case where we have $s_{2j}{s_{2j+1}}^{-1}$ in the middle of the repeated term. It is also possible to have $s_{2j}{s_{2j-1}}^{-1}$ (here the odd term has smaller index), in which case we find that we can replace $s_{2j+1}$ with a word whose product is the identity.
+
+So any word of length $n\geq M+2$ can be reduced. Thus any $s\in G'$ can be represented by a word that contains at most $M+1$ elements of $G$. This shows that there are only $M^{M+1}$ possibilities for $s$, so $G'$ is finite.\slug
+
+This lemma performs most of the hard work in the following finiteness proof.
+
+\proclaim Theorem D. For any positive integer $r$, $B(r,4)$ is finite.
+
+\proof For a group $G$ we let
+$$G^* = G/\{s^4 : s\in G\}.$$
+The proof is by induction on $r$. When $r=1$, the group is cyclic of order 4. Now assume that the theorem holds for $r=k$, i.e.\ $B(k,4)$ is finite. We want to add a new generator $g$ of order 4 to this group and show that, after setting $s^4 = e$ for every $s$, the new group $B(k+1,4) = \big(B(k,4) \cup \langle g\rangle\big)^*$ is finite.
+
+Well, since $g^4 = {(g^2)}^2 = e\in B(k,n)$, we can apply Lemma C to find that the group $G' = \big(B(k,4)\cup \langle g^2\rangle\big)^*$ is finite. Now the square of $g$ is in $G'$, so applying Lemma C once more, we find that $B(k+1,4) = \big(B(k+1,4) \cup \langle g\rangle\big)^* = \big(G' \cup \langle g\rangle\big)^*$ is finite.\slug
+
+\section 4. The Restricted Burnside Problem
+
+After over a century of investigation, we still know surprisingly little information about the structure of Burnside groups. Towards the middle of the 20th century, various mathematicians investigated a different, weaker version of the Burnside problem: {\sl Fix some integer $n$. For every integer $r$, does there exist an integer $b_{r,n}$ such that every finite group of exponent $n$ generated by $r$ elements has order at most $b_{r,n}$?}
+
+If the statement is true for some $n$, then there would have to exist some largest finite group $R(r,n)$ of exponent $n$ generated by $r$ elements. Note that if $B(r,n)$ is finite, then $B(r,n) \cong R(r,n)$. In 1956, Philip Hall and Graham Higman [7] proved that $R(r,6)$ exists and that its order is
+$$2^a3^{b+{b\choose 2} + {b\choose 3}},\oldno 6$$
+where
+$$a = 1 + (r-1)3^{r + {r\choose 2} + {r\choose 3}}\qquad\hbox{and}\qquad b=1 + (r-1)2^r.$$
+Though this result does not imply the finiteness of $B(r,6)$, P. Hall and Higman showed in the same paper that $B(r,6)$ has a normal series
+$$B(r,6), \supseteq M \supseteq M' \supseteq \{e\},$$
+where $M'$ is a maximal normal subgroup of order coprime to 2, $M/M'$ is a $2$-group, and $G/M$ has order coprime to $2$. Marshall Hall, Jr., motivated by these results, showed in 1958 [5] that $G/M$ is finite of exponent 3, $M/M'$ is finite of exponent 2, and $M'$ is of exponent 3 and thus finite by the work of Levi and van der Waerden [8]. This proved that $B(r,6)$ is finite, of order given by ({\oldstyle 6}).
+
+The work of P. Hall and Higman would also eventually lead to a positive solution of the restricted Burnside problem for all exponents. In their paper they proved the following theorem.
+
+\parenproclaim Theorem E (Hall-Higman). Let $n$ be an integer whose prime decomposition is ${p_1}^{k_1}\cdots {p_n}^{k_n}$. Then the restricted Burnside problem holds for exponent $n$ provided that all of the following statements hold:
+\medskip
+\item{i)} The restricted Burnside problem holds for exponent ${p_i}^{k_i}$ for all $i$.
+\smallskip
+\item{ii)} There are finitely many simple groups of exponent $n$.
+\smallskip
+\item{iii)} For any finite simple group $G$ of exponent $n$, the outer automorphism group $\Out(G) = \Aut(G)/\Inn(G)$ is soluble.\noskipslug
+
+The statements (ii) and (iii) were proven in the 1980s during the effort to classify all finite simple groups, so the last hurdle was to prove the restricted Burnside problem for exponents equal to powers of primes. The final proof was published by E. I. Zelmanov, first for odd exponents in 1990 [10], then for powers of two in 1991 [11]. He received the Fields Medal for this work in 1994.
+
+\section 5. Infinite Burnside Groups
+
+For $n$ not equal to 2, 3, 4, or 6, it is not known whether $B(r,n)$ is finite for all $r$. And as it turns out, the answer to the original problem of whether $B(r,n)$ is finite for all $r$ and $n$ is no. In 1968, S. I. Adian and P. S. Novikov showed that $B(r,n)$ is infinite for $n$ odd and $\geq 4381$ by means of a long combinatorial proof [1]. The result was improved to $n$ odd, $n\geq 665$ by Adian in 1975 [2].
+
+\section REFERENCES
+
+\frenchspacing
+\item{[1]} Sergei Ivanovich Adian and Pyotr Sergeyevich Novikov, ``{\cyr O beckonechnykh periodicheskikh gruppakh} I, II, III = O beskonechnykh periodicheskikh gruppakh I, II, III,'' {\sl Izv. Akad. Nauk SSSR Ser. Mat.} {\bf 32} (1968), 212--244; 251--524; 709--731.
+\smallskip
+\smallskip
+\item{[2]} Sergei Ivanovich Adian, {\cyri Problema Bernsa\u ida i tozhdestva v gruppakh} = {\sl Problema Bernsa\u\i da i tozhdestva v gruppakh,} (Moscow: Izdat. ``Nauka'', 1975), 335 pages.
+\item{[3]} William Burnside, ``On an unsettled question in the theory of discontinuous groups.'' {\sl Quart J. Pure and Applied Math.} {\bf 33} (1902), 230--238.
+\smallskip
+\item{[4]} Evgenii Solomonovich Golod and Igor Rostislavovich Shafarevich, ``{\cyr O vaxne pole\u i klassov} = O vashne pole\u\i\ klassov,'' {\sl Izv.\ Akad.\ Nauk SSSR Ser.\ Mat.} {\bf 28},2 (1964), 261--272.
+\smallskip
+\item{[5]} Marshall Hall, Jr., ``Solution of the Burnside Problem for Exponent Six,'' {\sl Illinois J.\ of Math.} {{\bf 2} (1958), 764--786.
+\smallskip
+\item{[6]} Marshall Hall, Jr., {\sl The Theory of Groups}, (New York: MacMillan and Co., 1959), $\hbox{xiii} + 431$ pages.
+\smallskip
+\item{[7]} Philip Hall and Graham Higman, ``On the $p$-length of $p$-soluble groups and reduction theorems for Burnside's Problem,'' {\sl Proc.\ London Math.\ Soc. (3)} {\bf 6} (1956), 1--42.
+\smallskip
+\item{[8]} Friedrich Wilhelm Levi and Bartel Leendert van der Waerden, ``\"Uber eine besondere Klasse von Gruppen,'' {\sl Abh. Math. Sem. Hamburg\/} {\bf 9} (1933), 154--158.
+\smallskip
+\item{[9]} Ivan Nikolaevich Sanov, ``{\cyr Rexenie problemy B\"ernsa\u ida dlya pokazatelya 4} = Reshenie problemy B\"ernsa\u\i da dl\t\i a pokazatel\t\i a 4,'' {\sl Leningrad State Univ.\ Ann\ 10} (1940), 166--170.
+\smallskip
+\item{[10]} Efim Isaakovich Zelmanov, ``{\cyr Rexenie oslablenno\u i problemy Bernsa\u ida dlya grupp nechetnogo pokazatelya} = Reshenie oslablenno\u\i\ problemy Bernsa\u\i da dl\t\i a grupp nechetnogo pokazatel\t\i a,'' {\sl Izv.\ Akad. Nauk SSSR Ser.\ Mat.} {\bf 54},1 (1990) 42--59.
+\smallskip
+\item{[11]} Efim Isaakovich Zelmanov, ``{\cyr Rexenie oslablenno\u i problemy Bernsa\u ida dlya 2-grupp} = Reshenie oslablenno\u\i\ problemy Bernsa\u\i da dl\t\i a 2-grupp,'' {\sl Mat.\ Sb.}, {\bf 182},4 (1991), 568--592.
+\bye
