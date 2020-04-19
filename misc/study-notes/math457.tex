@@ -1,0 +1,320 @@
+\input fontmac
+\input mathmac
+
+\font\ninebf=cmbx9
+
+\def\lcm{\mathop {\rm lcm}}
+\def\Im{\mathop {\rm Im}}
+\def\Sym{\mathop {\rm Sym}}
+\def\End{\mathop {\rm End}}
+\def\Ann{\mathop {\rm Ann}}
+\def\Tor{\mathop {\rm Tor}}
+\def\Spec{\mathop {\rm Spec}}
+\def\Specmax{\Spec_{\max}}
+\def\Nil{\mathop {\rm Nil}}
+\def\Jac{\mathop {\rm Jac}}
+\def\inj{\hookrightarrow}
+\def\surj{\rightarrow\!\!\!\!\!\rightarrow}
+\def\defn{\noindent {\bf Definition.\enspace}}
+\def\bar{\overline}
+\def\mod{\!\!\!\!\pmod}
+
+\maketitle{MATH 457 Review}{by}{Marcel K. Goh}{21 April 2020}
+
+\floattext5 \noindent {\ninebf Note.} \ninept These notes are quite rough and skip over a lot of details. \ninept Most proofs are either omitted or distilled to their main ideas.
+
+\section 1. Rings
+
+A {\it ring} $R$ is a set with operations $+$ and $\cdot$ such that
+\medskip
+\item{i)} $(R,+)$ is an abelian group;
+\smallskip
+\item{ii)} $(R,\cdot)$ is a semigroup;
+\smallskip
+\item{iii)} $\cdot$ distributes over $+$ on both sides:
+$$a\cdot (b+c) = a\cdot b + a\cdot c \quad\hbox{and}\quad (a+b)\cdot c = a\cdot c + b\cdot c$$
+A {\it semiring is the same as a ring} except that condition (i) above becomes
+\medskip
+\item{i')} $(R,+)$ is a monoid with absorbing unit 0.
+\medskip
+A ring is {\it unital} if $(R,\cdot)$ has a unit $1$. We always assume that $1\neq 0$, since if $1=0$ then $R = \{0\}$. Observe that in a unital ring, $(R,+)$ is necessarily abelian. A ring is said to be {\it commutative} if $(R,\cdot)$ is.
+
+Even for commutative rings, there are many possible ring structures for $(R,+) = \Z^2$. For example we can take the {\it Gaussian integers} $\Z[i] = \{a+bi : a,b\in\Z\}$ or the {\it Eisenstein integers} $\Z[\omega] = \{a + b\omega : a,b\in \Z\}$ where
+$$\omega = -{1 + i\sqrt{3} \over 2}.$$
+In both cases the second binary operation is complex multiplication. Since $i$ and $\omega$ are both solutions to equations of the form $x^2 + Bx + C = 0$, they are called {\it quadratic integers} and $\Z[i]$ and $\Z[\omega]$ are called {\it quadratic rings}.
+
+The definition of a ring is meant to describe a class of $\Z$-like objects, but many rings have properties different from the integers. For example, the ring $\Z[\sqrt{-5}]$ does not have Euclidean division. There are also many non-commutative rings such as the {\it Lipschitz quaternions}
+$$\{a + bi + cj + dk : a,b,c,d\in \Z\}$$
+or the {\it Hurwitz quaternions}
+$$\bigg\{a + bi + cj + dk : a,b,c,d\in \Z\ \hbox{or}\ a,b,c,d\in \Z + {1\over 2}\bigg\}.$$
+
+If $R$ is a ring, then a subgroup of $(R,+)$ that is closed under multiplication is called a {\it subring}. If a ring is unital, then any unital subring will have the same unit. A {\it homomorphism} between two rings $R$ and $S$ is a map $f:R\to S$ that preserves both operations:
+$$f(a+b) = f(a) + f(b) \qquad\hbox{and}\qquad f(a\cdot b) = f(a)\cdot f(b)$$
+A homomorphism that preserves the units is called {\it unital}.
+
+An {\it ideal} in a ring $R$ is a subgroup $(I,+)$ such that
+\medskip
+\item{i)} $ab\in I$ for all $a\in R$, $b\in I$;
+\smallskip
+\item{ii)} $ab\in I$ for all $b\in I$, $a\in R$.
+\medskip
+If (i) holds, $I$ is called a {\it left ideal} and if (ii) holds, $I$ is called a right ideal. Let $I \subseteq R$ be an ideal. One defines the {\it quotient ring} $R/I$ as follows. Since $(I,+)$ is a normal subgroup of $(R,+)$, $R/I$ is an abelian group. We associate $r\sim r'$ if $r-r'\in I$. Then we can define multiplication in $R/I$ as $(a+I)(b+I) = ab+I$. This is well-defined because $I$ is an ideal and distributivity holds.
+
+The isomorphism theorems for groups extend to rings as well.
+
+\parenproclaim Theorem A (First isomorphism theorem). Let $f:R\surj S$ be a surjective ring homomorphism. Then $f$ descends to a a ring homomorphism $f' : R/I \to S$ that takes $a+I$ to $f(a)$, where $I$ is the kernel of $f$.\slug
+
+\parenproclaim Theorem B (Second isomorphism theorem). Let $S$ be a subring and $I$ and ideal in a ring $R$. Then $S+I$ is a subring of $R$, $I$ is an ideal in $S+I$, and the map $S \surj (S+I)/I$ is a surjective ring homomorphism with kernel $S\cap I$.\slug
+
+\parenproclaim Theorem C (Third isomorphism theorem). Let $R$ be a ring and $I\subseteq J\subseteq R$ be ideals. Then $R/I \surj R/J$ is a surjective ring homomorphism with kernel $J/I$.\slug
+
+\parenproclaim Theorem D (Fourth isomorphism theorem). Let $f:R\surj S$ be a surjective ring homomorphism. There is a bijection between the ideals in $R$ containing $\ker f$ and the set of all ideals in $S$.\slug
+
+Note that the correspondence in Theorem D works with subrings as well, not just ideals.
+
+An element $r$ in a unital ring $R$ is said to be {\it invertible} if there exists $s\in R$ such that $rs = sr = 1$. The set of invertible elements is denoted $R^\times$ and this is a group under $\times$, called the {\it group of units}. A {\it field} is a ring in which every nonzero element is a unit. Non-commutative fields are called {\it division rings} or {\it skew fields} (the quaternions are an example of a skew field).
+
+Let $K$ be a field. The set $K[x]$ of polynomials with coefficients in $K$ is a ring. Then the set
+$$K(x) = \{ f / g : f,g\in K[x], g\neq 0\}$$
+is a field, called the {\it field of rational functions}. The set $K[[x]]$ is called the {\it ring of formal series}: possibly infinite sums $\sum_{n\geq 0} a_nx^n$. Addition is done pointwise and multiplication is convolution of power series. The map $K[x] \to K[[x]]$ is a homomorphism and some elements become invertible. For example, $1-x$ becomes invertible, since $1/(1-x) = \sum_{n\geq 0} x^n$. Not every element in $K[[x]]$ is invertible, but one can invert the elements to get a new field $K((x))$: the set of sequences $K^\Z$ that are eventually zero when going to the left.
+
+A {\it zero-divisor} is an element $r\in R$, $r\neq 0$ for which there exists $s\in R$ such that $rs = 0$. A ring is {\it cancellative} if $rs = rs'$ implies that $s = s'$. Then we define an {\it integral domain} to be a unital, commutative, cancellative ring. Every integral domain embeds into a field, called the {\it field of fractions}. The construction is analogous to building the rational numbers from the integers.
+
+\proclaim Proposition Z. If $R$ is a ring with unity, there exists a unique unital homomorphism $f:\Z\to R$.\slug
+
+\proof Since $f(1) = 1$, we have $f(n) = 1 + 1 + \cdots + 1 \in R$.\slug
+
+The nonnegative integer $n$ which generates $\ker f$ is called the {\it characteristic} of $R$. The image of $f$ is called the {\it characteristic subring}. For example $\Z/n\Z$ has characteristic $n$.
+
+\proclaim Proposition P. The characteristic of an integral domain $R$ is either $0$ or a prime number.\slug
+
+An {\it algebra} over a commutative ring $R$ is a ring $A$ with a homomorphism $\eta : \R\to A$ whose image lies in the {\it centre} of $A$. Examples of algebras include rings of functions and matrices $M_n(R)$.
+
+For a group $G$ and a ring $R$, we can define the {\it group ring} $G[R]$ as the set of all finitely supported functions from $G$ to $R$. This forms a ring with addition $(f+g)(s) = f(s) = g(s)$ and multiplication $(fg)(s) = \sum_{uv=s} f(u)g(u)$.
+
+\section 2. Ideals
+
+Every element $r$ in a unital ring $R$ generates a {\it principal} ideal $(r)$. More generally any subset $S\subseteq R$ does. The ideal $(S)$ is the intersection of all ideals that contain $S$. If $R$ is commutative, then $(r) = rR = Rr$. In $\Z$, the ideals are the of the form $(n) = n\Z$. Then $(n)\subseteq (m)$ if and only if $m\setminus n$ (this is true in any commutative ring). A ring $R$ in which every ideal is principal is called a {\it principal ring} and if $R$ is also an integral domain, we call it a {\it principal ideal domain} or PID.
+
+Principal ideals determine their generators up to unit. If $(r) = (s)$, then $s = ar$ and $r = bs$ together imply that both $a$ and $b$ are units. Elements $r$ and $s$ of a ring $R$ are called {\it associate} if there exists a unit $a$ such that $r=as$.
+
+We can define three operations on ideals. Let $I,J\subseteq R$ be ideals.
+\medskip
+\item{i)} $I\cap J$ is an ideal.
+\smallskip
+\item{ii)} $I+J = \{a + b : a\in I, b\in J\} = (I\cup J)$ is an ideal.
+\smallskip
+\item{iii)} $IJ = \{ab : a\in I, b\in J\}$ is an ideal.
+\medskip
+
+\proclaim Lemma P. Let $R$ be a commutative ring. Let $I = (S)$ and $J = (T)$ be two ideals. Then $IJ = (ST)$. \slug
+
+In the ring of integers $\Z$, we have $(m)(n) = (mn)$, $(m)\cap(n) = \big(\lcm(m,n)\big)$, and $(m)+(n) = \big(\gcd(m,n)\big)$. When $I\subseteq J$ is an inclusion of ideals, one may think of it as a kind of divisibility $J\setminus I$. For example, $\gcd(m,n)\setminus \lcm(m,n)\setminus mn$.
+
+\proclaim Lemma D. If $I,J\subseteq R$ are ideals, then
+$$IJ \subseteq I\cap J \subseteq I+J.\noskipslug$$
+
+The set of ideals forms a semiring where the two operations are $I+J$ and $IJ$. The semiring in $\Z$ is $\N$ with the addition $m + n = \gcd(m,n)$ and ordinary multiplication.
+
+For an ideal $I\subseteq R$, we define the {\it radical} of $I$ to be the set
+$$\sqrt{I} = \{a \in R : a^n \in I\ \hbox{for some}\ n\in \N\}.$$
+This is an ideal and it has the property that $\sqrt{\sqrt{I}} = \sqrt{I}$. Furthermore, if $I\subseteq J$, then $\sqrt{I} \subseteq \sqrt{J}$.
+
+An ideal $I\subseteq R$ is called {\it maximal} if it is proper and whenever $I\subseteq J\subseteq R$, then either $J = I$ or $J=R$.
+
+\proclaim Lemma M. Let $R$ be a unital ring. Then every proper ideal is included in a maximal ideal.
+
+\proof This is an application of Zorn's Lemma. Let $I$ be a proper ideal and let $X$ be the set of all proper ideals containing $I$, ordered by inclusion. Then this set is inductive (increasing union of ideals is an ideal) so there is a maximal element $M$.\slug
+
+\proclaim Lemma F. Let $R$ be unital and commutative. Then an ideal $I\subseteq R$ is maximal if and only if $R/I$ is a field.
+
+\proof This follows from the fourth isomorphism theorem.\slug
+
+Let $R$ be a unital ring. An ideal $I$ of $R$ is {\it prime} if it is proper and for any ideals $A,B$ of $R$, $AB\subseteq I$ implies that $A\subseteq I$ or $B\subseteq I$. The {\it spectrum} of $R$ is the set of all prime ideals and it is denoted $\Spec(R)$. The {\it maximal spectrum} of $R$, denoted $\Specmax(R)$, is the set of all maximal ideals of $R$.
+
+Maximal ideals are always prime (so $\Specmax(R) \subseteq \Spec(R)$), but not all prime ideals are maximal. For example, $(0)$ is prime in $\Z$ but certainly not maximal. A ring is called {\it local} if it has a unique maximal ideal. A ring $R$ is local if and only if $R\setminus R^\times$ is an ideal.
+
+\proclaim Lemma C. Let $R$ be a unital commutative ring. Let $I\subseteq R$ be a proper ideal. Then $I$ is prime if and only if $ab\in I$ implies that $a\in I$ or $b\in $I.\slug
+
+\proclaim Lemma I. Let $R$ be a unital commutative ring. Then $I\subseteq R$ is a prime ideal if and only if $R/I$ is an integral domain.\slug
+
+Since all fields are integral domains, this proves that all maximal ideals are prime. We also have that a commutative ring $R$ is an integral domain if and only if $(0)$ is a prime ideal in $R$ (if $R$ is not commutative, then we say it is a {\it prime ring}). If $R$ is a PID, then every nonzero prime ideal is maximal.
+
+We can view elements in a commutative unital ring $R$ as ``functions'' on the set $\Spec(R)$ of prime ideals. To $r\in R$ we identify a function $f_r$ such that $f_r(P) = r \bmod P\in R/P$. We have a bundle at every $P\in \Spec(R)$ and a fibre $R/P$ which is an integral domain. The {\it total space} $B(R)$ is the union of $R/P$ over all prime ideals $P$. A {\it section} is a map $s: \Spec(R)\to B(R)$ such that $s(P)\in R/P$. $\Gamma(R)$ is the set of all sections and $\Gamma_{\max}(R)$ is its restriction to $\Specmax(R)$. Let $\pi : R\to \Gamma(R)$ map $r\mapsto f_r$ and $\pi_{\max} : R\to \Gamma_{\max}(R)$ take $r$ to $f_r$, restricted to $\Specmax(R)$. We want to know when $\pi$ and $\pi_{\max}$ are faithful.
+
+\proclaim Proposition K. The kernel of $\pi$ is the intersection of all prime ideals and the kernel of $\pi_{\max}$ is the intersection of all maximal ideals.\slug
+
+For a unital commutative ring $R$, we define the {\it nilradical} of $R$ to be the intersection $\Nil(R) = \bigcap P$ of all prime ideals $P$. The {\it Jacobean radical} is the intersection $\Jac(R) = \bigcap M$ of all maximal ideals $M$. Since $\Specmax(R) \subseteq \Spec(R)$, $\Jac(R) \supseteq \Nil(R)$. An element $r\neq 0$ in a ring $R$ is called {\it nilpotent} if $r^n = 0$ for some $n$. It turns out that there is a connection between nilpotency and prime ideals.
+
+\proclaim Proposition N. Let $R$ be unital and commutative. Then $\Nil(R)$ is the set of all nilpotent elements, i.e.
+$$\sqrt{(0)} = \{r\in R : r^n = 0\ \hbox{for some}\ n\in \N\} = \bigcap_{P\in \Spec(R)} P.$$
+
+\proof To show that a nilpotent element $r$ belongs to every prime ideal $P$, note that $r^n \in P$, so $r\cdot r^{n-1}\in P$ and we can iterate this until we get that $r\in P$. Conversely, if $r$ is not nilpotent, we can let $X$ be the set of ideals $I$ such that $r^n$ is not in $I$ for any $n$. $X$ is nonempty and inductive, so by Zorn's Lemma there is a maximal element and it can be shown that this ideal is prime.\slug
+
+Let $R$ be a commutative ring and let $p\in R$ be a nonzero non-unit. Then $p$ is said to be
+\medskip
+\item{i)} {\it prime} if $p\setminus ab$ implies that $p\setminus a$ or $p\setminus b$;
+\smallskip
+\item{ii)} {\it irreducible} if $p=ab$ implies $a$ is a unit or $b$ is a unit.
+\medskip
+
+To find irreducible elements in a ring, may attempt the ``bisection process''. Let $r\in R$. If $r$ is irreducible, we stop. If $r$ is not irreducible, then $r = r_1 r_2$. If neither is irreducible, we continue by splitting $r_1$ and $r_2$ in the same way. This process may not terminate.
+
+\proclaim Proposition I. Let $R$ be an integral domain. If an element $p\in R$ is prime, then it is irreducible.
+
+\proof. Let $p\in R$ be a prime element. Assume that $p=ab$. This implies that $p\setminus a$ or $p\setminus b$. Say $a = pc$ for some $c\in R$. Then $p=ab=pcb$ and $cb = 1$. So $b$ is a unit.\slug
+
+Note that the converse does not hold. For example, in the ring $\Z[\sqrt{-3}]$, we have $4=(1+\sqrt {-3})(1-\sqrt {-3})$. The element 2 is irreducible, but it is not prime because $2$ divides $4$ but does not divide either of $(1+\sqrt{-3})$ and $(1-\sqrt{-3})$.
+
+\proclaim Proposition A. Let $R$ be an integral domain. Let $p$ be a nonzero element in $R$. Then $p$ is prime if and only if $(p)$ is prime and $p$ is irreducible if and only if $(p)$ is maximal among principal ideals.\slug
+
+This proposition implies that in a PID, irreducible elements are prime.
+
+A ring $R$ is a {\it unique factorisation domain} if every $r\in R$ can be expressed as a product $r = p_1\cdots p_n$ of irreducible elements, which is unique up to the order of the $p_i$. The rings $\Z$, $K[x]$, and $K[x,y]$ are all examples of UFDs. Every PID is a UFD and in a UFD, all irreducible elements are prime.
+
+\proclaim Lemma S. In a PID, every chain of ideals stabilises.
+
+\proof $I = \bigcup_{n\geq 1} I_n$ is an ideal. Since $R$ is a PID, $I = (x)$ for some $x$ and $x\in I_n$ for some $n$. This implies that $I = I_n$.\slug
+
+\proclaim Lemma N. Let $R$ be a unital ring. Then every increasing chain of ideals stabilises if and only if every ideal is finitely generated.
+
+\proof If $I = (x_1,x_2,\ldots)$ is not finitely generated, then $I_n = (x_1,\ldots,x_n)$ is an increasing chain of ideals that does not stabilise. Conversely, if every ideal is finitely generated, then let $I_1\subseteq I_2\subseteq \cdots$ be a chain of ideals and let $I = \bigcup_{n\geq 1} I_n$. There exist $(x_1,\ldots,x_n)$ that generate $I$, so there exists a $k$ such $x_i\in I_k$ for all $i$ and we find that $I = I_k$.\slug
+
+A ring is called {\it Noetherian} if it the equivalent conditions from Lemma N hold.
+
+For elements $r$ and $s$ of a ring, a {\it greatest common divisor} or gcd is an element $d$ dividing both $r$ and $s$ such that if any $d'$ divides both $r$ and $s$, then $d'$ divides $d$. An integral domain $R$ is called a {\it B\'ezout domain} if $(r)+(s)$ is principal for every $r,s\in R$ (of course, every PID is a B\'ezout domain) and it is called a {\it GCD domain} if any two $r,s\in R$ have a gcd. Every UFD is a GCD domain.
+
+\proclaim Lemma B. The following statements regarding B\'ezout domains are true.
+\medskip
+\item{i)} A ring $R$ is B\'ezout if and only if every finitely generated ideal is principal.
+\smallskip
+\item{ii)} A B\'ezout domain is a GCD.
+\smallskip
+\item{iii)} If a ring is both Noetherian and a B\'ezout domain, then it is a PID.\noskipslug
+\medskip
+
+\section 3. Gaussian Integers
+
+Recall from Section 1 that the Gaussian integers are the ring
+$$\Z[i] = \{a + bi : a,b\in \Z\}.$$
+We write $N$ for the complex modulus, squared. So $N(z) = z\bar z = a^2 + b^2$. This is called the {\it norm} and it is a group homomorphism $\C^\times\to \R^\times$, since $N(zz') = N(z)N(z')$. $N(z) = 0$ implies that $z = 0$. The norm $n$ takes $\Z[i]$ to $\N$. The kernel of $N$ on $\C^\times$ is the unit circle $\{z\in \C : |z| = 1\}$. Let $\ker N$ denote the kernel of $N$ restricted to $\Z[i]$, i.e.\ $\{\pm 1, \pm i\}$. These are the units of $\Z[i]$.
+
+The image of $N$ is
+$$\Im(N) = \{n\in \N : n = a^2 + b^2\ \hbox{for some}\ a,b\in \Z\}.$$
+This set is stable under product, since if $n = N(z)$ and $n' = N(z')$, then $nn' = N(zz')$. Gauss was interested in studying the number of integer numbers less than a given $n$ that can be expressed as a sum of two squares. We will return to this point later.
+
+We say that a prime number {\it splits} if it is no longer prime in $\Z[i]$ and we say that it is {\it inert} otherwise.
+
+\proclaim Lemma S. Let $p$ be a prime. Then $p$ is a sum of two squares if and only if it splits in $\Z[i]$.
+
+\proof If $p = a^2 + b^2$ then $p = (a + ib)(a-ib)$ and $N(a+ib)N(a-ib) = p^2$ implies that neither of these factors are units. So $p$ is not prime in $\Z[i]$. Conversely, if $p = \alpha\beta$ in $\Z[i]$, then $N(\alpha) = N(\beta) = p$ means that $p$ is the sum of two squares.\slug
+
+\proclaim Lemma I. A prime $p$ splits if and only if $p\equiv 1 \mod 4$.
+
+\proof If $p$ splits, then by the previous lemma, $p = a^2 + b^2$ and the sum of two squares is never $3$ modulo 4. So if $p$ is an odd prime it is congruent to 1 modulo 4. Conversely, assume that $p\equiv 1\mod 4$. Then $p = 1 + 4n$ for some $n$ and there exists $x\in \Z$ such that $x^2 \equiv 1\mod p$. (In fact, $x = (2n)!$ works.) Then $p$ divides $x^2 + 1 = (x+i)(x-i)$. So $p$ divides $(x+1)$ or $(x-i)$, so $p$ divides $i$ and is not inert.\slug
+
+All this talk of divisibility leads nicely into a discussion of Euclidean division. In $\Z$, the goal of Euclidean division for integers $a$ and $b$ is to find a $q\in \Z$ such that $a-bq$ is small, in some sense. The following proves a similar result in $\Z[i]$.
+
+\proclaim Proposition E. There is a Euclidean division in $\Z[i]$.
+
+\proof. Let $a,b\in \Z[i]$, $b\neq 0$. We can divide them in $\C$ to get $z = a/b$. Then there is a (not necessarily unique) $q\in \Z[i]$ that is of minimal distance to $z$. We have $|z-q|<1$; in fact $|z-q| \leq \sqrt{2}/2 < 1$. So $|a-bq| < |b|$.\slug
+
+Let us now define this generally. An integral domain $R$ is a {\it Euclidean domain} if there exists a function $N : R\to \N$ called the {\it norm} such that $N(0) = 0$ and for all $a,b\in R$, $b\neq 0$, either $b$ divides $a$ or there exists $q\in R$ such that $N(a-bq) < N(b)$. Proposition E showed that $Z[i]$ is a Euclidean domain with the complex norm, and other familiar examples include $\Z$ with the absolute value function and $K[x]$ with the degree of a polynomial as its norm. In general, the Euclidean division algorithm does not give a unique answer. Even in $\Z$, we can end up with $q$ or $-q$ as a quotient.
+
+\proclaim Proposition T. $\Z[\sqrt{-2}]$ is a Euclidean domain.
+
+\proof We repeat the same proof as for $\Z[i]$ except for the computation of $|z-q|$, which is now $\leq \sqrt{3}/2$.\slug
+
+Recall that $\Z[\sqrt{-3}]$ is not a Euclidean domain. It is not even a UFD, since $4 = 2\cdot 2 = (1+\sqrt{-3})(1-\sqrt{-3})$. But $\Z[\sqrt{-3}]\subseteq \Z[\omega]$ and this is a Euclidean domain, with norm $N(a+b\omega) = a^2 - ab + b^2$. The units in $\Z[\omega]$ are the elements of norm 1: $\{\pm 1, \pm \omega, \pm \omega^2\}$ and we have unique factorisation up to units.
+
+\proclaim Proposition P. Every Euclidean domain is a PID (and consequently a UFD).
+
+\proof Let $R$ be a Euclidean domain and $I\subseteq R$ an ideal. Let $b\neq 0$ be an element of $I$ of minimal norm. If $a\in I$ then $b$ divides $a$. Otherwise, there exists $q\in R$ such that $N(a-bq) < N(b)$, contradicting the minimality of $b$'s norm. So $I$ is principal.\slug
+
+A corollary of this fact is that every ideal in $\Z[i]$ is principal.
+
+\section 4. Modules
+
+For any set $X$, the set of symmetries $\Sym(X)$ is a group and an action of a group $G$ on $X$ is a group homomorphism $G\to \Sym(X)$. If $X$ is a group, we can define the {\it ring of endomorphisms} $\End(X)$ as the set of group homomorphisms from $X$ to $X$.
+
+\proclaim Lemma M. Let $M$ be an abelian group. Then $\End(M)$ is a ring.
+
+\proof Addition is pointwise addition from $M$ and multiplication is composition of maps.\slug
+
+Let $R$ be a a unital commutative ring. A {\it module} $M$ over $R$ is a ring homomorphism $R\to \End(M)$. Explicitly, the list of axioms of a module are very similar to those of a vector space (in fact, if $R$ is a field, then a module is a vector space). For $r,s\in R$ and $m,n\in M$, we have
+\medskip
+\item{i)} $r(m+n) = rm + rn$;
+\smallskip
+\item{ii)} $(r+s)m) = rm + sm$;
+\smallskip
+\item{iii)} $(rs)m = r(sm)$;
+\smallskip
+\item{iv)} $1m = m$.
+\medskip
+These axioms also work if $R$ is not commutative; in this case, we call $M$ a {\it left $R$-module}. The kernel of $R\to \End(M)$ is called the {\it annihilator} of $M$:
+$$\Ann(M) = \{r\in R : rm = 0\ \hbox{for all}\ m\in M\}$$
+A module is said to be {\it faithful} if $\Ann(M)$ is trivial. If $M$ is an $R$-module, then $M$ is a faithful $S$-module where $S = R/\Ann(M)$.
+
+\proclaim Proposition I. Any ideal $I$ in a ring $R$ is a module over $R$.
+
+\proof For $a\in I$ and $r\in R$, we have $ra\in I$. The rest of the axioms follow.\slug
+
+Quotients $R/I$ are also modules. When $R = \Z$, the action is determined by the group structure in $M$. For example,
+$$2m = (1 + 1)m = 1m + 1m = m + m.$$
+When $R = K[x]$ for some field $K$, we have the following interesting lemma.
+
+\proclaim Lemma V. $K[x]$-modules are operators on vector spaces and vice versa.
+
+\proof Let $M$ be a $K[x]$-module. The restriction of the $K[x]$ action to $K$ gives a $K$-module structure on $M$. This is a vector space. Furthermore, the indeterminate $x$ also acts on $M$ by taking $m\mapsto xm$. This gives a map $x: M \to M$ such that $x(m + n) = x(m)$ and $x(rm) = (xr)m = (rx)m = r\cdot x(m)$. So $x$ is a linear map.
+
+Conversely, if $V$ is a $K$-vector space, and $T:V\to V$ is a linear map, then $V$ is a $K[x]$-module, because for any $p\in K[x]$, $p(T)$ is a linear map on $V$.\slug
+
+Note that the module is not faithful, because $K[x]$ has infinite dimension but $\End(V)$ has finite dimension when $V$ has finite dimension. If $G$ is a group, $K[G]$ is the group ring and a $K[G]$-module is a linear representation of $G$.
+
+A {\it submodule} $M'$ of $M$ is a subgroup that is stable under the action of the ring, i.e.\ for all $m, n\in M'$ and $r\in R$, $m+rn\in M'$. For example, ideals are submodules of $R$ and if $M$' is a submodule, we can define the {\it quotient module} $M/M'$ with the action of $R$:
+$$ r(m+M') = rm + M'$$
+If $M$ and $M'$ are modules, then $M\times M'$ is a module. If a module has no proper nontrivial submodules, then it is called {\it simple}.
+
+An $R$-module map is a group homomorphism $f:M\to M'$ such that $f(rm) = rf(m)$ for all $r\in R$ and $m\in M$. The kernel $\ker f$ is a submodule of $M$ and the image of $f$ is a submodule of $M'$. The isomorphism theorems for modules are exactly analogous to the ones given for rings in Section 1.
+
+\parenproclaim Lemma S (Schur's lemma). Let $M$ be a simple module. Then $\End_R(M)$ is a skew field.
+
+\proof Let $f:M\to M'$ be a module map that is not identically zero. The kernel of $f$ is a submodule of $M$, so since $f\neq 0$, $\ker f = \{0\}$. Then the image of $f$ is a submodule of $M'$ since $f\neq 0$, $\Im f = M'$. Hence $f$ is an isomorphism.\slug
+
+If $M$ is an $R$-module and $I\subseteq R$ is an ideal, then
+$$IM = \Big\{\sum r_im_i : r_i\in I, m_i\in M\Big\} \subseteq M$$
+is a submodule.
+
+\parenproclaim Theorem C (Chinese remainder theorem). Let $I,J$ be ideals in a ring $R$. Let $M$ be an $R$-module. Then the map
+$$M\to M/IM \times M/JM$$
+has kernel $IM\cap JM$.\slug
+
+If $I+J = R$ then the map is surjective and $(I\cap J)M = IJM$. With $n$ ideals such that $I_k + I_l = R$ for $k\neq l$, we have
+$$M/(I_1\cdots I_n)M \cong M/I_1M \times \cdots \times M/I_nM.$$
+
+Let $M$ be an $R$-module. If $A\subseteq M$, then
+$$(A) = \Big\{\sum r_ia_i : r_i\in R, a_i \in A\Big\}$$
+is the submodule of $M$ {\it generated} by $A$. A module is {\it finitely generated} if it admits a finite generating set and {\it cyclic} (or {\it singly generated}) if it is generated by one element. If $M = (a)$ is cyclic, then the map $R\to M$ that sends $r\mapsto ra$ is surjective with kernel $\Ann(M)$.
+
+\proclaim Lemma P. Let $R$ be an integral domain. Then the nonzero principal ideals are isomorphic to $R$.
+
+\proof Let $I = (a)$ be an ideal (so it is an $R$-module). If $r\in \Ann(I)$ then $r$ is a zero divisor. So $R\to I$ is an isomorphism.\slug
+
+A finitely generated $R$-module $M$ is called {\it free} if it is isomorphic to $R^n$ for some $n$. For example, if $R$ is a field, every module (finite-dimensional vector space) is free. Equivalently, an $R$-module is free if there exists a basis, that is, a generating set $A$ such that any $m\in M$ can be written in a unique way as a finite sum
+$$m = \sum_{a\in A} r_a a.$$
+The set $A$ is called a {\it free generating set} and the cardinality of $A$ is called the {\it rank} of $M$.
+
+In a PID, every ideal is a free module (isomorphic to the ring itself). For any set $A$ and ring $R$, we can let $F_A$ be the set of all functions from $A$ to $R$ with finite support. This is a group under pointwise addition and $r$ acts on $F_A$: $(rf)(a) = r\cdot f(a)$. A basis for $F_A$ is the set $(\delta_a)_{a\in A}$ of delta functions, where $\delta_a(b) = 1$ if $b=a$ and $0$ otherwise.
+
+\parenproclaim Proposition U (Universal property of free modules). Let $\phi$ be a map from a set $A$ to an $R$-module $M$. Then there is a unique extension of $\phi$ to a module map $\bar\phi : F_A\to M$.
+
+\proof Take any element $f\in F_A$ and express it as
+$$f = \sum_{a\in A} r_a\delta_a$$
+for some $r_a\in R$. Then let $\bar\phi$ be given by
+$$\bar\phi(f) = \sum_{a\in A} r_a\phi(a).\noskipslug$$
+
+\proclaim Proposition S. Let $N\inj M \surj F$ be a short exact sequence of modules (so $F \cong N/M$), where $F$ is a free module. Then the sequence splits, i.e.\ $M\cong N\oplus F$.
+
+\proof We need to construct the section $s$ of $\pi : M\surj F$.
+
+\bye
