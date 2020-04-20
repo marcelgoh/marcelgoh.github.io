@@ -9,6 +9,7 @@
 \def\Ev{\mathop {\rm Ev}}
 \def\Sym{\mathop {\rm Sym}}
 \def\Aut{\mathop {\rm Aut}}
+\def\Gal{\mathop {\rm Gal}}
 \def\End{\mathop {\rm End}}
 \def\Ann{\mathop {\rm Ann}}
 \def\Tor{\mathop {\rm Tor}}
@@ -23,7 +24,7 @@
 \def\mod{\!\!\!\!\pmod}
 \def\F{{\bf F}}
 
-\maketitle{MATH 457 Honours Algebra 4\footnote{$^*$}{\eightpt Course given by Prof. Mika\"el Pichot at McGill University}}{Notes by}{Marcel K. Goh}{23 April 2020}
+\maketitle{MATH 457 Honours Algebra 4\footnote{$^*$}{\eightpt Course given by Prof.\ Mika\"el Pichot at McGill University}}{Notes by}{Marcel K. Goh}{23 April 2020}
 
 \floattext5 \noindent {\ninebf Note.} \ninept These notes are rough and may skip over some details. \ninept Some proofs are either omitted or distilled to their main ideas.
 
@@ -359,7 +360,7 @@ But $\pi(M)$ is a submodule of $R^n$ so, by the induction hypothesis, it is free
 
 A module $M$ over a unital ring $R$ is called a {\it Noetherian module} if every submodule is finitely generated.
 
-\proclaim Propostion N. Let $M$ be a left $R$-module. The following are equivalent:
+\proclaim Proposition N. Let $M$ be a left $R$-module. The following are equivalent:
 \medskip
 \item{i)} $M$ is Noetherian.
 \smallskip
@@ -502,8 +503,60 @@ For example, the polynomial $f = x^4 - 1$ has roots $\pm 1, \pm i$. When $K = \Q
 
 The following theorem shows that splitting fields are unique up to $K$-isomorphism.
 
-\parenproclaim Theorem K (Kronecker, {\rm 1887}). Let $f\in K[x]$ be an irreducible polynomial. Let $\alpha$ and $\alpha'$ be two roots of $f$ in two splitting fields $L/K$ and $L'/K$ respectively. Assume the existence of a map $\theta_0 \in \Aut(K)$ that fixes coefficients of $f$. Then there exists an isomorphism $\theta : L \to L'$ such that $\theta_{|K} = \theta_0$ and $\theta(\alpha) = \alpha'$.
+\parenproclaim Theorem K (Kronecker{\rm, 1887}). Let $f\in K[x]$ be an irreducible polynomial. Let $\alpha$ and $\alpha'$ be two roots of $f$ in two splitting fields $L/K$ and $L'/K$ respectively. Assume the existence of a map $\theta_0 \in \Aut(K)$ that fixes coefficients of $f$. Then there exists an isomorphism $\theta : L \to L'$ such that $\theta_{|K} = \theta_0$ and $\theta(\alpha) = \alpha'$.
 
-\proof Extend $\theta_0$ to $\bar{\theta_0} : K[x]\to K[x]$. Then since $\theta_0$ fixes the coefficients of $f$, $\bar{\theta_0}(f) = f$. By the uniqueness of the Kronecker extension, there is an extension $\theta_1 : K(\alpha) \to K(\alpha)$ such that $\theta_1(\alpha) = \alpha'$ and $\theta_1_{|K} = \theta_0$. Write $f = (x - \alpha)f_1
+\proof The proof is by strong induction on $n = \deg f$. If $f$ splits in $K[x]$, then $L = K = L'$. We can take $\theta = \theta_0$, finishing the case when $n=1$ and when every irreducible factor of $f$ has degree 1.
+
+Now we assume that the theorem is proved for any field $K$, automorphism $\theta_0$ and polynomial $f$ of degree less than $n$. Now let $p\in K[x]$ be an irreducible factor of $f$ of degree at least 2. If $\alpha\in L$ and $\alpha'\in L'$ are roots of $p$, then we can extend $\theta_0$ to an isomorphism $\theta : K(\alpha) \to K(\alpha')$. Let $K_1 = K(\alpha)$ and ${K_1}' = K(\alpha')$ for short. We have $f = (x-\alpha)f_1$ in $K_1$ and $f = (x-\alpha'){f_1}'$ in ${K_1}'$ where $f_1$ and ${f_1}'$ have degree $n-1$. Now $L$ is a splitting field for $f_1$ over $K_1$ and $L'$ is a splitting field for ${f_1}'$ over ${K_1}'$. Since the degrees of $f_1$ and ${f_1}'$ are less than $n$, by the induction hypothesis there is an isomorphism $\theta^* : L \to L$ that extends the isomorphism $\theta : K_1 \to {K_1}'$. The restriction of $\theta^*$ to $K_1$ is $\theta$, and the restriction of that onto $K$ is $\theta_0$.\slug
+
+Let $L/K$ and $L'/K$ be field extensions. A {\it $K$-embedding} $L \inj L$ is an injective homomorphism that fixes $K$. If $\theta : L\to L'$ is a bijection, we call it a {\it $K$-automorphism}. The {\it Galois group} of a polynomial $f\in K[x]$ is the group of $K$-automorphisms of a splitting field of $K$. If $L$ is a splitting field, we denote this group by $\Gal(L/K)$ or $\Aut(L/K)$. For short, we may use the notation $\Gal(f)$ for a polynomial $f$, but this is only well-defined up to conjugacy. If $L/K$ and $L'/K$ are two splitting fields, then by Theorem K there exists a $K$-isomorphism $\theta:L\to L'$ and $\Aut(L/K) \cong \Aut(L'/K)$.
+
+\proclaim Lemma A. Let $R$ be the roots of a polynomial $f$. Then $\Gal(f)$ acts on $R$.
+
+\proof If $\theta\in \Gal(f)$ and $f(\alpha) = 0$, we have
+$$\alpha^n + \lambda_{n-1}\alpha^{n-1} + \cdots + \lambda_1\alpha + \lambda_0 = 0$$
+and
+$$\theta(\alpha)^n + \lambda_{n-1}\theta(\alpha)^{n-1} + \cdots + \lambda_1\theta(\alpha) + \lambda_0 = 0$$
+so $\theta(\alpha)\in R$. This defines an action $\Gal(f) \to \Sym(R)$.\slug
+
+\proclaim Proposition F. The action of $\Gal(f)$ on the set of roots $R$ is faithful.
+
+\proof Let $L = K(R) = K(\alpha_1,\ldots,\alpha_n)$ be a splitting field. Suppose that $\theta\in \Gal(f)$ acts trivially on $R$, i.e.\ $\theta(\alpha_i) = \alpha_i$ for all $i$. Since $\theta_{|K} = \Id$, $\theta = \Id$ as an automorphism of $L$.\slug
+
+We have established that $\Gal(f) \inj \Sym(R)$ is a group of permutations of the roots of $f$.
+
+\proclaim Proposition O. Let $\Gal(f)$ act on the set $R$ of roots of $f$. Then the orbit $\Gal(f)\alpha$ of $\alpha\in R$ is the set $R_1$ of roots of $f_1$ where $f_1$ is the irreducible factor of $f$ such that $f_1(\alpha) = 0$.
+
+\proof If $f_1(\alpha) = 0$, since $f_1\in K[x]$. we have $f_1\big(\theta(\alpha)\big) = 0$ so $\theta(\alpha)\in R_1$ (the set of roots of $f_1$). Thus $\theta(R) \subseteq R_1$. Furthermore, since $f_1$ is irreducible, Kronecker's uniqueness theorem shows that for any two roots $\alpha$ and $\beta$ of $f_1$, there exists some $\theta_i : L\to L$ such that $\theta_i(\alpha) = \beta$. So $\Gal(f)\alpha = R_1$.\slug
+
+As a corollary, if $f$ is already irreducible, then $\Gal(f)$ is transitive. In general, it is not tractable to classify all the transitive subgroups (up to conjugacy) of $S_n$. This has been done for small $n$, however; for example, when $n = 6$ there are 16 different possible subgroups.
+
+Let us look at an example. Consider $f = (x^2 - 2)(x^2 - 3)$ over the field $K = \Q$. Then $R = \{\pm \alpha = \sqrt 2, \pm \beta = \sqrt 3\}$ and $L = \Q(\alpha, \beta)$. The Galois group cannot take $\sqrt 2$ to $\sqrt 3$ because such a permutation does not preserve the relations between the roots: If $\theta(\alpha) = \beta$, then $2 = \theta(\alpha^2) = \theta(\alpha)^2 = 3$, a contradiction. In this case, $\Gal(f)$ is the Klein four-group $V$. Let $\theta_2$ be the permutation that switches $\pm \sqrt 2$ and let $\theta_3$ transpose $\pm \sqrt 3$. Then the two commute and generate a group isomorphic to $V$.
+
+As another example, consider $f = x^4 - 2$ over $K = \Q$. Eisenstein's criterion with $p=2$ tells us that $f$ is irreducible, and the set of roots turns out to be $R = \{\pm \alpha = \root 4 \of 2, \pm \beta = i \root 4 \of 2\}$. The splitting field is $L = \Q(\alpha, \beta)$. We can employ a useful trick, namely that {\sl if the coefficients of $f$ are real, then complex conjugation permutes the roots.} This gives us an element in $\Gal(f)$ of order 2: the permutation that fixes $\alpha$ and takes $\beta\mapsto -\beta$. In any case, we will employ a more general method to compute $\Gal(f)$. Let $\theta\in \Gal(f)$. Since $\alpha^2 + \beta^2 = 0$, we have
+$$\theta(\alpha)^2 + \theta(\beta)^2 = 0.$$
+Suppose that $\theta(\alpha) = \beta$. Then $\theta(\beta)^2 = -\beta^2$ and $\theta(\beta)$ is $\pm i\beta$. If $\theta(\beta) = -i\beta = \alpha$, then we have the order 2 automorphism
+$$s = (\alpha \leftrightarrow \beta, -\alpha\leftrightarrow-\beta).$$
+If, instead, we have $\theta(\beta) = i\beta = -\alpha$, then we have the order 4 automorphism
+$$r = (\alpha \mapsto \beta \mapsto -\alpha \mapsto -\beta \mapsto \alpha).$$
+We conclude that $\Gal(f) = \langle r,s \rangle = D_4$.
+
+A field is {\it algebraically closed} if every $f\in K[x]$ admits a root in $K$. For example, $\C$ is algebraically closed. Every algebraically closed field is infinite. The Kronecker construction tells us that for any finite set $F\subseteq K[x]$, there is a finite extension $L$ of $K$ such that every polynomial $f\in F$ splits in $L$. We can extend our definition of a splitting field to (not necessarily finite) subsets of $K[x]$. Then an {\it algebraic closure} of $F$ is a splitting field for $K[x]$.
+
+The following theorem gives the existence and uniqueness (up to $K$-isomorphism) of the algebraic closure $\bar K$ for every field $K$. The construction is ``universal'' in the sense that if $L/K$ is an algebraic extension, then there exists a $K$-embedding $L\inj \bar K$.
+
+\parenproclaim Theorem S (Steinitz{\rm, 1910}). Let $K$ be a field. There exists an algebraic closure $\bar K$ of $K$ and this extension is unique up to $K$-isomorphism.
+
+\proof First we show existence. Let $\frak A$ be the set of all algebraic extensions of $K$, ordered by set inclusion. Observe that $\frak A$ is inductive; indeed, if $L_1\subseteq L_2\subseteq \cdots$ is a chain, then $\bigcup_{i=1}^\infty L_i$ is in $\frak A$. By Zorn's Lemma, there exists a maximal element of $\frak A$, call it $L$. We claim that $L$ is algebraically closed. Let $f\in L[x]$ be a polynomial. By the Kronecker construction, there is an extension $L(\alpha)$ of $L$. Then $L(\alpha)$ is algebraic and $L\subseteq L(\alpha)$. Since $L$ is a maximal element in $\frak A$, $L = L(\alpha)$ and $f$ admits a root in $L$.
+
+Next we show uniqueness of the algebraic closure. It is enough to show that if $L$ is algebraic over $K$, then $L\inj \bar K$ (if there were two algebraic closures, this would make them isomorphic). So fix an algebraic extension $L/K$. Consider the set of all intermediate extensions $K\subseteq L_\phi\subseteq L$ and for each $L_\phi$ there exists an embedding $\phi : L_\phi \to \bar K$. Let $\frak B$ be the set of all such $\phi$, partially ordered in the following manner: $\phi \leq \phi'$ if $L_\phi \subseteq L_{\phi'}$, i.e.\ $\phi'$ extends $\phi$.
+
+The poset $\frak B$ is inductive, since if $\phi_1 \leq \phi_2 \leq \cdots$, then we can let
+$$L_\phi = \bigcup_{i=1}^\infty L_{\phi_i}.$$
+For any $\alpha\in L_\phi$, we have $\alpha\in L_{\phi_i}$ for some $i$ and we can simply set $\phi(\alpha) = \phi_i(\alpha)$. (This does not depend on the choice of $i$ since the functions extend one another.) By Zorn's Lemma, $\frak B$ admits a maximal element $\phi : L_\phi \to \bar K$. We want to show that $L_\phi = L$. If not, then there exists $\alpha\in L\setminus L_\phi$. By the uniqueness of Kronecker, $\phi: L_\phi \to \bar K$ admits an extension $\bar\phi : L_\phi(\alpha) \to \bar K$. But since $\bar \phi$ is an extension of $\phi$, by the maximality of $\phi$ we have $\phi= \bar\phi$ so $\alpha\in L_\phi$.\slug
+
+As corollaries of Theorem S we have $\bar K = \bar{\bar K}$ and if $L/\bar K$ is algebraic, then $L = \bar K$.
+
+
 
 \bye
