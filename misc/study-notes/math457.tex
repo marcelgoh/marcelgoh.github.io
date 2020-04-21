@@ -13,6 +13,7 @@
 \def\End{\mathop {\rm End}}
 \def\Ann{\mathop {\rm Ann}}
 \def\Tor{\mathop {\rm Tor}}
+\def\sep{{\rm sep}}
 \def\Spec{\mathop {\rm Spec}}
 \def\Specmax{\Spec_{\max}}
 \def\Nil{\mathop {\rm Nil}}
@@ -23,6 +24,7 @@
 \def\bar{\overline}
 \def\mod{\!\!\!\!\pmod}
 \def\F{{\bf F}}
+\def\bsep#1{[#1]_{\sep}}
 
 \maketitle{MATH 457 Honours Algebra 4\footnote{$^*$}{\eightpt Course given by Prof.\ Mika\"el Pichot at McGill University}}{Notes by}{Marcel K. Goh}{23 April 2020}
 
@@ -473,11 +475,11 @@ There are other many other criteria for reducibility/irreducibility; we give two
 
 \parenproclaim Theorem C (Cohn's criterion). Suppose that $p$ is prime and in some base $b$,
 $$p = a_nb^n + \cdots + a_1b + a_0.$$
-Then $f = a_nx^n + \cdots + a_1x + a_0$ in $\Z[x]$.\slug
+Then $f = a_nx^n + \cdots + a_1x + a_0$ is irreducible in $\Z[x]$.\slug
 
 \parenproclaim Lemma G (Gauss' lemma). Let $R$ be a UFD with fraction field $K$ and let $f\in R[x]$ be a polynomial of degree $n$ such that $\gcd(a_n, \ldots, a_0) = 1$. If $f$ is reducible in $K[x]$, then $f$ is reducible in $R[x]$.\slug
 
-Gauss' lemma is often applied with $R = \Z$ and $K = \Q$.
+Gauss' lemma is often applied with $R = \Z$ and $K = \Q$. It says that it $f$ is irreducible in $\Z[x]$, then it is irreducible in $\Q[x]$.
 
 \section 7. Splitting Fields
 
@@ -557,6 +559,127 @@ For any $\alpha\in L_\phi$, we have $\alpha\in L_{\phi_i}$ for some $i$ and we c
 
 As corollaries of Theorem S we have $\bar K = \bar{\bar K}$ and if $L/\bar K$ is algebraic, then $L = \bar K$.
 
+\proclaim Proposition R. Let $K$ be a field and $f\in K[x]$ monic and irreducible. Let $\alpha,\beta\in \bar K$ be roots of $f$. Then there exists $\theta\in \Aut_K(\bar K)$ such that $\theta(\alpha) = \beta$. Conversely, if $\theta(\alpha) = \beta$ then $\alpha$ and $\beta$ have the same minimal polynomial.
 
+\proof Theorem K provides an isomorphism $\theta : K(\alpha) \to K(\beta)$ such that $\theta(\alpha) = \beta$. Then Theorem S extends $\theta$ (not uniquely) to a map in $\Aut_K(\bar K)$. Conversely, if $\theta$ fixes $K$ then it fixes the coefficients of the minimal polynomial of $\alpha$ and $\beta$.\slug
+
+The group $\Aut_K(\bar K)$ is called the {\it absolute Galois group} over $K$ and it acts on $\bar K$ with finite orbits. The orbits are precisely the set of roots of irreducible polynomials in $K[x]$.
+
+\proclaim Theorem N. Let $K \subseteq L\subseteq \bar K$ be an intermediate extension of $K$. The following are equivalent:
+\medskip
+\item{i)} $L/K$ is a splitting field for a subset of polynomials over $K$.
+\smallskip
+\item{ii)} Every irreducible polynomial $f\in K[x]$ which admits a root in $L$ splits in $L$.
+\smallskip
+\item{iii)} For all $\theta\in \Aut_K(\bar K)$, $\theta(L) = L$.
+\medskip
+
+\proof Conditions (i) and (ii) are clearly equivalent. To show that (ii) implies (iii), let $\theta\in \Aut_K(\bar K)$ and $\alpha\in L$. There exists $f\in K[x]$ irreducible such that $f(\alpha) = 0$. So $\theta(\alpha)$ is a root of $f$ and $\theta(\alpha)\in L$. Lastly, suppose (iii) holds. Let $f\in K[x]$ be an irreducible polynomial and let $\alpha\in L$ be a root of $f$. If $\beta$ is another root of $f$, by Proposition R there is a $\theta\in \Aut_K(\bar K)$ that takes $\alpha$ to $\beta$, and by hypothesis, $\theta(L) = L$, so $\beta\in L$.\slug
+
+Any intermediate extension satisfying the equivalent conditions of Theorem N is called a {\it normal} extension. For any normal extension $L$, and any $\theta\in \Aut_K(\bar K)$, we can restrict $\theta$ to $L$. This gives a surjective group homomorphism from $\Aut_K(\bar K)$ to $\Aut_K(L)$. The latter is denoted $\Gal(L/K)$ and is called the {\it Galois group} of $L/K$.
+
+\section 8. Separable Extensions
+
+Besides normality, there is another important concept in the Galois theory called separability. Let $f\in K[x]$ be irreducible and $L = K[x]/(f) = K(\alpha)$ be the Kronecker extension, where $\alpha$ is the abstract root, and let $\bar K$ be an algebraic closure of $K$. How many $K$-embeddings $L\inj \bar K$ are there? This number is called the {\it separable degree} of $L/K$ and is denoted $\bsep{L:K}$. This is the degree of an intermediate subfield $L_\sep\subseteq L$, called the {\it separable closure} of $K$ in $L$. Then
+$$\bsep{L:K} = [L_\sep : K].$$
+We define the {\it separable degree} $\deg_\sep(f)$ to be the number fo distinct roots of $f$ in a splitting field. Thus if $\alpha$ is a root in an extension $K(\alpha)$ of $K$ and $f_\alpha$ is its minimal polynomial, then
+$$\bsep{K(\alpha):K} = \deg_\sep(f_\alpha).$$
+A polynomial $f$ is called {\it separable} if its roots are all distinct, i.e.\ $\deg(f) = \deg_\sep(f)$. We can make similar definitions for an element $\alpha$ of an extension. Its {\it separable degree} is the separable degree of its minimal polynomial and it is {\it separable} if its minimal polynomial is separable. This is equivalent to $\bsep{K(\alpha):K} = [K(\alpha):K]$.
+An algebraic extension is {\it separable} if it contains only separable elements. The ``universal property'' in Theorem 7S gives us the multiplicativity formula
+$$\bsep{M:K} = \bsep{M:L} \bsep{L:K}$$
+whenever $K\subseteq L\subseteq M$ is a chain of algebraic extensions.
+
+\proclaim Proposition M. Let $L = K(\alpha_1,\alpha_2,\ldots,\alpha_n)$ be an algebraic extension. Then $\bsep{L:K} \leq [L:K]$ and the following are equivalent:
+\medskip
+\item{i)} The elements $\alpha_1,\alpha_2,\ldots,\alpha_n$ are separable over $K$.
+\smallskip
+\item{ii)} $\bsep{L:K} = [L:K]$.
+\smallskip
+\item{iii)} Every element of $L$ is separable over $K$.
+\medskip
+
+\proof By invoking the multiplicativity of degrees, it is enough to prove the proposition for a primitive extension $K(\alpha)$. The equivalence of (i) and (ii) is discussed above and (iii) trivially implies (i). So we prove that (ii) implies (iii). If $\beta\in K(\alpha)$, then $K\subseteq K(\beta) \subseteq K(\alpha) = L$ and
+$$[L:K] = [K(\alpha) : K(\beta)][K(\beta) : K].$$
+If $\alpha$ is separable over $K$, then it is also separable over $K(\beta)$ so
+$$[K(\alpha):K(\beta)] = \bsep{K(\alpha):K(\beta)}.$$
+Thus if we assume that $\bsep{L:K} = [L:K]$, then we also have $\bsep{K(\beta) : K} = [K(\beta) : K]$ so $\beta$ is separable over $K$.\slug
+
+A {\it Galois extension} is an extension that is algebraic, normal, and separable.
+
+\proclaim Proposition G. An extension is Galois if and only if it is the splitting field of a family of separable polynomials.
+
+\proof If an extension is the splitting field of a family of separable polynomials then it is clearly normal and separablility comes from the fact that $L/K$ is generated by the roots of separable polynomials. Conversely, if $\alpha\in L$, then the minimal polynomial of $\alpha$ splits into linear factors in $L$ with no multiple roots, so the extension is both normal and separable.\slug
+
+If $K\subseteq L\subseteq M$ is a tower of extensions, then $M/K$ may not be Galois even though $M/L$ and $L/K$ are. In particular, the normality condition may fail. The standard example is
+$$\Q \subseteq \Q[\sqrt 2] \subseteq \Q[\root 4\of 2].$$
+The extension $\Q[\root 4\of 2]$ is not normal, but the intermediate extensions are quadratic extensions and therefore Galois. However, it is true that $M/K$ is separable if and only if $M/L$ and $L/K$ are separable.
+
+Earlier, for an extension $L/K$ we defined an intermediate subfield $L_\sep\subseteq L$ called the separable closure of $K$ in $L$. This is the set of elements in $L$ which are separable over $K$. Since $L_\sep/K$ is separable, $[L_\sep:K]$ is exactly the number of $K$-embeddings from $L_\sep\inj \bar K$. Since $\bar K$ contains the roots of every polynomial in $K[x]$, we can define the {\it separable closure} of $K$ to be $K^\sep = \bar K_\sep$. A field is called {\it perfect} if every irreducible polynomial over it is separable. We will prove that $\bar K_\sep = \bar K$ if and only if $K$ is perfect.
+
+For a polynomial $f\in K[x]$, we define its {\it derivative} $f'\in K[x]$ in the the usual way. If $f(x) = a_nx^n + \cdots + a_1x + a_0$, then $f'(x) = na_nx^{n-1} + \cdots + a_1$.
+
+\proclaim Lemma D. Let $K$ be a field. Then $f$ is separable if and only if $f$ and $f'$ have no common root in $\bar K$, which is true if and only if $\gcd(f,f') = 1$.
+
+\proof Observe that $\gcd(f,f')\neq 1$ if and only if $f$ and $f'$ have a common irreducible factor and this is equivalent to them having a common root in $\bar K$. If $\alpha\in \bar K$ is a root of $f$, then $f = (x-\alpha)g$ for some $g$ and by the product rule, $f' = g + (x-\alpha)g'$ so if $\alpha$ is also a root of $f'$, then $g(\alpha) = 0$ and $f = (x-\alpha)^2h$ for some $h$. Conversely, if $f = (x-\alpha)^2h$ for some $h$, then $\alpha$ is a root of both $f$ and $f'$.\slug
+
+If $K$ is a field and $f$ is irreducible, then $f$ is separable if and only if $f' \neq 0$. If the characteristic is zero, then $\deg(f') = \deg(f) - 1$, so $f' \neq 0$ is equivalent to $f$ being a nonconstant irreducible. Thus fields of characteristic zero are perfect. A field of characteristic $p$ is perfect if the Frobenius map that takes $x\mapsto x^p$ is surjective.
+
+\section 9. Fixed Fields
+
+Let $G$ be a semigroup and $L$ be a field. A {\it multiplicative character} is a map $\chi : G\to L$ which is multiplicative:
+$$\chi(st) = \chi(s)\chi(t)$$
+
+\parenproclaim Lemma D (Dedekind's lemma). Multiplicative characters on a semigroup are linearly independent, i.e.\ if $\chi_1,\ldots,\chi_n$ are distinct and there exist $\beta_i\in L$ such that
+$$\sum_{i=1}^n \beta_i\chi_i = 0,$$
+then all $\beta_i$ are 0.
+
+\proof The proof is by induction. If $n=1$, then $\beta_1\chi_1(s) = 0$ for all $s$ implies that $\beta = 0$. Now assume the lemma holds for $n$ and assume that $\sum_{i=1}^{n+1} \beta_i\chi_i = 0$. Then for any $s,t\in G$, we infer from multiplicativity that
+$$\sum_{i=1}^{n+1} \beta_i\chi_i(s)\chi_i(t) = 0.$$
+On the other hand,
+$$\Big(\sum_{i=1}^{n+1} \beta_i\chi_i\Big)\chi_{n+1}(t) = 0,$$
+so by subtracting the two equations we get
+$$\sum_{i=1}^n \Big(\beta_i\big(x_i(t) - \chi_{n+1}(t)\big)\Big) \chi_i(s) = 0$$
+for all $s\in G$. By the induction hypothesis, $\chi_1,\ldots,\chi_n$ are independent over $L$, so for $i = 1,\ldots,n$
+$$\beta_i\big(\chi_{i}(t) - \chi_{n+1}(t)\big) = 0$$
+for all $t\in G$. Now, $\chi_i \neq \chi_{n+1}$ if and only if there exists $t\in G$, $\chi_i(t) \neq \chi_{n+1}(t)$, so $\beta_i = 0$ for all $i \leq n$. Then $\beta_{n+1}\chi_{n+1} = 0$ so $\beta_{n+1} = 0$.\slug
+
+Dedekind's lemma tells us that if $L/K$ is a field extension, then the set of homomorphisms from $K$ to $L$ is linearly independent. This provides an upper bound on the number of homomorphisms if the dimension of the extension is finite.
+
+Let $L$ be a field and $G\subseteq \Aut(L)$ be a subgroup. The {\it fixed field} of $G$ is the field
+$$L^G = \{\alpha\in L : \theta(\alpha) = \alpha\ \hbox{for all}\ \theta\in G\}.$$
+To give a simple proof of the main result of the section, we will require the primitive element theorem. The proof given is the treatment given by van der Waerden.
+
+\parenproclaim Theorem P (Primitive element theorem). Let $L = K(\alpha_1,\ldots,\alpha_n)$ be a finite algebraic extension of $K$ and suppose that $\alpha_2,\ldots,\alpha_n$ are separable (it is not required that $\alpha_1$ be separable). Then there exists an element $\gamma$ such that $L = K(\gamma)$.
+
+\proof We can suppose that $L$ is infinite, since otherwise $K$ is finite and we can let $\gamma$ be a primitive root of unity that generates $K^\times$. Moreover, it suffices to show the theorem for two elements $\alpha$ and $\beta$, with $\beta$ separable, since a simple induction will extend the result to arbitrary $n$. Let $f$ and $g$ be irreducible polynomials for which $\alpha$ and $\beta$ are roots, respectively. Let $\alpha_1,\ldots,\alpha_r$ be the distinct roots of $f$ and $\beta_1,\ldots,\beta_s$ be roots of $g$; let $\alpha =\alpha_1$ and $\beta = \beta_1$.
+
+For $k\neq 1$ we have $\beta_k\neq \beta_1$ so the equation
+$$\alpha_i + \beta_k x = \alpha_1 + \beta_1x$$
+has at most one solution in $K$ for every $i$ and every $k\neq 1$. If we take $c\in K$ to be different from any of these solutions, we have
+$$\alpha_i + c\beta_k \neq \alpha_1 + c\beta_1$$
+for every $i$ and $k\neq 1$. Now we let
+$$\gamma = \alpha_1 + c\beta_1 = \alpha + c\beta;$$
+this is an element of $K(\alpha,\beta)$.
+
+The element $\beta$ satisfies
+$$g(\beta) = 0\qquad\hbox{and}\qquad f(\gamma - c\beta) = f(\alpha) = 0,$$
+with coefficients in $K(\gamma)$. The polynomials $g(x)$ and $f(\gamma - cx)$ only have the root $\beta$ in common, since for $k\neq 1$, $i = 1,\ldots,r$, $a_i \neq \theta - c\beta_k$ and $f(\gamma - c\beta_k) \neq 0$. Since $\beta$ is separable, the polynomials $g(x)$ and $f(\gamma - cx)$ only have the factor $x-\beta$ in common and the coefficients of this factor must lie in $K(\gamma)$, so $\beta\in K(\gamma)$. The same thing can be shown for $\alpha$ from the identity $\alpha = \gamma - c\beta$. So $K(\gamma) = K(\alpha,\beta)$.\slug
+
+The main theorem of this section links fixed fields to Galois extensions.
+
+\parenproclaim Theorem A (Artin's fixed field theorem). Let $L$ be a field and let $G$ be a subgroup of $\Aut(L)$.
+\medskip
+\item{i)} If $G$ acts with finite orbits, then $L$ is a Galois extension of $L^G$.
+\smallskip
+\item{ii)} If $|G|$ is finite, then $[L:L^G] = |G|$ and $G$ is the Galois group $\Gal(L/L^G)$.
+\medskip
+
+\proof Let $\alpha \in L\setminus L^G$ and let $\{\alpha_1,\ldots,\alpha_n\}$ be the orbit under the $G$-action. Then
+$$p(x) = \prod_{i=1}^n (x-\alpha_i)$$
+is $G$-invariant and $p\in L^G[x]$ is separable. $L$ is the splitting field of $p$ so $L$ is a Galois extension of $L^G$.
+
+To prove (ii), suppose that $G$ is finite and let $n=|G|$. Take $\alpha\in L\setminus L^G$ and since $|G\alpha|\leq n$ for any $\alpha\in L$, $[L^G(\alpha) : L^G] \leq n$. We use this in our proof that $[L:L^G] \leq n$. Take $\alpha\in L$ such that $[L^G(\alpha):L^G]$ is maximal and let $\beta\in L$. Then $L^G(x,y)$ is a finite extension. By the primitive element theorem, $L^G(\alpha,\beta) = L^G(\gamma)$ for some $\gamma\in L$. But by the maximality of $\alpha$, we have $[L^G(\alpha):L^G]\geq L^G(\gamma):L^G]$ so $L^G(\alpha) = L^G(\gamma)$. This means that $\beta\in L^G(\alpha)$ and since our choice of $\beta$ was arbitrary, $L = L^G(\alpha)$. In particular, $[L:L^G]\leq n$.
+
+Now if $[L:L^G] < n$, then $L$ cannot have $L$ automorphisms over $L^G$. But $G$ is a subgroup of $\Aut(L/L^G)$ with $n$ elements. So $[L:L^G] = n$ and $G = \Aut(L/L^G)$.\slug
 
 \bye
