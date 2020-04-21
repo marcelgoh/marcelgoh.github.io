@@ -28,7 +28,7 @@
 
 \maketitle{MATH 457 Honours Algebra 4\footnote{$^*$}{\eightpt Course given by Prof.\ Mika\"el Pichot at McGill University}}{Notes by}{Marcel K. Goh}{23 April 2020}
 
-\floattext5 \noindent {\ninebf Note.} \ninept These notes are rough and may skip over some details. \ninept Some proofs are either omitted or distilled to their main ideas.
+\floattext5 \noindent {\ninebf Note.} \ninept These notes form a large subset of the content covered by the lectures/notes given over the semester. \ninept Some proofs are either skipped or distilled to their main ideas. \ninept Note that because of the coronavirus outbreak, some concepts that are normally covered in Algebra 4 were omitted this year, e.g.\ solvability by radicals. \ninept I take responsibility for any errors that may be present.
 
 \section 1. Rings
 
@@ -67,7 +67,7 @@ An {\it ideal} in a ring $R$ is a subgroup $(I,+)$ such that
 \medskip
 If (i) holds, $I$ is called a {\it left ideal} and if (ii) holds, $I$ is called a right ideal. Let $I \subseteq R$ be an ideal. One defines the {\it quotient ring} $R/I$ as follows. Since $(I,+)$ is a normal subgroup of $(R,+)$, $R/I$ is an abelian group. We associate $r\sim r'$ if $r-r'\in I$. Then we can define multiplication in $R/I$ as $(a+I)(b+I) = ab+I$. This is well-defined because $I$ is an ideal and distributivity holds.
 
-The isomorphism theorems for groups extend to rings as well.
+The isomorphism theorems for groups extend to rings as well. Their proofs are analogous to the ones in group theory.
 
 \parenproclaim Theorem A (First isomorphism theorem). Let $f:R\surj S$ be a surjective ring homomorphism. Then $f$ descends to a a ring homomorphism $f' : R/I \to S$ that takes $a+I$ to $f(a)$, where $I$ is the kernel of $f$.\slug
 
@@ -681,5 +681,96 @@ is $G$-invariant and $p\in L^G[x]$ is separable. $L$ is the splitting field of $
 To prove (ii), suppose that $G$ is finite and let $n=|G|$. Take $\alpha\in L\setminus L^G$ and since $|G\alpha|\leq n$ for any $\alpha\in L$, $[L^G(\alpha) : L^G] \leq n$. We use this in our proof that $[L:L^G] \leq n$. Take $\alpha\in L$ such that $[L^G(\alpha):L^G]$ is maximal and let $\beta\in L$. Then $L^G(x,y)$ is a finite extension. By the primitive element theorem, $L^G(\alpha,\beta) = L^G(\gamma)$ for some $\gamma\in L$. But by the maximality of $\alpha$, we have $[L^G(\alpha):L^G]\geq L^G(\gamma):L^G]$ so $L^G(\alpha) = L^G(\gamma)$. This means that $\beta\in L^G(\alpha)$ and since our choice of $\beta$ was arbitrary, $L = L^G(\alpha)$. In particular, $[L:L^G]\leq n$.
 
 Now if $[L:L^G] < n$, then $L$ cannot have $L$ automorphisms over $L^G$. But $G$ is a subgroup of $\Aut(L/L^G)$ with $n$ elements. So $[L:L^G] = n$ and $G = \Aut(L/L^G)$.\slug
+
+This theorem tells us that finite groups give field extensions, in the following sense.
+
+\proclaim Corollary G. If $G$ is a finite group, then there exists an extension $L/K$ with $G = \Aut(L/L^G)$.
+
+\proof By the fixed field theorem, it suffices to represent $G$ as a group of automorphisms over some field $L$. Let $\{x_s\}_{s\in G}$ be a set of $|G|$ indeterminate variables over some field $F$. Then $G = \{e,s,t,\ldots\}$ acts on the polynomial ring $F[x_e,x_s,x_t,\ldots]$ by acting on the variables:
+$$sx_t = x_{st}$$
+The action extends to monomials as well; for a subset $T\subseteq G$,
+$$s\Big(\prod_{t\in T} x_t\Big) = \prod_{t\in T} x_{st}$$
+and the action of $G$ on $F[x_s : s\in G]$ is by ring automorphisms. We can extend the action to the fraction field $L = F(x_s : s\in G)$ and the result is a faithful action by field automorphisms. Thus $G\subseteq \Aut(L)$ and $L$ has degree $|G|$ over $L^G$.\slug
+
+A well-known open problem is the following: {\sl Given a finite group $G$, is it possible to to find an extension $L/\Q$ such that $G = \Aut(L/\Q)$ and $\Q = L^G$? Equivalently, is $G$ the Galois group of a polynomial with rational coefficients?} For example, the group of quaternions $Q_8$ is the Galois group of the polynomial
+$$f = x^8 - 72x^6 + 180x^4 - 144x^2 + 36$$
+and the group ${\rm PSL}_2(7)$ of order 168 (the second non-abelian simple group) is the Galois group of
+$$x^7 - 56x^6 + 609x^5 + 1190x^4 + 6536x^3 + 4536x^2 - 6804x - 5832 - tx^3(x + 1),$$
+where the parameter $t$ can be any integer $t\equiv 1\mod{31}$.
+
+\proclaim Proposition S. If $f\in \Q[x]$ is irreducible of prime degree $p$ with exactly two roots in $\C\setminus \R$, then the Galois group of $f$ is $S_p$.
+
+\proof Complex conjugation is a non-trivial Galois automorphism, which acts as a transposition since there are two non-real roots. We just need to show that there exists a $p$-cycle. But the number $p$ of roots of $f$ divides the order of the Galois group, so by Cauchy's theorem we have an element of order $p$. This must be a $p$-cycle and we have generated $S_p$.\slug
+
+\section 10. The Galois Correspondence
+
+If $L/K$ is a Galois extension, then $\alpha\in L\setminus K$ must be displaced by some automorphism. The converse is also true, giving us the following theorem.
+
+\parenproclaim Theorem F (Galois' fixed field theorem). Let $L/K$ be an algebraic extension with automorphism group $G = \Aut_K(L)$. Then $L/K$ is a Galois extension if and only if $K = L^G$.
+
+\proof For the forward direction, let $\alpha\in L^G$ have minimal polynomial $f$ and splitting field $M$. Because $M$ is normal, we assume that $M\subseteq L$. If $\beta\in M$ is another root of $f$, then we can find $\theta\in \Aut_K(M)$ such that $\theta(\alpha) = \beta$. Extend $\theta$ to an element in $\Aut_K(L)$. Since $\alpha\in L^G$, we have $\beta = \theta(\alpha)  = \alpha$, i.e.\ $f$ has only one root. Since $L$ is separable, $f$ has degree 1, so $\alpha\in K$.
+
+For the converse, assume that $K = L^G$. Let $\alpha\in L$ have minimal polynomial $f$ with set of roots $R\subseteq \bar L$, and let
+$$g = \prod_{\beta \in R\cap L} (x - \beta).$$
+Note that $g$ is separable and invariant under every $\theta\in \Aut_K(L)$, since $\theta(R\cap L) = R\cap L$. This implies that the coefficients of $g$ are fixed by $G = \Aut_K(L)$. Since $L^G = K$, $g\in K[x]$ and since $g(\alpha) = 0$, it divides the minimal polynomial. Thus $f =g$ and all the roots of $f$ are in $L$, proving normality. Lastly, $f$ is separable because $g$ is.\slug
+
+The Galois correspondence was used by Galois to compute Galois groups of polynomial equations. It comprises the following results:
+\medskip
+\item{i)} Equations that are solvable by radicals have solvable Galois groups.
+\smallskip
+\item{ii)} Conversely, if $\Gal(f)$ is solvable, then the roots of $f$ can be expressed as radicals.
+\smallskip
+\item{iii)} $A_5$ is the smallest group that is not solvable (so every equation of degree $\leq 4$ can be solved by radicals).
+\smallskip
+\item{iv)} $A_5$ is the Galois group of a polynomial of degree 5 with rational coefficients, which is therefore not solvable by radicals.
+\medskip
+If $L/K$ is a Galois extension, then $L/M$ is Galois for any intermediate extension $K\subseteq M\subseteq L$.
+
+\parenproclaim Theorem C (Classical Galois correspondence). Let $L/K$ be a finite Galois extension. Then there is a bijection $\phi$ from subgroups of $\Gal(L/K)$ and intermediate fields in $L/K$. This is explicitly given by $\phi(H) = L^H$ for $H\subseteq \Gal(L/K)$ and $\phi^{-1}(M) = \Gal(L/M)$ for an intermediate extension $K\subseteq M\subseteq L$.
+
+\proof From Artin's fixed field theorem and Theorem F we know that $|G| = [L:K]$ and that the map $\phi$ is injective. Let $M$ be an intermediate extension and let $H = \Gal(L/M)$. Observe that since $L/M$ is Galois, Theorem F asserts that $M = L^H$. Thus $\phi^{-1}$ is injective and we have a bijection.\slug
+
+The correspondence is order-reversing in that the bigger the subgroup $H$, the smaller the fixed field $L^H$. Another corollary is that a Galois extension can only have finitely many intermediate subfields and that the number of subfields is at most the number of subgroups in the Galois group.
+
+\proclaim Proposition N. Let $L/K$ be a Galois extension and $M$ be an intermediate field. The following are equivalent:
+\medskip
+\item{i)} $\Gal(L/M)$ is a normal subgroup of $\Gal(L/K)$.
+\smallskip
+\item{ii)} If $s\in \Gal(L/K)$, then $s(M) = M$.
+\smallskip
+\item{iii)} $M/K$ is a normal extension.
+\smallskip
+\item{iv)} $K = M^H$ where $H = \Aut_K(M)$.
+\smallskip
+\item{v)} If $M/K$ is a finite extension, then $[M:K] = |\Aut_K(M)|$.
+\smallskip
+\item{vi)} The map $\Gal(L/K)\to \Gal(M/K)$ that maps $s\mapsto s_{|M}$ is surjective with kernel $\Gal(L/M)$.\noskipslug
+\medskip
+
+Let $L/K$ be a Galois extension. Let $K\subseteq M,N\subseteq L$ be intermediate subfields. The {\it compositum} $MN$ of $M$ and $N$ is the subfield of $L$ that they generate, i.e.\ the smallest subfield of $L$ containing them. It can be shown that
+$$MN = \bigg\{\sum_{i=1}^m \sum_{j=1}^n \alpha_i\beta_j : \alpha_1,\ldots,\alpha_m \in M, \beta_1,\ldots,\beta_n\in N\bigg\}.$$
+
+\proclaim Proposition I. If $M/K$ and $N/K$ are Galois, then so is the compositum $MN$.
+
+\proof It suffices to show normality. Suppose that $M$ and $N$ are finite normal extensions. Write $M = K(R_1)$ and $N=K(R_2)$ as splitting fields of two polynomials $f_1$ and $f_2$ with respective root sets $R_1$ and $R_2$. Then the splitting field of the product $f = f_1f_2$ is $K(R_1\cup R_2)$, which is the compositum $MN = K(R_1)K(R_2)$. If $M$ and $N$ are infinite, we can reuse the argument by writing $M$ and $N$ as splitting fields of families $F_1$ and $F_2$ of polynomials.\slug
+
+The Galois correspondence interchanges intersection and compositum, as shown by the following proposition.
+
+\proclaim Proposition S. Let $L/K$ be a finite Galois extension and let $G$ and $H$ be subgroups of $\Gal(L/K)$. Then
+\medskip
+\item{i)} $L^G \cap L^H = L^{\langle G,H \rangle}$;
+\smallskip
+\item{ii)} $L^GL^H = L^{G\cap H}$.
+\medskip
+
+\proof This is a corollary of Theorem C. Because $\langle G,H\rangle$ is the smallest subgroup containing both $G$ and $H$, it corresponds to the largest subfield $L^G\cap L^H$ of both $L^G$ and $L^H$. Likewise, the compositum $L^GL^H$ is the smallest subfield containing both $L^G$ and $L^H$, so it corresponds to the largest subgroup $G\cap H$ of both $G$ and $H$.\slug
+
+If $M$ and $N$ are Galois then $MN$ is Galois and we have a homomorphism
+$$f : \Gal(MN/K) \to \Gal(M/K) \times \Gal(N/K)$$
+that maps $\sigma\mapsto (\sigma_{|M},\sigma_{|N})$. It can be shown that $\ker f = \{e\}$ and $\Im f$ consists of pairs $(s,t)$ for which $s_{|M\cap N} = t_{|M\cap N}$. In terms of polynomials, if $f = f_1f_2$, the Galois group of $f$ is the subgroup of $\Gal(f_1)\times \Gal_(f_2)$ consisting of pairs of permutations that coincide on $K(R_1)\cap K(R_2)$, where $R_1$ and $R_2$ are the root sets of $f_1$ and $f_2$.
+
+Thus, if $L/K$ is a Galois extension such that $L = MN$ for normal extensions $M/K$ and $N/K$, and furthermore $M\cap N = K$, then $\Gal(L/K)$ can be expresed as the direct product
+$$\Gal(L/K)\cong \Gal(M/K) \times \Gal(N/K).$$
+
 
 \bye
