@@ -151,7 +151,7 @@ We can view elements in a commutative unital ring $R$ as ``functions'' on the se
 
 \proclaim Proposition K. The kernel of $\pi$ is the intersection of all prime ideals and the kernel of $\pi_{\max}$ is the intersection of all maximal ideals.\slug
 
-For a unital commutative ring $R$, we define the {\it nilradical} of $R$ to be the intersection $\Nil(R) = \bigcap P$ of all prime ideals $P$. The {\it Jacobean radical} is the intersection $\Jac(R) = \bigcap M$ of all maximal ideals $M$. Since $\Specmax(R) \subseteq \Spec(R)$, $\Jac(R) \supseteq \Nil(R)$. An element $r\neq 0$ in a ring $R$ is called {\it nilpotent} if $r^n = 0$ for some $n$. It turns out that there is a connection between nilpotency and prime ideals.
+For a unital commutative ring $R$, we define the {\it nilradical} of $R$ to be the intersection $\Nil(R) = \bigcap P$ of all prime ideals $P$. The {\it Jacobson radical} is the intersection $\Jac(R) = \bigcap M$ of all maximal ideals $M$. Since $\Specmax(R) \subseteq \Spec(R)$, $\Jac(R) \supseteq \Nil(R)$. An element $r\neq 0$ in a ring $R$ is called {\it nilpotent} if $r^n = 0$ for some $n$. It turns out that there is a connection between nilpotency and prime ideals.
 
 \proclaim Proposition N. Let $R$ be unital and commutative. Then $\Nil(R)$ is the set of all nilpotent elements, i.e.
 $$\sqrt{(0)} = \{r\in R : r^n = 0\ \hbox{for some}\ n\in \N\} = \bigcap_{P\in \Spec(R)} P.$$
@@ -169,7 +169,7 @@ To find irreducible elements in a ring, may attempt the ``bisection process''. L
 
 \proclaim Proposition I. Let $R$ be an integral domain. If an element $p\in R$ is prime, then it is irreducible.
 
-\proof. Let $p\in R$ be a prime element. Assume that $p=ab$. This implies that $p\setminus a$ or $p\setminus b$. Say $a = pc$ for some $c\in R$. Then $p=ab=pcb$ and $cb = 1$. So $b$ is a unit.\slug
+\proof Let $p\in R$ be a prime element. Assume that $p=ab$. This implies that $p\setminus a$ or $p\setminus b$. Say $a = pc$ for some $c\in R$. Then $p=ab=pcb$ and $cb = 1$. So $b$ is a unit.\slug
 
 Note that the converse does not hold. For example, in the ring $\Z[\sqrt{-3}]$, we have $4=(1+\sqrt {-3})(1-\sqrt {-3})$. The element 2 is irreducible, but it is not prime because $2$ divides $4$ but does not divide either of $(1+\sqrt{-3})$ and $(1-\sqrt{-3})$.
 
@@ -224,7 +224,7 @@ All this talk of divisibility leads nicely into a discussion of Euclidean divisi
 
 \proclaim Proposition E. There is a Euclidean division in $\Z[i]$.
 
-\proof. Let $a,b\in \Z[i]$, $b\neq 0$. We can divide them in $\C$ to get $z = a/b$. Then there is a (not necessarily unique) $q\in \Z[i]$ that is of minimal distance to $z$. We have $|z-q|<1$; in fact $|z-q| \leq \sqrt{2}/2 < 1$. So $|a-bq| < |b|$.\slug
+\proof Let $a,b\in \Z[i]$, $b\neq 0$. We can divide them in $\C$ to get $z = a/b$. Then there is a (not necessarily unique) $q\in \Z[i]$ that is of minimal distance to $z$. We have $|z-q|<1$; in fact $|z-q| \leq \sqrt{2}/2 < 1$. So $|a-bq| < |b|$.\slug
 
 Let us now define this generally. An integral domain $R$ is a {\it Euclidean domain} if there exists a function $N : R\to \N$ called the {\it norm} such that $N(0) = 0$ and for all $a,b\in R$, $b\neq 0$, either $b$ divides $a$ or there exists $q\in R$ such that $N(a-bq) < N(b)$. Proposition E showed that $Z[i]$ is a Euclidean domain with the complex norm, and other familiar examples include $\Z$ with the absolute value function and $K[x]$ with the degree of a polynomial as its norm. In general, the Euclidean division algorithm does not give a unique answer. Even in $\Z$, we can end up with $q$ or $-q$ as a quotient.
 
@@ -252,7 +252,7 @@ Let $R$ be a a unital commutative ring. A {\it module} $M$ over $R$ is a ring ho
 \medskip
 \item{i)} $r(m+n) = rm + rn$;
 \smallskip
-\item{ii)} $(r+s)m) = rm + sm$;
+\item{ii)} $(r+s)m = rm + sm$;
 \smallskip
 \item{iii)} $(rs)m = r(sm)$;
 \smallskip
