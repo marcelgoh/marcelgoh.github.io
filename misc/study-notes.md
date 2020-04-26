@@ -5,9 +5,11 @@ title: Study notes
 
 Here are study notes I created for certain classes. Many of them were created in a frenzy during the two or three days preceding an exam, so there are bound to be errors and I do not necessarily include every detail. That said, they are still quite meaty and I hope they can be of some use. 
 
+<!---
 ## Winter 2020
 
 + [MATH 457 Honours Algebra 4]({{ site.baseurl }}/misc/study-notes/math457.pdf) ([TeX]({{ site.baseurl }}/misc/study-notes/math457.tex))
+--->
 
 ## Fall 2019
 
