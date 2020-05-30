@@ -15,7 +15,8 @@ This is a landing page for things that, for whatever reason, might not have a pl
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
 + [Exercise solutions]({{ site.baseurl }}/misc/solutions.html)
 + [_On the probability that two integers are relatively prime_]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/coprime-probability.tex))
-+ [_The Burnside Problem_]({{ site.baseurl }}/misc/proofs/burnside.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/burnside.tex))
++ [_The Burnside Problem_]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/burnside.tex))
++ [_Weyl trees of famous irrational numbers_]({{ site.baseurl }}/misc/expo/weyl.pdf) ([Code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))
 
 ## TeX macros
 
@@ -29,3 +30,4 @@ If you wish to compile my sources from TeX, you'll need to download these macros
 
 + [Hitchhiking from Montréal to Edmonton]({{ site.baseurl }}/misc/hitchhiking.html)
 + [Poetry]({{ site.baseurl }}/misc/poetry.html)
++ [Noise]({{ site.baseurl }}/misc/noise.html)

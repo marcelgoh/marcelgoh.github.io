@@ -26,6 +26,10 @@ These are some of my favourite quotes and blurbs about computer science, math, e
 >
 > &mdash; <cite>Edsger Dijkstra</cite>
 
+> When the first mathematical, logical, and natural uniformities, the first laws, were discovered, men were so carried away by the clearness, beauty and simplification that resulted, that they believed themselves to have deciphered authentically the eternal thoughts of the Almighty.
+>
+> &mdash; William James
+
 > One of the main causes of the fall of the Roman Empire was that, lacking zero, they had no way to indicate successful termination of their C programs.
 >
 > &mdash; <cite>Robert Firth</cite>
