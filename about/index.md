@@ -21,4 +21,4 @@ As a certified First Responder, I volunteer with the [McGill Student Emergency R
 
 When I'm not writing programs or attending school, I enjoy bouldering, travelling, photography, and playing video games.
 
-_CV available upon request._
+My CV is available in both [TeX]({{ site.baseurl}}/about/vita.tex) and [PDF]({{ site.baseurl}}/about/vita.pdf) formats.
