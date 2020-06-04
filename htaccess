@@ -1,0 +1,6 @@
+---
+layout: none
+permalink: .htaccess
+---
+
+AddType text/plain .tex

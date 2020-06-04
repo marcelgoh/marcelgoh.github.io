@@ -46,3 +46,5 @@ github:
   repo:             https://github.com/marcelgoh
 
 future: true
+
+include: ['.htaccess']
