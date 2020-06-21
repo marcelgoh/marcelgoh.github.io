@@ -17,7 +17,7 @@ I received a traditional Java-based programming education from which I may never
 
 My favourite polygon is the pentagon.
 
-As a certified First Responder, I volunteer with the [McGill Student Emergency Response Team](www.msert.ca).
+As a certified First Responder, I volunteer with the [McGill Student Emergency Response Team](https://www.msert.ca).
 
 When I'm not writing programs or attending school, I enjoy bouldering, travelling, photography, and playing video games.
 
