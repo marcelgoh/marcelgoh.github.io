@@ -52,7 +52,7 @@ Horton-Strahler number $h(v)$ as follows:
 
 + If $v$ is a leaf (has no children), then $v$ has Horton-Strahler number $h(v) = 0$.
 + Otherwise, $v$ has two children, call them $l$ and $r$. If $h(l)\neq h(r)$, then $h(v)$ is the larger
-of the two values. If the two values are equal, thek $h(v) = h(l) + 1 = h(r) + 1$.
+of the two values. If the two values are equal, then $h(v) = h(l) + 1 = h(r) + 1$.
 
 (This is exactly the same as in the river diagram above, except that we choose to start leaves
 at $0$ instead of $1$.) We use this information to draw nodes. Leaves, which have Horton-Strahler number $0$,
@@ -76,7 +76,7 @@ such binary trees. Call the number of trees with $n$ internal nodes $C_n$.
 There is only one tree with exactly zero internal nodes, so $C_0 = 1$. For $n\geq 1$, there is one root node
 and then the number of nodes in the two subtrees of the root node add up to $n-1$, so we have
 
-$$ C_n = \sum_{k=0}^{n-1} C_k\cdot C_{n-k}.$$
+$$ C_n = \sum_{k=0}^{n-1} C_k\cdot C_{n-k-1}.$$
 
 This generates the famous [Catalan numbers](https://en.wikipedia.org/wiki/Catalan_number),
 where for $n = 0,1,2,3,4,\ldots$, we have $C_n = 1,1,2,5,14,\ldots$. For example, here are all $C_4 = 14$ binary
