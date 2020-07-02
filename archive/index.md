@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2020
+- (02.07.2020) [Binary trees in the wild]({{ site.baseurl}}/2020/07/02/trees-in-the-wild.html)
 - (08.04.2020) [Bit sequences and Hamiltonian cycles]({{ site.baseurl}}/2020/04/08/bit-sequences.html)
 
 

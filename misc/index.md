@@ -9,22 +9,22 @@ This is a landing page for things that, for whatever reason, might not have a pl
 
 + [My favourite classic theorems]({{ site.baseurl }}/misc/theoremata.html)
 + [My favourite quotes]({{ site.baseurl }}/misc/quotes.html)
-+ [_Disquisitiones Arithmeticae_, transcribed]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.pdf) ([TeX]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.tex))
++ [_Disquisitiones Arithmeticae_, transcribed]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/arithmeticae/disquisitiones-arithmeticae.tex))
 
 ## Notes
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
 + [Exercise solutions]({{ site.baseurl }}/misc/solutions.html)
-+ [_On the probability that two integers are relatively prime_]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/coprime-probability.tex))
-+ [_The Burnside Problem_]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX]({{ site.baseurl }}/misc/proofs/burnside.tex))
++ [_On the probability that two integers are relatively prime_]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/coprime-probability.tex))
++ [_The Burnside Problem_]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/burnside.tex))
 + [_Weyl trees of famous irrational numbers_]({{ site.baseurl }}/misc/expo/weyl.pdf) ([Code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))
 
 ## TeX macros
 
 If you wish to compile my sources from TeX, you'll need to download these macros and typeset using the Plain TeX engine. Feel free to use and modify them for your own purposes as well.
 
-+ [fontmac.tex]({{ site.baseurl }}/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
-+ [mathmac.tex]({{ site.baseurl }}/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
-+ [proofmac.tex]({{ site.baseurl }}/misc/tex-macros/proofmac.tex) (Proof figures)
++ [fontmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
++ [mathmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
++ [proofmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/proofmac.tex) (Proof figures)
 
 ## Other
 
