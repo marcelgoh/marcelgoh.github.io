@@ -33,10 +33,34 @@
 \def\R{{\bf R}}
 \def\C{{\bf C}}
 
+% Probability
+\def\pr{\mathop{\hbox{\bf P}}\nolimits}
+\def\ex{\mathop{\hbox{\bf E}}\nolimits}
+\def\var{\mathop{\hbox{\bf V}}\nolimits}
+\def\one{\mathop{\bf 1}\nolimits}
+\def\ind#1{\one_{[#1]}}
+
+% Graphs
+\def\edge{\mathrel-\!\!\mathrel-}
+
 % Number an equation oldstyle
 \def\oldno#1{\eqno({\oldstyle#1})}
+\def\refoldno#1{({\oldstyle#1})}
+\def\nonameoldno{\oldno{\the\eqcount}\global\advance\eqcount by 1}
+
+\newcount\thmcount  % Counts theorems/lemmas/corollaries
+\thmcount=1
+\newcount\sectcount  % Counts sections
+\sectcount=1
+\newcount\figcount  % Counts figures
+\figcount=1
+\newcount\eqcount  % Counts equations
+\eqcount=1
 
 % Proclaim with parentheses in italics
 \outer\def\parenproclaim #1 (#2).#3\par{\medbreak
-  \noindent{\bf #1}\enspace\rm({\it #2\/}).\nobreak\ \ignorespaces{\sl #3\par}
+  \noindent{\bf #1}\enspace\rm({\it #2\/}).\nobreak\ignorespaces{\sl #3\par}
   \ifdim\lastskip<\medskipamount \removelastskip\penalty55\medskip\fi}
+
+% Exactly what it sounds like
+\def\twodots{\mathinner{\ldotp\ldotp}}
