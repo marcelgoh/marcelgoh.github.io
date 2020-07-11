@@ -1,0 +1,468 @@
+\input fontmac
+\input mathmac
+
+\def\Seq{\op{\tensc Seq}}
+\def\Set{\op{\tensc Set}}
+\def\Cyc{\op{\tensc Cyc}}
+\def\A{{\cal A}}
+\def\B{{\cal B}}
+\def\C{{\cal C}}
+\def\D{{\cal D}}
+\def\E{{\cal E}}
+\def\F{{\cal F}}
+\def\I{{\cal I}}
+\def\M{{\cal M}}
+\def\P{{\cal P}}
+\def\T{{\cal T}}
+\def\Z{{\cal Z}}
+\def\bul{\bullet}
+
+\def\eval{\big|}
+
+\def\beginref{\noindent}
+\def\endref{\smallskip}
+\input cyracc.def
+    \font\tencyr=wncyr10
+    \font\tencyri=wncyi10
+    \def\cyr{\tencyr\cyracc}
+    \def\cyri{\tencyri\cyracc}
+
+\maketitle{A crash course on generating functions}{by}{Marcel K. Goh}{10 July 2020}
+
+\section\the\sectcount. Introduction
+
+When counting discrete structures, we often run into sequences that are recursively defined.
+For example, suppose we have the recurrence
+$$R_n = \cases{1,&if $n=0$; \cr 2R_{n-1}+3, & if $n\geq 1$.}$$
+We might want to know how the sequence $(R_n)$ grows as $n$ gets large.
+Now, this particular recurrence
+is easy enough to solve by the substitution method. But often, it is easier to work with the
+{\it generating function} of a sequence. For a sequence $(A_n)$, this is the formal power series
+$$A(z) = \sum_{n\geq 0} A_nz^n.$$
+In his textbook, titled {\sl generatingfunctionology},
+H. S. Wilf famously wrote: ``A generating function is a clothesline on which we hang up a sequence
+of numbers for display.'' That is exactly how we should treat the function $A(z)$ for now;
+in later sections, we will discuss how this series can be treated as an analytic object.
+
+Let us try to find the generating function for the sequence $(R_n)$ defined above. Right off the bat, we have
+$$R(z) = \sum_{n\geq 0} R_nz^n = R_0 + \sum_{n\geq 1} R_nz^n.$$
+Plugging in the recursive definition of $R_n$, we get
+\newcount\cgenfcteq
+\cgenfcteq=\eqcount
+$$\eqalign{
+R(z) &= 1 + \sum_{n\geq 1} (2R_{n-1}+3)z^n \cr
+&= 1 + 2\sum_{n\geq 1} R_{n-1}z^n + 3\sum_{n\geq 1} z^n \cr
+&= 1 + 2z\sum_{n\geq 0} R_nz^n + 3\Big(\sum_{n\geq 0} z^n - 1\Big) \cr
+}\adveq$$
+The first summation on the right-hand side is $R(z)$ and the second one is well-known,
+so we derive the generating function
+$$\eqalign{
+R(z) &= 1+ 2zR(z) + 3\bigg({1\over 1-z} - 1\bigg) \cr
+(1-2z)R(z) &= {1+2z\over 1-z} \cr
+R(z) &= {1+2z \over (1-z)(1-2z)}. \cr
+}$$
+Here we can use the partial fraction expansion to get
+$$\eqalign{
+R(z) &= {1+2z\over (1-z)(1-2z)} = {4\over 1-2z} - {3\over 1-z} \cr
+&= 4\sum_{n\geq 0} (2z)^n - 3\sum_{n\geq 0} z^n \cr
+&= \sum_{n\geq 0}(2^{n+2} - 3)z^n, \cr
+}\adveq$$
+implying that $R_n = 2^{n+2} -3$. This could have been found by easier methods, but this example
+demonstrates how the generating function of a sequence provides a bridge from the recurrence to a closed
+form. In later sections, we will see that if we only want asymptotic estimates, then we can actually
+stop at the generating function equation found in \refeq{\the\cgenfcteq}.
+
+\advance\sectcount by 1
+\section\the\sectcount. The Symbolic Method and Ordinary Generating Functions
+
+Deriving generating functions is a rather drawn-out process, and it would not be very enjoyable
+to have to work from scratch every time. Luckily, generating functions are often made up of simpler
+ones, so we can use the {\it symbolic method} to arrive directly at a generating function equation.
+This is the subject of the monolithic textbook {\sl Analytic Combinatorics}, by P. Flajolet and R. Sedgewick.
+In these notes, we will often skip some details and proofs; anything we gloss over here can certainly
+be found somewhere in {\sl Analytic Combinatorics}. We will refer to this book from time to time and abbreviate
+it by `AC'.
+
+We define a {\it combinatorial class} $\A$ to be a countable set with a {\it size function}
+$|\cdot|:\A\to \N_0$ for which the number of elements of any given size is finite. Here are examples
+of combinatorial classes:
+\medskip
+\item{i)} The set of all strings of 0 and 1, with size given by string length.
+\smallskip
+\item{ii)} The set of all permutations. A permutation of size $n$ is a one-to-one correspondence
+\smallskip
+\item{iii)} The set of all binary trees, with size given by the number of nodes.
+from $[1\twodots n]$ to itself.
+\medskip
+
+\boldlabel Ordinary generating functions. The {\it ordinary generating function}, or OGF, of a combinatorial
+class $\A$ is defined to be the formal power series
+$$A(z) = \sum_{a\in \A} z^{|a|} = \sum_{n\geq 0} A_nz^n,$$
+where $A_n$ is the number of elements in $\A$ of size $n$. It is easy to see that the two summations
+are equivalent characterisations of $A(z)$, and $A_n = [z^n]A(z)$ is the coefficient of $z^n$ in $A(z)$.
+We now define the {\it neutral class} $\E$ containing only one element, of size 0.
+Thus the generating function of $\E$ is 1.
+Likewise, we define the {\it atomic class} $\Z$, which contains a single element of size 1.
+The generating function of $\Z$ is $z$.
+
+When classes $\A$ and $\B$ are disjoint, we will denote their {\it union} by
+$$\A + \B = \A\cup\B.$$
+It is easy to see that the generating function of $\A + \B$ is $A(z) + B(z)$.
+In a similar vein, let the {\it product} of two combinatorial classes be given by
+$$\A\times\B = \{(a,b) : a\in \A,\; b\in B\};$$
+the generating function of $\A\times\B$ is $A(z)\cdot B(z)$. We will denote the product of
+$n$ copies of $\A$ by $\A^n$ (this is $\E$ if $n=0$), which has the generating function $A(z)^n$.
+
+A more complex construction is the {\it sequence class}. For a class $\A$, this is
+$$\Seq(\A) = \E + \A + (\A\times\A) + (\A\times\A\times\A) + \cdots$$
+It follows that the generating function of $\Seq(\A)$ is
+$$S(z) = 1 + A(z) + A(z)^2 + A(z)^3 + \cdots = {1\over 1-A(z)}.$$
+More generally, if $\Omega$ is a subset of $\N_0$, we define $\Seq_\Omega(\A)$ as the class
+$\sum_{n\in \Omega} A^n$, with generating function $\sum_{n\in\Omega} A(z)^n$.
+A list of further constructions can be found in Fig.~I.18 of AC.
+\medskip
+
+\boldlabel Integers and compositions. The set of all positive integers is a combinatorial class.
+To get its generating function, we note that the positive integers can be associated with nonempty sequences
+of unlabelled atoms:
+$$\{1,2,3,\ldots\} \cong \{\bul,\bul\;\bul,\bul\bul\bul,\ldots\}$$
+This gives the construction ${\cal I} = \Seq_{\geq 1}(\Z)$, which immediately tells us that
+$I(z) = z/(1-z)$ and $I_n = 1$ for all $n\geq 1$.
+
+A {\it composition} of an integer $n$ is expression of $n$ as a sum of a sequence of positive integers
+(so the order of the terms matters). For example, there are four compositions of the number 3:
+\newcount\threecomp
+\threecomp=\eqcount
+$$1 + 1 + 1\qquad1 + 2\qquad2 + 1\qquad3\adveq$$
+Let $\C$ be the set of all integer compositions. We can describe a composition as a sequence of integers, so
+$$\C = \Seq(\I).$$
+From this, we find that
+$$C(z) = {1\over 1 - z/(1-z)} = {1-z\over 1-2z}.\adveq$$
+Reexpressing this as the series
+$$C(z) = {1\over 1-2z}-{z\over 1-2z}
+       =\sum_{n\geq 0} (2z)^n - \sum_{n\geq 0} 2^nz^{n+1}= 1+\sum_{n\geq 1} 2^{n-1}z^n,$$
+we find that $C_0 = 1$ and $C_n = 2^{n-1}$ for $n\geq 1$. Ignoring $C_0$,
+this makes sense because there is a one-to-one
+correspondence between compositions and a subset of $n-1$ possible bars between $n$ balls:
+the compositions in \refeq{\the\threecomp} correspond to
+$$\bul\mid\bul\mid\bul\qquad \bul\mid\bul\bul\qquad \bul\;\bul\mid\bul\qquad \bul\bul\bul.$$
+\medskip
+
+\boldlabel Fibonacci numbers. Let $\I^*$ denote the cute combinatorial class $\{1,2\}$,
+which clearly has the generating function $I^*(z) = z + z^2$. Let $\T$ be the set of partitions
+using only the numbers 1 and 2 (for simplicity's sake, we also include the neutral object, i.e.\ $T_0=1$).
+We have
+$$\eqalign{
+1 &= 1, \cr
+2 &= 1+1 = 2,\cr
+3 &= 1 + 1 + 1 = 1 + 2 = 2+1, \cr
+4 &= 1 + 1 + 1 + 1 = 1 + 1 + 2 = 1 + 2 + 1 = 2 + 1 + 1 = 2 + 2,\cr
+}$$
+and so on. After computing a few more terms, we notice the pattern
+$$(T_n)_{n\geq 0} = (1,1,2,3,5,8,13,\ldots).$$
+This is almost the infamous Fibonacci sequence; we have $T_n = F_{n+1}$.
+Hence $T(z)$ must be the generating function
+of the Fibonacci numbers, divided by $z$.
+We can easily derive this function with the symbolic method, since a composition
+using only 1s and 2s is simply a sequence of elements of $\I^*$. We conclude that
+$$\T = \Seq(\I^*)\qquad\hbox{and}\qquad T(z) = {1\over 1-I^*(z)} = {1\over 1-z-z^2}.\adveq,$$
+so we know that the generating function of the Fibonacci numbers is
+\newcount\fibeq
+\fibeq=\eqcount
+$$F(z) = {z\over 1-z-z^2}.\adveq$$
+\medskip
+
+\boldlabel Catalan numbers. Let $\B$ be the class of all binary trees. This combinatorial class
+can be described recursively as follows: ``A binary tree is either empty, or else it consists of
+a root node adjoined to two more binary trees.''. An empty binary tree has size 0, so it is represented
+by $\E$ and a node has size $1$, so we represent it by $\Z$. We arrive at the symbolic description
+$$\B = \E + \Z\times\B\times\B,$$
+whence we derive a functional equation
+$$B(z) = 1 + zB(z)^2$$
+that the generating function must satisfy. Treating $B(z)$ as a variable and employing
+the quadratic formula, we find that
+\newcount\catalaneq
+\catalaneq=\eqcount
+$$B(z) = {1 - \sqrt{1-4z}\over 2z}.\adveq$$
+(Since we know that $B(0) = B_0 = 1$, the positive branch of the square root is invalid.
+On the other hand, l'Hospital's rule can be applied to the negative version to get a limit of 1.)
+From here, one could use Newton's generalisation of the binomial theorem to get that
+\newcount\catalanformula
+\catalanformula=\eqcount
+$$B_n = {1\over n+1}{2n\choose n},\adveq$$
+and indeed, $B(z)$ is the generating function of the Catalan numbers. From here, Stirling's approximation
+can be applied to give asymptotics, but the techniques of later sections will allow us to characterise
+the asymptotic growth directly from the generating function \refeq{\the\catalaneq}.
+\medskip
+
+\boldlabel Making change. Suppose a cashier has exactly
+five loonies, three toonies, and four \$5 bills in her till.
+How many ways can she give \$23 in change? To solve this, we assign each coin/bill
+a size proportional to its value;
+so a loonie is described by $\Z$, a toonie by $\Z^2$, and a \$5 bill by $\Z^5$.
+Now we can describe the set of all possiblities with the combinatorial class
+$$\M = \Seq_{\leq 5}(\Z) \times \Seq_{\leq 3}(\Z^2) \times \Seq_{\leq 4}(\Z^5).$$
+This immediately gives the generating function
+$$M(z) = (1 + z + z^2 + z^3 + z^4 + z^5)(1 + z^2 + z^4 + z^6)(1 + z^5 + z^{10} + z^{15} + z^{20}),$$
+and the number of ways to make \$23 is exactly $[z^{23}]M(z)$. Note that if the cashier had
+an unlimited supply of coins and bills, we would have
+$$\M^* = \Seq(\Z) \times \Seq(\Z^2) \times \Seq(\Z^5).$$
+and the number of ways to make $n$ dollars out of these denominations is
+$$[z^n]\bigg({1\over 1-z}\bigg)\bigg({1\over 1-z^2}\bigg)\bigg({1\over 1-z^5}\bigg).$$
+The change-making problem was used as a primary example in G. P\'olya's 1956 paper on the applications
+of generating functions.
+
+\advance\sectcount by 1
+\section\the\sectcount. Labelled Structures and Exponential Generating Functions
+
+Ordinary generating functions deal with atoms that are unlabelled, meaning these atoms are indistinguishable
+from one another.
+When we want to count labelled objects, we will use an {\it exponential generating function}, or EGF.
+For a combinatorial class $\A$, this is the formal power series
+$$A(z) = \sum_{a\in \A} {z^{|a|} \over |a|!} = \sum_{n\geq 0} A_n {z^n\over n!}.$$
+In particular, $A_n = [z^n/n!]A(z)$ for any EGF $A(z)$.
+
+The symbolic method applies to EGFs as well. As before, $\E$ denotes the neutral class, with a single object
+of size 0 and $\Z$ denotes the atomic class, with a single labelled object of size 1.
+If $\A$ and $\B$ are disjoint combinatorial classes with
+EGFs $A(z)$ and $B(z)$, then the EGF of their union $\A + \B$ is $A(z) + B(z)$. Instead of an ordinary
+Cartesian product, we have the notion of a {\it labelled product}, in which atoms are relabelled in all
+consistent ways. For example, a valid relabelling of the labelled triple $(1,3,2)$ is $(2,7,5)$,
+because the relative ordering of the atoms is unchanged. The set of all labelled pairs of elements from
+$\A$ and $\B$ is denoted $\A\star \B$ and its EGF is $A(z)\cdot B(z)$.
+
+The labelled sequence class $\Seq(\A)$, consists of sequences of elements of $\A$. It has the EGF
+$1/(1-A(z))$, just as with the OGF, but notice that the EGF counts a lot more things.
+The easiest way to see this is to consider
+the generating function of $\Seq(\Z)$, which is $S(z) = 1/(1-z)$. When considered as an OGF, there is only one
+element of each given size, since $[z^n]S(z) = 1$ for all $n$. But when taken as an EGF, we find that there are
+$n!$ objects of size $n$, because we have $[z^n/n!]S(z) = n!$ for all $n$.
+Of course, this makes sense since permuting the atoms
+in a sequence of length $n$ creates a new labelled object, but does not change the unlabelled one.
+
+There are two more constructions that will be useful to define on labelled classes. First, we let
+$\Set_k(\A)$ denote the class of all sets of size $k$ with elements in $\A$. This is like a sequence of
+length $k$, except that the order is not important, meaning we can divide by a factor of $k!$.
+The generating function of $\Set_k(\A)$ is therefore $A(z)^k/k!$. Now we let
+$$\Set(\A) = \E + \A + \Set_2(\A) + \Set_3(\A) + \cdots$$
+and derive the generating function for $\Set(\A)$:
+\newcount\setgenfct
+\setgenfct=\eqcount
+$$T(z) = \sum_{k\geq 0} {A(z)^k \over k!} = e^{A(z)}\adveq$$
+The last construction we will handle is the class of $k$-cycles with elements in $\A$, denoted $\Cyc_k(\A)$.
+There are $k$ ways to represent a cycle as a sequence of $k$ objects, so the generating function of $\Cyc_k(\A)$
+is $A(z)/k$. Now we define the class of unrestricted cycles
+$$\Cyc(\A) = \Cyc_1(\A) + \Cyc_2(\A) + \Cyc_3(\A) + \cdots$$
+and find that the generating function of $\Cyc(\A)$ is
+$$U(z) = \sum_{k\geq 1} {A(z)^k \over k} = \log {1\over 1-A(z)}.\adveq$$
+There are many other interesting EGF constructions; see, for example, Fig.\ II.18 in AC.
+
+Note that a permutation is simply a set of cycles:
+$$\Seq(\Z) = \Set(\Cyc(\Z))$$
+Of course, the cycle decomposition of a permutation is well-known, but generating functions give us
+another way of seeing that this is true, since
+$${1\over 1-z} = \exp\bigg(\log{1\over 1-z}\bigg).$$
+
+Now is as good a time as any to state, without proof, an important classic theorem that will be used in the next
+example.
+
+\parenproclaim Theorem L (Lagrange inversion theorem). If a generating function $g(z)$ satisfies the equation
+$z = f(g(z))$, with $f(0) = 0$ and $f'(0) \neq 0$, then for an arbitrary function $H(u)$, we have
+$$[z^n]H(g(z)) = {1\over n}[u^{n-1}]H'(u)\bigg({u\over f(u)}\bigg)^n.$$
+In particular, for $H(u) = u$ we have
+$$[z^n]g(z) = {1\over n}[u^{n-1}]\bigg({u\over f(u)}\bigg)^n.$$
+(This particular form of of Lagrange's inversion theorem is often called the B\"urmann form.)\slug
+\medskip
+
+\boldlabel Cayley trees. We are now equipped to count rooted non-plane labelled trees, sometimes called
+Cayley trees. Children of a given node are not ordered and nodes in these trees have unrestricted degree,
+so we have the specification
+$$\T = \Z \star \Set(\T).$$
+This immediately gives the functional equation
+$$T(z) = ze^{T(z)}$$
+and by Lagrange's inversion theorem, with $f(u) = u/e^u$ and $H(u) = u$, we obtain
+$$n![z^n]T(z) = n!\bigg({1\over n}[u^{n-1}]e^{un}\bigg)
+              = n!\cdot{1\over n}\cdot{n^{n-1}\over(n-1)!} = n^{n-1}.$$
+Note that there are $n^{n-2}$ {\it unrooted} Cayley trees, since there are $n$ choices for the root.
+This is called Cayley's formula and the standard combinatorial proof involves establishing
+a bijection with Pr\"ufer sequences; see Pr\"ufer (1918).
+\medskip
+
+\boldlabel Derangements. A derangement is a permutation in which no element is fixed. This can equally
+be characterised as a permutation with no cycle of length 1. We saw earlier that
+permutations is simply a set of cycles, so disallowing cycles of length 1 gives the specification
+$$\D = \Set(\Cyc_{\geq 1}(\Z)).$$
+We remove singleton cycles from the generating function by simply subtracting the generating function of
+$\Cyc_1(\Z)$ (which is simply $z$, because a singleton cycle is just an atom) from $\Cyc_(\Z)$, so
+$$D(z) = \exp\bigg(\log {1\over 1-z}- z\bigg) = {e^{-z}\over 1-z}.\adveq$$
+We will revisit this generating function in the context of a word problem once we have the tools
+to analyse its asymptotics.
+
+\advance\sectcount by 1
+\section\the\sectcount. Counting Parameters with Bivariate Generating Functions
+
+Some situations may require us to do more than just count the number of objects of a certain size.
+In addition, we might like to know how many of a certain substructure is embedded in an object
+of a combinatorial class. We can use a {\it bivariate generating function} or BGF to accomplish
+this. (BGFs are part of a larger class of {\it multivariate generating functions}, but we will
+keep things simple in this crash course. See Chapter III of AC for many more constructions.)
+
+Consider a two-dimensional array of numbers $(a_{n,k})$, where $n$ counts the number of objects
+of a certain size and $k$ counts some other combinatorial parameter. For example, we might have
+\medskip
+\item{i)} The number of $n$-bit strings of 0s and 1s that have exactly $k$ 0s.
+\smallskip
+\item{ii)} The number of $n$-letter permutations that have exactly $k$ cycles.
+\smallskip
+\item{iii)} The number of binary trees of size $n$ that have $k$ leaves.
+\medskip
+Symbolically, suppose we have a combinatorial class $\A$ with an extra scalar parameter $\chi : \A \to \N_0$.
+The ordinary and exponential BGFs are defined, respectively, to be the power series
+$$\sum_{a\in\A} z^{|a|} u^{\chi(a)} \qquad\hbox{and}\qquad
+           \sum_{a\in\A} {z^{|a|}\over n!} u^{\chi(a)},$$
+which can be rewritten as
+$$\sum_{n,k} a_{n,k} z^n u^k \qquad\hbox{and}\qquad \sum_{n,k} a_{n,k} {z^n\over n!} u^k,$$
+where $a_{n,k}$ is the number of objects of size $a$ with $\chi(a) = k$. Note that substituting $u=1$ into
+a BGF returns the ordinary counting sequence for the class $\A$.
+\medskip
+
+\boldlabel Bitstrings. To warm up, we will consider a very simple example. Let $\B$ be the class of all
+binary strings, where for $b\in \B$, its size $n$ is given by its length and $\chi(b)$ is the number
+of zeroes in the string. There are two distinguishable atoms, $\Z_0$ and $\Z_1$, but we introduce a $u$
+only when a zero is present, so we have the specification
+$$\B = \Seq(u\Z_0 + \Z_1)$$
+with generating function
+$$B(z,u) = {1\over 1-(u+1)z}.\adveq$$
+When we substitute $u=1$, we get
+$$B(z,1) = {1\over 1-2z},$$
+which is the generating function of $2^n$, the number of binary strings with $n$ bits.
+The number of $n$-bit binary strings with $k$ zeroes can now be extracted. It is equal to
+$$[u^k][z^n]B(z,u) = [u^k](u+1)^n = {n\choose k},$$
+by an application of the binomial theorem.
+Hence the probability that an $n$-bit binary string has $k$ zeroes is
+$${[u^k][z^n] B(z,u) \over [z^n] B(z,1)} = {{n\choose k}\over 2^n}.\adveq$$
+\medskip
+
+\boldlabel Probabilities and moments. The above example has an elementary result,
+but it illustrates how BGFs allow us to extract probabilities.
+For all $a$ in a class $\A$, we have
+$$\pr\{\chi(a) = k\mid |a| = n\} = {[u^k][z^n] A(z,u) \over [z^n] A(z,1)}.\adveq$$
+We can also calculate higher moments with the BGF. Notice that if we take the partial derivative
+with respect to $u$, the $\chi$ values of each term pop down into the coefficient of each term:
+$${\partial \over\partial u} A(z,u) = {\partial \over\partial u}\sum_{a\in \A} z^{|a|} u^{\chi(a)}
+  = \sum_{a\in \A} \chi(a) z^{|a|} u^{\chi(a) -1}$$
+Of course, the exponents of the variable $u$ have changed, but
+letting $A_u(z,u)$ denote the partial derivative with respect to $u$ and evaluating at $u=1$, we get
+the cumulated cost
+$$A_u(z,u)|_{u=1} = \sum_{n\geq 0} \Big(\sum_{a\in \A_n} \chi(a) \Big)z^n,\adveq$$
+whence we can calculate the mean over $\A_n$, the class of all $a\in \A$ of size $n$, to be
+\newcount\firstmoment
+\firstmoment=\eqcount
+$$\ex_{\A_n}\{\chi\} = {[z^n] A_u(z,u)\eval_{u=1} \over [z^n]A(z,1)}.\adveq$$
+These formulas are valid even when the generating functions are exponential, because the $n!$ factors cancel out.
+More generally, by taking repeated derivatives, we can calculate factorial moments of $\chi$.
+Let $A_u^r(z,u)$ denote the $r$th partial derivative of $A$ with respect to $u$. We have
+$$\ex_{\A_n}\{\chi(\chi-1)\cdots(\chi-r+1)\} = {[z^n] A_u^r(z,u)\eval_{u=1} \over [z^n]A(z,1)}.\adveq$$
+For example, by linearity of expectation, the second moment is easily seen to be
+\newcount\secondmoment
+\secondmoment=\eqcount
+$$\eqalign{
+\ex_{\A_n}\{\chi^2\} &= \ex_{\A_n}\{\chi + \chi(\chi-1)\} \cr
+&= \ex_{\A_n}\{\chi\} + \ex_{\A_n}\{\chi(\chi-1)\} \cr
+&= {[z^n] A_u(z,u)\eval_{u=1} \over [z^n]A(z,1)} + {[z^n] A_u^2(z,u)\eval_{u=1} \over [z^n]A(z,1)} \cr
+}.\adveq$$
+This can be easily used to calculate the variance and standard deviation of $\chi$, from the usual formula
+$$\var_{\A_n}\{\chi\} = \sigma(\chi)^2 = \ex_{\A_n}\{\chi^2\} - \ex_{\A_n}\{\chi\}^2.\adveq$$
+\medskip
+
+\boldlabel Cycles in a permutation. Recall that a permutation is a set of cycles. If we mark every cycle
+with a $u$, we get the specification
+$$\P = \Set(u\Cyc(\Z)),$$
+which gives the bivariate exponential generating function
+$$P(z,u) = \exp\bigg(u\log{1\over 1-z}\bigg) = \exp\bigg(\log{1\over (1-z)^u}\bigg) = \bigg({1\over 1-z}\bigg)^u\adveq$$
+for the number of $n$-letter permutations with exactly $k$ cycles. We can calculate the partial derivatives
+$$P_u(z,u) = \bigg({1\over 1-z}\bigg)^u\log{1\over 1-z}$$
+Here the random variable $\chi$ counts the number of cycles, and we have
+$$\ex_{\P_n}\{\chi\} = {[z^n] P_u(z,u)\eval_{u=1} \over [z^n]P(z,1)} = 1 + {1\over 2} + \cdots + {1\over n} = H_n.$$
+The harmonic numbers $H_n$ can be expanded as $\log n + \gamma + O(1/n)$, so we find that there are roughly
+$\log n$ cycles in a random permutation on $n$ letters.
+A slightly harder analysis of Taylor coefficients retrives the second moment.
+From this, it can be shown that $\var_{\P_n}\{\chi\}\sim \log n$ an well.
+\medskip
+
+\boldlabel External nodes in a binary tree. Hidden inside the specification for binary trees,
+we can see that we are actually only counting internal nodes, since we have given $\E$, the external node,
+the generating function of 1 (meaning it has size 0). If we mark it with a $u$,
+we arrive at
+$$\B = u\E + \Z\times\B\times\B$$
+and the bivariate ordinary generating function satisfies
+$$B(z,u) = u + zB(z)^2.$$
+Using the quadratic formula once again, we find that the generating function is
+$$B(z,u) = {1-\sqrt{1-4uz} \over 2z},$$
+which checks out, since setting $u=1$ gives exactly \refeq{\the\catalaneq}. We have the partial derivatives
+$$P_u(z,u) = {1\over \sqrt{1-4uz}} \qquad\hbox{and}\qquad P_u^2(z,u) = {2z \over (1-4uz)^{3/2}}.$$
+With the substitution $u=1$,
+these are both relatively well-known generating functions. The first is the generating function
+for the central binomial coefficients ${2n\choose n}$ and
+the second is $z {\partial\over \partial z} P_u(z,1) $, so it has coefficients $n{2n\choose n}$
+(the powers of $n$ drop down into the coefficient when differentiating, and multiplying by $z$ restores
+the correct power).
+We calculated in \refeq{\the\catalanformula} that the
+total number of binary trees with $n$ internal nodes is ${2n\choose n}/(n+1)$, so applying our method gives us
+$$\ex_{\B_n}\{\chi\} = {{2n\choose n}\over {1\over n+1}{2n\choose n}} = n+1$$
+and
+$$\ex_{\B_n}\{\chi^2\} = {n{2n\choose n} \over {1\over n+1}{2n\choose n}} + n + 1 = n(n+1)+n+1 = (n+1)^2.$$
+So the average number of external nodes in a tree with $n$ internal nodes is $n+1$ and since
+$$\var_{\B_n}\{\chi\} = \ex_{\B_n}\{\chi^2\} - \ex_{\B_n}\{\chi\}^2 = (n+1)^2 - (n+1)^2 = 0,$$
+we discover that, in fact, every tree with $n$ internal nodes has exactly $n+1$ external nodes.
+(We have performed what is probably the most convoluted proof of this simple fact, but it is a good exercise
+in calculating moments using bivariate generating functions.)
+
+\section References
+\frenchspacing
+
+
+\parskip=0pt
+\hyphenpenalty=-1000 \pretolerance=-1 \tolerance=1000
+\doublehyphendemerits=-100000 \finalhyphendemerits=-100000
+\frenchspacing
+\def\beginref{
+\par\begingroup\nobreak\smallskip\parindent=0pt\kern1pt\nobreak
+\everypar{\strut}
+}
+\def\endref{\kern1pt\endgroup\smallbreak\noindent}
+
+
+\beginref Philippe Flajolet
+and Robert Sedgewick,
+{\sl Analytic Combinatorics}
+(New York:
+Cambridge University Press,
+2009).
+\endref
+
+\beginref George P\'olya,
+``On picture-writing,''
+{\sl American Mathematical Monthly}\/
+{\bf 63}
+(1956),
+689--697.
+\endref
+
+\beginref Heinz Pr\"ufer,
+``Neuer Beweis eines Satzes \"uber Permutationen,''
+{\sl Archiv der Mathematik und Physik}\/
+{\bf 27}
+(1918),
+142--144.
+\endref
+
+\beginref Herbert S.~Wilf,
+{\sl generatingfunctionology}
+(Boston:
+Academic Press,
+1994).
+\endref
+
+
+\bye
