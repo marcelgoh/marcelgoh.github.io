@@ -17,6 +17,7 @@ This is a landing page for things that, for whatever reason, might not have a pl
 + [_On the probability that two integers are relatively prime_]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/coprime-probability.tex))
 + [_The Burnside Problem_]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/burnside.tex))
 + [_Weyl trees of famous irrational numbers_]({{ site.baseurl }}/misc/expo/weyl.pdf) ([Code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))
++ [_A crash course on generating functions_]({{ site.baseurl }}/misc/expo/genfcts.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/genfcts.tex))
 
 ## TeX macros
 
@@ -31,3 +32,12 @@ If you wish to compile my sources from TeX, you'll need to download these macros
 + [Hitchhiking from Montréal to Edmonton]({{ site.baseurl }}/misc/hitchhiking.html)
 + [Poetry]({{ site.baseurl }}/misc/poetry.html)
 + [Noise]({{ site.baseurl }}/misc/noise.html)
+
+## Friends
+
++ &#77952; [Shereen Elaidi](https://shereenelaidi.github.io/)
++ &#78216; [Stephen Fay](https://dcxst.github.io//blog.html)
++ &#77874; [Jad Hamdan](https://jadhamdan.github.io/website/)
++ &#78069; [Cheng Lin](https://cheng-lin.me)
++ &#78048; [Diego Lopez](https://diegolopez.me)
++ &#78264; [Rosie Zhao](https://rosieyzh.github.io/website/)
