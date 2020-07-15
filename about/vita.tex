@@ -2,12 +2,34 @@
 
 \font\elevensc=cmcsc11  % For section headers
 \font\bigbold=cmbx12  % Name
+\font\tensc=cmcsc10 % For name in publications
 
-\parindent=0pt  % No indentation
+% For publication lists (adapted from Knuth's algorithms)
+\newdimen\itemindent
+\newif\ifitempar \itempartrue
+\def\itemindentset#1{\setbox0\hbox{{\bf #1.\kern.25em}}\itemindent=\wd0\relax}
+\def\pubbegin #1{\itemindentset{#11}} % when all have 1 digit
+\def\ppubbegin #1{\itemindentset{#111}} % when 10 or more publications
+\def\pubitem#1.{\ifitempar\smallskip\noindent\else\itempartrue
+  \hskip-\parindent\fi
+  \hbox to\itemindent{\bf\hfil #1.\kern.25em}%
+  \hangindent=\itemindent\hangafter=1\ignorespaces}
 
 \def\up#1{\leavevmode \raise.16ex\hbox{#1}}
 \def\sectheader#1{{\bigskip\elevensc #1}\smallskip\hrule\medskip}
 \def\leftright#1#2{{#1}\hfill{#2}\par}
+\def\myname{{\tensc Marcel K. Goh}}
+
+\parindent=0pt  % No indentation
+
+\newcount\submittedcount
+\submittedcount=1
+\def\subitem{\pubitem S\the\submittedcount. \global\advance\submittedcount by 1}
+\newcount\reportcount
+\reportcount=1
+\def\repitem{\pubitem R\the\reportcount. \global\advance\reportcount by 1}
+
+% =========== START ============ %
 
 \leftright{\bigbold Marcel K.\ Goh}{3660 Rue Hutchison, Apt.\ 4}
 \leftright{Email: marcel\_goh@yahoo.ca}{Montr\'eal, QC H2X 2H3, Canada}
@@ -56,7 +78,19 @@ Semester-long individual software project under the supervision of Adam Dingle.
 Created OPythn, a bytecode compiler and virtual machine for a subset of Python.
 OPythn includes support for lists, dictionaries, named and anonymous functions, objects and classes.
 It is implemented in OCaml using Ocamllex for lexing and Menhir for parsing.
-\medskip
+
+\sectheader{Submitted Papers}
+
+\pubbegin S
+\subitem (with Anna M. Brandenberger and Luc Devroye)
+Root estimation in Galton-Watson trees. {\sl arXiv preprint 2007.05681}.
+Submitted July 2020.
+
+\sectheader{Reports}
+
+\pubbegin R
+\repitem Typechecking proof scripts: making interactive proof assistants robust.
+Honours project report, McGill University (Montr\'eal, Qu\'ebec, December 2019), 10 pp.
 
 \sectheader{Work and Volunteer Experience}
 
@@ -67,6 +101,8 @@ Graded MATH 235, an introductory course on the theory of groups, rings, and fiel
 and MATH 240, a discrete mathematics course, in Winter 2020.
 \medskip
 
+\filbreak % Break page here
+
 \leftright{\bf Computer Science Undergraduate Society Helpdesk}{\bf September 2018 -- present}
 \leftright{\sl Tutor}{\sl Montr\'eal, QC, Canada}
 \smallskip
@@ -74,8 +110,6 @@ Hold twice-weekly office hours to tutor students in a variety of undergraduate c
 Topics covered include elementary data structures and algorithms, command-line scripting,
 and functional programming. Recipient of the Tomlinson Engagement Award for Mentoring.
 \medskip
-
-\filbreak % Break page here
 
 \leftright{\bf McGill Student Emergency Response Team}{\bf October 2017 -- present}
 \leftright{\sl First Responder}{\sl Montr\'eal, QC, Canada}
