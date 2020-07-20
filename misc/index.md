@@ -35,6 +35,7 @@ If you wish to compile my sources from TeX, you'll need to download these macros
 
 ## Friends
 
++ &#78553; [Anna Brandenberger](https://abrandenberger.github.io/)
 + &#77952; [Shereen Elaidi](https://shereenelaidi.github.io/)
 + &#78216; [Stephen Fay](https://dcxst.github.io//blog.html)
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/website/)

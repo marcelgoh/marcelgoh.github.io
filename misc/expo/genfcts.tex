@@ -4,6 +4,7 @@
 \def\Seq{\op{\tensc Seq}}
 \def\Set{\op{\tensc Set}}
 \def\Cyc{\op{\tensc Cyc}}
+\def\Res{\op{\rm Res}}
 \def\A{{\cal A}}
 \def\B{{\cal B}}
 \def\C{{\cal C}}
@@ -17,6 +18,12 @@
 \def\Z{{\cal Z}}
 \def\bul{\bullet}
 
+\def\d{\,d}
+
+\def\CC{{\bf C}}
+\def\RR{{\bf R}}
+\def\eps{\epsilon}
+
 \def\eval{\big|}
 
 \def\beginref{\noindent}
@@ -27,8 +34,15 @@
     \def\cyr{\tencyr\cyracc}
     \def\cyri{\tencyri\cyracc}
 
-\maketitle{A crash course on generating functions}{by}{Marcel K. Goh}{10 July 2020}
+\maketitle{A crash course on generating functions}{by}{Marcel K. Goh}{17 July 2020}
 
+\bigskip
+{\obeylines\eightssi
+\hfill A generating function is a clothesline
+\hfill on which we hang up a sequence for display.
+\eightss
+\smallskip
+\hfill --- HERBERT S. WILF, {\eightssi generatingfunctionology} (1989)}
 \section\the\sectcount. Introduction
 
 When counting discrete structures, we often run into sequences that are recursively defined.
@@ -39,9 +53,8 @@ Now, this particular recurrence
 is easy enough to solve by the substitution method. But often, it is easier to work with the
 {\it generating function} of a sequence. For a sequence $(A_n)$, this is the formal power series
 $$A(z) = \sum_{n\geq 0} A_nz^n.$$
-In his textbook, titled {\sl generatingfunctionology},
-H. S. Wilf famously wrote: ``A generating function is a clothesline on which we hang up a sequence
-of numbers for display.'' That is exactly how we should treat the function $A(z)$ for now;
+H. S. Wilf famously described a generating function as a clothesline, and
+that is exactly how we should treat the function $A(z)$ for now;
 in later sections, we will discuss how this series can be treated as an analytic object.
 
 Let us try to find the generating function for the sequence $(R_n)$ defined above. Right off the bat, we have
@@ -165,12 +178,21 @@ Hence $T(z)$ must be the generating function
 of the Fibonacci numbers, divided by $z$.
 We can easily derive this function with the symbolic method, since a composition
 using only 1s and 2s is simply a sequence of elements of $\I^*$. We conclude that
-$$\T = \Seq(\I^*)\qquad\hbox{and}\qquad T(z) = {1\over 1-I^*(z)} = {1\over 1-z-z^2}.\adveq,$$
-so we know that the generating function of the Fibonacci numbers is
+$$\T = \Seq(\I^*)\qquad\hbox{and}\qquad T(z) = {1\over 1-I^*(z)} = {1\over 1-z-z^2},\adveq$$
+and the generating function of the Fibonacci numbers is
 \newcount\fibeq
 \fibeq=\eqcount
 $$F(z) = {z\over 1-z-z^2}.\adveq$$
-\medskip
+\bigskip
+{\obeylines\eightssi
+\hfill ``What's one and one and one and one and one
+\hfill and one and one and one and one and one?''
+\hfill ``I don't know,'' said Alice. ``I lost count.''
+\hfill ``She can't do Addition,'' the Red Queen interrupted.
+\eightss
+\smallskip
+\hfill --- LEWIS CARROLL, {\eightssi Through the Looking Glass} (1871)}
+\bigskip
 
 \boldlabel Catalan numbers. Let $\B$ be the class of all binary trees. This combinatorial class
 can be described recursively as follows: ``A binary tree is either empty, or else it consists of
@@ -281,8 +303,10 @@ $$\T = \Z \star \Set(\T).$$
 This immediately gives the functional equation
 $$T(z) = ze^{T(z)}$$
 and by Lagrange's inversion theorem, with $f(u) = u/e^u$ and $H(u) = u$, we obtain
+\newcount\cayleyexact
+\cayleyexact=\eqcount
 $$n![z^n]T(z) = n!\bigg({1\over n}[u^{n-1}]e^{un}\bigg)
-              = n!\cdot{1\over n}\cdot{n^{n-1}\over(n-1)!} = n^{n-1}.$$
+              = n!\cdot{1\over n}\cdot{n^{n-1}\over(n-1)!} = n^{n-1}.\adveq$$
 Note that there are $n^{n-2}$ {\it unrooted} Cayley trees, since there are $n$ choices for the root.
 This is called Cayley's formula and the standard combinatorial proof involves establishing
 a bijection with Pr\"ufer sequences; see Pr\"ufer (1918).
@@ -379,11 +403,13 @@ $$\var_{\A_n}\{\chi\} = \sigma(\chi)^2 = \ex_{\A_n}\{\chi^2\} - \ex_{\A_n}\{\chi
 with a $u$, we get the specification
 $$\P = \Set(u\Cyc(\Z)),$$
 which gives the bivariate exponential generating function
-$$P(z,u) = \exp\bigg(u\log{1\over 1-z}\bigg) = \exp\bigg(\log{1\over (1-z)^u}\bigg) = \bigg({1\over 1-z}\bigg)^u\adveq$$
+$$P(z,u) = \exp\bigg(u\log{1\over 1-z}\bigg) = \exp\bigg(\log{1\over (1-z)^u}\bigg)
+    = \bigg({1\over 1-z}\bigg)^u\adveq$$
 for the number of $n$-letter permutations with exactly $k$ cycles. We can calculate the partial derivatives
 $$P_u(z,u) = \bigg({1\over 1-z}\bigg)^u\log{1\over 1-z}$$
 Here the random variable $\chi$ counts the number of cycles, and we have
-$$\ex_{\P_n}\{\chi\} = {[z^n] P_u(z,u)\eval_{u=1} \over [z^n]P(z,1)} = 1 + {1\over 2} + \cdots + {1\over n} = H_n.$$
+$$\ex_{\P_n}\{\chi\} = {[z^n] P_u(z,u)\eval_{u=1} \over [z^n]P(z,1)}
+     = 1 + {1\over 2} + \cdots + {1\over n} = H_n.\adveq$$
 The harmonic numbers $H_n$ can be expanded as $\log n + \gamma + O(1/n)$, so we find that there are roughly
 $\log n$ cycles in a random permutation on $n$ letters.
 A slightly harder analysis of Taylor coefficients retrives the second moment.
@@ -394,13 +420,13 @@ From this, it can be shown that $\var_{\P_n}\{\chi\}\sim \log n$ an well.
 we can see that we are actually only counting internal nodes, since we have given $\E$, the external node,
 the generating function of 1 (meaning it has size 0). If we mark it with a $u$,
 we arrive at
-$$\B = u\E + \Z\times\B\times\B$$
+$$\B = u\E + \Z\times\B\times\B\adveq$$
 and the bivariate ordinary generating function satisfies
 $$B(z,u) = u + zB(z)^2.$$
 Using the quadratic formula once again, we find that the generating function is
-$$B(z,u) = {1-\sqrt{1-4uz} \over 2z},$$
+$$B(z,u) = {1-\sqrt{1-4uz} \over 2z},\adveq$$
 which checks out, since setting $u=1$ gives exactly \refeq{\the\catalaneq}. We have the partial derivatives
-$$P_u(z,u) = {1\over \sqrt{1-4uz}} \qquad\hbox{and}\qquad P_u^2(z,u) = {2z \over (1-4uz)^{3/2}}.$$
+$$P_u(z,u) = {1\over \sqrt{1-4uz}} \qquad\hbox{and}\qquad P_u^2(z,u) = {2z \over (1-4uz)^{3/2}}.\adveq$$
 With the substitution $u=1$,
 these are both relatively well-known generating functions. The first is the generating function
 for the central binomial coefficients ${2n\choose n}$ and
@@ -409,15 +435,455 @@ the second is $z {\partial\over \partial z} P_u(z,1) $, so it has coefficients $
 the correct power).
 We calculated in \refeq{\the\catalanformula} that the
 total number of binary trees with $n$ internal nodes is ${2n\choose n}/(n+1)$, so applying our method gives us
-$$\ex_{\B_n}\{\chi\} = {{2n\choose n}\over {1\over n+1}{2n\choose n}} = n+1$$
+$$\ex_{\B_n}\{\chi\} = {{2n\choose n}\over {1\over n+1}{2n\choose n}} = n+1\adveq$$
 and
 $$\ex_{\B_n}\{\chi^2\} = {n{2n\choose n} \over {1\over n+1}{2n\choose n}} + n + 1 = n(n+1)+n+1 = (n+1)^2.$$
 So the average number of external nodes in a tree with $n$ internal nodes is $n+1$ and since
-$$\var_{\B_n}\{\chi\} = \ex_{\B_n}\{\chi^2\} - \ex_{\B_n}\{\chi\}^2 = (n+1)^2 - (n+1)^2 = 0,$$
+$$\var_{\B_n}\{\chi\} = \ex_{\B_n}\{\chi^2\} - \ex_{\B_n}\{\chi\}^2 = (n+1)^2 - (n+1)^2 = 0,\adveq$$
 we discover that, in fact, every tree with $n$ internal nodes has exactly $n+1$ external nodes.
 (We have performed what is probably the most convoluted proof of this simple fact, but it is a good exercise
 in calculating moments using bivariate generating functions.)
+\bigskip
+{\obeylines\eightssi
+\hfill And if I should live to be
+\hfill The last leaf upon the tree
+\eightss
+\smallskip
+\hfill --- OLIVER WENDELL HOLMES, {\eightssi The Last Leaf} (1831)}
+\bigskip
 
+\advance\sectcount by 1
+\section\llap{*}\the\sectcount. Rudiments of Complex Analysis
+
+In this section, we will collect definitions and theorems that will be useful in studying the coefficient
+asymptotics of generating functions. We will state results without proof; the details can be found any
+introductory textbook on complex analysis (e.g., Flanigan (1983)). Readers who are familiar with
+complex numbers may choose to skim or skip this section.
+
+The complex plane $\CC$ is the set of all numbers $x + iy$ were $x$ and $y$ are real numbers and $i$
+is the square root of $-1$. If $z = x + iy$, then the {\it real part} of $z$ is $\Re z = x$ and the
+{\it imaginary part} of $z$ is $\Im z = y$. The complex conjugate of $z = x + iy$ is $x-iy$, and it is
+easily verified, from the identity $i^2 = -1$, that
+$$z\cdot \bar z = x^2 + y^2.$$
+Letting $|z| = \sqrt{x^2 + y^2}$ denote the {\it modulus} of $z$, we find that
+$${z\cdot \bar z\over |z|^2} = 1,$$
+making it clear that the inverse $1/z$ of a complex number $z$ is equal to $\bar z / |z|^2$.
+
+For real $\theta$, we have the well-known formula
+$$e^{i\theta} = \cos \theta + i\sin \theta,\adveq$$
+which gives another way to represent a complex number. The complex number $z = x+iy$ can also be written
+as $|z|e^{i\theta}$, where $\theta$ is the angle that $z$ makes with the positive real axis.
+Note that $e^{i\theta} = e^{i(\theta + 2\pi k)}$ for any integer $k$.
+\bigskip
+{\obeylines\eightssi
+\hfill The imaginary relish is so sweet
+\hfill That it enchants my sense.
+\eightss
+\smallskip
+\hfill --- WILLIAM SHAKESPEARE, {\eightssi Twelfth Night} (1602)}
+\bigskip
+
+\boldlabel Complex differentation. A complex function defined on a domain $D$
+is said to be {\it analytic} at a point $z_0\in D$ if for some open ball $\Omega$ centred at
+$z_0$, $f$ is representable as a power series
+$$f(z) = \sum_{n\geq 0} f_n(z-z_0)^n.$$
+For example, $1/(1-z)$ is analytic for at any $z_0$ in the ball of radius 1 about the origin.
+A complex function whose domain is D
+is called {\it differentiable} or {\it holomorphic} at $z_0\in D$ if the limit
+$$f'(z_0) = \lim_{z\to z_0} {f(z) - f(z_0) \over z- z_0} $$
+exists, in the sense that $f'(z_0)$ has the same value regardless of the manner in which $z$ approaches
+$z_0$ in the complex plane. The following theorem says that these two notions are equivalent.
+
+\parenproclaim Theorem E (Basic Equivalence Theorem). A complex function $f$ defined on a domain
+$D$ is analytic at a point $z_0\in D$ if and only if it is differentiable at $z_0$.\slug
+
+It is a useful fact that if a function is differentiable at $z_0$,
+then its derivative is also differentiable at $z_0$, meaning
+that it admits derivatives of all orders, and we have the expansion
+$$f(z) = \sum_{n\geq 0} {f^{(n)} \over n!} (z-z_0)^n.\adveq$$
+Of course, if a function is analytic in a disc around $z_0$, then we can
+differentiate it by taking derivatives of the terms in its power series.
+\medskip
+
+\boldlabel Complex integration. The Fundamental Theorem of Calculus states that
+for a real-valued function $f$ with antiderivative $F$,
+$$\int_a^b f(x)\d x = F(b) - F(a).\adveq$$
+We can think of this as summing the values of $f$ over a path from $a$ to $b$. Since $\RR$ is
+one-dimensional,
+there is only one way to get from $a$ to $b$, but on the complex plane, we can integrate over
+any path $\gamma$ from $z_0\in \CC$ to $z_1\in \CC$. We have the following complex analogue of
+the Fundamental Theorem of Calculus.
+
+\parenproclaim Theorem P (Path integration). Let $f$ a complex function,
+continuous in a domain $D$, and let $F$
+be a complex function, analytic in $D$, that satisfies $F'(z) = f(z)$ for all $z\in D$.
+If $\gamma$ is any piecewise smooth path from $z_0\in D$ to $z_1\in D$, then
+$$\int_\gamma f(z)\d z = F(z_1) - F(z_0).\noskipslug$$
+
+We can evaluate complex integrals over paths by parametrising the curve $\gamma$ as a function
+of a real variable $t$ and then performing a change of variables. If $\gamma(t)$ is a parametrised curve
+and $t$ ranges from $a$ to $b$, then
+$$\int_\gamma f(z)\d z = \int_a^b f\big(\gamma(t)\big)\gamma'(t)\d t.\adveq$$
+
+As an example, if $f(z) = z^2$ and we want to find the integral of $f$ from $z_0 = 0$ to $z_1 = 1+2i$. We can
+walk from 0 to $1+2i$ via a path $\gamma_1$ that goes from $0$ to $2i$ and then another path $\gamma_2$ that goes
+from $2i$ to $1+2i$. So $\gamma_1(t) = it$ for $0\leq t\leq 2$ and $\gamma_2(t) = 2i + t$ for $0\leq t\leq 1$ and
+we have the derivatives ${\gamma_1}'(t) = i$ and ${\gamma_2}'(t) = 1$.
+Putting this all together, the integral over the
+whole path is
+$$\eqalign{
+\int_\gamma z^2 \dz &= \int_0^2 (it)^2\cdot i\d t + \int_0^1 (2i + t)^2\d t \cr
+&= \int_0^2 -it^2\d t + \int_0^1 t^2 + 4it - 4 \d t \cr
+&= \bigg[-{it^3\over 3}\bigg]_{t=0}^2 + \bigg[{t^3\over 3} + 2it^2 - 4t\bigg]_{t=0}^1 \cr
+&= -{8i\over 3} + {1\over 3} + 2i - 4 \cr
+&= -{11\over 3} - {2i\over 3} \cr
+}\adveq$$
+Of course, in this example, we could have just noticed that the antiderivative
+of $f(z) = z^2$ is $F(z) = z^3/3$ and applied
+Theorem P to get
+$$\int_\gamma f(z)\d z = F(1+2i) - F(0) = {(1+2i)^3\over 3} = -{11\over 3} - {2i\over 3}.\adveq$$
+
+When $\gamma$ is a {\it closed Jordan curve}, i.e.\ it starts and ends at the same point and does not
+cross itself, we often write the
+integral sign with a circle around it.
+The rules of integration are the same; the circle is just there to remind
+us that our path goes around in a loop. Integrals over closed curves are important, because of the following
+theorem.
+
+\parenproclaim Theorem I (Cauchy Integral Theorem). Let $\gamma$ be a closed Jordan curve in a domain
+$D$. Suppose $f$ is a function that is analytic both on $\gamma$ and the interior of $\gamma$. Then
+$$\oint_\gamma f(z)\d z = 0.\noskipslug$$
+
+A corollary of Theorem I is that if $\gamma_1$ is a closed curve that is fully contained in the interior
+of another closed curve $\gamma_2$ and $f$ is analytic on both curves as well as the region between
+the two curves, then
+$$\oint_{\gamma_1} f(z)\d z = \oint_{\gamma_2} f(z)\d z.\adveq$$
+\medskip
+
+\boldlabel Singularities. If functions tended to be analytic everywhere on $\CC$, then Theorem I tells
+us that integration wouldn't be very interesting. Luckily for us, most of the functions we study
+will fail to be analytic at certain points. Let $D$ be a domain and let $z_0\in D$ be an interior point.
+If $f$ is not analytic at $z_0$ but it is analytic on $D\setminus \{z_0\}$, then the point $z_0$ is said
+to be a {\it singularity} of $f$. There are three types of singularities:
+\medskip
+\item{i)} If $\lim_{z\to z_0} f(z) = w_0$ for some finite value $w_0$, then
+it is possible to continuously extend $f$ to an analytic function $g$ on all of $D$
+(just set $g(z_0) = w_0$). In this case, $z_0$ is called a {\it removable singularity}.
+\smallskip
+\item{ii)} If $\lim_{z\to z_0} |f(z)| = \infty$, then $z_0$ is called a {\it pole} of $f$.
+\smallskip
+\item{iii)} If neither (i) nor (ii) hold, then $z_0$ is called an {\it essential singularity} of $f$.
+\medskip
+We will now show that each of these types of singularities actually pop up in the wild with some examples.
+
+First, we can create a function with a removable singularity by taking a {\it bona fide} analytic function $f$
+and consider its restriction $f'$ on the domain $D\setminus \{z_0\}$. Now $z_0$ is a removable singularity
+of the function $f'$, since $f'$ can be continuously extended to an analytic function on all of $D$.
+
+An easy example of a function with a pole is $f(z) = 1/z$. This function is analytic everywhere on $\CC$ except at
+$z_0 = 0$, and $\lim_{z\to z_0} |1/z| = \infty$. This tells us that $f(z)$ may have an interesting integral
+around the origin. It does not matter which closed curve we take around 0, so the unit circle $C$ is a tempting
+choice. We can parametrise $C$ by $\gamma(\theta) = e^{i\theta}$ for $0\leq \theta< 2\pi$, which has the
+derivative $\gamma'(\theta) = ie^{i\theta}$. We now find that
+\newcount\twopii
+\twopii=\eqcount
+$$\oint_C {1\over z}\d z = \int_0^{2\pi} e^{-i\theta} ie^{i\theta} \d\theta= i\int_0^{2\pi} 1\d\theta = 2\pi i.\adveq$$
+This integral crops up a lot in complex analysis; commit it to memory!
+
+A function with an essential singularity is the square root function $\sqrt z$. This is because, given
+$z = re^{i\theta}$, we can rewrite
+$z = re^{i\theta + 2\pi ik}$ for any integer $k$, so for any integer $k$, $w = \sqrt re^{i\theta/2 + \pi i k}$
+satisfies the property that $w^2 = z$. To get a well-defined square root function, we set
+$$\sqrt z = \sqrt re^{i\theta/2},\adveq$$
+where $\theta\in (-\pi, \pi]$. This spells big trouble for complex numbers on the negative real axis.
+For example, let $z = -1 = e^{i\pi}$. Note that $\sqrt{e^{i(\pi - \eps)}} = e^{i(\pi/2 - \eps/2)}$ and
+$\sqrt{e^{-i(\pi -\eps)}} = e^{-i(\pi/2 - \eps/2)}$ (so both angles are in the range $(-\pi, \pi]$.
+As $\eps\to 0$, the arguments to the function both
+get arbitrarily close to $-1$ but
+the outputs have different limits ($i$ and $-i$). So the square root function has an infinite
+number of essential singularities (any negative real number); these are often called {\it algebraic
+singularities}.
+
+Another function with essential singularities is the natural logarithm $\log z$. Note that, given
+$z = re^{i\theta}$, the number $w = \log r + 2k\pi i\theta$ satisfies $e^w = z$ for any integer $k$.
+Once again, to get a well-defined function we must restrict $\theta$ to a single loop around the unit circle:
+$$\log z = \log r + i\theta,\adveq$$
+where $\theta\in (-\pi, \pi]$. Now, just as with the square root, we have a discontinuity in the argument
+for all real numbers $>1$. These are the {\it logarithmic singularities}.
+\medskip
+
+\boldlabel Residues. If we allow a power series expansion around a point $z_0$
+to have a finite number of negative powers, then it is
+called a {\it Laurent series}; this has the form
+$$f(z) = \sum_{n\geq -M} f_n (z-z_0)^n = {f_{-M} \over (z-z_0)^M} + \cdots + {f_{-1}\over (z-z_0)} + f_0
+    + f_1(z-z_0) + f_2(z-z_0)^2 + \cdots,$$
+for some nonnegative integer $M$. Note that, integrating on a circle of radius 1 around $z_0$, we
+can make the substitution $z - z_0 = e^{i\theta}$ to get $dz = ie^{i\theta}\d\theta$ and
+$$\oint (z-z_0)^M \d z = i\int_0^{2\pi} e^{i(M+1)\theta}\d\theta
+    = \cases{2\pi i & if $M=-1$; \cr 0 & otherwise.}\adveq$$
+So the coefficient $f_{-1}$ of $(z-z_0)^{-1}$ is special; it is the only term that survives the integration
+of a Laurent series. We call this the {\it residue of $f$ at $z_0$}
+and denote it by $\Res(f,z_0)$; we have
+$$\Res(f,z_0) = {1\over 2\pi i} \oint f(z)\d z.\adveq$$
+This is the crucial fact that will allows the following theorem to extract coefficients of generating functions.
+
+\parenproclaim Theorem C (Cauchy coefficient formula). Let $f(z)$ be analytic. The coefficient
+of $z^n$ is given by the formula
+$$[z^n]f(z) = {1\over 2\pi i} \oint {f(z) \over z^{n+1}}\d z,\adveq$$
+where the integral is taken on any closed curve about the origin.\slug
+
+\advance\sectcount by 1
+\section\the\sectcount. Generating Functions as Analytic Functions
+
+This section represents a turning point in our study of generating functions. Up until now, we have treated
+generating functions as purely formal objects. However, we can get a lot of information about the asymptotic
+behaviour of a power series' coefficients by treating it as a function of a complex argument. This section
+will give a general feel for how to do so, without getting too formal. A key theorem that allows us to work
+with generating functions as analytic objects is the following.
+
+\parenproclaim Theorem P (Pringsheim). If $f(z)$ has a series expansion whose coefficients are all
+nonnegative and the radius of convergence of $f(z)$ is $R$, then the real number $R$ is a singularity
+of $f(z)$.\slug
+
+Since counting objects usually induces a generating function with nonnegative coefficients, this theorem
+applies to most of the interesting cases we study.
+Note that we will only deal with the case where there is a {\it unique}
+root of smallest modulus, meaning that $R$ is the only singularity on the circle $|z| = R$. This assumption
+eliminates complications that involve periodicities in the coefficients.
+\medskip
+
+\boldlabel Rational functions. Treating a generating function as a complex function pays off immediately
+when the function is a ratio $f(z)/g(z)$ of two polynomials. Since a polynomial of degree $n$ always has
+$n$ complex roots, we can factorise $g(z)$ into a product of linear factors and then use the partial fraction
+expansion to extract the coefficients. For example, if $f(z) = z$ and $g(z) = 18z^3 - 3z^2 - 4z + 1$, then
+$$\eqalign{
+{f(z)\over g(z)} &= {z\over 18z^3 - 3z^2 - 4z + 1} = {z\over 18(z-1/3)^2(z+1/2)} \cr
+&= {1\over 45(z-1/3)^2} + {1\over 25(z-1/3)} - {1\over 25(z+1/2)}\cr
+&= {1\over 5(1-3z)^2} - {3\over 25(1-3z)} - {2\over 25(1+2z)}.\cr
+}\adveq$$
+This immediately tells us that
+\newcount\exactrat
+\exactrat=\eqcount
+$$\eqalign{
+[z^n]{f(z)\over g(z)} &= {1\over 5}(n+1)3^{n} - {3\over 25} 3^n - {2\over 25}(-2)^n \cr
+&=  {1\over 5}n3^n + {2\over 25} 3^n - {2\over 25}(-2)^n. \cr
+}\adveq$$
+Notice that only the first term is important, because $3^n$ is exponentially larger than $2^n$. We got
+an exponential factor of $\sim 3^n$ because the root of $g(z)$ that is closest to the origin is $1/3$. The fact
+that this root has multiplicity $2$ gives a factor of $\sim n$ in the first term. It is safe to ignore
+all the other terms because they are much smaller, as formalised in the following theorem.
+
+\parenproclaim Theorem G (Rational asymptotics). Let $f(z)$ and $g(z)$ be polynomials that are relatively prime,
+with $g(z) \neq 0$. If $g(z)$ has a a unique real root $\alpha$ of smallest modulus whose multiplicity is $r$, then
+$$[z^n]{f(z)\over g(z)} \sim C\alpha^{-n} n^{r-1} \qquad\hbox{where}\qquad
+   C = {r(-1/\alpha)^r f(\alpha) \over g^{(r)}(\alpha)}.\noskipslug$$
+
+This will become clear later on when we discuss a more general result.
+Applying this theorem to our most recent example, we have $\alpha = 1/3$, $r = 2$, and
+$g''(z) = 108z-6$. So we can derive
+$$[z^n]{z\over 18z^3 - 3z^2 - 4z + 1} = {2(-3)^2 (1/3) \over 108(1/3)-6} 3^n n^{2-1} = {1\over 5} n3^n,\adveq$$
+which is exactly the first term in \refeq{\the\exactrat}.
+\medskip
+
+\boldlabel Fibonacci asymptotics. As an example, recall the generating
+function for the Fibonacci numbers, $z/(1-z-z^2)$. This function has poles at
+$$-\phi = {-1-\sqrt 5\over 2}\approx -1.618 \qquad\hbox{and}\qquad
+   \bar\phi = {-1+\sqrt 5\over 2}\approx0.618,\adveq$$
+where $\phi$ is the golden ratio.
+The root of smaller modulus is $\alpha = \bar\phi = 1/\phi$, and the multiplicity $r = 1$. This gives
+$$F_n = [z^n]{z\over 1-z-z^2} \sim {(-\phi)(1/\phi)\over 1-2/\phi} \phi^n
+    = {\phi \over \phi + 2}\phi^n = {1 + \sqrt 5 \over 5 + \sqrt 5}\phi^n = {\phi ^n\over \sqrt 5},\adveq$$
+which says that the ratio between successive Fibonacci numbers tends towards $\phi$.
+\medskip
+
+\boldlabel Meromorphic functions. Rational functions are special cases of a broader class of functions
+called meromorphic functions. A complex function is {\it meromorphic} if it can be expressed as the ratio
+of two analytic functions. A function is meromorphic in a region if and only if it is analytic except for
+at a finite set of poles.
+We will use the fact that any function that is meromorphic at the point $z_0$
+admits a Laurent expansion
+$$h(z) = {h_{-M} \over (z-z_0)^M} + \cdots + {h_{-1}\over (z-z_0)} + h_0
+    + h_1(z-z_0) + h_2(z-z_0)^2 + \cdots,$$
+where $M$ is a nonnegative integer. We say that $h$ has a {\it pole of order $M$} at the point $z_0$.
+In this case, the function $(z-z_0)^M h(z)$ is analytic at $z_0$, because the Laurent series becomes
+a common-or-garden Taylor series. We have the following generalisation of Cauchy's coefficient formula
+for meromorphic functions.
+
+\parenproclaim Theorem R (Residue theorem). Let $h(z)$ is meromorphic in a region $D$ and let
+$\gamma$ be a closed loop in $D$. Suppose that $\gamma$ encloses $k$ poles of $h$; call them
+$\alpha_1,\ldots,\alpha_k$. Then
+$$[z^n]h(z) = {1\over 2\pi i} \oint_\gamma h(z)\d z = \sum_{i=1}^k \Res(h, \alpha_i).\adveq$$
+In particular, if $h$ is meromorphic in closed ball $|z|\leq R$, analytic at 0,
+and the poles have orders $m_1,\ldots,m_k$, then
+$$[z^n]h(z) = {p_1(n)\over {\alpha_1}^n} + \cdots + {p_k(n)\over {\alpha_k}^n} + O(R^{-N}),\adveq$$
+where each polynomial $p_i$ has degree $m_i - 1$.\slug
+
+As before, we can get a very good approximation by looking only at the pole $\alpha$ of smallest modulus.
+The residue around that pole contributes exponentially more to the coefficient asymptotics than the others,
+so we should analyse the Laurent expansion of $h(z)$ around $\alpha$. If $\alpha$ has order $M$, then
+this looks like
+$$h(z) = {h_{-M} \over (z-\alpha)^M} + \cdots + {h_{-1}\over (z-\alpha)} + h_0
+    + h_1(z-\alpha) + h_2(z-\alpha)^2 + \cdots,$$
+and when $z$ is very close to $\alpha$, only the first term matters. In other words,
+$$h(z) \sim {h_{-M} \over (z-\alpha)^M} = {h_{-M}\over (-\alpha)^M (1-z/\alpha)^M}
+   = (-1)^M{h_{-M}\over\alpha^M} \sum_{n\geq 0} {n+M-1\over \alpha^n}z^n.\adveq$$
+The actual residue $h_{-M}$ can be computed as a limit, by repeated application of l'Hospital's Rule.
+If $h(z)$ is equal to the ratio $f(z)/g(z)$ of analytic functions, then
+$$h_{-M} = \lim_{z\to \alpha} {(z-\alpha)^M f(z) \over g(z)} = {Mf(\alpha) \over g^{(M)}(\alpha)}.\adveq$$
+Putting this all together, we have the following theorem.
+
+\parenproclaim Theorem M (Meromorphic asymptotics). If $h(z) = f(z)/g(z)$ is a meromorphic function with
+a unique pole of smallest modulus $\alpha$ whose order is $M$, then
+$$[z^n]h(z) \sim (-1)^M {Mf(\alpha) \over \alpha^M g^{(M)}(\alpha)} \alpha^{-n} n^{M-1}.\noskipslug$$
+
+We now see that Theorem G is a special case of this, since a multiplicity-$r$
+root of a polynomial in the denominator induces a pole of order $r$.
+\medskip
+
+\boldlabel Asymptotics of derangements. Consider the following word problem: It is a Tuesday night and
+$n$ froshies leave their Residence to go to Caf\'e Campus. After attaining a sufficient state of inebriation,
+the $n$ froshies all make it safely back to Residence, but each of them has found a random room to sleep in;
+that is, they return to their rooms in a random permutation. What is the likelihood that no froshie returns
+to his or her own room?
+
+We can regard the $n$ froshies as $n$ labelled atoms and since a permutation as a set of cycles,
+this problem asks for the proportion of all $n$-letter permutations
+that have no singleton cycle. These are exactly the derangements, which have the EGF
+$D(z) = e^{-z}/(1-z)$.
+We can use Theorem M to get an estimate of the number of $n$-letter derangements. We have $f(z) = e^{-z}$,
+$g(z) = 1-z$, and a pole of order $M=1$ at $\alpha=1$. The derivative of $g(z)$ is $-1$ so after a rumble and
+a tumble and a great deal of cancelling out 1s, we have
+$$n![z^n]D(z) \sim n! (-1)^1 {1\cdot e^{-1} \over 1^1 (-1)} 1^{-n} n^0 = {1\over e}n!.\adveq$$
+There are $n!$ total permutations so the proportion of permutations that are derangements is $1/e$;
+we have a $1/e \approx 36.8\%$ chance that the froshies all end up in rooms not belonging to them.
+
+\advance\sectcount by 1
+\section\the\sectcount. Singularity Analysis
+
+We have now dealt with generating functions that have poles. It remains to tackle functions that have
+essential singularities, such as those caused by square roots and logarithms. First we need a couple of facts
+about the gamma function. For positive integers $n$, we have $\Gamma(n) = (n-1)!$ and
+for all $z\in \CC$ with $\Re z > 0$, $\Gamma$ is defined by
+$$\Gamma(z) = \int_0^\infty x^{z-1} e^{-x}\d x.\adveq$$
+Now the full gamma function is defined to be the analytic continuation to a meromorphic function
+that has analytic everywhere except the nonpositive integers. The nonpositive integers are poles of $\Gamma$.
+Just like with factorials, we have $\Gamma(z+1) = z\Gamma(z)$. The important identity
+$$\Gamma(1/2) = \int_0^\infty x^{-1/2} e^{-x}\d x = 2\int_0^\infty e^{-x^2}\d x = \sqrt\pi\adveq$$
+should also be memorised. The {\it Hankel contour} $H$ is the path that
+starts at $\infty$, hovers $+\delta$ above the real line until reaching the unit circle, travels around the unit
+circle counterclockwise until reaching a point a distance of $\delta$ below the real line, then increases
+off to $\infty$ once again. The distance $\delta$ is called the {\it slit width}. We have the identity
+\newcount\hankel
+\hankel=\eqcount
+$${1\over \Gamma(z)} = {1\over 2\pi i} \int_H (-x)^{-z} e^{-x} \d x,\adveq$$
+which will come in handy later.
+\bigskip
+{\obeylines\eightssi
+\hfill Singularity is almost invariably a clue.
+\eightss
+\smallskip
+\hfill --- SHERLOCK HOLMES, {\eightssi The Boscombe Valley Mystery} (1891)}
+\bigskip
+
+\boldlabel The standard function scale. We saw that the function $\sqrt z$ is singular when $z$ is negative
+and real. More generally, the function $(1-z)^{-\alpha}$ is singular when $z$ is real and $>1$. This leads
+to the fundamental result that makes singularity analysis possible.
+
+\parenproclaim Theorem S (Standard function scale). If $\alpha\in \CC$ is not a nonpositive real number,
+then
+$$[z^n](1-z)^{-\alpha} \sim {n^{\alpha - 1}\over \Gamma(\alpha)}.\adveq$$
+
+\proof (Sketch.) Let $H$ be a slight variant of the Hankel contour of slit width $1/n$
+that circles around $z=1$ instead
+of the origin. We start with the coefficient formula
+$$[z^n](1-z)^{-\alpha} = {1\over 2\pi i} \oint {(1-z)^{-\alpha} \over z^{n+1}}\d z,$$
+where the path of integration goes in a circle around the origin. We deform this circle
+to a ball of infinite radius that avoids the essential singularities; this is exactly the contour $H$.
+The change of variable
+$z = 1+t/n$ and $dz = dt/n$ gives
+$$[z^n](1-z)^{-\alpha} = {1\over 2\pi i} \int_H {(-t)^{-\alpha} \over n^{-\alpha} z^{n+1}}{1\over n}\d t
+= {n^{\alpha -1} \over 2\pi i} \int_H (-t)^{-\alpha}\bigg(1+{t\over n}\bigg)^{-n-1} \d t
+\sim {n^{\alpha - 1}\over \Gamma(\alpha)},\adveq$$
+where the last $\sim$ comes from the approximation
+$$\bigg(1+{t\over n}\bigg)^{-n-1} \sim \bigg(1+{t\over n}\bigg)^{-n} \to e^{-t}$$
+combined with $\refeq{\the\hankel}$.\slug
+
+A similar but equally involved process proves the more general version of the standard function scale,
+which also handles logarithms.
+
+\parenproclaim Theorem S$'$ (Standard function scale, logarithms).
+If $\alpha\in \CC$ is not a nonpositive real number, then
+$$[z^n](1-z)^{-\alpha}\bigg({1\over z}\log {1\over 1-z}\bigg)^\beta
+    \sim {N^{\alpha - 1}\over \Gamma(\alpha)}(\log n)^\beta.\noskipslug\adveq$$
+
+If $f(z)$ is singular at $z=\rho$, then $g(z) = f(\rho z)$ is singular at $1$ and
+$$[z^n] f(z) = \rho^{-n} [z^n] f(\rho z) = \rho^{-n} [z^n] g(z).\adveq$$
+When a generating function is not meromorphic, the approach to getting its coefficient asymptotics is
+as follows:
+\medskip
+\item{i)} First, we locate the dominant singularity $\rho$ (the one closest to the origin).
+Check that it is the only singularity on the circle of convergence.
+\smallskip
+\item{ii)} Next, we find functions $\sigma$ and $\tau$ on the standard scale such that,
+for $z$ near $\rho$,
+$$f(z) = \sigma(z/\rho) + O\big(\tau(z/\rho)\big).$$
+We should have $\tau(z) = o\big(\sigma(z)\big)$.
+\smallskip
+\item{iii)} Lastly, we apply Theorem S$'$ to $\sigma$ and $\tau$ to get an approximation for $f$.
+\medskip
+
+\boldlabel Catalan asymptotics. We are now ready to derive an asymptotic estimate for the growth
+of the Catalan numbers. Earlier, we derived the OGF
+$$C(z) = {1 - \sqrt{1-4z} \over 2z},$$
+which has a radius of convergence of $1/4$. By Pringsheim's theorem, we have an algebraic
+singularity at $\rho = 1/4$. Now we rewrite
+$$C(z) = {1\over 2z} - {(1-4z)^{1/2} \over 2z};$$
+when $z$ is close to $1/4$ this is
+$$C(z) \sim 2 - 2(1-4z)^{1/2}.\adveq$$
+Now we use the standard scale with $\alpha = -1/2$. From $z\Gamma(z) = \Gamma(z+1)$ we infer that
+$$\eqalign{
+-{1\over 2}\Gamma(-1/2) &= \Gamma(1/2) \cr
+\Gamma(-1/2) &= -2\sqrt \pi \cr
+},\adveq$$
+whence the famous approximation
+$$[z^n]C(z) \sim [z^n]\big(-2(1-4z)^{1/2}\big)
+  \sim {-2n^{-3/2}4^n \over \Gamma(-1/2)} = {4^n \over \sqrt \pi n^{3/2}}\adveq$$
+can be derived.
+\medskip
+
+\boldlabel Simple varieties of trees. Many generating functions associated with tree classes
+have a generating function that satisfies $f(z) = z\phi\big(f(z)\big)$. We have the following
+theorem that generalises singularity analysis of simple varieties of trees.
+
+\parenproclaim Theorem V (Simple varieties of trees). Suppose $f(z) = z\phi\big(f(z)\big)$ and furthermore,
+the following conditions hold:
+\medskip
+\item{i)} The function $\phi(u)$ is nonlinear, satisfies $\phi(0)\neq 0$, is analytic at 0 and has
+nonnegative coefficients.
+\smallskip
+\item{ii)} Within the open ball of convergence $|z| < R$ of $\phi$, there exists a
+positive real solution $\tau$ to the equation
+$$\phi(\tau) = \tau\phi'(\tau).\adveq$$
+\medskip
+\noindent Then $\rho = \tau/\phi(\tau)$ is the radius of convergence of $f(z)$ and
+$$[z^n]f(z) \sim \sqrt{{\phi(\tau) \over 2\pi \phi''(\tau)}} {\rho^{-n} \over n^{3/2}}.\adveq$$
+
+\proof The proof is beyond the scope of the notes, but the general gist is to first show that
+$$f(z) \sim \tau - \sqrt{2\phi(\tau) / \phi''(\tau)} \sqrt{(1-z\phi'(\tau))}\adveq$$
+and then use Theorem S.\slug
+\medskip
+
+\boldlabel Cayley trees and Stirling's formula.
+We will apply Theorem V to the family of Cayley trees, whose EGF satisfies
+$$T(z) = ze^{T(z)}.$$
+So $\phi(u) = \phi'(u) = \phi''(u) = e^u$, $\tau = 1$, $\rho = 1/e$ and
+$$n![z^n]T(z) \sim n!\sqrt{{e \over 2\pi e}} {e^n \over n^{3/2}} = {n!e^n\over \sqrt{2\pi} n^{3/2}}.\adveq$$
+We saw earlier that $n![z^n]T(z)$ is exactly $n^{n-1}$. This can be substituted to obtain
+$$\eqalign{
+{n! e^n \over \sqrt{2\pi} n^{3/2}} &\sim n^{n-1} \cr
+n! &\sim {\sqrt{2\pi} n^{3/2} \cdot n^{n-1} \over e^n} = \sqrt{2\pi n}\bigg({n\over e}\bigg)^n,\cr
+}\adveq$$
+and we have, as a byproduct of counting trees, derived Stirling's formula!
 \section References
 \frenchspacing
 
@@ -439,6 +905,13 @@ and Robert Sedgewick,
 (New York:
 Cambridge University Press,
 2009).
+\endref
+
+\beginref Francis J.~Flanigan,
+{\sl Complex Variables: Harmonic and Analytic Functions}
+(New York:
+Dover,
+1983).
 \endref
 
 \beginref George P\'olya,
