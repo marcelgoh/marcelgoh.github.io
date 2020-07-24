@@ -22,4 +22,4 @@ __R1.__ [Typechecking proof scripts: making interactive proof assistants robust]
 
 I contributed the following sequences to the [OEIS](https://oeis.org):
 
-+ [A335562](https://oeis.org/A335562): The number of unlabelled unordered binary trees with $n$ nodes such that every node with two children has children of different subtree sizes.
++ [A335562](https://oeis.org/A335562): The number of unlabelled unary-binary trees with $n$ nodes such that every node with two children has children of different subtree sizes.

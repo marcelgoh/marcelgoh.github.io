@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>Marcel Goh's Home Page</title>
+<link rel="icon" href="https://marcelgoh.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://marcelgoh.github.io/favicon.ico">
+<style type="text/css">
+h1 {
+  font-size: xx-large;
+}
+
+h2 {
+  font-size: x-large;
+}
+
+h3 {
+  font-size: large;
+}
+
+h4 {
+  font-size: medium;
+}
+
+div {
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+    background-color: #fff3db;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+</style>
+</head>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script
+    type="text/javascript"
+    charset="utf-8"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  >
+  </script>
+  <script
+    type="text/javascript"
+    charset="utf-8"
+    src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+  >
+  </script>
+
+<a href="../home/">Back</a>
+
+<hr>
+
+<body>
+    <div class=""><h1>A Fibonacci proof</h1></div>
+    <div class=""><i>23 June 2018</i></div>
+
+    <p>For the last couple of months, I have been working though the exercises in <a href="https://mitpress.mit.edu/sites/default/files/sicp/index.html"><em>Structure and Interpretation of Computer Programs</em></a> by Abelson and Sussman. I generally try not to skip any exercises but every now and then I encounter one that is a bit too difficult. Today I return to a question from the first chapter that I had originally skipped.<br><!--more--></p>
+    <div class=""><p><img src="/media/fibonacci/ex1-13.png" alt="ex1-13" width=800></p></div>
+    <p>Here <em>Fib(n)</em> denotes the <em>n</em>-th number in the Fibonacci sequence (1, 1, 2, 3, 5, ... , <em>Fib(n)</em>). My approach follows the hint in the question and proves that <em>Fib(n)</em> differs from <code>phi^n/sqrt(5)</code> by less than one-half for all natural numbers <em>n</em>.  </p>
+    <p><a href="/media/fibonacci/proof.tex">Download LaTeX</a><br><a href="/media/fibonacci/proof.pdf">Link to PDF</a>  </p>
+    <p>I may have been a bit on the long-winded side but I believe the proof is correct. Please enjoy and do not hesitate to contact me if you spot any errors. </p>
+</html>
+
