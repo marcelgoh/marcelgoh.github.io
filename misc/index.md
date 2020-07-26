@@ -19,6 +19,14 @@ This is a landing page for things that, for whatever reason, might not have a pl
 + [_Weyl trees of famous irrational numbers_]({{ site.baseurl }}/misc/expo/weyl.pdf) ([Code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))
 + [_A crash course on generating functions_]({{ site.baseurl }}/misc/expo/genfcts.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/genfcts.tex))
 
+## Literate programs
+These programs are written in [CWEB](http://www.literateprogramming.com/cweb_download.html), and are meant to be read!
+I have also included the C and PDF outputs so you don't
+have to download a CWEB compiler to read them.
+
++ [LLL-ALGORITHM](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/literate/lll.w). A program that performs lattice reduction
+via the famous LLL algorithm ([C]({{ site.baseurl }}/misc/literate/lll.c)) ([PDF]({{ site.baseurl }}/misc/literate/lll.pdf)).
+
 ## TeX macros
 
 If you wish to compile my sources from TeX, you'll need to download these macros and typeset using the Plain TeX engine. Feel free to use and modify them for your own purposes as well.
