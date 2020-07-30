@@ -27,8 +27,8 @@
 \font\ninesl=cmsl9    \font\eightsl=cmsl8                        % SLANTED
 
 \font\tensc=cmcsc10   \font\ninesc=cmcsc9  \font\eightsc=cmcsc8  % SMALL CAPS
-\font\tenss=cmss10    \font\eightssq=cmss8    % SANS SERIF
-\font\tenssi=cmssi10  \font\eightssqi=cmssi8  % SANS SERIF ITALIC
+\font\tenss=cmss10    \font\eightss=cmssq8    % SANS SERIF
+\font\tenssi=cmssi10  \font\eightssi=cmssqi8  % SANS SERIF ITALIC
 
 \font\tensltt=cmsltt10 % SLANTED TYPEWRITER
 \font\tenu=cmu10       % UNSLANTED TEXT ITALIC
@@ -40,6 +40,7 @@
 
 % MISC. OTHER FONTS
 \font\twelverm=cmr12  \font\twelvebf=cmbx12
+\font\eightfib=cmfib8  \font\elevenfib=cmfib8 at 11pt
 \def\sc{\tensc}  \def\mc{\ninerm}
 
 % CYRILLIC
@@ -107,7 +108,24 @@
   \left#1\vbox to7.25pt{}\right.\nospace$}}}
 \def\eightbig#1{{\hbox{$\textfont0=\ninerm\textfont2=\ninesy
   \left#1\vbox to6.5pt{}\right.\nospace$}}}
-\tenpoint
+
+% USE NON-EXTENDED VERSIONS OF BOLD FONT
+\def\nonextendedbold{
+  \font\fiveb=cmb5
+  \font\sixb=cmb6
+  \font\sevenb=cmb7
+  \font\eightb=cmb8
+  \font\nineb=cmb9
+  \font\tenb=cmb10
+  \font\twelveb=cmb12
+  \let\fivebf=\fiveb
+  \let\sixbf=\sixb
+  \let\sevenbf=\sevenb
+  \let\eightbf=\eightb
+  \let\ninebf=\nineb
+  \let\tenbf=\tenb
+  \let\twelvebf=\twelveb
+}
 
 % Create header on non-first pages
 \def\leftrighttop#1#2{
@@ -119,9 +137,12 @@
   \footline{\ifnum\pageno=1 \hfil \else \hfil{\rm \number\pageno}\hfil\fi}
 }
 
+% Default font for title
+\def\titlefont{\twelvebf}
+
 % Create title, subtitle, name, and date
 \def\maketitle#1#2#3#4{
-  \centerline {\twelvebf #1}
+  \centerline {\titlefont #1}
   \medskip
   \centerline {\eightpt #2}
   \medskip
@@ -132,7 +153,7 @@
 }
 % Two-author version
 \def\maketitletwoauthor#1#2#3#4#5{
-  \centerline {\twelvebf #1}
+  \centerline {\titlefont #1}
   \medskip
   \centerline {\eightpt #2}
   \medskip
@@ -144,7 +165,7 @@
 
 % Create title, subtitle, and name
 \def\maketitlenodate#1#2#3{
-  \centerline {\twelvebf #1}
+  \centerline {\titlefont #1}
   \medskip
   \centerline {\eightpt #2}
   \medskip
@@ -172,24 +193,27 @@
   }
 }
 
+\def\sectionfont{\tenssbx}
+
 % Section header in heavy sans-serif font
 % Separate two of these in a row with \vskip -\medskipamount
-\def\section#1\par{
+\def\lsection#1\par{
   \bigskip\vskip\parskip
-  \leftline{\tenssbx#1}\nobreak\medskip\noindent
+  \leftline{\sectionfont#1}\nobreak\medskip\noindent
 }
 
 % Centred version
 \def\csection#1\par{
   \bigskip\vskip\parskip
-  \centerline{\tenssbx#1}\nobreak\medskip\noindent
+  \centerline{\sectionfont#1}\nobreak\medskip\noindent
 }
 
 % Right-justified version
 \def\rsection#1\par{
   \bigskip\vskip\parskip
-  \rightline{\tenssbx#1}\nobreak\medskip\noindent
+  \rightline{\sectionfont#1}\nobreak\medskip\noindent
 }
+\def\section{\lsection}
 
 % New subsection
 \def\boldlabel#1. {\noindent{\bf #1.\enspace}}
@@ -219,3 +243,14 @@
 
 % References
 \def\ref#1{[#1]}
+
+% Classic mode
+\def\classicmode{
+  \font\elevenb=cmb11
+  \nonextendedbold
+  \def\sectionfont{\elevenb}
+  \def\titlefont{\elevenfib}
+  \tenpoint
+}
+
+\tenpoint
