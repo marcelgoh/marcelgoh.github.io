@@ -1,14 +1,11 @@
 % Macros for creating documents
 % Written by Marcel Goh, unless otherwise specified.
 
-% FONTS
+% OLD FONT NAMES. These are not used anymore (as of 29 Jul 2020),
+% but left here for compatibility purposes.
 \font\bigbold=cmbx12
 \font\bigsans=cmss12
 \font\smallheader=cmssbx10 % for section headers
-
-% Small caps
-\font\ninesc=cmcsc9
-\font\tensc=cmcsc10
 
 % Roman fonts
 \font\eightpt=cmr8
@@ -18,11 +15,99 @@
 % Bold fonts
 \font\eightbold=cmbx8
 \font\ninebold=cmbx9
-
 \font\mathbold=cmmib10
 
-\font\ninett=cmtt9
-\font\nineit=cmti9
+% NEW FONT NAMES FOR PRELOADED PLAIN FONTS (naming mostly consistent with the TeXbook)
+\font\ninerm=cmr9     \font\eightrm=cmr8   \font\sixrm=cmr6      % ROMAN
+\font\ninei=cmmi9     \font\eighti=cmmi8   \font\sixi=cmmi6      % MATH ITALIC
+\font\ninesy=cmsy9    \font\eightsy=cmsy8  \font\sixsy=cmsy6     % SYMBOLS
+\font\ninebf=cmbx9    \font\eightbf=cmbx8  \font\sixbf=cmbx6     % BOLD EXTENDED
+\font\ninett=cmtt9    \font\eighttt=cmtt8                        % TYPEWRITER
+\font\nineit=cmti9    \font\eightit=cmti8  \font\sevenit=cmti7   % TEXT ITALIC
+\font\ninesl=cmsl9    \font\eightsl=cmsl8                        % SLANTED
+
+\font\tensc=cmcsc10   \font\ninesc=cmcsc9  \font\eightsc=cmcsc8  % SMALL CAPS
+\font\tenss=cmss10    \font\eightssq=cmss8    % SANS SERIF
+\font\tenssi=cmssi10  \font\eightssqi=cmssi8  % SANS SERIF ITALIC
+
+\font\tensltt=cmsltt10 % SLANTED TYPEWRITER
+\font\tenu=cmu10       % UNSLANTED TEXT ITALIC
+
+\font\tenbi=cmmib10    % BOLD MATH ITALIC
+\font\tenbsy=cmbsy10   % BOLD MATH SYMBOLS
+
+\font\tenssbx=cmssbx10 % SANS SERIF BOLD EXTENDED
+
+% MISC. OTHER FONTS
+\font\twelverm=cmr12  \font\twelvebf=cmbx12
+\def\sc{\tensc}  \def\mc{\ninerm}
+
+% CYRILLIC
+\input cyracc.def
+    \font\tencyr=wncyr10   \font\ninecyr=wncyr9   \font\eightcyr=wncyr8
+    \font\tencyri=wncyi10  \font\ninecyri=wncyi9  \font\eightcyri=wncyi8
+    \def\cyr{\tencyr\cyracc} \def\cyri{\tencyri\cyracc}
+
+% FONT SIZES (ADAPTED FROM THE TEXBOOK).
+% CHANGES MADE:
+% - Edited \sc and added \mc.  (1)
+% - Cyrillic support built in. (2)
+\newskip\ttglue
+\def\tenpoint{\def\rm{\fam0\tenrm}
+  \textfont0=\tenrm \scriptfont0=\sevenrm \scriptscriptfont0=\fiverm
+  \textfont1=\teni  \scriptfont1=\seveni  \scriptscriptfont1=\fivei
+  \textfont2=\tensy \scriptfont2=\sevensy \scriptscriptfont2=\fivesy
+  \textfont3=\tenex \scriptfont3=\tenex   \scriptscriptfont3=\tenex
+  \textfont\itfam=\tenit  \def\it{\fam\itfam\tenit}
+  \textfont\slfam=\tensl  \def\sl{\fam\slfam\tensl}
+  \textfont\ttfam=\tentt  \def\tt{\fam\ttfam\tentt}
+  \textfont\bffam=\tenbf  \scriptfont\bffam=\sevenbf
+   \scriptscriptfont\bffam=\fivebf  \def\bf{\fam\bffam\tenbf}
+  \tt \ttglue=.5em plus.25em minus.15em
+  \normalbaselineskip=12pt
+  \setbox\strutbox=\hbox{\vrule height8.5pt depth3.5pt width0pt}
+  \let\sc=\tensc \let\mc=\ninerm  % (1)
+  \def\cyr{\tencyr\cyracc} \def\cyri{\tencyri\cyracc}  % (2)
+  \let\big=\tenbig  \normalbaselines\rm}
+\def\ninepoint{\def\rm{\fam0\ninerm}
+  \textfont0=\ninerm \scriptfont0=\sixrm \scriptscriptfont0=\fiverm
+  \textfont1=\ninei  \scriptfont1=\sixi  \scriptscriptfont1=\fivei
+  \textfont2=\ninesy \scriptfont2=\sixsy \scriptscriptfont2=\fivesy
+  \textfont3=\tenex  \scriptfont3=\tenex \scriptscriptfont3=\tenex
+  \textfont\itfam=\nineit  \def\it{\fam\itfam\nineit}
+  \textfont\slfam=\ninesl  \def\sl{\fam\slfam\ninesl}
+  \textfont\ttfam=\ninett  \def\tt{\fam\ttfam\ninett}
+  \textfont\bffam=\ninebf  \scriptfont\bffam=\sixbf
+   \scriptscriptfont\bffam=\fivebf  \def\bf{\fam\bffam\ninebf}
+  \tt \ttglue=.5em plus.25em minus.15em
+  \normalbaselineskip=11pt
+  \setbox\strutbox=\hbox{\vrule height8pt depth3pt width0pt}
+  \let\sc=\ninesc \let\mc=\eightrm  % (1)
+  \def\cyr{\ninecyr\cyracc} \def\cyri{\ninecyri\cyracc}  % (2)
+  \let\big=\ninebig  \normalbaselines\rm}
+\def\eightpoint{\def\rm{\fam0\eightrm}
+  \textfont0=\eightrm \scriptfont0=\sixrm \scriptscriptfont0=\fiverm
+  \textfont1=\eighti  \scriptfont1=\sixi  \scriptscriptfont1=\fivei
+  \textfont2=\eightsy \scriptfont2=\sixsy \scriptscriptfont2=\fivesy
+  \textfont3=\tenex   \scriptfont3=\tenex \scriptscriptfont3=\tenex
+  \textfont\itfam=\eightit  \def\it{\fam\itfam\eightit}
+  \textfont\slfam=\eightsl  \def\sl{\fam\slfam\eightsl}
+  \textfont\ttfam=\eighttt  \def\tt{\fam\ttfam\eighttt}
+  \textfont\bffam=\eightbf  \scriptfont\bffam=\sixbf
+   \scriptscriptfont\bffam=\fivebf  \def\bf{\fam\bffam\eightbf}
+  \tt \ttglue=.5em plus.25em minus.15em
+  \normalbaselineskip=9pt
+  \setbox\strutbox=\hbox{\vrule height7pt depth2pt width0pt}
+  \let\sc=\eightsc \let\mc=\sevenrm  % (1)
+  \def\cyr{\eightcyr\cyracc} \def\cyri{\eightcyri\cyracc}  % (2)
+  \let\big=\eightbig  \normalbaselines\rm}
+\def\nospace{\nulldelimiterspace0pt\mathsurround0pt}
+\def\tenbig#1{{\hbox{$\left#1\vbox to8.5pt{}\right.\nospace$}}}
+\def\ninebig#1{{\hbox{$\textfont0=\tenrm\textfont2=\tensy
+  \left#1\vbox to7.25pt{}\right.\nospace$}}}
+\def\eightbig#1{{\hbox{$\textfont0=\ninerm\textfont2=\ninesy
+  \left#1\vbox to6.5pt{}\right.\nospace$}}}
+\tenpoint
 
 % Create header on non-first pages
 \def\leftrighttop#1#2{
@@ -36,7 +121,7 @@
 
 % Create title, subtitle, name, and date
 \def\maketitle#1#2#3#4{
-  \centerline {\bigbold #1}
+  \centerline {\twelvebf #1}
   \medskip
   \centerline {\eightpt #2}
   \medskip
@@ -47,7 +132,7 @@
 }
 % Two-author version
 \def\maketitletwoauthor#1#2#3#4#5{
-  \centerline {\bigbold #1}
+  \centerline {\twelvebf #1}
   \medskip
   \centerline {\eightpt #2}
   \medskip
@@ -59,7 +144,7 @@
 
 % Create title, subtitle, and name
 \def\maketitlenodate#1#2#3{
-  \centerline {\bigbold #1}
+  \centerline {\twelvebf #1}
   \medskip
   \centerline {\eightpt #2}
   \medskip
@@ -91,50 +176,27 @@
 % Separate two of these in a row with \vskip -\medskipamount
 \def\section#1\par{
   \bigskip\vskip\parskip
-  \leftline{\smallheader#1}\nobreak\medskip\noindent
+  \leftline{\tenssbx#1}\nobreak\medskip\noindent
 }
 
 % Centred version
 \def\csection#1\par{
   \bigskip\vskip\parskip
-  \centerline{\smallheader#1}\nobreak\medskip\noindent
+  \centerline{\tenssbx#1}\nobreak\medskip\noindent
 }
 
 % Right-justified version
 \def\rsection#1\par{
   \bigskip\vskip\parskip
-  \rightline{\smallheader#1}\nobreak\medskip\noindent
+  \rightline{\tenssbx#1}\nobreak\medskip\noindent
 }
 
+% New subsection
+\def\boldlabel#1. {\noindent{\bf #1.\enspace}}
+\def\subsection#1. {\medskip\noindent{\bf #1.\enspace}}
+
 % Figure caption
-\def\caption Fig. #1. #2.{{\ninebold Fig.\ #1.}\enspace{\ninept #2.}}
-
-% From the TeXbook: Verbatim typewriter text
-% Modified to have ~ be escape character instead of ~
-\newskip\ttglue
-\ttglue=.5em plus.25em minus.15em
-
-\outer\def\begindisplay{\obeylines\startdisplay}
-{\obeylines\gdef\startdisplay#1
-  {\catcode`\^^M=5$$#1\halign\bgroup\indent##\hfil&&\qquad##\hfil\cr}}
-\outer\def\enddisplay{\crcr\egroup$$}
-
-\chardef\other=12
-\def\ttverbatim{\begingroup \catcode`\\=\other \catcode`\{=\other
-  \catcode`\}=\other \catcode`\$=\other \catcode`\&=\other
-  \catcode`\#=\other \catcode`\%=\other \catcode`\|=\other
-  \catcode`\_=\other \catcode`\^=\other
-  \obeyspaces \obeylines \tt}
-
-{\obeyspaces\gdef {\ }} % \obeyspaces now gives \ , not \space
-
-\outer\def\begintt{$$\let\par=\endgraf \ttverbatim \parskip=0pt
-  \catcode`\~=0 \rightskip=-5pc \ttfinish}
-{\catcode`\~=0 ~catcode`~\=\other % ~ is temporary escape character
-  ~obeylines % end of line is active
-  ~gdef~ttfinish#1^^M#2\endtt{#1~vbox{#2}~endgroup$$}}
-
-\catcode`\~=\active {\obeylines\gdef~{\ttverbatim\spaceskip=\ttglue\let^^M=\ \let~=\endgroup}}
+\def\caption Fig. #1. #2.{{\ninebf Fig.\ #1.}\enspace{\ninept #2.}}
 
 % Block of left-justified text, in "poetry-mode"
 \def\begintext{\par\begingroup\nobreak\medskip \obeylines}
@@ -150,63 +212,10 @@
 \scriptscriptfont\frakfam=\fivefrak
 \def\frak#1{{\fam\frakfam #1}}
 
-% Old Standard text with Latin Modern extra math symbols
-\def\oldstandard{
-  \font\tenrm=OldStandard-Regular-tlf-t1 at 10pt % roman text
-  \font\sevenrm=OldStandard-Regular-tlf-t1 at 7pt
-  \font\fiverm=OldStandard-Regular-tlf-t1 at 5pt
-  \font\tensc=OldStandard-Regular-tlf-t1 at 10pt
-  \font\eightpt=OldStandard-Regular-tlf-t1 at 8pt % eight point
-  \font\ninept=OldStandard-Regular-tlf-t1 at 9pt
-
-  \font\tenbf=OldStandard-Bold-tlf-t1 at 10pt % boldface extended
-  \font\smallheader=OldStandard-Bold-tlf-t1 at 11pt
-  \font\sevenbf=OldStandard-Bold-tlf-t1 at 7pt
-  \font\fivebf=OldStandard-Bold-tlf-t1 at 5pt
-  \font\bigbold=OldStandard-Bold-tlf-t1 at 12pt
-
-  \font\tensl=OldStandard-Italic-tlf-t1 at 10pt % slanted roman
-
-  \font\tenit=OldStandard-Italic-tlf-t1 at 10pt % text italic
-
-  % Math family
-  \font\tenrmop=OldStandard-Regular-tlf-t1 at 10pt % roman text
-  \font\sevenrmop=OldStandard-Regular-tlf-t1 at 7pt
-  \font\fivermop=OldStandard-Regular-tlf-t1 at 5pt
-
-  \textfont0=\tenrmop
-  \scriptfont0=\sevenrmop
-  \scriptscriptfont0=\fivermop
-
-  \font\teni=OldStandard-Italic-tlf-t1 at 10pt
-  \font\seveni=OldStandard-Italic-tlf-t1 at 7pt
-  \font\fivei=OldStandard-Italic-tlf-t1 at 5pt
-
-  \font\tenlmmi=lmmi10 at 10pt % math symbols
-  \font\sevenlmmi=lmmi10 at 7pt
-  \font\fivelmmi=lmmi10 at 5pt
-
-  \font\tensy=lmsy10 at 10pt % math symbols
-  \font\sevensy=lmsy10 at 7pt
-  \font\fivesy=lmsy10 at 5pt
-
-  \font\tenex=lmex10 at 10pt % math extension
-
-  % Redefine all these boys
-  \textfont0=\tenrm \scriptfont0=\sevenrm \scriptscriptfont0=\fiverm
-  \textfont1=\tenlmmi \scriptfont1=\sevenlmmi \scriptscriptfont1=\fivelmmi
-  \textfont2=\tensy \scriptfont2=\sevensy \scriptscriptfont2=\fivesy
-  \textfont3=\tenex \scriptfont3=\tenex \scriptscriptfont3=\tenex
-  \textfont\itfam=\tenit
-  \textfont\slfam=\tensl
-  \textfont\bffam=\tenbf \scriptfont\bffam=\sevenbf
-  \scriptscriptfont\bffam=\fivebf
-  \textfont\ttfam=\tentt
-
-  \tenrm
-}
-
 % A janky small-caps
 \def\janksc#1#2 {#1{\eightpt#2}}
 \def\jankscsp#1#2 {#1{\eightpt#2}\ }
 \def\scproclaim#1.#2\par{\noindent\jankscsp #1.\enspace{\it#2\par}}
+
+% References
+\def\ref#1{[#1]}

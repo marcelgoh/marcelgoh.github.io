@@ -5,7 +5,7 @@
     \let\startsection=\stsec\stsec
   }
 }
-\cwebtitle{lll-algorithm}
+\cwebtitle{lll}
 
 \input fontmac
 
@@ -255,8 +255,11 @@ if (fabs(mu[k][l]) > 0.5) {
 @ At this stage of the algorithm, we are trying to determine if a candidate vector $\bb_k$ should
 be added to the LLL-reduced basis. This is done by checking the so-called Lov\'asz condition, namely,
 $$B_k \geq (3/4 - {\mu_{k,k-1}}^2)B_{k-1}.$$
-If it is satisfied, we can add $\bb_k$ to the LLL-basis; but if not (this happens when $\bb_k$ is ``too long'',
+If it is satisfied, we can add $\bb_k$ to the LLL-basis; but if not (this happens when $\bb_{k-1}$ is ``too long'',
 in some sense), we must swap $\bb_k$ and $\bb_{k-1}$ and update the auxiliary tables accordingly.
+After this step,
+$\bb_{k-1}$ is discarded because $\bb_k$ is still the candidate vector, but now the LLL-reduced basis
+is only $(\bb_1,\ldots,\bb_{k-2})$.
 
 @<Lov...@>=
 B[k] >= (0.75 - mu[k][k-1]*mu[k][k-1])*B[k-1]

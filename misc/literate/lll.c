@@ -161,7 +161,7 @@ mu[k][i]= mu[k][i]-rounded*mu[l][i];
 #line 184 "./lll.w"
 ;
 if(/*8:*/
-#line 261 "./lll.w"
+#line 264 "./lll.w"
 
 B[k]>=(0.75-mu[k][k-1]*mu[k][k-1])*B[k-1]
 
@@ -191,7 +191,7 @@ mu[k][i]= mu[k][i]-rounded*mu[l][i];
 ++k;
 }else{
 /*9:*/
-#line 267 "./lll.w"
+#line 270 "./lll.w"
 
 set(temp,bb[k]);
 set(bb[k],bb[k-1]);
@@ -241,7 +241,7 @@ return H;
 int main(){
 n= DIM;
 /*11:*/
-#line 302 "./lll.w"
+#line 305 "./lll.w"
 
 double input_lattice[DIM][DIM]= INPUT_BASIS;
 double input_quad[DIM][DIM]= INPUT_QUAD;
@@ -253,7 +253,7 @@ Q[i+1][j+1]= input_quad[i][j];
 }
 printf("Input lattice basis:\n");
 /*13:*/
-#line 325 "./lll.w"
+#line 328 "./lll.w"
 
 for(int i= 1;i<=n;++i){
 printf("(");
@@ -265,7 +265,7 @@ printf(")\n");
 }
 
 /*:13*/
-#line 312 "./lll.w"
+#line 315 "./lll.w"
 ;
 printf("Input Q matrix:\n");
 for(int j= 1;j<=n;++j){
@@ -282,11 +282,11 @@ int**H;
 H= lll(bb);
 if(H!=NULL){
 /*12:*/
-#line 321 "./lll.w"
+#line 324 "./lll.w"
 
 printf("Reduced basis:\n");
 /*13:*/
-#line 325 "./lll.w"
+#line 328 "./lll.w"
 
 for(int i= 1;i<=n;++i){
 printf("(");
@@ -298,14 +298,14 @@ printf(")\n");
 }
 
 /*:13*/
-#line 323 "./lll.w"
+#line 326 "./lll.w"
 ;
 
 /*:12*/
 #line 70 "./lll.w"
 ;
 /*14:*/
-#line 337 "./lll.w"
+#line 340 "./lll.w"
 
 printf("H matrix:\n");
 for(int j= 1;j<=n;++j){

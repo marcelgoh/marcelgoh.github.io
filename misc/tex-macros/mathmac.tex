@@ -26,28 +26,32 @@
 
 % ================ END KNUTH ================ %
 
-% Sets of numbers
-\def\N{{\bf N}}
+% Sets of numbers (not compatible with CWEB)
+\def\NN{{\bf N}}
+\def\ZZ{{\bf Z}}
+\def\QQ{{\bf Q}}
+\def\RR{{\bf R}}
+\def\CC{{\bf C}}
+\def\N{{\bf N}}  % Deprecated
 \def\Z{{\bf Z}}
 \def\Q{{\bf Q}}
 \def\R{{\bf R}}
 \def\C{{\bf C}}
 
+\def\op#1{\mathop{\hbox{#1}}\nolimits}
+\def\limitop#1{\mathop{\hbox{#1}}}
+
 % Probability
 \def\pr{\mathop{\hbox{\bf P}}\nolimits}
 \def\ex{\mathop{\hbox{\bf E}}\nolimits}
 \def\var{\mathop{\hbox{\bf V}}\nolimits}
-\def\one{\mathop{\bf 1}\nolimits}
-\def\ind#1{\one_{[#1]}}
+\def\one{\mathop{\hbox{\bf 1}}\nolimits}
+\def\indic#1{\one_{\sevenrm[#1]}}
 
 % Graphs
 \def\edge{\mathrel-\!\!\mathrel-}
 
-% Number an equation oldstyle
-\def\oldno#1{\eqno({\oldstyle#1})}
-\def\refoldno#1{({\oldstyle#1})}
-\def\nonameoldno{\oldno{\the\eqcount}\global\advance\eqcount by 1}
-
+% Counters
 \newcount\thmcount  % Counts theorems/lemmas/corollaries
 \thmcount=1
 \newcount\sectcount  % Counts sections
@@ -56,6 +60,14 @@
 \figcount=1
 \newcount\eqcount  % Counts equations
 \eqcount=1
+
+% Number an equation oldstyle
+\def\oldno#1{\eqno({\oldstyle#1})}
+\def\refeq#1{({\oldstyle#1})}
+\def\adveq{\oldno{\the\eqcount}\global\advance\eqcount by 1}  % Print and advance equation counter
+
+% Numbered section (advances equation counter)
+\def\advsect{\section\the\sectcount\global\advance\sectcount by 1. }
 
 % Proclaim with parentheses in italics
 \outer\def\parenproclaim #1 (#2).#3\par{\medbreak
