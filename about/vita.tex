@@ -1,8 +1,11 @@
 % Marcel Goh CV
 
 \font\elevensc=cmcsc11  % For section headers
-\font\bigbold=cmbx12  % Name
-\font\tensc=cmcsc10 % For name in publications
+\font\bigbold=cmb12  % Name
+\font\tenb=cmb10
+\font\mc=cmr9
+
+\let\tenbf=\tenb
 
 % For publication lists (adapted from Knuth's algorithms)
 \newdimen\itemindent
@@ -19,6 +22,9 @@
 \def\sectheader#1{{\bigskip\elevensc #1}\smallskip\hrule\medskip}
 \def\leftright#1#2{{#1}\hfill{#2}\par}
 \def\myname{{\tensc Marcel K. Goh}}
+\def\CEE{{\mc C}}
+\def\UNIX{{\mc UNIX}}
+\def\thing{\item{$\bullet$}}
 
 \parindent=0pt  % No indentation
 
@@ -40,7 +46,7 @@
 \leftright{\bf McGill University}{\bf September 2017 -- May 2021}
 \leftright{\sl BSc, Honours Mathematics and Computer Science, minor Linguistics}{\sl Montr\'eal, QC, Canada}
 CGPA: 3.79/4.
-\medskip
+\medbreak
 \leftright{\bf Charles University}{\bf February -- June 2019}
 \leftright{\sl Exchange semester, Faculty of Mathematics and Physics}{\sl Prague, Czech Republic}
 Grade: 1 on all courses (highest score attainable).
@@ -59,7 +65,7 @@ Grade: 1 on all courses (highest score attainable).
 Summer research project under the supervision of Michael Lipnowski.
 Studied algorithms that investigate the topology of group actions on locally symmetric spaces.
 Work involved writing of code in OCaml and PostScript.
-\medskip
+\medbreak
 
 \leftright{\bf Interactive proofs}{\bf September -- December 2019}
 \leftright{\sl Honours research project}{\sl McGill University}
@@ -69,14 +75,14 @@ by Brigitte Pientka.
 Proved a theorem in constructive logic concerning the formal verification
 of an interactive proof assistant and wrote OCaml code as part of
 ongoing work on the functional programming language Beluga.
-\medskip
+\medbreak
 
 \leftright{\bf Bytecode compiler and interpreter}{\bf February -- June 2019}
 \leftright{\sl Individual software project}{\sl Charles University}
 \smallskip
 Semester-long individual software project under the supervision of Adam Dingle.
 Created OPythn, a bytecode compiler and virtual machine for a subset of Python.
-OPythn includes support for lists, dictionaries, named and anonymous functions, objects and classes.
+OPythn includes support for lists, dictionaries, named and anonymous functions, objects, and classes.
 It is implemented in OCaml using Ocamllex for lexing and Menhir for parsing.
 
 \sectheader{Submitted Papers}
@@ -99,9 +105,7 @@ Honours project report, McGill University (Montr\'eal, Qu\'ebec, December 2019),
 \smallskip
 Graded MATH 235, an introductory course on the theory of groups, rings, and fields, in Fall 2019
 and MATH 240, a discrete mathematics course, in Winter 2020.
-\medskip
-
-\filbreak % Break page here
+\medbreak
 
 \leftright{\bf Computer Science Undergraduate Society Helpdesk}{\bf September 2018 -- present}
 \leftright{\sl Tutor}{\sl Montr\'eal, QC, Canada}
@@ -109,7 +113,7 @@ and MATH 240, a discrete mathematics course, in Winter 2020.
 Hold twice-weekly office hours to tutor students in a variety of undergraduate courses.
 Topics covered include elementary data structures and algorithms, command-line scripting,
 and functional programming. Recipient of the Tomlinson Engagement Award for Mentoring.
-\medskip
+\medbreak
 
 \leftright{\bf McGill Student Emergency Response Team}{\bf October 2017 -- present}
 \leftright{\sl First Responder}{\sl Montr\'eal, QC, Canada}
@@ -117,36 +121,38 @@ and functional programming. Recipient of the Tomlinson Engagement Award for Ment
 On call on a weekly basis to provide emergency medical care at campus residences overnight as well as at
 university events such as frosh, sports games, and formals. Attend team training sessions twice a month to keep
 first-aid skills up-to-date.
-\medskip
+\medbreak
 
 \leftright{\bf Society of Undergraduate Mathematics Students}{\bf May 2019 -- January 2020}
 \leftright{\sl Vice President, Academic}{\sl Montr\'eal, QC, Canada}
 \smallskip
 Oversaw academic affairs within SUMS council and acted as liaison between the undergraduate community and
-mathematics faculty. Duties included representing the student body at department meetings and helping students with
+mathematics faculty. Duties included representing the student body at department meetings,
+organising midterm and final review sessions,
+and helping students with
 academic concerns.
-\medskip
+\medbreak
 
 \leftright{\bf Singapore Armed Forces}{\bf August 2015 -- August 2017}
 \leftright{\sl Infantryman}{\sl Singapore}
 \smallskip
 Held appointment of machine-gun team commander in the 3rd Battalion, Singapore Infantry Regiment.
 Led a six-person team consisting of a medic, signaller, sensor, and two-machine gunners within a rifle platoon.
-\medskip
+\medbreak
 
 \sectheader{Skills}
 
 {\bf Programming Languages}\par
-OCaml, C, Haskell, Standard ML, Scheme, PostScript, Assembly, Python
-\medskip
+\CEE, OCaml, Haskell, Standard ML, Scheme Lisp, PostScript, {\tt CWEB}, {\tt MIXAL}, Python
+\medbreak
 
 {\bf Technologies}\par
-UNIX, Vim, \TeX, Git.
-\medskip
+\UNIX, Vim, \TeX, Git.
+\medbreak
 
 {\bf Languages}\par
 Fluent: English, French. Proficient: Mandarin, Italian.
-\medskip
+\medbreak
 
 \sectheader{Interests}
 
@@ -155,7 +161,11 @@ programming language theory and design, compilers.
 
 \sectheader{Other}
 
-Recipient of 0x\$0.40 in Knuth reward cheques.
+\parindent=10pt
+\thing Scored 10/120 on the William Lowell Putnam Mathematical Competition in 2019
+(the median score that year was 2/120).
+\smallskip
+\thing Recipient of 0x\$0.40 in Knuth reward cheques.
 
 \bye
 
