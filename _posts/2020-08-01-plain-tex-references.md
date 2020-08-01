@@ -152,7 +152,7 @@ Pretty neat, eh!
 _Note._  [Here]({{ site.baseurl }}/media/plain-tex-references/source.txt)
 is the code that I'll be referring to for the rest of the article.
 
-After messing around with the Luc's code a bit, I was able to make my own stylistic changes. You'll notice that Luc's code is able
+After messing around with Luc's code a bit, I was able to make my own stylistic changes. You'll notice that Luc's code is able
 to detect if the entry is a book or an article and put the title in slanted font or quotes accordingly.
 I wanted to shift some
 other things around as well, so I introduced a `%Y` tag that is used for the year of a book.
