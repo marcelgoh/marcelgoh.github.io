@@ -76,7 +76,7 @@ sent me a script he has used since the '90s. He formats his references in a form
 %T Analytic Combinatorics
 %I Cambridge University Press
 %C New York
-%Y 2009
+%D 2009
 ```
 
 He first has a script called `sortnamebibA` that sorts the paragraphs by the last name of the first
@@ -185,7 +185,7 @@ looks like:
 %T Analytic Combinatorics
 %I Cambridge University Press
 %C New York
-%D 2009
+%Y 2009
 
 END
 ```
