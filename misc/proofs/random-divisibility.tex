@@ -1,0 +1,62 @@
+% Probablity that random variable divisibility
+
+\input fontmac
+\input mathmac
+
+\classicmode
+
+\def\Res{\op{Res}}
+
+\font\eightsl=cmsl8
+
+\maketitle{On the divisibility of a random variable\footnote{$^*$}{\eightpt This is a generalisation of an assignment
+question given by Prof. Luc Devroye in his COMP 690 class, Fall 2020.}}
+{by}{Marcel K. Goh (\rm Montr\'eal, Qu\'ebec)}{11 September 2020}
+
+\medskip
+
+\noindent If $X$ is an integer-valued random variable and $n$ is a positive integer, we might want to know
+the probability that $n$ divides $X$. To this end, we will make use of the probability generating
+function
+$$p(z) = \sum_{j=0}^\infty p_jz^j.$$
+We have the following result:
+
+\proclaim Theorem A. Let $X$ be a nonnegative integer-valued random variable whose probability generating function
+$p(z)$ has radius of convergence $R>1$. Let $n$ be a positive integer and let $\zeta_1,\ldots,\zeta_n$ denote the
+$n$th roots of unity. The probability that $n$ divides $X$ is given by two equivalent formulas:
+$$\pr\big\{X \equiv 0 \!\!\!\!\pmod{n}\big\}
+   = {1\over n}\sum_{k=1}^n p(\zeta_k) = {1\over n}\sum_{k=1}^n \Re\,p(\zeta_k)$$
+
+\proof
+Let $p_j = \pr\{X = j\}$ for all positive integers $j$. We are trying to compute the sum
+$$p^* = p_0 + p_n + p_{2n} + \cdots.$$
+Consider the generating function
+$$f(z) = \bigg(1 + {1\over z^n} + {1\over z^{2n}} + \cdots\bigg) p(z).$$
+For any multiple of $kn$ of $n$, there is some term of the infinite sum that will pull $p_{kn}$ into the constant
+term of $f(z)$. So it is clear that $[z^0] f(z) = p_0 + p_n + p_{2n} +\cdots = p^*$.
+We can rewrite $f(z)$ as
+$$f(z) = {p(z)\over 1 - z^{-n}} = {z^np(z) \over z^n - 1}.$$
+Letting $g(z) = f(z)/z$ and applying Cauchy's Integral Formula, the constant coefficient is given by
+$$[z^0]f(z) = [z^{-1}] g(z) = {1\over 2\pi i}\oint g(z)\,dz,$$
+where the path of integration is taken in the annulus of convergence.
+The function
+$$g(z) = {z^{n-1}p(z)\over z^n - 1}$$
+has only $n$ singularities on the unit circle: a pole of order 1 at each of the $n$ roots of unity.
+So we may take
+our path of integration to be any positively-oriented loop around the origin that stays outside the closed unit disk
+and inside the disk $|z| < R$.
+By the Residue Theorem, this is the sum of the residues at each of the $n$ poles, so we have
+$$p^* = {1\over 2\pi i}\oint g(z) \,dz =
+    {1\over 2\pi i}\cdot 2\pi i\big(\Res(g;\zeta_1) + \cdots + \Res(g; \zeta_n)\big).$$
+We let $g(z) = a(z)/b(z)$, and since $a(z) = z^{n-1}p(z)$ and $b(z) = z^n - 1$ are both holomorphic in neighbourhoods
+around each of the poles, for any pole $\zeta_i$ of $g$ we have
+$$\Res(g;\zeta_k) = {a(\zeta_k)\over b'(\zeta_k)} = {{\zeta_k}^{n-1}p(\zeta_k)\over n{\zeta_k}^{n-1}}
+            = {p(\zeta_k)\over n}.$$
+Plugging the $n$th roots of unity into the formula, we have
+$$p^* = \sum_{k=1}^n \Res(g;\zeta_k) = \sum_{k=1}^n {p(\zeta_k)\over n}$$
+Note if $\zeta_k$ is not real, then $\overline{\zeta_k}$ is also an $n$th root of unity. Using the identity
+$\Re z + \Re(\overline z) = (z + \overline z)$, we find that
+$$p^* = {1\over n}\sum_{k=1}^n p(\zeta_k) = {1\over n}\sum_{k=1}^n \Re\,p(\zeta_k),$$
+assuring us that $p^*$ is real and proving the theorem statement.\slug
+
+\end
