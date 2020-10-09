@@ -1,5 +1,19 @@
 % Marcel Goh CV
 
+% From cwebmac: Date and time
+\def\today{\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\day, \number\year}
+\newcount\twodigits
+\def\hours{\twodigits=\time \divide\twodigits by 60 \printtwodigits
+  \multiply\twodigits by-60 \advance\twodigits by\time :\printtwodigits}
+\def\gobbleone1{}
+\def\printtwodigits{\advance\twodigits100
+  \expandafter\gobbleone\number\twodigits
+  \advance\twodigits-100 }
+
+\font\eightrm=cmr8
 \font\elevensc=cmcsc11  % For section headers
 \font\bigbold=cmb12  % Name
 \font\tenb=cmb10
@@ -35,15 +49,19 @@
 \reportcount=1
 \def\repitem{\pubitem R\the\reportcount. \global\advance\reportcount by 1}
 
+\def\datethis{\eightrm Last updated \today\ at\ \hours.}
+
 % =========== START ============ %
+
+\footline{\phantom{\datethis}\hss\folio\hss\datethis}  % \phantom for centering
 
 \leftright{\bigbold Marcel K.\ Goh}{3660 Rue Hutchison, Apt.\ 4}
 \leftright{Email: marcel\_goh@yahoo.ca}{Montr\'eal, QC H2X 2H3, Canada}
-\leftright{URL: marcelgoh.github.io}{+1\thinspace\up(438\up)\thinspace 886-2338}
+\leftright{URL: marcelgoh.github.io}{+1\thinspace\up(825\up)\thinspace 440-0681}
 
 \sectheader{Education}
 
-\leftright{\bf McGill University}{\bf September 2017 -- May 2021}
+\leftright{\bf McGill University}{\bf September 2017 -- April 2021}
 \leftright{\sl BSc, Honours Mathematics and Computer Science, minor Linguistics}{\sl Montr\'eal, QC, Canada}
 CGPA: 3.79/4.
 \medbreak
@@ -59,12 +77,23 @@ Grade: 1 on all courses (highest score attainable).
 
 \sectheader{Research Experience}
 
-\leftright{\bf Sorting algorithms on manifolds}{\bf May 2020 -- present}
+\leftright{\bf Probabilistic analysis of branching processes}{\bf May 2020 -- present}
+\leftright{\sl Research group}{\sl McGill University}
+\smallskip
+Ongoing research on branching processes, headed by Luc Devroye. Studied estimation problems
+on Galton-Watson trees. Attended informal weekly seminars over the summer, discussing
+various topics related to branching
+processes. (Gave a presentation at three of these: one on root estimation in Galton-Watson
+trees, and two on generating functions and elementary analytic combinatorics.)
+
+\medbreak
+\leftright{\bf Sorting algorithms on manifolds}{\bf May -- August 2020}
 \leftright{\sl Summer research project}{\sl McGill University}
 \smallskip
-Summer research project under the supervision of Michael Lipnowski.
+Research project under the supervision of Michael Lipnowski.
 Studied algorithms that investigate the topology of group actions on locally symmetric spaces.
-Work involved writing of code in OCaml and PostScript.
+Work involved writing of code in OCaml and PostScript that generates illustrations of certain quotient
+spaces, in various models of hyperbolic geometry.
 \medbreak
 
 \leftright{\bf Interactive proofs}{\bf September -- December 2019}
@@ -73,7 +102,7 @@ Work involved writing of code in OCaml and PostScript.
 Semester-long research project in the Computation and Logic Group, supervised
 by Brigitte Pientka.
 Proved a theorem in constructive logic concerning the formal verification
-of an interactive proof assistant and wrote OCaml code as part of
+of the interactive proof assistant Harpoon and wrote OCaml code as part of
 ongoing work on the functional programming language Beluga.
 \medbreak
 
@@ -98,13 +127,22 @@ Submitted July 2020.
 \repitem Typechecking proof scripts: making interactive proof assistants robust.
 Honours project report, McGill University (Montr\'eal, Qu\'ebec, December 2019), 10 pp.
 
+\filbreak
+
 \sectheader{Work and Volunteer Experience}
 
 \leftright{\bf Department of Mathematics and Statistics, McGill University}{\bf September 2019 -- present}
 \leftright{\sl Student Grader}{\sl Montr\'eal, QC, Canada}
 \smallskip
-Graded MATH 235, an introductory course on the theory of groups, rings, and fields, in Fall 2019
-and MATH 240, a discrete mathematics course, in Winter 2020.
+Grading of assignments in the following courses:
+\begingroup\parindent=10pt
+\smallskip
+\thing Fall 2020: MATH 323 Probability, MATH 456 Honours Algebra 3
+\smallskip
+\thing Winter 2020: MATH 240 Discrete Structures
+\smallskip
+\thing Fall 2019: MATH 235 Algebra 1
+\endgroup
 \medbreak
 
 \leftright{\bf Computer Science Undergraduate Society Helpdesk}{\bf September 2018 -- present}
@@ -133,6 +171,12 @@ and helping students with
 academic concerns.
 \medbreak
 
+\leftright{\bf Bakir Contracting Corp.}{\bf May -- August 2018}
+\leftright{\sl Painter}{\sl Edmonton, AB, Canada}
+\smallskip
+Exterior painting (siding, decks, fences, trim, etc.) for residential clients.
+\medbreak
+
 \leftright{\bf Singapore Armed Forces}{\bf August 2015 -- August 2017}
 \leftright{\sl Infantryman}{\sl Singapore}
 \smallskip
@@ -140,10 +184,16 @@ Held appointment of machine-gun team commander in the 3rd Battalion, Singapore I
 Led a six-person team consisting of a medic, signaller, sensor, and two-machine gunners within a rifle platoon.
 \medbreak
 
+\leftright{\bf YoWoChAs Outdoor Education Centre}{\bf June -- August 2014}
+\leftright{\sl Summer Camp Counsellor}{\sl Fallis, AB, Canada}
+\smallskip
+Led children aged 4--15 through various activities (e.g. archery, canoeing, zipline) at a sleepaway camp.
+\medbreak
+
 \sectheader{Skills}
 
 {\bf Programming Languages}\par
-\CEE, OCaml, Haskell, Standard ML, Scheme Lisp, PostScript, {\tt CWEB}, {\tt MIXAL}, Python
+\CEE, OCaml, Haskell, Standard ML, Scheme Lisp, PostScript, {\tt CWEB}, {\tt MIXAL}, Python.
 \medbreak
 
 {\bf Technologies}\par
@@ -166,6 +216,10 @@ programming language theory and design, compilers.
 (the median score that year was 2/120).
 \smallskip
 \thing Recipient of 0x\$0.40 in Knuth reward cheques.
+\medbreak
+
+
+\filbreak
 
 \bye
 

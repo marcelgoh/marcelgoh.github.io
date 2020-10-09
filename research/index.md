@@ -4,7 +4,12 @@ title: Research
 mathjax: true
 ---
 
-I am the recipient of an NSERC Undergraduate Summer Research Award for Summer 2020. I am working with [Prof. Michael Lipnowski](https://sites.google.com/site/michaellipnowski/) to design sorting algorithms on manifolds with the goal of efficiently building grids on these spaces.
+In Summer 2021, I will start the MSc program in Mathematics at McGill University, working on the probabilistic analysis
+of combinatorial objects with [Prof. Luc Devroye](http://luc.devroye.org).
+
+### Summer 2020
+
+I received an NSERC Undergraduate Summer Research Award for Summer 2020. I worked with [Prof. Michael Lipnowski](https://sites.google.com/site/michaellipnowski/) to design sorting algorithms on manifolds with the goal of efficiently building grids on these spaces.
 
 ### COMP 400 Honours Project in Computer Science
 
