@@ -17,9 +17,9 @@ __E5.__ [_On the divisibility of a random variable_]({{ site.baseurl }}/misc/pro
 
 + [My favourite classic theorems]({{ site.baseurl }}/misc/theoremata.html)
 + [My favourite quotes]({{ site.baseurl }}/misc/quotes.html)
-+ [_Disquisitiones Arithmeticae_, transcribed]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/arithmeticae/disquisitiones-arithmeticae.tex))
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
 + [Exercise solutions]({{ site.baseurl }}/misc/solutions.html)
++ [_Disquisitiones Arithmeticae_, transcribed]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/arithmeticae/disquisitiones-arithmeticae.tex))
 
 ### Literate programs
 
@@ -38,6 +38,9 @@ If you wish to compile my sources from TeX, you'll need to download these macros
 + [mathmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
 + [proofmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/proofmac.tex) (Proof figures)
 
+If you use LaTeX and want your documents to kind of look like my Plain TeX documents, I have a LaTeX `.sty` [file](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex.sty) that sort of approximates it.
+You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex-demo.tex)/[PDF]({{ site.baseurl }}/misc/tex-macros/gohlatex-demo.pdf)). I'm not going to keep this updated though, so if you like the style you should consider switching to Plain TeX.
+
 ### Other
 
 + [Hitchhiking from Montréal to Edmonton]({{ site.baseurl }}/misc/hitchhiking.html)
@@ -52,4 +55,4 @@ If you wish to compile my sources from TeX, you'll need to download these macros
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/website/)
 + &#78069; [Cheng Lin](https://cheng-lin.me)
 + &#78048; [Diego Lopez](https://diegolopez.me)
-+ &#78264; [Rosie Zhao](https://rosieyzh.github.io/website/)
++ &#78264; [Rosie Zhao](https://rosieyzh.github.io/)

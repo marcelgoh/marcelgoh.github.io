@@ -1,0 +1,77 @@
+% Test document GohLaTeX
+
+\documentclass[10pt]{article}
+
+\usepackage{gohlatex}
+
+\begin{document}
+
+\maketitle{Title}{a demo by}{Marcel K. Goh}{32 February 2143}
+
+\gohsection 1. Introduction
+
+This is a demo of all the features of \GohLaTeX. Shame on you for not learning Plain \TeX. This
+is not a perfect imitation; the keen Plain \TeX\ user will notice that some things (e.g., spacing
+between paragraphs) still isn't as beautiful as in Plain.
+
+\proclaim Theorem 1. This is how to make a theorem.
+
+\proof Prove the theorem afterwards.\slug
+
+\parenproclaim Lemma 2 (Parentheses). Sometimes you want to name your theorems/lemmas.
+
+\solution Sometimes you want to put the slug in display math mode. We have shown that
+$$2+2 = 4.\noskipslug$$
+
+Sometimes you want to typeset an algorithm:
+
+\algbegin Algorithm A (Name). Description of algorithm.
+
+\algstep A1. [Initialise.] Use \GohLaTeX.
+
+\algstep A2. [Fall in love.] The formatting is so exquisite that you want to do things to it (write
+your own \TeX\ macros).
+
+\algstep A3. [Convert.] Switch to Plain \TeX.
+
+\algstep A4. [Enlightenment.] Your soul transcends.\slug
+
+I'm not sure why you have to leave a blank space between each algorithm step for it to work. You don't have
+to do that in Plain \TeX. When the algorithm has $\geq 10$ steps, you'll want {\tt \char`\\aalgbegin} instead.
+
+\aalgbegin Algorithm B (Math). These are some math macros I added. There are not too many of them and you
+should probably use your own macros for other things you like.
+
+\algstep B1. [Sets.] We have the inclusion $\NN\subseteq \ZZ \subseteq \QQ\subseteq  \RR\subseteq  \CC$.
+
+\algstep B2. [Probability.] We find that $\pr\{A\} = 1$, $\ex\{X\} = 2$, and $\var\{X\} = \sigma^2$.
+
+\algstep B3. [Indicators.] The indicator of an event $\one_A$ equals 1 if $A$ is true and 0 if $A$ is false.
+You can also spell out the event; for example if $A$ is the event that $u\edge v$, then you can
+write $\indic{u\edge v}$.
+
+\algstep B4. [Dots.] We sometimes want to define $[1\twodots n] = \{1,2,\ldots,n\}$.
+
+\algstep B5. [Equation numbers.] You can number your equations with old-style numerals:
+$$[z^n]f(z) = {1\over 2\pi i}\oint {f(z)\over z^{n+1}}\;dz.\oldno 1$$
+
+\algstep B6. [Reference.] You can reference an equation using \refeq{1234567890}.
+
+\algstep B7. [Credit where it's due.] Some of these macros are lifted right out of {\tt plain.tex}, which
+was written by Knuth himself.
+
+\algstep B8. [Operators.] You can make your own operators and functions $\op{myfunc}(x)$ and they can
+even have limits, like
+$$\limitop{mylim}_{n\to\infty} \op{myfunc}(n).$$
+
+\algstep B9. [Stalling.] Can't you tell I'm just trying to get to ten steps?
+
+\algstep B10. [Slug.] Don't forget to end your algorithm with a slug!\slug
+
+This is the end of a subsection
+
+\medskip
+\boldlabel Big bold label. Use this when you don't want to start a whole new section, but you still want
+to break up your text.
+
+\end{document}

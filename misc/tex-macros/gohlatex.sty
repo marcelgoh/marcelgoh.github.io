@@ -1,0 +1,124 @@
+% GohLaTeX: When you don't want to switch to Plain TeX but you want your
+%   documents to seem like you did. Yes, the macros are written in
+%   pidgin LaTeX -- can you hear my native TeX accent?
+
+% Change margins to 1in
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1in}
+
+\parindent=20pt
+
+% FONTS
+\font\bigbold=cmbx12
+\font\bigsans=cmss12
+\font\tenss=cmss10
+\font\smallheader=cmssbx10 % for section headers
+\font\ninecsc=cmcsc9
+\font\sevenrm=cmr7
+\font\teni=cmmi10
+
+% FORMATTING
+
+% Create title, subtitle, name, and date
+\def\maketitle#1#2#3#4{
+  \centerline {\bigbold #1}
+  \medskip
+  \centerline {\eightpt #2}
+  \medskip
+  \centerline {\tensc #3}
+  \medskip
+  \centerline {#4}
+  \bigskip
+}
+
+% Section header in heavy sans-serif font
+% Separate two of these in a row with \vskip -\medskipamount
+\def\gohsection#1\par{
+  \medskip\bigskip\vskip\parskip
+  \leftline{\smallheader#1}\nobreak\medskip\noindent
+}
+
+% Small caps
+\font\ninesc=cmcsc9
+\font\tensc=cmcsc10
+
+% Roman fonts
+\font\eightpt=cmr8
+\font\ninept=cmr9
+\font\twelvept=cmr12
+
+% VARIOUS MACROS
+
+% Macros for typesetting math (assignments)
+% Written by Marcel Goh, except for the parts that are not.
+
+% ================== KNUTH ================== %
+
+\def\xskip{\hskip 7pt plus 3pt minus 4pt}
+
+\def\proof{\medbreak\noindent{\it Proof.}\xskip\ignorespaces}
+\def\solution{\medbreak\noindent{\it Solution.}\xskip\ignorespaces}
+\def\slug{\quad\hbox{\kern1.5pt\vrule width2.5pt height6pt depth1.5pt\kern1.5pt}\medskip}
+\def\noskipslug{\quad\hbox{\kern1.5pt\vrule width2.5pt height6pt depth1.5pt\kern1.5pt}}
+
+% Algorithms
+\newdimen\algindent
+\newif\ifitempar \itempartrue % normally true unless briefly set false
+\def\algindentset#1{\setbox0\hbox{{\bf #1.\kern.25em}}\algindent=\wd0\relax}
+\def\algbegin #1 #2{\algindentset{#21}\alg #1 #2} % when steps all have 1 digit
+\def\aalgbegin #1 #2{\algindentset{#211}\alg #1 #2} % when 10 or more steps
+\def\alg#1(#2). {\medbreak % Usage: \algbegin Algorithm A (algname). This...
+  \noindent{\bf#1}({\it#2\/}).\xskip\ignorespaces}
+\def\algstep#1.{\ifitempar\smallskip\noindent\else\itempartrue
+  \hskip-\parindent\fi
+  \hbox to\algindent{\bf\hfil #1.\kern.25em}%
+  \hangindent=\algindent\hangafter=1\ignorespaces}
+
+% Proclaim
+\outer\def\proclaim #1. #2\par{\medbreak
+  \noindent{\bf#1.\enspace}{\sl#2\par}%
+  \ifdim\lastskip<\medskipamount \removelastskip\penalty55\smallskip\fi}
+
+% ================ END KNUTH ================ %
+
+% Proclaim with parentheses in italics
+\outer\def\parenproclaim #1 (#2).#3\par{\medbreak
+  \noindent{\bf #1}\enspace\rm({\it #2\/}).\nobreak\ignorespaces{\sl #3\par}
+  \ifdim\lastskip<\medskipamount \removelastskip\penalty55\smallskip\fi}
+
+% Sets of numbers (not compatible with CWEB)
+\def\NN{{\bf N}}
+\def\ZZ{{\bf Z}}
+\def\QQ{{\bf Q}}
+\def\RR{{\bf R}}
+\def\CC{{\bf C}}
+
+\def\op#1{\mathop{\hbox{#1}}\nolimits}
+\def\limitop#1{\mathop{\hbox{#1}}}
+
+% Probability
+\def\pr{\mathop{\hbox{\bf P}}\nolimits}
+\def\ex{\mathop{\hbox{\bf E}}\nolimits}
+\def\var{\mathop{\hbox{\bf V}}\nolimits}
+\def\one{\mathop{\hbox{\bf 1}}\nolimits}
+\def\indic#1{\one_{\sevenrm[#1]}}
+
+% Graphs
+\def\edge{\mathrel-\!\!\mathrel-}
+
+% Number an equation oldstyle
+\def\oldstyle{\fam1 \teni}
+\def\oldno#1{\eqno({\oldstyle#1})}
+\def\refeq#1{({\oldstyle#1})}
+
+% Subsection (precede with a \medskip)
+\def\boldlabel#1. {\noindent{\bf #1.\enspace}}
+
+% Exactly what it sounds like
+\def\twodots{\mathinner{\ldotp\ldotp}}
+
+% To tell all your friends you are using GohLaTeX
+\def\GohLaTeX{G\kern-.11em\lower-.29ex\hbox{\sevenrm O}\kern-.125em\lower.3ex\hbox{H}\kern-.12em\LaTeX}
