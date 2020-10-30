@@ -17,6 +17,7 @@ h2 {
 
 h3 {
   font-size: large;
+  display: inline;
 }
 
 h4 {
@@ -71,7 +72,133 @@ body {
 
 <div>
 <h1>Book reviews</h1>
-</div>
+<h5>(Increase the font zoom in your browser for easier reading.)</h5></div>
+
+<h2>The Art of Computer Programming</h2>
+<i>Donald Knuth, 1968, 1969, 1972, 2011.
+Reviewed 30 October 2020.</i>
+<p>
+Having recently finished Volume 4A, I thought I'd review the whole set of <i>The Art of Computer Programming</i>
+books together, even though I read the others over a year ago. I would also like to qualify this review
+that by "finished," I mean to say thatSI read the books from cover to cover, doing only a handful of exercises
+and not necessarily fully grasping a concept before moving on. This is, I believe, the best way to read Knuth. Some
+people complain that the books are too dense, but I think that these people are trying to understand every single
+little detail &mdash; which would take a lifetime! My opinion is that Knuth's writing style is very enjoyable and
+that one can get a lot out of these books by just reading his overarching
+explanations of concepts, stopping to smell the mathematical roses now and then and doing the exercises
+that seem fun. This also makes it easier to use these books as a reference later on. If I ever come
+across a concept in class or while doing research
+that I know I've seen in TAOCP somewhere, I can usually locate it within a couple of minutes.
+</p>
+
+<h3>Volume 1: Fundamental Algorithms</h3>  (<i>Finished 10 June 2019.</i>)
+<p>
+The first TAOCP book is the most foundational, as the title suggests, and if you only have it in your budget to
+buy one of these books, it's the one I'd recommend. The first hundred-or-so pages give a crash course on
+the mathematical concepts and tools that Knuth employs most. The next hundred pages are a description of the
+imaginary computer that Knuth uses in all his code examples, as well as some basic programming techniques. This
+brings us to one of the biggest complaints about this series of textbooks: all of the code examples are written
+in assembly! But I had a lot of fun learning how Knuth's strange imaginary computer worked and writing a
+<a href="https://github.com/marcelgoh/misc-programs/tree/master/mix">bunch of programs</a>
+in <tt>MIX</tt> assembly. The highlight of this section is a <tt>MIX</tt> simulator, written in <tt>MIX</tt> itself!
+The fact that this simulator only requires about 300 lines of assembly really demonstrates
+how bare-bones this computer is. But of course, the goal of these books isn't to teach the reader how to program
+in assembly. The hope is that seeing the algorithms implemented at such a low-level will make programming
+them in any higher-level language a breeze. And of course, every program is accompanied by a detailed description
+of the algorithm in the highest-level programming language of all: plain old English! This is the format of
+the second half of the book, which introduces linked lists, trees, and uses this concept to describe methods
+for automatic garbage collection and dynamic storage allocation in a low-level computer.
+</p>
+
+<h3>Volume 2: Seminumerical Algorithms</h3>  (<i>Finished 1 August 2019.</i>)
+<p>
+This is the TAOCP book I see referenced/recommended the least, and admittedly it is the one
+I have found least useful as a reference so far. But, for me, it was the most enjoyable read of them all.
+The first two-hundred pages deal with methods for generating random numbers and checking if a sequence
+is sufficiently random. At times, Knuth gets quite philosophical, and the main takeaway of this chapter
+is that there isn't a totally well-defined concept of what a random sequence should be, at least as
+far as computers are concerned. The second chapter of this volume deals with arithmetic, starting with
+methods for representing floating-point numbers in memory and then diving into algorithms for adding,
+multiplying, factoring, etc. A detailed analysis of every single algorithm is given, and Knuth doesn't just
+restrict himself to real numbers; this chapter discusses generalises many of these operations to modular
+arithmetic, polynomials, matrices, and power series as well. All in all, this volume concerns the concepts
+that modern programmers take for granted on a day-to-day basis: the ability
+for a computer to perform basic arithmetic operations quickly.
+</p>
+
+<h3>Volume 3: Sorting and Searching</h3>  (<i>Finished in late September 2019.</i>)
+<p>
+Because of the emphasis placed on sorting and searching algorithms in the undergraduate curriculum, this
+volume is the most likely to show up on a computer science class' "recommended reading" list. True to its
+title, Volume 3 is split almost evenly between sorting, in the first half, and searching in the second. All of
+the bread-and-butter algorithms and data structures are covered, from quicksort to binary heaps to tries,
+which makes this a very important volume, but also perhaps a bit boring, since any computer science major
+will have seen many these concepts in undergraduate classes (though certainly in only a fraction of the detail
+that Knuth devotes to them). There is a somewhat large section, complete with a wonderful foldout,
+devoted to the ins-and-outs of merging large files stored on huge physical rolls of magnetic tape.
+I found this section quite entertaining
+because of the novelty of learning about how people used to store data, but most of it is quite useless
+to the modern reader. I believe that Knuth intends to scrap it and replace it with something else in the next edition.
+</p>
+
+<h3>Volume 4A: Combinatorial Algorithms</h3>  (<i>Finished 18 October 2020.</i>)
+<p>
+Unlike the other three volumes, which contain two chapter each, Volume 4A doesn't even cover a whole chapter.
+The reason for this is that when Knuth sketched out the skeleton of his books in the 1960s, the subject of
+Chapter 7, combinatorial searching, was a rather small subject. But all of that changed in the 1970s and 1980s, when
+the field of combinatorial algorithms exploded. The result is that Knuth took nearly forty years to write
+just two sections of Chapter 7, but these two sections fill more pages than any of the other three books.
+The first half of this volume deals with boolean functions, while the second half deals with the daunting task
+of enumerating all elements of some combinatorial structure (e.g., tuples, partitions, trees). I found the math
+in this volume to be harder than in the previous three, but I am happy that (in this volume as well
+as the others) Knuth is always willing to pause the flow
+of a section to dive into the mathematical theory. For example, in the section on set partitions, Knuth gives a
+detailed description of the saddle-point method of deriving asymptotics. Where this volume possibly suffers is in its
+breadth. The other three books all offer enough variation so that, even if you might not be interested in one
+particular section, you might really enjoy a different one. But with 200+ pages on boolean functions and
+200+ pages on enumeration techniques, Volume 4 definitely feels a lot more laser-focused in its subject matter.
+</p>
+
+<i>The Art of Computer Programming</i> deals with the timeless fundamentals of computer science theory,
+and it is for that reason that they continue to be an important reference work even fifty years on. Because
+of Knuth's wonderful exposition and beautiful typesetting, they are also a joy to read, and to skip them
+would be to miss out on some of the best mathematical writing of the last century.
+
+<h2>Surreal Numbers</h2>
+<i>Donald Knuth, 1974.
+Finished 9 October 2020, reviewed 30 October 2020.</i>
+<p>
+The premise of this book is somewhat outrageous: two young lovers, living alone on a deserted beach for some
+unknown reason, discover stone carvings that reveal a deep mathematical theory. Because the storytelling
+is in the form of a dialogue, Knuth can somewhat sketch out the different thought processes one goes through
+when undertaking mathematical research. The definition of a surreal number is somewhat reminiscent of
+other set-theoretic constructions of numbers: a surreal number is a pair of two sets, each of which
+contains previously-created surreal numbers. The protagonists, Alice and Bill, are certainly a lot smarter than your
+average deserted-island inhabitant, and they slowly uncover more and more properties of what, at first, seems
+like a rather simple concept. The book only takes about an hour or two to read through, but the theory and its
+ramifications will take a lot longer to sink in. Some interesting exercises are provided in the postscript.
+</p>
+
+<h2>Guns, Germs, and Steel</h2>
+<i>Jared Diamond, 1997.
+Finished 5 October 2020, reviewed 30 October 2020.</i>
+<p>
+Presents a sort of scientific approach to the history of human societies. The main thesis
+of the book is that the differences in the trajectories of human societies
+has much more to do with variation in geography
+and environment, rather than being due to innate differences among human populations/races.
+Of course, we are told in school that this is true, but without concrete evidence, people might be
+tempted to secretly believe the old racist theories anyway. Well, this book attempts to remedy that
+by providing clear, convincing arguments as to why some parts of the world "developed" at a faster rate than
+others. The first
+two-thirds presents the main topics, e.g., the presence/absence of domesticatable plants and animals, the
+transition from hunter-gatherer societies to agrarian societies, and the formation of centralised governments.
+Then, the arguments developed in the first two-thirds are applied to five historical examples: the indigenous
+peoples of New Guinea and Australia, the homogenisation of China, the Austronesian expansion, the European
+colonisation of the Americas, and the Bantu expansion in Africa.
+The prose gets repetitive in some places, because Diamond will often reiterate his arguments in different contexts
+to get his point across, but ultimately <i>Guns, Germs, and Steel</i> was quite an interesting read.
+</p>
 
 <h2>Anansi Boys</h2>
 <i>Neil Gaiman, 2005.
