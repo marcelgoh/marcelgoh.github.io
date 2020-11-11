@@ -39,7 +39,7 @@ If you wish to compile my sources from TeX, you'll need to download these macros
 + [proofmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/proofmac.tex) (Proof figures)
 
 If you use LaTeX and want your documents to kind of look like my Plain TeX documents, I have a LaTeX `.sty` [file](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex.sty) that sort of approximates it.
-You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex-demo.tex)/[PDF]({{ site.baseurl }}/misc/tex-macros/gohlatex-demo.pdf)). I'm not going to keep this updated though, so if you like the style you should consider switching to Plain TeX.
+You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex-demo.tex)/[PDF]({{ site.baseurl }}/misc/tex-macros/gohlatex-demo.pdf)). I'm not going to keep this updated though, so if you like the style you should consider switching to Plain TeX. Terms and conditions apply. GohLaTeX should not be used to typeset machine learning documents.
 
 ### Other
 
