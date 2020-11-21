@@ -1,0 +1,100 @@
+\input fontmac
+\input mathmac
+
+\classicmode
+
+\def\norm#1{|\!|#1|\!|}
+\def\C{{\cal C}}
+\def\F{{\cal F}}
+\def\eps{\epsilon}
+
+\maketitle{The Littlewood-Offord problem}{notes by}{Marcel K. Goh}{20 November 2020}
+
+\medskip
+Let $x_1,x_2,\ldots,x_n$ be vectors in some normed space $B$ of norm at least 1.
+There are $2^n$ ways to form sums out of these
+vectors (where the empty sum is taken to be 0) and the Littlewood-Offord problem asks how many of these sums
+differ by less than 1. In its original 1943 formulation by J. E. Littlewood and A. C. Offord,
+the normed space in question was the complex plane $\CC$.
+
+Before we get started, let us recall the properties of a {\it normed space}. It is a vector space $B$ over
+a field $F$ along with
+a function $\norm{\cdot} : B \to \RR$ such that
+\medskip
+\item{i)} $\norm x\geq 0$ for all $x\in B$;
+\smallskip
+\item{ii)} $\norm x = 0$ if and only if $x = 0$;
+\smallskip
+\item{iii)} for every $\lambda \in F$, $\norm{\lambda x} = |\lambda|\norm x$;
+\smallskip
+\item{iv)} the triangle inequality $\norm{x+y} \leq \norm x + \norm y$ for all $x,y\in B$.
+\medskip
+Note that in (iii), we have assumed some kind of norm on the field $F$. In the case that $F = \RR$, this
+is the ordinary absolute value function, and in the case that $F=\CC$, we can take the modulus.
+The {\it distance} between two vectors $x$ and $y$ is the norm of the difference $x-y$.
+
+On a completely different note, we will also need some notions regarding families of subsets of a finite set.
+If $X = \{1,2,\ldots,n\}$,
+then the power set $2^X$ has a natural partial order given by inclusion. A {\it chain} is a set of subsets
+$\{A_1,A_2, \ldots, A_k\}$ of $X$ such that $A_1\subseteq A_2\subseteq\cdots\subseteq A_k$, while an
+{\it antichain} or {\it Sperner family} is a family of subsets $\{A_1,A_2\ldots,A_k\}$ such that if $i\neq j$
+then $A_i\not\subseteq A_j$, for any $1\leq i,j \leq k$. A chain is {\it maximal} if one cannot add any set
+to the family without violating the chain property. A chain can be as large as $|X|+1$, since for example,
+we have the maximal chain
+$$\emptyset\subseteq \{1\}\subseteq \{1,2\} \subseteq \cdots \subseteq X.$$
+How big can an antichain be? Well, we could take every set to be of the same size $i$, and this would certainly
+form an antichain. Since ${n\choose i}$ is maximised, when $i =\lfloor n/2\rfloor$, we see that the maximum
+size of an antichain must be at least ${n\choose \lfloor n/2\rfloor}$. The following famous theorem shows that
+we can do no better.
+
+\parenproclaim Theorem S (Sperner, {\rm 1928}). Let $X = \{1,2,\ldots, n\}$ and let $\F\subseteq 2^X$ be an
+antichain. Then $|\F|\leq {n\choose \lfloor n/2\rfloor}$.
+
+\proof We will double count the number of pairs $(\C, A)$ where $\C$ is a maximal chain and
+$A\in \F\cap\C$. Observe that any permutation $\sigma_1, \sigma_2, \ldots, \sigma_n$
+of $\{1,2,\ldots,n\}$ defines a unique maximal chain
+$$\emptyset \subseteq \{\sigma_1\} \subseteq \{\sigma_1,\sigma_2\}\subseteq \cdots\subseteq\{\sigma_1,\sigma_2,
+\ldots,\sigma_n\}.$$
+Since the intersection of a chain with the antichain $\F$ consists of at most one set $A$, the number of
+pairs $(\C,A)$ is at most $n!$.
+
+On the other hand, for a fixed set $A = \{x_1, x_2,\ldots, x_k\}\in \F$,
+we must ask how many chains actually contain $A$. Note that a maximal chain $\C$ contains $A$ if and only if
+the first $k$ nonempty sets in the chain introduce the elements $x_1,x_2,\ldots x_k$ in some order. After
+that, the elements of $X\setminus A$ can be introduced in any order. So for a fixed $A$, there are $|A|!(n-|A|)!$
+pairs $(\C,A)$. We have deduced that
+$$\sum_{A\in \F} |A|!(n-|A|)! \leq n!,$$
+and dividing both sides by $n!$, we have
+$$\sum_{A\in \F} {n\choose |A|}^{-1} \leq 1.$$
+Note that ${n\choose |A|}\leq {n\choose \lfloor n/2\rfloor}$ for all $A$, so we find that
+$${|\F|\over {n\choose \lfloor n/2\rfloor}} \leq \sum_{a\in \F}{n\choose |A|}^{-1}\leq 1,$$
+which allows us to conclude that $|\F|\leq {n\choose \lfloor n/2\rfloor}$.\slug
+
+\parenproclaim Lemma R (Erd\H os, {\rm 1945}). Let $x_1, x_2, \ldots, x_n$ be real numbers with absolute
+value at least $1$. At most ${n\choose \lfloor n/2\rfloor}$ of their sums differ by less than $1$ from
+each other.
+
+\proof For $A\subseteq \{1,2,\ldots,n\}$, let
+$$x_A = \sum_{i\in A} x_i.$$
+Without loss of generality, we may assume that all the $x_i$ are positive. This is because replacing
+$x_i$ with $-x_i$ and $A$ with $A\triangle \{i\}$ does not change the relative differences between
+the sums; this operation causes the $x_A$ to permute amongst themselves and increase by $x_i$.
+
+Let $\F$ be a family of subsets of $\{1,2,\ldots,n\}$ such that $|x_A - x_B|<1$ for every pair of distinct
+$A,B\in \F$. It is an antichain because if $A\subseteq B$ then $x_B>x_A$ and in particular,
+$$|x_B - x_A| = \sum_{x\in B}x_i - \sum_{x\in A} x_i = \sum_{x\in B\setminus A} x_i = x_{B\setminus A}\geq 1.$$
+So at most one of $A$ and $B$ can be in $\F$. Applying Theorem S, $|\F|\leq {n\choose \lfloor n/2\rfloor}$.\slug
+
+Note that Lemma R gives the best possible bound, because if $x_1 = x_2 = \cdots = x_n = c$ for some positive
+constant $c$, then ${n\choose \lfloor n/2\rfloor}$ of the sums are equal to $c\lfloor n/2\rfloor$. With a bit
+of extra work, we can derive the following statement (and in fact, it is more than a corollary, because it is
+equivalent to Lemma R).
+
+\proclaim Corollary T.
+Let $x_1,x_2,\ldots x_n$ be real numbers, all with absolute value at least $1$ and consider
+the $2^n$ different sums $\sum_{i=1}^n \eps_ix_i$, where $\eps_i$ is either $-1$ or $1$. For any $x\in \RR$ with
+$|x|\geq 1$, at most ${n\choose \lfloor n/2\rfloor}$ of them are at distance less than $1$ from $x$.\slug
+
+\section References
+
+\bye
