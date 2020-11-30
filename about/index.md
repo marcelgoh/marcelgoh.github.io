@@ -9,11 +9,10 @@ I'm a fourth-year undergraduate student at McGill University pursuing a BSc in M
 
 I received a traditional Java-based programming education from which I may never fully recover. When I write programs for fun I like to write in C, OCaml/Haskell/ML, PostScript, and Scheme. My academic interests include:
 
-+ analysis of algorithms
++ probabilistic analysis of algorithms
 + analysis of random discrete structures
 + group theory
-+ programming language theory
-+ compilers
++ additive combinatorics
 
 My favourite polygon is the pentagon.
 

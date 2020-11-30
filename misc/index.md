@@ -7,11 +7,12 @@ This is a landing page for things that, for whatever reason, might not have a pl
 
 ### Expository notes
 
-__E1.__ [_On the probability that two integers are relatively prime_]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/coprime-probability.tex))  
-__E2.__ [_The Burnside problem_]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/burnside.tex))  
-__E3.__ [_Weyl trees of famous irrational numbers_]({{ site.baseurl }}/misc/expo/weyl.pdf) ([Code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))  
-__E4.__ [_A crash course on generating functions_]({{ site.baseurl }}/misc/expo/genfcts.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/genfcts.tex))  
-__E5.__ [_On the divisibility of a random variable_]({{ site.baseurl }}/misc/proofs/random-divisibility.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/random-divisibility.tex))
+__E1.__ [On the probability that two integers are relatively prime]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/coprime-probability.tex))  
+__E2.__ [The Burnside problem]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/burnside.tex))  
+__E3.__ [Weyl trees of famous irrational numbers]({{ site.baseurl }}/misc/expo/weyl.pdf) ([code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))  
+__E4.__ [A crash course on generating functions]({{ site.baseurl }}/misc/expo/genfcts.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/genfcts.tex))  
+__E5.__ [On the divisibility of a random variable]({{ site.baseurl }}/misc/proofs/random-divisibility.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/random-divisibility.tex))  
+__E6.__ [The Littlewood-Offord problem]({{ site.baseurl }}/misc/expo/littlewood-offord.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/littlewood-offord.tex), [video](https://youtu.be/ntMfj9G3MQg))  
 
 ### Science and mathematics
 
@@ -19,7 +20,6 @@ __E5.__ [_On the divisibility of a random variable_]({{ site.baseurl }}/misc/pro
 + [My favourite quotes]({{ site.baseurl }}/misc/quotes.html)
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
 + [Exercise solutions]({{ site.baseurl }}/misc/solutions.html)
-+ [_Disquisitiones Arithmeticae_, transcribed]({{ site.baseurl }}/misc/arithmeticae/disquisitiones-arithmeticae.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/arithmeticae/disquisitiones-arithmeticae.tex))
 
 ### Literate programs
 

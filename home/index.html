@@ -88,14 +88,25 @@ body {
     &bull; <a href="http://www.math.mcgill.ca/jaksic/MATH595-2020.html">MATH 595</a>
 </p>
 <p>
-    An $n$-dimensional <i>smooth manifold</i> is a second countable Hausdorff space $M^n$ together with a collection of maps called "charts" such that:
-    <ul>
-        <li>a chart is a homeomorphism $\phi : U\to U'$ where $U$ is open in $M^n$ and $U'$ is open in $\boldsymbol{R}^n$;</li>
-        <li>each point $x\in M$ is in the domain of some chart;</li>
-        <li>for charts $\phi : U\to U'$ and $\psi: V\to V'$ we have that the "change of coordinates" $\phi\psi^{-1} : \psi(U\cap V) \to \phi(U\cap V)$ is $C^\infty$; and</li>
-        <li>the collection of charts is maximal with these properties.</li>
-    </ul>
-    This definition is given in Bredon (1993). If $M$ is a smooth manifold with an inner product $\langle \cdot, \cdot\rangle_x$ on the tangent space $T_xM$ for every $x\in M$, and $\langle \cdot,\cdot\rangle_x$ varies smoothly with respect to $x$, then $M$ is called a <i>Riemannian manifold</i>. If, in addition, $M$ is connected, homogeneous, and there is an involutive isometry of $M$ with at least one isolated fixed point, then $M$ is called a <i>symmetric space</i>.
+<b>Theorem A</b> (<i>Alon</i>). Let $k$ be field and let $f\in k[x_1,x_2\ldots,x_n]$ be a polynomial
+of degree $d$. If the coefficient of $x_1^{d_1}x_2^{d_2}\cdots x_n^{d_n}$
+is nonzero for $d_1 + d_2 + \cdots + d_n = d$
+and $S_1, S_2, \ldots, S_n$ are subsets of $k$ such that $|S_i|>d_i$ for all $1\leq i\leq n$, then
+there exists $x_1\in S_1, x_2\in S_2, \ldots, x_n\in S_n$ such that $f(x_1, x_2,\ldots,x_n) \neq 0$.
+</p>
+<p>
+For an ideal $I$ of a ring $R$, the set $\sqrt I = \{r\in R : r^m\in I\ \hbox{for some integer}\ m\}$
+is called the <i>radical</i> of $I$. For a field $k$ and an arbitrary subset $I\subseteq k[x_1,x_2,\ldots,x_n]$,
+the corresponding <i>algebraic subset</i> is the set of all $(a_1, a_2, \ldots,a_n)\in k^n$ such that
+$f(a_1,a_2,\ldots,a_n)$ for all $f\in k[x_1,x_2,\ldots,x_n]$. For any subset $X$ of $k^n$, we define $I(X)$
+to be the set of all $f\in k[x_1,x_2,\ldots,x_n]$ such that $f(a_1,a_2,\ldots,x_n)$ for all $(a_1,a_2,\ldots,a_n)
+\in k^n$.
+</p>
+<p>
+<b>Theorem H</b> (<i>Hilbert</i>). Let $k$ be an algebraically closed field and let $I$ be an ideal of
+$k[x_1, x_2,\ldots,x_n]$. Then $I((Z(I)) = \sqrt I$ and the correspondences $I\mapsto Z(I)$
+and $X\mapsto I(X)$ induce a bijection between the algebraic subsets of $k^n$ and the radical ideals
+of $k[x_1,x_2,\ldots,x_n]$.
 </p>
 <p>
 <img src="/media/home/coollinks.gif" alt="Links">
@@ -121,6 +132,8 @@ body {
         &bull; <a href="https://www.youtube.com/c/TimothyGowers0/playlists">Timothy Gowers lectures</a>
         &bull; <a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP62qauV_CpT1zKaGG_Vj5igX">Graph Theory and Additive Combinatorics lectures</a>
         &bull; <a href="https://dec41.user.srcf.net/notes/">Cambridge notes</a>
+        &bull; <a href="https://terrytao.wordpress.com">Terry Tao's blog</a>
+        &bull; <a href="https://gowers.wordpress.com">Gowers's weblog</a>
 <h2><img src="/media/home/computer.gif" height=30 alt="Crest"> Computer Science</h2>
          &bull; <a href="http://www.cs.utexas.edu/users/EWD/welcome.html">EWD Archive</a>
          &#120524; <a href="https://www.youtube.com/playlist?list=PLB63C06FAF154F047">SICP lectures</a>
