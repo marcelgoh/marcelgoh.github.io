@@ -1,0 +1,101 @@
+%Q erdosturan1936
+%A Paul Erd\H{o}s
+%A Paul Tur\'an
+%T On some sequences of integers
+%J Journal of the London Mathematical Society
+%V 11
+%D 1936
+%P 261-264
+
+%Q vanderwaerden1927
+%A Bartel Leendert van~der~Waerden
+%T Beweis einer Baudetschen Vermutung
+%J Nieuw Archief voor Wiskunde
+%V 15
+%D 1927
+%P 212-216
+
+%Q szemeredi
+%A Endre Szemer\'edi
+%T On sets of integers containing no $k$ elements in arithmetic progression
+%J Acta Arithmetica
+%V 27
+%D 1975
+%P 199-245
+
+%Q roth1953
+%A Klaus Friedrich Roth
+%T On certain sets of integers
+%J Journal of the London Mathematical Society
+%V 28
+%D 1953
+%P 104-109
+
+%Q furstenberg1977
+%A Hillel Furstenberg
+%D 1977
+%T Ergodic behavior of diagonal measures and a theorem of Szemer\'edi on arithmetic progressions
+%J Journal d'Analyse Math\'ematique
+%V 31
+%P 204-256
+
+%Q gowers1998
+%A William Timothy Gowers
+%D 1998
+%T A new proof of Szemer\'edi's theorem for arithmetic progressions of length four
+%J Geometric and Functional Analysis
+%V 8
+%P 529-551
+
+%Q gowers2001
+%A William Timothy Gowers
+%D 2001
+%T A new proof of Szemer\'edi's theorem
+%J Geometric and Functional Analysis
+%V 11
+%P 465-588
+
+%Q additivecombinatorics
+%A Terence Tao
+%A Van Ha Vu
+%T Additive Combinatorics
+%I Cambridge University Press
+%C Cambridge
+%Y 2006
+
+%Q multiszem
+%A Hillel Furstenberg
+%A Yitzhak Katznelson
+%T An ergodic Szemer\'edi theorem for commuting transformations
+%J Journal d'Analyse Math\'ematique
+%V 34
+%D 1979
+%P 275-291
+
+%Q densityhalesjewett
+%A Hillel Furstenberg
+%A Yitzhak Katznelson
+%T A density version of the Hales-Jewett theorem
+%J Journal d'Analyse Math\'ematique
+%V 57
+%D 1991
+%P 64-119
+
+%Q polyszem
+%A Vitaly Bergelson
+%A Alexander Leibman
+%T Polynomial extensions of van der Waerden's and Szemer\'edi's theorems
+%J Journal of the American Mathematical Society
+%V 9
+%D 1996
+%P 725-753
+
+%Q polymath1
+%A D. H. J. Polymath
+%T A new proof of the density Hales-Jewett theorem
+%J Annals of Mathematics
+%V 175
+%D 2012
+%P 1283-1327
+
+END

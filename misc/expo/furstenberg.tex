@@ -1,0 +1,292 @@
+\input fontmac
+\input mathmac
+
+\def\F{{\cal F}}
+
+\classicmode
+
+\maketitle{Ergodic theory and arithmetic progressions}{by}{Marcel K. Goh}{4 December 2020}
+
+\advsect Introduction
+
+Let $(Z,+)$ be an abelian group. For any integer $n$ and $z\in Z$ we let $nz$ denote the iterated sum; for
+instance, $2z = z+z$ and $-3z = -z-z-z$.
+Letting $[a,b]$ denote the discrete interval $\{n\in \ZZ:a\leq n\leq b\}$
+for $a,b\in \ZZ$, we define an {\it arithmetic progression} to be a set of the form
+$$a+[0,k-1]\cdot r = \{a,a+r,a+2r,\ldots,a+(k-1)r\},\adveq$$
+where $k>1$ is the {\it length}, $a\in Z$ is the {\it base point}, and $r\in Z$ is the {\it common difference}
+or {\it step}. If $r\neq 0$, the progression is {\it nontrivial}, and this condition is assumed unless otherwise
+stated. In these notes, we will study the case $Z = \ZZ$.
+
+The quest to find arithmetic progressions in subsets of $\ZZ$ began with the following celebrated theorem
+of B. L. van der Waerden, which answered a conjecture of P. J. H. Baudet.
+
+\parenproclaim Theorem V (van der Waerden, {\rm 1927}). For any integers $r$ and $k$, there exists $N\in \NN$
+such that for any partition of $[1,N]$ into disjoint sets $C_1, C_2, \ldots, C_r$, some $C_i$ contains
+a $k$-term arithmetic progression.\slug
+
+\noindent
+An infinitary formulation of this theorem states that if the positive integers are coloured with $r$ colours,
+then some colour contains arbitrarily long arithmetic progressions. P. Erd\H os and P. Tur\'an suspected that
+this had to do with the density of the partition. A subset $A$ of the nonnegative integers is said to have
+{\it positive (upper) density} if
+$$\limsup_{N\to \infty} {\big|A\cap [0,N]\big|\over N+1} > 0.\adveq$$
+In the more general setting where $A\subseteq \ZZ^d$ for $d\geq 1$, we get a similar definition by intersecting
+with $[-N,N]^d$ and dividing by $(2N+1)^d$. (It does not really matter exactly which interval we intersect
+with, since we only care to know whether the density is positive or zero.)
+Erd\H os and Tur\'an's conjecture was that van der Waerden's
+theorem holds because at least one of the $C_i$ must have density at least $1/r$. This was proved for the case $k=3$
+by K. F. Roth (1953) using Fourier-analytic methods. A proof for $k=4$ did not arrive until 1969;
+it was due to E. Szemer\'edi, who also proved the general case six years later:
+
+\parenproclaim Theorem S (Szemer\'edi, {\rm 1975}). Any subset of the nonnegative integers with positive upper
+density contains arithmetic progressions of arbitrary length. Equivalently, given any real $\delta > 0$ and
+$k\in \NN$, there exists $N\in \NN$ such that for any $A\subseteq [0,N]$ with $|A|\geq \delta(N+1)$, there exists
+an arithmetic progression of length $k$ contained in $A$.
+
+\noindent
+The proof that Szemer\'edi gave was long and complicated, relying on an auxiliary ``graph-regularity lemma''
+that has had far-reaching consequences in combinatorics. We will only supply a proof of the fact
+that the infinitary version of the theorem is in fact equivalent to the finitary one. (This treatment
+can be found in Furstenberg, Katznelson, and Ornstein (1982).)
+
+\proof It is clear that the finitary statement implies the infinitary one. Now suppose that the finitary
+statement does not hold; that is, there exists $\delta>0$ and $k\in \NN$ such that for all $N\in \NN$,
+there exists $A_N\subseteq [0,N]$ such that $|A_N|\geq \delta(N+1)$ but there is no arithmetic progression
+of length $k$ contained in $A$. Note that the presence of arithmetic progressions in a set $A$ does not
+change if we shift all the elements of the set by a fixed value: for any $s\in \NN$,
+$s+A = \{s + a : a\in A\}$ has the
+same number of arithmetic progressions as $A$. So we can translate the sets $A_N$ far enough apart that no
+arithmetic progression can belong to two of the $A_N$ at once. Letting $A = \bigcup_{N\in \NN} A_N$,
+we find that $A$ has upper density $\geq \delta$, but does not contain arithmetic progressions of length $k$.\slug
+
+Szemer\'edi's quantitative bounds on the size of $N$ relative to $\delta$ and $k$ were not as tight
+as Roth's bounds for the $k=3$ case. In fact, Roth's Fourier-analytic approach was generalisable,
+but this was not discovered until 1998 for the case
+$k=4$ and finally for the general case in 2001 (both of these results, which established much better bounds,
+are due to W. T. Gowers). On the other
+hand, if we are only interested in the infinitary statement and allow non-constructive proofs, then ergodic
+methods can be applied to give much shorter arguments than were employed in Szemer\'edi's original paper.
+This approach, devised by H. Furstenberg in 1977, led to many generalisations of Szemer\'edi's result.
+
+\advsect The ergodic formulation
+
+We will need some terminology from the realm of dynamical systems.
+Let $(X,\F,\mu)$ be a probability space and let $T:X\to X$ be measure-preserving, i.e.,
+$\mu(T^{-n} A) = \mu(A)$ for all $A\in \F$. Note that $T^{-n}A$ is the set of all $x\in X$ such that $Tx\in A$;
+one should not be tricked into thinking that $T$ is necessarily invertible!
+The quadruple $(X,\F,\mu,T)$ is called a {\it measure-preserving
+system}. For a bounded measurable function $f:X\to\RR$, $T$ acts as a shift operator by sending $f$ to $T^n f$,
+given by $T^nf(x) = f(T^nx)$. We have the following lemma.
+
+\proclaim Lemma D. Let $(X,\F,\mu)$ be a probability space and let $f$ be a measurable function on $X$
+such that $\int_Xf\d\mu>0$ and such that for all $x\in X$, $0\leq f(x)\leq C$ for some constant $C$.
+Let $\delta>0$ be such that
+$$G = \{x\in X : f(x)\geq \delta\}$$
+has positive measure. For any $T:X\to X$ that is measure-preserving,
+there exists $E_T$ with $\mu(E_T)\geq \mu(G)/2$ such that the set
+$$R_x = \{n\in \NN : T^nf(x) \geq \delta\}$$
+has upper density $\geq \mu(G)/2$ for every $x\in E_T$.
+
+\noindent This is a variant of Lemma 1 from a blog post by Terry Tao, dated 10 February 2008. The
+proof we supply follows the same outline (with some details added).
+
+\proof First, note that $\int_Xf\d\mu\leq C$, since $X$ is a probability space. Next, notice that
+the for any $x\in X$ and any $n$, $T^nf(x)\geq \delta$ if and only if $f(T^nx)\geq \delta$,
+which is equivalent to
+$x\in T^{-n}G$. Because $\mu$ is shift-invariant, we have
+\newcount\eqA
+\eqA=\eqcount
+$$\mu(G) = \int_X {1\over N} \sum_{n=1}^N \chi_{G}\d\mu = \int_X{1\over N}\sum_{n=1}^N \chi_{T^{-n}G}\d\mu.\adveq$$
+The integrand on the right-hand side no more than $1$, so the set
+$$A_N = \bigg\{ x\in X : {1\over N} \sum_{n=1}^N \chi_{T^{-n}G}(x)\geq {\mu(G)\over 2} \bigg\}$$
+has measure at least $\mu(G)/2$. For otherwise, we would have
+$$\int_X {1\over N}\sum_{n=1}^N \chi_{T^{-n}G}\d\mu \leq \int_{A_N} 1
+  + \int_{{A_N}^c} {1\over N}\sum_{n=1}^N \chi_{T^{-n}G}\d\mu < {\mu(G)\over 2} + {\mu({A_N}^c)\mu(G)\over 2}
+  \leq\mu(G),\adveq$$
+contradicting \refeq{\the\eqA}. Note that
+$$\limsup_{N\to\infty} A_N = \bigcap_{N=1}^\infty \bigcup_{n=N}^\infty A_N$$
+is the set of all $x\in X$ that are in $A_N$ for infinitely many $N$. Put another way, this is the set
+of all $x\in X$ for which
+$$\limsup_{N\to\infty} {R_x \cap [1,N]\over N} \geq {\mu(G)\over 2}.$$
+Since $\mu(A_N)\geq \mu(G)/2$ for every $N$, we have
+$$\mu\Big(\limsup_{N\to\infty} A_N\Big) = \mu\Big(\bigcap_{n=1}^\infty \bigcup_{n=N}^\infty A_n\Big)\geq
+\mu(G)/2\adveq$$
+and $E_T = \limsup_{N\to\infty} A_N$ is a set of positive measure such that for every point $x\in E_T$,
+$R_x$ has upper density $\geq \mu(G)/2$.\slug
+
+\noindent We can now formulate Furstenberg's multiple recurrence theorem:
+
+\parenproclaim Theorem F (Furstenberg, {\rm 1977}). Let $(X,\F,\mu,T)$ be a measure-preserving
+system and let $f$ be a bounded measurable function such that $\int_X f\d\mu >0$. For any $k\in \NN$, we have
+$$\liminf_{N\to\infty} {1\over N} \sum_{s=1}^N \int_X f (T^sf)\cdots (T^{(k-1)s}f)\d\mu>0.\noskipslug\adveq$$
+
+In the particular case that $k=2$, this is a form of Poincar\'e's recurrence theorem. We will not be able
+to prove Theorem F directly in these notes, but we will prove the important correspondence between Furstenberg's
+multiple recurrence and arithmetic progressions in $\NN_0$.
+
+\proclaim Lemma E. Theorems S and F are equivalent.
+
+\proof First, suppose that Theorem S holds. Let $(X,\F,\mu,T)$ be a measure-preserving system, $f$ a bounded
+measurable function with $\int_X f\d\mu>0$, and let $k\in \NN$ be arbitrary. Let $\delta>0$ be small enough that
+$G = \{x\in X : f(x)\geq \delta\}$ has positive measure; by Lemma D, there exists a set $E_T$ of measure at least
+$\mu(G)/2$ such that $R_x = \{n\in \NN : T^nf(x)\ge\delta\}$ has upper density $\ge\mu(G)/2$ for every $x\in E_T$.
+By Theorem S, there exists an $N_0$ such that for any $x\in E_T$, there is a $k$-term arithmetic progression
+in $R_x\cap [0,N_0]$. But the set of $k$-term arithmetic progressions
+in $[0,N_0]$ is finite, with some cardinality $K$;
+as a crude upper bound we have $K\leq {N_0\choose k}$. So there exists
+some fixed progression $P_T = \{a, a+r, \ldots, a+(k-1)r\}\subseteq [0,N_0]$
+such that the set $E'_T = \{x\in E_T : P_T\subseteq R_x\}$ has $\mu(E'_T)\ge\mu(G)/(2K)$. We have
+\newcount\eqC
+\eqC=\eqcount
+$$\eqalign{
+\int_X f(T^rf)\cdots(T^{(k-1)r}f)\d\mu &\geq \int_{T^{-a}E'_T} f(T^rf)\cdots(T^{(k-1)r}f)\d\mu \cr
+&= \int_{E'_T} T^af(T^{a+r}f)\cdots(T^{a+(k-1)r}f)\d\mu\cr
+&\geq {\delta^k\mu(G)\over 2K}.\cr
+}\adveq$$
+The progression $P_T$ is particular to the transformation $T$, but the bound depends only on $f$ and $k$,
+so in the argument above we could have applied Lemma D to $T^m$ for $m\in \NN$ and obtained \refeq{\the\eqC}
+with $T^m$ in place of $T$. Since $r$ cannot exceed $N_0$ no matter what $T^m$ is, we find that
+$${1\over N_0} \sum_{s'=1}^{N_0} \int_X f(T^{ms'}f)\cdots(T^{(k-1)ms'})\d\mu \geq {\delta^k\mu(G)\over 2K},\adveq$$
+where $m\in \NN$ is arbitrary. For simplicity's sake, suppose that $N\geq {N_0}^2$ and averaging over all
+$1\leq m\leq N/N_0$, we have
+$${N_0\over N} \sum_{m=1}^{N/N_0}
+{1\over N_0} \sum_{s'=1}^{N_0} \int_X f(T^{ms'}f)\cdots(T^{(k-1)ms'})\d\mu \geq {\delta^k\mu(G)\over 2K},\adveq$$
+and since every $1\leq s\leq N$ has at most $\min(N_0, N/N_0) = N_0$ representations of the form $ms'$, where
+$1\leq m\leq N/N_0$ and $1\leq s'\leq N_0$, this gives
+$${1\over N} \sum_{s=1}^{N} \int_X f(T^{s}f)\cdots(T^{(k-1)s})\d\mu \geq {\delta^k\mu(G)\over 2KN_0}\adveq$$
+for all large enough $N$, yielding Theorem F\footnote{$^*$}{\eightpoint
+Thank you to Terry Tao, whose answer to my question on his blog
+helped me get the correct constants in the final bound.}.
+
+For the other direction, fix a subset $A\subseteq \NN_0$ with positive upper density and let $k\in \NN$.
+We can find a sequence of natural numbers
+$N_1,N_2,\ldots$ such that
+$$\liminf_{j\to\infty} {A \cap [0,N_j] \over N_j+1} >0.$$
+Consider the linear space $\ell^\infty(\NN)$ of all bounded real-valued sequences under the supremum norm. By
+the Hahn-Banach theorem applied to the functional $\lambda(x) = \lim_{j\to\infty} x_j$, which is defined
+on the subspace of convergent sequences, we can construct a linear functional $\Lambda : \ell^\infty(\NN)\to\RR$
+such that
+$$\liminf_{j\to\infty} x_j \leq \Lambda(x) \leq \limsup_{j\to\infty} x_j.\adveq$$
+Now let $X = \{0,1\}^{\NN_0}$ be the space of all binary sequences indexed on the nonnegative integers
+with the product topology and Borel $\sigma$-algebra $\F$. Let $T$ be the left-shift operator given by
+$Tx = (x_{n+1})_{n\in \NN_0}$ and let $a\in X$ be given by
+$$a_n = \cases{1,&if $n\in A$;\cr0,&otherwise.\cr}\adveq$$
+For any sequence of indices $s_1,\ldots,s_m \in \NN_0$, define a measure $\mu_{s_1,\ldots,s_m}$ on $\{0,1\}^m$
+given by
+$$\mu_{s_1,\ldots,s_m}(E_1\times\ldots\times E_m) = \Lambda\Bigg(\!\!\bigg(
+{1\over N_j+1} \sum_{i=0}^{N_j} \chi_{E_1}(T^{s_1}a_i)\cdots\chi_{E_m}(T^{s_m}a_i)\bigg)_{j=1}^\infty\Bigg),\adveq$$
+where $E_1,\ldots,E_m\subseteq \{0,1\}$.
+Permuting the indices $s_1, \ldots,s_m$ does not change the value on the right-hand
+side (multiplication is commutative), and for any $s_{m+1}\in \NN_0$,
+$$\eqalign{
+\mu_{s_1,\ldots,s_m,s_{m+1}}(E_1\times\ldots\times E_m\times \{0,1\})
+&= \Lambda\Bigg(\!\!\bigg(
+{1\over N_j+1} \sum_{i=0}^{N_j} \chi_{E_1}(T^{s_1}a_i)\cdots\chi_{E_m}(T^{s_m}a_i)\chi_{\{0,1\}}(T^{s_{m+1}}a_i)
+\bigg)_{j=1}^\infty\Bigg)\cr
+&= \Lambda\Bigg(\!\!\bigg(
+{1\over N_j+1} \sum_{i=0}^{N_j} \chi_{E_1}(T^{s_1}a_i)\cdots\chi_{E_m}(T^{s_m}a_i)\bigg)_{j=1}^\infty\Bigg)\cr
+&= \mu_{s_1,\ldots,s_m}(E_1\times\ldots\times E_m).
+}\adveq$$
+So by the Kolmogorov consistency theorem, there exists a measure $\mu$ on $X$ such that for all $s_1,\ldots s_m\in
+\NN_0$, and $E_1,\ldots,E_m\subseteq \{0,1\}$,
+$$\mu\big(\{x \in X : x_{s_1}\in E_1,\,\ldots,\,x_{s_m}\in E_m\}\big)
+= \mu_{s_1,\ldots,s_m}(E_1\times\ldots\times E_m).$$
+This is ``almost'' invariant under the shift $T$, since
+$$\eqalign{
+\mu\big(T^{-1}\{x \in X : x_{s_1}\in E_1,\,\ldots,\,x_{s_m}\in E_m\}\big)
+&= \mu\big(\{x \in X : x_{s_1+1}\in E_1,\,\ldots,\,x_{s_m+1}\in E_m\}\big)\cr
+&= \mu_{s_1+1,\ldots,s_m+1}(E_1\times\ldots\times E_m)\cr
+&= \Lambda\Bigg(\!\!\bigg(
+{1\over N_j+1} \sum_{i=0}^{N_j} \chi_{E_1}(T^{s_1+1}a_i)\cdots\chi_{E_m}(T^{s_m+1}a_i)\bigg)_{j=1}^\infty\Bigg) \cr
+&= \Lambda\Bigg(\!\!\bigg(
+{1\over N_j+1} \sum_{i=1}^{N_j+1} \chi_{E_1}(T^{s_1}a_i)\cdots\chi_{E_m}(T^{s_m}a_i)\bigg)_{j=1}^\infty\Bigg).\cr
+}\adveq$$
+But as $j\to\infty$, shifting the terms over which we take the average does not change the $\limsup$ or the
+$\liminf$, so this is the same as
+$\mu\big(\{x \in X : x_{s_1}\in E_1, \ldots, x_{s_m}\in E_m\}\big)$, provided that the sequence
+$$\Bigg(\!\!\bigg(
+{1\over N_j+1} \sum_{i=0}^{N_j} \chi_{E_1}(T^{s_1}a_i)\cdots\chi_{E_m}(T^{s_m}a_i)\bigg)_{j=1}^\infty\Bigg)$$
+is convergent.
+This will be enough for our purposes (though there should be some way to fix it in general).
+Let $B$ be the cylinder of all $x\in X$
+with $x_0 = 1$. Note that
+$$\eqalign{
+\mu(B) &= \mu\big(\{x \in X : x_0 = 1\}\big) \cr
+&= \Lambda\Bigg(\!\!\bigg({1\over N_j+1} \sum_{i=0}^{N_j} \chi_{\{1\}}(a_i)\bigg)_{j=1}^\infty\Bigg) \cr
+&= \Lambda\Bigg(\!\!\bigg({A\cap [0,N_j]\over N_j+1}\bigg)_{j=1}^\infty\Bigg) \cr
+&= \liminf_{j\to\infty}{A\cap [0,N_j]\over N_j+1},\cr
+}\adveq$$
+and by our choice of the sequence $N_j$, this is positive and equals the $\limsup$.
+By Theorem F applied to $k$ and the function $\chi_B$,
+there exists some $r$ such that
+$$\mu(B\cap T^{-r}B \cap \cdots\cap T^{-(k-1)r}B) > 0.$$
+Letting $A-s$ denote the set $\{a-s : a\in A\}$, and working backwards, we discover that
+$$\eqalign{
+\limsup_{j\to\infty}&{A\cap (A-r)\cap \cdots \cap (A-(k-1)r)\cap [0,N_j]\over N_j+1}\cr
+&\geq\Lambda\Bigg(\!\!\bigg({A\cap (A-r)\cap \cdots \cap (A-(k-1)r)\cap [0,N_j]\over N_j+1}\bigg)_{j=1}^\infty\Bigg)\cr
+&=\Lambda\Bigg(\!\!\bigg(
+{1\over N_j+1}\sum_{i=0}^{N_j}\chi_{\{1\}}(a_i)\chi_{\{1\}}(T^ra_i) \cdots \chi_{\{1\}}(T^{(k-1)r}a_i)
+\bigg)_{j=1}^\infty\Bigg)\cr
+&= \mu\big(\{x\in X : x_0 = 1,\,x_r = 1,\,\ldots,\,x_{(k-1)r} = 1\}\big)\cr
+&= \mu(B\cap T^{-r}B \cap \cdots\cap T^{-(k-1)r}B),\cr
+}\adveq$$
+and since this is positive, there exists an arithmetic progression of length $k$ in $A$.\slug
+
+The first part of the presented proof draws from the aforementioned blog post of Terry Tao;
+the second part is a fleshed-out version of the proof sketch found in Tao and Vu (2006).
+
+\advsect Generalisations
+
+The techniques that Furstenberg used to link arithmetic progressions to recurrence phenomena came to be known
+as the Furstenberg correspondence principle and, as mentioned above, it led to various generalisations of
+Szemer\'edi's theorem. We list a few of them here, along with their equivalent statements in the domain
+of dynamical systems.
+
+\parenproclaim Theorem M (Furstenberg, Katznelson, {\rm 1979}). The following are equivalent.
+\medskip
+\item{i)} Let $d\geq 1$ and let $A\subseteq \ZZ^d$ have positive upper density, that is,
+$$\limsup_{N\to\infty} {A\cap [-N,N]^d\over (2N+1)^d} \geq 0.$$
+For any $v_1,\ldots,v_k\in \ZZ^d$, there exist infinitely many pairs $(a,r)\in \ZZ^d$ such that
+$\{a+rv_1,\ldots,a+rv_k\} \subseteq A$.
+\smallskip
+\item{ii)} Let $(X,\F,\mu)$ be a probability space and $k\in \NN$. If $T_1,T_2,\ldots,T_k:X\to X$ are
+measure-preserving maps that commute wieh each other and $E$ is a set of positive measure, then there exists
+$r>0$ such that ${T_1}^rE\cap {T_2}^rE\cap\cdots\cap{T_k}^rE$ is nonempty.\slug
+
+\noindent This multidimensional version of Szemer\'edi's theorem is often called the constellation theorem because,
+roughly speaking, it asserts that a fixed finite constellation (up to translation and scaling)
+can be found in any set of points with positive density. A polynomial version of the theorem is also known:
+
+\parenproclaim Theorem P (Bergelson, Leibman, {\rm 1996}). The following are equivalent.
+\medskip
+\item{i)} Let $P_1, \ldots, P_k : \ZZ \to \ZZ$ be polynomials such that $P_1(0) = \cdots = P_k(0) = 0$.
+Let $A\subseteq \ZZ^d$ have positive upper density. Then there exist infinitely many pairs
+$(a,r)\in \ZZ^d\times\NN_0$ such that $a+P_1(r), \ldots, a+P_k(r)\in A$.
+\smallskip
+\item{ii)} Let $(X,\F,\mu)$ be a probability space, let $k\in \NN$, and let $T_1,T_2,\ldots,T_k:X\to X$ be
+commuting measure-preserving maps. Let
+$P_1, \ldots, P_k : \ZZ \to \ZZ$ be polynomials such that $P_1(0) = \cdots = P_k(0) = 0$. There exists $r>0$
+such that
+$$T^{-P_1(r)}E + T^{-P_2(r)}E\cap \cdots\cap T^{-P_k(r)}E$$
+is nonempty, where $T^{(a_1,\ldots,a_k)}$ is defined to be ${T_1}^{a_1}\cdots {T_k}^{a_k}$.\slug
+\medskip
+
+\noindent Lastly, we have the density Hales-Jewett theorem, which tells us that subsets of large enough density must
+contain a combinatorial line.
+
+\parenproclaim Theorem D (Furstenberg, Katznelson, {\rm 1991}).
+Let $n\geq 1$ and $0<\delta\leq 1$. There exists an integer $d\geq 1$ such that if $A$ is any
+subset of $[0,n-1]^d$ of cardinality $|A|\geq \delta n^d$, then $A$ contains a proper arithmetic progression
+$\{a, a+v, \ldots, a+(k-1)v\}$ for some $a\in [0,n-1]^d$ and $v\in [0,1]^d$.\slug
+
+\noindent Theorem D also has a an ergodic counterpart, but it is rather
+complicated. For many years, the ergodic proof of the density Hales-Jewett theorem was the only one known.
+In 2009, in an online initiative called the Polymath Project spearheaded by W. T. Gowers,
+a group of over 40 mathematicians found a purely combinatorial proof of Theorem D. The results were published
+under the pseudonym D. H. J. Polymath and the success of this experiment
+led to over a dozen other online Polymath Projects.
+
+\section References
+
+\bye
