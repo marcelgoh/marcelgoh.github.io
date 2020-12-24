@@ -1,0 +1,44 @@
+\input fontmac
+\input mathmac
+
+\def\P{{\cal P}}
+
+\classicmode
+\maketitle{Szemer\'edi's regularity lemma}{notes by}{Marcel K. Goh}{22 December 2020}
+
+\advsect Introduction
+
+[Put some kind of introduction here.]
+
+\advsect The regularity lemma
+
+In this section we will prove Szemer\'edi's regularity lemma via a sequence of auxiliary ones. We will
+first require some definitions. Fix a graph $G=(V,E)$ and let $X$ and $Y$ be subsets of $V$ (not necessarily
+disjoint). Let $e(X,Y) = \{xy \in E : x\in X,\,y\in Y\}$ denote the number of edges that have an endpoint
+in each of $X$ and $Y$. We define the {\it edge density} between $X$ and $Y$ to be the ratio
+$$d(X,Y) = {e(X,Y)\over |X||Y|}.$$
+If $X$ and $Y$ are disjoint, then this is the fraction of all possible edges between $X$ and $Y$ that are
+actually present in the graph (and in the case that they are not disjoint, it isn't awfully far off anyway).
+
+We say that a pair of vertex subsets $(X,Y)$ is {\it $\eps$-regular} if for all subsets $A\subseteq X$ and
+$B\subseteq Y$ with $|A|\geq \eps|X|$ and $|B|\geq \eps|Y|$, we have $|d(A,B)- d(X,Y)|\leq \eps$. This means that
+if we zoom in to look at the edges between a subset of $X$ and a subset of $Y$, we find that the picture is sort of
+a ``scale-model'' of the whole of $X$ and the whole of $Y$ in the sense that the number of edges that
+we see is proportional to the sizes of the subsets, unless the subsets are taken to be very small. If the pair
+$(X,Y)$ is {\it not} $\eps$-regular, then there must be some $A\subseteq X$ and $B\subseteq Y$, with
+$|A|\geq \eps|X|$ and $|B| \geq \eps|Y|$, such that $|d(A,B)-d(X,Y)|>\eps$. The pair $(A,B)$ is said to
+{\it witness} the irregularity.
+
+A {\it partition} $\P$ is a collection $V_1,\ldots,V_k$ of disjoint subsets of $V$ whose union is all of $V$.
+We will say that a partition is {\it equitable} if the sizes of any two parts do not differ by more than $1$.
+A partition is said to be {\it $\eps$-regular} if the sum of $|V_i||V_j|$, taken over all pairs $(V_i,V_j)$
+that are not $\eps$-regular, is less than $\eps |V|^2$. If the partition is equitable, then this is equivalent
+to saying that at most $\eps k^2$ of the pairs $(V_i,V_j)$ are not $\eps$-regular. Szemer\'edi's regularity
+lemma says that every graph admits an $\eps$-regular equitable partition into a number of parts depending
+only on $\eps$ (and not the size of the graph).
+
+\medskip
+\boldlabel Energy increment. :q
+
+
+\bye

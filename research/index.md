@@ -17,7 +17,8 @@ During the Fall 2019 semester, I undertook a project in the [Computation and Log
 
 ### Submitted Papers
 
-__S1.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/pdf/2007.05681.pdf). _arXiv preprint 2007.05681_. Submitted July 2020.
+__S1.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/pdf/2007.05681.pdf). _arXiv preprint 2007.05681_. Submitted July 2020.  
+__S2.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/pdf/2012.12339.pdf). _arXiv preprint 2012.12339_. Submitted December 2020.
 
 ### Reports
 
@@ -29,3 +30,4 @@ I contributed the following sequences to the [OEIS](https://oeis.org):
 
 + [A335562](https://oeis.org/A335562): The number of unlabelled unary-binary trees with $n$ nodes such that every node with two children has children of different subtree sizes.
 + [A338550](https://oeis.org/A338550): The number of binary trees of height $n$ such that the number of nodes at depth $d$ equals $d+1$ for every $d\in \{0,\ldots,n\}$.
++ [A338993](https://oeis.org/A338993): Triangle read by by rows: $T(n,k)$ is the number of $k$-permutations of $$\{1,\ldots,n\}$$ that form a non-trivial arithmetic progression, $1\leq k\leq n$.
