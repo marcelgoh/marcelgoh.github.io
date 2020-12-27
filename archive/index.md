@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2020
+- (26.12.2020) [Arithmetic subsequences in permutations]({{ site.baseurl}}/2020/12/26/arithmetic-subsequences-permutation.html)
 - (01.08.2020) [Plain TeX references with AWK and sed]({{ site.baseurl}}/2020/08/01/plain-tex-references.html)
 - (02.07.2020) [Binary trees in the wild]({{ site.baseurl}}/2020/07/02/trees-in-the-wild.html)
 - (08.04.2020) [Bit sequences and Hamiltonian cycles]({{ site.baseurl}}/2020/04/08/bit-sequences.html)
