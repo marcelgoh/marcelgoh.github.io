@@ -2,21 +2,20 @@
 \input mathmac
 
 \def\P{{\cal P}}
+\def\Q{{\cal Q}}
+\def\R{{\cal R}}
 
 \classicmode
-\maketitle{Szemer\'edi's regularity lemma}{notes by}{Marcel K. Goh}{22 December 2020}
+\maketitle{Szemer\'edi's regularity lemma}{notes by}{Marcel K. Goh}{12 January 2020}
 
 \advsect Introduction
 
 [Put some kind of introduction here.]
 
-\advsect The regularity lemma
-
-In this section we will prove Szemer\'edi's regularity lemma via a sequence of auxiliary ones. We will
-first require some definitions. Fix a graph $G=(V,E)$ and let $X$ and $Y$ be subsets of $V$ (not necessarily
+Fix a graph $G=(V,E)$ and let $X$ and $Y$ be subsets of $V$ (not necessarily
 disjoint). Let $e(X,Y) = \{xy \in E : x\in X,\,y\in Y\}$ denote the number of edges that have an endpoint
 in each of $X$ and $Y$. We define the {\it edge density} between $X$ and $Y$ to be the ratio
-$$d(X,Y) = {e(X,Y)\over |X||Y|}.$$
+$$d(X,Y) = {e(X,Y)\over |X||Y|}.\adveq$$
 If $X$ and $Y$ are disjoint, then this is the fraction of all possible edges between $X$ and $Y$ that are
 actually present in the graph (and in the case that they are not disjoint, it isn't awfully far off anyway).
 
@@ -29,7 +28,7 @@ $(X,Y)$ is {\it not} $\eps$-regular, then there must be some $A\subseteq X$ and 
 $|A|\geq \eps|X|$ and $|B| \geq \eps|Y|$, such that $|d(A,B)-d(X,Y)|>\eps$. The pair $(A,B)$ is said to
 {\it witness} the irregularity.
 
-A {\it partition} $\P$ is a collection $V_1,\ldots,V_k$ of disjoint subsets of $V$ whose union is all of $V$.
+A {\it partition} $\P$ is a collection $\{V_1,\ldots,V_k\}$ of disjoint subsets of $V$ whose union is all of $V$.
 We will say that a partition is {\it equitable} if the sizes of any two parts do not differ by more than $1$.
 A partition is said to be {\it $\eps$-regular} if the sum of $|V_i||V_j|$, taken over all pairs $(V_i,V_j)$
 that are not $\eps$-regular, is less than $\eps |V|^2$. If the partition is equitable, then this is equivalent
@@ -37,8 +36,139 @@ to saying that at most $\eps k^2$ of the pairs $(V_i,V_j)$ are not $\eps$-regula
 lemma says that every graph admits an $\eps$-regular equitable partition into a number of parts depending
 only on $\eps$ (and not the size of the graph).
 
-\medskip
-\boldlabel Energy increment. :q
+References for the original instances of the proofs are listed at the bottom of this document; a large part of
+these notes are based on lectures given by Yufei Zhao in 2019.
 
+\advsect The regularity lemma
+
+In this section we will prove Szemer\'edi's regularity lemma via a sequence of auxiliary ones. The idea runs
+as follows. We begin with a partition of $G=(V,E)$ that is given to us
+(e.g., the trivial partition $\P = \{V\}$) and while the partition
+is not $\eps$-regular, we iteratively refine
+it by subdividing each element of the partition into further parts.
+Using an ``energy increment argument'', we show that this
+process terminates after a bounded number of steps, and therefore the number of parts in the final partition
+is bounded. For vertex sets $U$ and $W$, we define the {\it energy} of $(U,W)$
+to be the quantity
+$$q(U,W) = {|U||W|\over n^2}d(U,W)^2,\adveq$$
+where $n=|V|$, and for partitions $\P_U = \{U_1,U_2, \ldots,U_k\}$ and $\P_W\{W_1,W_2,\ldots, W_l\}$
+of $U$ and $W$ respectively, we will define the {\it energy} of the two partitions to be the sum
+$$q(\P_U, \P_W) = \sum_{i=1}^k\sum_{j=1}^l q(U_i, W_j).\adveq$$
+We will write $q(\P) = q(\P,\P)$ when the two partitions are equal. Note that if $\P$ is a partition of
+$V$ into $k$ parts, we have
+$$q(\P) = \sum_{i=k}^k\sum_{j=1}^k {|V_i||V_j|\over n^2} d(V_i,V_j)^2 \leq 1,\adveq$$
+since edge density is at most $1$.
+The first lemma states that the energy of a pair of refined partitions is at least the energy of the original
+pair.
+
+\proclaim Lemma A. Let $G=(V,E)$ be a graph, let $U,W\subseteq V$ and suppose that
+$\P_U = \{U_1,U_2, \ldots,U_k\}$ and $\P_W\{W_1,W_2,\ldots, W_l\}$ are partitions of $U$ and $W$ respectively.
+Then $q(\P_U,\P_W)\geq q(U,W)$.
+
+\proof We will define a random variable $Z$ as follows. We select vertices $u\in U$ and $w\in W$ uniformly
+at random; suppose that $U_i\in \P_U$ contains $u$ and $W_j\in \P_W$ contains $w$. We let $Z = d(U_i,W_j)$.
+We compute the first moment
+$$\ex\{Z\} = \sum_{i=1}^k{|U_i|\over |U|}\sum_{j=1}^l {|W_j|\over|W|} d(U_i,W_j) = {e(U,W)\over |U||W|} = d(U,W)
+\adveq$$
+and the second moment
+$$\ex\{Z^2\}=\sum_{i=1}^k{|U_i|\over |U|}\sum_{j=1}^l {|W_j|\over|W|} d(U_i,W_j)^2={n^2\over |U||W|}q(\P_U,\P_W)
+\adveq$$
+of $Z$, where $n$ denotes the size of $V$. By Jensen's inequality, we have $\ex\{Z^2\}\geq\ex\{Z\}^2$ and therefore
+$$q(\P_U,\P_W)\geq {|U||W|\over n^2}d(U,W) = q(U,W).\noskipslug\adveq$$
+
+In particular,
+if $\P$ is a partition of $V$ and $\P'$ refines $\P$, then we can apply Lemma A to every pair $(V_i,V_j)$ of
+sets in $\P$ to conclude that $q(\P')\geq q(\P)$. The next lemma shows that the inequality in Lemma A is sometimes
+strict, a fact we will need for the energy increment argument.
+
+\proclaim Lemma B. With the same definitions as in Lemma A, suppose furthermore that for some $\eps>0$,
+the pair $(U,W)$ is not $\eps$-regular and the irregularity is witnessed by $U_1\subseteq U$ and $W_1\subseteq W$.
+Then
+$$q(\{U_1,U\setminus U_1\}, \{W_1,W\setminus W_1\}) \geq q(U,W)+\eps^4{|U||W|\over n^2},\adveq$$
+where $n = |V|$.
+
+\proof Define the random variable $Z$ as in the proof of Lemma $A$. Note that the variance of $Z$ is
+$$\eqalign{
+\var\{Z\}&=\ex\{Z^2\}-\ex\{Z\}^2 \cr
+&={n^2\over |U||W|}q(\{U_1,U\setminus U_1\},\{W_1,W\setminus W_1\}) - d(U,W)^2\cr
+&= {n^2\over |U||W|}\big(q(\{U_1,U\setminus U_1\}, \{W_1,W\setminus W_1\}) - q(U,W)\big).\cr
+}\adveq$$
+But we also have the formula
+$$\eqalign{
+\var\{Z\}&=\ex\big\{(Z-\ex\{Z\})^2\big\}\cr
+&= {|U_1||W_1\over |U||W|}\big(d(U_1,W_1)-d(U,W)\big)^2
+ + {|U_1||W\setminus W_1|\over |U||W|} \big(d(U_1,W\setminus W_1)-d(U,W)\big)^2\cr
+&\quad+ {|U\setminus U_1||W_1|\over |U||W|} \big(d(U\setminus U_1,W_1)-d(U,W)\big)^2
+ + {|U\setminus U_1||W\setminus W_1|\over|U||W|} \big(d(U\setminus U_1,W\setminus W_1)-d(U,W)\big)^2\cr
+&\geq {|U_1|\over |U|}\cdot{|W_1|\over |W|}\cdot \big(d(U_1,W_1)-d(U,W)\big)^2\cr
+&\geq \eps\cdot\eps\cdot\eps^2,\cr
+}\adveq$$
+where the final inequality follows from the fact that $(U_1,W_1)$ was the witness for the
+non-$\eps$-regularity of $(U,W)$. Combining both calculations for the variance proves the inequality we need.\slug
+
+We are now able to formulate the step in the inner loop of our regularisation procedure.
+
+\proclaim Lemma C. Let $G=(V,E)$ be a graph, let $\P = \{V_1,V_2\ldots,V_k\}$ be a partition of $V$, and let
+$\eps>0$. If the partition $\P$ is not $\eps$-regular, then there exists a refinement $\Q$ of $\P$ in which every
+$V_i$ is partitioned into at most $2^k$ parts and such that
+$$q(\Q) \geq q(\P) + \eps^5.\adveq$$
+
+\proof If $\P_1$ and $\P_2$ are refinements of $\P$ that subdivide $V_i$ into $V_{i1}\cup V_{i1}'$ and
+$V_{i2}\cup V_{i2}'$ respectively, then the {\it common refinement} of $\P_1$ and $\P_2$ divides $V_i$
+into the union
+$$V_i = (V_{i1}\cap V_{i2}) \cup (V_{i1}'\cap V_{i2}) \cup (V_{i1}\cap V_{i2}') \cup (V_{i1}'\cap V_{i2}');\adveq$$
+by induction, we can similarly define the common refinement of any finite number of partitions that refine $\P$.
+For every pair $(i,j)$ for which $(V_i,V_j)$ is not $\eps$-regular, we can find $A_{ij}\subseteq V_i$ and
+$A_{ji}\subseteq V_j$ that witnesses the irregularity. Lemma B will produce a refinement of $\P$ for each $(i,j)$
+that divides $V_i$ and $V_j$ each into two new parts,
+and we can let $\Q$ be the common refinement of these partitions, as defined above. Note that we have constructed
+$\Q$ such that it does not have more than $2^k$ parts.
+
+Let $\R$ be the set of all $(i,j)\in [1,k]^2$ such that $(V_i,V_j)$ is $\eps$-regular. For each $i$,
+let $\Q_{V_i}$ denote the subdivision of $V_i$ given by $\Q$. By Lemma A, we have
+$$\eqalign{
+q(\Q) &= \sum_{i=1}^k\sum_{j=1}^k q(\Q_{V_i},\Q_{V_j}) \cr
+&\geq \sum_{(i,j)\in \R} q(V_i,V_j) + \sum_{(i,j)\notin \R} q(\{A_{ij},V_i\setminus A_{ij}\},\{A_{ji},V_j\setminus
+A_{ji}\}).\cr
+}\adveq$$
+Applying Lemma B, we find that
+$$\eqalign{
+q(\Q) &\geq \sum_{(i,j)\in \R} q(V_i,V_j) + \sum_{(i,j)\notin \R} q(V_i,V_j) + \eps^4{|V_i||V_j|\over n^2}\cr
+&\geq q(\P) + \eps^5,\cr
+}\adveq$$
+as desired.\slug
+
+With Lemma C in hand, we can state and prove Szemer\'edi's regularity lemma without too much further effort.
+
+\parenproclaim Theorem R (Szemer\'edi, {\rm 1978}).
+For all $\eps>0$ there exists an $M$ with such that every graph admits an
+$\eps$-regular partition of its vertices into no more than $M$ parts. The constant $M$ depends only on
+$\eps$ (not on the size of the graph) and we have the upper bound
+\font\sevenit=cmmi7
+$$M\leq 4^{4^{\lower3pt\hbox{\sevenit $\sevenit\cdot$}
+\lower1.75pt\hbox{\sevenit$\cdot$}
+\lower0.5pt\hbox{\sevenit$\cdot$}^4}}\adveq$$
+where the tower of $4$s consists of $\eps^{-5}$ repeated exponents.
+
+\proof We start with the trivial partition $\P = \{V\}$ and apply Lemma C while the current partition is not
+$\eps$-regular. Since $0\leq q(\P)\leq 1$, and the energy of the partition increases by at least $\eps^5$ with
+each iteration, the algorithm terminates after at most $\eps^{-5}$ steps. At any particular step, if $\P$ has
+$k$ parts, Lemma C outputs a partition with $k2^k\leq 4^k$ parts, and this observation yields the upper bound
+in the theorem statement.\slug
+
+The bound we stated above is not tight, but it turns out that the tower of exponents is inescapable. It was shown
+by Gowers (1997) that there exists a $c>0$ such that for all $\eps>0$ small enough, one can construct a graph
+whose $\eps$-regular partition requires more than $M$ parts, where $M$ is a exponential tower of $2$s that is
+$\eps^{-c}$ high.
+
+\medskip
+\boldlabel Equitable partitions. In Lemma C, one can require
+that the resulting partition $\Q$ be equitable (no two parts differ by more than one element), and the inequality
+would still hold, although with an increment that is possibly less than $\eps^5$. The difference is negligible,
+in the sense that the final bound obtained
+for $M$ will still be of the same order. It is important to note that it is
+{\it not} possible to obtain an $\eps$-regular partition by proving the regularity
+lemma with Lemma C as stated above, and then further subdividing and merging the partitions afterwards, because
+\section References
 
 \bye

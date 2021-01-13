@@ -55,4 +55,5 @@ You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelg
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/website/)
 + &#78069; [Cheng Lin](https://cheng-lin.me)
 + &#78048; [Diego Lopez](https://diegolopez.me)
++ &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
 + &#78264; [Rosie Zhao](https://rosieyzh.github.io/)
