@@ -15,7 +15,7 @@
 
 \font\eightrm=cmr8
 \font\elevensc=cmcsc11  % For section headers
-\font\bigbold=cmb12  % Name
+\font\bigbold=cmb10 at 12pt  % Name
 \font\tenb=cmb10
 \font\mc=cmr9
 
@@ -35,7 +35,6 @@
 \def\up#1{\leavevmode \raise.16ex\hbox{#1}}
 \def\sectheader#1{{\bigskip\elevensc #1}\smallskip\hrule\medskip}
 \def\leftright#1#2{{#1}\hfill{#2}\par}
-\def\myname{{\tensc Marcel K. Goh}}
 \def\CEE{{\mc C}}
 \def\UNIX{{\mc UNIX}}
 \def\thing{\item{$\bullet$}}
@@ -55,7 +54,12 @@
 
 % \footline{\phantom{\datethis}\hss\folio\hss\datethis}  % \phantom for centering
 
-\leftright{\bigbold Marcel K.\ Goh}{3660 Rue Hutchison, Apt.\ 4}
+\leftright{\bigbold Marcel K.\ Goh
+\ifx\Umathchar\undefined\else% Chinese characters do not appear when using pdfTeX
+\font\chinese="STKaiti" at 12pt%
+\font\twelverm=cmr12%
+\twelverm\up({\chinese 吳麒仁}\up)%
+\fi}{3660 Rue Hutchison, Apt.\ 4}
 \leftright{Email: marcel\_goh@yahoo.ca}{Montr\'eal, QC H2X 2H3, Canada}
 \leftright{URL: marcelgoh.github.io}{+1\thinspace\up(825\up)\thinspace 440-0681}
 
@@ -63,7 +67,7 @@
 
 \leftright{\bf McGill University}{\bf September 2017 -- April 2021}
 \leftright{\sl BSc, Honours Mathematics and Computer Science, minor Linguistics}{\sl Montr\'eal, QC, Canada}
-CGPA: 3.81/4.
+CGPA: 3.82/4.
 \medbreak
 \leftright{\bf Charles University}{\bf February -- June 2019}
 \leftright{\sl Exchange semester, Faculty of Mathematics and Physics}{\sl Prague, Czech Republic}
@@ -139,6 +143,8 @@ Honours project report, McGill University (Montr\'eal, Qu\'ebec, December 2019),
 \smallskip
 Grading of assignments in the following courses:
 \begingroup\parindent=10pt
+\smallskip
+\thing Winter 2021: MATH 457 Honours Algebra 4
 \smallskip
 \thing Fall 2020: MATH 323 Probability, MATH 456 Honours Algebra 3
 \smallskip
@@ -226,6 +232,8 @@ programming language theory and design, compilers.
 (the median score that year was 2/120).
 \smallskip
 \thing Recipient of 0x\$3.40 in Knuth reward cheques.
+\smallskip
+\thing Contributed sequences A335562, A338550, and A338993 to the On-line Encyclopedia of Integer Sequences.
 \medbreak
 
 \rightline{\eightrm \datethis}
