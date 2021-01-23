@@ -30,6 +30,14 @@
 %P 322-397
 %D 1997
 
+%Q gowers2007
+%A William Timothy Gowers
+%T Hypergraph regularity and the multidimensional Szemer\'edi theorem
+%J Annals of Mathematics
+%V 166
+%P 897-946
+%D 2007
+
 %Q additivecombinatorics
 %A Terence Tao
 %A Van Ha Vu
@@ -37,5 +45,23 @@
 %I Cambridge University Press
 %C Cambridge
 %Y 2006
+
+%Q roth1953
+%A Klaus Friedrich Roth
+%T On certain sets of integers
+%J Journal of the London Mathematical Society
+%V 28
+%D 1953
+%P 104-109
+
+%Q graphremoval1986
+%A Paul Erd\H{o}s
+%A P\'eter Frankl
+%A Vojt\v{e}ch R\"odl
+%T The asymptotic number of graphs not containing a fixed subgraph and a problem for hypergraphs having no exponent
+%J Graphs and Combinatorics
+%V 2
+%P 113-121
+%D 1986
 
 END

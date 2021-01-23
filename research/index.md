@@ -5,24 +5,31 @@ mathjax: true
 ---
 
 In Summer 2021, I will start the MSc program in Mathematics at McGill University, working on the probabilistic analysis
-of combinatorial objects with [Prof. Luc Devroye](http://luc.devroye.org).
+of combinatorial objects under the supervision of [Luc Devroye](http://luc.devroye.org).
 
 ### Summer 2020
 
-I received an NSERC Undergraduate Summer Research Award for Summer 2020. I worked with [Prof. Michael Lipnowski](https://sites.google.com/site/michaellipnowski/) to design sorting algorithms on manifolds with the goal of efficiently building grids on these spaces.
+I received an NSERC Undergraduate Summer Research Award for Summer 2020. I worked with Asa Kohn under the supervision of [Michael Lipnowski](https://sites.google.com/site/michaellipnowski/), designing and implementing sorting algorithms on manifolds with the goal of efficiently building grids on these spaces.
 
 ### COMP 400 Honours Project in Computer Science
 
-During the Fall 2019 semester, I undertook a project in the [Computation and Logic](http://complogic.cs.mcgill.ca) lab under the supervision of [Prof. Brigitte Pientka](https://www.cs.mcgill.ca/~bpientka/about.html). I worked with [Jacob Errington](https://jerrington.me) to develop a typechecking algorithm for the Harpoon proof language as well as a translation procedure to convert Harpoon proof scripts into programs in the [Beluga](http://complogic.cs.mcgill.ca/beluga/) programming language. The summary of the work I helped with can be found in the [slides]({{ site.baseurl }}/research/comp-400-slides.pdf) to my end-of-term presentation, and my [full report]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf) is available for download as well.
+During the Fall 2019 semester, I undertook a project in the [Computation and Logic](http://complogic.cs.mcgill.ca) lab under the supervision of [Brigitte Pientka](https://www.cs.mcgill.ca/~bpientka/about.html). I worked with [Jacob Errington](https://jerrington.me) to develop a typechecking algorithm for the Harpoon proof language as well as a translation procedure to convert Harpoon proof scripts into programs in the [Beluga](http://complogic.cs.mcgill.ca/beluga/) programming language. The summary of the work I helped with can be found in the [slides]({{ site.baseurl }}/research/comp-400-slides.pdf) to my end-of-term presentation, and my [full report]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf) is available for download as well.
 
 ### Submitted Papers
+
+Papers submitted for publication in refereed journals.
 
 __S1.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/pdf/2007.05681.pdf). _arXiv preprint 2007.05681_. Submitted July 2020.  
 __S2.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/pdf/2012.12339.pdf). _arXiv preprint 2012.12339_. Submitted December 2020.
 
 ### Reports
 
-__R1.__ [Typechecking proof scripts: making interactive proof assistants robust]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf). Honours project report, McGill University (Montréal, Québec, December 2019), 10 pp.
+Various project and research reports. Some reports were written for internal distribution only, and are therefore
+not available for download.
+
+__R1.__ [The OPythn programming language]({{ site.baseurl }}/research/opythn-report.pdf). Software project report, Charles University (Prague, Czech Republic, June 2019), 10 pp.  
+__R2.__ [Typechecking proof scripts: making interactive proof assistants robust]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf). Honours project report, McGill University (Montréal, Québec, December 2019), 10 pp.  
+__R3.__ Grid-building algorithms on manifolds. Summer research report, McGill University (Montréal, Québec, August 2020), 10 pp.
 
 ### Sequences
 

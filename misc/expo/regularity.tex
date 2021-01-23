@@ -4,14 +4,17 @@
 \def\P{{\cal P}}
 \def\Q{{\cal Q}}
 \def\R{{\cal R}}
+\def\given{\,|\;}
+\def\zed#1{{\bf Z}/#1{\bf Z}}
 
 \classicmode
 \maketitle{Szemer\'edi's regularity lemma}{notes by}{Marcel K. Goh}{12 January 2020}
 
-\advsect Introduction
+\advsect Definitions and notation.
 
-[Put some kind of introduction here.]
-
+In these notes, we consider undirected graphs $G = (V,E)$, where $V$ is an arbitrary finite set and $E$ consists
+of $2$-element subsets of $V$. We sometimes write $V(G)$ for $V$ and $E(G)$ for $E$, and for convenience, we will
+write $uv$ instead of $\{u,v\}$ when the vertices $u$ and $v$ are adjacent.
 Fix a graph $G=(V,E)$ and let $X$ and $Y$ be subsets of $V$ (not necessarily
 disjoint). Let $e(X,Y) = \{xy \in E : x\in X,\,y\in Y\}$ denote the number of edges that have an endpoint
 in each of $X$ and $Y$. We define the {\it edge density} between $X$ and $Y$ to be the ratio
@@ -36,8 +39,13 @@ to saying that at most $\eps k^2$ of the pairs $(V_i,V_j)$ are not $\eps$-regula
 lemma says that every graph admits an $\eps$-regular equitable partition into a number of parts depending
 only on $\eps$ (and not the size of the graph).
 
-References for the original instances of the proofs are listed at the bottom of this document; a large part of
-these notes are based on lectures given by Yufei Zhao in 2019.
+A function $f(n)$ is said to be $O\big(g(n)\big)$ if there exists a constant $C$ such that
+$f(n)\leq Cg(n)$ for all integers $n\geq 1$. A function $f(n)$ is $o\big(g(n)\big)$ if $lim_{n\to\infty}
+f(n)/g(n) = 0$.
+The notation $[a,b]$ will always denote the {\it discrete interval} $\{n\in \ZZ : a\leq n\leq b\}$.
+
+References for the original instances of the proofs are listed at the bottom of this document; the particular
+presentation of these notes is heavily informed by lectures given by Yufei Zhao in 2019.
 
 \advsect The regularity lemma
 
@@ -169,6 +177,194 @@ in the sense that the final bound obtained
 for $M$ will still be of the same order. It is important to note that it is
 {\it not} possible to obtain an $\eps$-regular partition by proving the regularity
 lemma with Lemma C as stated above, and then further subdividing and merging the partitions afterwards, because
+
+\advsect Graph counting and removal
+
+A {\it graph homomorphism} $f: H\to G$ is a function from $V(H)$ to $V(G)$ such that for any edge $uv\in E(H)$,
+$f(u)f(v)$ is an edge in $E(G)$.
+We begin by counting the number of homomorphic copies of a fixed graph $H$ in a larger graph
+$G$, provided some regularity conditions on the vertex set of $G$ hold.
+
+\parenproclaim Lemma C (Graph counting lemma). Let $H$ be a graph with vertex set $[1,k]$.
+Let $\eps>0$ and let $G$ be another
+graph with vertex subsets $V_1,V_2,\ldots,V_k\subseteq V(G)$ such that $(V_i,V_j)$ are $\eps$-regular for all
+$ij\in E(H)$. If $m = \big|E(H)\big|$ and $n$ is the number of $k$-tuples
+$(v_1,v_2,\ldots,v_k)\in V_1\times V_2\times\cdots\times V_k$ such that
+$v_iv_j\in E(G)$ whenever $ij\in E(H)$, then we have
+$$\Big|n - \prod_{ij\in E(H)} d(V_i,V_j) \prod_{i=1}^k |V_i|\Big|\leq m\eps \prod_{i=1}^k |V_i|.\adveq$$
+
+\proof To avoid trivialities, we assume $k\geq 3$.
+If we sample $\xi_1$ uniformly from $V_1$, $\xi_2$ from $V_2$, and so on, and
+let $B$ be the event that $\xi_i\xi_j\in E(G)$ for all $ij\in E(H)$,
+then the above inequality is equivalent to the statement
+$$\Big|\pr\{B\} - \prod_{ij\in E(H)} d(V_i,V_j)\Big| \leq m\eps.\adveq$$
+We will prove this statement by induction on $m$. If $m = 0$, both sides equal $0$, since the empty product equals 1.
+Now assume that $m\geq 1$ and by relabelling the vertices of $H$, we can assume that $12\in E(H)$. Let $B'$ be the
+event that $\xi_i\xi_j\in E(G)$ for all $ij\in E(H)\setminus\{12\}$. By the induction hypothesis, we have
+$$\bigg|\pr\{B'\} - {1\over d(V_1,V_2)}\prod_{ij\in E(H)} d(V_i,V_j)\bigg| \leq (m-1)\eps,\adveq$$
+and since edge density is bounded above by $1$, we can rewrite this as
+\newcount\ih
+\ih=\eqcount
+$$\Big|d(V_1,V_2)\pr\{B'\} - \prod_{ij\in E(H)} d(V_i,V_j)\Big| \leq (m-1)\eps.\adveq$$
+
+Now let $(v_3,v_4,\ldots,v_k)$ in $V_3\times V_4\times\cdots\times V_k$ be arbitrary and let $A_1$ be the set
+of all $v_1\in V_1$ such that $v_1v_i\in E(G)$ for all $1i\in E(H)$, $i\neq 2$. Likewise, let $A_2$ be the set of all
+$v_2\in V_1$ such that $v_2v_i \in E(G)$ for all $2i\in E(H)$, $i\neq 1$. If $|A|\geq\eps|V_1|$ and $|A_2|\geq\eps
+|V_2|$, then since $(V_1,V_2)$ is $\eps$-regular, the inequality $\big|d(A_1,A_2)-d(V_1,V_2)\big|\leq \eps$ implies
+that
+\newcount\diff
+\diff=\eqcount
+$$\bigg| {e(A_1,A_2)\over |V_1|\cdot|V_2|} - d(V_1,V_2){|A_1|\cdot|A_2|\over |V_1|\cdot|V_2|}\bigg|\leq
+\eps{|A_1|\cdot|A_2|\over |V_1|\cdot|V_2|} \leq \eps;\adveq$$
+this inequality also holds if $|A_1|<\eps|V_1$ or $|A_2|<\eps|V_2|$, since in this case both terms are less than
+$\eps$.
+The first term is the probability that the choices for $\xi_1$ and $\xi_2$ have the correct neighbours in the set
+$\{v_3,v_4,\ldots,v_k\}$ {\it and}
+are connected, while the second term does not require that $\xi_1$ and $\xi_2$ be connected. In other words,
+$${e(A_1,A_2)\over |V_1|\cdot|V_2|} = \pr\{B\given \xi_3 = v_3,\,\xi_4 = v_4,\,\ldots,\,\xi_k=v_k\}\quad\hbox{and}\quad
+{|A_1|\cdot|A_2|\over |V_1|\cdot|V_2|} = \{B'\given\xi_3 = v_3,\,\xi_4 = v_4,\,\ldots,\,\xi_k=v_k\}.\adveq$$
+Substituting this back into~\refeq{\the\diff}, we have
+$$\big|\pr\{B\given \xi_3 = v_3,\,\xi_4 = v_4,\,\ldots,\,\xi_k=v_k\} - d(V_1,V_2)\pr\{B'\given
+\xi_3 = v_3,\,\xi_4 = v_4,\,\ldots,\,\xi_k=v_k\}\big|\leq \eps.\adveq$$
+Since this holds for {\it any} choice of $(v_3,v_4,\ldots,v_k)$, we have {\it a fortiori}
+$$\big|\pr\{B\} - d(V_1,V_2)\pr\{B'\}\big|\leq \eps,\adveq$$
+which results by letting $\xi_3,\xi_4,\ldots,\xi_k$ once again be chosen uniformly from their respective sets.
+Adding the induction hypothesis~\refeq{\the\ih} and applying the triangle inequality, we have
+$$\Big|\pr\{B\} - \prod_{ij\in E(H)} d(V_i,V_j)\Big| \le
+\big|\pr\{B\} - d(V_1,V_2)\pr\{B'\}\big| +
+\Big|d(V_1,V_2)\pr\{B'\} - \prod_{ij\in E(H)} d(V_i,V_j)\Big| \leq
+m\eps,\adveq$$
+which was what we had to show.\slug
+
+We say that a graph $G$ is {\it $H$-free} if it does not admit a graph homomorphism $f: H\to G$.
+We can now formulate the graph removal lemma, which states that if a graph $G$ does not contain too many homomorphic
+copies of a graph $H$, then one does not need to remove that many edges to make it $H$-free. The following
+theorem was first proven in 1978 by I.~Ruzsa and E.~Szemer\'edi for the case $H = K_3$, and extended to arbitrary
+$H$ in 1986 By P.~Erd\H os, P.~Frankl, and V.~R\"odl.
+
+\parenproclaim Lemma R (Graph removal lemma). Fix a graph $H$ with $k\geq 3$ vertices and $m$ edges. For any $\eps>0$
+there exists
+$\delta>0$ depending on $H$ and $\eps$
+such that every $n$-vertex graph $G$ with at most $\delta n^k$ homomorphic copies of $H$ can be made
+$H$-free by removing $\leq \eps n^2$ edges.
+
+\proof Let $G$ be a graph on $n$ vertices and let
+$\P = \{V_i\}$ be an $(\eps/4)$-regular partition
+of $V(G)$ given by the regularity lemma (thus it has no more than $M$ parts, where $M$ depends only on $\eps$).
+We will remove all edges between parts $V_i$ and $V_j$ if
+\medskip
+\item{i)} $(V_i,V_j)$ is not $(\eps/4)$-regular;
+\smallskip
+\item{ii)} $d(V_i,V_j)\leq \eps/2$; or
+\smallskip
+\item{iii)} either $V_i$ or $V_j$ has $\leq (\eps/4M)n$ vertices.
+\medskip
+The total number of edges deleted in case (i) is $\eps n^2/4$, by the definition of an $(\eps/4)$-regular partition.
+In case (ii), we remove no more than $\eps n^2/2$ edges and case (iii) happens no more than $M\cdot n$ times,
+causing no more than $\eps n^2/4$ edges to be deleted. Thus we have removed at most $\eps n^2$ edges in total.
+If there exists a copy of $H$ in this post-surgery graph, the vertices $1,2,\ldots,k$ of $H$ must lie in
+parts (not necessarily distinct) $V_1,V_2,\ldots,V_k\in \P$, each with greater than $(\eps/4M)n$ vertices,
+such that for all $(i,j)\in [1,k]^2$, $(V_i,V_j)$ is $(\eps/4)$-regular and $d(V_i,V_j) > \eps/2$.
+By the graph counting lemma, the number $C$ of homomorphic copies of $H$ in $G$ satisfies
+$$\Big|C - \prod_{ij\in E(H)} d(V_i,V_j) \prod_{i=1}^k |V_i|\Big|\leq m{\eps\over 4} \prod_{i=1}^k |V_i|.\adveq$$
+This means that there are at least
+$$ {1\over k!}
+\bigg({\eps\over 2}\bigg)^m \bigg({\eps\over 4M}\bigg)^k n^k - m{\eps\over 4}\bigg({\eps\over 4M}\bigg)^k n^k\adveq$$
+homomorphic copies of $H$ in $G$, where we have divided by $k!$ to handle the overcounting that occurs if some
+(or indeed all) of the $V_i$ are actually equal. So we may set
+$$\delta < \bigg({\eps\over 2}\bigg)^m \bigg(1- m{\eps\over 4}\bigg)\bigg({\eps\over 4M}\bigg)^k\adveq$$
+and by contraposition, if $G$ did not contain more than $\delta n^k$ copies of $H$ to begin with, then the procedure
+above removed all copies of $H$ in $G$.\slug
+
+The triangle counting lemma can be stated in a more succinct way that avoids $\eps$-$\delta$ terminology:
+{\sl If $H$ has $k$ vertices, then any graph with $o(n^k)$ copies of $H$
+can be made $H$-free by deleting $o(n^2)$ edges.}
+Of course, given a single graph on $n$ vertices, one cannot tell whether it has $o(n^k)$ copies of $H$, so
+more precisely, we're saying that given any $f(n) = o(n^k)$, there exists $g(n) = o(n^2)$ such that any graph
+on $n$ vertices with $\leq f(n)$ copies of $H$ can be made $H$-free by deleting at most $g(n)$ edges. Finally,
+although we have counted homomorphisms that are not necessarily injective, as the size of $G$ gets large relative
+to a fixed graph $H$, the proportion of homomorphisms that are non-injective quickly becomes negligible, so the number
+of subgraphs is roughly the number of homomorphisms.
+
+\advsect Roth's theorem
+
+By letting $H$ be the triangle graph $K_3$, we can prove a special case of Szemer\'edi's theorem, namely Roth's
+theorem on arithmetic progressions of length $3$, which was first proved in 1953.
+Since any homomorphism from $K_3$ to a graph $G$ must be injective, the graph counting
+lemma counts {\it bona fide} subgraphs of $K_3$ in larger graphs $G$. We begin with the following corollary of
+the removal lemma.
+
+\proclaim Lemma T. If $G$ is an $n$-vertex graph and every edge lies in exactly one triangle, then the number
+of edges of $G$ is $o(n^2)$.
+
+\proof Suppose there are $m$ edges in $G$. Then the number of triangles is $m'=m/3$, but since $m\leq {n\choose 2}$,
+this is $o(n^3)$. Applying the triangle removal lemma, we only need to remove $o(n^2)$ edges to make
+the graph triangle-free. But then again, we needed to remove at least $1/3$ of the edges to make $G$ triangle-free,
+so the total number of edges is $o(n^2)$ as well.\slug
+
+Roth's theorem states that for any $\delta>0$, there exists $N$ such that for any $n\geq N$, every subset of $[1,n]$
+with size at least $\delta n$ has an arithmetic progression of length $3$. We restate this slightly differently
+using the asymptotic notation described above and then prove it using the triangle removal lemma.
+
+\parenproclaim Theorem R (Roth's theorem).
+If $A\subseteq [1,n]$ does not have any $3$-term arithmetic progressions, then $|A| = o(n)$.
+
+\proof Let $A\subseteq [1,n]$ be free of $3$-term arithmetic progressions. Let $m=2n+1$ and note that if
+$A$ is taken to be a subset of the cyclic group $\zed m$, it also does not have any $3$-term arithmetic
+progressions in this group. Construct $G$ such that $V(G) = X \cup Y \cup Z$, where $X = Y = Z = \zed m$.
+We define the edge set of $G$ as follows:
+\medskip
+\item{i)} Connect $x\in X$ and $y\in Y$ whenever $y-x\in A$.
+\smallskip
+\item{ii)} Connect $x\in X$ and $z\in Z$ whenever $(z-x)/2\in A$. We are allowed to divide by $2$ because the
+multiplicative inverse of $2$ in $\zed m$ is $n+1$.
+\smallskip
+\item{iii)} Connect $y\in Y$ and $z\in Z$ whenever $z-y\in A$.
+\medskip
+Since we are doing addition in $\zed m$, each element of $A$ contributes $m$ edges to $E(G)$ in each case.
+If $x\in X$, $y\in Y$, and $z\in Z$ are the vertices of a triangle in $G$, then $y-x$, $(z-x)/2$, and $z-y$ all
+belong to $A$. But $A$ does not contain any proper arithmetic progressions of length $3$, so these elements
+must all be the same, that is,
+$$y-x = {z-x\over 2} = z-y.\adveq$$
+Given any two of $x,y,z$, we can determine the third from this equation, so every edge belongs to exactly one
+triangle. Thus the number of edges is $o(m^2)$. On the other hand, the number of edges is exactly $3m|A|$, so
+$3m|A| = o(m^2)$ and $|A| = o(m) = o(n)$.\slug
+
+Szemer\'edi's theorem has the same statement as Roth's theorem, with $3$ replaced by an arbitrary integer $k$.
+Note that we cannot extend this result to longer arithmetic progressions with the graph regularity lemma alone.
+However, it was first shown in a 2007 paper by W.~T.~Gowers,
+that one can extend the regularity lemma to hypergraphs, and by encoding
+the faces of a $(k-1)$-simplex as a $(k-1)$-uniform hypergraph as above, one can prove Szemer\'edi's theorem directly
+from the hypergraph removal lemma.
+
+\advsect Property testing
+
+Fix a graph $H$ on $k$ vertices.
+Suppose we have a graph $G$ with a large number $n$ of vertices and we know, for some $\eps>0$,
+that it is either $H$-free or ``$\eps$-far''
+from $H$-free, in that it cannot be made $H$-free by removing less than $\eps n^2$ edges. Consider the following
+algorithm to test whether $G$ is $H$-free. We sample $k$ random vertices $v_1,v_2,\ldots,v_k\in V(G)$
+(not necessarily distinct) and check if $v_iv_j\in E(G)$ whenever $ij\in E(H)$. If a copy of $H$ is found,
+we report that $G$ is $\eps$-far from $H$-free. If $C$ samples are performed and no copy of $H$ is found,
+we report that $G$ is $H$-free. Of course, there is a probability that this algorithm outputs an incorrect answer.
+The following theorem bounds this probability.
+
+\parenproclaim Theorem H (Find homomorphism). There exists a constant $C$ depending only on $\eps$ such that
+the algorithm above succeeds with probability at most $1-1/e$.
+
+\proof If $G$ is $H$-free, the algorithm always succeeds. So we are only concerned with the case where $G$ is
+$\eps$-far from $H$-free. The graph removal lemma says that in this case, there must exist at least $\delta n^k$
+copies of $H$ in $G$ for some $\delta$ depending on $\eps$. Setting $C = 1/\delta$ and letting $F$ be the
+event that the algorithm fails, we have
+$$\pr\{F\} \leq \bigg(1-{\delta n^k\over n^k}\bigg)^C \leq (1-\delta)^{1/\delta} \leq {1\over e}.$$
+Thus the algorithm succeeds with probability at most $1-1/e$.\slug
+
+So one can test whether graphs $G$ are $H$-free with arbitrary precision in $O(1)$ time, i.e.,
+not depending on the size of $G$.
+For example, if we want a probability of error $<1\%$, we only need to perform $5C$ tests no matter how large $G$
+is. Of course,
+since $\delta$ was given by the regularity lemma, the constant $C$ is astronomically large depending on $\eps$.
+
 \section References
 
 \bye
