@@ -106,7 +106,7 @@ in physics".
 
 ### Tongass Tlingit and Pre-PA
 
-Leer supplies an extended example of tonogenesis in a Tlingit, a language closely related to the Dene
+Leer supplies an extended example of tonogenesis in Tlingit, a language closely related to the Dene
 family. He had discovered a now-extinct dialect of Tlingit called Tongass Tlingit, which did not have tone (unlike
 all other Tlingit dialects). Instead, Tongass Tlingit vowels exhibit some length and
 glottalisation phenomena that Leer called _stigmata_. A vowel in Tongass Tlingit can be short (V), fading (V`),
