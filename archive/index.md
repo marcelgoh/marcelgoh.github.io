@@ -2,12 +2,14 @@
 layout: page
 title: Blog Archive
 ---
+## 2021
+- (01.02.2021) [Tonogenesis in Dene languages]({{ site.baseurl }}/2021/02/01/tonogenesis-in-dene.html)
+
 ## 2020
 - (26.12.2020) [Arithmetic subsequences in permutations]({{ site.baseurl}}/2020/12/26/arithmetic-subsequences-permutation.html)
 - (01.08.2020) [Plain TeX references with AWK and sed]({{ site.baseurl}}/2020/08/01/plain-tex-references.html)
 - (02.07.2020) [Binary trees in the wild]({{ site.baseurl}}/2020/07/02/trees-in-the-wild.html)
 - (08.04.2020) [Bit sequences and Hamiltonian cycles]({{ site.baseurl}}/2020/04/08/bit-sequences.html)
-
 
 ## 2019
 - (10.12.2019) [Putnam 2019]({{ site.baseurl }}/2019/12/10/putnam-2019.html)

@@ -37,4 +37,6 @@ I contributed the following sequences to the [OEIS](https://oeis.org):
 
 + [A335562](https://oeis.org/A335562): The number of unlabelled unary-binary trees with $n$ nodes such that every node with two children has children of different subtree sizes.
 + [A338550](https://oeis.org/A338550): The number of binary trees of height $n$ such that the number of nodes at depth $d$ equals $d+1$ for every $d\in \{0,\ldots,n\}$.
-+ [A338993](https://oeis.org/A338993): Triangle read by by rows: $T(n,k)$ is the number of $k$-permutations of $$\{1,\ldots,n\}$$ that form a non-trivial arithmetic progression, $1\leq k\leq n$.
++ [A338993](https://oeis.org/A338993): Triangle read by rows: $T(n,k)$ is the number of $k$-permutations of $$\{1,\ldots,n\}$$ that form a non-trivial arithmetic progression, $1\leq k\leq n$.
++ [A339941](https://oeis.org/A339941): Triangle read by rows: $T(n,k)$ is the number of permutations of $$\{1,\ldots,n\}$$ whose longest embedded arithmetic progression has length $k$.
++ [A339942](https://oeis.org/A339942): Triangle read by rows: $T(n,k)$ is the number of permutations of the cyclic group $${\bf Z}/n{\bf Z}$$ whose longest embedded arithmetic progression has length $k$.
