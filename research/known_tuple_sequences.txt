@@ -1,0 +1,42 @@
+
+1 1 2 3
+1 2 1 2
+1 2 3 3
+Length: 4
+Sequence of length 5 not found when n = 3.
+
+1 1 2 2 3 3 4 4
+1 2 1 2 3 4 3 4
+1 2 3 4 1 2 3 4
+Length: 8
+Sequence of length 9 not found when n = 4.
+
+1 1 1 2 2 3 4 4 5 5
+1 2 3 1 2 3 4 5 4 5
+1 2 3 4 5 4 1 2 3 4
+
+Sequence of length 11 not found when n = 5.
+
+1 1 1 1 2 2 3 3 4 4 5 5 6 6
+1 2 3 4 1 2 3 4 5 6 5 6 5 6
+1 2 3 4 5 6 5 6 1 2 3 4 5 6
+Length: 14
+Sequence of length 15 not found when n = 6.
+
+1 1 1 1 2 2 2 3 4 4 4 5 5 6 6 7 7
+1 2 3 4 1 2 3 4 5 6 7 5 6 4 5 6 7
+1 2 3 4 5 6 7 5 1 2 3 4 5 6 7 6 7
+Length: 17
+Sequence of length 18 not found when n = 7.
+
+1 1 1 1 2 2 2 2 3 3 4 4 5 5 6 6 7 8 7 7 8
+1 2 3 4 1 2 3 4 5 6 5 6 7 8 7 8 5 5 6 7 8
+1 2 3 4 5 6 7 8 1 2 3 4 1 2 3 4 5 6 7 8 7
+Length: 21
+Sequence of length 22 not found when n = 8.
+
+1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7 7 8 8 8 9 9 9
+1 2 3 1 2 3 1 2 3 4 5 6 4 5 6 4 5 6 7 8 9 7 8 9 7 8 9
+1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9
+Length: 27
+Sequence of length 28 not found when n = 9.
