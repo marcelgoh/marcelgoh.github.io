@@ -168,8 +168,7 @@ large in comparison to the degrees of the polynomials, the set of points $A$ on 
 a multiple of ${\rm char}\,k$.
 Chevalley's original formulation simply stated that if the set $A$ is nonempty, then it must
 have at least two elements (which follows from the stronger version, since for a finite field $k$,
-${\rm char}\,k\geq 2$). This is the version of the theorem we will state and prove, and we will only deal with
-the case where the 
+${\rm char}\,k\geq 2$). This is the version of the theorem we will state and prove.
 
 __Theorem__ (Chevalley). _Let $k = {\bf F}_q$ be the finite field on $q$ elements, where $q$ is a prime power,
 and let $f_1, \ldots, f_m$ be polynomials in $k[x_1,\ldots,x_n]$.
