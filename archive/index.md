@@ -3,6 +3,7 @@ layout: page
 title: Blog Archive
 ---
 ## 2021
+- (07.03.2021) [The combinatorial Nullstellensatz]({{ site.baseurl }}/2021/03/07/the-combinatorial-nullstellensatz.html)
 - (01.02.2021) [Tonogenesis in Dene languages]({{ site.baseurl }}/2021/02/01/tonogenesis-in-dene.html)
 
 ## 2020
