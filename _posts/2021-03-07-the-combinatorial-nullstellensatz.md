@@ -13,7 +13,7 @@ This was prompted when I realised that there were a couple of exercises in of Kn
 and Volume 4, Fascicle 5) that concern
 the Nullstellensatz. (I'm working off a preliminary draft of _Mathematical Preliminaries Redux_ (MPR),
 which was posted to Knuth's website before the book came out; it is no longer there because the book is now out!
-I do not know if the exercises (and numbering) in my draft correspond to the actual exercises in the actual book.)
+I do not know if the exercises (and numbering) in my draft correspond to the exercises in the actual book.)
 I must confess to having seen the proof of the Nullstellensatz before
 in Tao and Vu's _Additive Combinatorics_ which I read (read: skimmed) about three months ago, but I have forgotten
 it and so this post will see me trying to reconstruct it, with some hints from Knuth.
@@ -194,7 +194,7 @@ Let $d_i = q-1$ for all $1\leq i\leq n$ and note that the coefficient of $\prod_
 is $-\lambda\neq 0$. By the Nullstellensatz with $S_i$ set to the entire field for all $i$, we find that
 there must be a point $a' = (a_1',\ldots, a_n')$ with $f(a')\neq 0$. Of course, $a'$ cannot equal $a$ since $f(a)=0$.
 But since there exists $i$ for which $a_i' \neq a_i$, we must have $h(a') =0$. So $g(a')\neq 0$, meaning that
-$f_i(a')$ is zero for all $i$, since any nonzero element of $k$ equals 1 when taken to the $(q-1)st$ power.&nbsp;&nbsp;∎
+$f_i(a')$ is zero for all $i$, since any nonzero element of $k$ equals 1 when taken to the $(q-1)$st power.&nbsp;&nbsp;∎
 
 ### References
 
