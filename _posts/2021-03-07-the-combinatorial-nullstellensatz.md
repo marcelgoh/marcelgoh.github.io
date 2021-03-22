@@ -19,6 +19,9 @@ in Tao and Vu's _Additive Combinatorics_ which I read (read: skimmed) about thre
 it and so this post will see me trying to reconstruct it, with some hints from Knuth.
 <!--more-->
 
+__Update.__ I have also made [a video](https://youtu.be/XktcBXhzB28) on this topic. It follows the outline of
+this blog post pretty closely, but might be more enjoyable for people who prefer listening over reading.
+
 ### Proof of the theorem
 
 Here is the statement we're trying to prove (exercise 114 of MPR):
@@ -122,7 +125,7 @@ there is a subset $E'$ of $E(G)$ such that setting
 $x_e = 1$ for all $e\in E'$ and $x_e = 0$ otherwise, we have $f(x)\neq 0$. Let $G'$ be the subgraph of $G$ defined
 by taking the same vertex set and the subset $E'$ of edges.
 
-Note that $f_v(x)$ is the degree of the vertex $v$ in the subgraph $E'$, modulo $p$.
+Note that $f_v(x)$ is the degree of the vertex $v$ in the subgraph $G'$, modulo $p$.
 Picking none of the edges cannot be a solution, since then we would have $f(x) = 1 - 1 = 0$. Picking
 even one edge causes the second term to be zero, and by Fermat's little theorem,
 the first term is nonzero only when $f_v(x) = 0$ for all $v$,
@@ -178,7 +181,7 @@ such that $f_i(a) = 0$ for all $f_i$, then there is another point $a'\neq a$ suc
 _Proof._ Let
 
 $g(x_1, \ldots,x_n) = \prod_{i=1}^m (1-f_i(x_1,\ldots,x_n)^{q-1})\quad\hbox{and}\quad
-h(x_1,\ldots,x_n) = \prod_{j=1}^n\prod_{s\in k\setminus\{a_j\}} (x_i - s),$
+h(x_1,\ldots,x_n) = \prod_{i=1}^n\prod_{s\in k\setminus\{a_i\}} (x_i - s),$
 
 and let
 

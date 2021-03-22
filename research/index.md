@@ -40,3 +40,4 @@ I contributed the following sequences to the [OEIS](https://oeis.org):
 + [A338993](https://oeis.org/A338993): Triangle read by rows: $T(n,k)$ is the number of $k$-permutations of $$\{1,\ldots,n\}$$ that form a non-trivial arithmetic progression, $1\leq k\leq n$.
 + [A339941](https://oeis.org/A339941): Triangle read by rows: $T(n,k)$ is the number of permutations of $$\{1,\ldots,n\}$$ whose longest embedded arithmetic progression has length $k$.
 + [A339942](https://oeis.org/A339942): Triangle read by rows: $T(n,k)$ is the number of permutations of the cyclic group $${\bf Z}/n{\bf Z}$$ whose longest embedded arithmetic progression has length $k$.
++ [A341822](https://oeis.org/A341822): The longest known length of a 2-increasing sequence of positive integer triples with entries $\leq n$.
