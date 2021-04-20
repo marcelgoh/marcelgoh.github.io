@@ -13,6 +13,8 @@ __E3.__ [Weyl trees of famous irrational numbers]({{ site.baseurl }}/misc/expo/w
 __E4.__ [A crash course on generating functions]({{ site.baseurl }}/misc/expo/genfcts.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/genfcts.tex))  
 __E5.__ [On the divisibility of a random variable]({{ site.baseurl }}/misc/proofs/random-divisibility.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/random-divisibility.tex))  
 __E6.__ [The Littlewood-Offord problem]({{ site.baseurl }}/misc/expo/littlewood-offord.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/littlewood-offord.tex), [video](https://youtu.be/ntMfj9G3MQg))  
+__E7.__ [Ergodic theory and arithmetic progressions]({{ site.baseurl }}/misc/expo/furstenberg.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/furstenberg.tex), [video](https://youtu.be/Qr59etv0Tsw))  
+
 
 ### Science and mathematics
 

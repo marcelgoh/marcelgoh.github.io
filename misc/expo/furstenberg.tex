@@ -45,8 +45,8 @@ $k\in \NN$, there exists $N\in \NN$ such that for any $A\subseteq [0,N]$ with $|
 an arithmetic progression of length $k$ contained in $A$.
 
 \noindent
-The proof that Szemer\'edi gave was long and complicated, relying on an auxiliary ``graph-regularity lemma''
-that has had far-reaching consequences in combinatorics. We will only supply a proof of the fact
+The proof that Szemer\'edi gave was long and complicated, relying on an intricate combinatorial argument.
+We will only supply a proof of the fact
 that the infinitary version of the theorem is in fact equivalent to the finitary one. (This treatment
 can be found in Furstenberg, Katznelson, and Ornstein (1982).)
 
@@ -110,7 +110,7 @@ is the set of all $x\in X$ that are in $A_N$ for infinitely many $N$. Put anothe
 of all $x\in X$ for which
 $$\limsup_{N\to\infty} {R_x \cap [1,N]\over N} \geq {\mu(G)\over 2}.$$
 Since $\mu(A_N)\geq \mu(G)/2$ for every $N$, we have
-$$\mu\Big(\limsup_{N\to\infty} A_N\Big) = \mu\Big(\bigcap_{n=1}^\infty \bigcup_{n=N}^\infty A_n\Big)\geq
+$$\mu\Big(\limsup_{N\to\infty} A_N\Big) = \mu\Big(\bigcap_{N=1}^\infty \bigcup_{n=N}^\infty A_n\Big)\geq
 \mu(G)/2\adveq$$
 and $E_T = \limsup_{N\to\infty} A_N$ is a set of positive measure such that for every point $x\in E_T$,
 $R_x$ has upper density $\geq \mu(G)/2$.\slug
@@ -155,9 +155,7 @@ $${N_0\over N} \sum_{m=1}^{N/N_0}
 and since every $1\leq s\leq N$ has at most $\min(N_0, N/N_0) = N_0$ representations of the form $ms'$, where
 $1\leq m\leq N/N_0$ and $1\leq s'\leq N_0$, this gives
 $${1\over N} \sum_{s=1}^{N} \int_X f(T^{s}f)\cdots(T^{(k-1)s})\d\mu \geq {\delta^k\mu(G)\over 2KN_0}\adveq$$
-for all large enough $N$, yielding Theorem F\footnote{$^*$}{\eightpoint
-Thank you to Terry Tao, whose answer to my question on his blog
-helped me get the correct constants in the final bound.}.
+for all large enough $N$, yielding Theorem F.
 
 For the other direction, fix a subset $A\subseteq \NN_0$ with positive upper density and let $k\in \NN$.
 We can find a sequence of natural numbers
@@ -192,7 +190,7 @@ So by the Kolmogorov consistency theorem, there exists a measure $\mu$ on $X$ su
 \NN_0$, and $E_1,\ldots,E_m\subseteq \{0,1\}$,
 $$\mu\big(\{x \in X : x_{s_1}\in E_1,\,\ldots,\,x_{s_m}\in E_m\}\big)
 = \mu_{s_1,\ldots,s_m}(E_1\times\ldots\times E_m).$$
-This is ``almost'' invariant under the shift $T$, since
+This is invariant under the shift $T$, since
 $$\eqalign{
 \mu\big(T^{-1}\{x \in X : x_{s_1}\in E_1,\,\ldots,\,x_{s_m}\in E_m\}\big)
 &= \mu\big(\{x \in X : x_{s_1+1}\in E_1,\,\ldots,\,x_{s_m+1}\in E_m\}\big)\cr
@@ -200,15 +198,12 @@ $$\eqalign{
 &= \Lambda\Bigg(\!\!\bigg(
 {1\over N_j+1} \sum_{i=0}^{N_j} \chi_{E_1}(T^{s_1+1}a_i)\cdots\chi_{E_m}(T^{s_m+1}a_i)\bigg)_{j=1}^\infty\Bigg) \cr
 &= \Lambda\Bigg(\!\!\bigg(
-{1\over N_j+1} \sum_{i=1}^{N_j+1} \chi_{E_1}(T^{s_1}a_i)\cdots\chi_{E_m}(T^{s_m}a_i)\bigg)_{j=1}^\infty\Bigg).\cr
+{1\over N_j+1} \sum_{i=1}^{N_j+1} \chi_{E_1}(T^{s_1}a_i)\cdots\chi_{E_m}(T^{s_m}a_i)\bigg)_{j=1}^\infty\Bigg),\cr
 }\adveq$$
-But as $j\to\infty$, shifting the terms over which we take the average does not change the $\limsup$ or the
-$\liminf$, so this is the same as
-$\mu\big(\{x \in X : x_{s_1}\in E_1, \ldots, x_{s_m}\in E_m\}\big)$, provided that the sequence
-$$\Bigg(\!\!\bigg(
-{1\over N_j+1} \sum_{i=0}^{N_j} \chi_{E_1}(T^{s_1}a_i)\cdots\chi_{E_m}(T^{s_m}a_i)\bigg)_{j=1}^\infty\Bigg)$$
-is convergent.
-This will be enough for our purposes (though there should be some way to fix it in general).
+and the $j$th term in the inner sequence differs from the original sequence by no more than $1/(N_j+1)$. So the
+differences between these two sequences goes to zero and their values under $\Lambda$ are the same.
+
+
 Let $B$ be the cylinder of all $x\in X$
 with $x_0 = 1$. Note that
 $$\eqalign{
@@ -231,7 +226,9 @@ $$\eqalign{
 &= \mu\big(\{x\in X : x_0 = 1,\,x_r = 1,\,\ldots,\,x_{(k-1)r} = 1\}\big)\cr
 &= \mu(B\cap T^{-r}B \cap \cdots\cap T^{-(k-1)r}B),\cr
 }\adveq$$
-and since this is positive, there exists an arithmetic progression of length $k$ in $A$.\slug
+and since this is positive, there exists an arithmetic progression of length $k$ in $A$\footnote{$^*$}{\eightpoint
+Thank you to Terry Tao, whose answers to my questions on his blog helped me work out some of the details in this
+proof.}.\slug
 
 The first part of the presented proof draws from the aforementioned blog post of Terry Tao;
 the second part is a fleshed-out version of the proof sketch found in Tao and Vu (2006).
