@@ -5,14 +5,9 @@ title: About me
 
 ![me](profile.jpeg){: .center-image}
 
-I'm a fourth-year undergraduate student at McGill University pursuing a BSc in Mathematics and Computer Science with a minor in Linguistics. I was born in Singapore but spent most of my childhood in Leduc, Alberta. I graduated from Beaumont Composite High School before serving in the Singapore Armed Forces from 2015 to 2017.
-
-I received a traditional Java-based programming education from which I may never fully recover. When I write programs for fun I like to write in C, OCaml/Haskell/ML, PostScript, and Scheme. My academic interests include:
-
-+ probabilistic analysis of algorithms
-+ analysis of random discrete structures
-+ group theory
-+ additive combinatorics
+I am a first-year masters student at McGill University, pursuing an M.Sc. in Mathematics.
+Before that I graduated with a B.Sc. in Mathematics and Computer Science with a minor in Linguistics, also from
+McGill. I was born in Singapore but spent most of my childhood in Leduc, Alberta. I graduated from Beaumont Composite High School before serving in the Singapore Armed Forces from 2015 to 2017.
 
 My favourite polygon is the pentagon.
 

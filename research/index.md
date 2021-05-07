@@ -4,16 +4,15 @@ title: Research
 mathjax: true
 ---
 
-In Summer 2021, I will start the MSc program in Mathematics at McGill University, working on the probabilistic analysis
+I am currently pursuing an M.Sc. in Mathematics, working on the probabilistic analysis
 of combinatorial objects under the supervision of [Luc Devroye](http://luc.devroye.org).
+My research interests include:
 
-### Summer 2020
++ probabilistic analysis of algorithms
++ analysis of random discrete structures
++ group theory
++ additive combinatorics
 
-I received an NSERC Undergraduate Summer Research Award for Summer 2020. I worked with Asa Kohn under the supervision of [Michael Lipnowski](https://sites.google.com/site/michaellipnowski/), designing and implementing sorting algorithms on manifolds with the goal of efficiently building grids on these spaces.
-
-### COMP 400 Honours Project in Computer Science
-
-During the Fall 2019 semester, I undertook a project in the [Computation and Logic](http://complogic.cs.mcgill.ca) lab under the supervision of [Brigitte Pientka](https://www.cs.mcgill.ca/~bpientka/about.html). I worked with [Jacob Errington](https://jerrington.me) to develop a typechecking algorithm for the Harpoon proof language as well as a translation procedure to convert Harpoon proof scripts into programs in the [Beluga](http://complogic.cs.mcgill.ca/beluga/) programming language. The summary of the work I helped with can be found in the [slides]({{ site.baseurl }}/research/comp-400-slides.pdf) to my end-of-term presentation, and my [full report]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf) is available for download as well.
 
 ### Submitted Papers
 
@@ -41,3 +40,12 @@ I contributed the following sequences to the [OEIS](https://oeis.org):
 + [A339941](https://oeis.org/A339941): Triangle read by rows: $T(n,k)$ is the number of permutations of $$\{1,\ldots,n\}$$ whose longest embedded arithmetic progression has length $k$.
 + [A339942](https://oeis.org/A339942): Triangle read by rows: $T(n,k)$ is the number of permutations of the cyclic group $${\bf Z}/n{\bf Z}$$ whose longest embedded arithmetic progression has length $k$.
 + [A341822](https://oeis.org/A341822): The longest known length of a 2-increasing sequence of positive integer triples with entries $\leq n$.
+
+### Summer 2020
+
+I received an NSERC Undergraduate Summer Research Award for Summer 2020. I worked with Asa Kohn under the supervision of [Michael Lipnowski](https://sites.google.com/site/michaellipnowski/), designing and implementing sorting algorithms on manifolds with the goal of efficiently building grids on these spaces.
+
+### COMP 400 Honours Project in Computer Science
+
+During the Fall 2019 semester, I undertook a project in the [Computation and Logic](http://complogic.cs.mcgill.ca) lab under the supervision of [Brigitte Pientka](https://www.cs.mcgill.ca/~bpientka/about.html). I worked with [Jacob Errington](https://jerrington.me) to develop a typechecking algorithm for the Harpoon proof language as well as a translation procedure to convert Harpoon proof scripts into programs in the [Beluga](http://complogic.cs.mcgill.ca/beluga/) programming language. The summary of the work I helped with can be found in the [slides]({{ site.baseurl }}/research/comp-400-slides.pdf) to my end-of-term presentation, and my [full report]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf) is available for download as well.
+
