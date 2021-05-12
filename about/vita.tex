@@ -13,8 +13,9 @@
   \expandafter\gobbleone\number\twodigits
   \advance\twodigits-100 }
 
+\font\ninesc=cmcsc9
 \font\eightrm=cmr8
-\font\elevensc=cmcsc11  % For section headers
+\font\elevensc=cmcsc10 at 11pt  % For section headers
 \font\bigbold=cmb10 at 12pt  % Name
 \font\tenb=cmb10
 \font\mc=cmr9
@@ -48,75 +49,55 @@
 \reportcount=1
 \def\repitem{\pubitem R\the\reportcount. \global\advance\reportcount by 1}
 
-\def\datethis{\eightrm Last updated \today\ at\ \hours.}
+\def\datethis{\eightrm \today}
 
 % =========== START ============ %
 
 % \footline{\phantom{\datethis}\hss\folio\hss\datethis}  % \phantom for centering
 
-\leftright{\bigbold Marcel K.\ Goh
+\leftright{\bigbold Marcel Kieren Goh
 \ifx\Umathchar\undefined\else% Chinese characters do not appear when using pdfTeX
 \font\chinese="STKaiti" at 12pt%
 \font\twelverm=cmr12%
 \twelverm\up({\chinese 吳麒仁}\up)%
-\fi}{3660 Rue Hutchison, Apt.\ 4}
+\fi}{\datethis}
+\smallskip
+
+\sectheader{Personal and Contact Information}
+
+\leftright{Citizen of Canada and Singapore}{3660 Rue Hutchison, Apt.\ 4}
 \leftright{Email: marcel\_goh@yahoo.ca}{Montr\'eal, QC H2X 2H3, Canada}
-\leftright{URL: marcelgoh.github.io}{+1\thinspace\up(825\up)\thinspace 440-0681}
+\leftright{Webpage: marcelgoh.github.io}{+1\thinspace\up(825\up)\thinspace 440-0681}
 
 \sectheader{Education}
 
-\leftright{\bf McGill University}{\bf September 2017 -- April 2021}
-\leftright{\sl BSc, Honours Mathematics and Computer Science, minor Linguistics}{\sl Montr\'eal, QC, Canada}
-CGPA: 3.82/4.
+\leftright{\bf M.Sc.\ Mathematics}{\bf May 2021 -- present}
+\leftright{\sl McGill University}{\sl Montr\'eal, QC, Canada}
+\smallskip
+Supervisor: Luc Devroye.
 \medbreak
-\leftright{\bf Charles University}{\bf February -- June 2019}
-\leftright{\sl Exchange semester, Faculty of Mathematics and Physics}{\sl Prague, Czech Republic}
+\leftright{\bf B.Sc.\ Joint Honours Mathematics and Computer Science}{\bf September 2017 -- April 2021}
+\leftright{\sl McGill University}{\sl Montr\'eal, QC, Canada}
+\smallskip
+Minor: Linguistics. CGPA: 3.84/4.
+\medbreak
+\leftright{\bf Exchange semester}{\bf February -- June 2019}
+\leftright{\sl Faculty of Mathematics and Physics, Charles University}{\sl Prague, Czech Republic}
+\smallskip
 Grade: 1 on all courses (highest score attainable).
 
-\sectheader{Awards}
+\sectheader{Awards and Funding}
 
-\leftright{\bf NSERC Undergraduate Student Research Award}{\bf May 2020}
+\leftright{\bf NSERC Canada Graduate Scholarship -- Master's \rm (\$17,500)}{\bf May 2021 -- April 2022}
+\smallskip
+\leftright{\bf NSERC Undergraduate Student Research Award \rm (\$7,125)}{\bf May -- August 2020}
 \smallskip
 \leftright{\bf Governor General's Academic Medal -- Bronze}{\bf June 2015}
 
-\sectheader{Research Experience}
+\sectheader{Research Interests}
 
-\leftright{\bf Probabilistic analysis of branching processes}{\bf May 2020 -- present}
-\leftright{\sl Research group}{\sl McGill University}
-\smallskip
-Ongoing research on branching processes, headed by Luc Devroye. Studied estimation problems
-on Galton-Watson trees. Attended informal weekly seminars over the summer, discussing
-various topics related to branching
-processes. (Gave a presentation at three of these: one on root estimation in Galton-Watson
-trees, and two on generating functions and elementary analytic combinatorics.)
-
-\medbreak
-\leftright{\bf Sorting algorithms on manifolds}{\bf May -- August 2020}
-\leftright{\sl Summer research project}{\sl McGill University}
-\smallskip
-Research project under the supervision of Michael Lipnowski.
-Studied algorithms that investigate the topology of group actions on locally symmetric spaces.
-Work involved writing of code in OCaml and PostScript that generates illustrations of certain quotient
-spaces, in various models of hyperbolic geometry.
-\medbreak
-
-\leftright{\bf Interactive proofs}{\bf September -- December 2019}
-\leftright{\sl Honours research project}{\sl McGill University}
-\smallskip
-Semester-long research project in the Computation and Logic Group, supervised
-by Brigitte Pientka.
-Proved a theorem in constructive logic concerning the formal verification
-of the interactive proof assistant Harpoon and wrote OCaml code as part of
-ongoing work on the functional programming language Beluga.
-\medbreak
-
-\leftright{\bf Bytecode compiler and interpreter}{\bf February -- June 2019}
-\leftright{\sl Individual software project}{\sl Charles University}
-\smallskip
-Semester-long individual software project under the supervision of Adam Dingle.
-Created OPythn, a bytecode compiler and virtual machine for a subset of Python.
-OPythn includes support for lists, dictionaries, named and anonymous functions, objects, and classes.
-It is implemented in OCaml using Ocamllex for lexing and Menhir for parsing.
+Analysis of random discrete structures, analysis and design of algorithms, enumerative combinatorics,
+additive combinatorics, algebra.
 
 \sectheader{Submitted Papers}
 
@@ -139,11 +120,61 @@ Czech Republic, June 2019), 10 pp.
 Honours project report, McGill University (Montr\'eal, Qu\'ebec, December 2019), 10 pp.
 \repitem Grid-building algorithms on manifolds. Summer research report, McGill University (Montr\'eal, Qu\'ebec,
 August 2020), 10 pp.
+\repitem Finding regularity in Tlingit verb prefixes. Semester project report, McGill University
+(Montr\'eal, Qu\'ebec, April 2021), 7 pp.
+
+\sectheader{Research Experience}
+
+\leftright{\bf Probabilistic analysis of branching processes}{\bf May 2020 -- present}
+\leftright{\sl Research group}{\sl McGill University}
+\smallskip
+Ongoing research on branching processes, headed by Luc Devroye. Studied estimation problems
+on Galton-Watson trees. Attended informal seminars over the year, discussing
+various topics related to branching
+processes. (Gave a presentation at five of these: one on root estimation in Galton-Watson
+trees, two on generating functions and elementary analytic combinatorics, and two on graph regularity.)
+[S1]
+
+\medbreak
+\leftright{\bf Sorting algorithms on manifolds}{\bf May -- August 2020}
+\leftright{\sl Summer research project}{\sl McGill University}
+\smallskip
+Research project under the supervision of Michael Lipnowski.
+Studied algorithms that investigate the topology of group actions on locally symmetric spaces.
+Work involved writing of code in OCaml and PostScript that generates illustrations of certain quotient
+spaces, in various models of hyperbolic geometry. [R3]
+\medbreak
+
+\leftright{\bf Interactive proofs}{\bf September -- December 2019}
+\leftright{\sl Honours research project}{\sl McGill University}
+\smallskip
+Semester-long research project in the Computation and Logic Group, supervised
+by Brigitte Pientka.
+Proved a theorem in constructive logic concerning the formal verification
+of the interactive proof assistant Harpoon and wrote OCaml code as part of
+ongoing work on the functional programming language Beluga. [R2]
+\medbreak
+
+\leftright{\bf Bytecode compiler and interpreter}{\bf February -- June 2019}
+\leftright{\sl Individual software project}{\sl Charles University}
+\smallskip
+Semester-long individual software project under the supervision of Adam Dingle.
+Created OPythn, a bytecode compiler and virtual machine for a subset of Python.
+OPythn includes support for lists, dictionaries, named and anonymous functions, objects, and classes.
+It is implemented in OCaml using Ocamllex for lexing and Menhir for parsing. [R1]
 
 \sectheader{Work and Volunteer Experience}
 
-\leftright{\bf Department of Mathematics and Statistics, McGill University}{\bf September 2019 -- present}
-\leftright{\sl Student Grader}{\sl Montr\'eal, QC, Canada}
+\leftright{\bf First responder}{\bf October 2017 -- present}
+\leftright{\sl McGill Student Emergency Response Team}{\sl Montr\'eal, QC, Canada}
+\smallskip
+On call on a weekly basis to provide emergency medical care at campus residences overnight as well as at
+university events such as frosh, sports games, and formals. Attend team training sessions twice a month to keep
+first-aid skills up-to-date. Most recent first responder certification: September 2021.
+\medbreak
+
+\leftright{\bf Grader}{\bf September 2019 -- April 2021}
+\leftright{\sl Department of Mathematics and Statistics, McGill University}{\sl Montr\'eal, QC, Canada}
 \smallskip
 Grading of assignments in the following courses:
 \begingroup\parindent=10pt
@@ -158,24 +189,17 @@ Grading of assignments in the following courses:
 \endgroup
 \medbreak
 
-\leftright{\bf Computer Science Undergraduate Society Helpdesk}{\bf September 2018 -- present}
-\leftright{\sl Tutor}{\sl Montr\'eal, QC, Canada}
+\leftright{\bf Helpdesk tutor}{\bf September 2018 -- April 2021}
+\leftright{\sl Computer Science Undergraduate Society Helpdesk}{\sl Montr\'eal, QC, Canada}
 \smallskip
 Hold twice-weekly office hours to tutor students in a variety of undergraduate courses.
 Topics covered include elementary data structures and algorithms, command-line scripting,
 and functional programming. Recipient of the Tomlinson Engagement Award for Mentoring.
 \medbreak
 
-\leftright{\bf McGill Student Emergency Response Team}{\bf October 2017 -- present}
-\leftright{\sl First Responder}{\sl Montr\'eal, QC, Canada}
-\smallskip
-On call on a weekly basis to provide emergency medical care at campus residences overnight as well as at
-university events such as frosh, sports games, and formals. Attend team training sessions twice a month to keep
-first-aid skills up-to-date.
-\medbreak
 
-\leftright{\bf Society of Undergraduate Mathematics Students}{\bf May 2019 -- January 2020}
-\leftright{\sl Vice President, Academic}{\sl Montr\'eal, QC, Canada}
+\leftright{\bf Vice President, Academic}{\bf May 2019 -- January 2020}
+\leftright{\sl Society of Undergraduate Mathematics Students}{\sl Montr\'eal, QC, Canada}
 \smallskip
 Oversaw academic affairs within SUMS council and acted as liaison between the undergraduate community and
 mathematics faculty. Duties included representing the student body at department meetings,
@@ -184,27 +208,27 @@ and helping students with
 academic concerns.
 \medbreak
 
-\leftright{\bf Bakir Contracting Corp.}{\bf May -- August 2018}
-\leftright{\sl Painter}{\sl Edmonton, AB, Canada}
+\leftright{\bf Painter}{\bf May -- August 2018}
+\leftright{\sl Bakir Contracting Corp.}{\sl Edmonton, AB, Canada}
 \smallskip
 Exterior painting (siding, decks, fences, trim, etc.) for residential clients.
 \medbreak
 
-\leftright{\bf Singapore Armed Forces}{\bf August 2015 -- August 2017}
-\leftright{\sl Infantryman}{\sl Singapore}
+\leftright{\bf Infantryman}{\bf August 2015 -- August 2017}
+\leftright{\sl Singapore Armed Forces}{\sl Singapore}
 \smallskip
 Held appointment of machine-gun team commander in the 3rd Battalion, Singapore Infantry Regiment.
 Led a six-person team consisting of a medic, signaller, sensor, and two-machine gunners within a rifle platoon.
 \medbreak
 
-\leftright{\bf \'Ecole Secondaire Beaumont Composite High School}{\bf September 2014 -- June 2015}
-\leftright{\sl Tutor}{\sl Beaumont, AB, Canada}
+\leftright{\bf Tutor}{\bf September 2014 -- June 2015}
+\leftright{\sl \'Ecole Secondaire Beaumont Composite High School}{\sl Beaumont, AB, Canada}
 \smallskip
 Tutored various students in grades 4 through 11 in chemistry, physics, math, and French.
 \medbreak
 
-\leftright{\bf YoWoChAs Outdoor Education Centre}{\bf June -- August 2014}
-\leftright{\sl Summer Camp Counsellor}{\sl Fallis, AB, Canada}
+\leftright{\bf Summer camp counsellor}{\bf June -- August 2014}
+\leftright{\sl YoWoChAs Outdoor Education Centre}{\sl Fallis, AB, Canada}
 \smallskip
 Led children aged 4--15 through various activities (e.g. archery, canoeing, zipline) at a sleepaway camp.
 \medbreak
@@ -212,7 +236,7 @@ Led children aged 4--15 through various activities (e.g. archery, canoeing, zipl
 \sectheader{Skills}
 
 {\bf Programming Languages}\par
-\CEE, OCaml, Haskell, Standard ML, Scheme Lisp, PostScript, {\tt CWEB}, {\tt MIXAL}, Python.
+\CEE, OCaml, Python, Java, PostScript, Haskell, Scheme Lisp,  Standard ML, {\tt CWEB}, {\tt MIXAL}, MIPS Assembly.
 \medbreak
 
 {\bf Technologies}\par
@@ -222,12 +246,6 @@ Led children aged 4--15 through various activities (e.g. archery, canoeing, zipl
 {\bf Languages}\par
 Fluent: English, French. Proficient: Mandarin, Italian.
 \medbreak
-
-\sectheader{Interests}
-
-Analysis and design of algorithms, analysis of random discrete structures, enumerative combinatorics,
-additive combinatorics, group theory,
-programming language theory and design, compilers.
 
 \sectheader{Other}
 
@@ -240,8 +258,6 @@ programming language theory and design, compilers.
 \thing Contributed sequences A335562, A338550, A338993, A339941, A339942, and A341822
 to the On-line Encyclopedia of Integer Sequences.
 \medbreak
-
-\rightline{\eightrm \datethis}
 
 \filbreak
 

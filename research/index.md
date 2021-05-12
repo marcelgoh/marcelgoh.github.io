@@ -10,7 +10,7 @@ My research interests include:
 
 + probabilistic analysis of algorithms
 + analysis of random discrete structures
-+ group theory
++ enumerative combinatorics
 + additive combinatorics
 
 
@@ -28,7 +28,8 @@ not available for download.
 
 __R1.__ [The OPythn programming language]({{ site.baseurl }}/research/opythn-report.pdf). Software project report, Charles University (Prague, Czech Republic, June 2019), 10 pp.  
 __R2.__ [Typechecking proof scripts: making interactive proof assistants robust]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf). Honours project report, McGill University (Montréal, Québec, December 2019), 10 pp.  
-__R3.__ Grid-building algorithms on manifolds. Summer research report, McGill University (Montréal, Québec, August 2020), 10 pp.
+__R3.__ Grid-building algorithms on manifolds. Summer research report, McGill University (Montréal, Québec, August 2020), 10 pp.  
+__R4.__ [Finding regularity in Tlingit verb prefixes]({{ site.baseurl }}/research/tlingit-report.pdf). Semester project report, McGill University (Montréal, Québec, April 2021), 7 pp.
 
 ### Sequences
 

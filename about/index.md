@@ -5,9 +5,11 @@ title: About me
 
 ![me](profile.jpeg){: .center-image}
 
-I am a first-year masters student at McGill University, pursuing an M.Sc. in Mathematics.
-Before that I graduated with a B.Sc. in Mathematics and Computer Science with a minor in Linguistics, also from
-McGill. I was born in Singapore but spent most of my childhood in Leduc, Alberta. I graduated from Beaumont Composite High School before serving in the Singapore Armed Forces from 2015 to 2017.
+I am a first-year masters student at
+[McGill University](https://www.mcgill.ca), studying Mathematics.
+Before that, I graduated from McGill's B.Sc. Joint Honours Mathematics and Computer Science program,
+with a minor in Linguistics.
+I was born in Singapore but spent most of my childhood in Leduc, Alberta. I graduated from Beaumont Composite High School before serving in the Singapore Armed Forces from 2015 to 2017.
 
 My favourite polygon is the pentagon.
 
