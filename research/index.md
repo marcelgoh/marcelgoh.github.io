@@ -18,8 +18,9 @@ My research interests include:
 
 Papers submitted for publication in refereed journals.
 
-__S1.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/pdf/2007.05681.pdf). _arXiv preprint 2007.05681_. Submitted July 2020.  
-__S2.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/pdf/2012.12339.pdf). _arXiv preprint 2012.12339_. Submitted December 2020.
+__S1.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/abs/2007.05681). _arXiv preprint 2007.05681_. Submitted July 2020.  
+__S2.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/abs/2012.12339). _arXiv preprint 2012.12339_. Submitted December 2020.  
+__S3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_. Submitted May 2021.
 
 ### Reports
 

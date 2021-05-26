@@ -21,3 +21,6 @@ My CV is available in both
 [TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/about/vita.tex) (compile with either
 XeTeX or Plain TeX)
 and [PDF]({{ site.baseurl}}/about/vita.pdf) formats.
+
+Also, check out my [Google Scholar profile](https://scholar.google.ca/citations?user=Fa8bQiEAAAAJ)
+and my [articles on arXiv](https://arxiv.org/a/goh_m_2.html).

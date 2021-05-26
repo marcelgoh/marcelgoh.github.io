@@ -42,14 +42,18 @@
 \def\limitop#1{\mathop{\hbox{#1}}}
 
 % Probability
-\def\pr{\mathop{\hbox{\bf P}}\nolimits}
-\def\ex{\mathop{\hbox{\bf E}}\nolimits}
-\def\var{\mathop{\hbox{\bf V}}\nolimits}
-\def\one{\mathop{\hbox{\bf 1}}\nolimits}
+\def\pr{\hbox{\bf P}}
+\def\ex{\hbox{\bf E}}
+\def\var{\hbox{\bf V}}
+\def\one{\hbox{\bf 1}}
 \def\indic#1{\one_{\sevenrm[#1]}}
 
 % Graphs
 \def\edge{\mathrel-\!\!\mathrel-}
+
+% Analysis
+\def\d{\,d}
+\def\eps{\epsilon}
 
 % Counters
 \newcount\thmcount  % Counts theorems/lemmas/corollaries
@@ -65,6 +69,7 @@
 \def\oldno#1{\eqno({\oldstyle#1})}
 \def\refeq#1{({\oldstyle#1})}
 \def\adveq{\oldno{\the\eqcount}\global\advance\eqcount by 1}  % Print and advance equation counter
+\def\advthm{\the\thmcount\global\advance \thmcount by 1}
 
 % Numbered section (advances equation counter)
 \def\advsect{\section\the\sectcount\global\advance\sectcount by 1. }
@@ -76,3 +81,12 @@
 
 % Exactly what it sounds like
 \def\twodots{\mathinner{\ldotp\ldotp}}
+
+% Axioms
+\newdimen\axiomindent
+\def\axiomindentset#1{\setbox0\hbox{{\bf #1.\kern.25em}}\axiomindent=\wd0\relax}
+\def\axiombegin#1{\axiomindentset{#11}} % when all have 1 digit
+\def\axiom#1. [#2.]{\ifitempar\par\noindent\else\itempartrue
+  \hskip-\parindent\fi%
+  \hbox to\axiomindent{\bf\hfil #1.\kern.25em}%
+  \hangindent=\axiomindent\hangafter=1[{\it #2.}]}
