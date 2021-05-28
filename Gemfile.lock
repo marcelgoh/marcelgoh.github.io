@@ -47,7 +47,7 @@ GEM
       sass (~> 3.4)
     jekyll-watch (2.1.2)
       listen (~> 3.0)
-    kramdown (1.17.0)
+    kramdown (2.3.1)
     liquid (4.0.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -79,7 +79,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.12)
+  bundler (~> 2.2.10)
   jekyll-theme-hydeout!
 
 BUNDLED WITH
