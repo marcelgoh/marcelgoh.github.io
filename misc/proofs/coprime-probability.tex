@@ -49,8 +49,8 @@ $$\eqalignno{
     q_n - \sum_{k\geq 1}\mu(k)\left({n\over k}\right)^2 &= \sum_{k=1}^n \mu(k) \left(\left\lfloor {n\over k} \right\rfloor ^2 - \left({n \over k}\right)^2\right) - \sum_{k>n}\mu(k)\left({n\over k}\right)^2 & ({\oldstyle 1})
 }$$
 We will want to put asymptotic bounds on these rearranged sums. First, note that for all positive real $x$,
-$$x^2 - \lfloor x\rfloor^2 = O(x).\oldno 2$$
-For $x^2 - \lfloor x\rfloor ^2$ can be rewritten $(x + \lfloor x\rfloor)(x-\lfloor x\rfloor)$, which is less than $2x+1$. Next, we use standard formulas to analyse the asymptotic behaviour of the series $\sum_{k>n}(n/k)^2$:
+$$x^2 - \lfloor x\rfloor^2 = O(x),\oldno 2$$
+for $x^2 - \lfloor x\rfloor ^2$ can be rewritten $(x + \lfloor x\rfloor)(x-\lfloor x\rfloor)$, which is less than $2x+1$. Next, we use standard formulas to analyse the asymptotic behaviour of the series $\sum_{k>n}(n/k)^2$:
 $$\eqalign{
      \sum_{k>n} \left({n\over k}\right)^2 &= \sum_{k\geq 1} \left({n\over k}\right)^2 - \sum_{k=1}^n \left({n\over k}\right)^2 \cr
     &= {n^2\pi^2\over 6} - n^2\left({\pi^2\over 6} -  {1\over n} + O( n^{-2} )\right) \cr
@@ -73,8 +73,7 @@ We now know that $q_n/n^2$ tends to the mysterious summation $\sum_{k\geq 1}\mu(
 \proof The case $n=1$ is obviously true, so let $n>1$. By the fundamental theorem of arithmetic, $n = p_1^{e_1}p_2^{e_2}\cdots p_k^{e_k}$. Only square-free divisors contribute to the sum $\sum_{d\backslash n}\mu(d)$, so we have
 $$\sum_{d\backslash n}\mu(d) = \mu(1) + \sum_{1\leq i\leq k} \mu(p_i) + \sum_{1\leq i<j\leq k} \mu(p_ip_j) + \cdots + \mu(p_1\cdots p_k).$$
 Since the magnitude of $\mu(d)$ is 1 (whenever $d$ is square-free) and the sign of $\mu(d)$ depends on the number of primes that make up $d$, this can be re-expressed as the alternating sum of binomial coefficients
-$$\sum_{d\backslash n}\mu(d) = {k \choose 0} - {k\choose 1} + {k\choose 2} - \cdots + (-1)^k{k\choose k}.$$
-which equals 0. (We will not prove this claim, but one may be convinced of this fact by trying it out on a couple of rows of Pascal's Triangle.)\slug
+$$\sum_{d\backslash n}\mu(d) = {k \choose 0} - {k\choose 1} + {k\choose 2} - \cdots + (-1)^k{k\choose k} = (1-1)^k = 0.\noskipslug$$
 
 We are now ready for the final lemma.
 

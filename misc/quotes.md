@@ -19,6 +19,9 @@ These are some of my favourite quotes and blurbs about computer science, math, e
 >
 > &mdash; <cite>Hal Abelson</cite>
 
+> "Rien n’est plus fécond, tous les mathématiciens le savent, que ces obscures analogies, ces troubles reflets d’une théorie à une autre, ces furtives caresses, ces brouilleries inexplicables ; rien aussi ne donne plus de plaisir au chercheur. Un jour vient où l’illusion se dissipe ; le pressentiment se change en certitude ; les théories jumelles révèlent leur source commune avant de disparaître; comme l’enseigne la Gītā on atteint à la connaissance et à l’indifférence en même temps. La métaphysique est devenue mathématique, prête à former la matière d’un traité dont la beauté froide ne saurait plus nous émouvoir."
+>
+> &mdash; <cite>André Weil</cite>
 
 > "Als je in de fysica iets niet begrijpt, je kunt je altijd verschuilen achter de ongepelde diepte van de natuur. Je kunt altijd God de schuld geven. Je hebt zelf het niet zo ingewikkeld gemaakt. Maar als je programma niet werkt, nu heb je niemand om je achter te verschuilen. Je kunt je niet verschuilen achter onwillige natuur. Nee, een 0 is een 0 en een 1 is een 1, en als het niet werkt je hebt gewoon fout gedaan."
 >

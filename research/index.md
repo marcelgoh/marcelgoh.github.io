@@ -18,9 +18,10 @@ My research interests include:
 
 Papers submitted for publication in refereed journals.
 
-__S1.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/abs/2007.05681). _arXiv preprint 2007.05681_. Submitted July 2020.  
-__S2.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/abs/2012.12339). _arXiv preprint 2012.12339_. Submitted December 2020.  
-__S3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_. Submitted May 2021.
+__S1.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/abs/2007.05681). _arXiv preprint 2007.05681_, 20&nbsp;pp. Submitted July 2020.  
+__S2.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/abs/2012.12339). _arXiv preprint 2012.12339_, 11&nbsp;pp. Submitted December 2020.  
+__S3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_, 11&nbsp;pp. Submitted May 2021.  
+__S4.__ (with Jad Hamdan) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 8&nbsp;pp. Submitted June 2021.
 
 ### Reports
 
