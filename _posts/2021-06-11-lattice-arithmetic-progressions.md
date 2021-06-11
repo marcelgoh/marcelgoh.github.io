@@ -7,7 +7,7 @@ mathjax: true
 excerpt_separator:  <!--more-->
 ---
 
-[Jad Hamdan](https://jadhamdan.github.io/website/) and I have uploaded our paper "[The lattice
+[Jad Hamdan](https://jadhamdan.github.io/) and I have uploaded our paper "[The lattice
 of arithmetic progressions](https://arxiv.org/abs/2106.05949)" to the arXiv. In it we study the partially
 ordered set $L_n$ of all subsets of $$[n] = \{1,2,\ldots,n\}$$ that are arithmetic progressions, including
 the empty set and trivial progressions of length $1$ and $2$. This poset is a lattice, but for $n\geq 4$, it
