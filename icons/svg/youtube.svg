@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="300"
+   width="300"
+   version="1.0"
+   id="svg17"
+   sodipodi:docname="linkedin.svg.2021_06_27_20_44_06.0.svg"
+   inkscape:version="1.1 (c4e8f9e, 2021-05-24)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata
+     id="metadata21">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1296"
+     inkscape:window-height="847"
+     id="namedview19"
+     showgrid="false"
+     inkscape:zoom="1.18"
+     inkscape:cx="316.52542"
+     inkscape:cy="128.38983"
+     inkscape:window-x="104"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg17"
+     inkscape:pagecheckerboard="0" />
+  <defs
+     id="defs7">
+    <linearGradient
+       id="linearGradient3003"
+       y2="425.39999"
+       gradientUnits="userSpaceOnUse"
+       x2="-395.85001"
+       gradientTransform="matrix(-0.62918996,0,0,0.62925298,-160.2241,-173.53634)"
+       y1="274.70999"
+       x1="-344.14999">
+      <stop
+         stop-color="#FFF"
+         offset="0"
+         id="stop2" />
+      <stop
+         stop-color="#FFF"
+         stop-opacity="0"
+         offset="1"
+         id="stop4" />
+    </linearGradient>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath16">
+      <path
+         d="M 0,192 H 192 V 0 H 0 Z"
+         id="path14" />
+    </clipPath>
+  </defs>
+  <path
+     id="path831"
+     style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.84862"
+     d="M 150 0 C 67.157288 0 4.659973e-16 67.157288 0 150 C 0 232.84271 67.157288 300 150 300 C 232.84271 300 300 232.84271 300 150 C 300 67.157288 232.84271 4.659973e-16 150 0 z M 151.09375 79.197266 C 151.09375 79.197266 215.84262 79.197501 231.98828 83.552734 C 240.89875 85.949172 247.91378 93.009632 250.29492 101.97656 C 254.62192 118.2281 254.62109 152.13867 254.62109 152.13867 C 254.62109 152.13867 254.62192 186.04494 250.29492 202.29883 C 247.91378 211.26459 240.89875 218.327 231.98828 220.72461 C 215.84262 225.07867 151.09375 225.07812 151.09375 225.07812 C 151.09375 225.07812 86.3441 225.07867 70.197266 220.72461 C 61.287978 218.327 54.271768 211.26459 51.890625 202.29883 C 47.564803 186.04494 47.566406 152.13867 47.566406 152.13867 C 47.566406 152.13867 47.564803 118.2281 51.890625 101.97656 C 54.271768 93.009632 61.287978 85.949172 70.197266 83.552734 C 86.3441 79.197501 151.09375 79.197266 151.09375 79.197266 z M 129.91602 121.35156 L 129.91602 182.92383 L 184.0332 152.13867 L 129.91602 121.35156 z " />
+  <g
+     id="g12"
+     clip-path="url(#clipPath16)"
+     transform="matrix(1.1764542,0,0,-1.1764542,38.15353,265.07774)">
+    <g
+       id="g18"
+       transform="translate(180.3223,138.6372)" />
+    <g
+       id="g22"
+       transform="translate(78,69.8311)" />
+  </g>
+</svg>
