@@ -42,6 +42,9 @@
 
 \parindent=0pt  % No indentation
 
+\newcount\papercount
+\papercount=1
+\def\papitem{\pubitem P\the\papercount. \global\advance\papercount by 1}
 \newcount\submittedcount
 \submittedcount=1
 \def\subitem{\pubitem S\the\submittedcount. \global\advance\submittedcount by 1}
@@ -99,15 +102,20 @@ Grade: 1 on all courses (highest score attainable).
 Analysis of random discrete structures, analysis and design of algorithms, enumerative combinatorics,
 additive combinatorics, algebra.
 
+\sectheader{Papers}
+
+\pubbegin P
+\papitem (with Rosie Y. Zhao)
+Arithmetic subsequences in a random ordering of an additive set. {\sl arXiv preprint 2012.12339}, 11~pp.
+To appear in {\sl Integers: Electronic Journal of Combinatorial Number Theory}, 2021.
+
 \sectheader{Submitted Papers}
 
 \pubbegin S
 \subitem (with Anna M. Brandenberger and Luc Devroye)
 Root estimation in Galton--Watson trees. {\sl arXiv preprint 2007.05681}, 20~pp.
 Submitted July 2020.
-\subitem (with Rosie Y. Zhao)
-Arithmetic subsequences in a random ordering of an additive set. {\sl arXiv preprint 2012.12339}, 11~pp.
-Submitted December 2020.
+\submittedcount=3
 \subitem (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao)
 Leaf multiplicity in a Bienaym\'e--Galton--Watson tree. {\sl arXiv preprint 2105.12046}, 11~pp.
 Submitted May 2021.

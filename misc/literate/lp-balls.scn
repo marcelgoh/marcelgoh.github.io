@@ -1,0 +1,47 @@
+\I\X15:Committee-generating algorithm\X
+\U2.
+\I\X17:Consensus algorithm\X
+\U15.
+\I\X16:Distance computation\X
+\U15.
+\I\X20:Draw loci when $p=\infty$\X
+\U2.
+\I\X21:Draw squares in PostScript\X
+\U20.
+\I\X7:Gamma random variate\X
+\U4.
+\I\X24:Gather input and initialise global variables\X
+\U2.
+\I\X23:Generate a drawing with random points\X
+\U20.
+\I\X26:Generate random point cloud\X
+\I\X19:Inner product computation\X
+\U2.
+\I\X22:Locus computation\X
+\U20.
+\I\X11:Normal random variate\X
+\U4.
+\I\X14:Plot the points array\X
+\U12.
+\I\X3:Point set functions\X
+\U2.
+\I\X13:Preamble\X
+\Us12\ET23.
+\I\X12:Print points to PostScript file\X
+\U2.
+\I\X4:Random variate generation\X
+\U2.
+\I\X25:Sample mean test\X
+\I\X5:Seed the pseudorandom number generator\X
+\U2.
+\I\X27:Test $L^p$\X
+\I\X29:Test close inner product\X
+\I\X28:Test orthogonal\X
+\I\X9:The case $p=\infty$\X
+\U8.
+\I\X10:The case $p\ne\infty$\X
+\U8.
+\I\X6:Uniform and exponential variates\X
+\U4.
+\I\X8:Uniform random point in unit ball\X
+\U4.
