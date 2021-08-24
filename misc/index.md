@@ -54,6 +54,7 @@ You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelg
 + &#78553; [Anna Brandenberger](https://abrandenberger.github.io/)
 + &#77952; [Shereen Elaidi](https://shereenelaidi.github.io/)
 + &#78216; [Stephen Fay](https://stephenfay.xyz)
++ &#78064; [Cheyenne Goh](https://cheyennegoh.github.io/)
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/website/)
 + &#78069; [Cheng Lin](https://cheng-lin.me)
 + &#78048; [Diego Lopez](https://diegolopez.me)
