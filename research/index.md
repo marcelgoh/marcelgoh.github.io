@@ -13,16 +13,18 @@ My research interests include:
 + enumerative combinatorics
 + additive combinatorics
 
+### Papers
 
-### Submitted Papers
+__P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/abs/2012.12339). _arXiv preprint 2012.12339_, 19 pp. To appear in _Integers: Electronic Journal of Combinatorial Number Theory_.
+
+### Submitted papers
 
 Papers submitted for publication in refereed journals.
 
-__S1.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/abs/2007.05681). _arXiv preprint 2007.05681_, 20&nbsp;pp. Submitted July 2020.  
-__S2.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/abs/2012.12339). _arXiv preprint 2012.12339_, 11&nbsp;pp. Submitted December 2020.  
-__S3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_, 11&nbsp;pp. Submitted May 2021.  
-__S4.__ (with Jad Hamdan) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 8&nbsp;pp. Submitted June 2021.  
-__S5.__ (with Luc Devroye and Rosie Y. Zhao) [The independence number of a Bienaymé-Galton-Watson tree and related parameters](https://arxiv.org/abs/2106.14389). _arXiv preprint 2106.14389_, 20&nbsp;pp. Submitted June 2021.
+&#x2600; (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/abs/2007.05681). _arXiv preprint 2007.05681_, 20&nbsp;pp.  
+&#x2600; (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_, 11&nbsp;pp.  
+&#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 15&nbsp;pp.  
+&#x2600; (with Luc Devroye and Rosie Y. Zhao) [The independence number of a Bienaymé-Galton-Watson tree and related parameters](https://arxiv.org/abs/2106.14389). _arXiv preprint 2106.14389_, 20&nbsp;pp.
 
 ### Reports
 

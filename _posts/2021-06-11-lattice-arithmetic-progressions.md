@@ -18,6 +18,10 @@ Let $\mu_n$ denote the Möbius function of the lattice; we give three short,
 independent proofs of the fact that for $n\geq 2$, $\mu_n(L_n) = \mu(n-1)$, where $\mu$ is the classical
 (number-theoretic) Möbius function. We finish off by computing the homology groups of the order complex
 $\Delta_n$ of $L_n$.
+
+__Update.__ (_7 Sep 2021_) We have added a second version of the paper. Our good friend Jonah Saks has joined
+the cause, helping us to strengthen the topological results in the second half of the paper. In particular,
+we are now able to show that $\Delta_n$ has the homotopy type of a sphere or a point.
 <!--more-->
 
 ### Construction of the lattice
@@ -170,7 +174,7 @@ two.
 The description of the coatoms of $L_n$ in fact allows us to compute something strictly stronger than the
 Möbius function of $L_n$. It allows us to derive the homology groups of the order complex $\Delta_n$.
 
-__Theorem 9.__ _For $n\geq 4$, let $L_n$ be the lattice of arithmetic progressions and let $\Delta_n$ be its
+__Lemma 9.__ _For $n\geq 4$, let $L_n$ be the lattice of arithmetic progressions and let $\Delta_n$ be its
 order complex. Let $\widetilde{H}_i(\Delta_n, {\bf Z})$ be the $i$th reduced homology group of $\Delta_n$.
 If $n-1$ is squarefree and equal to the product of $k$ distinct primes, then_
 
@@ -184,6 +188,52 @@ _If $n-1$ is not squarefree, then all the homology groups of $\Delta_n$ are triv
 Because the reduced Euler characteristic can be expressed as an alternating sum of ranks of reduced homology
 groups, this is a strictly stronger result than Theorem 1.
 
-As a last miscellaneous theorem, we show that $L_n$ is complemented if and only if $n-1$ is squarefree.
+### Left-modularity and comodernism
+
+An element $m$ in a lattice $L$ is _left-modular in $L$_ if for all $x<y\in L$, $(x\vee m)\wedge y
+= x\vee(m\wedge y)$. The lattice $L$ is _comodernistic_ if every interval $[x,y]\subseteq L$ has a coatom which
+is left-modular in $[x,y]$. We spend a section of our paper proving the following theorem.
+
+__Theorem 11.__ _For all $n\ge 0$, the lattice $L_n$ is comodernistic._
+
+The notion of comodernism was introduced by J. Schweig and R. Woodroofe [_Advances in Mathematics_ __313__
+(2017), 537--563].
+
+### EL-labelability, homotopy type, and complements
+
+In the final section of our paper, we use previous lemmas to prove three further results.
+
+__EL-labelability.__ Given a lattice $L$, we let $E(L)$ be the set of all $x,y\in L$ such that $y$ covers
+$x$ (these are the edges in the Hasse diagram). We say that a function $\lambda : E(L)\to {\bf Z}$ is an
+_ER-labeling_ if for every interval $[x,y]\subseteq L$, there is a unique maximal chain
+$x = x_0 < x_1 < \cdots < x_s = y$ with increasing labels, that is, with
+
+$$\lambda(x_0, x_1)<\lambda(x_1, x_2) <\cdots< \lambda(x_{s-1}, x_s).$$
+
+We can define a lexicographic partial order $\preceq$ on the set ${\bf Z}$ of finite sequences of integers
+by declaring $(a_1, \ldots, a_m)\preceq (b_1, \ldots, b_n)$ if either $a_i = b_i$ for all $1\le i\le m$
+and $m\le n$ or else $a_i<b_i$ for the smallest $i$ with $a_i \ne b_i$. The function $\lambda$ above
+defines a map $\overline\lambda$ from chains in $L$ to tuples of positive integers; namely, if $c$ is the
+chain formed by $x_0<x_1<\cdots<x_s$, then
+
+$$\overline\lambda(c) = \big(\lambda(x_0,x_1), \lambda(x_1, x_2), \ldots, \lambda(x_{s-1}, x_s)\big).$$
+
+We define an _EL-labeling_ to be an ER-labeling to be an ER-labeling with the further property that for all
+$[x,y]$ the unique increasing maximal chain $m$ has $\overline\lambda(m)\preceq \overline\lambda(m')$ for all
+other maximal chains $m' \in [x,y]$. The fact that $L_n$ is comodernistic immediately implies that $L_n$
+is EL-labelable, by a result of T. Li [_Journal of Combinatorial Theory, Series A_ __177__ (2021) 105334].
+
+__Homotopy type.__ A simplicial complex $\Delta$ is _nonpure shellable_ if its maximal faces can be ordered
+$C_1,C_2, \ldots, C_m$ such that for all $2\le k\le m$, the maximal faces in the complex
+$(\bigcup_{i=1}^{k-1} C_i) \cap C_k$ all have dimension $\dim C_k -1$. A nonpure shellable complex is homotopy
+equivalent to a wedge of spheres. EL-labelable posets are nonpure shellable, so $\Delta_n$ has the homotopy
+type of a wedge of spheres. Lemma 9 can then be applied to show the following theorem.
+
+__Theorem 12.__ _Let $\Delta_n$ be the order complex of the lattice $L_n$. If $n-1$ is not squarefree, then
+$\Delta_n$ is contractible. Otherwise, $\Delta_n$ has the homotopy type of the sphere $S^k$, where $k$ is
+the number of distinct primes dividing $n-1$._
+
+__Complements.__ As a last
+miscellaneous theorem, we show that $L_n$ is complemented if and only if $n-1$ is squarefree.
 
 

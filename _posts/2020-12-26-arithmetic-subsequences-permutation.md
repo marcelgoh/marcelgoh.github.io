@@ -92,10 +92,10 @@ This is because there are "more ways" to form arithmetic subsequences in permuta
 $n$ is prime. We also notice that there are only permutations without arithmetic subsequences of length $3$
 when $n$ is a power of $2$. This can be formulated as the following lemma:
 
-__Lemma 8.__ The number $g_n(2)$ of orderings of ${\bf Z}/n{\bf Z}$ that do not contain any arithmetic
+__Lemma 8.__ _The number $g_n(2)$ of orderings of ${\bf Z}/n{\bf Z}$ that do not contain any arithmetic
 subsequence of length $3$ equals $2^{n-1}$ if $n=2^m$ for some $m\geq 1$, and is zero otherwise. Any ordering
 of ${\bf Z}/2^m{\bf Z}$ that contains no progression of length $3$ consists of $2^{m-1}$ elements of the same
-parity, followed by the remaining $2^{m-1}$ elements of the opposite parity.
+parity, followed by the remaining $2^{m-1}$ elements of the opposite parity._
 
 The proof was by induction in the case that $n$ is a power of $2$, and for $n$ not a power of $2$ we can reduce
 to the case where $n$ is an odd prime.
