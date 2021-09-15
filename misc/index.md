@@ -56,6 +56,8 @@ You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelg
 + &#78216; [Stephen Fay](https://stephenfay.xyz)
 + &#78064; [Cheyenne Goh](https://cheyennegoh.github.io/)
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/website/)
++ &#78818; [Adam Hamdan](http://adamhamdan.ca/)
++ &#78764; [Rasha Lama](https://rashalama.com)
 + &#78069; [Cheng Lin](https://cheng-lin.me)
 + &#78048; [Diego Lopez](https://diegolopez.me)
 + &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
