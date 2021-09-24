@@ -1,9 +1,10 @@
 ---
 layout: page
 title: Miscellaneous
+mathjax: on
 ---
 
-This is a landing page for things that, for whatever reason, might not have a place elsewhere on the site. Because blog posts are tied to a specific date, if I write something I plan to update in the future, I'd rather keep it off the blog archive. Non-technical stuff will also go here.
+This is a landing page for things that, for whatever reason, might not have a place elsewhere on the site.
 
 ### Expository notes
 
@@ -21,27 +22,7 @@ __E7.__ [Ergodic theory and arithmetic progressions]({{ site.baseurl }}/misc/exp
 + [My favourite classic theorems]({{ site.baseurl }}/misc/theoremata.html)
 + [My favourite quotes]({{ site.baseurl }}/misc/quotes.html)
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
-+ [Exercise solutions]({{ site.baseurl }}/misc/solutions.html)
 
-### Literate programs
-
-These programs are written in [CWEB](http://www.literateprogramming.com/cweb_download.html), and are meant to be read!
-I have also included the C and PDF outputs so you don't
-have to download a CWEB compiler to read them.
-
-+ [LLL-ALGORITHM](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/literate/lll.w). A program that performs lattice reduction
-via the famous LLL algorithm ([C]({{ site.baseurl }}/misc/literate/lll.c)) ([PDF]({{ site.baseurl }}/misc/literate/lll.pdf)).
-
-### TeX macros
-
-If you wish to compile my sources from TeX, you'll need to download these macros and typeset using the Plain TeX engine. Feel free to use and modify them for your own purposes as well.
-
-+ [fontmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
-+ [mathmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
-+ [proofmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/proofmac.tex) (Proof figures)
-
-If you use LaTeX and want your documents to kind of look like my Plain TeX documents, I have a LaTeX `.sty` [file](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex.sty) that sort of approximates it.
-You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex-demo.tex)/[PDF]({{ site.baseurl }}/misc/tex-macros/gohlatex-demo.pdf)). I'm not going to keep this updated though, so if you like the style you should consider switching to Plain TeX. Terms and conditions apply. GohLaTeX should not be used to typeset machine learning documents.
 
 ### Other
 
@@ -55,7 +36,7 @@ You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelg
 + &#77952; [Shereen Elaidi](https://shereenelaidi.github.io/)
 + &#78216; [Stephen Fay](https://stephenfay.xyz)
 + &#78064; [Cheyenne Goh](https://cheyennegoh.github.io/)
-+ &#77874; [Jad Hamdan](https://jadhamdan.github.io/website/)
++ &#77874; [Jad Hamdan](https://jadhamdan.github.io/)
 + &#78818; [Adam Hamdan](http://adamhamdan.ca/)
 + &#78764; [Rasha Lama](https://rashalama.com)
 + &#78069; [Cheng Lin](https://cheng-lin.me)

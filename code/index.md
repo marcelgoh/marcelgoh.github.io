@@ -2,7 +2,42 @@
 layout: page
 title: Code
 ---
-## Projects
+
+I was once a computer science undergraduate student and so wrote a lot of code.
+I write a bit less code now as a math graduate student, but it still comes in handy all the time. Here
+are some programs I've written over the years.
+
+### Literate programs
+
+These programs are written in [CWEB](http://www.literateprogramming.com/cweb_download.html), and are meant to be read!
+I have also included the C and PDF outputs so you don't
+have to download a CWEB compiler to read them.
+
++ [LLL-ALGORITHM](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/literate/lll.w). A program that performs lattice reduction
+via the famous LLL algorithm ([C]({{ site.baseurl }}/code/literate/lll.c)) ([PDF]({{ site.baseurl }}/code/literate/lll.pdf)).
++ [LP-BALLS](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/literate/lp-balls.w).
+A program for experimenting with points in the unit ball of $L^p$.
+([C]({{ site.baseurl }}/code/literate/lp-balls.c)) ([PDF]({{ site.baseurl }}/code/literate/lp-balls.pdf)).
+
+### TeX macros
+
+If you wish to compile my sources from TeX, you'll need to download these macros and typeset using the Plain TeX engine. Feel free to use and modify them for your own purposes as well.
+
++ [fontmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
++ [mathmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
++ [proofmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/proofmac.tex) (Proof figures)
+
+If you use LaTeX and want your documents to kind of look like my Plain TeX documents, I have a LaTeX `.sty` [file](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex.sty) that sort of approximates it.
+You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex-demo.tex)/[PDF]({{ site.baseurl }}/code/tex-macros/gohlatex-demo.pdf)). I'm not going to keep this updated though, so if you like the style you should consider switching to Plain TeX. Terms and conditions apply. GohLaTeX should not be used to typeset machine learning documents.
+
+### Exercise solutions
+
+Solutions to exercises in various computer science textbooks.
+
++ [_Structure and Interpretation of Computer Programs_, by H. Abelson and G. Sussman](https://github.com/marcelgoh/sicp-exercises) (Scheme)
++ [_The Art of Computer Programming_, by D. E. Knuth](https://github.com/marcelgoh/misc-programs/tree/master/mix) (MIX Assembly)
+
+### Projects
 
 #### [OPythn](https://github.com/marcelgoh/opythn)
 A compiler and bytecode interpreter for a sizeable subset of Python, written in OCaml (with the help of Ocamllex and Menhir for lexing and parsing). Created as an individual semester-long software project under the supervision of Adam Dingle at Charles University in Prague. Relevant blog posts: [1]({{ site.baseurl }}/2019/04/14/scanning-spaces.html), [2]({{ site.baseurl }}/2019/06/30/generating-stack-machine-bytecode.html).
@@ -20,7 +55,7 @@ A collection of small programs and scripts I wrote while learning new languages.
 + [An implementation of some abstract data structures](https://github.com/marcelgoh/misc-programs/tree/master/c/data_structures) (C)
 + [A tool for analysing/generating Cayley tables](https://github.com/marcelgoh/misc-programs/tree/master/haskell/Cayley)  (Haskell)
 
-## Hackathons
+### Hackathons
 
 #### [HackPrague 2019](https://github.com/mattonicorp/mattoni)
 My teammate and I created Mattoni, a program that allows you to generate and interact with escape-time fractals. We used the SDL2 graphics library and wrote the program in C. I wrote more about it [here]({{ site.baseurl }}/2019/05/06/escape-time-fractals.html). (May 2019)
@@ -29,7 +64,7 @@ My team implemented [Nim](https://en.wikipedia.org/wiki/Nim), a mathematical str
 #### [HackPrinceton Fall 2018](https://github.com/marcelgoh/hackprinceton-2018)
 My team created CourseTalk, a discussion and collaboration platform for students. A blog post describing the process and functionality can be found [here]({{ site.baseurl }}/2018/11/14/coursetalk.html). (November 2018)
 
-## Study
+### School
 
 These are my assignment solutions for certain classes. They were made public only after their respective course end dates.
 

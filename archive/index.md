@@ -2,18 +2,19 @@
 layout: page
 title: Blog Archive
 ---
-## 2021
+### 2021
+- (24.09.2021) [Orthogonal groups of four-dimensional real quadratic spaces]({{ site.baseurl }}/2021/09/24/real-quadratic-spaces.html)
 - (11.06.2021) [The lattice of arithmetic progressions]({{ site.baseurl }}/2021/06/11/lattice-arithmetic-progressions.html)
 - (07.03.2021) [The combinatorial Nullstellensatz]({{ site.baseurl }}/2021/03/07/the-combinatorial-nullstellensatz.html)
 - (01.02.2021) [Tonogenesis in Dene languages]({{ site.baseurl }}/2021/02/01/tonogenesis-in-dene.html)
 
-## 2020
+### 2020
 - (26.12.2020) [Arithmetic subsequences in permutations]({{ site.baseurl}}/2020/12/26/arithmetic-subsequences-permutation.html)
 - (01.08.2020) [Plain TeX references with AWK and sed]({{ site.baseurl}}/2020/08/01/plain-tex-references.html)
 - (02.07.2020) [Binary trees in the wild]({{ site.baseurl}}/2020/07/02/trees-in-the-wild.html)
 - (08.04.2020) [Bit sequences and Hamiltonian cycles]({{ site.baseurl}}/2020/04/08/bit-sequences.html)
 
-## 2019
+### 2019
 - (10.12.2019) [Putnam 2019]({{ site.baseurl }}/2019/12/10/putnam-2019.html)
 - (27.08.2019) [Consonant voicing and Mandarin pop music]({{ site.baseurl }}/2019/08/27/voiced-initial.html)
 - (20.07.2019) [Hello, moon!]({{ site.baseurl }}/2019/07/20/hello-moon.html)
@@ -26,7 +27,7 @@ title: Blog Archive
 - (03.02.2019) [Bits and doughnuts]({{ site.baseurl }}/2019/02/03/bits-and-doughnuts.html)
 - (15.01.2019) [A classic weather theorem]({{ site.baseurl }}/2019/01/15/weather-theorem.html)
 
-## 2018
+### 2018
 - (03.12.2018) [The ring of subsets]({{ site.baseurl }}/2018/12/03/subset-ring.html)
 - (14.11.2018) [HackPrinceton and CourseTalk]({{ site.baseurl }}/2018/11/14/coursetalk.html)
 - (06.10.2018) [Fun with Cayley tables]({{ site.baseurl }}/2018/10/06/cayley-tables.html)
