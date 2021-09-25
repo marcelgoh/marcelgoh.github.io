@@ -190,7 +190,7 @@ Since $\langle S\rangle$ is nonempty,
 open, and closed in the connected group $\phi(G)$, $\langle S\rangle = \phi(G)$ and $\phi (G)$ is the connected
 component of the identity.&nbsp;&nbsp;∎
 
-### Finishing up the positive
+### Finishing up the $(r,s) = (4,0)$ case
 
 First we need to find the tangent space of the identity in ${\bf H}_1$. If $1 + \epsilon (x+yi+zj+wk)$
 has norm $1$, then we must have
