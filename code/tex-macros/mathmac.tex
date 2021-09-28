@@ -74,6 +74,8 @@
 % Numbered section (advances equation counter)
 \def\advsect{\section\the\sectcount\global\advance\sectcount by 1. }
 
+\def\caption#1{\centerline{\ninepoint{\bf Fig.~\the\figcount\global\advance\figcount by 1.\enspace}#1}}
+
 % Proclaim with parentheses in italics
 \outer\def\parenproclaim #1 (#2).#3\par{\medbreak
   \noindent{\bf #1}\enspace\rm({\it #2\/}).\nobreak\ignorespaces{\sl #3\par}

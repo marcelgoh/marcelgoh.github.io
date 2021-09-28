@@ -15,7 +15,9 @@ My research interests include:
 
 ### Papers
 
-__P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](https://arxiv.org/abs/2012.12339). _arXiv preprint 2012.12339_, 19 pp. To appear in _Integers: Electronic Journal of Combinatorial Number Theory_.
+__P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](http://math.colgate.edu/~integers/v89/v89.pdf). _Integers: Electronic Journal of Combinatorial Number Theory_ __21__ (2021),
+\#A89, 19 pp.
+[[arXiv](https://arxiv.org/abs/2012.12339)]
 
 ### Submitted papers
 

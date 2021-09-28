@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Code
+mathjax: true
 ---
 
 I was once a computer science undergraduate student and so wrote a lot of code.
