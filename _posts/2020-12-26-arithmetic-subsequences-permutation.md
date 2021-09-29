@@ -20,6 +20,13 @@ using dynamic programming (it is a
 if we take the ordering to be random, with each of the $n!$ possibilities occurring with equal probability,
 then the length $L_n$ of the longest arithmetic subsequence becomes a random variable. Our paper studies
 the asymptotic behaviour of $L_n$ as $n$ gets large.
+
+__Update.__ (_28 Sep 2021_)
+Our paper was accepted to _Integers: Electronic Journal of Combinatorial Number Theory_! There
+were some small errors in the original lemmas, which have been corrected in both the
+[published](http://math.colgate.edu/~integers/v89/v89.pdf)
+and [arXiv](https://arxiv.org/abs/2012.12339) versions
+as well as in the blog post below.
 <!--more-->
 
 ### The integer case
@@ -45,21 +52,21 @@ result of our paper is the following theorem:
 
 __Theorem 4.__ _Let $L_n$ denote the longest arithmetic sequence in an ordering of $[1,n]$, chosen uniformly
 at random. There exists a function $\psi(n)$ with $\psi(n)\sim 2\log n/\log\log n$ such that the probabilility
-that $L_n$ does not equal either $\lfloor \psi(n)\rfloor$ or $\lceil\psi(n)\rceil$ tends to $0$ as $n$ approaches
+that $L_n$ is not in the interval $[\psi(n)-6, \psi(n)+1]$ tends to $0$ as $n$ approaches
 infinity._
 
 (In fact, we proved a slightly more general form of this theorem in the paper,
 considering $[1,n]^d\subseteq {\bf Z}^d$
 for $d\geq 1$ and finding a function $\psi(n,d)\sim 2d\log n/\log\log n$.) To prove the theorem, we let $N_k$
 denote the number of arithmetic subsequences of length $k$ in the random ordering. By the union bound, we have
-$${\bf P}\{L_n\geq k\}\leq {\bf E}\{N_k\}$$, which goes to $0$ if $k\geq \lceil\psi(n)\rceil$. Then by the
+$${\bf P}\{L_n\geq k\}\leq {\bf E}\{N_k\}$$, which goes to $0$ if $k\geq \psi(n)+1$. Then by the
 second moment method, it can be shown that
 
-$${\bf P}\{L_n\geq k\} = {\bf P}\{N_k\geq 1\} \geq { {\bf E}\{N_k\}^2\over {\bf E}\{ {N_k} ^2\} },$$
+$${\bf P}\{L_n < k\} = {\bf P}\{N_k= 1\} \le { {\bf V}\{N_k\}\over {\bf E}\{ {N_k} \}^2 } =
+{k^5\over P_n(k)/k!},$$
 
-which approaches $1$ when $k<\lfloor\psi(n)\rfloor$. Since $k$ must be an integer and there are no integers
-strictly between $\lfloor\psi(n)\rfloor$ and $\lceil\psi(n)\rceil$, this implies that as $n\to\infty$,
-$L_n$ is either the floor or ceiling of $\psi(n)$ with probability approaching $1$.
+where $P_n(k)$ is the number of arithmetic sequences of length $k$ that use elements of the set $[1,n]$.
+This approaches $0$ when $k<\psi(n)-6$.
 By a counting argument, one can show that
 
 $${\bf E}\{N_k\} \sim {n^2\over k!(k-1)},$$
@@ -81,7 +88,7 @@ We prove the following analogue of Theorem 4 in the cyclic case:
 
 __Theorem 7.__ For a positive integer $n$, let $L_n$ denote the longest arithmetic subsequence in an
 ordering of ${\bf Z}/n{\bf Z}$, chosen uniformly at random. There exists a function $\chi(n)$ with
-$\chi(n)\sim 2\log n/\log\log n$ such that $L_n$ is either the floor or ceiling of $\chi(n)$ with probability
+$\chi(n)\sim 2\log n/\log\log n$ such that $L_n$ is in the interval $[\chi(n)-6, \chi(n)+1]$ with probability
 tending to $1$ as $n\to\infty$.
 
 Note that while both $\psi(n)$ from Theorem 4 and $\chi(n)$ from Theorem 7 both have the same leading
@@ -90,9 +97,9 @@ curiosities regarding $L_n$ in the cyclic case. Firstly, $${\bf E}\{L_n\}$$ does
 $n$ as in the integer case. For example, we have $${\bf E}\{L_7\} = 4.25$$ and $${\bf E}\{L_8\}\approx 4.136$$.
 This is because there are "more ways" to form arithmetic subsequences in permutations of ${\bf Z}/n{\bf Z}$ when
 $n$ is prime. We also notice that there are only permutations without arithmetic subsequences of length $3$
-when $n$ is a power of $2$. This can be formulated as the following lemma:
+when $n$ is a power of $2$. This can be formulated as the following theorem:
 
-__Lemma 8.__ _The number $g_n(2)$ of orderings of ${\bf Z}/n{\bf Z}$ that do not contain any arithmetic
+__Theorem 8.__ _The number $g_n(2)$ of orderings of ${\bf Z}/n{\bf Z}$ that do not contain any arithmetic
 subsequence of length $3$ equals $2^{n-1}$ if $n=2^m$ for some $m\geq 1$, and is zero otherwise. Any ordering
 of ${\bf Z}/2^m{\bf Z}$ that contains no progression of length $3$ consists of $2^{m-1}$ elements of the same
 parity, followed by the remaining $2^{m-1}$ elements of the opposite parity._

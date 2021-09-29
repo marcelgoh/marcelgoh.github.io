@@ -19,7 +19,7 @@ independent proofs of the fact that for $n\geq 2$, $\mu_n(L_n) = \mu(n-1)$, wher
 (number-theoretic) Möbius function. We finish off by computing the homology groups of the order complex
 $\Delta_n$ of $L_n$.
 
-__Update.__ (_7 Sep 2021_) We have added a second version of the paper. Our good friend Jonah Saks has joined
+__Update.__ (_07 Sep 2021_) We have added a second version of the paper. Our good friend Jonah Saks has joined
 the cause, helping us to strengthen the topological results in the second half of the paper. In particular,
 we are now able to show that $\Delta_n$ has the homotopy type of a sphere or a point.
 <!--more-->
