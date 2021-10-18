@@ -17,13 +17,15 @@ My research interests include:
 
 __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](http://math.colgate.edu/~integers/v89/v89.pdf). _Integers: Electronic Journal of Combinatorial Number Theory_ __21__ (2021),
 \#A89, 19 pp.
-[[arXiv](https://arxiv.org/abs/2012.12339)]
+[[arXiv](https://arxiv.org/abs/2012.12339)]  
+__P2.__ (with Anna M. Brandenberger and Luc Devroye) Root estimation in Galton-Watson trees. To appear in
+_Random Structures and Algorithms_, 20&nbsp;pp.
+[[arXiv](https://arxiv.org/abs/2007.05681)]  
 
 ### Submitted papers
 
 Papers submitted for publication in refereed journals.
 
-&#x2600; (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://arxiv.org/abs/2007.05681). _arXiv preprint 2007.05681_, 20&nbsp;pp.  
 &#x2600; (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_, 11&nbsp;pp.  
 &#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 15&nbsp;pp.  
 &#x2600; (with Luc Devroye and Rosie Y. Zhao) [The independence number of a Bienaymé-Galton-Watson tree and related parameters](https://arxiv.org/abs/2106.14389). _arXiv preprint 2106.14389_, 20&nbsp;pp.
