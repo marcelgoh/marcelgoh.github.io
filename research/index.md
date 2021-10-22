@@ -26,7 +26,7 @@ __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an
 
 Papers submitted for publication in refereed journals.
 
-&#x2600; (with Luc Devroye and Rosie Y. Zhao) [The independence number of a Bienaymé-Galton-Watson tree and related parameters](https://arxiv.org/abs/2106.14389). _arXiv preprint 2106.14389_, 20&nbsp;pp.
+&#x2600; (with Luc Devroye and Rosie Y. Zhao) [The independence number of a Bienaymé-Galton-Watson tree and related parameters](https://arxiv.org/abs/2106.14389). _arXiv preprint 2106.14389_, 20&nbsp;pp.  
 &#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 15&nbsp;pp.  
 &#x2600; (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_, 11&nbsp;pp.  
 
