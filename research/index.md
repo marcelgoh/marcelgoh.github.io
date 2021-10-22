@@ -15,42 +15,42 @@ My research interests include:
 
 ### Papers
 
+__P2.__ (with Anna M. Brandenberger and Luc Devroye) Root estimation in Galton-Watson trees. To appear in
+_Random Structures and Algorithms_, 24&nbsp;pp.
+[[arXiv](https://arxiv.org/abs/2007.05681)]  
 __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](http://math.colgate.edu/~integers/v89/v89.pdf). _Integers: Electronic Journal of Combinatorial Number Theory_ __21__ (2021),
 \#A89, 19 pp.
 [[arXiv](https://arxiv.org/abs/2012.12339)]  
-__P2.__ (with Anna M. Brandenberger and Luc Devroye) Root estimation in Galton-Watson trees. To appear in
-_Random Structures and Algorithms_, 20&nbsp;pp.
-[[arXiv](https://arxiv.org/abs/2007.05681)]  
 
 ### Submitted papers
 
 Papers submitted for publication in refereed journals.
 
-&#x2600; (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_, 11&nbsp;pp.  
-&#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 15&nbsp;pp.  
 &#x2600; (with Luc Devroye and Rosie Y. Zhao) [The independence number of a Bienaymé-Galton-Watson tree and related parameters](https://arxiv.org/abs/2106.14389). _arXiv preprint 2106.14389_, 20&nbsp;pp.
+&#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 15&nbsp;pp.  
+&#x2600; (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://arxiv.org/abs/2105.12046). _arXiv preprint 2105.12046_, 11&nbsp;pp.  
 
 ### Reports
 
 Various project and research reports. Some reports were written for internal distribution only, and are therefore
 not available for download.
 
-__R1.__ [The OPythn programming language]({{ site.baseurl }}/research/opythn-report.pdf). Software project report, Charles University (Prague, Czech Republic, June 2019), 10 pp.  
-__R2.__ [Typechecking proof scripts: making interactive proof assistants robust]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf). Honours project report, McGill University (Montréal, Québec, December 2019), 10 pp.  
-__R3.__ Grid-building algorithms on manifolds. Summer research report, McGill University (Montréal, Québec, August 2020), 10 pp.  
 __R4.__ [Finding regularity in Tlingit verb prefixes]({{ site.baseurl }}/research/tlingit-report.pdf). Semester project report, McGill University (Montréal, Québec, April 2021), 7 pp.
+__R3.__ Grid-building algorithms on manifolds. Summer research report, McGill University (Montréal, Québec, August 2020), 10 pp.  
+__R2.__ [Typechecking proof scripts: making interactive proof assistants robust]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf). Honours project report, McGill University (Montréal, Québec, December 2019), 10 pp.  
+__R1.__ [The OPythn programming language]({{ site.baseurl }}/research/opythn-report.pdf). Software project report, Charles University (Prague, Czech Republic, June 2019), 10 pp.  
 
 ### Sequences
 
 I contributed the following sequences to the [OEIS](https://oeis.org):
 
-+ [A335562](https://oeis.org/A335562): The number of unlabelled unary-binary trees with $n$ nodes such that every node with two children has children of different subtree sizes.
-+ [A338550](https://oeis.org/A338550): The number of binary trees of height $n$ such that the number of nodes at depth $d$ equals $d+1$ for every $d\in \{0,\ldots,n\}$.
-+ [A338993](https://oeis.org/A338993): Triangle read by rows: $T(n,k)$ is the number of $k$-permutations of $$\{1,\ldots,n\}$$ that form a non-trivial arithmetic progression, $1\leq k\leq n$.
-+ [A339941](https://oeis.org/A339941): Triangle read by rows: $T(n,k)$ is the number of permutations of $$\{1,\ldots,n\}$$ whose longest embedded arithmetic progression has length $k$.
-+ [A339942](https://oeis.org/A339942): Triangle read by rows: $T(n,k)$ is the number of permutations of the cyclic group $${\bf Z}/n{\bf Z}$$ whose longest embedded arithmetic progression has length $k$.
-+ [A341822](https://oeis.org/A341822): The longest known length of a 2-increasing sequence of positive integer triples with entries $\leq n$.
 + [A347580](https://oeis.org/A347580): The number of chains of length $k$ in the poset of all arithmetic progressions contained in $$\{1,\ldots,n\}$$ of length in the range $[1.\,.n-1]$, ordered by inclusion.
++ [A341822](https://oeis.org/A341822): The longest known length of a 2-increasing sequence of positive integer triples with entries $\leq n$.
++ [A339942](https://oeis.org/A339942): Triangle read by rows: $T(n,k)$ is the number of permutations of the cyclic group $${\bf Z}/n{\bf Z}$$ whose longest embedded arithmetic progression has length $k$.
++ [A339941](https://oeis.org/A339941): Triangle read by rows: $T(n,k)$ is the number of permutations of $$\{1,\ldots,n\}$$ whose longest embedded arithmetic progression has length $k$.
++ [A338993](https://oeis.org/A338993): Triangle read by rows: $T(n,k)$ is the number of $k$-permutations of $$\{1,\ldots,n\}$$ that form a non-trivial arithmetic progression, $1\leq k\leq n$.
++ [A338550](https://oeis.org/A338550): The number of binary trees of height $n$ such that the number of nodes at depth $d$ equals $d+1$ for every $d\in \{0,\ldots,n\}$.
++ [A335562](https://oeis.org/A335562): The number of unlabelled unary-binary trees with $n$ nodes such that every node with two children has children of different subtree sizes.
 
 ### Summer 2020
 
