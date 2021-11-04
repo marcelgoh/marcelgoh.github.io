@@ -94,6 +94,7 @@ GEM
 PLATFORMS
   x86_64-darwin-17
   x86_64-darwin-18
+  x86_64-linux
 
 DEPENDENCIES
   bundler (~> 2.2.10)
@@ -103,4 +104,4 @@ DEPENDENCIES
   webrick (~> 1.7)
 
 BUNDLED WITH
-   2.2.18
+   2.2.30
