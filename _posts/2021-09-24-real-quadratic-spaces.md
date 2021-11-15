@@ -49,7 +49,7 @@ Letting $n=\dim V$ and letting $(r,s)$ be the signature of the space, this
 can be viewed as the set of $n\times n$ matrices
 
 $$ {\rm O}(V) =
-\biggl\{ A \in M_n({\bf R}) : A^{\rm T} A = AA^{\rm T} = \pmatrix{ I_r & 0\cr 0 & I_s } \biggr\},$$
+\biggl\{ A \in M_n({\bf R}) : A^{\rm T} A = AA^{\rm T} = \pmatrix{ I_r & 0\cr 0 & -I_s } \biggr\},$$
 
 where the $I_r$ and $I_s$ that appear in the block matrix are the $r\times r$ and $s\times s$ identity matrices,
 respectively. The condition implies that $(\det A)^2 = 1$, meaning that $\det A = \pm 1$ for all $A\in {\rm O}(V)$.
@@ -135,7 +135,7 @@ directions one can take to pass through
 $1$. In one-dimensional real calculus, we approximated a tangent line at a point $p$ by secant lines passing
 through $p$ and $q$ as $|p-q|\to 0$, and here we'll do the same thing. Let $M$ be a topological group that is
 also a subgroup of the multiplicative group of an algebra $A$. The tangent space $T_1 M$
-at the point $1$ in the
+at the point $1$
 is the space of all $a\in A$ such that $1 + \epsilon a$ is still in $M$, and here
 we encapsulate the fact that $\epsilon$ goes to zero by letting
 $\epsilon$ be a nonzero formal parameter whose square is zero.
@@ -153,7 +153,7 @@ from $$T_{1_M} M$$ to $$T_{1_N} N$$ such that the diagram
 
 $$\matrix{
 T_{1_M} M & \buildrel d\phi\over\longrightarrow & T_{1_N} N \cr
-\Big\downarrow\pi_N & & \Big\downarrow\pi_N \cr
+\quad\Big\downarrow\pi_N & & \quad\Big\downarrow\pi_N \cr
 M & \buildrel \phi\over\longrightarrow & N \cr
 }$$
 
@@ -174,18 +174,18 @@ __Lemma.__ _Let $\phi:G\to H$ be a homomorphism of topological groups and suppos
 neighbourhood $S\subseteq \phi(G)$ that contains the identity of $H$. If $G$ is connected, then $\phi(G)$
 is the connected component of the identity in $H$._
 
-_Proof._ Since the function $g\mapsto g^{-1}$ is a continuous involution, $S^{-1}$ is also open and so
+_Proof._ Since the function $h\mapsto h^{-1}$ is a continuous involution, $S^{-1}$ is also open and so
 is $S\cap S^{-1}$, which still contains the identity.
 Thus we may assume without loss of generality that $S$ is closed under inverses.
 Let $\langle S\rangle$ be the smallest subgroup of $\phi(G)$ with $S\subseteq \langle S\rangle$.
 It is easy to see that
-$$\langle S\rangle = \bigcup_{g\in \langle S\rangle} gS$$
-For all $g\in \phi(G)$, left multiplication by $g$ is a homeomorphism from $\phi(G)$ to itself, so $\langle S
+$$\langle S\rangle = \bigcup_{h\in \langle S\rangle} hS$$.
+For all $h\in \phi(G)$, left multiplication by $h$ is a homeomorphism from $\phi(G)$ to itself, so $\langle S
 \rangle$ is open.
 
-It remains to show that $\langle S\rangle$ is closed, so let $g\in \langle S\rangle^c$ be given. If
-$gs\in \langle S\rangle$ for some $s\in S$, then $g = gss^{-1}\in \langle S\rangle$. So $gS$ is an open
-neighbourhood of $g$ contained in $\langle S\rangle^c$, proving that $\langle S\rangle$ is indeed closed.
+It remains to show that $\langle S\rangle$ is closed, so let $h\in \langle S\rangle^c$ be given. If
+$hs\in \langle S\rangle$ for some $s\in S$, then $h = hss^{-1}\in \langle S\rangle$. So $hS$ is an open
+neighbourhood of $h$ contained in $\langle S\rangle^c$, proving that $\langle S\rangle$ is indeed closed.
 Since $\langle S\rangle$ is nonempty,
 open, and closed in the connected group $\phi(G)$, $\langle S\rangle = \phi(G)$ and $\phi (G)$ is the connected
 component of the identity.&nbsp;&nbsp;∎
