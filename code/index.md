@@ -14,9 +14,9 @@ These programs are written in [CWEB](http://www.literateprogramming.com/cweb_dow
 I have also included the C and PDF outputs so you don't
 have to download a CWEB compiler to read them.
 
-+ [LLL-ALGORITHM](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/literate/lll.w). A program that performs lattice reduction
++ [LLL-ALGORITHM](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/literate/lll.w). A program that performs lattice reduction
 via the famous LLL algorithm ([C]({{ site.baseurl }}/code/literate/lll.c)) ([PDF]({{ site.baseurl }}/code/literate/lll.pdf)).
-+ [LP-BALLS](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/literate/lp-balls.w).
++ [LP-BALLS](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/literate/lp-balls.w).
 A program for experimenting with points in the unit ball of $L^p$.
 ([C]({{ site.baseurl }}/code/literate/lp-balls.c)) ([PDF]({{ site.baseurl }}/code/literate/lp-balls.pdf)).
 
@@ -24,12 +24,12 @@ A program for experimenting with points in the unit ball of $L^p$.
 
 If you wish to compile my sources from TeX, you'll need to download these macros and typeset using the Plain TeX engine. Feel free to use and modify them for your own purposes as well.
 
-+ [fontmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/fontmac.tex) (Fonts and document formatting)
-+ [mathmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/mathmac.tex) (Mathematical shortcuts)
-+ [proofmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/proofmac.tex) (Proof figures)
++ [fontmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/fontmac.tex) (Fonts and document formatting)
++ [mathmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/mathmac.tex) (Mathematical shortcuts)
++ [proofmac.tex](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/proofmac.tex) (Proof figures)
 
-If you use LaTeX and want your documents to kind of look like my Plain TeX documents, I have a LaTeX `.sty` [file](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex.sty) that sort of approximates it.
-You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/tex-macros/gohlatex-demo.tex)/[PDF]({{ site.baseurl }}/code/tex-macros/gohlatex-demo.pdf)). I'm not going to keep this updated though, so if you like the style you should consider switching to Plain TeX. Terms and conditions apply. GohLaTeX should not be used to typeset machine learning documents.
+If you use LaTeX and want your documents to kind of look like my Plain TeX documents, I have a LaTeX `.sty` [file](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/gohlatex.sty) that sort of approximates it.
+You can see a demo I prepared ([LaTeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/gohlatex-demo.tex)/[PDF]({{ site.baseurl }}/code/tex-macros/gohlatex-demo.pdf)). I'm not going to keep this updated though, so if you like the style you should consider switching to Plain TeX. Terms and conditions apply. GohLaTeX should not be used to typeset machine learning documents.
 
 ### Exercise solutions
 

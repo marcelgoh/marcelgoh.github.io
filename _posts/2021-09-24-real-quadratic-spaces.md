@@ -78,7 +78,7 @@ of $a$ is $\overline a = x-yi-zj-wk$ and the _norm_ of $a$ is
 $$N(a) = a\overline a = \overline a a=x^2+y^2+z^2+w^2.$$
 
 We see from this that every nonzero element of $a$ has a multiplicative inverse, namely $a^{-1} = \overline
-a /N(a)$, with $N(a^{-1}) = N(a)^{-1}$. Hence ${\bf H}^\times = {\bf H}^\times$.
+a /N(a)$, with $N(a^{-1}) = N(a)^{-1}$. Hence ${\bf H}^\times = {\bf H}/setminus \{0\}$.
 Lastly, we define the _trace_ of $a$ to be its real coordinate
 given by the formula ${\rm tr}(a) = (a+\overline a)/2$.
 
@@ -89,7 +89,7 @@ is given by $Q(x,y,z,w) = x^2+y^2+z^2+w^2$. Here we can identify $(V,Q)$ with $(
 that the group ${\bf H}^\times \times {\bf H}^\times$ defines a group action $\star$ on $V$ by
 setting $(g,h)\star v = gvh^{-1}$. The norm of $(g,h)\star v = N(g)N(h^{-1})N(v)$, so for an element $(g,h)$ to
 preserve the norm, it is necessary and sufficient that $N(g) = N(h)$. We can also assume that $g$ and
-$h$ have norm $1$. since if $\lambda = N(g) = N(h)$, then $g = \lambda g'$ and $h=\lambda h'$ for some
+$h$ have norm $1$, since if $\lambda = N(g) = N(h)$, then $g = \lambda g'$ and $h=\lambda h'$ for some
 unit quaternions $g'$ and $h'$ and
 
 $$(g,h)\star v=(\lambda g',\lambda h')\star v = \lambda g' v \lambda^{-1}h'^{-1} = g'vh'^{-1} = (g',h')\star v.$$
