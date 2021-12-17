@@ -16,7 +16,7 @@
 \widemargins
 \bookheader{TSIRELSON'S SPACE}{MARCEL K. GOH}
 
-\maketitle{Tsirelson's space\qquad and other exotic constructions}{}{Marcel K. Goh}{16 December 2021}
+\maketitle{Tsirelson's space and other exotic constructions}{}{Marcel K. Goh}{16 December 2021}
 
 \floattext4.5 \ninebf Abstract.
 \ninepoint
@@ -67,7 +67,7 @@ and we denote this Banach space by $l_\infty^n$.
 $$\norm{x}_{l_p} = \Bigl(\sum_{i=1}^\infty |x_i|^p \Bigr)^{1/p}.$$
 As $p\to\infty$, this approaches the {\it supremum norm}
 $$\norm{x}_{l_\infty} = \sup_{i\ge 1} |x_i|.$$
-For $1\le p\le \infty$, the set $l_p$ of all infinite sequences $x$ with $\norm{x}{l_p}$ finite is a Banach space;
+For $1\le p\le \infty$, the set $l_p$ of all infinite sequences $x$ with $\norm{x}_{l_p}$ finite is a Banach space;
 when $p=\infty$, these are the bounded sequences.
 \smallskip
 \item{iii)} Let $c_0$ be the normed vector subspace of $l_\infty$ consisting of sequences that tend to zero.
@@ -105,8 +105,9 @@ We now show that Hamel bases of Banach spaces cannot be countably infinite.
 
 \proof Suppose that $\{e_1\}_{i=1}^\infty$ is a countable Hamel basis for $X$. For integers $n\ge 1$,
 let $X_n$ denote the linear span of $\{e_1,\ldots,e_n\}$. Each normed vector space $X_n$ is finite-dimensional
-and thus complete, which implies that each $X_n$ is closed in $X$. We now show that every $X_n$ has empty
-interior, which completes the proof.\slug
+and thus complete, which implies that each $X_n$ is closed in $X$. But each of these subspaces is proper,
+so by the lemma above, so all of these subspaces have empty interior, which contradicts the Baire category
+theorem.\slug
 
 Since many infinite-dimensional
 Banach spaces have the cardinality of the continuum to begin with,
