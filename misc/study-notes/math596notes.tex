@@ -1,0 +1,1266 @@
+\input fontmac
+\input mathmac
+
+\def\AA{{\bf A}}
+\def\FF{{\bf F}}
+\def\HH{{\bf H}}
+\def\PP{{\bf P}}
+\def\H{{\cal H}}
+\def\M{\op{\rm M}}
+\def\calM{\mathop{\cal M}\nolimits}
+\def\calS{\mathop{\cal S}\nolimits}
+\def\T{{\rm T}}
+\def\O{\op{\rm O}}
+\def\SO{\op{\rm SO}}
+\def\SL{\op{\rm SL}}
+\def\GL{\op{\rm GL}}
+\def\ord{\op{\rm ord}}
+\def\disc{\op{\rm disc}}
+\def\im{\op{\rm im}}
+\def\Aut{\op{\rm Aut}}
+\def\Stab{\op{\rm Stab}}
+\def\Hom{\op{\rm Hom}}
+\def\ortho{\mathbin{\widehat\oplus}}
+\def\bar{\overline}
+\def\pmod#1{\;({\rm mod}\;#1)}
+\outer\def\nineproclaim #1. #2\par{\medbreak
+  {\noindent\ninepoint{\bf#1.\enspace}{\sl#2\par}}%
+  \ifdim\lastskip<\medskipamount \removelastskip\penalty55\fi}
+\long\def\nineproof#1\slug{{\noindent\ninepoint\proof#1%
+\quad\hbox{\kern1.5pt\vrule width2.5pt height6pt depth0.5pt\kern1.5pt}\medskip}}
+\long\def\ninesolution#1\slug{{\noindent\ninepoint\solution#1%
+\quad\hbox{\kern1.5pt\vrule width2.5pt height6pt depth0.5pt\kern1.5pt}\medskip}}
+\def\smallmatrix#1#2#3#4{
+    \big({#1\atop #3}{#2\atop #4}\big)
+}
+\def\longto{\longrightarrow}
+\def\hat{\widehat}
+
+\widemargins
+\bookheader{MARCEL K. GOH}{MATH {\eightrm 596} NOTES}
+
+% hacky divides
+\def\divides{\mathrel\backslash}
+\catcode`@=11
+\def\notdivides{\mathrel{\mathpalette\c@ncel\divides}}
+\catcode`@=12 % at signs are no longer letters
+
+\font\elevenbf=cmbx12 at 11 pt
+
+\maketitle{\elevenbf MATH 596: Quadratic and modular forms}{notes
+by}{Marcel K. Goh}{10 December 2021}
+
+\floattext5 \ninebf Disclaimer. \ninepoint
+These notes were taken for the class MATH 596, given at McGill University by
+Prof.~Henri Darmon at McGill University during the Fall 2021 semester. Over the course of the term,
+students were asked to present solutions to exercises. I have indicated when this occurred by
+attaching students' names to their respective solutions. However, in some cases, the solution I recorded
+here is not word-for-word the one presented, as I sometimes found a modification that I understood better.
+An exercise solution that is unattributed does
+not necessarily indicate that it is
+completely my work, since I spent a lot of time discussing the material with my classmates.
+But any error that appears in the notes
+or exercise solutions, whether typographical or mathematical, are due to me and me alone.
+
+\bigskip
+
+\noindent
+Let $V$ be a module over a commutative ring $R$. A function $Q:V\to R$ is a {\it quadratic form} if
+it satisfies
+\medskip
+\item{i)} $Q(ax) = a^2Q(x)$ for all $a\in R$ and $x\in V$; and
+\smallskip
+\item{ii)} the function $(x,y)\mapsto Q(x+y)-Q(x)-Q(y)$ is a bilinear form.
+\medskip
+We call $(V,Q)$ a {\it quadratic module}; if $R$ is a field, $V$ is a vector space and we call
+$(V,Q)$ a {\it quadratic space} instead. When
+$R$ is a field of characteristic not equal to $2$, we can let
+$$x\cdot y = {1\over 2}\bigl(Q(x+y)-Q(x)-Q(y)\bigr).$$
+This defines a symmetric bilinear form on $V$, and we have $Q(x) = x\cdot x$ and there is a one-to-one
+correspondence between symmetric bilinear forms and quadratic forms (which is not true if the characteristic
+of the field is equal to $2$).
+
+Pick a basis $(e_i)_{i=1}^n$ of $V$. The matrix $A = (a_{ij})$ where $a_{ij} = e_i\cdot e_j$ is a symmetric
+matrix, and for $x = \sum_i^n x_i e_i \in V$,
+$$Q(x) = \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j.$$
+If we switch to a new basis with the invertible change-of-basis matrix $B$, then the matrix of $Q$
+with respect to this new basis is the matrix $B A B^\T$, which has determinant $\det(A)\det(B)^2$.
+We see then that for a quadratic form $Q$, the determinant of the matrix $A$ corresponding to $Q$ in
+any basis is unique up to multiplication by an element of $(k^\times)^2$;
+we call this the {\it discriminant} of $Q$ and denote it by $\disc Q$.
+
+Two elements $x$ and $y$ are {\it orthogonal} if $x\cdot y = 0$. For a subset $W\subseteq V$, we define
+a vector subspace
+$$W^\perp = \{ x\in V : x\cdot y = 0\ \hbox{for all}\ y\in W\}.$$
+Two vector subspaces $W_1$ and $W_2$ of $V$ are said to be {\it orthogonal} if $W_1\subseteq {W_2}^\perp$
+(this is a symmetric relation).
+We call $V^\perp$ the {\it radical} of $V$ and say that $V$ is {\it nondegenerate} if $V^\perp = \{0\}$.
+The codimension of $V^\perp$ is called the {\it rank} of $V$.
+If $V$ is the direct sum of vector subspaces $W_1, \ldots, W_n$ and the $W_i$ are pairwise orthogonal,
+then we say that $V$ is the {\it orthogonal direct sum} of the $W_i$, and write
+$$V = W_1\ortho \cdots \ortho W_n.$$
+
+An element $x\in V$ is said to be {\it isotropic} if $x\cdot x = 0$, and a subspace is {\it isotropic}
+if all of its elements are.
+If no nonzero element in a subspace $W$ is isotropic, the $W$ is said to be
+{\it anisotropic}. The linear span of two basis vectors $e$ and $f$
+with $e\cdot e = f\cdot f = 0$ and $e\cdot f = 1$ is called a {\it hyperbolic plane} and is often denoted
+$H$.
+
+\nineproclaim
+Exercise 1. Let $V$ be a nondegenerate quadratic space. Show that any two maximal isotropic
+spaces of $V$ have the same dimension, $t$, called the {\it Witt index} of $V$. Show that $V$ is isomorphic
+to an orthogonal direct sum of $t$ hyperbolic spaces and an anisotropic space $W$ of dimension $n-2t$
+(where $n = \dim V$).
+
+\nineproof (Hazem Hassan and Arihant Jain.)
+We start with the claim that any two maximal isotropic spaces have the same dimension. First observe
+that if $U$ is a maximal isotropic subspace, then any $u\in U^\perp$ with $u\cdot u =0$ must also be in $U$,
+otherwise we could extend $U$ and contradict maximality. So let $U_1$ and $U_2$ be maximal isotropic
+subspaces. If $U_1 = U_2$ we are done; otherwise,
+consider $U_1\times U_2\to k$ that maps $(u_1, u_2)\mapsto u_1\cdot u_2$. If $u_1$
+is such that $u_1\cdot u_2 = 0$ for all $u_2\in U_2$, then by the observation above, $u_1\in U_2$. So the
+left kernel of this map is $U_1\cap U_2$ and a similar argument shows that this is also the right kernel.
+This means the map
+$${U_1\over U_1\cap U_2} \times  {U_2\over U_1\cap U_2} \to k$$
+is a perfect pairing; that is, $U_1/(U_1\cap U_2)\to \Hom_k\bigl(U_2/(U_1\cap U_2), k\bigr)$ is an isomorphism
+and vice versa. So $\dim U_1 = \dim U_2$.
+
+Now we show that we can write $V = W \ortho H_1 \ortho \cdots \ortho H_t$ where $W$ is anisotropic, $t$
+is the dimension of every maximal isotropic subspace of $V$, and the $H_i$
+are hyperbolic spaces. Let $H_i = ke_i\oplus kf_i$ where $e_i\cdot e_i = 0 = f_i\cdot f_i$ and $e_i\cdot f_i = 1$.
+Let $U = ke_1\oplus \cdots \oplus ke_t$. Then we see that $U$ is isotropic, since $U^\perp = U\ortho W$
+and for $v = u+w$ in this space, $v\cdot v = (u+w)\cdot (u+w) = w\cdot w$ is only zero if $w=0$. Hence $U$
+is maximal and isotropic, proving that every maximal isotropic subspace has dimension $t$.\slug
+
+\boldlabel Quadratic spaces over $\RR$. Note that $\RR^\times/(\RR^\times)^2 = \{\RR_{\ge 0}, \RR_{\le 0}\}$.
+If $V$ is a nondegenerate quadratic space over $\RR$, then it has
+an orthogonal basis
+$$e_1,\ldots, e_r, e_{r+1}, \ldots, e_{r+s}$$
+with $e_j\cdot e_j = 1$ for $1\le j\le r$
+and $e_j\cdot e_j = -1$ for $r+1\le j\le r+s$. The pair $(r,s)$ is called the {\it signature} of the quadratic
+space. The Witt index of $V$ is $t= \min\{r,s\}$, and if $V = W\ortho H^t$, where $H^t$ is the orthogonal
+direct sum of $h$ copies of a hyperbolic plane, then $\dim W = |r-s|$. When $r>s$,
+$W$ is positive definite and when $r<s$, $W$ is negative definite.
+
+The orthogonal group $\O(V)$ of a quadratic space $V$ over $R$ is the space
+$$\O(V) = \{g \in \Aut(V) : gv\cdot gw = v\cdot w\ \hbox{for all}\ v,w\in V\}.$$
+Letting $n=\dim V$ and $(r,s)$ be the signature of the space, this can be viewed as the set of $n\times n$
+matrices
+$$\bigg\{A\in \M_n(\RR) : A^\T A = AA^\T = \pmatrix{I_r&0\cr 0&-I_s}\bigg\},$$
+where the $I_r$ and $I_s$ that appear in the block matrix are the $r\times r$ and $s\times s$ identity
+matrices, respectively. The condition implies that $\det(A)^2 = 1$, meaning that $\det A = \pm 1$ for all
+$A\in \O(V)$. The subgroup of $A\in \O(V)$ with $\det(A) = 1$ is called $\SO(V)$. It was proven in class
+by a standard inductive argument that $\O(V)$ is a real manifold (and thus a {\it Lie group})
+of dimension $n(n-1)/2$, and so is the subgroup $\SO(V)$.
+
+% \proclaim Proposition D. For a quadratic space $V$ over $\RR$ with $\dim V = n$,
+% the orthogonal group $\O(V)$ is a real manifold of dimension $n(n-1)/2$.
+% 
+% \proof By induction on $n$. When $n=1$, $\O(V) = \{\pm 1\}$, which has dimension $0$. Now suppose that
+% $V$ has dimension $n>1$. Let $X = \{v\in V : v\cdot v = 1\}$ and note that $\O(V)$ acts transitively on $X$.
+% Since $X$ is the set of all $(x_1, \ldots, x_n)\in \RR^n$ with $Q(x_1, \ldots, x_n) = 1$, we see that
+% $\dim X = n-1$. Fix $v\in X$ and note that $=\Stab_{{\rm O}(V)}(v) = \O(V')$ where $V' = (\RR v)^\perp$ is
+% a quadratic subspace of dimension $n-1$. By the
+% orbit-stabiliser theorem, $X$ can be identified with the quotient space $\O(V)/\O(V')$. Using the
+% inductive hypothesis, we have
+% $$\dim \O(V) = \dim\O(V) + \dim X = {(n-1)(n-2)\over 2} + n-1 = {n(n-1)\over 2}.\noskipslug$$
+
+\medskip\boldlabel Hamilton quaternions.
+The {\it Hamilton quaternions} are members of the set $\HH = \RR + \RR i + \RR j+ \RR k$ (since the working
+field here is $\RR$, we will temporarily allow ourselves the use of the letter $k$ for one of the generators
+of the space) where we have the
+relation $i^2 = j^2 = k^2 = ijk = -1$. If $a = x + yi + zj + wk$ then $\bar a = x - yi-zj-wk$ and
+the {\it norm} of $a$ is $N(a) = a\bar a = x^2 + y^2 + z^2 + w^2$. We see from this that every nonzero element $a$
+has a multiplicative inverse, namely, $a^{-1} = \bar a/N(a)$ with $N(a^{-1}) = N(a)^{-1}$.
+Thus $\HH^\times = \HH\setminus\{0\}$. The {\it trace} of $a$ is $(a+\bar a)/2$.
+
+\medskip\boldlabel Infinitesimals and the tangent space of the identity. Here we give a somewhat informal
+description of the tangent space of the identity element in a topological group. Let $M$ be a topological
+group with identity element $1$ that is also a subgroup of the multiplicative group of an algebra $A$.
+The tangent space $T_1M$ at the point $1$ is the space of all $a\in A$ such that $1+\eps a$ is still in $M$,
+and here we encapsulate the fact that $\eps$ should be very small by letting $\eps$ be a nonzero formal
+parameter whose square is zero. The tangent space is closed under addition, since if $a$ and $b$ are elements
+of $T_1M$, then
+$$(1+\eps a)(1+\eps b) = 1+\eps a + \eps b + \eps^2 ab = 1 + \eps(a+b)$$
+and we see that $a+b$ is also in the space. It is also clear that $T_1 M$ is closed under multiplication
+by scalars in the field, so that $T_pM$ is a real vector space. The tangent space of a point $(p,q)\in M\times N$
+is the product of spaces $T_pM\times T_q M$.
+
+Let $M$ and $N$ be two such groups with identities $1_M$ and $1_N$ respectively and let
+$\phi : M\to N$ be a group homomorphism. We define the {\it differential} $d\phi$ to be the map
+from $T_{1_M} M$ to $T_{1_N} N$ such that the diagram
+$$\matrix{
+T_{1_M} M & \buildrel d\phi\over\longrightarrow & T_{1_N} N \cr
+\quad\Big\downarrow\pi_N & & \quad\Big\downarrow\pi_N \cr
+M & \buildrel \phi\over\longrightarrow & N \cr
+}$$
+commutes, where $\pi_M(a) = 1_M +\epsilon a$ and $\pi_N(b) = 1_N + \epsilon b$. The commutativity of the
+above diagram tells us that $d\phi(a)$ is given by the formula $1_N + \epsilon d\phi(a) = \phi(1_M+\epsilon a)$
+for $a\in T_{1_M} M$.
+
+Tangent spaces are relevant because the inverse function theorem tells us that if $\phi:\RR^n\to \RR^n$ is
+a differentiable map and its derivative (Jacobian) at a point $x$ is invertible, then there exists an open
+neighbourhood $U$ of $x$ that is homeomorphic to its image $\phi(U)$. If $\phi$ is also a group homomorphism,
+then we have the following lemma.
+
+\proclaim Lemma T. Let $\phi:G\to H$ be a homomorphism of topological groups and suppose that there is an
+open neighbourhood $S\subseteq \phi(G)$ that contains the identity of $H$. If $G$ is connected, then
+$\phi(G)$ is the connected component containing the identity in $H$.
+
+\proof Since the function $h\mapsto h^{-1}$ is a continuous involution, $S^{-1}$ is also open and so is
+$S\cap S^{-1}$, which still contains the identity. Thus we may assume without loss of generality that $S$
+is closed under inverses. Let $\langle S\rangle$ be the smallest subgroup of $\phi(G)$ with $S\subseteq
+\langle S\rangle$. It is easy to see that $\langle S\rangle = \bigcup_{h\in \langle S\rangle} hS$. For all
+$h\in \phi(G)$, left multiplication by $h$ is a homeomorphism from $\phi(G)$ to itself, to $\langle S\rangle$
+is open.
+
+It remains to show that $\langle S\rangle$ is closed, so let $h\in \langle S\rangle^c$ be given. If
+$hs \in \langle S\rangle$ for some $s\in S$, then $h = hss^{-1}\in \langle S\rangle$. So $hS$ is an open
+neighbourhood of $h$ contained in $\langle S\rangle^c$, proving that $\langle S\rangle$ is indeed closed.
+Since $\langle S\rangle$ is nonempty, open, and closed in the connected group $\phi(G)$, $\langle S\rangle
+=\phi(G)$ and $\phi(G)$ is the connected component of the identity.\slug
+
+Finally, we will take the following lemma on faith.
+
+\proclaim Lemma C. If $G$ is a Lie group with a connected compact Lie subgroup $H$ such that $G/H$ is also
+connected, then $G$ is connected.\slug
+
+\nineproclaim
+Exercise 2. Describe $\O(V)$ and $\SO(V)$ when $V$ is a nondegenerate
+quadratic space of dimension $4$ over $\RR$. How many connected components does the full orthogonal group have?
+
+\ninesolution (Marcel Goh and Jad Hamdan.)
+We will write $\SO(r,s)$ to denote $\SO(V)$ when $V$ has signature $(r,s)$, and write $\SO(n)$ for $\SO(n,0)$.
+The question has two largely unrelated parts. First we describe the components of the identity
+in the three separate cases. First we deal with the case $(r,s) = (4,0)$. Then
+$$Q(x,y,z,w) = x^2 + y^2 + z^2 + w^2$$
+and we can identify $(V,Q)$ with $(\HH, n)$. Note that the group $\HH^\times\times\HH^\times$ acts on $V$ by
+setting $(g,h)*v = gvh^{-1}$. The norm of $(g,h)*v$ is $N(g) N(h^{-1}) N(v)$, so for an element $(g,h)$
+to preserve the norm, it is necessary and sufficient that $N(g) = N(h)$. We can also assume that $g$ and $h$
+have norm $1$, since if $\lambda = N(g) = N(h)$, then $g=\lambda g'$ and $h=\lambda h'$ for some unit quaternions
+$g'$ and $h'$ and
+$$(g,h)*v = (\lambda g', \lambda h')*v = \lambda g'v\lambda^{-1} h'^{-1} = g'vh'^{-1} = (g',h')*v.$$
+In particular, if $g$ and $h$ are both real, then $(g,h)$ sends any $v\in V$ to itself. Thus, letting
+$\HH_1$ denote the set of quaternions with norm $1$, we have the exact sequence
+$$ 1\longrightarrow \bigl\{(-1,-1),(1,1)\bigr\}\longrightarrow \HH_1\times \HH_1
+\buildrel\phi\over\longrightarrow \O(V).$$
+Note that the last map $\phi$ in the sequence is not surjective. In fact, the image of $\phi$ is contained
+in $\SO(4)$, since if we represent the action of $(g,h) = (a_1 + a_2i + a_3j + a_4k, b_1+b_2i+b_3j+b_4k)$
+on a quaterion $v$ as the action of a matrix on a vector in $\RR^4$, then the matrix of the transformation
+is $AB$, where
+$$ A = \pmatrix {
+a_1 & -a_2 & -a_3 & -a_4 \cr
+a_2 & a_1 & -a_4 & a_3 \cr
+a_3 & a_4 & a_1 & -a_2 \cr
+a_4 & -a_3 & a_2 & a_1 \cr
+}\qquad\hbox{and}\qquad
+B = \pmatrix {
+b_1 & -b_2 & -b_3 & -b_4 \cr
+b_2 &  b_1 &  b_4 & -b_3 \cr
+b_3 & -b_4 &  b_1 &  b_2 \cr
+b_4 &  b_3 & -b_2 &  b_1 \cr
+}.$$
+We have $AA^\T = I$ and $BB^\T = I$ so $(AB)(AB)^\T = I$, as prescribed for a member of $\O(V)$. But we
+also see that $\det(A) = N(g) = 1 = N(H) = \det(B)$, so that $\det(AB) = 1$ as well.
+
+To show that $\SO(4)\subseteq \im(\phi)$, we need to find the tangent space of the identity in $\HH_1$.
+if $1+\eps(x+yi+zj+wk)$ has norm $1$, then we must have
+$$(1+\eps x)^2 + \eps^2 y^2 + \eps^2 z^2 + \eps^2 w^2 = (1+\eps x)^2 = 1,$$
+so the trace $x$ of the quaternion must be zero. Thus $T_1\HH$ is $3$-dimensional and $T_1(\HH_1\times \HH_1)$
+is $6$-dimensional. On the other hand, the tangent space of the identity matrix $I$ in $\SO(4)$
+is the set of all matrices with $A^\T = -A$, since the condition that $(I+\eps A)(I+\eps A)^\T$
+implies that $I+\eps(A+A^\T) = I$. This is a $6$-dimensional space as well, since the diagonal of $A$ must
+have all entries zero, and the rest of the matrix is determined by the choice of the six remaining entries
+in the upper triangle. Thus to show that $d\phi$ is invertible, it suffices to show it is injective.
+
+Now for $(a,b)\in T_1(\HH_1\times \HH_1)$, we note that $\phi(1+\eps a, 1+\eps b)$ is a map on $\HH$
+that sends $v$ to $(1+\eps a)v(1+\eps b)^{-1}$. Since $b$ has zero trace, $(1+\eps b)^{-1} = 1-\eps b$
+and
+$$\phi(1+\eps a, 1+\eps b)(v) = (1+\eps a)v(1+\eps b)^{-1} = (v+\eps av)(1-\eps b) = v + \eps(av-vb).$$
+Then since $\eps d\phi(a,b)$ equals $\phi(1+\eps a, 1+\eps b)$ minus the identity endomorphism, we have
+$d\phi(a,b)(v) = av-vb$. If $(a,b)\in \ker(d\phi)$, then $av-vb=0$ for all $v\in \HH$, and taking $v=1$ in
+particular, we have $a=b$. Thus $av=va$ for all $v\in \HH$ and we see that $a\in \RR$. But we assumed that
+$a$ has trace zero, so $(a,b) = (0,0)$. We have shown that $d\phi$ is bijective, so by Lemma~T, the
+image of $\phi$ is the connected component of the identity in $\O(4)$.
+
+In the case $(r,s) = (3,1)$, we have
+$Q(x,y,z,w) = x^2 + y^2 + z^2 - w^2$ but we can perform a change of basis with $u = z+w$ and $v=z-w$
+to get $Q(x,y,u,v) = x^2 + y^2 + uv$. Since $x^2 + y^2 = (x+iy)(x-iy)$, we can identify $(V,Q)$ with the set
+of all matrices
+$$\biggl\{ \pmatrix{x+iy & u \cr v &  iy-x} : x,y,u,v\in \RR\biggr\},$$
+with the negative determinant as the norm. Letting $M^* = \det(M) M^{-1}$, we find that $V$ is precisely
+the set of $M\in M_2({\bf C})$ with $M^* = -\overline M$. We have $(AB)^* = B^*A^*$ for
+$A,B\in M_2({\bf C})$,
+and this operation is also linear. The group $\SL_2(\CC)$ acts on $V$ by $g* M = gM\overline g^{-1}$.
+Indeed,
+$$(g* M)^* = (gM\overline g^{-1})^* = \overline g M^* g^* = - \overline g\overline M g^* = -
+\overline{gM\overline g^*} -\overline{g* M},$$
+so $g* M$ is in $V$. Note that the center of $\SL_2(\CC)$ is $\{\pm I\}$, and we have the
+exact sequence
+$$ 1\longrightarrow \{\pm I\} \longrightarrow \SL_2(\CC) \buildrel\phi\over\longrightarrow {\rm O}(V).$$
+Once again, the image of $\phi$ is connected.
+Now we find the tangent space of $\SL_2(\CC)$ at the identity. An element
+$$A = \pmatrix{ a & b \cr c & d }\in \M_2(\CC)$$
+in this space satisfies
+$I + \epsilon A\in \SL_2(\CC)$, so $\det (I+\epsilon A) = 1+\epsilon a + \epsilon d = 1$.
+This implies that $d=-a$. In other words, the trace of $A$ is zero, and in particular we see that $A^* = -A$.
+Now we examine what $I+\epsilon A$ does to a matrix $M\in V$. We note first that
+$$(I+\epsilon \overline A)^{-1} =
+\pmatrix{ 1 + \epsilon \overline a & \epsilon \overline b \cr
+\epsilon\overline c & 1-\epsilon \overline a }^{-1}
+=\pmatrix{ 1 - \epsilon \overline a & -\epsilon \overline b \cr
+-\epsilon\overline c & 1+\epsilon \overline a } = I+\epsilon \overline{A^*}$$
+So
+$$(I+\epsilon A)M\overline{(I+\epsilon A)}^{-1} = (M+\epsilon AM)(I+\epsilon \overline{A^*})
+= M + \epsilon AM + \epsilon M \overline{A^*} = M+ \epsilon(AM-M\overline A),$$
+telling us that $d\phi(A)$ takes matrices $M$ to $AM-M\overline A$. We now investigate what it means for
+$A$ to be in the kernel of $d\phi$. If $MA - M\overline A$ for all matrices $M$, then taking
+$M = I$, we see that $A = \overline A$, meaning that $A$ has all real entries and $AM = MA$ for all
+$M$. This implies that $A$ is a scalar multiple of the identity and since it has zero trace, $A$ must be $0$.
+We have found that $\ker(d\phi) = 0$, so the connected component of
+the identity is isomorphic to $\SL_2(\CC) / \{\pm I\}$.
+
+The third case $(r,s) = (2,2)$ feels a bit like a combination of the two cases above.
+We have $Q(x,y,z,w) = x^2 + y^2 - z^2 - w^2$ and with the substitutions
+$x = x+z, y=x-z, z = w+y, w= w-y$ (the variables on the left-hand side are not the same as the ones on the
+right-hand side), we have
+$$Q(x,y,z,w) = xy-zw,$$
+so we can identify $(V,Q)$ with $(M_2({\bf R}), \det)$. The group ${\rm GL}_2({\bf R})\times{\rm GL}_2({\bf R})$
+defines an action on $M_2({\bf R})$ given by $(g,h)* M = gMh^{-1}$. For $(g,h)$ to preserve the determinant
+we must have $\det g = \det h$. We can also require that $g$ and $h$ have determinant $1$, because for any
+$\lambda\in {\bf R}$ we have $\det(\lambda g) = \det(\lambda h)$ and
+$$ \lambda g M(\lambda h)^{-1} = \lambda^2 g M \lambda^{-2} h^{-1} = gMh^{-1}.$$
+Thus we have the exact sequence
+$$1 \to \{(I,I), (-I, -I)\} \to {\rm SL}_2({\bf R})\times{\rm SL}_2({\bf R}) \buildrel\phi\over\to {\rm O}(V).$$
+The computation we performed above for the tangent space of $\SL_2(\CC)$ works when the entries
+are real as well, so we find that the tangent space of ${\rm SL}_2({\bf R})\times{\rm SL}_2({\bf R})$
+is the set of $(A,B)$ such that ${\rm tr}\,A = {\rm tr}\,B = 0$. In particular, since the trace of $B$
+is zero, we can write
+$$ B = \pmatrix{a & b \cr c & -a} $$
+and the fact that $\det(I + \epsilon B) = 1$ implies that
+$$(I + \epsilon B)^{-1} = \pmatrix{ 1+a & b \cr c & 1-a }^{-1} = \pmatrix{1-a & -b \cr -c & 1+a}
+= I - \epsilon B.$$
+So
+$$\phi(I+\epsilon A, I+\epsilon B)(M) = (I+\epsilon A)M(I+\epsilon B)^{-1}
+= (M + \epsilon AM)(I-\epsilon B) = M+\epsilon (AM-MB),$$
+and $d\phi(A,B)(M) = AM-MB$.
+We argue as before to find that for $(A,B)\in \ker(d\phi)$,
+$A=B$ and $A$ is a scalar of the identity with trace zero and thus $(A,B) = (0,0)$.
+So $d\phi$ is injective and the image of $\phi$ is isomorphic to
+$${\rm SL}_2({\bf R})\times{\rm SL}_2({\bf R})/\{(I,I), (-I,-I)\}.$$
+
+On to the second part of the question. The claim is that $\O(4)$ has two connected components and
+that $\O(3,1)$ and $\O(2,2)$ both have four. Since $\SO(V)$ is a subgroup
+of index $2$ in the group $\O(V)$, it suffices to that $\SO(V)$ is connected in the definite case and that
+it has two connected components in the other two cases. We do this by induction, building up from
+smaller-dimensional instances.
+
+Let $V$ be a $4$-dimensional quadratic space with signature $(r,s)$. Note that $\SO(r,s)$ acts
+transitively on the set $X = \{x\in V : x\cdot x = 1\}$, which is the orbit of the point $e_1 = (1,0,0,0)$.
+A matrix in $\Stab(e_1)$ has $e_1$ as its first row and column, so it must have the form
+$$\pmatrix{1&0\cr 0&M}$$
+for some $M\in \SO(r-1,s)$. So by the orbit-stabiliser theorem, we have a diffeomorphism
+$\SO(r,s)/\SO(r-1,s)\cong X$. We will proceed by induction.
+
+The base cases are $\SO(1)$ and $\SO(1,1)$; the former is $\{1\}$, which clearly has one connected component.
+On the other hand, $\SO(1,1)$ consists of orthogonal $2\times 2$ matrices $M=\smallmatrix abcd$
+with $\det(M)=1$ and
+$$M^{-1} = \pmatrix{1&0\cr 0&-1} M^{\T}\pmatrix{1&0\cr 0&-1}.$$
+This condition implies that $a = d$ and $b=c$, so we can write
+$$\SO(1,1) = \biggl\{\pmatrix{a&b\cr b&a}\in \SL_2(\RR) : a^2-b^2 =1; a,b\in \RR\biggr\}$$
+establishing a bijection from $\SO(1,1)$ to the algebraic set $x^2-y^2=1$, a hyperbola with two branches
+on either side of the $y$-axis. This is in fact a homeomorphism, showing that $\SO(1,1)$ has two connected
+components.
+
+In the definite case $(r,s)=(4,0)$ the induction is straightforward. The set $X$ of elements of norm $1$
+in a quadratic space of signature $(n,0)$ is the unit sphere $S^{n-1}$, which is connected. Having shown
+that $\SO(1)$ is connected and that the quotient $\SO(n)/\SO(n-1) \cong S^{n-1}$ is connected for all $n>1$,
+we apply Lemma~C inductively to conclude that $\SO(n)$ is connected for all $n$.
+
+For the indefinite cases, the induction is a bit more involved. The set of elements of unit norm in
+a quadratic space of signature $(1,2)$, $(1,3)$, or $(2,2)$ is the set of tuples $(x,y,z)$ or $(x,y,z,t)$
+satisfying
+$$x^2-y^2-z^2 = 1,\quad x^2-y^2-z^2-t^2=1,\quad \hbox{or} \quad x^2+y^2-z^2-t^2 = 1$$
+respectively, where are all two-sheeted hyperboloids each with two connected components. In each case,
+let $X^+$ be the sheet containing $(0,\ldots,1)$. If we let $\SO^+(r,s)$ be the set of matrices of
+$\SO(r,s)$ that preserve $X^+$, one can show that $\SO^+(r,s)$ is a subgroup of $\SO(r,s)$ with
+index $2$. Using an orbit-stabiliser argument analogous to the one above, we find that
+$\SO^+(r,s)/\SO^+(r-1,s)\cong X^+$.
+
+The set of unit elements in a space of signature $(1,1)$ is a hyperbola. We have also shown that $\SO(1,1)$
+is homeomorphic to a hyperbola by explicit computation. Using this identification, we find that the set
+$\SO^+(1,1)$ is homeomorphic to a branch of $\SO(1,1)$ and is therefore connected. By repeated application
+of Lemma~C and the fact that $\SO(r,s)\cong \SO(s,r)$ for all integers $r,s$, we conclude that
+$\SO^+(1,3)$ and $\SO^+(2,2)$ are connected. So $\O(1,3)$ and $\O(2,2)$ both have four connected components,
+and we already showed that $\O(4,0)$ has two, finishing the exercise.\slug
+
+\boldlabel The Hilbert symbol. For this discussion, let $k$ denote either $\RR$ or $\QQ_p$. For
+$a,b\in k^\times$, we define the {\it Hilbert symbol} $(a,b)$ by setting
+$$(a,b) = \cases{1,& if $ax^2 + by^2 = z^2$ has a nonzero solution $(x,y,z)$ in $k^3$;\cr -1& otherwise.}$$
+Note that $(a,b) = (a, c^2b)$ for any element $c\in k^\times$, since the square can be absorbed into the
+variable. For $a,b\in k^\times$, further properties of the Hilbert symbol include
+\medskip
+\item{i)} $(a,b) = (b,a)$ and $(a, b^2) = 1$;
+\smallskip
+\item{ii)} $(a,-a) = 1$ and $(a,1-a) = 1$;
+\smallskip
+\item{iii)} if $(a,b) = 1$ then $(ac,b) = (c,b)$ for all $c\in k^\times$; and
+\smallskip
+\item{iv)} $(a,b) = (a,-ab) = \bigl(a, (1-a)b\bigr)$.
+\medskip
+Furthermore, it can be shown that the Hilbert symbol is bilinear; that is, $(ac,b) = (a,b)(c,b)$ for all
+$a,b,c\in k^\times$.
+
+\medskip
+\boldlabel Quadratic forms over $\QQ_p$. Let $(V,Q)$ be a quadratic space of rank $n$ over $\QQ_p$ and pick
+an orthogonal basis $(e_1, \ldots, e_n)$. Letting $a_i = e_i\cdot e_i$, we have $\disc(Q) = a_1\cdots a_n$.
+The {\it Hasse-Witt invariant} of $V$ is the product
+$$\eps(V) = \prod_{i<j} (a_i, a_j);$$
+we saw in class that this does not depend on the choice of orthogonal basis. We also saw that two quadratic
+forms over $\QQ_p$ are equivalent (this means their respective matrices $A$ and $A'$ are related by
+$A' = BAB^\T$ for some invertible matrix $B$)
+if and only if they have the same rank, discriminant, and Hasse-Witt invariant.
+
+\proclaim Theorem Z. Let $(V,Q)$ be a quadratic space of rank $n$ over $\QQ_p$. Writing
+$d=\disc(Q)\in \QQ_p/(\QQ_p^\times)^2$
+and letting $\eps = \eps(V)$ be the Hasse-Witt invariant of the space, there is a
+nonzero vector $x\in V$ with $Q(x) = x\cdot x = 0$ if and only if
+\medskip
+\item{i)} $n=2$ and $d=-1$;
+\smallskip
+\item{ii)} $n=3$ and $(-1,-d)=\eps$;
+\smallskip
+\item{iii)} $n=4$ and either $d\ne 1$ or else $d=1$ and $\eps = (-1,-1)$; or
+\smallskip
+\item{iv)} $n\ge 5$.\slug
+\medskip
+
+\nineproclaim
+Exercise 3. Show that the Hilbert symbol $(a,b)$ for $a,b\in \QQ_p^\times$ is equal to $-1$
+if and only if the idoneous central simple algebra over $\QQ_p$ defined by
+$$B=\QQ_p + \QQ_pi + \QQ_pj + \QQ_pk,$$
+where $i^2 = a$, $j^2 = b$, and $ij = -ji = k$, is a division algebra, and that it is isomorphic
+to the matrix algebra $\M_2(\QQ_p)$ if $(a,b) = 1$.
+
+\nineproof (Sun Kai Leung and Paul-Antoine Seitz.)
+Call this central simple algebra $A$ and let $q = x+yi+zj+wk \in A$. Defining $\bar q = x-yi-zj-wk$,
+a routine computation gives $q\bar q = x^2 - ay^2 - bz^2 +ab w^2\in \QQ_p$. This is a quadratic form
+in the variables $x$, $y$, $z$, and $w$ of discriminant $(ab)^2 \sim 1$. The Hasse-Witt invariant of
+the associated quadratic space is
+$$\eqalign{
+(1,-a)(1,-b)(1,ab)(-a,-b)(-a,ab)(-b,ab) &= (1,ab)(1,ab)(-a,-ab^2)(-b,ab) \cr
+&= (-a,-a)(-b,ab) \cr
+&= (-1,-a)(a,-a)(-b,b)(-b,a) \cr
+&= (-1,-1)(-1,a)(-b,a) \cr
+&= (-1,-1)(a,b).\cr
+}$$
+If $(a,b) = -1$, by part (iii) of Theorem Z, we have $q\bar q \ne 0$ for all nonzero $q\in A$, so every
+$q\ne 0$ has an inverse $q^{-1} = \bar q/(q\bar q)$. If $(a,b) = 1$, then there is some
+$(x,y,z,w)\ne (0,0,0,0)$
+such that $x^2 - ay^2 - bz^2 +ab w^2 = 0$. Letting $q = x+yi+zj+wk$, we have $q\bar \ne 0$ and
+$q\bar q = 0$, meaning that $q$ is a zero divisor and thus $A$ is not a division algebra. This settles
+the first part of the question.
+
+In the case that $(a,b)=1$, there is a nonzero vector $(x,y,z)\in \QQ_p$ such that $z^2 = ax^2 + by^2$.
+We must have $z\ne 0$ and at most one of $x$ and $y$ is zero. Without loss of generality, suppose that
+$x\ne 0$. Defining
+$$A = {1\over x}\pmatrix{z & -by \cr y & -z}\qquad\hbox{and}\qquad B = {1\over x}\pmatrix{0 & b \cr 1 & 0},$$
+we have
+$$A^2 = {1\over x^2}\pmatrix{z^2 - by^2 & -zby + zby \cr zy-zy & -by^2+z^2} = \pmatrix{a & 0 \cr 0 & a} = aI$$
+and $B^2 = bI$, while
+$$AB = {1\over x}\pmatrix{z&-by\cr y&z}\pmatrix{0&b\cr 1&0}
+={1\over x}\pmatrix{-by&bz\cr -z&by}
+= - {1\over x}\pmatrix{0&b\cr 1&0}\pmatrix{z&-by\cr y&z} = -BA,$$
+so that the map sending $i\mapsto A$, $j\mapsto B$, is an isomorphism of $\QQ_p$-algebras between
+$A$ and this matrix algebra. The proof concludes by noting that the span of $\{I, A, xB, xAB\}$ is all
+of $\M_2(\QQ_p)$, since the matrix
+$$\pmatrix{1&0&0&1\cr 0&b&1&0\cr z&-by&y&-z\cr -by&bz&-z&by}$$
+has determinant $4b(by^2-z^2) = -4ax^2b\ne 0$. In particular, the set $\{I,A,B,AB\}$ spans all of $\M_2(\QQ_p)$
+as well.\slug
+
+% \boldlabel Hensel's lemma. We define the {\it $p$-adic valuation} $v_p : \QQ_p\to \ZZ \cup \{\infty\}$ by
+% $$v_p(x) = \cases{ n,& if $x = p^n u$, where $u\in (\ZZ/p\ZZ)^\times$;\cr \infty,& if $x=0$.}$$
+% The subring $\ZZ_p\subseteq \QQ_p$ is exactly the set of $x\in Q_p$ with $v_p(x) \in \NN\cup \{0,\infty\}$.
+% The {\it $p$-adic absolute value} is given by $|x|_p = p^{-v_p(x)}$ and we define a metric space on $\QQ_p$
+% by setting the distance function to $d_p(x,y) = |x-y|_p$. Under this metric, $\ZZ_p$ is complete,
+% i.e., every Cauchy sequence has a limit in the space.
+% 
+% Given a polynomial $f(x_1, \ldots, x_m)$ with coefficients in $\ZZ_p$ and a solution to
+% $f(x_1, \ldots, x_m) \equiv 0\pmod{p^n}$, we would like to be able to lift this solution to a solution
+% with coefficients in $\ZZ_p$. We have the following lemma, which deals with polynomials in a single variable.
+% 
+% \proclaim Lemma G. Let $f$ be a polynomial in one variable with coefficients in $\ZZ_p$ and let $f'$
+% be its derivative. Let $x\in \ZZ_p$ with $f(x)\equiv 0\pmod{p^n}$ and $v_p\bigl(f'(x)\bigr)=k$ for integers
+% $n$ and $k$ satisfying $0\le 2k<n$. Then there is $y\in \ZZ_p$ such that
+% \medskip
+% \item{i)} $f(y)\equiv 0\pmod{p^{n+1}}$;
+% \smallskip
+% \item{ii)} $v_p\bigl(f'(y)\bigr) = k$; and
+% \smallskip
+% \item{iii)} $y\equiv x\pmod{p^{n-k}}$.
+% \medskip
+% 
+% \proof We shall set $y=x+p^{n-k}z$ for some $z\in \ZZ_p$ to be chosen later. This certainly satisfies condition
+% (iii). By Taylor's formula, we have
+% $$f(y) = f(x) = p^{n-k}z f'(x) + p^{2n-2k}z^2 h(y)$$
+% for some $h(y)\in \ZZ_p$. By hypothesis, $f(x) = p^nb$ for some $b\in \ZZ_p$ and $f'(x) = p^k c$ for some
+% invertible element $c\in \ZZ_p$. So we can rewrite
+% $$f(y) = p^n(b+zc) + p^{2n-2k}z^2 h(y),$$
+% and by choosing $z$ such that $b+zc\equiv 0\pmod p$, we have condition (i), since $2n-2k>n$.
+% Lastly, we apply Taylor's formula to $f'$ to get $f'(y)\equiv p^kc\pmod{p^{n-k}}$ and because $n-k>k$, we
+% have condition (ii).\slug
+
+\boldlabel Lemma Henselianum. {\it Ordo $p$-adicus} $v_p : \QQ_p\to \ZZ \cup \{\infty\}$ est functio
+$$v_p(x) = \cases{ n,& si $x = p^n u$, ubi $u\in (\ZZ/p\ZZ)^\times$;\cr \infty,& si $x=0$.}$$
+Subanulus $\ZZ_p\subseteq \QQ_p$ est copia elementorum $x\in \QQ_p$ cum $v_p(x) \in \NN\cup \{0,\infty\}$.
+{\it Norma $p$-adica} est $|x|_p = p^{-v_p(x)}$ et definimus spatiam metricum super $\QQ_p$
+cum functio distantiae $d_p(x,y) = |x-y|_p$. Sub illam functionem $\ZZ_p$ completum est;
+i.e., omnis sequentia Cauchiana limitem in spatio habet.
+
+Polynomium $f(x_1, \ldots, x_m)$ cum coefficientibus in $\ZZ_p$ et solutionem aequatione
+$f(x_1, \ldots, x_m) \equiv 0\pmod{p^n}$ dantur, et volumus levare hanc solutionem ad solutionem
+cum coefficientibus in $\ZZ_p$. Lemma sequens de polynomiis unae incognitae est.
+
+\proclaim Lemma G. Sit $f$ polynomium unae incognitae cum coefficientibus in $\ZZ_p$ et sit $f'$
+derivativum eius. Sit $x\in \ZZ_p$ cum $f(x)\equiv 0\pmod{p^n}$ et $v_p\bigl(f'(x)\bigr)=k$, ubi
+$n$ et $k$ numeri integri sunt, et $0\le 2k<n$. Tum existit $y\in \ZZ_p$ satisfaciens
+\medskip
+\item{i)} $f(y)\equiv 0\pmod{p^{n+1}}$;
+\smallskip
+\item{ii)} $v_p\bigl(f'(y)\bigr) = k$; et
+\smallskip
+\item{iii)} $y\equiv x\pmod{p^{n-k}}$.
+\medskip
+
+\noindent{\it Demonstratio.}\enspace
+Ponimus $y=x+p^{n-k}z$, ubi $z\in \ZZ_p$ eligetur postmodum. Hoc elementum $y$ postulationem
+(iii) satisfacit. Ex formula Tayloriana sequitur
+$$f(y) = f(x) = p^{n-k}z f'(x) + p^{2n-2k}z^2 h(y),$$
+ubi $h(y)$ elementum anuli $\ZZ_p$ est. Ex hypothesi $f(x) = p^nb$ cum $b\in \ZZ_p$ et $f'(x) = p^k c$ ubi
+$c\in \ZZ_p$ est elementum vertibile. Tum
+$$f(y) = p^n(b+zc) + p^{2n-2k}z^2 h(y)$$
+scribere possumus,
+et eligentes $z$ cum $b+zc\equiv 0\pmod p$, habemus postulationem (i), quia $2n-2k>n$.
+Ex formula Tayloriana cum $f'$ habemus $f'(y)\equiv p^kc\pmod{p^{n-k}}$ et cum $n-k>k$,
+habemus propositionem (ii).\slug
+
+Applicatio repetita huius lemmatis et completudo spatii lemma Henselianum producunt.
+
+\proclaim Theorema H. Sit $f$ polynomium $m$ incognitarum cum coefficientibus in $\ZZ_p$. Sit
+$x = (x_1, \ldots, x_m)\in (\ZZ_p)^m$ ut
+$f(x)\equiv 0\pmod{p^n}$ et $v_p\bigl(f_j(x)\bigr) = k$,
+ubi $1\le j\le m$, $k$ et $n$ sunt numeri integri satisfacientes
+$0\le 2k< n$, et $f_j$ derivativum partiale
+functionis $f$ est in incognita $j^{\hbox{\eightsl a}}$.
+Tum existit $y\in (\ZZ_p)^m$ cum $f(y) = 0$ et satisfaciens $y\equiv x$ secundum modulum $p^{n-k}$.
+
+\noindent{\it Demonstratio.}\enspace
+Primo assumimus $m=1$. Ex Lemmate~G cum $x^{(0)} = x$ invenimus $x^{(1)}\in \ZZ_p$ ut
+$x^{(0)}$ et $x^{(1)}$ congrui sunt secundum modulum $p^{n-k}$ et
+satisfaciens $f\bigl(x^{(1)}\bigr)\equiv 0\pmod{p^{n+1}}$ et $v_p\bigl(f'(x^{(1)})\bigr)=k$.
+Tum applicamus Lemma~G cum $x^{(1)}$. Sic inductiva mente construimus sequentiam $x^{(0)},x^{(1)},\ldots$
+ubi indici generali $q$
+$$x^{(q+1)}\equiv x^{(q)}\pmod{p^{n+q-k}}\qquad\hbox{et}\qquad f\bigl(x^{(q)}\bigr)\equiv 0\pmod{p^{n+q}}$$
+habemus.
+Haec sequentia Cauchiana est, quia omni integri $q,r>0$ habemus
+$d_p\bigl(x^{(q+r)} - x^{(q)}\bigr) \le p^{-n-q+k}$.
+Tum sequentia verge ad limitem $y\in \ZZ_p$ satisfaciens $f(y) = 0$ et $y\equiv x\pmod{p^{n-k}}$.
+
+Conditio indicis $j$ casum generale ad casum $m=1$ reducit.
+Consideramus
+polynomium $\tilde f$ unae incognitae cum formula
+$$\tilde f(x) = f(x_1, \ldots, x_{j-1}, x, x_{j+1}, \ldots, x_m).$$
+Deinde casum $m=1$
+propositionis applicare possumus cum $\tilde f$;
+ex illo invenimus $y_j\in \ZZ_p$ satisfaciens $y_j\equiv x_j\pmod{p^{n-k}}$ et
+$\tilde f(y_j) = 0$. Ponimus $y_i = x_i$ omni indici $i\ne j$ et elementum $y = (y_i)$ est
+solutio desiderata.\slug
+
+\nineproclaim
+Exercise 4. Let $p$ be an odd prime.
+Show that the quadratic form $ax^2 + by^2 + cz^2$ with coefficients in $\QQ_p$,
+in which $a$, $b$, and $c$ belong to $\ZZ_p^\times$, has a nontrivial zero, i.e., the associated quadratic
+space over $\QQ_p$ is not anisotropic.
+
+\nineproof (Davide Accadia and Niccol\`o Bosio.)
+First, we show that the equation $ax^2 + by^2 + cz^2 = 0$ has a nonzero solution in $\ZZ/p\ZZ$.
+We pick $z\in \ZZ/p\ZZ$ so that $c' = -cz^2 \ne 0$, reducing our problem to finding a solution $(x,y)$
+to the equation $ax^2 = c'-by^2$. Since $a$, $b$, and $c$ are all nonzero in $\ZZ/p\ZZ$, there
+are $(p-1)/2 + 1$ elements in $\ZZ/p\ZZ$ of the form
+$ax^2$ and $(p-1)/2+1$ elements of the form $c'-by^2$, so these two sets must intersect in at least one
+element, giving us a nontrivial solution $(x,y,z)$ to the equation.
+
+It now remains to apply Theorem H to this solution $(x,y,z)$ with $m=3$, $n=1$, and $k=0$. (The gradient
+vector of $f$ is $(2x,2y,2z)$, one of whose components must have $p$-adic valuation equal to $0$
+since $(x,y,z)\ne(0,0,0)$ and $p\ne 2$.)\slug
+
+\boldlabel Integral lattices. We now turn to quadratic forms defined over the integers $\ZZ$. A
+{\it unimodular lattice}
+is a free abelian group of rank $n$ with a symmetric bilinear form $x\cdot y$ such that
+\medskip
+\item{i)} The homomorphism $L\to \Hom(L,\ZZ)$ that sends $x\mapsto (y\mapsto x\cdot y)$ is an isomorphism.
+\smallskip
+\item{ii)} If $(e_i)$ is a basis of $L$ over $\ZZ$, then the determinant of the matrix $(e_i\cdot e_j)$
+is $\pm 1$.
+\medskip
+The set $\Hom(L,\ZZ)$, also denoted $L^\vee$,
+is called the {\it dual} of $L$, and the condition above explains why
+unimodular lattices are sometimes called self-dual. An element $x\in L$ can be identified with an element
+of $L^\vee$ if $x\cdot y$ is integer for all $y\in L$, and this is true for all $x$ in a unimodular lattice.
+For any ring $S$ admitting a homomorphism $\ZZ\to S$, we obtain an $S$-module $L\otimes S$ by extending
+the scalars from $\ZZ$ to $S$. Two lattices $L_1$ and $L_2$ are said to be {\it locally isomorphic}
+if $L_1\otimes \ZZ_p\cong L_2\otimes \ZZ_p$ for all primes $p$ and $L_1\otimes \ZZ_p\cong L_2\otimes \ZZ_p$.
+The set of lattices that are locally isomorphic to a given lattice $L$ is called the {\it genus} of $L$.
+We saw in class that two lattices in the same genus must have the same discriminant.
+Since $V = L\otimes \RR$ is a quadratic space over $\RR$, it has a well
+defined signature $(r,s)$. As in the real case, we say that $L$ is {\it positive definite} if $s=0$,
+{\it negative definite} if $r=0$, and {\it indefinite} otherwise. Given a quadratic module $V$, we will sometimes
+denote the corresponding quadratic space over a different ring $R$ by $V_R$.
+
+We say that a lattice $L$ is {\it even} or {\it of type {\rm II}} if the quadratic form associated to $L$
+takes only even values, and we say that $L$ is {\it odd} or {\it of type {\rm I}} otherwise. We saw in
+class that there is an element $u\in L$, unique modulo reduction modulo $2$, such that
+$u\cdot x = x\cdot x \pmod 2$ for all $x\in L$. The image of $u\cdot u$ in $\ZZ/8\ZZ$ is an invariant of
+$L$, denoted $\sigma(L)$. If $L$ is even, then $\sigma(L) = 0$.
+
+Let $\langle 1\rangle$ denote the $1$-dimensional quadratic space with $Q(x)=x^2$ and let $\langle-1\rangle$
+denote the quadratic space with $Q(x) = -x^2$ (their bilinear forms are $x\cdot y = xy$ and $x\cdot y = -xy$
+respectively).
+Note that unless $r$ and $s$ are both zero, the direct sum
+$\langle 1\rangle^r \ortho \langle -1\rangle^s$ is an odd lattice. In class we saw the following structure
+theorem for indefinite unimodular lattices.
+
+\proclaim Theorem S. Let $L$ be a unimodular indefinite lattice of signature $(r,s)$.
+If $L$ is odd, then $L\cong \langle 1\rangle^r \ortho \langle -1\rangle^s$. If $L$ is even, then
+$r-s \equiv 0\pmod 8$ and there is only one lattice in this case as well, up to isomorphism.\slug
+
+In the solution to the next exercise, we will also use the following lemma.
+
+\proclaim Lemma P. Let $L$ and $L'$ be $\ZZ_p$-lattices of discriminant $d$ with pairing matrices $A$
+and $A'$ respectively. Let $\lambda = 1$ if $p$ is odd and $3$ if $p=2$.
+If there exists $T\in \M_n(\ZZ_p)$ such that $T^\T AT = A'\pmod {p^\lambda}$, then there is $X$ in $\M_n(\ZZ_p)$
+such that $X^\T A X = A'$.\slug
+
+In most of the course, we have assumed that $p\ne 2$. But for the next exercise, the definition of a
+genus of a lattice requires that we consider $\ZZ_2$-lattices. We will thus require the following lemma,
+whose proof can be found in Serre (1973).
+
+\proclaim Lemma E. An element $x\in \QQ_2^\times$ is a square if and only if $x$ can be written as $2^n u$ where
+$n$ is even and $u\equiv 1\pmod 8$.\slug
+
+\nineproclaim
+Exercise 5. Show that all even unimodular lattices of a given signature $(r,s)$ are in the same
+genus. Show that all odd unimodular lattices are in the same genus. Give an example of two quadratic forms
+of the same discriminant that lie in different genera.
+
+\nineproof (Mart\'\i\ Roset.)
+Theorem S allows us to consider only the definite case, and without loss of generality, we can further assume
+that both lattices are positive definite.
+Suppose that $L_1$ and $L_2$ are in the same genus. Then $L_1\otimes \ZZ_2 \cong L_2\otimes \ZZ_2$
+and we find that $L_1\otimes \FF_2\cong L_2\otimes \FF_2$. In these lattices over $\FF_2$, either
+all vectors have zero length, in which case $L_1$ and $L_2$ were both even, or some vector has nonzero length,
+in which case both $L_1$ and $L_2$ were odd.
+
+Now for the other direction of the proof, suppose that $L_1$ and $L_2$ are unimodular positive
+definite integral lattices. Since $L_i \ortho \langle -1\rangle$ is odd, unimodular, and indefinite,
+it is isomorphic to $L'=\langle 1\rangle^n \ortho \langle -1\rangle$, which has $\disc(L')=-1$ and
+$\sigma(L') \equiv n-1\pmod 8$. The discriminant is multiplicative and the $\sigma$-invariant additive
+under orthogonal sum, so $\disc(L_i) = 1$ and $\sigma(L_i) \equiv n\pmod 8$.
+Furthermore, $L_1\otimes \RR \cong \langle 1\rangle ^n \cong L_2\otimes \RR$, so it remains to show
+that $L_1\otimes \ZZ_p \cong L_2\otimes \ZZ_p$ for all primes $p$.
+
+When $p$ is odd, we see that $L_1\otimes \FF_p$ and $L_2\otimes \FF_p$ have the same rank and discriminant,
+so by Lemma~P we find that in fact $L_1\otimes \ZZ_p \cong L_2\otimes \ZZ_p$. In the case $p=2$, we introduce
+some new notation. Let $\langle d\rangle$ denote the quadratic form of rank $1$ given by $Q(x) = dx^2$. We
+will also abuse notation and denote a quadratic form by its pairing matrix.
+We then use the fact that any unimodular $\ZZ_2$-lattice is the orthogonal sum of copies of
+$$\langle 1\rangle,\quad\langle 3\rangle,\quad\langle 5\rangle,\quad\langle 7\rangle,\quad\pmatrix{0&1\cr 1&0},
+\quad\hbox{and}\quad
+\pmatrix{2&1\cr 1&2}.$$
+We have the relations
+\medskip
+\item{i)} $\langle 1\rangle^2 \cong \langle 5\rangle^2$ and $\langle 3\rangle^2\cong \langle 7\rangle^2$;
+\smallskip
+\item{ii)} $\langle 3\rangle \ortho \langle 5\rangle \ortho \langle 7\rangle \cong
+\langle 1\rangle \ortho \langle 3\rangle^2$;
+\smallskip
+\item{iii)} $\langle 1\rangle^4 \cong \langle 7\rangle^4$;
+\smallskip
+\item{iv)} $\langle d\rangle \ortho A \cong \langle d\rangle \ortho \langle 1\rangle
+\ortho \langle -1\rangle$ for all
+$d \in \{1,3,5,7\}$ and $A\in \bigl\{ \smallmatrix 0110,\smallmatrix 2112\bigr\}$; and
+\smallskip
+\item{v)} $\smallmatrix 0110^2 \cong \smallmatrix 2112^2$.
+\medskip
+Now consider $L_i\otimes \ZZ_2$. Since $L_i$ is even, it is an orthogonal sum of copies of
+$\smallmatrix 0110$ and $\smallmatrix 2112$, since any copies of $\langle d\rangle$ would cause the lattice
+to be odd. The discriminant of $L_i\otimes \ZZ_2$ is $1$ and the discriminants of $\smallmatrix 0110$
+and $\smallmatrix 2112$ are $-1$ and $3$ respectively, so we find that
+$$L_i\otimes \ZZ_2 \cong \pmatrix{0&1\cr 1&0}^{r_1} \ortho \pmatrix{2&1\cr 1&2}^{r_2}$$
+with both $r_1$ and $r_2$ even, so by property (v) above we have
+$L_i\otimes \ZZ_2 \cong \smallmatrix 0110 ^{r_1+r_2}$.
+If the $L_i$ are odd, we have
+$$L_i\otimes \ZZ_2 \cong \langle 1\rangle^{r_1} \ortho\langle 3\rangle^{r_3}
+\ortho\langle 5\rangle^{r_5} \ortho\langle 7\rangle^{r_7}.$$
+Since the discriminant is $1$, either $r_3$, $r_5$, and $r_7$ are all even or they are all odd.
+If they are all odd, we the relation (ii) to make them all even (increasing $r_1$ in the process).
+Then we can use the relations in (i) to see that
+$$L_i\otimes \ZZ_2\cong \langle 1\rangle ^{r_1} \ortho \langle 7\rangle ^{r_7},$$
+for some $r_1$ and $r_7$ possibly different from above. Since $L_i$ is positive definite of rank $r_1+r_7$,
+$\sigma(L_i)$ must be congruent to $r_1+r_7$ modulo $8$, but on the other hand, from the right-hand
+side we must have $r_1+r_7\equiv r_1+7r_7\pmod 8$. This means that $r_7$ is either $0$ or $4$ modulo $8$,
+and we can use relation (iii) to find that $L_1\otimes \ZZ_2 \cong \langle 1\rangle^n\cong L_2\otimes \ZZ_2$.
+
+To get lattices with the same discriminant lying in different genera, take an even lattice of discriminant
+$1$, say the space $E_8$ we constructed in class, and an odd lattice of discriminant $1$ of the same rank (we
+can take $\langle 1\rangle ^8$ as the example corresponding to $E_8$).
+\slug
+
+\boldlabel Modular forms and theta series. Let $\H$ denote the complex upper half-plane; that is, the set
+of $z\in \CC$ with $\Im z > 0$.
+Given an lattice $L$ of rank $n$, we define the {\it theta series}
+of $L$ to be the sum
+$$\theta_L(z) = \sum_{v\in L} e^{\pi i (v\cdot v) z},$$
+where $z\in \H$.
+It is easy to see that $\theta_L(z+2) = \theta_L(z)$, and when $L$ is unimodular, one can also show that
+$$\theta_L\Bigl({-1\over z}\Bigr) = \Bigl({z\over i}\Bigr)^{n/2} \theta_L(z).$$
+If $L$ is even, then $v\cdot v$ is always even, so we actually have $\theta_L(z+1) = \theta_L(z)$, and
+we saw in class that the dimension $n$ of an even unimodular lattice is always a multiple of $8$, so
+the factor of $1/\sqrt i$ disappears and we have $\theta_L(-1/z) = z^{n/2} \theta_L(z)$. The significance
+of this becomes apparent when we note that the group $\SL_2(\ZZ)$ of integral matrices with determinant $1$
+acts by M\"obius transformations on the upper half-plane; for an element $g = \smallmatrix abcd\in \SL_2(\ZZ)$
+and $z\in \H$, we have
+$$g*z = {az+b\over cz+d}.$$
+Since the matrices
+$$\pmatrix{1&1\cr 0&1}\qquad\hbox{and}\qquad\pmatrix{0&-1\cr 1&0}$$
+generate $\SL_2(\ZZ)$, the formulas above show that the theta series of an even unimodular lattice
+is invariant under the action of $\SL_2(\ZZ)$, up to a factor of $z^{n/2}$.
+
+A {\it modular form of weight $k$} on a subgroup $\Gamma\subseteq \SL_2(\ZZ)$ (which may be
+$\SL_2(\ZZ)$ itself)
+is a holomorphic function $f:\H\to \CC$ satisfying
+$$f\Bigl({az+b\over cz+d}\Bigr) = (cz+d)^k f(z)$$
+and with an expansion
+$$f(z) = \sum_{n=0}^\infty a_n e^{2\pi i nz},$$
+for some $a_n\in \CC$. The space of all such functions is denoted $\calM_k(\Gamma)$.
+
+\nineproclaim Exercise 6. This exercise deals with odd unimodular lattices, which were largely left out of
+our discussion in class. In the following, $q = e^{2\pi i z}$ and $y = \Im z$.
+\medskip
+\item{a)} Let $L$ be an odd unimodular lattice of rank $2k$. Show that the theta series $\theta_L(z)$
+is invariant under the group $\Gamma(2)$ consisting of matrices in $\SL_2(\ZZ)$ that are congruent to the
+identity modulo $2$.
+\smallskip
+\item{b)} To avoid having theta series with fractional powers of $q$, it is useful to redefine $\theta_L(q)$
+by the rules
+$$\theta_L(z) = \sum_{v\in L} e^{2\pi i(v\cdot v)z}\qquad\hbox{and}\qquad
+\theta_L(q) = \sum_{v\in L} q^{v\cdot v} = \sum_{n=0}^\infty r_L(n)q^n,$$
+where $r_L(n)$ denotes the number of vectors $v\in L$ with $v\cdot v = n$. Show that $\theta_L(q)$ is a
+modular form of weight $k$ on the subgroup $\Gamma_0(4)$ consisting of matrices in $\SL_2(\ZZ)$ that are
+upper triangular modulo $4$.
+\smallskip
+\item{c)} Although the Eisenstein series $E_2$ defined by
+$$E_2(q) = 1-24\sum_{n=1}^\infty \sigma_1(n)q^n,$$
+where $\sigma_1(n) = \sum_{d\divides n} d$, fails to be invariant under the action of $\SL_2(\ZZ)$, the
+modification
+$$E_2^*(z) = E_2(z) - {3\over \pi y}$$
+is a modular form of weight $2$, though no longer holomorphic. Use this fact to show that the series
+$$E_2^{(2)} = E_2(z) - 2E_2(2z) = E_2(q) - 2E_2(q^2)$$
+and
+$$E_2^{(4)} = E_2(z) - 4E_2(2z) = E_2(q) - 2E_2(q^4)$$
+are (holomorphic) modular forms of weight $2$ on $\Gamma_0(4)$.
+\smallskip
+\item{d)} Show that any modular form of weight $k$ on $\Gamma_0(4)$ has exactly $k/2$ zeroes on any fundamental
+region. Use this to conclude that $\calM_2\bigl(\Gamma_0(4)\bigr)$ is $2$-dimensional, and thus spanned by
+the two Eisenstein series $E_2^{(2)}$ and $E_2^{(4)}$.
+\smallskip
+\item{e)} Use the result of (d) to calculate the number of vectors of odd length in any odd unimodular
+quaternary quadratic form.
+\smallskip
+\item{f)} Write the theta series attached to the standard quaternary lattice $\ZZ^4$ with the standard dot
+product, and the theta series attached to the lattice
+$$D_4 = \Big\{ (a,b,c,d) \in \ZZ^4 \cup  \Bigl(\ZZ+{1\over 2}\Bigr)^4
+: a+b+c+d\in 2\ZZ\Big\}.$$
+Deduce a closed form expression for the number of vectors of a given
+length in each of these two lattices.
+\medskip
+
+\nineproof For part (a), we first show that $\Gamma(2)$ is generated by the three matrices
+$$\pmatrix{1&2\cr 0&1},\quad\pmatrix{1&0\cr 2&1},\quad\hbox{and}\quad\pmatrix{-1&0\cr 0&-1}$$
+To see this, note that for a general matrix $\smallmatrix abcd\in \Gamma(2)$,
+$$\pmatrix{a&b\cr c&d}\pmatrix{1&-2\cr 0&1} = \pmatrix{a & b-2a\cr c&d-2c}$$
+and
+$$\pmatrix{a&b\cr c&d}\pmatrix{1&0\cr -2&1} = \pmatrix{a-2b & b\cr c-2d&d}.$$
+Suppose that $b\ne 0$.
+Since $|a|$ is odd and $|b|$ is even, they are not equal. if $|a|$ is larger, we use the division algorithm
+to find $q,r$ such that $|a| = |2b|q+r$, where $|r| < |b|$, and then apply the second transformation $q$
+times to strictly reduce the absolute value of the top-left matrix entry. If $|b|$ is larger, we reduce
+the absolute value of the top-right entry in a similar fashion. We can keep doing this until $b=0$, in which
+case the matrix must be some integer power of $\smallmatrix 1021$, after possibly multiplying by
+$\smallmatrix {-1}00{-1}$.
+
+Thus it suffices to prove invariance under the three generators of $\Gamma(2)$. The negative identity matrix
+acts as the identity M\"obius transformation, and we already saw that theta series are invariant under
+the transformation $z\mapsto z+2$. The last generator is $\smallmatrix 1021$, which also poses no problem,
+since
+$$\theta_L\Bigl({z\over 2z+1}\Bigr) = \Bigl({i\over z}\Bigr)^k \theta_L\Bigl({-2z-1\over z}\Bigr)
+= \Bigl({i\over z}\Bigr)^k \theta_L\Bigl({-1\over z}\Bigr) =
+\Bigl({i\over z}\Bigr)^k\Bigl({z\over i}\Bigr)^k\theta_L(z) = \theta_L(z).$$
+
+We start part (b) by claiming that $\Gamma(2)$ and $\Gamma_0(4)$ are conjugate in $\SL_2(\QQ)$,
+by the element $\bigl( {2\atop 0}{0\atop 1}\bigr)$. Indeed,
+for any $\gamma = \smallmatrix abcd \in \SL_2(\ZZ)$
+$$\pmatrix{ 1/2 & 0\cr 0&1} \pmatrix {a&b\cr c&d}\pmatrix{2&0\cr 0&1} = 
+\pmatrix{ a/2 & b/2\cr 0&1}\pmatrix{2&0\cr 0&1} = \pmatrix{a&b/2\cr 2c&d},$$
+and if $\gamma\in \Gamma(2)$ to begin with, then $2c$ is a multiple of $4$ so the result is in
+$\Gamma_0(4)$. On the other hand,
+$$\pmatrix{ 2 & 0\cr 0&1} \pmatrix {a&b\cr c&d}\pmatrix{1/2&0\cr 0&1} = 
+\pmatrix{ 2 & b\cr 0&1}\pmatrix{1/2&0\cr 0&1} = \pmatrix{a&b\cr c/2&d}.$$
+In this case, if $\gamma\in \Gamma_0(4)$, then $bc$ is even so $a$ and $d$ must be odd for
+$ad-bc$ to equal $1$. Since $c$ was a multiple of $4$, we have $c/2$ even and of course,
+so is $2b$, so the result is in $\Gamma(2)$.
+This gives a set of generators for $\Gamma_0(4)$; since
+$$\pmatrix{ 1/2 & 0\cr 0&1} \pmatrix {1&2\cr 0&1}\pmatrix{2&0\cr 0&1} = \pmatrix{ 1&1\cr 0&1}$$
+and
+$$\pmatrix{ 1/2 & 0\cr 0&1} \pmatrix {1&0\cr 2&1}\pmatrix{2&0\cr 0&1} = \pmatrix{ 1&0\cr 4&1},$$
+the matrices
+$$\pmatrix{1&1\cr 0&1},\quad\pmatrix{1&0\cr 4&1},\quad\hbox{and}\quad\pmatrix{-1&0\cr 0&-1}$$
+comprise a set of generators for $\Gamma_0(4)$.
+
+We shall call the modified theta series in part (b) $\theta'_L(z)$, to know when we have an extra factor
+of two and when we do not. Invariance under $z\mapsto z+1$ is easy, since
+$$\theta'_L(z+1) = \theta_L(2z+2) = \theta_L(2z) = \theta'_L(z).$$
+For the other nontrivial transformation, we first note that
+$$\theta'_L\Bigl({-1\over 4z}\Bigr) = \theta_L\Bigl({-1\over 2z}\Bigr) =
+\Bigl({2z\over i}\Bigr)^k\theta_L(2z) = \Bigl({2z\over i}\Bigr)^k\theta'_L(z).$$
+We now have all we need to show that $\theta'_L(z)$ is a modular form of weight $k$ on $\Gamma_0(4)$, because
+for the M\"obius transformation $z\mapsto z/(4z+1)$ we have
+$$\eqalign{
+\theta'_L\Bigl({z\over 4z+1}\Bigr) &= \theta'_L\biggl({-1\over 4\bigl(-1/(4z) - 1\bigr)}\biggr) \cr
+&= \biggl(2i \Bigl({1\over 4z}+1\Bigr)\biggr)^k \theta'_L\Bigl({-1\over 4z} -1\Bigr) \cr
+&= \biggl(2i \Bigl({1\over 4z}+1\Bigr)\biggr)^k \theta'_L\Bigl({-1\over 4z}\Bigr) \cr
+&= \biggl(2i \Bigl({2z\over i}\Bigr)\Bigl({1\over 4z}+1\Bigr)\biggr)^k \theta'_L(z)\cr
+&= (4z+1)^k \theta'_L(z).\cr
+}$$
+
+For part (c), we begin by noting that since
+$$E_2(z) - N E_2(Nz) = E_2(z) - {3\over \pi y} - N E_2(Nz) - N{3\over N\pi y} = E_2^*(z) - NE_2^*(Nz),$$
+for any $N\ge 2$, in particular both $E_2^{(2)}$ and $E_2^{(4)}$ are holomorphic and
+we are done if we can show that $E_2^*(2z)$ and $E_2^*(4z)$ are
+modular forms of weight $2$ on $\Gamma_0(4)$. In fact, for all $N\ge 2$
+we shall show that if $g(z)$ is a modular form of weight $2$ on $\SL_2(\ZZ)$, then $f(z) = g(Nz)$
+is a modular form of weight $k$ on $\Gamma_0(N)$. (This would settle the question since $\Gamma_0(4)\subseteq
+\Gamma_0(2)$ and any modular form on $\Gamma_0(2)$ is automatically a modular form on $\Gamma_0(4)$.)
+Well, letting $\smallmatrix abcd\in \Gamma_0(N)$, we have
+$$f\Bigl({az+b\over cz+d}\Bigr) = g\Bigl( N{az+b\over cz+d}\Bigr)
+= g\Bigl({Naz+Nb\over cz+d}\Bigr) = g\Big( {a(Nz) + Nb\over (c/N)(Nz) + d} \Bigr).$$
+But since $c$ is a multiple of $N$, the matrix $\smallmatrix a{Nb}{c/N}d$ has integral entries and has
+determinant $ad - (Nb)(c/N) = ad-bc= 1$. So $g$ is weight-$2$ invariant under its action, and
+$$f\Bigl({az+b\over cz+d}\Bigr) = g\Big({a(Nz) + Nb\over (c/N)(Nz) + d} \Bigr)
+= \bigl((c/N)(Nz)+d\bigr)^2 g(Nz) = (cz+d)^2f(z).$$
+
+To begin part (d), we first show that $\Gamma_0(4)$ is a subgroup of
+index $6$. We already found that $\Gamma(2)$ and $\Gamma_0(4)$ are conjugate subgroups of $\SL_2(\QQ)$, which
+means they have the same index in $\SL_2(\ZZ)$. Furthermore, we a homomorphism from $\SL_2(\ZZ)$ to
+$\SL_2(\ZZ/2\ZZ)$ given by reduction of entries modulo $2$, giving the short exact sequence
+$$1\longto\Gamma(2)\longto\SL_2 (\ZZ)\longto \SL_2(\ZZ/2\ZZ)\longto 1.$$
+An element $\smallmatrix abcd$ of $\SL_2(\ZZ/2\ZZ)$ must have $ad-bc = 1$ in $\ZZ/2\ZZ$,
+so either $ad =1$ and $bc=0$ or vice versa. In each case there are three ways to make a product equal to $0$,
+so the cardinality of $\SL_2(\ZZ/2\ZZ)$ is $6$.
+We saw in class that any fundamental domain of the action of $\SL_2(\ZZ)$ on the upper half-plane has
+$k/12$ zeroes of a modular form (counting fractional zeroes on the boundary). So let $F$ be a modular form
+of weight $12$ on $\SL_2(\ZZ)$ with its single zero at, say, $2i$ (chosen because it is right in the middle
+of the usual fundamental domain for $\SL_2(\ZZ)\backslash \H$). Since $\Gamma_0(4)$ is an index-$6$ subgroup
+of $\SL_2(\ZZ)$, we know that $F$ has $6$ zeroes on $\Gamma_0(4)\backslash \H$ and $F^k$ has $6k$ zeroes
+on the same region. Now let $g\in \calM_2\bigl(
+\Gamma_0(4)\bigr)$ be given, with $m$ zeroes on $\Gamma_0(4)\backslash \H$. We want to show that $m=k/2$.
+Well, whatever $m$ is, we know that $g^{12}$ has $12m$ zeroes. Now we consider
+the function $g^{12}/F^k$, which is meromorphic on the compact Riemann surface $\Gamma_0(4)\backslash \H$
+and thus has as many zeroes as poles. The number of zeroes it has is $12m$ and the number of poles it
+has is $6k$. So $m= k/2$, which is what we wanted to show.
+
+In particular, any modular form of weight $2$ on $\Gamma_0(4)$ has exactly one zero.
+Evaluating $E_2(q)$ at $q=0$ (equivalent to evaluating $E_2(z)$ at $z=i\infty$) gives a value of $1$,
+so $E_2^{(2)}(0) = -1$ and $E_2^{(4)}(0) = -3$. From here we see that $F(z) = 3E_2^{(2)}(z) - E_2^{(4)}(z)$ has
+a zero at $i\infty$, meaning that it has no zeroes on the upper half-plane $\H$. So, given
+any modular form $f$ on $\Gamma_0(4)$ of weight $2$, we can subtract a multiple of $E_2^{(2)}$ to get
+a form that has a zero at $i\infty$, and then divide by $F$ to get a modular form of weight $0$, which must
+be a constant. Symbolically, this amounts to showing that any $f$ satisfies
+$$ {f-\lambda E_2^{(2)}\over F} = \mu$$
+for some $\lambda,\mu\in \CC$; that is, $f = \lambda E_2^{(2)} + \mu F$.
+Since $E_2^{(2)}$ and $E_2^{(4)}$ are linearly independent,
+we have shown that $\calM_2\bigl(\Gamma_0(4)\bigr)$ is $2$-dimensional, bringing us to the end of part (d).
+
+For part (e), we have the general formula
+$$\sigma_1(n/N) - N\sigma_1(n/N) = \sum_{d\divides n} d - \sum_{d\divides (n/N)} Nd = \sum_{d\divides n}d -
+\sum_{N\divides d\divides n}d = \sum_{N\notdivides d\divides n}d.$$
+We saw that for
+any lattice $L$ of rank $2k$, $\theta_L'(q)$ is a modular form of weight $k$ on $\Gamma_0(4)$, so
+by the result of the previous section, we can write $\theta_L' = \lambda E_2^{(2)} + \mu E_2^{(4)}$
+and by equating coefficients, we find that the number of vectors of length $n\ge 1$ in $L$ is
+$$r_L(n) = \lambda \sum_{2\notdivides d\divides n} d + \mu\sum_{4\notdivides d\divides n} d.$$
+We can determine $\lambda$ and $\mu$ from $r_L(0)$ and $r_L(1)$.
+Since the constant terms of $E_2^{(2)}$ and $E_2^{(4)}$ are $-1$ and $-3$ respectively, we have
+$r_L(0) = -\lambda - 3\mu$. So we have the simultaneous equations
+$$ \pmatrix{r_L(0)\cr r_L(1)} = \pmatrix{ -1&-3\cr -24 &-24} \pmatrix{\lambda\cr \mu},$$
+which we can solve to get
+$$ \lambda = {r_L(0)\over 2} - {r_L(1)\over 16} \qquad\hbox{and}\qquad
+\mu = {r_L(1)\over 48}-{r_L(0)\over 2}.$$
+
+Finally, we have come to part (f).
+We start by noting that both of these lattices have exactly one vector of length $0$. There are $8$ ways
+to make a vector of length $1$ in $\ZZ^4$, since there are four slots to put either a $1$ or $-1$.
+There are also $8$ ways to make a vector of length $1$ in $D_4$, since the $16$ vectors
+of the form $(\pm 1/2, \pm 1/2, \pm 1/2, \pm 1/2)$ have norm $1$, but only half of them have an even number
+of $-1/2$s, which is necesssary for the sum of the coordinates to be even. Invoking part (e) now, we
+find that $\lambda = 0$ and $\mu = -1/3$. Hence both lattices have theta series $-E_2^{(4)}/3$.
+\slug
+
+\nineproclaim Exercise 7. Let $G$ be a group acting transitvely on a set $X$. Let $x_0\in X$ and let $S$
+be a subset of $G$ such that for all $x\in X$, there exists $g\in S$ with $gx_0 = x$. Show
+that $G$ is generated by $S$ together with the stabiliser of $x_0$.
+
+\nineproof Let $g\in G$. There exists $x\in X$ (namely, $g^{-1}x$) such that $gx = x_0$.
+Now by the property of
+$S$, there is $s\in S$ with $sx_0 = x$. So we see that $gs x_0 = x_0$, meaning that $gs\in \Stab(x_0)$.
+But this means that $g = gs \cdot s^{-1}$, and since $G$ is closed under inverses,
+$G = G^{-1} = \bigl(\Stab(x_0) S^{-1}\bigr)^{-1} = S\Stab(x_0)$.
+\slug
+
+\boldlabel The projective line. For the next exercise, we define the {\it projective line} $\PP^1(k)$
+over a field
+$k$ to be the set $k^2\setminus\bigl\{(0,0)\bigr\}$
+quotiented by the equivalence relation $\sim$ that deems
+$(x,y)\sim (\lambda x,\lambda y)$ for any nonzero scalar $\lambda\in k$. We denote the equivalence class
+of $(x,y)$ by $[x:y]$. If $y\ne 0$, we see that $[x:y] = [z:1]$ for some $z\in k$. The element $[1:0]$
+is the only element that cannot be written in this way; it is called {\it the point at infinity}.
+
+\nineproclaim Exercise 8. Let $k$ be a field. Show that $\SL_2(k)$ is generated by matrices of the form
+$$\pmatrix{ 1&t\cr 0&1}\qquad\hbox{and}\qquad \pmatrix{a&0\cr 0&a^{-1}}$$
+for $t\in K$ and $a\in K^\times$, along with $w = \smallmatrix 01{-1}0$. More precisely, show that
+$\SL_2(k) = B \sqcup BwB$, where $B$ is the subgroup of upper triangular matrices. This is known as
+the {\it Bruhat decomposition} of $\SL_2(k)$.
+
+\nineproof The group $\SL_2(k)$ acts on the set $\PP^1(k)$ by matrix multiplication;
+that is,
+$$\pmatrix{a&b\cr c&d} [x:y] = [ax+by : cz+dy].$$
+To see that this action is transitive, note that $\GL_2(k)$ is transitive on the set of nonzero vectors in
+$k^2$, and scaling the matrix to insist that it has determinant $1$, we do not change its output in
+the projective line. Note that
+$$Bw[1:0] = \biggl\{ \pmatrix{a&b\cr 0&d}\pmatrix{0&1\cr -1&0} : a,b,d\in k\biggr\} =
+\bigl\{ [-b: -d] : b,d\in k\bigr\}.$$
+Since $ad=1$, $d$ cannot be zero, and we can divide out by $-d$ to find that this is the set
+$\bigl\{[z:1] : z\in k\bigr\}$.
+In particular, the identity matrix $I$ is not a member of $Bw$, but
+for any $p\in \PP^1(k)$, there exists $\gamma\in S =  Bw \sqcup \{I\}$ such that
+$\gamma [1:0] = p$. Note also that any upper triangular matrix fixes the point $[1:0]$, and if any
+$\gamma\in \SL_2(\ZZ)$ fixes $[1:0]$, then its bottom-left entry must be zero, so $\Stab\bigl([1:0]\bigr) = B$.
+Applying the result of Exercise 7 with $x_0 = [1:0]$ gives us
+$$ \SL_2(k) = S\cdot \Stab\bigl([1:0]\bigr) = \bigl(Bw\sqcup \{I\}\bigr) B = BwB\sqcup B,$$
+which is what we wanted.
+\slug
+
+\nineproclaim Exercise 9. Show that every element of $\SL_2(\RR)$ can be written uniquely in the form
+$$\pmatrix{1&x\cr 0&1}\pmatrix{y^{1/2}&0\cr 0&y^{-1/2}}\pmatrix{\cos\theta&\sin\theta\cr -\sin\theta&
+\cos\theta}$$
+for $x\in \RR$, $y\in \RR^{>0}$, and $\theta\in [0,2\pi)$. This is known as the {\it Iwasawa
+decomposition} of $\SL_2(\RR)$.
+
+\nineproof
+The set $\SL_2(\RR)$ acts on the upper half-plane $\H$ by M\"obius transformations.
+We let
+$$ S = \biggl\{ \pmatrix{1 & x \cr 0&1}\pmatrix{y^{1/2}&0\cr 0&y^{-1/2}} : x\in \RR,\,y>0 \biggr\},$$
+and note that
+$$ \pmatrix{y^{1/2} & xy^{1/2} \cr 0 & y^{-1/2}} * i = {y^{1/2} i + xy^{1/2}\over y^{-1/2}} = x+iy,$$
+so since $x\in \RR$ and $y>0$ we see that for any $z\in \H$, there is some element of $S$ such that $S*i = z$.
+Now the stabiliser of $i$ is the set of all $\smallmatrix abcd\in SL_2(\RR)$ with
+$$ {ai+b\over ci+d} = i.$$
+This equation implies that $a=d$ and $b=-c$, which, along with the condition $ad-bc=1$, gives
+$a^2+b^2 = 1$ and we see that
+the set of all such matrices can be parametrised by letting $a = \cos\theta$ and
+$b=\sin\theta$. We are now in the fortunate position to apply Exercise 7 once again.
+
+We have shown that for any $\gamma = \smallmatrix abcd\in \SL_2(\ZZ)$, there are $x$, $y$, and $\theta$
+such that
+$$\pmatrix{1&x\cr 0&1}\pmatrix{y^{1/2}&0\cr 0&y^{-1/2}}\pmatrix{\cos\theta&\sin\theta\cr -\sin\theta&\cos\theta}
+\pmatrix{a&b\cr c&d} = \pmatrix{1&0\cr 0&1}.$$
+(For convenience, we construct $\gamma^{-1}$ instead of $\gamma$.) Given only
+the triple $(x,y,\theta)$, we can work backwards to find the matrix $\smallmatrix abcd$ above.
+Since the bottom-left entry on the right-hand side is zero,
+we have $c\cos\theta = a\sin\theta$, whence $c = a\tan\theta$. In the next multiplication, we find that
+$ya^2+yc^2 = 1$, so
+$$a = {1\over \sqrt{ y(1+\tan\theta)}}\qquad\hbox{and}\qquad c = {\tan\theta\over \sqrt{ y(1+\tan\theta)}}.$$
+Lastly, from the equations
+$ab+cd = -x(a^2+c^2)$ and $ad-bc = 1$,
+we find that
+$$b={c-ax(a^2+c^2)\over a^2+c}\qquad\hbox{and}\qquad d = {1+bc\over a},$$
+finishing the proof of uniqueness.
+\slug
+
+\boldlabel The Fourier transform. Let $f$ be a Schwartz function on a finite-dimensional vector space $V$
+over $\RR$. (We will not concern ourselves with exactly what a Schwartz function is; one should think of it as
+having nice decay properties at infinity.) The {\it Fourier transform} $\hat f$ of $f$ is the integral
+$$ \hat f(y) = \int_V f(x) e^{-2\pi i (x\cdot y)}\d x.$$
+The Fourier transform over other quadratic spaces is given similarly, though in these settings we have
+to change what we mean by ``nice'' function. On $\QQ_p$, we can take compactly supported functions.
+Of course, when we integrate over $\QQ_p$, we'll need to know what measure we are integrating against.
+Luckily, there is a translation-invariant, countably additive measure $\mu$
+on $\QQ_p$ called the {\it Haar measure},
+which we shall use without worrying about the details of its construction. Now that we have a measure
+(Lebesgue or Haar) on $V$, we can define the {\it covolume} of $L$ as the measure of a fundamental
+region of $V/L$.
+
+\medskip\boldlabel Additive characters. An {\it additive character} is a homomorphism from an abel\-ian
+group $Z$ to the unit circle; that is, for $x,y\in Z$ we have $\chi(x+y) = \chi(x)\chi(y)$.
+A character is said to be {\it trivial} if it assigns the value $1$ to
+every member of the group. The following lemma is a simple consequence of definitions, but is extremely
+useful.
+
+\proclaim Lemma Z. Let $\chi$ be a nontrivial character on an additive
+group $Z$. Then
+$$\sum_{x\in G} \chi(x) = 0.$$
+
+\proof Since $\chi$ is nontrivial, there must be some $x_0\in Z$
+with $\chi(x)\ne 1$. Then writing
+$$\sum_{x\in G} \chi(x) = \sum_{x\in G} \chi(x_0+x) = \chi(x_0) \sum_{x\in G} \chi(x),$$
+we see that this sum must be zero.\slug
+
+Before proceeding, we stop to prove a miscellaneous lemma about containment of
+$\ZZ_p$-lattices. It will be useful in a couple of the exercises below.
+
+\proclaim Lemma B. Let $L$ and $L'$ be $\ZZ_p$-lattices
+of the same rank. There exists a positive integer $m$ such that $p^m L\subseteq L'$.
+
+\proof Being free abelian groups, $L$ and $L'$ both have $\ZZ_p$-bases; call the matrices with these
+bases as columns $B$ and $B'$ respectively.
+These bases are also $\QQ_p$-bases for the associated quadratic space $V_{\QQ_p}$. The matrix
+$X$ such that $B = XB'$ has finitely many entries, all of which are $p$-adic
+rationals. Thus there is an $m$ for which $p^m X$ has entries in $\ZZ_p$. Now given a vector
+$v = p^m w\in p^m L$, we can express it as a linear combination of vectors in $B'$ by multiplying it by
+$X$ on the left. Since $p^mX$ and $w$ both have entries consisting entirely of $p$-adic integers,
+$Xv = X p^m w = (p^m X) w$ also consists entirely of $p$-adic integers. Hence we can express $v$ as a
+$\ZZ_p$-linear combination of vectors in $L'$.\slug
+
+\nineproclaim Exercise 10.
+Show that the characteristic function on $\ZZ_p$ is equal to its Fourier transform. More
+generally, let $V$ be a quadratic space over $\QQ_p$ and let $L$ be a $\ZZ_p$-sublattice of $V$. Show that
+the Fourier transform of $L$ is $\mu(L)$ times the characteristic function of the $\ZZ_p$-dual lattice;
+that is,
+$$\hat{\one_L} = \mu(L) \one_{L^\vee}.$$
+
+\nineproof
+Expanding the definition of the Fourier transform gives
+$$\hat{\one_L} (x) = \int_V \one_L(y) e^{-2\pi i(x\cdot y)} \d y = \int_L e^{-2\pi i(x\cdot y)}\d y.$$
+If $x$ is an element of the dual, then $x\cdot y$ is an integer for all $y\in L$, so the integrand
+is $1$ and the integral equals $\mu(L)$. If not, then
+$\chi(y) = e^{-2\pi i (x\cdot y)}$ is a nontrivial character. The kernel of $\chi$ is a sublattice
+of $L$, so by Lemma B, there is $n$ such that
+$\ker\chi \supseteq p^nL$, so by translation-invariance of the measure $\mu$,
+$$\eqalign{
+\int_L e^{-2\pi i(x\cdot y)}\d y
+& = \sum_{v\in L/p^nL} \int_{v+p^nL} \chi(y) \d y \cr
+& = \sum_{v\in L/p^nL} \chi(v)\int_{p^nL} \chi(y) \d y \cr
+&= \sum_{v\in L/p^nL} \chi(v) \int_{p^nL} 1\d y \cr
+&= \mu(p^nL)\sum_{v\in L/p^n L}\chi(v).\cr
+}$$
+But this is zero because the sum of a nontrivial character over a group is zero, by Lemma Z.
+\slug
+
+\boldlabel Ad\`eles. We let
+$$\hat\ZZ = \prod_p \ZZ_p,$$
+\vskip-5pt\noindent
+where the product is taken over all primes $p$.
+We then define $\AA_\ZZ = \RR\times \hat\ZZ$. The {\it ring of ad\`eles} $\AA_\QQ$ is the tensor product
+$\AA_\QQ = \QQ\otimes_\ZZ \AA_\ZZ$. An element in this ring is an infinite tuple consisting
+of a real number and one $p$-adic
+rational for each $p$, all but finitely many of which are $p$-adic integers.
+
+\nineproclaim Exercise 11. Let $L$ be a lattice of covolume $1$ in a quadratic space $V$. The Poisson
+summation formula on $V_\RR$ asserts that
+$$\sum_{v\in L} \phi(v) = \sum_{v\in L^\vee} \hat\phi(v),$$
+for all Schwartz functions $\phi$ on $V_\RR$, where $L^\vee$ is the dual lattice of $V$. The ad\`elic
+Poisson summation formula asserts that
+$$\sum_{v\in V} \phi(v) = \sum_{v\in V} \hat\phi(v),$$
+for all ad\`elic Schwartz functions $\phi$ on $V_{\AA_\QQ}$. Show that the ad\`elic Poisson
+summation formula implies its more familiar analogue on $V_\RR$.
+
+\nineproof
+Given a Schwartz function $\phi$ on $\RR$, we take our Schwartz function
+on the ad\`ele ring to be $f = \phi \otimes \one_{L\otimes \hat\ZZ}$. We have
+$$\sum_{v\in L} \phi(v) = \sum_{v\in V} \one_{L\otimes \hat\ZZ}(v) \phi(v) = \sum_{v\in V} f(v).$$
+By the ad\`elic Poisson summation formula, the right-hand side becomes
+$$\sum_{v\in V} f(v) = \sum_{v\in V} \hat f(v),$$
+but by the previous exercise, the Fourier transforms at the $p$-adic components are characteristic functions
+of dual lattices. So
+$$\sum_{v\in V} \hat f(v) = \sum_{v\in V} \one_{L^\vee\otimes \hat\ZZ} \hat\phi(v) = \sum_{v\in L^\vee}
+\hat\phi(v),$$
+which is what we were aiming to show.
+\slug
+
+\nineproclaim Exercise 12. Let $G = \GL_n(\QQ_p)$ and let $X = \GL_n(\QQ_p)/\GL_n(\ZZ_p)$. Show that
+the action of $G$ on $X$ satisfies the finiteness assumption that was made in class when we discussed
+Hecke operators, i.e., that the stabiliser of any $x\in X$ acts on $X$ with finite orbits.
+
+\nineproof We want to show that for all $x\in X$, the set
+$\Stab_G(x) y$ is finite. Note that $\Stab_G(e) = \GL_n(\ZZ_p)$, and for general $x\in X$, we have
+$$\Stab_G(x) = x \GL_n(\ZZ) x^{-1}.$$
+So for $y\in X$, $\Stab(x) y = x\GL_n(\ZZ_p) x^{-1} y$ and we are done if we can show that
+$\GL_n(\ZZ_p) z$ is finite for any $z\in X$.
+By applying Lemma~B with $L = z\ZZ_p^n$ and $L' = \ZZ_p^n$, we obtain $m$ such that
+$zp^m \ZZ_p^n \subseteq \ZZ_p^n$. Then we apply Lemma~B again with $L = \ZZ_p^n$ and $L' = zp^m \ZZ_p^n$
+to get $k\ge m$ such that $p^{k}\ZZ_p^n\subseteq p^m z\ZZ_p^n$.
+
+Now letting $L = p^m \ZZ_p^n$, we can associate to any $x\in X$ the sublattice $xL$
+of $\QQ_p^n$. If $x$ and $x'$ are different,
+then these sublattices are different, so our problem reduces to showing that the set of lattices of the
+form
+$\gamma zL$, where $\gamma\in \Stab_G(x)$, is finite. Since $\gamma$ comes from a conjugate of $\GL_n(\ZZ_p)$,
+it fixes $\ZZ_p^n$, so have the chain of inclusions
+$$p^{k}\ZZ_p^n \subseteq \gamma (zL) \subseteq \ZZ_p^n,$$
+showing that
+any such lattice of the prescribed form
+is a subgroup of $\ZZ_p^n$ containing $p^{k}\ZZ_p^n$. By the correspondence theorem,
+these subgroups are in bijection with elements of
+$$ \ZZ_p^n/\bigl(p^{k}\ZZ_p^n\bigr) \cong \bigl(\ZZ/p^{k}\ZZ\bigr)^n,$$
+which is finite.
+\slug
+
+\nineproclaim Exercise 13. Let $L$ be a unimodular $\ZZ_p$-lattice in a quadratic space $V$ over $\QQ_p$,
+and let $G$ be the orthogonal group over $\ZZ_p$ attached to $L$. Show that $G(\QQ_p)$ acts
+transitively on the set of pairs $(L_1,L_2)$ of unimodular lattices satisfying $L_1/(L_1\cap L_2)\cong
+\ZZ/p\ZZ$.
+
+\nineproof (Reginald Lybbert.)
+We write $L\sim_p L'$ if $L/(L\cap L') \cong \ZZ/p\ZZ$ and we take it as a fact (it was shown
+in class) that this is a symmetric relation. We shall also assume that $p\ne 2$, for the sake of everyone's
+sanity.
+Since $G(\QQ_p)$ acts transitively on lattices, we can assume that the first lattice in each tuple is
+the same.
+It is then enough to show that for any $(L,L_1)$ and $(L,L_2)$, we can find a map stabilising $L$ that sends
+$L_1$ to $L_2$. (We will allow ourselves the use of $L$ for a general unimodular
+lattice, not necessarily the one in the definition of $G$.) Note first that $pL_1\subseteq L$, since it
+is contained in the kernel of $L_1\to \ZZ/p\ZZ$, which is $L_1\cap L$. The kernel of $L\to L/pL$ is of
+course $pL$, so the kernel of $\phi: pL_1\to L/pL$ is $pL1\cap pL$. So we have
+$$\phi(pL_1)\cong {pL_1\over pL_1\cap pL} \cong {L_1\over L_1\cap L} \cong {\ZZ\over p\ZZ}.$$
+This is some line in $L/pL$, and it is isotropic because the length of any element in $L_1$ is integer.
+Multiplying by $p$, the length of the element in $L/pL$ is a multiple of $p$ and thus $0$. In fact, there
+is a correspondence between $p$-neighbours of $L$ and isotropic lines in $L/pL$. Given an isotropic line
+in $L/pL$, we see that it's preimage must lie in $L\cap L'$ for some lattices $L$ and $L'$. But we know
+what $L$ is, so we can deduce the lattice $L'$ for which the isotropic line is $\phi(pL')$. This shows
+the relation is one-to-one.
+
+To show that the relation is surjective, we take an isotropic line in $L/pL$, spanned by an element $\bar v\in L$;
+by Hensel's lemma (since $p\ne 2$, the gradient vector of the quadratic form is nonzero),
+we can lift this to a vector $v\in L$ with $v\cdot v = 0$. Consider
+$$L_v = \ZZ_p\cdot {1\over p}v + \{w\in L : w\cdot v \equiv 0\pmod p\}.$$
+The claim is that $L_v$ is a $p$-neighbour of $L$. To show that it has rank $n$, note that $L_v\subseteq (1/p)L$
+and $pL\subseteq L_v$, giving us $\QQ_p^n \subseteq L_v\otimes \QQ_p\subseteq \QQ_p^n$. Next, consider
+the map $L_v\to \ZZ/p\ZZ$ sending $(a/p)v + w$ to $a\bmod p$. It is certainly injective and its kernel is
+$L\cap L_v$. It remains to show that $L_v$ is unimodular, which takes a bit of work. Since $v$ is an isotropic
+vector in a unimodular lattice $L$, we can find a vector $u$ with $u\cdot v = 0$
+such that $\QQ_p u \ortho \QQ_p v$ is a hyperbolic plane. Let $\langle u,v\rangle$ denote the span of
+$u$ and $v$ in the lattice $L$, and let $\langle u,v\rangle^\perp_L$ denote its complement with respect to $L$.
+We have
+$$L = \langle u,v\rangle \ortho \langle u,v\rangle^\perp_L,$$
+where since both $L$ and $\langle u,v\rangle$ are unimodular, we conclude that $\langle u,v\rangle^\perp_L$ is.
+Note that
+$$L_v = \Bigl\langle pu,{v\over p}\Bigr\rangle \ortho \Bigl\langle pu,{v\over p}\Bigr\rangle^\perp_{L_v}.$$
+Since $(v/p)\cdot(v/p) = 0 = (p u)\cdot (pu)$ and $(v/p)\cdot (pu) = 1$, the first summand is unimodular.
+It thus remains to prove that the second summand is. We shall in fact show that
+$\langle u,v\rangle^\perp_L = \langle v/p, pu\rangle^\perp_{L_v}$. Take $w\in L$ such that $w\cdot v=w\cdot u=0$.
+Then $w\in L_v$ and $w\cdot (v/p) = w\cdot pu = 0$. On the other hand, if $w\in L_v$ with
+$w\cdot (v/p) = w\cdot pu = 0$, then writing $w = (a/p)v + x$ for some $x\in L$, we can write
+$x = \lambda v + \mu u + y$ where $y\in \langle u,v\rangle^\perp_L$, by the decomposition of $L$ we found earlier.
+We know that $w\cdot v = p(w\cdot v/p) = 0$ and $w\cdot u = (1/p)w\cdot(pu) = 0$, so $w$ is actually equal to $y$
+above, and thus is in $L$.
+
+We have now shown that we can write
+$$L = \langle u_1,v_1\rangle \ortho \langle u_1,v_1\rangle_L^\perp =
+\langle u_2,v_2\rangle \ortho       \langle u_2,v_2\rangle_L^\perp$$
+where
+$$L_1 = \Bigl\langle pu_1,{v_1\over p}\Bigr\rangle \ortho
+\Bigl\langle pu_1,{v_1\over p}\Bigr\rangle^\perp_{L_v}$$
+and
+$$L_2 = \Bigl\langle pu_2,{v_2\over p}\Bigr\rangle \ortho
+\Bigl\langle pu_2,{v_2\over p}\Bigr\rangle^\perp_{L_v}.$$
+The claim is that the map $g\in G(\QQ_p)$ sending
+$u_1\mapsto u_2$ and $v_1\mapsto v_2$ fixes $L$ and sends $L_1$ to $L_2$.
+It is clear that $\langle u_1,v_1\rangle \cong \langle u_2, v_2\rangle = g\langle u_1,v_1\rangle$.
+Then by Witt's cancellation theorem
+over $\ZZ_p$, we have $\langle u_1,v_1\rangle_L^\perp \cong \langle u_2,v_2\rangle_L^\perp =
+g\langle u_1,v_1\rangle_L^\perp$ as well, which
+completes the proof that $gL_1 = L_2$. (We proved Witt's cancellation theorem in class for fields but not lattices
+in general. However, it holds for lattices over $\ZZ_p$ where $p$ is odd,
+which can be seen by reducing the lattice modulo $p$
+and using the cancellation theorem for $\FF_p$; this was proved by B.~W.~Jones in 1942.)
+\slug
+
+\boldlabel Symplectic space and the Heisenberg group.
+A {\it symplectic space} is a vector space $V$ over a field $k$ endowed with a bilinear form
+$\langle\cdot,\cdot\rangle : V\times V\to k$, which is alternating in that $\langle v,w\rangle = 
+-\langle w,v\rangle$ for all $v,w\in V$ and which is nondegenerate, i.e., $\langle u,v\rangle = 0$
+for all $v\in V$ if and only if $u=0$. A key example is taking $W = k^2$, with
+$$\bigl\langle (a_1,b_1),(a_2,b_2)\bigl\rangle = a_1b_2-a_2b_1.$$
+
+The {\it Heisenberg group} of a symplectic space $W$ is the set $k\times W$ endowed with
+the group law
+$$(t_1, w_1)(t_2, w_2) = \bigl(t_1+t_2 +\langle w_1, w_2\rangle, w_1+w_2\bigr).$$
+Of course, in the case that $W$ is $k^2$, this boils down to the group law
+$$(t_1, v_1, w_1)(t_2, v_2, w_2) = (t_1+t_2 + v_1w_2 - v_2w_1, v_1+v_2, w_1+w_2)$$
+on triples in $k^3$.
+
+\nineproclaim Exercise 14. Write down the character table of the Heisenberg group $H(W)$ where $W$
+is the two-dimensional symplectic space over the field with $p$ elements.
+
+\ninesolution
+There are $p$ elements in the centre of $H(W)$, namely the elements $(t,0,0)$ for $t\in k$, so
+there are $p$ conjugacy classes $\bigl\{ (t,0,0)\bigr\}$ of one element each. The other
+conjugacy classes are of the form
+$$\bigl\{  (t,v_1, v_2) : t\in k\bigr\}$$
+for $(v_1, v_2) \ne (0,0)$; there are $p^2-1$ of these classes, and each of them contains $p$ elements,
+so we have accounted for all $p + p(p^2-1) = p^2$ elements of $H(W)$. So there are $p^2+p-1$ characters as well.
+We shall show that the character table is the following:
+$$
+\vbox{\offinterlineskip\eightpoint
+    \halign{ 
+        \hfil $#$\hfil\quad&\hfil $#$\hfil\quad&\quad $#$ \hfil\quad
+                 &\quad\hfil $#$ \hfil\quad&\quad\hfil $#$\hfil\cr
+        \hbox{Quantity} & \hbox{Dimension} & \hbox{Indexed by}
+              & \bigl\{(t,0,0)\bigr\} : t\in k & \bigl\{ (*,v,w)\bigr\}:(v,w)\ne (0,0) \cr
+        \noalign{\medskip}
+        \noalign{\hrule}
+        \noalign{\medskip}
+        p^2 & 1 & (m,n)\in k^2 & 1 & {\zeta_p}^{mv + nw} \cr
+        \noalign{\medskip}
+        p-1 & p & n\in k\setminus \{0\} & p{\zeta_p}^{nt} & 0 \cr
+    }
+}$$
+
+Let $\zeta_p$ be a primitive $p$th root of unity. There are $p^2$ representations of degree $1$, indexed
+by $(m,n)\in k^2$, each mapping $(t,v,w) \mapsto {\zeta_p}^{mv+nw}$. For the other $p-1$ representations,
+note that there are $p-1$ nontrivial characters $\psi_n : k\to \CC$, given by $\psi_n(t) = {\zeta_p}^{nt}$,
+where $n\in k\setminus \{0\}$.
+Each of these gives an action of $H(W)$ on $\calS(V)$, since for $f\in \calS(V)$, we can let
+$$\bigl((t,0,0)* f\bigr)(x) = \psi_n(t) f(x)\qquad\hbox{and}\qquad
+\bigl((0,v,w)* f\bigr)(x) = \psi_n(-2v\cdot x) f(x+w),$$
+It remains to find the trace of these representations on the conjugacy classes. To do so, we take
+as a basis for $\calS(W)$ the $p$ delta functions
+$$\delta_y(x) = \cases{1,& if $x=y$;\cr 0,& otherwise}$$
+for $y\in V$. In the case where an
+element of the form $(t,0,0)$ acts on the space, each $\delta_y$ is taken to $\psi_n(t) \delta_y$, so
+the matrix has $\psi_n(t)$ down the main diagonal and the trace is $p\psi_n(t) = p{\zeta_p}^{nt}$.
+
+For the conjugacy class $\bigl\{(*,v,w)\bigr\}$,
+we shall show that the trace is zero.
+These elements of $H(W)$ send
+$\delta_y$ to the function $x\mapsto \psi_n(-2v\cdot x) \delta_y(w+x) = \psi_n(-2v\cdot x)\delta_{y-w}$.
+This means that each row of this transformations's matrix has exactly one nonzero entry, but it cannot be on
+the main diagonal, having been shifted cyclically by $w$ places. Thus the trace is zero. If $w=0$, then all
+of the nonzero entries are still on the main diagonal, but then the trace becomes
+$$\sum_{x\in V} \psi_n(-2v\cdot x) = \sum_{x\in V} \psi_n(x) = 0,$$
+by Lemma~Z and the nondegeneracy of the dot product on $\FF_p$.\slug
+
+\section References
+
+\bye

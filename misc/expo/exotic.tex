@@ -1,0 +1,741 @@
+\input fontmac
+\input mathmac
+
+\input epsf
+\input color
+\input soul.sty
+
+\def\norm#1{|\!|#1|\!|}
+\def\threenorm#1{|\!|\!|#1|\!|\!|}
+\def\bignorm#1{\big|\!\big|#1\big|\!\big|}
+\def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
+\def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+\def\B{{\cal B}}
+\def\supp{\op{supp}}
+
+\widemargins
+\bookheader{TSIRELSON'S SPACE}{MARCEL K. GOH}
+
+\maketitle{Tsirelson's space\qquad and other exotic constructions}{}{Marcel K. Goh}{16 December 2021}
+
+\floattext4.5 \ninebf Abstract.
+\ninepoint
+This set of expository notes was
+written as a final report for the class MATH 567 Introduction to Functional Analysis,
+taught by Prof.~Gantumur Tsogtgerel at McGill University in the Fall 2021 semester.
+It builds up the necessary theory to describe Tsirelson's example of an infinite-dimensional
+Banach space with no subspace isomorphic to $c_0$ or $l_p$ for $1\le p<\infty$, and
+modifications thereof.
+
+\advsect Preliminary notions
+
+In this section we state definitions and well-known results that we shall require later on.
+Proofs are not given for many of the facts given here; they can be found in introductory textbooks on
+linear analysis (see, e.g.,~\ref{bollobas},~\ref{lindenstrauss},~\ref{schechter}).
+The reader comfortable with the terminology of Banach space theory
+may wish to skip this section, returning only upon finding an unfamiliar concept or definition.
+
+Let $K$ denote either the real or complex field and let $V$ be a vector space over $K$. A
+{\it norm} is a function $\norm{\cdot}:V\to\RR$ satisfying
+\medskip
+\item{i)} $\norm v \ge 0$ for all $v\in V$ and $\norm v = 0$ if and only if $v = 0$;
+\smallskip
+\item{ii)} $\norm{\alpha \cdot v} = |\alpha|\cdot\norm v$ for all $\alpha\in K$ and $v\in V$; and
+\smallskip
+\item{iii)} $\norm{v+w}\le \norm v + \norm w$ for all $v,w\in V$.
+\medskip
+A vector space equipped with such a function is called a {\it normed vector space}, and one can
+define a metric $d$ on the space by setting $d(x,y) = \norm{x-y}$. Thus one has a notion of
+Cauchy sequences in these spaces, and if a normed vector space $X$ is complete
+(every Cauchy sequence in $X$ has a limit in $X$), we say that $X$ is a {\it Banach space}.
+Any two norms on a finite-dimensional normed vector space are equivalent, in that they induce the
+same topology. This fact can be used to show that any finite-dimensional normed vector space over
+$\RR$ or $\CC$ is a Banach space, since these fields are complete.
+
+The field $\RR$ or $\CC$ under the norm given by the absolute value $|\cdot|$ is of course the
+simplest Banach space. Other basic examples include the following.
+\medskip
+\item{i)} Consider an $n$-dimensional vector space over $K$. Writing an element $x$ of this space
+as $x = (x_1, \ldots, x_n)$, this vector space can be endowed with the {\it $p$-norm}
+$$\norm{x}_p = \Bigl(\sum_{i=1}^n |x_i|^p\Bigr)^{1/p}.$$
+for $1\le p<\infty$. This defines a Banach space which we shall denote by $l_p^n$. As $p\to\infty$,
+this approaches the {\it maximum norm}
+$$\norm{x}_\infty = \max_{1\le i\le n} |x_i|,$$
+and we denote this Banach space by $l_\infty^n$.
+\smallskip
+\item{ii)} For $1\le p< \infty$, the $p$-norm for infinite sequences $x = (x_n)_{n=1}^\infty$ is given by
+$$\norm{x}_{l_p} = \Bigl(\sum_{i=1}^\infty |x_i|^p \Bigr)^{1/p}.$$
+As $p\to\infty$, this approaches the {\it supremum norm}
+$$\norm{x}_{l_\infty} = \sup_{i\ge 1} |x_i|.$$
+For $1\le p\le \infty$, the set $l_p$ of all infinite sequences $x$ with $\norm{x}{l_p}$ finite is a Banach space;
+when $p=\infty$, these are the bounded sequences.
+\smallskip
+\item{iii)} Let $c_0$ be the normed vector subspace of $l_\infty$ consisting of sequences that tend to zero.
+It can be shown that this subspace is closed and thus itself a Banach space.
+\medskip
+The latter two examples are infinite-dimensional, meaning that in these cases one can exhibit an
+infinite sequence of vectors that are all linearly independent.
+
+\medskip\boldlabel Hamel bases.
+Assuming the axiom of choice, one can
+find a basis for any vector space. This is a set of elements $\{e_i\}_{i\in I}$ such that any
+$x\in X$ can be expressed uniquely as $\sum_{i\in F} a_ie_i$ for a finite set $F\subseteq I$
+and scalars $a_i$, both depending on $x$.
+When dealing with infinite-dimensional spaces, such a basis
+is called a {\it Hamel basis} and are not awfully useful. To see why, we first need to establish (a variant of)
+the Baire category theorem, as well as simple lemma.
+
+\parenproclaim Theorem B (Baire category theorem). Let $X$ be a metric space that equals the union of
+countably many closed sets. If $X$ is complete, then at least one of the closed sets has nonempty interior.\slug
+
+\proclaim Lemma \advthm. Let $X$ be a normed vector space and let $Y$ be a subspace of $X$. If $Y$ has nonempty
+interior, then $Y=X$.
+
+\proof Suppose that for some $r>0$ and $y\in Y$, the ball $B_r(y) = \{x\in X : \norm{x-y} < r\}$ is contained
+in $Y$. Now let $x\in X$ and note that the vector
+$$z = y + {r\over 2}\cdot{x\over\norm x}$$
+is at distance $r/2$ from $y$, meaning that $z\in B_r(y)\subseteq Y$. Since $Y$ is a subspace, we find that
+$$x = {2\norm x\over r}(z-y)$$
+is in $Y$, completing the proof.\slug
+
+We now show that Hamel bases of Banach spaces cannot be countably infinite.
+
+\proclaim Lemma \advthm. Let $X$ be an infinite-dimensional normed vector space. If $X$ is also complete
+(and thus a Banach space), then any Hamel basis of $X$ is uncountable.
+
+\proof Suppose that $\{e_1\}_{i=1}^\infty$ is a countable Hamel basis for $X$. For integers $n\ge 1$,
+let $X_n$ denote the linear span of $\{e_1,\ldots,e_n\}$. Each normed vector space $X_n$ is finite-dimensional
+and thus complete, which implies that each $X_n$ is closed in $X$. We now show that every $X_n$ has empty
+interior, which completes the proof.\slug
+
+Since many infinite-dimensional
+Banach spaces have the cardinality of the continuum to begin with,
+the above lemma tells us that Hamel bases can essentially be as complicated as the underlying space.
+(In fact, it has been shown that
+the cardinality of the Hamel basis of a Banach space always equals the cardinality of the space
+itself~\ref{halbeisen2000}.)
+
+\medskip\boldlabel Completions.
+Consider now the infinite-dimensional vector space $c_{00}$ of sequences that are eventually zero. For all
+integers $i\ge 1$, let $e_i$ denote the sequence that is $1$ at index $i$ and $0$ elsewhere. The set
+$\{e_i\}_{i=1}^\infty$ is countable and clearly
+a Hamel basis for $c_{00}$, so we conclude that $c_{00}$, under any norm, cannot be a Banach space. However,
+for every normed vector space $V$, we can always find a Banach space $X$ such that $V$ is dense in $X$.
+We do this by letting $X$ be the completion of $V$ as a metric space and then defining scalar multiplication
+and addition as follows. If $x,y\in X$ are such that $x_n\to y$ and $y_n\to y$, then $\lambda x+\mu y$
+shall simply be defined as $\lim_{n\to \infty} (\lambda x_n + \mu y_n)$. We leave it as an easy exercise
+for the reader to check
+that this makes $X$ a normed vector space under the norm $\norm x = \lim_{n\to\infty}\norm{x_n}$, and that
+$X$ is complete with respect to this norm.
+
+\medskip\boldlabel Dual spaces and the weak topology.
+Let $X$ be a normed vector space.
+A linear operator from $X$ to its base field is called a {\it linear functional},
+and is continuous if and only if it is bounded.
+The set of bounded linear functionals on a normed vector space $X$ is a Banach space under the operator norm
+$$\norm{T} = \sup_{x\in X} {\norm {Tx}\over \norm{x}}.$$
+This space is called the {\it dual space
+of $X$} and is denoted $X^*$. If $(x_n)$ is a sequence of vectors in $X$ such that for some $x\in X$,
+$x^*(x_n)\to x^*(x)$ for all $x^*\in X^*$, then we say that $(x_n)$ {\it converges weakly to $x$}.
+If $(x_n)$ converges weakly to $0$, then we call $(x_n)$ {\it weakly null}. The topology that
+this definition of convergence
+induces on $X$ is called the {\it weak topology}; it is the coarsest topology such that every element
+of $X^*$ is still a continuous function.
+% When distinguishing the topology given by the norm from the
+% weak one, we shall call the norm topology the {\it strong topology}.
+% Since $x_n\to x$ implies that $x_n$ converges weakly
+% to $x$, the weak topology is, in general, strictly coarser than the strong topology. However, there are
+% many ``weak-to-strong'' principles in the theory of Banach spaces, the most celebrated of which is the following.
+% 
+% \parenproclaim Theorem U (Uniform boundedness principle). Let $X$ be a Banach space, $Y$ a normed vector space,
+% and ${\cal T}$ a collection of linear operators from $X$ to $Y$. If
+% $$\sup_{T\in{\cal T}} \bignorm{T(x)}_Y < \infty,$$
+% then
+% $$\sup_{T\in {\cal T}} \sup_{x\in X} {\bignorm{T(x)}_Y\over \norm{x}_X} <\infty.\noskipslug$$
+% 
+% The uniform boundedness principle can be used to show that any set of vectors
+% that is bounded in the weak topology is also bounded in the strong topology.
+% This fact will come in handy in a proof later on.
+
+\advsect Schauder bases
+
+We saw in the previous section that Hamel bases are not very useful for performing analysis on infinite-dimensional
+normed vector spaces.
+A better notion in the infinite-dimensional setting is that of a {\it Schauder basis}.
+This is a countable sequence of vectors $(e_i)_{i=1}^\infty$
+such that every $x\in X$ has a unique representation
+$$x = \sum_{i=1}^\infty a_ie_i$$
+for some sequence $(a_i)_{i=1}^\infty$ of scalars, where convergence of the infinite sum is defined in
+terms of the metric induced by the norm. From here on out, we shall sometimes write ``basis'' to mean ``Schauder
+basis'', for brevity's sake.
+A basis $(e_i)$ for which there exists $C$ such that
+$1/C \le \norm{e_i} \le C$ for all $i$ is called {\it seminormalised} and a seminormalised basis
+whose corresponding constant $C$ equals $1$ is said to be {\it normalised}.
+A sequence of vectors $(x_i)$
+that is a basis for the closure of its linear span is called a {\it basic sequence}.
+
+\medskip\boldlabel Equivalent bases.
+A basis $(x_i)$ for a Banach space $X$ and a basis $(y_i)$ for a Banach space $Y$ are
+said to be {\it equivalent} if the map $T$ sending $x_i$ to $y_i$ extends to a linear homeomorphism
+between $X$ and $Y$. Of course, this relation is reflexive, symmetric, and transitive.
+One can also show this to be the same as saying that there are constants $0<m\le M$ such that
+for any sequence $(a_i)$ of scalars,
+$$m\cdot\Norm{\sum_{i=1}^\infty a_ix_i}\le\Norm{\sum_{i=1}^\infty a_iy_i}\le
+ M\cdot\Norm{\sum_{i=1}^\infty a_ix_i}.$$
+To every Banach space $X$ with a basis $(e_i)_{i=1}^\infty$,
+we can associate a sequence $(P_n)_{n=1}^\infty$ of bounded linear operators given by
+$$P_n\Bigl(\sum_{i=1}^\infty a_ie_i\Bigr) = \sum_{i=1}^n a_ie_i.$$
+The quantity $\sup_{n\ge 1} \norm{P_n}$ is finite and called the {\it basis constant} of $(e_i)$.
+A basis $(e_i)$ with basis constant equal to $1$ is said to be {\it monotone}. Every Schauder basis
+is monotone with respect to the norm $\threenorm{x} = \sup_n \norm{P_n x}$, and this norm happens to be
+equivalent to the original one. Hence, given a basis, we can always pass to a norm under which the basis
+is monotone.
+
+\medskip\boldlabel Block basic sequences.
+Let $(e_i)$ be a basic sequence in a Banach space. A sequence of vectors $(x_j)$, each of the form
+$$x_j = \sum_{i=n_j+1}^{n_{j+1}} a_ie_i$$
+where the $a_i$ are scalars and $n_1<n_2<\cdots$ is an increasing sequence of positive integers, is
+called a {\it block basic sequence} or {\it block basis} of $(e_i)$.
+Defining the {\it support} $\supp x$ of a vector
+$ x = \sum_{i=1}^\infty a_i e_i$ with respect to a basis $(e_i)$
+to be the set of indices $i$ for which $a_i$ is nonzero, a block basis is a sequence of vectors $x_j$ for
+which $\supp x_j$ is finite for all $j$ and $\max \supp x_j < \min \supp x_{j+1}$ for all $j\ge 1$.
+
+\medskip\boldlabel Unconditional bases.
+Note that the definition of a Schauder basis may rely very much on the ordering
+imposed on its elements. There are some bases for which this is not the case. The following conditions are
+equivalent for a basis $(e_i)$ of a Banach space $X$.
+\medskip
+\item{i)} For every permutation $\pi$ of the positive integers, $\bigl(e_{\pi(i)}\bigr)_{i=1}^\infty$ is
+a basis of $X$.
+\smallskip
+\item{ii)} If a sum of the form $\sum_{i=1}^\infty a_i e_i$ converges, then any reordering of its terms
+produces a sum which converges to the same value.
+\smallskip
+\item{iii)} There exists a constant $C$ such that for all pairs of scalar sequences $(a_i)$ and $(b_i)$
+with $|a_i|\le |b_i|$ for all $i$,
+$$\Norm{\sum_{i=1}^\infty a_ie_i} \le C\Norm{\sum_{i=1}^\infty b_ie_i}.$$
+\medskip
+The proof of this equivalence can be found in Section~1.c of~\ref{lindenstrauss}. A basis satisfying any
+(and thus all) of these properties is called an {\it unconditional basis}, and a basis is said to be
+{\it $C$-unconditional} if it satisfies (iii) for some specific constant $C$.
+
+\medskip\boldlabel Symmetric and subsymmetric bases. In the sequence spaces $c_0$ or $l_p$ for $1\le p<\infty$,
+the canonical basis consists of vectors that have a $1$ at some index and zeroes everywhere else. Since
+each coordinate is weighted equally in $l_\infty$ or $l_p$ norm, this basis is equivalent to any of its
+permutations. Such a basic sequence in a Banach space is said to be {\it symmetric}. Note that
+this is a bit stronger than the condition we saw above for
+a basic sequence $(e_i)$ to be unconditional. In that case, we only needed $\bigl(e_{\pi(i)}\bigr)$ to be a
+basic sequence for all permutations $\pi$.
+
+An unconditional basis $(e_i)$ of a Banach space $X$ is called {\it subsymmetric} if for all $i_1<i_2<\cdots$,
+the subsequence $\bigl(e_{i_k}\bigr)$ is equivalent to $(e_i)$. Note that this time, the requirement that
+the basis be unconditional is not redundant. It can be shown, however, that every symmetric basis
+is subsymmetric (see Prop.~3.a.3 of~\ref{lindenstrauss}); we shall use this fact in the next section.
+
+Another fact that we'll need later regards a certain dichotomy in the family of subsymmetric basic sequences.
+
+\newcount\dichotomy
+\dichotomy=\thmcount
+\proclaim Lemma \advthm. Let $(x_i)$ be a bounded subsymmetric basic sequence. Then $(x_i)$ is either equivalent
+to the standard unit vector basis for $l_1$ or else $(x_i)$ is weakly null.
+
+\proof If $(x_i)$ is weakly null, then we are done. If not, then we know that there exists some
+$f\in X^*$ and $\delta>0$ such that $f(x_i) \ge \delta$ for all $i$. (If not, then $(x_i)$ would have a subsequence
+that is weakly null, and thus by subsymmetry the sequence itself is weakly null.)
+By scaling $f$ we can assume that it has
+operator norm equal to $1$. For any $n$, and scalars $(b_1,\ldots,b_n)$ we have
+$$\Norm{\sum_{i=1}^n |b_i| x_i} =\norm f\cdot \Norm{\sum_{i=1}^n |b_i| x_i} \ge f\Bigl(\sum_{i=1}^n |b_i|x_i\Bigr)
+= \sum_{i=1}^n |b_i|f(x_i)\ge \delta \sum_{i=1}^n |b_i|.$$
+Now let $C$ be the constant given by the unconditionality of $(x_i)$ and setting $a_i = |b_i|$, we have
+$$\Norm{\sum_{i=1}^n |b_i|x_i} \le C \cdot\Norm{\sum_{i=1}^n b_ix_i}.$$
+Putting everything together establishes
+$$\Norm{\sum_{i=1}^n b_ix_i} \ge {1\over C} \Norm{\sum_{i=1}^n |b_i|x_i}\ge
+{\delta\over C} \sum_{i=1}^n |b_i|$$
+for all $n$, and taking $n$ to infinity gives a corresponding lower bound on all infinite sequences $(b_i)$.
+
+The upper bound is a simple consequence of the triangle inequality. Let $M$ be the constant bounding $(x_i)$
+from above. Then since $\norm{x_i}\le M$ for all $i$, for an arbitrary infinite sequence $(b_i)$ of scalars we have
+$$\Norm{\sum_{i=1}^\infty b_ix_i}\le \sum_{i=1}^\infty |b_i|\cdot\norm{x_i}\le M \sum_{i=1}^\infty |b_i|,$$
+which combines with the lower bound to give
+$${\delta\over C} \sum_{i=1}^\infty |b_i| \le \Norm{\sum_{i=1}^\infty b_ix_i} \le M \sum_{i=1}^\infty |b_i|.$$
+Hence $(x_i)$ is equivalent to the unit vector basis of $l_1$.
+\slug
+
+\advsect Tsirelson's space and its dual
+
+For many decades, the infinite-dimensional
+Banach spaces known to functional analysts all contained a subspace linearly homeomorphic
+to $c_0$ or $l_p$ for $1\le p<\infty$. The first infinite-dimensional space without such a subspace was
+constructed by B.~S.~Tsirelson in 1974~\ref{tsirelson},
+and that same year T.~Figiel and W.~B.~Johnson gave a more explicit
+characterisation of its dual~\ref{figieljohnson}.
+In time, the dual of the original space has come to be known as $T$, with
+Tsirelson's original space denoted $T^*$. Properties of Tsirelson's space and variations thereof are collected
+in a book by P.~G.~Casazza and T.~J.~Shura~\ref{casazzashura}. We shall describe the space $T$ of
+Figiel and Johnson in this section, following Casazza and Shura's exposition but supplying some of the proofs
+that are omitted there.
+
+Let $E$ and $E'$ be subsets of the positive integers. We write $E<F$ to mean that the maximum element of $E$
+is less than the minimum element of $F$ and likewise we write $E\le F$ to mean the same thing, with
+``less than'' replaced by ``at most''. A sequence of finitely many sets $E_1,E_2,\ldots,E_k$ of positive integers
+is said to be {\it admissible} if
+$$ \{k\} \le E_1 < E_2 < \cdots < E_k.$$
+For $x\in c_{00}$ and a subset $E$ of positive integers, we write $Ex$ to denote the sequence that equals
+$x_i$ at index $i$ for all $i\in E$ and $0$ elsewhere. For a fixed $x\in c_{00}$ there are only
+finitely many $E$ such that $Ex$ is nonzero, since $x$ is finitely supported. Fixing a norm $\norm\cdot$
+on $c_{00}$ now,
+we say that
+$$\sum_{i=1}^k \norm{E_i x}$$
+is an {\it admissible sum for $x$} if $E_1,\ldots,E_k$ is admissible.
+
+The following proposition establishes a sequence of norms on $c_{00}$ in terms of admissible sequences
+of sets.
+
+\newcount\inductive
+\inductive=\thmcount
+\proclaim Proposition \advthm.
+For $x\in c_{00}$, we let $\norm{x}_0 = \norm{x}_{l_\infty}$
+and for $n\ge 1$, we inductively set
+$$\norm{x}_n = \max \biggl\{\norm{x}_{n-1}, {1\over 2}\max \sum_{i=1}^k \norm{E_i x}_{n-1}\biggr\},$$
+where the inner maximum is taken over the finitely many admissible sequences $E_1, E_2, \ldots, E_k$ for which
+the admissible sum for $x$ is nonzero. Then the following statements hold.
+\medskip
+\item{i)} For all $n\ge 0$, $\norm{\cdot}_n$ is a norm.
+\smallskip
+\item{ii)} For all $n\ge 0$ and $x\in c_{00}$, $\norm{x}_n\le \norm{x}_{l_1}$.
+\smallskip
+\item{iii)} The limit $\lim_{n\to \infty} \norm{x}_n$ exists and defines a norm on $c_{00}$.
+\medskip
+
+\proof The proof of (i) is inductive; the base case $n=0$ corresponds to $\norm\cdot _{l_\infty}$, which
+we already know to be a norm. Now assume the statement proven for $n-1$. The only property that isn't quite
+immediate is the triangle inequality. Note that for $x,y\in c_{00}$ nonzero,
+if $E(x+y)$ is nonzero and $Ex=0$, then $E(x+y) = Ey$. So
+$$\max^{(x+y)} \sum_{i=1}^k \norm{E_i (x+y)}_{n-1} \le
+   \max^{(x)}\sum_{i=1}^k \norm{E_ix}_{n-1}+ \max^{(y)} \sum_{i=1}^k \norm{E_iy}_{n-1},$$
+where $\max^{(x)}$ ranges over all admissible sequences whose corresponding admissible sum for $x$ is nonzero.
+Then we have
+$$\eqalign{
+\norm{x+y}_n &= \max\biggl\{\norm{x+y}_{n-1}, {1\over 2}\max^{(x+y)}\sum_{i=1}^k \norm{E_i (x+y)}_{n-1}\biggr\}\cr
+&\le \max\biggl\{\norm{x}_{n-1} +\norm{y}_{n-1},
+{1\over 2}\max^{(x+y)} \sum_{i=1}^k \bigl(\norm{E_i x}_{n-1} + \norm{E_i y}_{n-1}\bigr)\biggr\} \cr
+&\le \max\biggl\{\norm{x}_{n-1}, {1\over 2}\max^{(x)}\sum_{i=1}^k \norm{E_i x}_{n-1}\biggr\} \cr
+&\qquad\qquad+\max\biggl\{\norm{y}_{n-1}, {1\over 2}\max^{(y)}\sum_{i=1}^k \norm{E_i y}_{n-1}\biggr\}\cr
+&= \norm{x}_n + \norm{y}_n,\cr
+}$$
+by linearity of the maximum function.
+
+The claim (ii) is rather obvious, and again the proof is by induction, with the base case $\norm{x}_{l_\infty}
+\le \norm{x}_{l_1}$. Now let $n\ge 1$ and suppose the statement proven for $n-1$. If $\norm{x}_n = \norm{x}_{n-1}$
+we are done, and if not, then
+$$\norm{x}_n = {1\over 2}\max^{(x+y)}\sum_{i=1}^k \norm{E_i (x+y)}_{n-1}
+\le {1\over 2}\max^{(x+y)}\sum_{i=1}^k \norm{E_i (x+y)}_{l_1}$$
+and since any admissible sequence consists of disjoint sets, each coordinate $x_i$ in $x$ contributes $|x_i|$
+to the sum on the right-hand side at most once. Hence in this case $\norm{x}_n \le \norm{x}_{l_1}$ as well.
+
+Since the norms $\norm{x}_n$ are nondecreasing in $n$ for any fixed $x$ and bounded above by $\norm{x}_{l_1}$,
+this value must converge to a limit as $n\to\infty$. The fact that $\norm{x} = \lim_{n\to\infty} \norm{x}_n$
+is a norm is easy to see (the triangle inequality follows from linearity of the limit). We have thus proven
+(iii).\slug
+
+The above proposition asserts that $c_{00}$ endowed with the norm $\norm\cdot$ is a normed vector space. We
+then define Tsirelson's space $T$ to be the completion of $c_{00}$ with respect to this norm. For each index
+$i$, let $t_i$ be the vector whose $i$th coordinate is $1$ and whose other coordinates are all $0$. The
+sequence $(t_i)$ forms a normalised $1$-unconditional Schauder basis for $T$. This can be proven by inductively
+verifying that it holds for the completion of $c_{00}$ with respect to $\norm\cdot _n$ for all $n$.
+
+We also have the identity
+$$\norm{x} = \max\biggl\{ \norm{x}_{l_\infty}, {1\over 2}\sup \sum_{i=1}^k \norm{E_i x}\biggr\},$$
+in which the supremum is taken over all $k$ and all possible admissible sequences $E_1,\ldots,E_k$.
+This could actually have been taken as the {\it definition} of the Tsirelson norm (it is the
+unique norm with this property), which
+might appear to be nonsensical, because the norm appears on both sides of the definition.
+However, it is actually perfectly reasonable, since the $E_i x$ on the right hand side have
+$|\supp E_i x| < |\supp x|$ and we can assume by induction that the norm is already defined for these vectors.
+The base cases are the vectors that have only one nonzero coordinate, for which we must take the $l_\infty$-norm.
+In any case, let us prove that this definition is equivalent to the norm that we constructed above.
+
+\newcount\recursive
+\recursive=\thmcount
+\proclaim Proposition \advthm. For any $x\in T$, we have
+$$\norm{x} = \max\biggl\{ \norm{x}_{l_\infty}, {1\over 2}\sup \sum_{i=1}^k \norm{E_i x}\biggr\},$$
+where the supremum is taken over all $k$ and all admissible sequences $E_1,\ldots,E_k$.
+
+\proof Since $c_{00}$ is dense in $T$, it suffices to prove the proposition for $x\in c_{00}$. If
+$\norm x = \norm{x}_{l_\infty}$, then for every $n\in \NN$ and admissible sequence $E_1,\ldots,E_k$, we
+have
+$$ {1\over 2}\sum_{i=1}^k \norm{E_i x}_n \le \norm{x}_n.$$
+Then by linearity of the supremum, we have
+$${1\over 2}\sum_{i=1}^k \norm{E_i x} \le {1\over 2}\sum_{i=1}^k \sup_{n\ge 0} \norm{E_i x}_n
+= \sup_{n\ge 0}{1\over 2}\sum_{i=1}^k \norm{E_i x}_n \le \sup_{n\ge 0} \norm{x}_n = \norm{x},$$
+which shows that the identity holds in this case. If $\norm x\ne \norm_{l_\infty}$, then for all $\eps >0$
+there is $n\ge 1$ such that $\norm{x}< \norm{x}_n + \eps$ and $\norm{x}_n > \norm{x}_{n-1}$. This means
+there is some $k'$ and $E_1,\ldots,E_{k'}$ such that
+$$ \norm {x}_n = {1\over 2} \sum_{i=1}^{k'} \norm{E_i x}_{n-1}.$$
+It follows that
+$$\eqalign{
+\norm x - \eps &< \norm{x}_n = {1\over 2} \sum_{i=1}^{k'} \norm{E_i x}_{n-1}
+\le {1\over 2} \sum_{i=1}^{k'} \norm{E_i x}
+\le \sup{1\over 2} \sum_{i=1}^{k} \norm{E_i x}.
+}$$
+For an upper bound on the supremum, we pick $k''$ and an admissible sequence $E_1,\ldots, E_{k''}$ such that
+$$\sup{1\over 2} \sum_{i=1}^{k} \norm{E_i x} < {1\over 2} \sum_{i=1}^{k''} \norm{E_i x} + \eps.$$
+We then pick $n'$ such that
+$$\sup{n\ge 1}{1\over 2} \sum_{i=1}^{k''} \norm{E_i x}_n <
+{1\over 2} \sum_{i=1}^{k''} \norm{E_i x}_{n'} + \eps.$$
+This yields the upper bound
+$$\eqalign{
+{1\over 2} \sum_{i=1}^{k} \norm{E_i x} &< {1\over 2} \sum_{i=1}^{k''} \norm{E_i x} + \eps \cr
+&= {1\over 2} \sum_{i=1}^{k''} \sup_{n\ge 1} \norm{E_i x}_n + \eps \cr
+&= \sup_{n\ge 1} {1\over 2} \sum_{i=1}^{k''} \norm{E_i x}_n + \eps \cr
+&< {1\over 2} \sum_{i=1}^{k''} \norm{E_i x}_{n'} + 2\eps \cr
+&\le \norm{x}_{n'+1} + 2\eps\cr
+&\le \norm{x} + 2\eps.\cr
+}$$
+We have shown that
+$$\norm{x}-\eps < \sup{1\over 2} \sum_{i=1}^{k} \norm{E_i x} < \norm{x} + 2\eps,$$
+which, since $\eps$ was arbitrary, gives us equality.\slug
+
+This recursive identity is the only definition one really uses when performing any serious computations
+with Tsirelson's norm. In particular, it asserts that we have,
+for any $x\in T$ and admissible sequence $E_1,\ldots,E_k$,
+$$\sum_{i=1}^k \norm{E_i x} \le 2 \norm x.$$
+As a demonstration of the utility of the identity, consider the proof of the
+following proposition, which gives us an idea of
+how Tsirelson's norm behaves on subsets of a seminormalised block basis.
+
+\newcount\tsirelsonblock
+\tsirelsonblock=\thmcount
+\proclaim Proposition \advthm. Let $(t_i)$ denote the usual unit vector basis of Tsirelson's space
+and let $k$ be a positive integer and let $M\ge 1$. For any $k$ blocks $(y_j)_{j=1}^k$,
+where each $y_j$ satisfies $1/M \le \norm{y_j}\le M$ and is of the form
+$$y_j = \sum_{i=n_j+1}^{n_{j+1}} a_i t_i$$
+for some scalars $a_i$ and $k-1\le n_1<n_2 <\cdots < n_{k+1}$, we have
+$${1\over 2M} \sum_{j=1}^k |b_j| \le \Norm{\sum_{j=1}^k b_jy_j} \le M\sum_{j=1}^k |b_j|$$
+for all $k$-tuples of scalars $(b_1,\ldots, b_k)$.
+
+\proof By the triangle inequality and the fact that $\norm{y_j} \le M$ for all $j$, we have
+$$\Norm{\sum_{j=1}^k b_jy_j} \le \sum_{j=1}^k \norm{b_jy_j} \le  M\sum_{j=1}^k |b_j|.$$
+For the lower bound, we let $x = \sum_{j=1}^k b_jy_j$ and let
+$$E_j = \{n_j+1, n_j+2, \ldots, n_{j+1}-1\}$$
+for $1\le j\le k$. Then
+$$\norm x \ge {1\over 2}\sum_{j=1}^k \norm{E_j x} = {1\over 2}\sum_{j=1}^k \norm{b_j y_j}
+  \ge {1\over 2M}\sum_{j=1}^k |b_j|.\noskipslug$$
+
+We are almost ready to prove that $T$ does not contain a copy of $l_1$. We just need one more lemma,
+which is well-known and due to R.~C.~James~\ref{james1964}.
+
+\parenproclaim Lemma J (James, {\rm 1964}). If a normed linear space contains a subspace isomorphic
+to $l_1$, then for any $\delta>0$, there is a normalised block basic sequence $(u_j)_{j=0}^\infty$ such that
+$$(1-\delta)\sum_{j=0} |a_j| \le \Norm{\sum_{j=0}^\infty a_ju_j} \le \sum_{j=0}^\infty |a_j|$$
+for every sequence $(a_j)_{j=0}^\infty$ of scalars such that at least one $a_j$ is nonzero.
+
+\proof The statement holds trivially when $\delta\ge 1$, so let $0<\delta<1$.
+The subspace $B$ isomorphic to $l_1$ contains a sequence $(x_i)_{i=0}^\infty$ for which there
+exist constants $m$ and $M$ such that
+$$ m\sum_{i=0}^\infty |a_i| \le \Norm{\sum_{i=0}^\infty a_i x_i} \le M\sum_{i=0}^\infty |a_i|$$
+for all sequences $(a_i)_{i=0}^\infty$ of scalars. For $n\ge 1$, let
+$$ K_n = \inf \biggl\{ \Norm{ \sum_{i=n}^\infty a_ix_i } : \sum_{i=0}^\infty |a_i| = 1\biggr\} $$
+and set $K$ to $\lim_{n\to \infty} K_n$. We of course have $m\le K\le M$. Let $\phi >1$ and $0<\theta<1$
+be such that $1-\delta \le \theta/\phi$. Choose $n_0<n_1<n_2$ such that $K_{n_0+1} \ge \theta K$ and for which
+there is a block
+basic sequence $(y_j)_{j=0}^\infty$ with each $y_j$ of the form
+$$ y_j = \sum_{j=n_j+1}^{n_{j+1}} a_i x_i $$
+for some scalars $a_i$ (depending on $j$) and with $\norm{y_j} \le \phi K$ for all $j$.
+Let $(a_j)_{j=0}^\infty$ be an arbitrary sequence of scalars.
+The normalised
+block basis consisting of $u_j = y_j/\norm{y_j}$ satisfies
+$$\Norm{\sum_{j=0}^\infty a_ju_j} \le \sum_{j=0}^\infty |a_j|$$
+by the triangle inequality. By the construction of the block basis,
+each $y_j$ has $\supp y_j > \{n_0\}$, so by the definition of $K_{n_0+1}$,
+$$\Norm{\sum_{j=0}^\infty a_jy_j} = \Norm{\sum_{j=n_0+1}^\infty a_jy_j} \ge K_{n_0+1} \sum_{j=0}^\infty |a_j|
+\ge \theta K \sum_{j=0}^\infty |a_j|.$$
+Then since $\norm{y_j} \le \phi K$ for all $K$ and $\theta/\phi \ge 1-\delta$, we have
+$$\Norm{\sum_{j=0}^\infty a_j u_j} = \normm{\sum_{j=0}^\infty a_j {y_j\over \norm{y_j}}}
+\ge {1\over \phi K} \Norm{\sum_{j=0}^\infty a_j y_j} \ge (1-\delta)\sum_{j=0}^\infty |a_j|,$$
+which proves the lower bound.\slug
+
+Note that in James' original statement of the lemma, the $u_j$ are just vectors contained in the closed unit
+ball. However, the construction in his proof actually produces a block basic sequence, and we
+normalised it in our own version of the proof above.
+We are now set to show that $l_1$ does not embed into $T$.
+
+\newcount\nolone
+\nolone=\thmcount
+\proclaim Theorem \advthm. Tsirelson's space $T$ does not contain a subspace isomorphic to $l_1$.
+
+\proof Suppose, towards a contradiction, that $T$ did contain a subspace isomorphic to $l_1$. Then, applying
+Lemma~J with $\delta = 1/9$, there exists a normalised block basic sequence $(y_j)_{j=0}^\infty$
+such that for all sequences $(a_j)_{j=0}^\infty$ of scalars,
+$${8\over 9} \sum_{j=0}^\infty |a_j| \le \Norm{\sum_{j=0}^\infty a_jy_j} \le\sum_{j=0}^\infty |a_j|.$$
+In particular, if we let $r\ge 1$ be an integer and let $(a_j)_{j=0}^\infty$ be the sequence with
+$$a_j = \cases{ 1,& if $j=0$;\cr 1/r,& if $1\le j\le r$;\cr 0,& if $j>r$,}$$
+then we have $\sum_{j=0}^\infty |a_j| = 2$. This yields
+$$\Norm{ y_0 + {1\over r}\sum_{j=1}^r y_j} = \Norm{\sum_{j=0}^\infty a_jy_j} \ge
+{8\over 9}\sum_{j=0}^\infty |a_j| = {16\over 9}$$
+for all integers $r\ge 1$.
+
+Now let $\{k\}\le E_1 < E_2 < \cdots < E_k$ be an arbitrary admissible sequence of sets, and let
+$r_0 =\max\supp y_0$. If $k > r_0$, then
+$$\sum_{i=1}^k \normm{ E_i \Bigl( y_0 + {1\over r}\sum_{j=1}^r y_j\Bigr)}
+=\sum_{i=1}^k \normm{ E_i \Bigl({1\over r}\sum_{j=1}^r y_j\Bigr)} \le 2\cdot\Norm{{1\over r}\sum_{j=1}^r y_j}
+\le 2.$$
+If $k\le r_0$, then we set
+$$S = \bigl\{1\le j\le r : \norm{E_i y_j}\ne 0\ \hbox{for at least two values of}\ i\bigr\}$$
+and
+$$T = \bigl\{1\le j\le r: \norm{E_i y_j}\ne 0\ \hbox{for at most one value of}\ i\bigr\}.$$
+Note that if $j\in S$, then $y_j$ straddles the border between $E_i$ and $E_{i+1}$ for some $i$, and
+no other $y_{j'}$ can do so, since the supports of the $y_j$ are disjoint. So the cardinality of $S$ is
+at most $k-1$. It is also clear that $S$ and $T$ are disjoint and $|S|+|T| = r$, so
+$$2|S| + |T| \le 2(k-1) + r- k+1 = r+k-1.$$
+Since the $y_j$ are unit vectors, we have
+$$\eqalign{
+\sum_{i=1}^k \normm{E_i \Bigl({1\over r}\sum_{j=1}^\infty y_i\Bigr)} &=
+\sum_{j\in S} \sum_{i=1}^k \norm{E_iy_j} + \sum_{j\in T} \sum_{i=1}^k \norm{E_iy_j}\cr
+&\le  \sum_{j\in S} 2\cdot \norm{y_j} + \sum_{j\in T} \norm{y_j},\cr
+&\le r+k-1\cr
+}$$
+by rearranging sums.
+Dividing by $r$ and adding the unit vector $y_0$ into the mix, we have
+$$\eqalign{
+\sum_{i=1}^k \normm{ E_i \Bigl( y_0 + {1\over r} \sum_{j=1}^r y_j\Bigr)}
+  &\le\sum_{i=1}^k \norm{E_i y_0} + {1\over r}\sum_{i=1}^k\normm{E_i\Bigl({1\over r}\sum_{j=1}^\infty y_i\Bigr)}\cr
+&\le 2 + {r+k-1\over r} \cr
+&\le 3 + {n_0\over r}.\cr
+}$$
+Selecting some $r\ge 2n_0$, the right-hand side is at most $7/2$, meaning that
+$$\Norm{y_0 + {1\over r} \sum_{j=1}^r y_j} \le 7/4,$$
+and we have $7/4 \ge 16/9$, the contradiction we sought.\slug
+
+In the proof that $c_0$ and the other $l_p$ spaces do not embed into $T$ either, we shall make use of
+the following theorem, a version of what is called the Bessaga--Pe\l czy\'nski Selection Principle
+(see~\ref{bessagapelczynski}, Theorem 3).
+
+\parenproclaim Theorem S (Bessaga--Pe\l czy\'nski, {\rm 1958}).
+Let $X$ be a Banach space with basis $(e_i)$ and let $(e_i^*)$ be the coefficient
+functionals given by
+$$ e_j^*\Big(\sum_{i=1}^\infty a_i e_i\Bigr) = a_j.$$
+If $(y_i)_{i=1}^\infty$ is a sequence of vectors in $X$ such that
+\medskip
+\item{i)} $\lim_{i\to\infty} \norm{y_i} > 0$; and
+\smallskip
+\item{ii)} $\lim_{i\to\infty} e_j^*(y_i) = 0$ for all indices $j\ge 1$,
+\medskip\noindent
+then there exists a subsequence of $(y_i)$ which is equivalent to a block basis with respect to the original
+basis $(e_i)$.\slug
+
+To prove that $c_0$ and $l_p$ do not embed into $T$, we shall actually prove the following stronger result.
+
+\proclaim Theorem \advthm. Tsirelson's space $T$ does not contain a seminormalised subsymmetric basic
+sequence.
+
+\proof Towards a contradiction, suppose that $(y_i)$ is a seminormalised subsymmetric basic sequence in $T$.
+Since the sequence is seminormalised, it is bounded from above, so by Lemma~{\the\dichotomy}, either $(y_i)$
+is equivalent to the canonical basis for $l_1$ or $(y_i)$ is weakly null. We already proved Theorem~{\the\nolone}
+above, which deems the first scenario impossible, so $(y_i)$ must be weakly null and thus in particular
+satisfies condition (ii) of Theorem S. In addition, since $(y_i)$ is seminormalised, it is uniformly bounded
+away from zero, so we are in the position to conclude from Theorem S that there is a subsequence of $(y_i)$
+which is equivalent to a block basic sequence $(x_i)$ against the unit vector basis $(t_i)$ of $T$.
+We shall now pass to subsequences both in $(x_i)$
+and in $(y_i)$. First, pass to a subsequence and reindex $(x_i)$ to ensure that $\supp x_i > \{i\}$ for all $i$.
+Now we pass to a subsequence of $(y_i)$ that is equivalent to this new $x_i$ and reindex; this is equivalent
+to the original sequence by subsymmetry.
+
+Since $y_i$ is seminormalised and there is a linear homeomorphism mapping each $y_i\mapsto x_i$,
+$(x_i)$ is seminormalised as well; that is, there is
+$M\ge 1$ such that $1/M \le \norm{x_i}\le M$.
+Now since $\supp x_i > \{i\}$ for all $i$,
+we can apply Proposition~{\the\tsirelsonblock} with the constant $M$ on any $n$ blocks
+$x_{i_1}, x_{i_2}, \ldots, x_{i_n}$ of $(x_i)$
+to find that for all $n$-tuples $(b_1,\ldots, b_n)$ of scalars,
+$${1\over 2M}\sum_{k=1}^n |b_k| \le \Norm{\sum_{k=1}^n b_kx_{i_k}} \le M\sum_{k=1}^n |b_k|.$$
+We thus find that for any $n$, $(x_i)$ (and hence $(y_i)$)
+contains a subsequence of length $n$ which is equivalent to the standard basis of $l_1^n$. Complete
+each of these finite sequences to infinite subsequences. Recall that $(y_i)$ is equivalent to all of them,
+so for all $n$, the first $n$ elements of $(y_i)$ are equivalent to the standard basis of $l_1^n$. Thus
+$(y_i)$ is equivalent to the standard basis of $l_1$ and we know this cannot happen.\slug
+
+\proclaim Corollary \advthm. Tsirelson's space $T$ does not contain $c_0$ or $l_p$ for $1<p<\infty$.
+
+\proof The unit vector bases of these spaces are normalised (hence seminormalised) subsymmetric
+basic sequences.\slug
+
+\advsect Banach spaces inspired by Tsirelson's space
+
+Tsirelson's example marked a bit of a turning point in the theory of Banach spaces. It is important not
+only because it settled a long-standing open problem, but because the construction that underlied it turned
+out to be modifiable in various ways to tackle other problems. In this section we shall give a brief survey
+of some ``Tsirelson-inspired'' Banach spaces. The aim of this section is breadth rather than rigour,
+so we shall not give proofs as we did in the previous section for Tsirelson's space. Instead, we are
+more interested in the constructions themselves, how they build upon each other, and the properties
+they satisfy.
+
+\medskip\boldlabel Schlumprecht's arbitrarily distortable space. Let $X$ be an infinite-dimen\-sional Banach
+space under the norm $\norm\cdot$
+For $\lambda > 1$, we say that $X$ is {\it $\lambda$-distortable} if there exists an equivalent norm
+$\threenorm\cdot$ on $X$ such that for each infinite-dimensional subspace $Y$ of $X$, we have
+$$\sup\biggl\{{\threenorm{y_1}\over\threenorm{y_2}}:y_1,y_2\in Y,\,\norm{y_1} = \norm{y_2} = 1\biggr\}\ge\lambda.$$
+The norm $\threenorm\cdot$ is called a {\it $\lambda$-distortion} if this is true.
+The space $X$ is called {\it distortable} if it is $\lambda$-distortable for some $\lambda>1$, and
+{\it arbitrarily distortable} if it is distortable for every $\lambda>1$. In 1991, T.~Schlumprecht
+proved the existence of an arbitrarily distortable Banach space~\ref{schlumprecht1991}.
+
+Schlumprecht's construction relies on a function $f : [1,\infty)\to [1,\infty)$ satisfying
+\medskip
+\item{i)} $f(1) = 1$ and $f(x)<x$ for all $x>1$;
+\smallskip
+\item{ii)} $f$ is strictly increasing to infinity;
+\smallskip
+\item{iii)} $lim_{x\to\infty} f(x)/x^q = 0$ for all $q>0$;
+\smallskip
+\item{iv)} the function $g(x) = x/f(x)$ is concave for $x\ge 1$; and
+\smallskip
+\item{v)} $f(x)f(y) \ge f(xy)$ for all $x,y\ge 1$.
+\medskip
+Of course, we need such a function to actually exist, but it is easily seen that $f(x) = \log_2(x+1)$ does.
+We then define a sequence $\threenorm{\cdot}_n$ of norms on $c_{00}$ by setting
+$\threenorm{x}_0 = \norm{x}_{l_\infty}$
+and for $n\ge 1$ we put
+$$\threenorm{x}_{n} = \max_{k\ge 2} \max {1\over f(k)} \sum_{i=1}^k \threenorm{E_i x}_{n-1},$$
+where the inner maximum is over all subsets $E_1<E_2<\cdots <E_k$ of positive integers (unlike in
+Tsirelson's example, we do not need ${k}\le E_1$ this time) for which $E_i x$ is nonzero for some $1\le i\le k$.
+Schlumprecht's space $X$ is then defined to be the completion of $c_{00}$ with respect to the limit
+$\norm\cdot$ of these norms.
+
+Let $(e_i)$ denote the sequence of vectors in $c_{00}$, where $e_i$ has a $1$ at the $i$th coordinate and
+zeroes elsewhere. It is an unconditional basis for $X$ just as it was for $T$. But whereas $T$ contained no
+seminormalised subsymmetric basic sequences, $(e_i)$ is actually a normalised subsymmetric basis of $X$.
+Just as in Tsirelson's example, one can show that the norm on $X$ satisfies the
+recursive identity
+$$\norm x = \max\Bigl\{\norm{x}_{l_\infty}, \sup_{k\ge 2} \sup {1\over f(k)} \sum_{i=1}^k \norm{E_i x}\Bigr\},$$
+where the inner supremum runs over all subsets $E_1 < E_2<\cdots <E_k$ of positive integers.
+Note that $X$ also does not contain $c_0$ or $l_p$ for $1\le p<\infty$,
+and the fact that $X$ is arbitrarily
+distortable is established by the following theorem.
+
+\proclaim Theorem D. Let $X$ denote Schlumprecht's space and $\norm\cdot$ its norm. For any positive integer
+$k$ and $x\in X$, let
+$$\norm{x}_k = \sup {1\over f(k)} \sum_{i=1}^k \norm{E_i x}.$$
+For every $k$, every $\eps>0$, and every infinite-dimensional subspace $Y$ of $X$,
+there are unit vectors $y_1, y_2\in Y$ such that
+$$\norm{y_1}_k \ge 1-\eps\qquad\hbox{\rm and}\qquad \norm{y_2}_k \le {1+\eps\over f(k)}.$$
+In particular, this means that $\norm\cdot _k$ is an $f(k)$-distortion on $X$.\slug
+
+\medbreak
+\boldlabel The unconditional basic sequence problem.
+In Section~2 we defined what it means for a basis or a basic sequence to be unconditional.
+Both Tsirelson's space and Schlumprecht's space have unconditional bases, and so do all classical Banach spaces.
+It was unknown for many years whether every infinite-dimensional Banach space contains an unconditional basic
+sequence. Soon after Schlumprecht presented his example in the summer of 1991,
+W.~T.~Gowers and B.~Maurey independently constructed
+Banach spaces without an unconditional basic sequences. They subsequently discovered that both examples
+were fundamentally the same, and ended up publishing jointly~\ref{gowersmaurey1993}.
+
+Recall that we say that $X$ is the {\it direct sum} of $Y$ and $Z$ and write $X = Y\oplus Z$ if
+the map $Y\times Z\to X$ sending $(y,z)\mapsto y+z$ is a linear homeomorphism. An infinite-dimensional
+Banach space $X$ is said to be {\it decomposable} if $X$ can be written as $X = Y\oplus Z$ where
+both $Y$ and $Z$ are also infinite-diimensional. An infinite-dimensional
+Banach space $X$ without any decomposable subspaces is called
+{\it hereditarily indecomposable}. If a space $X$ has an unconditional basic sequence $(x_i)_{i=1}^\infty$, then
+letting $Y$ be the closed linear span of $(x_{2i-1})_{i=1}^\infty$ and $Z$ be the closed linear span
+of $(x_{2i})_{i=1}^\infty$, we see that $X$ is not hereditarily indecomposable. So to produce an
+infinite-dimensional space without an unconditional basic sequence, it suffices to produce a hereditarily
+indecomposable one, and that is what Gowers and Maurey did.
+
+Before describing their construction, we need to establish a fair bit of terminology and notation.
+Let $J$ be
+a set of positive integers such that if $m,n\in J$ with $m<n$, then $\log\log\log n \ge 4m^2$. We also
+assume that the smallest element of $J$ is greater than $256$. We write
+$J$ in increasing order as $\{j_1, j_2,\ldots\}$, let $K$ be the subset of elements with odd index, and let $L$
+be the subset of elements with even index. We recall here that a sequence $y=(y_i)\in l_1$
+defines a linear functional $f_y$ on $c_{00}$ with $\norm{f_y} = \norm{y}_{l_1}$ given by
+$$f_y\bigl((x_i)\bigr) = \sum_{i=1}^k x_i y_i.$$
+Any bounded linear functional $f$ on $c_{00}$ can be associated to an element of $l_1$ by evaluating $f$
+at each of the standard basis elements of $c_{00}$, so the topological dual of $c_{00}$ is $l_1$.
+
+We say that a sequence $x_1,x_2,\ldots,x_n$ of scalar sequences is {\it successive} and write
+$x_1<x_2<\ldots<x_n$ if $\supp x_i < \supp x_{i+1}$ for all $1\le i<n$.
+Let $f = \log_2(1+x)$, as in Schlumprecht's example. Let $Q\subseteq$ denote
+the set of finitely-supported sequences whose coordinates are all rational numbers in the range $[-1,1]$.
+Let $\sigma$ be an injection from the set of finite successive sequences of elements of $Q$ to $L$ such
+that for all such sequences $x_1, \ldots, x_s$ is such a sequence, $S = \sigma(x_1,\ldots,x_s)$, and
+$x = x_1 + \cdots + x_s$, then
+$$\left|\supp z\right| \le {\sqrt{f\bigl(S^{1/40}\bigr)}\over 20}.$$
+This injection is used to define functionals on any normed space with $c_{00}$ as the underlying set.
+Let $X=(c_{00}, \norm\cdot)$ be such a normed space. For $m\in \NN$, we let $A^*_m(X)$ be the set of functionals
+of the form
+$${1\over f(m)} \sum_{i=1}^m x_i^*,$$
+where the $x_i^*$ are functionals with $\norm{x_i^*}\le 1$ for all $i$ and $x_1^* < \cdots < x_m^*$
+(as sequences). Note that members in $A^*_m$ have operator norm at most $1$ for any $m$. For $k\in \NN$,
+let $\Gamma_k^X$ be the set of sequences $(g_1,\ldots, g_k)$ such that $g_i\in Q$ for all $i$,
+$g_1\in A^*_{j_{2k}}(X)$, and $g_{i+1}\in A^*_{\sigma(g_1,\ldots,g_i}$ for all $1\le i<k$. We call the
+elements of $\Gamma_k^X$ {\it special sequences}. Now let $B_k^*(X)$ be the set of functionals of the form
+$$ {1\over \sqrt{f(k)}} \sum_{j=1}^k g_j $$
+such that $(g_1, \ldots, g_k)$ is a special sequence. An element of $B_k^*(X)$ is called a {\it special
+functional}.
+
+The space without an unconditional basic sequence that Gowers and Maurey exhibit is also constructed via
+a sequence of norms, as Tsirelson's and Schlumprecht's spaces were. Let $\norm{\cdot}_0 = \norm{\cdot}_{l_\infty}$
+and
+set $X_0 = (c_{00}, \norm\cdot_0)$. For $n\ge 1$, we let $X_n = (c_{00}, \norm\cdot _n)$,
+where $\norm{x}_n$ be the maximum of
+$$\sup_{m\in \NN} \sup {1\over f(m)} \sum_{i=1}^m \norm{E_i x}_{n-1},$$
+where the second supremum is over all sequences of subsets $E_1 < \cdots < E_m$, and
+$$\sup_{k\in K} \sup_{g\in B^*_k(X_{N-1})} \sup_{E\subseteq \NN} \bigl|g(Ex)\bigr|.$$
+This is a nondecreasing sequence of norms that is bounded above by the $l_1$-norm, so it has a limit, which
+we call $\norm \cdot$. The completion $X$ of $(c_{00}, \norm\cdot)$ is the space we're after, though the proof
+that $X$ is hereditarily indecomposable would run us aground.
+
+An operator $T:X\to Y$ is {\it strictly singular} if there is some $c>0$ such that $\norm{Tx} \ge c\norm x$ for
+all $x\in X$. Gowers and Maurey show that every operator from
+$X$ to $X$ can be written as a scalar multiple of the identity, plus a strictly singular operator. This
+implies that there are, in some sense, very few operators on $X$. A subsequent paper of Gowers and Maurey,
+published in 1997,
+describes a more general method of producing
+Banach spaces whose spaces of operators are small~\ref{gowersmaurey1997}. Recall that an operator
+is said to be {\it compact} if it sends bounded sets in the domain to sets with compact closure in the image.
+Every compact operator is strictly singular.
+In their original
+1993 paper, the authors ask if there exists a Banach space $X$ such that every operator from $X$ to $X$
+is a scalar multiple of the identity, plus a compact operator. This question was answered positively
+S.~A.~Argyros and R.~G.~Haydon in 2009; the paper was published in 2011~\ref{argyroshaydon}.
+
+\medskip\boldlabel The Banach hyperplane problem. In a book published in 1932,
+S.~Banach~\ref{banach} asked whether an infinite-dimensional Banach space $X$ over the real
+numbers is always isomorphic to $X\oplus \RR$. This amounts to asking whether every infinite-dimensional
+Banach space $X$ is such that
+that every subspace of codimension $1$ is isomorphic to $X$ itself. Since a subspace of codimension $1$ is
+sometimes called a {\it hyperplane}, this question came to be known as the hyperplane problem.
+It turns out that the answer to the question is no, and there is an infinite-dimensional
+Banach space that is not isomorphic
+to any of its hyperplanes.
+
+This problem was solved by W.~T.~Gowers soon after he solved the unconditional basic sequence problem.
+His construction, which appeared in print in 1994, is extremely similar~\ref{gowers1994}.
+We shall thus retain the definitions from the previous
+subsection and immediately define this space. As the reader probably suspects at this point, the construction
+is inductive.
+Set $X_0 = (c_{00}, \norm\cdot_0)$. For $n\ge 1$, we let $X_n = (c_{00}, \norm\cdot _n)$,
+where $\norm{x}_n$ be the maximum of
+$$\sup_{m\in \NN} \sup {1\over f(m)} \sum_{i=1}^m \norm{E_i x}_{n-1},$$
+where the inner supremum is over all sequences of subsets $E_1 < \cdots < E_m$, and
+$$\sup_{k\in K} \sup_{g\in B^*_k(X_{N-1})} \bigl|g(x)\bigr|.$$
+The notation we use here is not exactly the same as in the original paper, but using the same letters
+as before makes it clear that the only change from the space without an unconditional basic sequence
+is the replacement of $\sup_{E\subseteq \NN} \bigl|g(Ex)\bigr|$ has changed to the simpler $\bigl|g(x)\bigr|$.
+The space $X$ is the completion of $c_{00}$ with respect to the limit of the norms $\norm{x}_n$ above.
+Perhaps surprisingly, this new space $X$ has an unconditional basis. It is noted in Gowers' paper
+that the Gowers--Maurey
+space of the previous section is also a counterexample to the hyperplane problem, though is is
+more difficult to prove.
+The proof that $X$ is not isomorphic to any of its hyperplanes is done by showing that $X$
+satisfies the hypothesis of the following lemma, which is attributed to P.~G.~Casazza.
+
+\proclaim Lemma C. If $X$ is a Banach space in which no two equivalent sequences $(y_i)$ and $(z_i)$ satisfy
+$y_i < z_i < y_{i+1}$ for all $i$, then $X$ is not isomorphic to any proper subspace.\slug
+
+
+\section References
+
+\bye

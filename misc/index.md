@@ -15,6 +15,7 @@ __E4.__ [A crash course on generating functions]({{ site.baseurl }}/misc/expo/ge
 __E5.__ [On the divisibility of a random variable]({{ site.baseurl }}/misc/proofs/random-divisibility.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/random-divisibility.tex))  
 __E6.__ [The Littlewood-Offord problem]({{ site.baseurl }}/misc/expo/littlewood-offord.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/littlewood-offord.tex), [video](https://youtu.be/ntMfj9G3MQg))  
 __E7.__ [Ergodic theory and arithmetic progressions]({{ site.baseurl }}/misc/expo/furstenberg.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/furstenberg.tex), [video](https://youtu.be/Qr59etv0Tsw))  
+__E8.__ [Tsirelson's space and other exotic constructions]({{ site.baseurl }}/misc/expo/exotic.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/exotic.tex), [video](https://youtu.be/YMe_Z9YJm9Y))  
 
 
 ### Science and mathematics
