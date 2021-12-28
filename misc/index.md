@@ -37,6 +37,7 @@ __E8.__ [Tsirelson's space and other exotic constructions]({{ site.baseurl }}/mi
 + &#77952; [Shereen Elaidi](https://shereenelaidi.github.io/)
 + &#78216; [Stephen Fay](https://stephenfay.xyz)
 + &#78064; [Cheyenne Goh](https://cheyennegoh.github.io/)
++ &#78704; [Amanda Gu](https://amandagu.github.io/)
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/)
 + &#78818; [Adam Hamdan](http://adamhamdan.ca/)
 + &#78764; [Rasha Lama](https://rashalama.com)
