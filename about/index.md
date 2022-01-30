@@ -5,7 +5,7 @@ title: About me
 
 ![me](profile.jpeg){: .center-image}
 
-I am a first-year masters student at
+I am a first-year M.Sc. student at
 [McGill University](https://www.mcgill.ca), studying Mathematics.
 Before that, I graduated from McGill's B.Sc. Joint Honours Mathematics and Computer Science program,
 with a minor in Linguistics. I also did an exchange semester at Charles University in Prague.
