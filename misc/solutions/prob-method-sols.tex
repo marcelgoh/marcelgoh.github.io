@@ -1,0 +1,45 @@
+\input fontmac
+\input mathmac
+
+\maketitle{The Probabilistic Method}{exercise solutions by}{Marcel K. Goh}{14 February 2022}
+
+\bigskip
+
+\section 1. The Basic Method
+
+\proclaim Exercise 1.1. Prove that if there is a real $p$, with $0\le p\le 1$ such that
+$${n\choose k}p^{k\choose 2} + {n\choose t}(1-p)^{t\choose 2} < 1,$$
+then the Ramsey number $r(k,t)$ satisfies $r(k,t)>n$. Using this, show that
+$$r(4,t) \ge \Omega\bigl(t^{3/2}/ (\ln t)^{3/2}\bigr).$$
+
+\proof We follow the proof of Proposition~1.1.1 in the book. We consider a random graph on
+$n$ vertices, where each edge is present with probability $p$. Let $K$ be the event that
+there is a clique of size $k$ in the graph, and let $I$ be the event that there is an
+independent set of size $t$ in the graph. By the union bound,
+$$\pr\{ K \cup I\} \le \pr\{K\} + \pr\{I\} \le \sum_{|S| = k} p^{k\choose 2} + \sum_{|S|=t} (1-p)^{t\choose 2}
+= {n\choose k}p^{k\choose 2} + {n\choose t}(1-p)^{t\choose 2} < 1.$$
+This means that $\pr\{ \neg K \cap \neg I\} > 0$ and since the sample space is finite,
+there exists a graph on $n$ vertices with
+no clique of size $k$ and no independent set of size $t$ and therefore $r(k,t) > n$.
+
+Next we show that $r(4,t) > (et/\ln t)^{3/2}$ for large enough $t$. Note that
+$${n\choose 4} p^{k\choose 2} + {n\choose t}(1-p)^{t\choose 2}\le
+n^4p^6 + {e^tn^t\over t^t}(1-p)^{t^2/4},$$
+by the inequality
+$$ {n^k\over k^k} \le {n\choose k} \le {e^k n^k\over k^k}.$$
+Setting $n = et^{3/2} / (\ln t)^{3/2}$, we have
+$$\eqalign{
+n^4p^6 + {e^tn^t\over t^t}(1-p)^{t^2/4} &=
+\biggl({tp\over e\ln t}\biggr)^6 + {e^t t^{3t/2} \over t^t e^{3t/2} (\ln t)^{3t/2}} (1-p)^{t^2/4} \cr
+&=\biggl({tp\over e\ln t}\biggr)^6 + {t^{t/2} \over e^{t/2} (\ln t)^{3t/2}} (1-p)^{t^2/4} \cr
+&\le \biggl({tp\over e\ln t}\biggr)^6 + \biggl({t(1-p)^{t/2} \over e(\ln t)^3}\biggr)^{t/2} \cr
+&\le \biggl({tp\over e\ln t}\biggr)^6 + \biggl({t \over e^{pt/2+1}(\ln t)^3}\biggr)^{t/2},\cr
+}$$
+where in the last line we used the inequality $1-p \le e^{-p}$.
+Choosing $p = 2\ln t/t$, we simply need $t$ large enough such that
+$$ \biggl({t\over e^{\ln t+1} (\ln t)^3}\biggr)^{t/2} = 
+\biggl({1\over e(\ln t)^3}\biggr)^{t/2} < 1- {2\over e^6},$$
+which can be done since the left-hand side goes to $0$.\slug
+
+
+\bye
