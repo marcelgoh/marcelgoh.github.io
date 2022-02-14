@@ -22,12 +22,12 @@ This means that $\pr\{ \neg K \cap \neg I\} > 0$ and since the sample space is f
 there exists a graph on $n$ vertices with
 no clique of size $k$ and no independent set of size $t$ and therefore $r(k,t) > n$.
 
-Next we show that $r(4,t) > (et/\ln t)^{3/2}$ for large enough $t$. Note that
+Next we show that $r(4,t) > \bigl(t/(e\ln t)\bigr)^{3/2}$ for large enough $t$. Note that
 $${n\choose 4} p^{k\choose 2} + {n\choose t}(1-p)^{t\choose 2}\le
 n^4p^6 + {e^tn^t\over t^t}(1-p)^{t^2/4},$$
-by the inequality
+by the inequalities
 $$ {n^k\over k^k} \le {n\choose k} \le {e^k n^k\over k^k}.$$
-Setting $n = et^{3/2} / (\ln t)^{3/2}$, we have
+Setting $n = t^{3/2} / (e\ln t)^{3/2}$, we have
 $$\eqalign{
 n^4p^6 + {e^tn^t\over t^t}(1-p)^{t^2/4} &=
 \biggl({tp\over e\ln t}\biggr)^6 + {e^t t^{3t/2} \over t^t e^{3t/2} (\ln t)^{3t/2}} (1-p)^{t^2/4} \cr
@@ -38,8 +38,26 @@ n^4p^6 + {e^tn^t\over t^t}(1-p)^{t^2/4} &=
 where in the last line we used the inequality $1-p \le e^{-p}$.
 Choosing $p = 2\ln t/t$, we simply need $t$ large enough such that
 $$ \biggl({t\over e^{\ln t+1} (\ln t)^3}\biggr)^{t/2} = 
-\biggl({1\over e(\ln t)^3}\biggr)^{t/2} < 1- {2\over e^6},$$
+\biggl({1\over e(\ln t)^3}\biggr)^{t/2} < 1- \biggl({2\over e}\biggr)^6,$$
 which can be done since the left-hand side goes to $0$.\slug
+
+\proclaim Exercise 1.2. Suppose $n\ge 4$ and let $H$ be an $n$-uniform hypergraph with at most
+$4^{n-1}/3^n$ edges. Prove that there is a colouring of the vertices of $H$ by $4$ colours so that in
+every edge all $4$ colours are represented.
+
+\proof Let each vertex of $H$ be independently given one of the four colours uniformly at random. (If
+$H$ is infinite, it does not matter what colour we give to vertices that do not appear in any edge,
+so it suffices to consider $H$ finite, which makes the sample space finite.)
+Given some edge $e$ of $H$ with $n$ vertices, there are $4^n$ total ways that $e$ may be coloured,
+and for each of the four colours, $3^n$ total ways that $e$ may be coloured using only the other three colours.
+Let $K(e)$ denote the event that $e$ does not contain all four colours. By the inclusion-exclusion principle,
+$$\pr\bigl\{K(e)\bigr\} = 4\cdot 3^n - 6\cdot 2^n + 4$$
+Since $6\cdot 2^n \ge 96 > 4$, the probability that a given edge {\it does not} contain all four colours
+is (much) less than $3^n/4^{n-1}$. By the union bound,
+$$\pr\Bigl\{ \bigcup_{e\in E(H)} K(e)\Bigr\} \le \sum_{e\in E(H)} \pr\bigl\{K(e)\bigr\}
+< {4^{n-1}\over 3^n} \cdot {3^n\over 4^{n-1}} = 1.$$
+Since the sample space is finite this implies that there is some colouring of the vertices of $H$
+in which every edge has all four colours.\slug
 
 
 \bye
