@@ -1,6 +1,8 @@
 \input fontmac
 \input mathmac
 
+\def\given{\,|\,}
+
 \maketitle{The Probabilistic Method}{exercise solutions by}{Marcel K. Goh}{14 February 2022}
 
 \bigskip
@@ -58,6 +60,24 @@ $$\pr\Bigl\{ \bigcup_{e\in E(H)} K(e)\Bigr\} \le \sum_{e\in E(H)} \pr\bigl\{K(e)
 < {4^{n-1}\over 3^n} \cdot {3^n\over 4^{n-1}} = 1.$$
 Since the sample space is finite this implies that there is some colouring of the vertices of $H$
 in which every edge has all four colours.\slug
+
+\section 4. The Second Moment
+
+\proclaim Exercise 4.1. Let $X$ be a random variable taking integral nonnegative values, let $\ex\{X^2\}$
+denote the expectation of its square, and let $\var\{X\}$ denote its variance. Prove that
+$$\pr\{ X = 0\} \le {\var\{X\} \over \ex\{X^2\}}.$$
+
+\proof Since $X$ is integer and nonnegative, we have $\pr\{X = 0\} = 1-\pr\{X\ge 1\}$ and since
+$\var\{X\} = \ex\{X^2\} - \ex\{X\}^2$, to get our result it suffices to show that
+$$\pr\{X\ge 1\} \ge {\ex\{X\}^2 \over \ex\{X^2\}}.$$
+We start by noting that
+$$\ex\{X\} = \sum_{k=0}^\infty k \pr\{X=k\}
+= \pr\{X\ge 1\}\sum_{k=1}^\infty {k\pr\{X=k\}\over \pr\{X\ge 1\}}
+= \pr\{X\ge 1\}\ex\{ X \given X\ge 1\}.$$
+Since the function $x\mapsto x^2$ is convex, we have, by Jensen's inequality,
+$$\ex\{X\}^2 = \pr\{X\ge 1\}^2 \ex\{X\given X\ge 1\}^2 \le \pr\{X\ge 1\}^2 \ex\{X^2 \given X\ge 1\}
+= \pr\{X\ge 1\} \ex\{X^2\}.$$
+Dividing both sides by $\ex\{X^2\}$ gives us what we want.\slug
 
 
 \bye
