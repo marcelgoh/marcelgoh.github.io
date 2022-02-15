@@ -2,8 +2,18 @@
 \input mathmac
 
 \def\given{\,|\,}
+\def\biggiven{\,\big|\,}
 
-\maketitle{The Probabilistic Method}{exercise solutions by}{Marcel K. Goh}{14 February 2022}
+\maketitle{The Probabilistic Method}{exercise solutions by}{Marcel K. Goh}{15 February 2022}
+
+\floattext5 \ninebf Note. \ninepoint
+A star indicates a starred problem in the text; these are supposed to be harder.
+I have decided to put my work here even when I haven't solved the problem yet, so that when I come back
+later I can see what I've tried. I won't put the black square
+\hbox{\kern1.5pt\vrule width2.5pt height6pt depth1.5pt\kern1.5pt}
+until I think the proof
+is actually done. Also I wrote $\log$ everywhere to mean $\log_e$
+even though the text uses $\ln$.
 
 \bigskip
 
@@ -12,7 +22,7 @@
 \proclaim Exercise 1.1. Prove that if there is a real $p$, with $0\le p\le 1$ such that
 $${n\choose k}p^{k\choose 2} + {n\choose t}(1-p)^{t\choose 2} < 1,$$
 then the Ramsey number $r(k,t)$ satisfies $r(k,t)>n$. Using this, show that
-$$r(4,t) \ge \Omega\bigl(t^{3/2}/ (\ln t)^{3/2}\bigr).$$
+$$r(4,t) \ge \Omega\bigl(t^{3/2}/ (\log t)^{3/2}\bigr).$$
 
 \proof We follow the proof of Proposition~1.1.1 in the book. We consider a random graph on
 $n$ vertices, where each edge is present with probability $p$. Let $K$ be the event that
@@ -24,23 +34,23 @@ This means that $\pr\{ \neg K \cap \neg I\} > 0$ and since the sample space is f
 there exists a graph on $n$ vertices with
 no clique of size $k$ and no independent set of size $t$ and therefore $r(k,t) > n$.
 
-Next we show that $r(4,t) > \bigl(t/(e\ln t)\bigr)^{3/2}$ for large enough $t$. Note that
+Next we show that $r(4,t) > \bigl(t/(e\log t)\bigr)^{3/2}$ for large enough $t$. Note that
 $${n\choose 4} p^{k\choose 2} + {n\choose t}(1-p)^{t\choose 2}\le
 n^4p^6 + {e^tn^t\over t^t}(1-p)^{t^2/4},$$
 by the inequalities
 $$ {n^k\over k^k} \le {n\choose k} \le {e^k n^k\over k^k}.$$
-Setting $n = t^{3/2} / (e\ln t)^{3/2}$, we have
+Setting $n = t^{3/2} / (e\log t)^{3/2}$, we have
 $$\eqalign{
 n^4p^6 + {e^tn^t\over t^t}(1-p)^{t^2/4} &=
-\biggl({tp\over e\ln t}\biggr)^6 + {e^t t^{3t/2} \over t^t e^{3t/2} (\ln t)^{3t/2}} (1-p)^{t^2/4} \cr
-&=\biggl({tp\over e\ln t}\biggr)^6 + {t^{t/2} \over e^{t/2} (\ln t)^{3t/2}} (1-p)^{t^2/4} \cr
-&\le \biggl({tp\over e\ln t}\biggr)^6 + \biggl({t(1-p)^{t/2} \over e(\ln t)^3}\biggr)^{t/2} \cr
-&\le \biggl({tp\over e\ln t}\biggr)^6 + \biggl({t \over e^{pt/2+1}(\ln t)^3}\biggr)^{t/2},\cr
+\biggl({tp\over e\log t}\biggr)^6 + {e^t t^{3t/2} \over t^t e^{3t/2} (\log t)^{3t/2}} (1-p)^{t^2/4} \cr
+&=\biggl({tp\over e\log t}\biggr)^6 + {t^{t/2} \over e^{t/2} (\log t)^{3t/2}} (1-p)^{t^2/4} \cr
+&\le \biggl({tp\over e\log t}\biggr)^6 + \biggl({t(1-p)^{t/2} \over e(\log t)^3}\biggr)^{t/2} \cr
+&\le \biggl({tp\over e\log t}\biggr)^6 + \biggl({t \over e^{pt/2+1}(\log t)^3}\biggr)^{t/2},\cr
 }$$
 where in the last line we used the inequality $1-p \le e^{-p}$.
-Choosing $p = 2\ln t/t$, we simply need $t$ large enough such that
-$$ \biggl({t\over e^{\ln t+1} (\ln t)^3}\biggr)^{t/2} = 
-\biggl({1\over e(\ln t)^3}\biggr)^{t/2} < 1- \biggl({2\over e}\biggr)^6,$$
+Choosing $p = 2\log t/t$, we simply need $t$ large enough such that
+$$ \biggl({t\over e^{\log t+1} (\log t)^3}\biggr)^{t/2} = 
+\biggl({1\over e(\log t)^3}\biggr)^{t/2} < 1- \biggl({2\over e}\biggr)^6,$$
 which can be done since the left-hand side goes to $0$.\slug
 
 \proclaim Exercise 1.2. Suppose $n\ge 4$ and let $H$ be an $n$-uniform hypergraph with at most
@@ -60,6 +70,52 @@ $$\pr\Bigl\{ \bigcup_{e\in E(H)} K(e)\Bigr\} \le \sum_{e\in E(H)} \pr\bigl\{K(e)
 < {4^{n-1}\over 3^n} \cdot {3^n\over 4^{n-1}} = 1.$$
 Since the sample space is finite this implies that there is some colouring of the vertices of $H$
 in which every edge has all four colours.\slug
+
+\proclaim \llap{*}Exercise 1.3. Prove that for two independent, identically distributed real random
+variables $X$ and $Y$,
+$$\pr\bigl\{|X-Y|\le 2\bigr\} \le 3\pr\bigl\{|X-Y|\le 1\bigr\}.$$
+
+\proof [Not done. Need to use independence somehow. I think by symmetry
+it is enough to show that $\pr\{1 < X-Y\le 2\}
+\le \pr\bigl\{|X-Y|\le 1\bigr\}$ or $\pr\bigl\{X-Y > 1 \biggiven |X-Y|\le 2\bigr\}\le 1/3$.
+In the second expression,
+$X$ and $Y$ are no longer independent.]
+
+\proclaim \llap{*}Exercise 1.4. Let $G=(V,E)$ be a graph with $n$ vertices and minimum degree $\delta>10$.
+Prove that there is a partition of $V$ into two disjoint subsets $A$ and $B$ so that
+$|A|\le O\bigl((n\log n)/\delta\bigr)$, and each vertex of $B$ has at least one neighbour in $A$ and at least
+one neighbour in $B$.
+
+\proof We follow the construction of the dominating set from the proof of Theorem~1.2.2, since the
+required $A$ here is a dominating set with some extra conditions. Let $p$ be chosen later and let $X$
+be a random set of vertices obtained by independently selecting each $v\in V$ with probability $p$.
+Then as in the proof from the textbook, we let $Y$ be the set of all $v\in V\setminus X$ that have no
+neighbours in $X$. At this point $X\cup Y$ is a dominating set, but we are not yet done constructing
+$A$, since there may still be elements in $V\setminus (X\cup Y)$ all of whose neighbours belong to $X\cup Y$.
+Let $Z\subseteq V\setminus (X\cup Y)$ denote all of these elements. For any given $v\in V$, we
+have $\pr\{v\in X\} = p$ and
+$$\pr\{v\in Y\} = (1-p)^{\deg(v) + 1} \le (1-p)^{\delta+1} \le e^{-p(\delta+1)},$$
+since for $v\in Y$ we need $v$
+itself as well as all $\deg(v)$ of its neighbours to not be in $X$. Lastly,
+$$\pr\{v\in Z\} = (1-p)\prod_{w\in N(v)} \bigl(p+(1-p)^{\deg(w)+1}\bigr)
+\le (1-p)\bigl(p+(1-p)^{\delta+1}\bigr)^\delta \le (1-p)(p+e^{-p(\delta+1)})^\delta.$$
+Now we compute
+$$\eqalign{
+\ex\bigl\{|A|\bigr\} &= \sum_{v\in V} v\in \{X\cup Y\cup Z\} \cr
+&\le n\bigl( p + e^{-p(\delta+1)} + (1-p)(p+e^{-p(\delta+1)})^\delta \bigr).\cr
+}$$
+Since $p+e^{-p(\delta+1)} < 1$, we can remove the $\delta$ from its exponent for the looser but
+simpler bound
+$$\eqalign{
+\ex\bigl\{|A|\bigr\} &\le np + ne^{-p(\delta+1)} + np - np^2 + ne^{-p(\delta+1)} - npe^{-p(\delta+1)}\cr
+&=(2-p)(np+ne^{-p(\delta+1)}).\cr
+}$$
+Setting $p = \log(\delta+1)/(\delta+1)$ just as in the dominating set proof, we have
+$$e^{-p(\delta+1)} = {1\over \delta+1}$$
+and
+$$\ex\bigl\{|A|\bigr\} \le \biggl(2-{\log(\delta+1)\over \delta+1}\biggr)\biggl( n{\log(\delta+1)\over \delta+1}
++ {n\over \delta+1}\biggr) = 2n{\log(\delta+1)\over\delta+1} + o\biggl({n\log\delta\over\delta}\biggr),$$
+which has the required asymptotics. It remains to choose an $A$ with $|A|$ at least this average.\slug
 
 \section 4. The Second Moment
 
