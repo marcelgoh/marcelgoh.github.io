@@ -135,5 +135,25 @@ $$\ex\{X\}^2 = \pr\{X\ge 1\}^2 \ex\{X\given X\ge 1\}^2 \le \pr\{X\ge 1\}^2 \ex\{
 = \pr\{X\ge 1\} \ex\{X^2\}.$$
 Dividing both sides by $\ex\{X^2\}$ gives us what we want.\slug
 
+\proclaim Exercise 4.4. Let $X$ be a random variable with expectation $\ex\{X\} =0$ and variance
+$\var\{X\} = \sigma^2$. Prove that for all $\lambda > 0$,
+$$\pr\{X\ge \lambda\} \le {\sigma^2\over \sigma^2 + \lambda^2}.$$
+
+\proof Let $\lambda > 0$. Note that if $X\ge \lambda$, then $X$ is also positive so in particular,
+for any $a>0$, $X+a$ and $\lambda + a$ are both positive. This implies that $(X+a)^2\ge (\lambda+a)^2$.
+Note that since $\var\{X\} = \ex\{X^2\} - \ex\{X\}^2 = \sigma^2$ and $\ex\{X\}=0$, we have
+$\ex\{X^2\} = \sigma^2$, which in turn implies that
+$$\ex\bigl\{(X+a)^2\bigr\} = \ex\{X^2\} + 2a\ex\{X\} + \ex\{a^2\} = \sigma^2+a^2.$$
+Now we take the infimum over all $a>0$ and apply Markov's inequality to get
+$$\pr\{X\ge\lambda\} \le \inf_{a > 0} \pr\bigl\{(X+a)^2 \ge (\lambda+a)^2\bigr\} \le
+\inf_{a>0} {\sigma^2 + a^2\over (\lambda + a)^2}.$$
+We now optimise over $a>0$. We have
+$${d\over da} {\sigma^2 + a^2\over (\lambda + a)^2}
+  = {(\lambda+a)^2 2a - (\sigma^2+a^2)2(\lambda+a)\over (\lambda + a)^4},$$
+which is zero when $a = \sigma^2/\lambda > 0$. Plugging in this value of $a$ gives
+$$\pr\{X\ge \lambda\} \le {\sigma^2 + \sigma^4/\lambda^2\over (\lambda + \sigma^2/\lambda)^2}
+= {\sigma^2(\lambda + \sigma^2/\lambda) \over \lambda(\lambda + \sigma^2/\lambda)^2}
+= {\sigma^2 \over \sigma^2+\lambda^2},$$
+exactly what we need.\slug
 
 \bye
