@@ -117,7 +117,7 @@ $$\ex\bigl\{|A|\bigr\} \le \biggl(2-{\log(\delta+1)\over \delta+1}\biggr)\biggl(
 + {n\over \delta+1}\biggr) = 2n{\log(\delta+1)\over\delta+1} + o\biggl({n\log\delta\over\delta}\biggr),$$
 which has the required asymptotics. It remains to choose an $A$ with $|A|$ at least this average.\slug
 
-\proclaim Exercise 1.7. Let $F$ be a finite collection of binary strings of finite lengths and assume no
+\proclaim Exercise 1.8. Let $F$ be a finite collection of binary strings of finite lengths and assume no
 member of $F$ is a prefix of another one. Let $N_i$ denote the number of strings of length $i$ in $F$.
 Prove that
 $$\sum_{i\ge 1} {N_i\over 2_i} \le 1.$$
@@ -154,6 +154,26 @@ We can produce a colouring with $4^{n-1}$ monochromatic edges by setting $\phi(v
 so $\pr\{X > 1 \} > 0$. Thus for $\ex\{X\}$ to equal $1$, we must also have $\pr\{X < 1\} > 0$, and since
 $X$ is nonnegative, this means that $\pr\{X = 0\} > 0$ and there exists some colouring with no monochromatic
 edges.\slug
+
+\goodbreak
+\section 3. Alterations
+
+\proclaim Exercise 3.1. As shown in Section~3.1, the Ramsey number $R(k,k)$ satisfies
+$$R(k,k) > n-{n\choose k}2^{1-{k\choose 2}}$$
+for every integer $n$. Conclude that
+$$R(k,k) \ge \bigl(1-o(1)\bigr) {k\over e} 2^{k/2}.$$
+
+\proof We set $n= (k-1) 2^{k/2} /e$ in the above, to get the bound
+$$R(k,k) > {k\over e} 2^{k/2} - {1\over e} 2^{k/2} - {(k-1) 2^{k/2} /e \choose k} 2^{1-{k\choose 2}}.$$
+Now we apply the inequality ${n\choose k} \le e^kn^k/k^k$, which yields
+$$\eqalign{
+R(k,k) &> {k\over e} 2^{k/2} - {1\over e} 2^{k/2} - {e^k(k-1)^k 2^{k^2/2} /e^k \over k^k} 2^{1-k^2/2+k/2}\cr
+&= {k\over e} 2^{k/2} - {1\over e} 2^{k/2} - \biggl(1-{1\over k}\biggr)^k 2^{1+k/2}. \cr
+}$$
+Since $(1-1/k)^k\to 1/e$ as $k\to\infty$,
+$$R(k,k) > {k\over e}2^{k/2} \biggl( 1 - {1\over k} - {2e(1-1/k)^k \over k}\biggr)
+= {k\over e}2^{k/2} \bigl(1-o(1)\bigr).\noskipslug$$
+
 
 \section 4. The Second Moment
 
