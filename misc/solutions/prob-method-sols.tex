@@ -117,6 +117,44 @@ $$\ex\bigl\{|A|\bigr\} \le \biggl(2-{\log(\delta+1)\over \delta+1}\biggr)\biggl(
 + {n\over \delta+1}\biggr) = 2n{\log(\delta+1)\over\delta+1} + o\biggl({n\log\delta\over\delta}\biggr),$$
 which has the required asymptotics. It remains to choose an $A$ with $|A|$ at least this average.\slug
 
+\proclaim Exercise 1.7. Let $F$ be a finite collection of binary strings of finite lengths and assume no
+member of $F$ is a prefix of another one. Let $N_i$ denote the number of strings of length $i$ in $F$.
+Prove that
+$$\sum_{i\ge 1} {N_i\over 2_i} \le 1.$$
+
+\proof This inequality looks an awful bit like the LYM inequality, so our proof is informed by the proof
+of that statement. Let $m$ be the maximum length of any string in $F$ (such a maximum exists because $F$
+is finite). Let $b_1, b_2, \ldots, b_m$ be a sequence of independent random variables with
+$\pr\{b_i = 0\} = \pr\{b_i = 1\} = 1/2$ for all $1\le i\le m$. Consider the set of strings
+$$C = \{b_1, b_1b_2, \ldots, b_1b_2\cdots b_m\}.$$
+This is a random set, so we may study the random quantity $|C\cap F|$. Note that $C$ contains
+exactly one bitstring of each length, and every string of length $i$ has an equal chance of being in $C$,
+namely $2^{-i}$. So
+$$\ex\bigl\{|C\cap F|\bigr\} = \sum_{s\in F} \pr\{s\in C\} = \sum_{s\in F} 2^{-|s|}
+= \sum_{i\ge 1} {N_i\over 2^i},$$
+where $|s|$ is the length of the string $s$. In the last equality we simply grouped strings of the same
+length together. On the other hand, $|C\cap F|$ cannot possibly be greater than $1$, since for any two
+members of $C$, one must be a prefix of the other. So $\ex\bigl\{|C\cap F|\bigr\} \le 1$ as well,
+and this observation completes the proof.\slug
+
+\section 2. Linearity of Expectation
+
+\proclaim Exercise 2.1. Suppose $n\ge 2$ and let $H=(V,E)$ be an $n$-uniform hypergraph with $|E| = 4^{n-1}$
+edges. Show that there is a colouring of $V$ by $4$ colours so that no edge is monochromatic.
+
+\proof Let $\phi$ be a random function from $V$ to $[4]$, so that all $4^n$ possible colourings are equally
+likely. Let $X$ be the number of monochromatic edges in $H$ under this colouring; that is,
+$$X = \sum_{e \in E} \indic{e\ \hbox{is monochromatic}}.$$
+The probability that a given edge $e = \{v_1,\ldots,v_n\}$ is monochromatic is $1/4^{n-1}$, since
+$\phi(v_1)$ can be anything, but then $\phi(v_2)$ through to $\phi(v_n)$ each have a $1/4$ chance
+of matching $\phi(v_1)$. So
+$$\ex\{X\} = \sum_{e\in E} \pr\{e\ \hbox{is monochromatic}\} = {4^{n-1}\over 4^{n-1}}
+= 1.$$
+We can produce a colouring with $4^{n-1}$ monochromatic edges by setting $\phi(v) = 1$ for all $v\in V$,
+so $\pr\{X > 1 \} > 0$. Thus for $\ex\{X\}$ to equal $1$, we must also have $\pr\{X < 1\} > 0$, and since
+$X$ is nonnegative, this means that $\pr\{X = 0\} > 0$ and there exists some colouring with no monochromatic
+edges.\slug
+
 \section 4. The Second Moment
 
 \proclaim Exercise 4.1. Let $X$ be a random variable taking integral nonnegative values, let $\ex\{X^2\}$
