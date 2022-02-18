@@ -3,8 +3,9 @@
 
 \def\given{\,|\,}
 \def\biggiven{\,\big|\,}
+\def\F{{\cal F}}
 
-\maketitle{The Probabilistic Method}{exercise solutions by}{Marcel K. Goh}{15 February 2022}
+\maketitle{The Probabilistic Method}{exercise solutions by}{Marcel K. Goh}{17 February 2022}
 
 \floattext5 \ninebf Note. \ninepoint
 A star indicates a starred problem in the text; these are supposed to be harder.
@@ -155,6 +156,27 @@ so $\pr\{X > 1 \} > 0$. Thus for $\ex\{X\}$ to equal $1$, we must also have $\pr
 $X$ is nonnegative, this means that $\pr\{X = 0\} > 0$ and there exists some colouring with no monochromatic
 edges.\slug
 
+\proclaim Exercise 2.7. Let $\F$ be a family of subsets of $[n] = \{1,2,\ldots,n\}$ and suppose there are
+no $A,B\in \F$ satisfying $A\subseteq B$. Let $\sigma\in S_n$ be a random permutation of the elements of
+$[n]$ and consider the random variable
+$$ X = \bigl| \bigl\{ i : \{\sigma(1),\sigma(2),\ldots,\sigma(i)\}\in \F\bigr\}\bigr|.$$
+By considering the expectation of $X$, prove that $|\F|\le {n\choose \lfloor n/2\rfloor}$.
+
+\proof This is the proof that I said Exercise~1.8 reminded me of. Let $S_i = \{\sigma(1),\ldots,\sigma(i)\}$
+and let
+$$ C = \{\emptyset, S_1, S_2,\ldots, S_n\}.$$
+If there are $i<j$ such that $S_i$ and $S_j$ are both in $\F$, then
+$\F$ violates the condition that there are no
+$A,B\in \F$ with $A\subseteq B$. So $X\le 1$.
+On the other hand, $C$ contains
+exactly one set of size $i$ for each $0\le i\le n$ and the probability that $S_i$ is a given
+element of $X^{(i)}$ is the same. So letting $N_i$ be the number of sets of size $i$ in $\F$, we have
+$$1\ge \ex\{X\} = \sum_{A\in \F} {n\choose |A|}^{-1} = \sum_{i=0}^n N_i {n\choose i}^{-1}\ge
+{|\F|\over {n\choose \lfloor n/2\rfloor}},$$
+where the last inequality holds because ${n\choose k}$ is maximised when $k=\lfloor n/2\rfloor$
+and because the sum of the $N_i$ is $|\F|$.\slug
+
+
 \goodbreak
 \section 3. Alterations
 
@@ -173,7 +195,6 @@ R(k,k) &> {k\over e} 2^{k/2} - {1\over e} 2^{k/2} - {e^k(k-1)^k 2^{k^2/2} /e^k \
 Since $(1-1/k)^k\to 1/e$ as $k\to\infty$,
 $$R(k,k) > {k\over e}2^{k/2} \biggl( 1 - {1\over k} - {2e(1-1/k)^k \over k}\biggr)
 = {k\over e}2^{k/2} \bigl(1-o(1)\bigr).\noskipslug$$
-
 
 \section 4. The Second Moment
 
