@@ -213,6 +213,25 @@ Since $(1-1/k)^k\to 1/e$ as $k\to\infty$,
 $$R(k,k) > {k\over e}2^{k/2} \biggl( 1 - {1\over k} - {2e(1-1/k)^k \over k}\biggr)
 = {k\over e}2^{k/2} \bigl(1-o(1)\bigr).\noskipslug$$
 
+\proclaim Exercise 3.3. Prove that every $3$-uniform hypergraph with $n$ vertices and $m\ge n/3$ edges
+contains an independent set (i.e., a set of vertices containing no edges) of size at least
+$${2n^{3/2}\over 3\sqrt 3\sqrt m}.$$
+
+\proof We mirror the proof of Theorem~3.2.1. Let $(X\cap \F)$ be a $3$-uniform hypergraph with
+$|X| = n$ and $|\F| = m \ge n/3$. Let $S\subseteq X$ be a random subset obtained by independently
+putting each $x\in X$ in $S$ with probability $p$, to be chosen later. Of course, $\ex\bigl\{|X|\bigr\} = np$.
+What is the expected number of edges contained in $S$? Well, each edge $\{x,y,z\}\in \F$ has probability
+$p^3$ of being contained in $S$, so we expect $mp^3$ edges in the subgraph induced by $S$. If
+$Y$ is the set of these edges, we now want to choose $p$ to
+minimise the quantity $\ex\bigl\{|X|-|Y|\bigr\} = np-mp^3$. The derivative
+is $n-3mp^2$ so we ought to set $p=\sqrt{n/3m}$, obtaining
+$$\ex\bigl\{ |X|-|Y|\bigr\} = {n^{3/2}-m\sqrt n\over \sqrt{3m}}.$$
+Since $m\ge n/3$, we have
+$$\ex\bigl\{ |X|-|Y|\bigr\} \ge {n^{3/2}\over \sqrt{3m}}-{n^{3/2}\over 3\sqrt{3m}}={2n^{3/2}\over 3\sqrt{3m}}.$$
+This means there exists some set $S\subseteq X$ with the number of vertices minus the number of edges
+at least $2n^{3/2}/\bigl(3\sqrt{3m}\bigr)$. Removing one vertex from each edge, we arrive at an independent
+set of vertices $S'$ with cardinality at least this quantity.\slug
+
 \section 4. The Second Moment
 
 \proclaim Exercise 4.1. Let $X$ be a random variable taking integral nonnegative values, let $\ex\{X^2\}$
