@@ -13,6 +13,11 @@ My research interests include:
 + enumerative combinatorics
 + additive combinatorics
 
+I plan to submit my thesis, entitled "Structural properties of Galton-Watson trees", in April 2022.
+This summer, I will be a teaching assistant for a workshop on
+[Random Structures and Combinatorial Statistics](https://bocconi2022.lakecomoschool.org/program/)
+at the Lake Como School of Advanced Studies.
+
 ### Papers
 
 __P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) Leaf multiplicity in a Bienaymé-Galton-Watson tree. To appear in _Discrete Mathematics and Theoretical Computer Science_, 11&nbsp;pp.

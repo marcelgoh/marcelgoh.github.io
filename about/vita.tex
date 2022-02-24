@@ -35,7 +35,8 @@
 
 \def\up#1{\leavevmode \raise.16ex\hbox{#1}}
 \def\sectheader#1{{\bigskip\elevensc #1}\smallskip\hrule\medskip}
-\def\leftright#1#2{{#1}\hfill{#2}\par}
+\def\leftright#1#2{\hbox to\hsize{{#1}\hfill{#2}}\par}
+\def\starleftright#1#2{\hbox to\hsize{\llap{*}{#1}\hfil{#2}}\par}
 \def\CEE{{\mc C}}
 \def\UNIX{{\mc UNIX}}
 \def\thing{\item{$\bullet$}}
@@ -77,7 +78,7 @@
 \leftright{\bf M.Sc.\ Mathematics}{\bf May 2021 -- present}
 \leftright{\sl McGill University}{\sl Montr\'eal, QC, Canada}
 \smallskip
-Supervisor: Luc Devroye. CGPA: 4.00/4.
+Supervisor: Luc Devroye. CGPA: 4.00/4. Thesis topic: ``Structural properties of Galton--Watson trees.''
 \medbreak
 \leftright{\bf B.Sc.\ Joint Honours Mathematics and Computer Science}{\bf September 2017 -- April 2021}
 \leftright{\sl McGill University}{\sl Montr\'eal, QC, Canada}
@@ -105,7 +106,7 @@ topology (including some algebraic topology), probabilistic analysis of algorith
 \sectheader{Research Interests}
 
 Analysis of random discrete structures, analysis and design of algorithms, enumerative combinatorics,
-additive combinatorics, algebra.
+additive combinatorics.
 
 \sectheader{Papers}
 
@@ -189,9 +190,18 @@ Created OPythn, a bytecode compiler and virtual machine for a subset of Python.
 OPythn includes support for lists, dictionaries, named and anonymous functions, objects, and classes.
 It is implemented in OCaml using Ocamllex for lexing and Menhir for parsing.
 
-\sectheader{Work and Volunteer Experience}
+\sectheader{Work and Volunteer Experience {\rm($*$ indicates a paid position)}}
 
-\leftright{\bf Teaching assistant}{\bf September -- December 2021}
+\leftright{\bf Mentor}{\bf January 2021 -- present}
+\leftright{\bf Department of Mathematics and Statistics, McGill University}{\sl Montr\'eal, QC, Canada}
+\smallskip
+Meet with two undergraduate students as part of the Directed Reading Program
+on a weekly basis to give them an introduction to research-level
+mathematics in a casual setting. Focused on topics in extremal combinatorics related to the increasing
+triples problem.
+\medbreak
+
+\starleftright{\bf Teaching assistant}{\bf September -- December 2021}
 \leftright{\sl School of Computer Science, McGill University}{\sl Montr\'eal, QC, Canada}
 \smallskip
 Teaching assistant for COMP 690, a graduate-level course on the probabilistic analysis of algorithms.
@@ -206,7 +216,7 @@ university events such as frosh, sports games, and formals. Attend team training
 first-aid skills up-to-date. Most recent first responder certification: September 2020.
 \medbreak
 
-\leftright{\bf Grader}{\bf September 2019 -- April 2021}
+\starleftright{\bf Grader}{\bf September 2019 -- April 2021}
 \leftright{\sl Department of Mathematics and Statistics, McGill University}{\sl Montr\'eal, QC, Canada}
 \smallskip
 Grading of assignments in the following courses:
@@ -222,14 +232,13 @@ Grading of assignments in the following courses:
 \endgroup
 \medbreak
 
-\leftright{\bf Helpdesk tutor}{\bf September 2018 -- April 2021}
+\starleftright{\bf Helpdesk tutor}{\bf September 2018 -- April 2021}
 \leftright{\sl Computer Science Undergraduate Society Helpdesk}{\sl Montr\'eal, QC, Canada}
 \smallskip
 Hold twice-weekly office hours to tutor students in a variety of undergraduate courses.
 Topics covered include elementary data structures and algorithms, command-line scripting,
 and functional programming. Recipient of the Tomlinson Engagement Award for Mentoring.
 \medbreak
-
 
 \leftright{\bf Vice President, Academic}{\bf May 2019 -- January 2020}
 \leftright{\sl Society of Undergraduate Mathematics Students}{\sl Montr\'eal, QC, Canada}
@@ -241,26 +250,26 @@ and helping students with
 academic concerns.
 \medbreak
 
-\leftright{\bf Painter}{\bf May -- August 2018}
+\starleftright{\bf Painter}{\bf May -- August 2018}
 \leftright{\sl Bakir Contracting Corp.}{\sl Edmonton, AB, Canada}
 \smallskip
 Exterior painting (siding, decks, fences, trim, etc.) for residential clients.
 \medbreak
 
-\leftright{\bf Infantryman}{\bf August 2015 -- August 2017}
+\starleftright{\bf Infantryman}{\bf August 2015 -- August 2017}
 \leftright{\sl Singapore Armed Forces}{\sl Singapore}
 \smallskip
 Held appointment of machine-gun team commander in the 3rd Battalion, Singapore Infantry Regiment.
 Led a six-person team consisting of a medic, signaller, sensor, and two-machine gunners within a rifle platoon.
 \medbreak
 
-\leftright{\bf Tutor}{\bf September 2014 -- June 2015}
+\starleftright{\bf Tutor}{\bf September 2014 -- June 2015}
 \leftright{\sl \'Ecole Secondaire Beaumont Composite High School}{\sl Beaumont, AB, Canada}
 \smallskip
 Tutored various students in grades 4 through 11 in chemistry, physics, math, and French.
 \medbreak
 
-\leftright{\bf Summer camp counsellor}{\bf June -- August 2014}
+\starleftright{\bf Summer camp counsellor}{\bf June -- August 2014}
 \leftright{\sl YoWoChAs Outdoor Education Centre}{\sl Fallis, AB, Canada}
 \smallskip
 Led children aged 4--15 through various activities (e.g. archery, canoeing, zipline) at a sleepaway camp.
