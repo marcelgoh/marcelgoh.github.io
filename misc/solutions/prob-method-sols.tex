@@ -3,9 +3,13 @@
 
 \def\given{\,|\,}
 \def\biggiven{\,\big|\,}
+\def\A{{\cal A}}
+\def\B{{\cal B}}
+\def\C{{\cal C}}
 \def\F{{\cal F}}
+\def\G{{\cal G}}
 
-\maketitle{The Probabilistic Method}{exercise solutions by}{Marcel K. Goh}{17 February 2022}
+\maketitle{The Probabilistic Method}{exercise solutions by}{Marcel K. Goh}{9 March 2022}
 
 \floattext5 \ninebf Note. \ninepoint
 A star indicates a starred problem in the text; these are supposed to be harder.
@@ -270,5 +274,55 @@ $$\pr\{X\ge \lambda\} \le {\sigma^2 + \sigma^4/\lambda^2\over (\lambda + \sigma^
 = {\sigma^2(\lambda + \sigma^2/\lambda) \over \lambda(\lambda + \sigma^2/\lambda)^2}
 = {\sigma^2 \over \sigma^2+\lambda^2},$$
 exactly what we need.\slug
+
+\section 6. Correlation Inequalities
+
+\proclaim Exercise 6.1. Let $G$ be a graph and let $P$ denote the probability that a random subgraph
+of $G$ obtained by picking each edge of $G$ with probability $1/2$ independently is connected (and spanning).
+Let $Q$ denote the probability that in a random two-colouring of $G$, where each edge is chosen,
+randomly and independently, to be either red or blue, the red graph and the blue graph are both connected
+(and spanning). Is $Q\le P^2$?
+
+\solution The answer is yes. Let $\A$ be the family of subsets $A\subseteq E$ such that $G' = (V,A)$
+is connected. Let $\C$ be the family of subsets $C\subseteq E$ such that $G'' = (V, E\setminus C)$ is
+connected. Adding any edge to $A\in \A$ keeps the set in $\A$, and removing any edge from $C\in \C$ keeps
+the set in $\C$, so $\A$ is monotone increasing and $\C$ is monotone decreasing. Note that if $S$ is a
+random subset of edges obtained by taking each edge independently with probability $1/2$, then
+$\pr\{S = A\} = \pr\{S = E\setminus A\}$ for any fixed $A\subseteq E$, so we find that
+$ P = \pr\{\A\} = \pr\{\C\}$. On the other hand, $Q$ is the probability that both $S$ and $E\setminus S$
+induce connected subgraphs; i.e., $Q = \pr\{S\in \A\cap \C\}$. Applying Proposition~6.3.1 now gives
+$$Q = \pr\{ \A\cap \C\} \le \pr\{\A\} \pr\{\C\} = P^2,$$
+as desired.\slug
+
+\proclaim Exercise 6.2. A family of subsets $\G$ is called {\it intersecting} if $G_1\cap G_2\ne \emptyset$
+for all $G_1,G_2\in \G$. Let $\F_1, \F_2, \ldots, \F_k$ be $k$ intersecting families of subsets of $X = [n]$.
+Prove that
+$$\biggl|\bigcup_{i=1}^k \F_i\biggr| \le 2^n - 2^{n-k}.$$
+
+\proof We do this by induction on $k$. If $k=1$, then the upper bound of $2^{n-1}$ on the size of an
+intersecting family $\F$ is clear from the fact that $\F$ may contain at most one element of each pair
+$(A,X\setminus A)$, and there are $2^{n-1}$ such pairs.
+For the induction step, we split
+$$\bigcup_{i=1}^k \F_i = \bigcup_{i=1}^{k-1} \F_i \cup \F_k;$$
+call the first term on the right-hand side $\A$ and let $\C = 2^X\setminus \F_k$, so that
+$$\bigcup_{i=1}^{k-1} \F_i \cup \F_k = \A \cup \F_k = (\A \cap \C) \cup \F_k.$$
+Since we are trying to form an upper bound on this quantity,
+we might as well assume that $\A$ is maximal; i.e., adding any set to $\F_i$ for $1\le i< k$ causes
+$\F_i$ to no longer be intersecting. The claim is that $\A$ is monotone increasing. To see this, suppose
+that $A\supseteq B$ and $B\in \A$. This means that $B\in \F_i$ for some $1\le i<k$, and so for any $C\in \F_i$,
+$A\cap C \supseteq B\cap C\ne \emptyset$, meaning that $A\in \F_i\subseteq \A$ as well, otherwise we could
+add $A$ to $\A$ and contradict maximality. We have actually shown
+that the union of any $m$ maximal intersecting families is monotone increasing, so in particular $\F_k$ is
+as well. But this means that $\C = 2^X\setminus \F_k$ is monotone decreasing, since if $C\notin \F_k$
+and $B\subseteq C$ with $B\in \F_k$, then $\F_k$ would not be monotone increasing. We are now in a position
+to apply the cardinality version of Proposition~6.3.1. It gives
+$$\biggl|\bigcup_{i=1}^k \F_i\biggr| = |\A\cap \C| + |\F_k|
+\le {|\A|\cdot|\C|\over 2^n} + |\F_k|
+\le \biggl(1-{1\over 2^{k-1}}\biggr) |\C| + |\F_k|,$$
+where in the last inequality we used the induction hypothesis $|\A| \le 2^n - 2^{n-k+1}$. Since
+$|\C| + |\F_k| = 2^n$ and the coefficient of the latter is larger than the coefficient of the former
+in the above, the entire expression is largest when $|\F_k| = |\C| = 2^{n-1}$. In this case, we have
+$$\biggl|\bigcup_{i=1}^k \F_i\biggr| \le \biggl(1-{1\over 2^{k-1}}\biggr) 2^{n-1} + 2^{n-1} = 2^n-2^{n-k},$$
+completing the induction and the proof.\slug
 
 \bye
