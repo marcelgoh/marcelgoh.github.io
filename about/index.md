@@ -14,7 +14,7 @@ I was born in Singapore but spent most of my childhood in Leduc, Alberta. I grad
 
 My favourite polygon is the pentagon.
 
-As a certified First Responder, I volunteer with the [McGill Student Emergency Response Team](http://www.msert.ca).
+From 2017 to 2021, I volunteered with the [McGill Student Emergency Response Team](http://www.msert.ca).
 
 When I'm not doing math or attending school, I enjoy bouldering, travelling and photography.
 
