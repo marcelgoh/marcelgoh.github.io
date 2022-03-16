@@ -44,4 +44,5 @@ __E8.__ [Tsirelson's space and other exotic constructions]({{ site.baseurl }}/mi
 + &#78069; [Cheng Lin](https://cheng-lin.me)
 + &#78048; [Diego Lopez](https://diegolopez.me)
 + &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
++ &#77839; [Denali Relles](https://denali-relles.github.io)
 + &#78264; [Rosie Zhao](https://rosieyzh.github.io/)
