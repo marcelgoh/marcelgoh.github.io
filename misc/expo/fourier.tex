@@ -1,0 +1,211 @@
+\input fontmac
+\input mathmac
+
+\def\FF{{\bf F}}
+\def\TT{{\bf T}}
+\def\bar{\overline}
+\def\hat{\widehat}
+\def\norm#1{|\!|#1|\!|}
+\def\bignorm#1{\big|\!\big|#1\big|\!\big|}
+\def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
+\def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+
+\widemargins
+\bookheader{FOURIER ANALYSIS IN ADDITIVE COMBINATORICS}{MARCEL K. GOH}
+
+\maketitle{Fourier analysis in additive combinatorics}{notes by}{Marcel K. Goh}{}
+
+\floattext4.5 \ninebf Note.
+\ninepoint
+I am compiling this set of expository notes primarily to solidify these bread-and-butter
+concepts in
+my own mind. Sources that are far more comprehensive exist on the web, so I'm not sure
+how useful this will be to anyone else. Currently, the bulk of these notes come from
+a series of YouTube lectures of Timothy Gowers (given in early 2022), though I intend
+in future to add more relevant topics as I learn about them.
+
+\bigskip
+
+\advsect Preliminary notions
+
+Let $Z$ be a finite abelian group. A {\it character} on $Z$ is a homomorphism from
+$Z$ to the multiplicative group $\C\setminus\{0\}$. If $\chi$ is such a homomorphism, then
+$\bigl|\chi(x)\bigr| = 1$ for every $x\in Z$, so we can actually regard $\chi$ as being
+a function from $Z$ to the unit circle $\TT = \{z\in \C : |z| = 1\}$. The pointwise product
+of two characters gives another character, and the function $\chi_0$ that sends every $x\in Z$
+to $1$ has the property that if $\chi$ is any character, then $\chi\chi_0 = \chi = \chi_0\chi$.
+Lastly, we note that multiplication is commutative and
+for any character $\chi$, the product of $\chi$ with $\bar\chi$
+gives $\chi_0$, so the set of characters on $Z$ is an abelian group. This is called the
+{\it dual group} or sometimes {\it Pontryagin dual} of $Z$ and is denoted $\hat Z$.
+
+We define an inner product on the space $\CC^Z$ of functions from $Z$ to $\CC$ by setting
+$$\langle f,g\rangle = \ex_x f(x) \bar{g(x)},$$
+where $\ex_{x\in Z} F(x) = |Z|^{-1} \sum_{x\in Z} F(x)$.
+We can also make $\hat Z$ into an inner product space by letting
+$$\langle \hat f, \hat g\rangle = \sum_{\chi\in \hat Z} \hat f(\chi)\bar{\hat g(\chi)};$$
+note that this time we do not normalise by dividing by $|Z|$.
+Two functions $f$ and $g$ in an inner product space are said to be {\it orthogonal} if $\langle f,g\rangle = 0$.
+The first lemma we'll prove concerns certain orthogonality relations.
+
+\parenproclaim Lemma {\advthm} (Orthogonality relations). Let $Z$ be a finite abelian group.
+\medskip
+\item{a)} If $\chi_1$ and $\chi_2$ are characters on $Z$, then
+$$\langle \chi_1,\chi_2 \rangle = \ex_{x\in Z} \chi_1(x)\bar{\chi_2(x)}
+  = \cases{ 1, & if $\chi_1 = \chi_2$;\cr 0, & if $\chi_1 \ne\chi_2$.}.$$
+\smallskip
+\item{b)} For $x,y\in Z$, we have
+$$\sum_{\chi\in \hat Z} \chi(x)\bar{\chi(y)}
+  = \cases{ |\hat Z|, & if $x=y$;\cr 0, & if $x\ne y$,}$$
+\medskip
+
+\proof Let $\chi_0$ denote the trivial character. We have
+$$\ex_{x\in Z} \chi_0(x) = \ex_{x\in Z} 1 = 1.$$
+On the other hand, let $\chi$ be a nontrivial character and let $u\in Z$ be such that $\chi(u)\ne 1$. Then from
+$$\ex_{x\in Z} \chi(x) = \ex_{x\in Z} \chi(u+x) = \ex_{x\in Z}\chi(u)\chi(x) = \chi(u)\ex_{x\in Z}\chi(x),$$
+it follows that $\ex_{x\in Z}\chi(x) = 0$. Now consider $\chi_1\bar{\chi_2}$. If $\chi_1 = \chi_2$, then
+this is the trivial character and from our first observation, $\langle \chi_1,\chi_2\rangle = 0$. Otherwise,
+we are in the second case and the inner product is zero. This proves part (a).
+
+Part (b) is proven similarly. Note that $\chi(x)\bar{\chi(y)} = \chi(x-y)$. If $x=y$, then we have
+$$\sum_{\chi\in\hat Z} \chi(x-y) = \sum_{\chi\in\hat Z} \chi(0) = |\hat Z|.$$
+If $x\ne y$, then there is some $\psi\in \hat Z$ such that $\psi(x-y)\ne 1$, and then writing
+$$\sum_{\chi\in \hat Z} \chi(x-y) = \sum_{\chi\in\hat Z} \psi(x-y)\chi(x-y)
+= \psi(x-y)\sum_{\chi\in\hat Z} \chi(x-y),$$
+we see that $\sum_{\chi\in\hat Z} \chi(x-y)$ must be zero.\slug
+
+Since the space of functions from $Z\to \CC$ has dimension $|Z|$, there are at most $|Z|$ characters.
+Every finite abelian group can be written as a direct product of cyclic groups, and we shall use this fact
+to show that there are exactly $|Z|$ characters; i.e., $|\hat Z| = |Z|$. For brevity, let $\ZZ_n$ stand for $\ZZ/n\ZZ$ for all $n\in\NN$,
+and for $\alpha\in \RR$, let $e(\alpha) = e^{2\pi i\alpha}$.
+
+\proclaim Lemma \advthm.
+The set of characters on a finite abelian group $Z$ spans the space of functions from $Z$ to $\CC$.
+
+\proof Write $Z \cong \ZZ_{n_1} \times \ZZ_{n_2}\times \cdots\times \ZZ_{n_r}$. For every
+$u = (u_1,\ldots, u_r)\in Z$, the function $\chi_u : Z\to \CC$ that takes
+$$(x_1,\ldots, x_r) \mapsto \prod_{i=1}^r e\biggl( {u_ix_i\over n_i}\biggr)$$
+is a character (this is easy to show, since $e(x_i + x_i') = e(x_i)e(x_i')$). If $u\ne u'$,
+then $\chi_u\ne\chi_{u'}$ and $\langle \chi_u,\chi_{u'}\rangle$ by the previous lemma. Hence
+the set $\{\chi_u : u\in Z\}$ comprises $|Z|$ linearly independent elements in a space of dimension $|Z|$,
+which must be spanning.\slug
+
+Note that the map $u\mapsto \chi_u$ gives an isomorphism from $Z$ to $\hat Z$.
+The two main examples we shall consider are when $Z = \ZZ_n$ and when $Z = \FF_p^n$. In the first
+case, $\chi_u$ takes $x\mapsto e(ux/N)$ and in the second case $\chi_u$ takes $x\mapsto e(u\cdot x/p)$.
+(Recall that if $u = (u_1,\ldots, u_n)$ and $x = (x_1,\ldots, x_n)$ then the dot product $u\cdot x$
+is the sum $\sum_{i=1}^n u_ix_i$.)
+
+For a finite set $X$, we shall denote by $L_p(X)$ the normed vector space of all functions $f:X\to \CC$
+under the norm
+$$\norm{f}_p = \bigl( \ex_{x\in X} \bigl| f(x)\bigr|^p \bigr)^{1/p}.$$
+The notation $l_p(X)$ denotes the same set, but with the norm
+$$\norm{f}_p = \Bigl( \sum_{x\in X} \bigl| f(x)\bigr|^p \Bigr)^{1/p}$$
+instead. Note that $\norm{f}_2^2 = \langle f,f\rangle$ and $\norm{f}_\infty = \max_{x\in X} \bigl|f(x)\bigr|$.
+
+\medskip\boldlabel The Fourier transform.
+If $f:Z\to \CC$, the {\it Fourier transform} of $f$ is the function $\hat f : \hat Z\to\CC$ given by
+$$\hat f(\chi) = \langle f,\chi\rangle = \ex_{x\in Z} f(x) \bar{\chi(x)}.$$
+We shall now state and prove an identity which is extremely useful in Fourier analysis.
+
+\parenproclaim Lemma {\advthm} (Parseval's identity). Let $Z$ be a finite abelian group
+and let $f$ and $g$ be functions from $Z$ to $\CC$.
+If $\hat f$ and $\hat g$ are the Fourier transforms of $f$ and $g$ respectively, then
+$\langle f,g\rangle = \langle \hat f, \hat g\rangle$.
+
+\proof First, we expand all the definitions and rearrange sums to obtain
+$$\eqalign{
+\langle \hat f, \hat g\rangle &= \sum_{\chi\in \hat Z} \hat f(\chi)\bar{\hat g(\chi)} \cr
+&=  \sum_{\chi\in \hat Z} \ex_{x\in Z} f(x)\bar{\chi(x)} \ex_{y\in Z} g(y)\bar{\chi(y)} \cr
+&=   \ex_{x\in Z} f(x) \ex_{y\in Z} g(y) \sum_{\chi\in \hat Z}\bar{\chi(x)}\bar{\chi(y)}.\cr
+}$$
+By the second orthogonality relation and the fact that $|\hat Z| = |Z|$, the inner sum equals $|Z|$ when
+$y = x$ and $0$ otherwise. Thus for any given $x$, we have
+$$\ex_{y\in Z} g(y) \sum_{\chi\in \hat Z}\chi(x)\bar{\chi(y)} = g(x),$$
+which is exactly what we need for the whole thing to equal $\langle f,g\rangle$.\slug
+
+We also have the following inversion formula that recovers the original function $f$ from $\hat f$.
+
+\parenproclaim Lemma {\advthm} (Fourier inversion formula). Let $Z$ be a finite abelian group and
+let $f:Z\to \CC$. We have
+$$f(x) = \sum_{\chi\in \hat Z} \hat f(\chi)\chi(x).$$
+
+\proof We expand
+$$\sum_{\chi\in \hat Z} \hat f(\chi)\chi(x) = \sum_{\chi\in \hat Z} \ex_{y\in Z} f(y) \bar{\chi(y)} \chi(x)
+= \ex_{y\in Z} f(y) \sum_{\chi\in \hat Z} \chi(x)\bar{\chi(y)},$$
+and we noted in the proof of Parseval's theorem that the right-hand side is exactly $f(x)$.\slug
+
+The inversion formula tells us that two functions from $Z\to \CC$ are equal if and only if their Fourier
+transforms are equal. For the next lemma, which concerns dilates of a function $f: Z\to \CC$, we will
+establish some notation. If $x\in Z$, we define $nx$ recursively for all integers $n\ge 0$ by $0x = 0$
+and $nx = x + (n-1)x$. We then set $nz = - (-n)x$ for all negative integers. Since the group operation
+on characters is multiplication, we will not write $n\chi$ but instead $\chi^n$ for $\chi$ multiplied
+with itself $n$ times.
+
+\parenproclaim Lemma {\advthm} (Dilation rule). Let $Z$ be a finite abelian group and let $a\in \ZZ$
+be an integer that is coprime to $|Z|$. Denote the multiplicative inverse of $a$ modulo $|Z|$ by $a^{-1}$.
+Letting $f_a : Z\to \CC$ be the function given by $f_a(x) = f(a^{-1} x)$, we have
+$\hat{f_a}(\chi) = \hat f(\chi^a)$.
+
+\proof We have
+$$\hat{f_a}(\chi) = \ex_{x\in Z} f_a(x) \bar{\chi(x)} = \ex_{x\in Z} f(a^{-1} x)\bar{\chi(x)}.$$
+Since $x\mapsto ax$ is a bijection from $Z$ to itself, we can replace $x$ formally by $ax$ in the above
+to get
+$$\hat{f_a}(\chi) = \ex_{x\in Z} f(x)\bar{\chi(ax)} = \ex_{x\in Z} f(x) \bar{\chi(ax)}^a
+= \hat f(\chi^a).\noskipslug$$
+
+\medskip\boldlabel Convolutions.
+For functions $f$ and $g$ from a finite abelian group $Z$ to $\CC$, the {\it convolution} $f*g$ is
+defined by
+$$ (f*g)(x) = \ex_{y+z = x} f(y)g(z).$$
+If instead $\hat f$ and $\hat g$ are functions from $\hat Z$ to $\CC$, then
+$$ (\hat f * \hat g)(\chi) = \sum_{\chi_1\chi_2 = \chi} \hat f(\chi_1)\hat g(\chi_2).$$
+
+\parenproclaim Lemma {\advthm} (Convolution law). Let $Z$ is a finite abelian group and $f,g : \Z\to \CC$.
+For all $\chi\in \hat Z$, we have $\hat{f*g} (\chi) = \hat f(\chi)\hat g(\chi)$.
+
+\proof We start by expanding
+$$\hat{f*g}(\chi) = \ex_{x\in Z} (f*g)(x) \bar{\chi(x)} = \ex_{x\in Z} \ex_{y+z=x} f(y)g(z)\bar{\chi(y)\chi(z)}.$$
+But note that $x$ does not appear in the summand anymore, meaning that we can simply rewrite this as
+an expectation
+over {\it all} $y$ and $z$ (their sum will equal $x$ for some $x\in Z$). Thus we can conclude that
+$$\hat{f*g}(\chi) = \ex_{y\in Z}\ex_{z\in Z} f(y)g(z)\bar{\chi(y)\chi(z)} = \hat f(\chi)\hat g(\chi),$$
+which is what we wanted to show.\slug
+
+If $A$ is a subset of a finite abelian group $Z$, we associate to $A$ the {\it characteristic function}
+$\one_A : Z\to \CC$ given by
+$$\one_A(x) = \cases{ 1, & if $x\in A$;\cr 0, & otherwise.}$$
+When it will not cause confusion, we will abuse notation and write $A(x)$ instead of $\one_A(x)$.
+With the definitions and results stated above, we are now in a position to translate properties of $A$ to
+Fourier-analytic statements about the function $\one_A$. First off, note that
+$$\bignorm{\hat{\one_A}}_2^2 = \norm{\one_A}_2^2 = \ex_{x\in Z} \one_A(x)^2 = \ex_{x\in Z} \one_A(x)
+= {|A|\over |Z|}.$$
+If $|A|/|Z| = \delta$, then we will say that $A$ has {\it density} $\delta$. Another way of expressing $\delta$
+in terms of $\one_A$ is
+$$\hat{\one_A}(\chi_0) = \ex_{x\in Z} \one_A(x)\chi_0(x) = \ex_{x\in Z} \one_A(x) = \delta,$$
+where $\chi_0$ is the trivial character.
+
+The fact that $\langle \one_A, \one_A\rangle = \delta$ means that if we sample $x$ and $y$ from $Z$ and
+condition that $x=y$, the probability that $x$ (or $y$) is in $A$ is $\delta$. The reason for stating this
+obvious fact in such a stilted way is that it generalises by way of the convolution operation we defined
+earlier; that is, what if we are interested in the probability that a $4$-tuple $(x,y,z,w)$ satisfying $x+y=z+w$
+is a member of $A^4$? Well, the convolution law gives
+$$\eqalign{
+\ex_{x+y=z+w} A(x)A(y)A(z)A(w) &= \ex_{u\in Z} \ex_{x+y=u}\ex_{z+w=u} A(x)A(y)A(z)A(w) \cr
+&= \ex_{u\in Z} (\one_A*\one_A)(u)^2 \cr
+&= \norm{\one_A*\one_A}_2^2 \cr
+&= \bignorm{\hat{\one_A*\one_A}}_2^2 \cr
+&= \bignorm{\bigl(\hat{\one_A}\bigr)^2}_2^2 \cr
+&= \sum_{\chi\in \hat Z} \bigl| \hat{\one_A}(\chi)\bigr|^4 \cr
+&= \norm{\one_A}_4^4, \cr
+}$$
+and more generally, the probability that a tuple $(a_1,\ldots,a_k, b_1,\ldots,b_k)\in Z^{2k}$
+with $a_1+\cdots+a_k=b_1+\cdots+b_k$ is a member of $A^{2k}$ is $\norm{\one_A}_{2k}^{2k}$. In any case,
+the number of $(x,y,z,w)\in A^4$ with $x+y = z+w$ is so important in additive combinatorics that is has a name.
+It is called the {\it additive energy} of $A$ and is denoted $E(A)$; what we showed above is that
+$E(A) = |Z|^3 \norm{\one_A}_4^4$.
+
+\section References
+
+\bye
+
