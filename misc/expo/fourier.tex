@@ -86,7 +86,7 @@ The set of characters on a finite abelian group $Z$ spans the space of functions
 $u = (u_1,\ldots, u_r)\in Z$, the function $\chi_u : Z\to \CC$ that takes
 $$(x_1,\ldots, x_r) \mapsto \prod_{i=1}^r e\biggl( {u_ix_i\over n_i}\biggr)$$
 is a character (this is easy to show, since $e(x_i + x_i') = e(x_i)e(x_i')$). If $u\ne u'$,
-then $\chi_u\ne\chi_{u'}$ and $\langle \chi_u,\chi_{u'}\rangle$ by the previous lemma. Hence
+then $\chi_u\ne\chi_{u'}$ and $\langle \chi_u,\chi_{u'}\rangle = 0$ by the previous lemma. Hence
 the set $\{\chi_u : u\in Z\}$ comprises $|Z|$ linearly independent elements in a space of dimension $|Z|$,
 which must be spanning.\slug
 
@@ -178,16 +178,16 @@ $$\one_A(x) = \cases{ 1, & if $x\in A$;\cr 0, & otherwise.}$$
 When it will not cause confusion, we will abuse notation and write $A(x)$ instead of $\one_A(x)$.
 With the definitions and results stated above, we are now in a position to translate properties of $A$ to
 Fourier-analytic statements about the function $\one_A$. First off, note that
-$$\bignorm{\hat{\one_A}}_2^2 = \norm{\one_A}_2^2 = \ex_{x\in Z} \one_A(x)^2 = \ex_{x\in Z} \one_A(x)
+$$\bignorm{\hat{\one_A}}_2^2 = \norm{\one_A}_2^2 = \ex_{x\in Z} A(x)^2 = \ex_{x\in Z} A(x)
 = {|A|\over |Z|}.$$
 If $|A|/|Z| = \delta$, then we will say that $A$ has {\it density} $\delta$. Another way of expressing $\delta$
 in terms of $\one_A$ is
-$$\hat{\one_A}(\chi_0) = \ex_{x\in Z} \one_A(x)\chi_0(x) = \ex_{x\in Z} \one_A(x) = \delta,$$
+$$\hat{\one_A}(\chi_0) = \ex_{x\in Z} A(x)\chi_0(x) = \ex_{x\in Z} A(x) = \delta,$$
 where $\chi_0$ is the trivial character.
 
-The fact that $\langle \one_A, \one_A\rangle = \delta$ means that if we sample $x$ and $y$ from $Z$ and
+The fact that $\norm{\one_A}_2^2 = \delta$ means that if we sample $x$ and $y$ from $Z$ and
 condition that $x=y$, the probability that $x$ (or $y$) is in $A$ is $\delta$. The reason for stating this
-obvious fact in such a stilted way is that it generalises by way of the convolution operation we defined
+obvious fact in such a stilted fashion is that it generalises by way of the convolution operation we defined
 earlier; that is, what if we are interested in the probability that a $4$-tuple $(x,y,z,w)$ satisfying $x+y=z+w$
 is a member of $A^4$? Well, the convolution law gives
 $$\eqalign{
@@ -202,7 +202,7 @@ $$\eqalign{
 and more generally, the probability that a tuple $(a_1,\ldots,a_k, b_1,\ldots,b_k)\in Z^{2k}$
 with $a_1+\cdots+a_k=b_1+\cdots+b_k$ is a member of $A^{2k}$ is $\norm{\one_A}_{2k}^{2k}$. In any case,
 the number of $(x,y,z,w)\in A^4$ with $x+y = z+w$ is so important in additive combinatorics that is has a name.
-It is called the {\it additive energy} of $A$ and is denoted $E(A)$; what we showed above is that
+It is called the {\it additive energy} of $A$ and is denoted $E(A)$; we just showed above is that
 $E(A) = |Z|^3 \norm{\one_A}_4^4$.
 
 \section References
