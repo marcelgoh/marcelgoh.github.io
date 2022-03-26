@@ -1,0 +1,551 @@
+\input fontmac
+\input mathmac
+
+\def\FF{{\bf F}}
+\def\TT{{\bf T}}
+\def\bar{\overline}
+\def\hat{\widehat}
+\def\norm#1{|\!|#1|\!|}
+\def\bignorm#1{\big|\!\big|#1\big|\!\big|}
+\def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
+\def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+
+\widemargins
+\bookheader{NOTES ON ADDITIVE COMBINATORICS}{MARCEL K. GOH}
+
+\maketitle{Notes on additive combinatorics}{by}{Marcel K. Goh}{23 March 2022}
+
+\floattext4.5 \ninebf Note.
+\ninepoint
+I am compiling this set of expository notes primarily to solidify these fundamental results of
+additive combinatorics in
+my own mind. Sources that are far more comprehensive exist on the web, so I'm not sure
+how useful this will be to anyone else. Currently, the bulk of these notes come from
+a series of YouTube lectures of Timothy Gowers (given in early 2022), though I intend
+in future to add more relevant topics as I learn about them.
+
+\bigskip
+
+\advsect Pl\"unnecke's theorem
+
+Let $A$ and $B$ be finite subsets of an abelian group. We define the {\it sumset}
+$A+B = \{a+b : a\in A,\, b\in B\}$ as well as the {\it difference set}
+$A-B = \{a-b : a\in A,\, b\in B\}$. For a nonnegative integer $r$, the {\it $r$-fold iterated sumset}
+$rA$ is defined recursively by $0A = \{0\}$ and $rA = A+(r-1)A$. The goal of this first section
+is to show that if the cardinality of
+a sumset $|A+B|$ is small compared to the size of the set $A$, then the difference
+$rB-sB$ of two iterated sumsets must also be small relative to the size of $A$,
+in some sense. This result is called Pl\"unnecke's
+theorem as it follows from a statement given by H.~Pl\"unnecke in~1969, though this particular
+formulation of it was stated and proved by I.~Z.~Ruzsa in 1989.
+
+\edef\thmplunnecke{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Pl\"unnecke, {\rm 1969;} Ruzsa, {\rm 1989}). Let $A_0$ and
+$B$ be finite subsets of an abelian group and suppose that $|A_0+B|\le K_0|A_0|$ for some constant $K_0$.
+Then there exist $A\subseteq A_0$ and $K\le K_0$ such that
+for any nonnegative integers $r$ and $s$, not both zero, we have $|rB-sB| \le K^{r+s}|A|$. In particular,
+this means that $|rB-sB| \le {K_0}^{r+s}|A_0|$.
+
+Ruzsa used Menger's theorem from graph theory to prove this theorem, but we will use a shorter
+argument from a 2012 paper by G.~Petridis. It hinges on the following lemma. In this proof (and the
+rest of these notes), we will write $A+x$ instead of $A+\{x\}$ for convenience.
+
+\edef\lempetridis{\the\thmcount}
+\parenproclaim Lemma {\advthm} (Petridis, {\rm 2012}). Let $A$ and $B$ be subsets of an abelian
+group and let $K$ be such that $|A_0+B| = K_0|A_0|$. Then there exist $A\subseteq A_0$ and
+$K\le K_0$ such that $|A+B+C| = K|A+C|$ for every finite subset $C$ of the group.
+
+\proof We pick $A\subseteq A_0$ nonempty such that the ratio $|A+B|/|A|$, which we shall
+set as $K$, is minimised. So $|A+B| = K|A|$ and $|A'+B|\ge K|A'|$ for all $A'\subseteq A_0$.
+Now we shall show by induction on $C$ that $|A+B+C|\le K|A+C|$ for all $C$. If $C$ is empty we
+are done, of course. Now assume the result holds for $C$ and let $x\notin C$ be arbitrary. We have
+$$\bigl| A+(C\cup \{x\}) \bigr| = |A+C| + |A+x| - |A'+x|$$
+where $A' = \{a\in A : a+x \in A+C\}$. But adding $x$ to everything in a set does not change its
+cardinality, so we have
+$$|A+C| + |A+x|-|A'+x| = |A+C| + |A| + |A'|.$$
+Also, any element of $A'+B+x$ is an element of $A+B+C$, since $a'+x\in A+C$ for all $a'\in A'$.
+Applying the induction hypothesis now gives
+$$\eqalign{
+\bigl| A + B + (C\cup \{x\}) \bigr| &\le |A+B+C| + |A+B+x| - |A'+B+x| \cr
+&\le K|A+B| + K|A| = K|A'| \cr
+&= K\bigl| A+(C\cup \{x\})\bigr|,
+}$$
+which completes the proof.\slug
+
+This lemma has an immediate corollary that already has some resemblance to the version of Pl\"unnecke's
+theorem that we eventually want to prove.
+
+\proclaim Corollary {\advthm}. If $|A_0 + B|\le K_0|A_0|$, then there is $A\subseteq A_0$ nonempty
+and $K\le K_0$ such that $|A+rB| \le K^r |A|$ for all nonnegative integers $r$.
+
+\proof The previous lemma gives $A$ and $K$ such that $|A+B+C|\le K|A+C|$ for all $C$. We now induce
+on $r$. The case $r=0$ is obvious. Now for $r>0$ applying the lemma again with $C = (r-1)B$ and
+then invoking the induction hypothesis gives
+$$|A+rB| = |A+B+(r-1)B| \le K|A+(r-1)B| \le K^r|A|.\noskipslug$$
+
+To get from this corollary to the full theorem, we will use a certain inequality of Rusza (1996), which
+is often called the Ruzsa triangle inequality due to its similarity to the triangle inequality in
+metric spaces.
+
+\parenproclaim Lemma {\advthm} (Ruzsa triangle inequality). Let $U$, $V$, and $W$ be finite
+subsets of an abelian group. Then
+$$|U|\cdot |V-W| \le |U-V|\cdot |U-W|.$$
+
+\proof For each $x\in V-W$, pick $v(x)\in V$ and $w(x)\in W$ such that $v(x)-w(x) = x$ (there may
+be multiple choices for each of $v(x)$ and $w(x)$, but we arbitrarily pick one).
+Define $\phi : U\times (V-W) \to (U-V)\times (U-W)$ by $\phi(u,x) = \bigl(u-v(x), u-w(x)\bigr)$.
+If $\bigl(u_1 - v(x_1), u_1 - w(x_2)\bigr) = \bigl(u_2 - v(x_2), u_2 - w(x_2)\bigr)$, then
+subtracting the second coordinate of each pair from the first, we find that
+$$x_1 = v(x_1) - w(x_1) = v(x_2) - w(x_2) = x_2,$$
+and this also implies that $u_1 = u_2$. So $\phi$ gives an injection from $U\times (V-1)$
+to $(U-V)\times (U-W)$.\slug
+
+If we define $d(U,V) = |U-V| / \bigl(|U|^{1/2}|V|^{1/2}\bigr)$, then this lemma states
+that $d(U,W) \le d(V,U)d(U,W)$. Taking logarithms gives a genuine additive triangle inequality,
+but the space of finite subsets of an abelian group does not form a metric space, since
+$|U-U|/|U|$ does not equal $1$ in general. In any case, we are now able to prove Ruzsa's
+version of Pl\"unnecke's inequality.
+
+\medskip
+\noindent{\it Proof of Theorem~{\thmplunnecke}.}\enspace Let $A$ and $K$ be given by
+Lemma~{\lempetridis}. By the corollary to that lemma, we have $|A+rB| \le K^r|A|$ and
+$|A+sB| \le K^r|A|$. Cardinalities are not changed by taking additive inverses of
+everything, so $|{-A}-rB| \le K^r|A|$ and $|{-A}-sB|\le K^r|A|$. Now an application of Ruzsa's triangle
+inequality with $U = -A$, $V = rB$ and $W = sB$ yields
+$$|A|\cdot|rB-sB| = |{-A}|\cdot|rB-sB| \le |{-A}-rB|\cdot|{-A}-sB| \le K^{r+s}|A|^2,$$
+and dividing both sides by $|A|$ proves the theorem.\slug
+
+\advsect Khovanskii's theorem
+
+The goal of this section is to prove the following wonderful theorem of A.~Khovanskii.
+
+\edef\thmkhovanskii{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Khovanskii, {\rm 1992}). Let $A$ be a finite
+subset of an abelian group and let $f_A(n) = |nA|$ for each $n\in \NN$. Then there exists
+$n_A$ and a polynomial $p_A$ such that $f_A(n) = p_A(n)$ for all $n\ge n_A$.
+
+Consider the example when $A = \{0,1,b-1,b\} \subseteq \ZZ$. Then letting $[a,b] = \{x\in \ZZ : a\le x\le b\}$,
+we have
+$$nA = [0, n] \cup [b-1,\ldots, b+n-1] \cup [2b-2, 2b+n-2] \cup\cdots\cup [n(b-1),nb].$$
+This has size $(n+1)^2$ as long as $n< b-1$, but when $n\ge b-1$, $nA$ is simply the set
+of integers in the range $[0,bn]$, which has size $bn+1$.
+
+We shall present a combinatorial proof of Khovanskii's theorem,
+given by M.~B.~Nathanson and I.~Z.~Ruzsa in 2002.
+Let $A = \{a_1,\ldots, a_r\}$ and
+for $x = (x_1,\ldots, x_r)\in {\NN_0}^r$, write
+$$\sigma(x) = \sum_{i=1}^r x_i\qquad\hbox{and}\qquad
+\alpha(x) = \sum_{i=1}^r a_ix_i.$$
+Then
+$$nA = \{ \alpha(x) : x\in {\NN_0}^r,\, \sigma(x) = n\}.$$
+Let $\prec$ be the lexicographic order on ${\NN_0}^r$; that is, $(x_1,\ldots,x_r)\prec (y_1,\ldots,y_r)$
+if there is some $i\in [r]$ such that $x_i<y_i$ and $x_j = y_j$ for all $1\le j<i$.
+Say that $x$ is {\it useless} if there is $x'\prec x$ such that $\sigma(x') = \sigma(x)$ and
+$\alpha(x') = \alpha(x)$; otherwise, say that $x$ is {\it useful}. It is easy to see that
+$|nA|$ is exactly the number of useful $x$ with $\sigma(x) = n$. Now let $\le$ denote
+the usual partial order on ${\NN_0}^r$, where $(x_1,\ldots,x_r)\le (y_1,\ldots,y_r)$
+if $x_i\le y_i$ for all $1\le i\le r$.
+
+\proclaim Lemma {\advthm}. If $x\le y$ and $x$ is useless, then $y$ is useless.
+
+\proof Since $x$ is useless, we can find $x'\prec x$ with $\sigma(x') = \sigma(x)$ and $\alpha(x') = \alpha(x)$.
+Let $y' = y+x'-x$. Since $x\le y$, $y-x$ is in ${\NN_0}^r$ and therefore so is $y'$. Then since
+$x_i' < x_i$ for the first $i$ at which the two tuples differ, the first coordinate at which $y'$ and
+$y$ differ is also $i$ and we have $y_i'<y_i$. Hence $y'\prec y$. Lastly,
+$$\sigma(y') = \sigma(y+x'-x) = \sigma(y) + \sigma(x') - \sigma(x) = \sigma(y)$$
+and the same is true with $\sigma$ replaced by $\alpha$, so $y$ is useless.\slug
+
+For each useless $x$ we can find a useless $x'$, minimal in the $\le$ order, such that $x'\le x$.
+This lemma gives a converse; it says that if $x'$ is a minimal useless element and $x'\le x$, then
+$x$ is also useless.
+
+\edef\lemminimalfinite{\the\thmcount}
+\proclaim Lemma {\advthm}. For any nonempty $U\subseteq {\NN_0}^r$, the set of minimal elements of
+$U$ (with respect to the $\le$ order) is finite.
+
+\proof We perform induction on $r$. If $r=1$, then it is clear that $U$ has exactly one minimal element.
+Now let $r>1$ and let $u$ be a minimal element of $u$. Then for every $v\in U$ with $u\not\le v$,
+there exists some $i$ and $t< u_i$ such that $v_i = t$. Let
+$$V(i,t) = \{v\in U : v_i = t\}$$
+for all $1\le i\le r$ and $0\le t<u_i$. Each set $V(i,t)$ is order-isomorphic to a subset of ${\NN_0}^{r-1}$,
+so by induction it has finitely many minimal elements. The number of $V(i,t)$ is $r\prod_{i=1}^r u_i$,
+and every minimal element of $u$ is either $u$ or a minimal element of some $V(i,t)$, so there are
+finitely many minimal elements in $U$.\slug
+
+We will need just one more lemma before we are able to prove Khovanskii's theorem. It shows that
+for any fixed $r$-tuple $x'$, the number of $x$ with $x'\le x$ and $\sigma(x) = n$
+is given by a polynomial in the variable $n$, with coefficients depending on $x'$ and $r$.
+
+\proclaim Lemma {\advthm}. Let $x'\in {\NN_0}^r$ and for $n\ge \sigma(x')$, let
+$$C(x', n) = \{n\in {\NN_0}^r : \sigma(x) = n,\,x'\le x\}.$$
+Then
+$$\bigl| C(x',n)\bigr| = {n-\sigma(x') + r-1 \choose r-1}.$$
+
+\proof Given $x\in C(x',n)$, map it to $x-x'$. This is a bijection from $C(x',n)$ to $C(0, n-\sigma(x')$.
+Now let $m = n-\sigma(x')$. The map $(x_1,\ldots,x_r) \mapsto (x_1,+1,\ldots, x_r+1)$ is a bijection
+from $C(0,m)$ to the set of $y\in \NN^r$ such that $y_1+\cdots+y_r = m+r$. Now the map
+$$(y_1,\ldots,y_r) \mapsto \{y_1, y_1+y_2, \ldots, y_1+\cdots+y_r\}$$
+is a bijection from the previous set to the set of subsets of $[m+r]$ that contain $m+r$. (It is
+inverted by the map $\{a_1, \ldots, a_r\} \mapsto (a_1, a_2-a_1, \ldots, a_r-a_{r-1})$.) But this final
+set has size ${m+r-1\choose r-1}$, so we are done.\slug
+
+Without further ado, let us now prove Khovanskii's theorem.
+
+\medskip\noindent {\it Proof of Theorem~{\thmkhovanskii}.}\enspace Let $U$ be the set of all
+useless $r$-tuples. By Lemma~{\lemminimalfinite}, the set $X\subseteq U$ of all minimal useless
+$r$-tuples is finite. Recall that $|nA|$ is the number of useful $x$ such that $\sigma(x) = n$,
+so using the notation of the previous lemma, we have
+$$|nA| = \bigl| C(0,n)\bigr| - \Bigl| \bigcup_{x'\in X} C(x',n)\Bigr|
+=\bigl| C(0,n)\bigr| - \sum_{Y\subseteq X} (-1)^{|Y|} \Bigl| \bigcap_{x'\in Y} C(x',n)\Bigr| $$
+But for any $Y\subseteq X$, $\bigcap_{x'\in Y} C(x',n) = C(x_Y, n)$, where $x_Y$ has for its
+$i$th coordinate the integer $\max_{y\in Y} y_i$. Hence every term in the inclusion-exclusion
+formula depends polynomially on $n$ once
+$$n\ge \sum_{1\le i\le r} \max_{x\in X} x_i.\noskipslug$$
+
+\advsect The Balog--Szemer\'edi--Gowers theorem
+
+Let $A$ be a finite nonempty subset of an abelian group. An {\it additive quadruple} in
+$A$ is a quadruple $(x,y,z,w)\in A^4$ such that $x+y = z+w$. The {\it additive energy}
+$E(A)$ of $A$ is the number of additive quadruples in $A$. If $(x,y,z,w)$ is an additive
+quadruple, then $w = x+y-z$, so $E(A)\le |A|^3$. The following lemma roughly states that if
+a set has a small sumset, then it has large additive energy.
+
+\proclaim Lemma {\advthm}. Let $A$ be a finite subset of an abelian group and let $C$ be such
+that $|A+A|\le C|A|$. Then $E(A)\ge |A|^3/C$.
+
+\proof Define $f : A+A\to \NN$ by letting $f(d)$ equal the number of pairs $(a,b)\in A^2$ such
+that $a+b =d$. Then
+$$\sum_{d\in A+A} f(d) = |A|^2\qquad\hbox{and}\qquad \sum_{d\in A+A} f(d)^2 = E(A).$$
+By the Cauchy--Schwarz inequality,
+$$|A|^2 = \sum_{d\ge 1} 1\cdot f(d)
+\le \Bigl(\sum_{d\ge 1} 1\Bigr)^{1/2} \Bigl( \sum_{d\ge 1} f(d)^2\Bigr)^{1/2}
+\le C^{1/2} |A|^{1/2} E(A)^{1/2}.$$
+From here, squaring the whole inequality and then dividing through by $C|A|$ gives the statement
+we want to prove.\slug
+
+The converse of this lemma does not hold. For example, we could take the disjoint
+union of an arithmetic progression with a geometric progression of the same length.
+This set has a large additive energy,
+because of the arithmetic progression, but it also has a large sumset, because of the geometric progression.
+However, we can pass to a large subset that has a small sumset (namely, the arithmetic progression), and this
+is essentially the statement of the Balog--Szemer\'edi--Gowers theorem. We shall state it later on in the
+section, after we have given the graph-theoretic definitions and lemmas needed in its proof.
+
+Let $G$ be a bipartite graph with finite vertex sets $X$ and $Y$. For a vertex $v\in X\cup Y$,
+let $d(v) = \deg(v)$ denote the {\it degree} of $x$, that is, the number of vertices adjacent to $v$.
+For $x_1,x_2\in X$, let $d(x_1,x_2)$ denote the number of paths of length $2$ from $x_1$ to $x_2$. This
+is called the {\it codegree} of $x_1$ and $x_2$. The {\it density} of $G$ is the number of edges of $G$
+divided by the maximum number of vertices it could have, namely $|X|\cdot|Y|$.
+
+\proclaim Lemma {\advthm}. Let $G$ be a bipartite graph with bipartition $X\cup Y$ and let the density
+of $G$ be $\delta$. Then for every $c>0$ there is a subset $X'\subseteq X$ with $|X'|\ge \delta|X|/\sqrt 2$
+such that the number of pairs $(x_1,x_2)\in (X')^2$ with $d(x_1,x_2) < c|Y|$ is at most $2c|X|^2/\delta^2$.
+
+\proof Let $y\in Y$ be chosen uniformly at random. Letting $X' = N(y)$, we have
+$$\ex\bigl\{ |X'|\bigr\} = \ex_{y\in Y} \bigl\{ d(y)\bigr\} = {1\over |Y|} \sum_{y\in Y} d(y)
+= {|E(G)|\over |Y|} = \delta|X|.$$
+By convexity of the map $x\mapsto x^2$, we then find that $\ex\bigl\{ |X'|^2\bigr\} \ge \delta^2|X|^2$.
+Let
+$$B = \bigl\{ (x_1,x_2)\in X^2 : d(x_1,x_2) < c|Y|\bigr\}.$$
+The probability that any $(x_1, x_2)\in B$ is also in $(X')^2$ is the same as the probability that
+$y$ is connected to both $x_1$ and $x_2$; this is less than $c|Y|$ by the construction of $B$.
+So by linearity of expectation, $\ex\bigl\{ |B\cap (X')^2| \bigr\} < c|X|^2$ and in particular, we
+have
+$$\biggl\{ |X'|^2 - {\delta^2\over 2c} |B\cap(X')^2|\biggr\}
+ >\biggl(\delta^2 - {\delta^2\over 2c}\cdot c\biggr)|X|^2 = {\delta^2\over 2}|X|^2.$$
+So there is $X'$ such that $|X'| - \bigl(\delta^2/(2c)\bigr) |B\cap (X')^2| \ge \delta^2|X|^2/2$.
+This set $X'$ has cardinality at least $\delta |X|/\sqrt 2$ and $|B\cap (X')^2| \le 2c|X'|^2/\delta^2$.\slug
+
+This lemma says that we can find a fairly large subset of $X$ such that almost every pair in this
+subset is joined by at least $c|Y|$ paths of length $2$. We would really like to remove the ``almost''
+in this statement, but to do so, we will have to pass to paths of length $3$.
+First, we need a little lemma about sums of real numbers between $0$ and $1$.
+
+\proclaim Lemma {\advthm}. Let $a_1,\ldots, a_n\in [0,1]$. If $\sum_{i=1}^n a_i \ge an$, then
+the number of $i$ such that $a_i\ge b$ is at least
+$$ \biggl( {a-b\over 1-b} \biggr) n.$$
+
+\proof Let $I$ be the set of $i$ such that $a_i\ge b$. Then we may write
+$$ an \le \sum_{i=1}^n a_i = \sum_{i\in I} a_i + \sum_{i\notin I} a_i
+\le |I| + (n-|I|)b.$$
+It remains to isolate for $|I|$.\slug
+
+For example, if $b = a/2$, then the number of $i$ with $a_i\ge b$ must be at least $an/2$, and more
+generally, if $a= 1-\theta$ and $b=1-\eta$, then the number of such $i$ is at least $(1-\theta/\eta)n$.
+If $\eta = 2\theta$, then $a_i\ge 1-2\theta$ at least half the time.
+Next we prove the lemma alluded to earlier, concerning paths of length $3$.
+
+\proclaim Lemma {\advthm}. Let $G$ be a bipartite graph with vertex sets $X$ and $Y$ and density $\delta$.
+Then there are subsets $X'\subseteq X$ and $Y'\subseteq Y$ such that
+$$|X'| \ge {\delta^2\over 8\sqrt 2} |X|\qquad\hbox{and}\qquad
+|Y'|\ge {\delta\over 4}|Y|$$
+and every $x\in X'$ and $y\in Y'$ are joined by at least $(\delta^6/2^{13}) |X|\cdot |Y|$ paths
+of length $3$ in $G$.
+
+\proof By letting $n = |X|$ and setting the $a_i$ equal to the degrees of the vertices in $X$, we have
+$a = \delta|Y|$
+and we can choose $b=a/2$ in the previous lemma
+to deduce that $X$ has a subset $X_1$ such that every vertex in $X_1$ has degree at least
+$\delta|Y|/2$ and $|X_1|\ge \delta|X|/2$. Note that the density of the bipartite subgraph with
+vertex set $X_1\cup Y$ is $\ge \delta/2$,
+so we may invoke the lemma about paths of length $2$ with $\delta$ set to $\delta/2$. It tells us that
+for any $c>0$, $X_1$ has a subset $X_2$ of size $\delta|X_1|/2^{3/2}$ such that for all but at most
+$8c|X_2|^2/\delta^2$ pairs $(x_1,x_2)\in {X_2}^2$, we have $d(x_1,x_2) \ge c|Y|$.
+
+Now let $\Gamma$ be a graph with vertex set $X_2$ and an edge between $x_1$ and $x_2$ if and only if
+$\delta(x_1,x_2)\ge c|Y|$. Note that by this definition, there may be loops in $\Gamma$. In any case,
+the average degree in $\Gamma$ is at least $(1-8c/\delta^2)|X_2|$. Invoking the previous lemma again,
+at least half the vertices in $X_2$ have degree at least $(1-16c/\delta^2)|X_2|$. Let $X'$ be the set of
+all such vertices. Then
+$$|X'| \ge {|X_2|\over 2} \ge {\delta|X_1|\over 4\sqrt 2} \ge {\delta^2 |X|\over 8\sqrt 2}.$$
+Every vertex in $X_2$ has degree at least $\delta |Y|/2$, so the bipartite subgraph on $X_2\cup Y$
+has density at least $\delta/2$ and the average degree of $y\in Y$ is at least $\delta|X_2|/2$. The
+previous lemma comes in handy once again, telling us that at least $\delta|Y|/4$ vertices in $Y$ has
+degree at least $\delta|X_2|/4$. Let $Y'$ be the set of these vertices.
+
+For any $x\in X'$ and $y\in Y'$, we know that $x$ has at least $(1-16c/\delta^2)|X_2|$ neighbours in $\Gamma$
+and $y$ has at least $\delta|X_2|/4$ neighbours in $X_2$. There must be at least
+$(\delta/4-16c/\delta^2)|X_2|$ neighbours in commmon. Letting $c=\delta^3/128$, the number of neighbours
+in common becomes $\delta|X_2|/8$, and the number of paths of length $3$ from $x$ to $y$ is at least
+$$ {\delta |X_2|\over 8} |X_2| \cdot c|Y| = {\delta\over 8}\cdot {\delta^3\over 128}
+\cdot {\delta^2\over 4\sqrt 2} |X|\cdot |Y| \ge {\delta^6\over 2^{13}}|X|\cdot |Y|,$$
+as foretold.\slug
+
+Let $A$ be a finite subset of an abelian group. We say that an element $d\in A-A$ is {\it $\theta$-popular}
+if $\bigl|\bigl\{ (a,b)\in A^2 : b-a=d\bigr\}\bigr|\ge \theta |A|$.
+
+\proclaim Lemma {\advthm}. Let $A$ be a finite subset of an abelian group and let $E(A)$ denote
+the additive energy of $A$. If $E(A)\ge c|A|^3$, then there are at least $c|A|/2$ elements of $A-A$
+that are $(c/2)$-popular.
+
+\proof Define $f : A-A\to \NN$ by $f(d) = \bigl|\bigl\{ (a,b)\in A^2 : b-a=d\bigr\}\bigr|$.
+Note that
+$$\sum_{d\in A-A} f(d) = |A|^2\qquad\hbox{and}\qquad \sum_{d\in A-A} f(d)^2 = E(A).$$
+Let $P$ be the set of $(c/2)$-popular differences and let $U = (A-A)\setminus P$. Then
+$$\eqalign{
+c|A|^3 &\le E(A)\cr
+&= \sum_{d\in A-A} f(d)^2 \cr
+&= \sum_{d\in P} f(d)^2 + \sum_{d\in U} f(d)^2 \cr
+&\le |P|\cdot |A|^2 + {c|A|\over 2} \sum_{d\in U} f(d) \cr
+&= |P|\cdot |A|^2 + {c|A|^3\over 2}, \cr
+}$$
+which implies that $|A|\ge c|A|/2$.\slug
+
+We are, at long last, ready to state and prove the Balog--Szemer\'edi--Gowers theorem. It is
+named for A.~Balog and E.~Szemer\'edi, who first proved it in 1994, as well as for W.~T.~Gowers,
+who gave an alternative proof in 1998 that yielded power-type bounds, a vast improvement to the tower-type
+bounds in Balog and Szemer\'edi's proof.
+
+\parenproclaim Theorem {\advthm} (Balog--Szemer\'edi, {\rm 1994;} Gowers, {\rm 1998}).
+Let $A$ be a finite subset of an abelian group with $E(A)\ge c|A|^3$. Then $A$ has a subset
+$A'$ of size at least $c'|A|$ such that $|A'-A'|\le C|A'|$, where $c'$ and $C$ have a power-type
+dependence on $c$. In particular, we may take
+$$ c' = {c^4\over 2^8}\qquad\hbox{and}\qquad C = {2^{68}\over c^{36}}.$$
+
+\proof Define a bipartite graph $G$ with both vertex sets being copies of $A$ (though
+we'll call one of these copies $B$ to avoid any confusion). Join $a\in A$ to
+$b\in B$ if and only if $b-a$ is $(c/2)$-popular. Each $(c/2)$-popular difference leads to at least
+$c|A|/2$ edges, so by the lemma, there are at least $c^2|A|^2/4$ edges. Let $\delta = c^2/4$.
+By the lemma concerning paths of length $3$, there exist $A'\subseteq A$ and $B'\subseteq B$
+with
+$$ |A'| \ge {\delta^2\over 8\sqrt 2} |A|\qquad\hbox{and}\qquad
+|B'|\ge {\delta \over 4} |A|$$
+such that every $a\in A$ and $b\in B$ are joined by at least $\delta^6|A|^2/2^{13}$ paths of length $3$
+in $G$.
+
+Given a path $(a,u,v,b)$ of length $3$, we have $b-a = u-a - (u-v) + b-v$, where $u-a$, $u-v$, and $b-v$
+are all $(c/2)$-popular. Hence the number of ways of writing $b-a$ as $r_1-s_1 - (r_2-s_2) + r_3 - s_3$
+is at least
+$${\delta^6\over 2^{13}} |A|^2 \biggl( {c\over 2} |A|\biggr)^3 = {c^{15}\over 2^{28}} |A|^5.$$
+But the number of possible $(r_1,s_1,r_2,s_2,r_3,s_3)$ is $|A|^6$. So
+$$ |B'-A'|\cdot {c^{15}\over 2^{28}} |A|^5 \le |A|^6 $$
+and $|B'-A'|\le 2^{28}|A|\over c^{15}$. Now the Ruzsa triangle inequality with $U = B'$ and
+$V = W = A'$ tells us that $|B'|\cdot |A'-A'| \le |B'-A'|^2$, so
+$$|A'-A'|\le {|B'-A'|^2\over |B'|} \le {2^{56}|A|^2\over c^{30}}\cdot {2^4\over c^2|A|}={2^{60}\over c^{32}}|A|.$$
+But recall that
+$$|A'| \ge {\delta^2\over 8\sqrt 2} |A| \ge {c^4\over 2^8}|A|,$$
+so $|A'-A'| \le 2^{68}|A'|/c^{36}$.\slug
+
+\advsect Basics of discrete Fourier analysis
+
+Let $Z$ be a finite abelian group. A {\it character} on $Z$ is a homomorphism from
+$Z$ to the multiplicative group $\C\setminus\{0\}$. If $\chi$ is such a homomorphism, then
+$\bigl|\chi(x)\bigr| = 1$ for every $x\in Z$, so we can actually regard $\chi$ as being
+a function from $Z$ to the unit circle $\TT = \{z\in \C : |z| = 1\}$. The pointwise product
+of two characters gives another character, and the function $\chi_0$ that sends every $x\in Z$
+to $1$ has the property that if $\chi$ is any character, then $\chi\chi_0 = \chi = \chi_0\chi$.
+Lastly, we note that multiplication is commutative and
+for any character $\chi$, the product of $\chi$ with $\bar\chi$
+gives $\chi_0$, so the set of characters on $Z$ is an abelian group. This is called the
+{\it dual group} or sometimes {\it Pontryagin dual} of $Z$ and is denoted $\hat Z$.
+
+We define an inner product on the space $\CC^Z$ of functions from $Z$ to $\CC$ by setting
+$$\langle f,g\rangle = \ex_x f(x) \bar{g(x)},$$
+where $\ex_{x\in Z} F(x) = |Z|^{-1} \sum_{x\in Z} F(x)$.
+We can also make $\hat Z$ into an inner product space by letting
+$$\langle \hat f, \hat g\rangle = \sum_{\chi\in \hat Z} \hat f(\chi)\bar{\hat g(\chi)};$$
+note that this time we do not normalise by dividing by $|Z|$.
+Two functions $f$ and $g$ in an inner product space are said to be {\it orthogonal} if $\langle f,g\rangle = 0$.
+The first lemma we'll prove concerns certain orthogonality relations.
+
+\parenproclaim Lemma {\advthm} (Orthogonality relations). Let $Z$ be a finite abelian group.
+\medskip
+\item{a)} If $\chi_1$ and $\chi_2$ are characters on $Z$, then
+$$\langle \chi_1,\chi_2 \rangle = \ex_{x\in Z} \chi_1(x)\bar{\chi_2(x)}
+  = \cases{ 1, & if $\chi_1 = \chi_2$;\cr 0, & if $\chi_1 \ne\chi_2$.}.$$
+\smallskip
+\item{b)} For $x,y\in Z$, we have
+$$\sum_{\chi\in \hat Z} \chi(x)\bar{\chi(y)}
+  = \cases{ |\hat Z|, & if $x=y$;\cr 0, & if $x\ne y$,}$$
+\medskip
+
+\proof Let $\chi_0$ denote the trivial character. We have
+$$\ex_{x\in Z} \chi_0(x) = \ex_{x\in Z} 1 = 1.$$
+On the other hand, let $\chi$ be a nontrivial character and let $u\in Z$ be such that $\chi(u)\ne 1$. Then from
+$$\ex_{x\in Z} \chi(x) = \ex_{x\in Z} \chi(u+x) = \ex_{x\in Z}\chi(u)\chi(x) = \chi(u)\ex_{x\in Z}\chi(x),$$
+it follows that $\ex_{x\in Z}\chi(x) = 0$. Now consider $\chi_1\bar{\chi_2}$. If $\chi_1 = \chi_2$, then
+this is the trivial character and from our first observation, $\langle \chi_1,\chi_2\rangle = 0$. Otherwise,
+we are in the second case and the inner product is zero. This proves part (a).
+
+Part (b) is proven similarly. Note that $\chi(x)\bar{\chi(y)} = \chi(x-y)$. If $x=y$, then we have
+$$\sum_{\chi\in\hat Z} \chi(x-y) = \sum_{\chi\in\hat Z} \chi(0) = |\hat Z|.$$
+If $x\ne y$, then there is some $\psi\in \hat Z$ such that $\psi(x-y)\ne 1$, and then writing
+$$\sum_{\chi\in \hat Z} \chi(x-y) = \sum_{\chi\in\hat Z} \psi(x-y)\chi(x-y)
+= \psi(x-y)\sum_{\chi\in\hat Z} \chi(x-y),$$
+we see that $\sum_{\chi\in\hat Z} \chi(x-y)$ must be zero.\slug
+
+Since the space of functions from $Z\to \CC$ has dimension $|Z|$, there are at most $|Z|$ characters.
+Every finite abelian group can be written as a direct product of cyclic groups, and we shall use this fact
+to show that there are exactly $|Z|$ characters; i.e., $|\hat Z| = |Z|$. For brevity, let $\ZZ_n$ stand for $\ZZ/n\ZZ$ for all $n\in\NN$,
+and for $\alpha\in \RR$, let $e(\alpha) = e^{2\pi i\alpha}$.
+
+\proclaim Lemma \advthm.
+The set of characters on a finite abelian group $Z$ spans the space of functions from $Z$ to $\CC$.
+
+\proof Write $Z \cong \ZZ_{n_1} \times \ZZ_{n_2}\times \cdots\times \ZZ_{n_r}$. For every
+$u = (u_1,\ldots, u_r)\in Z$, the function $\chi_u : Z\to \CC$ that takes
+$$(x_1,\ldots, x_r) \mapsto \prod_{i=1}^r e\biggl( {u_ix_i\over n_i}\biggr)$$
+is a character (this is easy to show, since $e(x_i + x_i') = e(x_i)e(x_i')$). If $u\ne u'$,
+then $\chi_u\ne\chi_{u'}$ and $\langle \chi_u,\chi_{u'}\rangle = 0$ by the previous lemma. Hence
+the set $\{\chi_u : u\in Z\}$ comprises $|Z|$ linearly independent elements in a space of dimension $|Z|$,
+which must be spanning.\slug
+
+Note that the map $u\mapsto \chi_u$ gives an isomorphism from $Z$ to $\hat Z$.
+The two main examples we shall consider are when $Z = \ZZ_n$ and when $Z = \FF_p^n$. In the first
+case, $\chi_u$ takes $x\mapsto e(ux/N)$ and in the second case $\chi_u$ takes $x\mapsto e(u\cdot x/p)$.
+(Recall that if $u = (u_1,\ldots, u_n)$ and $x = (x_1,\ldots, x_n)$ then the dot product $u\cdot x$
+is the sum $\sum_{i=1}^n u_ix_i$.)
+
+For a finite set $X$, we shall denote by $L_p(X)$ the normed vector space of all functions $f:X\to \CC$
+under the norm
+$$\norm{f}_p = \bigl( \ex_{x\in X} \bigl| f(x)\bigr|^p \bigr)^{1/p}.$$
+The notation $l_p(X)$ denotes the same set, but with the norm
+$$\norm{f}_p = \Bigl( \sum_{x\in X} \bigl| f(x)\bigr|^p \Bigr)^{1/p}$$
+instead. Note that $\norm{f}_2^2 = \langle f,f\rangle$ and $\norm{f}_\infty = \max_{x\in X} \bigl|f(x)\bigr|$.
+
+\medskip\boldlabel The Fourier transform.
+If $f:Z\to \CC$, the {\it Fourier transform} of $f$ is the function $\hat f : \hat Z\to\CC$ given by
+$$\hat f(\chi) = \langle f,\chi\rangle = \ex_{x\in Z} f(x) \bar{\chi(x)}.$$
+We shall now state and prove an identity which is extremely useful in Fourier analysis.
+
+\parenproclaim Lemma {\advthm} (Parseval's identity). Let $Z$ be a finite abelian group
+and let $f$ and $g$ be functions from $Z$ to $\CC$.
+If $\hat f$ and $\hat g$ are the Fourier transforms of $f$ and $g$ respectively, then
+$\langle f,g\rangle = \langle \hat f, \hat g\rangle$.
+
+\proof First, we expand all the definitions and rearrange sums to obtain
+$$\eqalign{
+\langle \hat f, \hat g\rangle &= \sum_{\chi\in \hat Z} \hat f(\chi)\bar{\hat g(\chi)} \cr
+&=  \sum_{\chi\in \hat Z} \ex_{x\in Z} f(x)\bar{\chi(x)} \ex_{y\in Z} g(y)\bar{\chi(y)} \cr
+&=   \ex_{x\in Z} f(x) \ex_{y\in Z} g(y) \sum_{\chi\in \hat Z}\bar{\chi(x)}\bar{\chi(y)}.\cr
+}$$
+By the second orthogonality relation and the fact that $|\hat Z| = |Z|$, the inner sum equals $|Z|$ when
+$y = x$ and $0$ otherwise. Thus for any given $x$, we have
+$$\ex_{y\in Z} g(y) \sum_{\chi\in \hat Z}\chi(x)\bar{\chi(y)} = g(x),$$
+which is exactly what we need for the whole thing to equal $\langle f,g\rangle$.\slug
+
+We also have the following inversion formula that recovers the original function $f$ from $\hat f$.
+
+\parenproclaim Lemma {\advthm} (Fourier inversion formula). Let $Z$ be a finite abelian group and
+let $f:Z\to \CC$. We have
+$$f(x) = \sum_{\chi\in \hat Z} \hat f(\chi)\chi(x).$$
+
+\proof We expand
+$$\sum_{\chi\in \hat Z} \hat f(\chi)\chi(x) = \sum_{\chi\in \hat Z} \ex_{y\in Z} f(y) \bar{\chi(y)} \chi(x)
+= \ex_{y\in Z} f(y) \sum_{\chi\in \hat Z} \chi(x)\bar{\chi(y)},$$
+and we noted in the proof of Parseval's theorem that the right-hand side is exactly $f(x)$.\slug
+
+The inversion formula tells us that two functions from $Z\to \CC$ are equal if and only if their Fourier
+transforms are equal. For the next lemma, which concerns dilates of a function $f: Z\to \CC$, we will
+establish some notation. If $x\in Z$, we define $nx$ recursively for all integers $n\ge 0$ by $0x = 0$
+and $nx = x + (n-1)x$. We then set $nz = - (-n)x$ for all negative integers. Since the group operation
+on characters is multiplication, we will not write $n\chi$ but instead $\chi^n$ for $\chi$ multiplied
+with itself $n$ times.
+
+\parenproclaim Lemma {\advthm} (Dilation rule). Let $Z$ be a finite abelian group and let $a\in \ZZ$
+be an integer that is coprime to $|Z|$. Denote the multiplicative inverse of $a$ modulo $|Z|$ by $a^{-1}$.
+Letting $f_a : Z\to \CC$ be the function given by $f_a(x) = f(a^{-1} x)$, we have
+$\hat{f_a}(\chi) = \hat f(\chi^a)$.
+
+\proof We have
+$$\hat{f_a}(\chi) = \ex_{x\in Z} f_a(x) \bar{\chi(x)} = \ex_{x\in Z} f(a^{-1} x)\bar{\chi(x)}.$$
+Since $x\mapsto ax$ is a bijection from $Z$ to itself, we can replace $x$ formally by $ax$ in the above
+to get
+$$\hat{f_a}(\chi) = \ex_{x\in Z} f(x)\bar{\chi(ax)} = \ex_{x\in Z} f(x) \bar{\chi(ax)}^a
+= \hat f(\chi^a).\noskipslug$$
+
+\medskip\boldlabel Convolutions.
+For functions $f$ and $g$ from a finite abelian group $Z$ to $\CC$, the {\it convolution} $f*g$ is
+defined by
+$$ (f*g)(x) = \ex_{y+z = x} f(y)g(z).$$
+If instead $\hat f$ and $\hat g$ are functions from $\hat Z$ to $\CC$, then
+$$ (\hat f * \hat g)(\chi) = \sum_{\chi_1\chi_2 = \chi} \hat f(\chi_1)\hat g(\chi_2).$$
+
+\parenproclaim Lemma {\advthm} (Convolution law). Let $Z$ is a finite abelian group and $f,g : \Z\to \CC$.
+For all $\chi\in \hat Z$, we have $\hat{f*g} (\chi) = \hat f(\chi)\hat g(\chi)$.
+
+\proof We start by expanding
+$$\hat{f*g}(\chi) = \ex_{x\in Z} (f*g)(x) \bar{\chi(x)} = \ex_{x\in Z} \ex_{y+z=x} f(y)g(z)\bar{\chi(y)\chi(z)}.$$
+But note that $x$ does not appear in the summand anymore, meaning that we can simply rewrite this as
+an expectation
+over {\it all} $y$ and $z$ (their sum will equal $x$ for some $x\in Z$). Thus we can conclude that
+$$\hat{f*g}(\chi) = \ex_{y\in Z}\ex_{z\in Z} f(y)g(z)\bar{\chi(y)\chi(z)} = \hat f(\chi)\hat g(\chi),$$
+which is what we wanted to show.\slug
+
+If $A$ is a subset of a finite abelian group $Z$, we associate to $A$ the {\it characteristic function}
+$\one_A : Z\to \CC$ given by
+$$\one_A(x) = \cases{ 1, & if $x\in A$;\cr 0, & otherwise.}$$
+When it will not cause confusion, we will abuse notation and write $A(x)$ instead of $\one_A(x)$.
+With the definitions and results stated above, we are now in a position to translate properties of $A$ to
+Fourier-analytic statements about the function $\one_A$. First off, note that
+$$\bignorm{\hat{\one_A}}_2^2 = \norm{\one_A}_2^2 = \ex_{x\in Z} A(x)^2 = \ex_{x\in Z} A(x)
+= {|A|\over |Z|}.$$
+If $|A|/|Z| = \delta$, then we will say that $A$ has {\it density} $\delta$. Another way of expressing $\delta$
+in terms of $\one_A$ is
+$$\hat{\one_A}(\chi_0) = \ex_{x\in Z} A(x)\chi_0(x) = \ex_{x\in Z} A(x) = \delta,$$
+where $\chi_0$ is the trivial character.
+
+The fact that $\norm{\one_A}_2^2 = \delta$ means that if we sample $x$ and $y$ from $Z$ and
+condition that $x=y$, the probability that $x$ (or $y$) is in $A$ is $\delta$. The reason for stating this
+obvious fact in such a stilted fashion is that it generalises by way of the convolution operation we defined
+earlier; that is, what if we are interested in the probability that a $4$-tuple $(x,y,z,w)$ satisfying $x+y=z+w$
+is a member of $A^4$? Well, the convolution law gives
+$$\eqalign{
+\ex_{x+y=z+w} A(x)A(y)A(z)A(w) &= \ex_{u\in Z} \ex_{x+y=u}\ex_{z+w=u} A(x)A(y)A(z)A(w) \cr
+&= \ex_{u\in Z} (\one_A*\one_A)(u)^2 \cr
+&= \norm{\one_A*\one_A}_2^2 \cr
+&= \bignorm{\hat{\one_A*\one_A}}_2^2 \cr
+&= \bignorm{\bigl(\hat{\one_A}\bigr)^2}_2^2 \cr
+&= \sum_{\chi\in \hat Z} \bigl| \hat{\one_A}(\chi)\bigr|^4 \cr
+&= \norm{\one_A}_4^4, \cr
+}$$
+and more generally, the probability that a tuple $(a_1,\ldots,a_k, b_1,\ldots,b_k)\in Z^{2k}$
+with $a_1+\cdots+a_k=b_1+\cdots+b_k$ is a member of $A^{2k}$ is $\norm{\one_A}_{2k}^{2k}$. Recall that
+the number of $(x,y,z,w)\in A^4$ with $x+y = z+w$
+is the additive energy $E(A)$ of $A$; we just showed above that
+$E(A) = |Z|^3 \norm{\one_A}_4^4$.
+
+\section References
+
+\bye
+
