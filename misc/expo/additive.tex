@@ -366,6 +366,76 @@ But recall that
 $$|A'| \ge {\delta^2\over 8\sqrt 2} |A| \ge {c^4\over 2^8}|A|,$$
 so $|A'-A'| \le 2^{68}|A'|/c^{36}$.\slug
 
+\advsect Freiman homomorphisms and Ruzsa embedding lemmas
+
+We have been talking a lot about finite subsets of abelian groups, so it's about time we gave
+a special name for these sets. An {\it additive set} is a pair $(A,Z)$ where $Z$ is an abelian
+group and $A$ is a finite subset of $Z$. In almost all cases we shall suppress mention of $Z$
+and speak simply of an additive set $A$.
+
+Let $A$ and $B$ be additive sets (not necessarily in the same group). A function $\phi:A\to B$
+is a {\it Freiman homomorphism of order $k$} if for any $2k$ elements $a_1,\ldots,a_k,b_1,\ldots,b_k\in A$
+satisfying
+$a_1+\cdots +a_k = b_1+\cdots+b_k$, we also have $\phi(a_1)+\cdots+\phi(a_k) =\phi(b_1)+\cdots+\phi(b_k)$.
+The existence of such a $\phi$ tells us that the additive relationships among
+the elements of $A$ are approximately the same as the additive relationships in $B$. Note that a Freiman
+homomorphism of order $k$ is also a Freiman homomorphism of order $k'$ for all $k'>k$.
+If we write simply ``Freiman
+homomorphism'', then we mean a Freiman homomorphism of order $2$, and we will sometimes write ``$k$-homomorphism''
+instead of ``Freiman homomorphism of order $k$''.
+
+A $k$-homomorphism $\phi:A\to B$ induces a map from $kA$ to $kB$. Indeed, if we define $\psi: kA\to kB$
+by
+$$\psi(a_1+\cdots+a_k) = \phi(a_1) + \cdots + \phi(a_k),$$
+then the definition of $k$-homomorphism ensures that $\phi$ is well-defined. More generally, if $\phi$
+is a $k(r+s)$-homomorphism, then defining $\psi : rA-sA \to rB-sB$ by
+$$\phi(a_1+\cdots+a_r-a_1'-\cdots-a_s') = \phi(a_1)+\cdots+\phi(a_r) -\phi(a_1')-\cdots-\phi(a_s'),$$
+it is easy to see that $\psi$ is a $k$-homomorphism. It is also clear that if $\phi$ is the
+restriction of a group homomorphism to $A$, then $\phi$ is a $k$-homomorphism for every $k$, and
+if $\phi:A\to B$ and $\psi:B\to C$ are $k$-homomorphisms, then $\psi\circ \phi : A\to C$ is a $k$-homomorphism
+as well.
+
+If $\phi : A\to B$ is a $k$-homorphism with an inverse that is also a $k$-homorphism, then we say that
+$\phi$ is a {\it Freiman isomorphism of order $k$} or, more briefly, a {\it $k$-isomorphism}. These
+maps preserve a lot of the properties that are of interest in additive combinatorics. Suppose that $A$
+is $k$-isomorphic to $B$. Then
+\medskip
+\item{i)} $|kA| = |kB|$;
+\smallskip
+\item{ii)} $|rA-sA| = |rB-sB|$ for all $r$ and $s$ with $r+s\le k$;
+\smallskip
+\item{iii)} $E(A) = E(B)$ if $k=2$; and
+\smallskip
+\item{iv)} if $k=2$ and $A$ contains an arithmetic progression of length $r$, then so does $B$.
+\medskip
+Of these statements, the only slightly nontrivial one is (iv). It follows from the fact that an
+arithmetic progression is a sequence $(a_1,\ldots,a_r)$ with $a_i+a_i = a_{i-1}+a_{i+1}$ for all $1<i<r$.
+Taking $\phi$ of both sides gives
+$$\phi(a_i) + \phi(a_i) = \phi(a_i+a_i) = \phi(a_{i-1}+a_{i+1}) = \phi(a_{i-1}) + \phi(a_{i+1}).$$
+Let us now state and prove two important ``embedding lemmas''. These lemmas tell us that if
+$kA-kA$ is not too large, then the additive set $A$ is $k$-isomorphic to a subset of a group that
+is simpler, in some sense.
+
+\parenproclaim Lemma {\advthm} (Ruzsa embedding lemma in $\FF_p^N$). Let $k\ge 1$ and $C>0$.
+Let $A\subseteq \FF_p^N$ be such that $|kA-kA|\le C|A|$. Then $A$ is isomorphic to a subset of
+$\FF_p^n$, where $p^{n-1} < C|A|$.
+
+\proof Let $X$ be a subspace of $\FF_p^N$ chosen uniformly at random from all subspaces of
+codimension $n$, where $n$ will be specified later. Let $q : \FF_p^N \to \FF_p^N/X$ be the
+quotient map taking $v$ to $v+X$. Since $q$ is a group homomorphism, its restriction to $A$
+is a Freiman homomorphism
+of order $k$. The only way that the restriction of $q$ to $A$ can fail to be a {\it $k$-isomorphism}
+is if there exist $a_1,\ldots,a_k,b_1,\ldots,b_k\in A$ such that $a_1+\cdots+a_k \ne b_1+\cdots+b_k$
+but $q(a_1)+ \cdots + q(a_k) = q(b_1)+\cdots+q(b_k)$. This is equivalent to
+$a_1+\cdots+a_k - b_1-\cdots-b_k$ being in $X$. For any nonzero $y\in \FF_p^N$, we have
+$$\pr\{y\in X\} = {p^{n-n}-1\over p^N-1} < {1\over p^n},$$
+and since $|kA-kA|\le C|A|$,
+$$\pr\biggl\{\bigcup_{y\in (kA-kA)\setminus\{0\}} \{y\in X\}\biggr\} \le \sum_{y\in (kA-kA)\setminus 0}
+\pr\{y\in X\} < {C|A|\over p^n},$$
+the probability that $q$ is a $k$-isomorphism is nonzero so long as $p^n\ge C|A|$. Taking the minimal such $n$,
+we have $p^{n-1} < C|A|$ and
+can conclude there is a subspace $X$ of dimension $n$ that contains a set $k$-isomorphic to $A$.\slug
+
 \advsect Basics of discrete Fourier analysis
 
 Let $Z$ be a finite abelian group. A {\it character} on $Z$ is a homomorphism from
@@ -377,7 +447,7 @@ to $1$ has the property that if $\chi$ is any character, then $\chi\chi_0 = \chi
 Lastly, we note that multiplication is commutative and
 for any character $\chi$, the product of $\chi$ with $\bar\chi$
 gives $\chi_0$, so the set of characters on $Z$ is an abelian group. This is called the
-{\it dual group} or sometimes {\it Pontryagin dual} of $Z$ and is denoted $\hat Z$.
+{\it dual group} (or sometimes the {\it Pontryagin dual}) of $Z$ and is denoted $\hat Z$.
 
 We define an inner product on the space $\CC^Z$ of functions from $Z$ to $\CC$ by setting
 $$\langle f,g\rangle = \ex_x f(x) \bar{g(x)},$$
@@ -423,7 +493,7 @@ and for $\alpha\in \RR$, let $e(\alpha) = e^{2\pi i\alpha}$.
 The set of characters on a finite abelian group $Z$ spans the space of functions from $Z$ to $\CC$.
 
 \proof Write $Z \cong \ZZ_{n_1} \times \ZZ_{n_2}\times \cdots\times \ZZ_{n_r}$. For every
-$u = (u_1,\ldots, u_r)\in Z$, the function $\chi_u : Z\to \CC$ that takes
+$u = (u_1,\ldots, u_r)\in Z$, the function $\chi_u : Z\to \CC$ that maps
 $$(x_1,\ldots, x_r) \mapsto \prod_{i=1}^r e\biggl( {u_ix_i\over n_i}\biggr)$$
 is a character (this is easy to show, since $e(x_i + x_i') = e(x_i)e(x_i')$). If $u\ne u'$,
 then $\chi_u\ne\chi_{u'}$ and $\langle \chi_u,\chi_{u'}\rangle = 0$ by the previous lemma. Hence
@@ -432,7 +502,7 @@ which must be spanning.\slug
 
 Note that the map $u\mapsto \chi_u$ gives an isomorphism from $Z$ to $\hat Z$.
 The two main examples we shall consider are when $Z = \ZZ_n$ and when $Z = \FF_p^n$. In the first
-case, $\chi_u$ takes $x\mapsto e(ux/N)$ and in the second case $\chi_u$ takes $x\mapsto e(u\cdot x/p)$.
+case, $\chi_u$ maps $x\mapsto e(ux/N)$ and in the second case $\chi_u$ maps $x\mapsto e(u\cdot x/p)$.
 (Recall that if $u = (u_1,\ldots, u_n)$ and $x = (x_1,\ldots, x_n)$ then the dot product $u\cdot x$
 is the sum $\sum_{i=1}^n u_ix_i$.)
 

@@ -14,9 +14,6 @@ My research interests include:
 + additive combinatorics
 
 I plan to submit my thesis, entitled "Structural properties of conditional Galton-Watson trees", in April 2022.
-This summer, I will be a teaching assistant for a workshop on
-[Random Structures and Combinatorial Statistics](https://bocconi2022.lakecomoschool.org/program/)
-at the Lake Como School of Advanced Studies.
 
 ### Papers
 

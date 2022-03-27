@@ -3,7 +3,7 @@ layout: page
 title: About me
 ---
 
-![me](profile.jpeg){: .center-image}
+![me]({{ site.baseurl }}/about/profile.jpeg){: .center-image}
 
 I am a first-year M.Sc. student at
 [McGill University](https://www.mcgill.ca), studying Mathematics.
