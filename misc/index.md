@@ -27,7 +27,6 @@ __E8.__ [Tsirelson's space and other exotic constructions]({{ site.baseurl }}/mi
 
 ### Other
 
-+ [Hitchhiking from Montréal to Edmonton]({{ site.baseurl }}/misc/hitchhiking.html)
 + [Poetry]({{ site.baseurl }}/misc/poetry.html)
 + [Noise]({{ site.baseurl }}/misc/noise.html)
 
