@@ -428,13 +428,59 @@ of order $k$. The only way that the restriction of $q$ to $A$ can fail to be a {
 is if there exist $a_1,\ldots,a_k,b_1,\ldots,b_k\in A$ such that $a_1+\cdots+a_k \ne b_1+\cdots+b_k$
 but $q(a_1)+ \cdots + q(a_k) = q(b_1)+\cdots+q(b_k)$. This is equivalent to
 $a_1+\cdots+a_k - b_1-\cdots-b_k$ being in $X$. For any nonzero $y\in \FF_p^N$, we have
-$$\pr\{y\in X\} = {p^{n-n}-1\over p^N-1} < {1\over p^n},$$
+$$\pr\{y\in X\} = {p^{N-n}-1\over p^N-1} < {1\over p^n},$$
 and since $|kA-kA|\le C|A|$,
 $$\pr\biggl\{\bigcup_{y\in (kA-kA)\setminus\{0\}} \{y\in X\}\biggr\} \le \sum_{y\in (kA-kA)\setminus 0}
 \pr\{y\in X\} < {C|A|\over p^n},$$
 the probability that $q$ is a $k$-isomorphism is nonzero so long as $p^n\ge C|A|$. Taking the minimal such $n$,
 we have $p^{n-1} < C|A|$ and
 can conclude there is a subspace $X$ of dimension $n$ that contains a set $k$-isomorphic to $A$.\slug
+
+Next, we will prove an embedding lemma for subsets of $\ZZ$. In this setting the ``simpler'' group
+that we pass to is a cyclic group, but first we need a lemma that essentially says that passing
+to a cyclic group preserves the additive structure.
+
+\proclaim Lemma {\advthm}. Let $k$ and $n$ be positive integers and let $A\subseteq \ZZ$ be a set of
+diameter less than $n/k$; i.e., $\max A - \min A < n/k$. Then the map $\phi : A\to \ZZ_n$ that
+sends $a\mapsto a\bmod n$ is a Freiman isomorphism of order $k$.
+
+\proof The function $\phi$ is the restriction of a group homomorphism to $A$, so it is a Freiman
+homomorphism of every order. Now suppose that $\min A = r$ and $\max A = s$, so that $s-r < n/k$.
+Then if $a_1,\ldots,a_k,b_1,\ldots,b_k$ are such that $\phi(a_1)+\cdots+\phi(a_k) = \phi(b_1)+\cdots+\phi(b_k)$,
+then $a_1+\cdots+a_k -b_1-\cdots-b_k$ is at most $k(s-r) < n$ but also a multiple of $n$.
+Hence this difference is zero and $a_1 + \cdots + a_k = b_1+\cdots+b_k$.\slug
+
+As promised, here is the embedding lemma for subsets $A\subseteq \ZZ$. This time, we cannot simply
+say anything about the whole set $A$, but we can about a large subset of it.
+
+\parenproclaim Lemma {\advthm} (Ruzsa embedding lemma in $\ZZ$). Let $k\in \NN$ and $C\in \RR$.
+If $A\subseteq \ZZ$ with $|kA-kA|\le C|A|$, then there exists $A'\subseteq A$ with $|A'|\ge |A|/k$
+such that $A'$ is $k$-isomorphic to a subset of $\ZZ/N\ZZ$, where $N$ is a prime between
+$2C|A|$ and $4C|A|$.\slug
+
+\proof It is easily checked that translation is a Freiman isomorphism of every order, so we may assume
+that $A\subseteq \NN_0$. Let $p$ be a prime bigger than $k\max A$ and consider the
+sequence of functions
+$$\ZZ \buildrel{q_1}\over\longrightarrow \ZZ_p \buildrel{\mu_r}\over\longrightarrow \ZZ_p
+\buildrel\iota\over\longrightarrow \ZZ \buildrel{q_2}\over\longrightarrow \ZZ_N,$$
+where $q_1$ is reduction modulo $p$, $\mu_r$ is multiplication by a random nonzero element $r\in \ZZ_p$,
+$\iota$ takes an element of $\ZZ_p$ to its representative in $[0,p)$, and $q_2$ is reduction mod $N$.
+The only map here that is not a group homomorphism is $\iota$, so to show that the composition
+$\phi = q_2\circ \iota\circ \mu_r\circ q_1$ restricted to $A$ is a $k$-homomorphism, it suffices to worry
+about $\iota$. Split the interval $\{0,1,\ldots,p-1\}$ into $k$ subintervals $J_1,\ldots,J_k$,
+each of diameter less than $p/k$ and let $I_j = \iota^{-1}(J_j)$ for each $1\le j\le k$. By the previous
+lemma, the map $\iota^{-1}$ restricted to any $J_j$ is a $k$-isomorphism, so $\iota$ restricted
+to $I_j$ is a $k$-isomorphism as well. Now let
+$$A_{j,r} = \bigl\{a\in A : \mu_r\bigl(q_1(a)\bigr) \in I_j\bigr\}$$
+and note that $\mu_r\bigl(q_1(a)\bigr) = ra \bmod p$. Thus the composition $\phi$ is a $k$-homomorph\-ism
+when restricted to any $A_{j,r}$.
+
+We shall now show that with positive probability, the restriction of $\phi$ to every $A_{j,r}$ is
+a $k$-isomorphism. For fixed $r$, the restriction to $A_{j,r}$ is not a $k$-isomorphism
+if there exist $j$ and $a_1,\ldots,a_k,b_1,\ldots,b_k\in A_{j,r}$ such that
+$a_1+\cdots+a_k \ne b_1+\cdots+b_k$ but $\phi(a_1)+\cdots+\phi(a_k) = \phi(b_1)+\cdots+\phi(b_k)$.
+
+
 
 \advsect Basics of discrete Fourier analysis
 

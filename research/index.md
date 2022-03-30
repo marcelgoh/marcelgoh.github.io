@@ -17,7 +17,8 @@ I plan to submit my thesis, entitled "Structural properties of conditional Galto
 
 ### Papers
 
-__P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) Leaf multiplicity in a Bienaymé-Galton-Watson tree. To appear in _Discrete Mathematics and Theoretical Computer Science_, 11&nbsp;pp.
+__P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://dmtcs.episciences.org/paper/view/id/9237).
+_Discrete Mathematics and Theoretical Computer Science_ __24__,1 (2022), \#7, 16&nbsp;pp.
 [[arXiv](https://arxiv.org/abs/2105.12046)]  
 __P2.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://onlinelibrary.wiley.com/doi/abs/10.1002/rsa.21072). To appear in _Random Structures and Algorithms_, 24&nbsp;pp.
 [[arXiv](https://arxiv.org/abs/2007.05681)]  
