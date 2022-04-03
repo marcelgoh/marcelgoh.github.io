@@ -13,10 +13,12 @@ My research interests include:
 + enumerative combinatorics
 + additive combinatorics
 
-I plan to submit my thesis, entitled "Structural properties of conditional Galton-Watson trees", in April 2022.
+I submitted my thesis, entitled "Structural properties of conditional Galton-Watson trees", in April 2022.
 
 ### Papers
 
+__P4.__ (with Luc Devroye and Rosie Y. Zhao) The independence number of a Bienaymé-Galton-Watson tree and related parameters. To appear in _Combinatorics, Probability and Computing_.
+[[arXiv](https://arxiv.org/abs/2106.14389)], 20&nbsp;pp.  
 __P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://dmtcs.episciences.org/paper/view/id/9237).
 _Discrete Mathematics and Theoretical Computer Science_ __24__,1 (2022), \#7, 16&nbsp;pp.
 [[arXiv](https://arxiv.org/abs/2105.12046)]  
@@ -30,7 +32,6 @@ __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an
 
 Papers submitted for publication in refereed journals.
 
-&#x2600; (with Luc Devroye and Rosie Y. Zhao) [The independence number of a Bienaymé-Galton-Watson tree and related parameters](https://arxiv.org/abs/2106.14389). _arXiv preprint 2106.14389_, 20&nbsp;pp.  
 &#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 15&nbsp;pp.  
 
 ### Reports
