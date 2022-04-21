@@ -2,19 +2,182 @@
 \input mathmac
 
 \def\FF{{\bf F}}
-\def\TT{{\bf T}}
+\def\T{{\rm T}}
+\def\bias{\op{\rm bias}}
+\def\prk{\op{\rm prk}}
+\def\ark{\op{\rm ark}}
 \def\bar{\overline}
 \def\hat{\widehat}
 \def\norm#1{|\!|#1|\!|}
 \def\bignorm#1{\big|\!\big|#1\big|\!\big|}
 \def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
 \def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
 
 \widemargins
 \bookheader{THE ANALYTIC RANK OF A TENSOR}{MARCEL K. GOH}
 
-\maketitle{The analytic rank of a tensor}{by}{Marcel K. Goh}{10 April 2022}
+\maketitle{The analytic rank of a tensor}{by}{Marcel K. Goh}{13 April 2022}
 
+\floattext4.5 \ninebf Note. \ninepoint These notes are more or less a retelling of
+some results in a 2019 paper entitled ``The analytic rank of tensors and its applications'' by
+S.~Lovett. I go more deeply into definitions (for my own sake) so for other students this may be easier to
+follow than the original paper.
+
+\bigskip
+
+\advsect Introduction
+
+\noindent
+There are various compatible definitions of the {\it rank} of a matrix. The one that
+extends most easily to the context of tensors, which we define later, is the following.
+An $m\times n$ matrix $A$ is said to be {\it rank one} if there exist vectors $u\in \FF^m$
+and $v\in \FF^n$ such that $A = uv^\T$. The {\it rank} of a general matrix $A$ is the minimum
+number $k$ such that we can write $A = A_1 + \cdots + A_k$, where $A_i$ is a rank one matrix
+for all $1\le i\le k$.
+
+In a first course on linear algebra, one usually learns that the rank of a matrix is the
+dimension of its column (or row) space. To see that the above definition of rank is equivalent,
+let $A$ be a rank-$k$ matrix and let $B = \{b_1, \ldots, b_k\}$
+be a basis of its column space. Since every column of $A$
+can be written as a linear combination of vectors in $B$, so there is a $k\times n$ matrix $C$
+such that $A = BC$. Now letting $c_1, \ldots, c_k$ be the rows of $C$, we have
+$$A = b_1{c_1}^\T + \cdots + b_k{c_k}^\T,$$
+so the rank of $A$ is at most $k$. On the other hand, if
+$$A = u_1{v_1}^\T + \cdots + u_{k'}{v_{k'}}^\T,$$
+for some $k'< k$, then for all $x \in \FF^n$, we have
+$$Ax = u_1{v_1}^\T x + \cdots + u_{k'}{v_{k'}}^\T x.$$
+Since ${v_i}^\T x$ is a scalar for all $1\le i\le k'$, we conclude that $u_1, \ldots, u_{k'}$
+span the image of $A$ and the column space of $A$ is at most $k'<k$.
+
+Any $m\times n$ matrix $A$ gives a bilinear map from $\FF^m \times \FF^n$ to $\FF$ by taking
+$(x,y)\mapsto xAy$. We extend this to more than two vector spaces by defining an {\it order-$d$ tensor}
+to be a multilinear map $T : V_1\times\cdots\times V_d\to \FF$, where $V_i$ is a vector space over $\FF$
+for all $1\le i\le d$. From here on out,
+we restrict ourselves to the case where each $V_i$ has the same dimension $n$ and can thus be identified
+with $\FF^n$. Then there exist $n^d$ scalars $\{T_{j_1,\ldots,j_d}\}_{j_1,\ldots,j_d\in [n]}$
+such that for all $x_1,\ldots,x_d\in \FF^n$,
+$$ T(x_1, \ldots, x_d) = \sum_{j_1,\ldots,j_d\in [n]} T_{j_1,\ldots,j_d} x_{1,j_1}\cdots x_{d,j_d},$$
+where $x_{i, k}$ denotes the $k$th component of the vector $x_i$. There is thus a one-to-one correspondence
+between order-$d$ tensors and $d$-dimensional arrays of scalars (in our setting each dimension has size
+$n$).
+If $T$ is an order-$d$ tensor and $T'$ is an order-$d'$ tensor, then we can form a tensor of order $d+d'$
+from the $(d+d')$-dimensional array of scalars
+$$\{T_{i_1,\ldots,i_d}T'_{j_1,\ldots,j_{d'}}\}_{i_1,\ldots,i_{d},j_1,\ldots,j_{d'}\in [n]}.$$
+This tensor is denoted $T\otimes T'$ and is called the {\it tensor product} of $T$ and $T'$.
+
+Now we say that an order-$d$ tensor $T$ is {\it partition rank one} if there exists $A\subseteq [d]$
+with $0 < |A| < d$, as well as an order-$|A|$ tensor $T_1$ and an order-$(d-|A|)$ tensor $T_2$ such
+that $T$ can be written as
+$$ T(x_1, \ldots, x_d) = T_1(x_i : i\in A)T_2(x_i : i\notin A).$$
+The {\it partition rank} $\prk(T)$ of a
+general tensor $T$ is the minimum $k$ such that $T$ can be written as a sum
+of $k$ partition rank one tensors. Note that in the case $d=2$ this reduces to the ordinary matrix rank.
+
+\medskip\boldlabel The cap set problem. The partition rank was introduced to study the cap-set problem,
+and here we shall sketch how it applies. A {\it cap set} is a subset $A\subseteq \FF_3^n$ such that for
+every triple $(x,y,z)\in A$ of pairwise distinct elements, $x+y+z\ne 0$. In 1984, T.~C.~Brown
+and J.~P.~Buhler showed that, loosely speaking, cap sets have zero density.
+
+\parenproclaim Theorem C (Brown--Buhler{\rm, 1986}). For every $\delta>0$
+there exists $n$ such that every subset $A\subseteq \FF_3^n$ with $|A|\ge \delta 3^n$ contains three pairwise
+distinct elements $x$, $y$, and $z$ with $x+y+z=0$.
+
+A later paper by R.~Meshulam gave better quantitative
+bounds on $n$ with respect to $\delta$; namely, it was shown that we need only take $n > 2/\delta$.
+This means that if $A$ is a cap set in $\FF_3^n$, then $|A| \le 2\cdot 3^n/n$. However, it was long
+suspected that this bound could be improved to $|A| \le O(c^n)$ for some $c<3$. This was finally proved
+in 2017 by J.~S.~Ellenberg and D.~Gijswijt, and T.~Tao showed in a blog post (dated 18 May 2016)
+that thir proof can be restated in terms of the partition rank of a function in $3$ variables. This
+can actually be modified so the function is a $3$-tensor, but to just get the general idea, let
+us extend our definition of partition rank to general functions of three variables temporarily.
+
+Given $A\subseteq \FF_3^n$, let $T : V^3 \to \FF_3$, where $V = {\FF_3}^{\FF_3^n}$, be given by
+$$f(e_a,e_b,e_c = \cases{1, & if $a+b+c=0$;\cr 0, & otherwise,}$$
+for basis vectors $e_v$ and extended to all other vectors by linearity. (The function $e_v$ has
+$e_v(v) = 1$ and $e_v(x)=0$ for all $x\ne v$.)
+Now for a tensor $T : (\FF^X)^d \to \FF$, we say that a set $A\subseteq X$ is an {\it independent
+set in $T$} if for all $i_1,\ldots,i_d\in A$, the condition that the coefficient $T_{i_1,\ldots,i_d}$
+be nonzero is equivalent to $i_1=\cdots=i_d$.
+We then give an upper bound on the size of a cap set by proving that
+\medskip
+\item{i)} if $A$ contains no nontrivial solutions to $x+y+z=0$, then $A$ is an independent set in $T$;
+\smallskip
+\item{ii)} if $A$ is an independent set in $T$ then $\prk(T)\ge |A|$; and
+\smallskip
+\item{iii)} the partition rank of $T$ is low.
+\medskip
+In these notes, we aim to show that this general strategy may be performed with the partition rank
+replaced by something called the analytic rank.
+
+\medskip\boldlabel The analytic rank.
+In a 2011 paper, W.~T.~Gowers and J.~Wolf introduced another definition of rank that is Fourier-analytic
+in nature. Now we require the field $\FF$ to be finite, and let $\chi:\FF\to\CC$ be any nontrivial
+additive character. Recall that for such a character, $\ex_{a\in \FF} \chi(a) = 0$.
+The {\it bias} of a tensor $T : V^d\to \FF$ is the average
+$$\bias(T) = \ex_{x\in V^d} \chi\bigl(T(x)\bigr).$$
+Note that if $T$ is a linear form (i.e., an order-$1$ tensor) that is not identically zero,
+then $\bias(T) = 0$, since we can bring the sum inside all three functions and the sum over all elements
+a vector space over a finite field is zero. If $T$ is identically zero then $\bias(T) = 1$.
+Now to see that the bias of a tensor is always in $(0,1]$, note that if we fix any $(x_2, \ldots, x_d)\in V^{d-1}$,
+then $T(x_1,x_2,\ldots,x_d)$ becomes a linear form (order-$1$ tensor) in $x_1$ and
+$$\eqalign{
+\bias(T)
+&= \ex_{x_2,\ldots,x_d\in V} \ex_{x_1\in V} \chi\bigl(T(x_1,\ldots,x_d)\bigr)\cr
+&=\pr_{x_2,\ldots,x_d\in V} \bigl\{ T(x_1,\ldots,x_d) \equiv 0\bigr\},\cr
+}$$
+from our earlier observation about order-$1$ tensors.
+
+The {\it analytic rank} is defined to be the quantity
+$$\ark(T) = -\log_{|\FF|} \bias(T);$$
+since $\bias(T) \in (0,1]$ we have $\ark(T)\ge 0$. In the case of order-$2$ tensors, the analytic rank
+is once again equivalent to ordinary matrix rank. To see this, suppose that $T : (\FF^n)^2\to \FF$
+is defined as $T(x,y) = \sum_{i=1}^r x_iy_i$. Then $\bias(T)$ is the probability that, fixing
+$y$, the linear form $T(x,y)$ is identically zero. This is equivalent to every coordinate of $y$ being
+zero, which happens with probability $1/|\FF|^r$, and hence we see that $\ark(T) = r$.
+
+\advsect Subadditivity of analytic rank
+
+The goal of this section is to prove that if $T$ and $S$ are tensors, then $\ark(T+S)\le \ark(T)+\ark(S)$.
+Our first small lemma is the following.
+
+\proclaim Lemma \advthm. Let $W_0, W_1,\ldots,W_n : \FF^m\to \FF$ be functions. Let
+functions $A,B : \FF^n\times \FF^m\to \FF$ be given by
+$$A(x,y) = \sum_{i=1}^n x_i W_i(y)\qquad\hbox{and}\qquad B(x,y) = A(x,y) + W_0(y).$$
+Then
+$$\bigl| \bias(B)\bigr| \le \bias(A).$$
+
+\proof We expand
+$$\bias(B) = \ex_{x\in \FF^n, y\in \FF_m} \chi\bigl(B(x,y)\bigr)
+= \ex_{y\in \FF^m} \one_{W_1(y) = \cdots = W_n(y) = 0} \cdot \chi\bigl(W_0(y)\bigr)$$
+and by the triangle inequality,
+$$\bigl|\bias(B)\bigr| \le \ex_y \one_{W_1(y) = \cdots = W_n(y) = 0} = \bias(A).\noskipslug$$
+
+This lemma is used to prove a bound on the bias of a certain sum of tensors.
+First, we introduce some notation. With some $d$ fixed, we let $\x = (x_1,\ldots,x_d)$ and
+similarly for $\y = (y_1,\ldots,y_d)$. Then for
+$I\subseteq [d]$, define $I^c = [d]\setminus I$ and let $\x_I = (x_i : i\in I)$.
+
+\proclaim Lemma \advthm. Let $d\ge 1$ and for each $I\subseteq [d]$, let $R_I : V^I\to \FF$
+be an order-$|I|$ tensor. Consider the function
+$$R(\x) = \sum_{I\subseteq [d]} R_I(x_I).$$
+Then
+$$\bigl|\bias(R)\bigr| \le \bias(R_{[d]}).$$
+
+\proof Fix some $i\in [d]$ and write $R(\x)$ as
+$$R(\x) = \sum_{I \ni i} R_I(x_I) + \sum_{I\not\ni i} R_I(x_I).$$
+Setting $x = x_i$ and $y = \x_{[d]\setminus\{i\}}$, the first sum has the form
+$$\sum_{i=1}^n x_iW_i(y)$$ and the second sum does not depend on $x$ at all, so we can set it
+to be $W_0(y)$. The previous lemma now tells us that
+$$\bigl|\bias(R)\bigr| \le \bias\Bigl(\sum_{I\ni i} R_I(\x_I)\Bigr).$$
+Now iterate this with $i=d$ all the way down to $i=1$ (replacing $d$ by $d-1$ each time)
+to get the statement of the lemma.\slug
+
+\proclaim Theorem \advthm. Let $T,S: V^d\to \FF$ be order-$d$ tensors. Then
+$$\ark(T+S) \le \ark(T) + \ark(S).$$
+
+\section References
 
 \bye
 
