@@ -14,15 +14,18 @@
 \def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
 \def\x{{\bf x}}
 \def\y{{\bf y}}
+\def\b{{\bf b}}
 
 \widemargins
 \bookheader{THE ANALYTIC RANK OF A TENSOR}{MARCEL K. GOH}
 
-\maketitle{The analytic rank of a tensor}{by}{Marcel K. Goh}{13 April 2022}
+\maketitle{The analytic rank of a tensor}{by}{Marcel K. Goh}{22 April 2022}
 
 \floattext4.5 \ninebf Note. \ninepoint These notes are more or less a retelling of
 some results in a 2019 paper entitled ``The analytic rank of tensors and its applications'' by
-S.~Lovett. I go more deeply into definitions (for my own sake) so for other students this may be easier to
+S.~Lovett. I rearranged results in an order that makes more sense to me.
+I also go more deeply into definitions (for my own sake) and skip fewer steps,
+so for other students this may be easier to
 follow than the original paper.
 
 \bigskip
@@ -159,6 +162,7 @@ First, we introduce some notation. With some $d$ fixed, we let $\x = (x_1,\ldots
 similarly for $\y = (y_1,\ldots,y_d)$. Then for
 $I\subseteq [d]$, define $I^c = [d]\setminus I$ and let $\x_I = (x_i : i\in I)$.
 
+\edef\normbound{\the\thmcount}
 \proclaim Lemma \advthm. Let $d\ge 1$ and for each $I\subseteq [d]$, let $R_I : V^I\to \FF$
 be an order-$|I|$ tensor. Consider the function
 $$R(\x) = \sum_{I\subseteq [d]} R_I(x_I).$$
@@ -174,8 +178,136 @@ $$\bigl|\bias(R)\bigr| \le \bias\Bigl(\sum_{I\ni i} R_I(\x_I)\Bigr).$$
 Now iterate this with $i=d$ all the way down to $i=1$ (replacing $d$ by $d-1$ each time)
 to get the statement of the lemma.\slug
 
+Before proving subadditivity, we introduce another bit of notation. For $I\subseteq [d]$,
+let
+$$T_I(\x,\y) = T(\x_I, y_{I^c}) = T(z_1, \ldots, z_d),$$
+where $z_i = x_i$ if $i\in I$ and $z_i = y_i$ if $i\notin I$. After expanding out the definition
+of multilinearity, we see that $T(\x+\y)$ decomposes as
+$$ T(\x+\y) = \sum_{I\subseteq[d]} T_I(\x,\y).$$
+
+\edef\subadditivity{\the\thmcount}
 \proclaim Theorem \advthm. Let $T,S: V^d\to \FF$ be order-$d$ tensors. Then
 $$\ark(T+S) \le \ark(T) + \ark(S).$$
+
+\proof It is enough to show that
+$$\bias(T+S) \ge \bias(T)\bias(S).$$
+We express
+$$\eqalign{
+\bias(T)\bias(S) &= \Bigl(\ex_{\x\in V^d} \chi\bigl(T(\x)\bigr)\Bigr)
+                    \Bigl(\ex_{\y\in V^d} \chi\bigl(T(\y)\bigr)\Bigr)\cr
+&= \ex_{\x\in X} \ex_{\y\in Y} \chi\bigl( T(\x) + S(\y)\bigr) \cr
+&= \ex_{\x\in X} \ex_{\y\in Y} \chi\bigl( T(\x) + S(\x+\y)\bigr) \cr
+&= \bias\bigl( T(\x) + S(\x+\y)\bigr), \cr
+}$$
+and by our earlier decomposition the tensor product of a sum, this gives us
+$$\bias(T)\bias(S)
+= \bias \Bigl( T(\x) + \sum_{I\subseteq [d]} S_I(\x,\y) \Bigr)
+= \bias \Bigl( (T+S)(\x) + \sum_{I\ne [d]} S_I(\x,\y) \Bigr), $$
+Setting $\y = \b\in V^d$ to maximise the norm of this right-hand side, we have
+$$\bias(T)\bias(S) \le \Bigl| \bias\Bigl( (T+S)(\x) + \sum_{I\ne [d]} S_I(\x, \b)\Bigr)\Bigr|.$$
+Here $S_I(\x,\b)$ is an order-$|I|$ tensor in the variables $\x_I$. Thus we may apply
+the previous lemma with
+$$R_{[d]}(\x) = (T+S)(\x)\qquad\hbox{and}\qquad R_I(\x_I) = S_I(\x,\b)\ \hbox{for}\ I\ne [d]$$
+to get $\bias(T)\bias(S) \le \bias(T+S)$.\slug
+
+As an application of this theorem, we show that common roots of tensors on a common input are
+positively correlated.
+
+\proclaim Corollary \advthm. Let $T_1,\ldots,T_m, S_1,\ldots,S_n : V^d\to \FF$ be order-$d$ tensors.
+Then
+$$\eqalign{
+\pr_{x\in V^d}&\bigl\{ T_1(x) = \cdots = T_m(x) = S_1(x) = \cdots = S_n(x) = 0\bigr\}\ge \cr
+&\pr_{x\in V^d}\bigl\{ T_1(x) = \cdots = T_m(x) = 0\}\cdot
+\pr_{x\in V^d}\bigl\{ S_1(x) = \cdots = S_n(x) = 0\}
+}$$
+
+\proof Define order-$(d+1)$ tensors $T$ and $S$ by setting
+$$T(x_0,x_1,\ldots,x_d) = \sum_{i=1}^m x_{0,i} T_i(x_1,\ldots, x_d)$$
+and
+$$S(x_0,x_1,\ldots,x_d) = \sum_{i=m+1}^{m+n} x_{0,i} S_{i-m}(x_1,\ldots,x_d).$$
+The left-hand side of the desired inequality is $\bias(T+S)$ and the right-hand side is
+$\bias(T)\bias(S)$.\slug
+
+\advsect Analytic rank and partition rank
+
+In this section, we shall discuss properties of the analytic rank that allow it to be used as
+the partition rank was used above in the cap-set problem. First, we show that the analytic rank
+is bounded above by the partition rank.
+
+\proclaim Theorem \advthm. Let $T:V^d\to\FF$ be an order-$d$ tensor. Then $\ark(T)\le \prk(T)$.
+
+\proof By Theorem~\subadditivity, we only need to consider the case where $T$ has partition rank one.
+So we assume that $T:V^d\to \FF$ factors as
+$$T(\x) = T_1(\x_A)T_2(\x_B),$$
+where $A\cup B = [d]$ is a nontrivial partition of $[d]$. We shall show that $\ark(T)\le 1 = \prk(T)$ by
+showing that $\bias(T) \ge 1/|\FF|$. For $a,b\in \FF$ define the function
+$$ F_{a,b}(\x) = \bigl(T_1(\x_A) + a\bigr) \bigl( T_2(\x_B) + b\bigr).$$
+Letting $R_{[d]} = T$, $R_{\emptyset} = ab$, $R_A = bT_1(\x_A)$, $R_B = aT_2(\x_B)$, and $R_I$ be the
+zero tensor (of the corresponding order)
+for all other $I\subseteq [d]$, we see that $R = F_{a,b}$ and
+by Lemma~\normbound, $\bigl|\bias(F_{a,b})\bigr| \le \bias(T)$.
+On the other hand, we have
+$$\eqalign{
+\ex_{a,b\in \FF} \bias(F_{a,b}) &= \ex_{a,b\in \FF} \ex_{\x\in V^d}
+   \chi\bigl( (T_1(\x_A) + a)(T_2(\x_B) + b) \bigr) \cr
+&= \ex_{a,b\in F} \chi(ab) \cr
+&= \pr_{b\in \FF} \{b=0\} \cr
+&= {1\over |\FF|}. \cr
+}$$
+So we may find $a,b$ such that $\bias(T) \ge \bigl| \bias(F_{a,b})\bigr| \ge 1/|\FF|$, which
+is what we wanted.\slug
+
+Since we are often interested in finding some upper bound on the partition rank in applications,
+this theorem suggests that it should actually be easier to upper bound the analytic
+rank, though {\it ad hoc} methods to do so have not currently been developed.
+
+In applications, it is also important that the partition rank of a tensor $T$
+is bounded below by the size of an
+independent set in $T$. Towards showing a version of this for the analytic rank, we first show
+that the analytic rank does not increase when the tensor is restricted to a subspace.
+
+\proclaim Lemma \advthm. Let $T : V^d \to \FF$ be an order-$d$ tensor and let $U\subseteq V$ be a
+subspace. If $T|_U : U^d\to \FF$ is the restriction of $T$ to $U$, then $\ark(T|_U) \le \ark(T)$.
+
+\proof Let $W\subseteq V$ be a subspace so that $V = U\oplus W$. Then any $v\in V$ has a unique
+expression as $v = u+w$ for $u\in U$ and $w\in W$, so
+$$\bias(T) = \ex_{u_1,\ldots,u_d\in U} \ex_{w_1,\ldots,w_d\in W}\chi\bigl(T(u_1+w_1,\ldots,u_d+w_d)\bigr).$$
+Fix an arbitrary choice of $w_1,\ldots,w_d\in W$. Then
+$$T(u_1+w_1,\ldots, u_d+w_d) = \sum_{I\subseteq [d]} T_I(u_I, w_{I^c}),$$
+where $T_I(u_I, w_{I^c}) = T(z_1,\ldots,z_d)$ where $z_i = u_i$ if $i\in I$ and $z_i = w_i$ if $i\notin I$.
+By Lemma~\normbound, we have
+$$\eqalign{
+\bigl| \ex_{u_1,\ldots,u_d\in U} \chi\bigl( T(u_1+w_1,\ldots,u_d+w_d) \bigr) \bigr|
+&\le \ex_{u_1,\ldots,u_d\in U} \chi\bigl( T(u_1,\ldots,u_d)\bigr) \cr
+&= \bias(T|_U) \cr
+}$$
+Since this is for all $w_1,\ldots, w_d$, averaging the left-hand side over all choices and
+applying the triangle inequality gives us what we want.\slug
+
+We are now able to show that for any tensor $T$ and independent set $A$ in $T$, we have
+$\ark(T) \ge c|A|$ for $c$ depending on $d$ and $|\FF|$.
+
+\proclaim Theorem \advthm. Let $T : (\FF^n)^d\to \FF$ be an order-$d$ tensor. Assume that
+$A\subseteq [n]$ is an independent set in $T$. Then $\ark(T)\ge c|A|$ where
+$$c = -\log_{|\FF|} \biggl( 1-\biggl( 1-{1\over y}\biggr)^{d-1}\biggr),$$
+so that $c\ge 2^{-d}$ and $c\ge 1-\log(d-1)/\log |\FF|$.
+
+\proof Let $S : (F^A)^d\to \FF$ be the restriction of $T$ to $\FF^A$.
+By the previous lemma, $\ark(S)$ is a lower bound on $\ark(T)$, so we shall prove the theorem
+by expressing $\ark(S)$ as a function of $|A|$. We have
+$$\bias(A) = \ex_{x_1,\ldots,x_d\in \FF^A} \chi\Bigl( \sum_{i\in A} c_i \prod_{j\in [d]} x_{i,j}\Bigr),$$
+where, since $A$ is an independent set, $c_i\ne 0$ for all $i\in A$. But we also know that
+$$\bias(S) =
+\pr_{x_2,\ldots,x_d\in \FF^A} \Bigl\{ \bigcap_{i\in A} \prod_{2\le j\le d} \{x_{i,j} = 0\}\Bigr\},$$
+and this is easily seen to be
+$$\bias(S) = \biggl( 1-\biggl( 1-{1\over |\FF|}\biggr)^{d-1} \biggr)^{|A|}.$$
+Taking the logarithm of both sides, we see that $\ark(S) = c|A|$, where $c$ is as in the theorem
+statement.
+
+By convexity,
+$$c \ge -\log_2 (1-2^{-(d-1)}) \ge 2^{-(d-1)}.$$
+Also, as long as $|\FF|\ge d$, we have
+$$c \ge -\log_{|\FF|}\bigl((d-1)/|\FF|\bigr) = 1-\log_{|\FF|} (d-1).\noskipslug$$
 
 \section References
 
