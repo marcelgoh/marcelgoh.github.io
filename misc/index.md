@@ -43,6 +43,7 @@ __E9.__ [The analytic rank of a tensor]({{ site.baseurl }}/misc/expo/tensorrank.
 + &#78764; [Rasha Lama](https://rashalama.com)
 + &#78069; [Cheng Lin](https://cheng-lin.me)
 + &#78048; [Diego Lopez](https://diegolopez.me)
++ &#78179; [Bronwyn Neufeld](https://www.bneufeld.com/)
 + &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
 + &#78328; [Matej Pederson](https://xjetam.github.io)
 + &#77839; [Denali Relles](https://denali-relles.github.io)
