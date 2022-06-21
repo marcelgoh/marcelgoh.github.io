@@ -13,11 +13,11 @@ My research interests include:
 + enumerative combinatorics
 + additive combinatorics
 
-I submitted my thesis, entitled "Structural properties of conditional Galton-Watson trees", in April 2022.
+I submitted my M.Sc. thesis, entitled "Structural properties of conditional Galton-Watson trees", in April 2022.
 
 ### Papers
 
-__P4.__ (with Luc Devroye and Rosie Y. Zhao) On the peel number and leaf-height of a Galton-Watson tree. To appear in _Combinatorics, Probability and Computing_.
+__P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). To appear in _Combinatorics, Probability and Computing_, 23&nbsp;pp.
 [[arXiv](https://arxiv.org/abs/2106.14389)], 20&nbsp;pp.  
 __P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://dmtcs.episciences.org/paper/view/id/9237).
 _Discrete Mathematics and Theoretical Computer Science_ __24__,1 (2022), \#7, 16&nbsp;pp.
