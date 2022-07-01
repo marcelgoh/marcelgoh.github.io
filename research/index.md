@@ -18,7 +18,7 @@ I submitted my M.Sc. thesis, entitled "Structural properties of conditional Galt
 ### Papers
 
 __P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). To appear in _Combinatorics, Probability and Computing_, 23&nbsp;pp.
-[[arXiv](https://arxiv.org/abs/2106.14389)], 20&nbsp;pp.  
+[[arXiv](https://arxiv.org/abs/2106.14389)]  
 __P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://dmtcs.episciences.org/paper/view/id/9237).
 _Discrete Mathematics and Theoretical Computer Science_ __24__,1 (2022), \#7, 16&nbsp;pp.
 [[arXiv](https://arxiv.org/abs/2105.12046)]  
@@ -32,7 +32,8 @@ __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an
 
 Papers submitted for publication in refereed journals.
 
-&#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_, 15&nbsp;pp.  
+&#x2600; (with Jonah Saks) [Alternating-sum statistics for certain sets of integers](https://arxiv.org/abs/2206.12535). _arXiv preprint 2206.12535_ (2022), 12&nbsp;pp.  
+&#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_ (2022), 15&nbsp;pp.  
 
 ### Reports
 
@@ -48,6 +49,7 @@ __R1.__ [The OPythn programming language]({{ site.baseurl }}/research/opythn-rep
 
 I contributed the following sequences to the [OEIS](https://oeis.org):
 
++ [A355145](https://oeis.org/A355145): Triangle read by rows: $T(n,k)$ is the number of primitive subsets of $\{1,\ldots,n\}$ of cardinality $k$; $n\ge 0$, $0\le k\le \lceil n/2\rceil$.
 + [A347580](https://oeis.org/A347580): The number of chains of length $k$ in the poset of all arithmetic progressions contained in $$\{1,\ldots,n\}$$ of length in the range $[1.\,.n-1]$, ordered by inclusion.
 + [A341822](https://oeis.org/A341822): The longest known length of a 2-increasing sequence of positive integer triples with entries $\leq n$.
 + [A339942](https://oeis.org/A339942): Triangle read by rows: $T(n,k)$ is the number of permutations of the cyclic group $${\bf Z}/n{\bf Z}$$ whose longest embedded arithmetic progression has length $k$.
