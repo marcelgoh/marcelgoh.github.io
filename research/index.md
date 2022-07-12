@@ -6,6 +6,9 @@ mathjax: true
 
 I am currently pursuing an M.Sc. in Mathematics, working on the probabilistic analysis
 of combinatorial objects under the supervision of [Luc Devroye](http://luc.devroye.org).
+I am set to graduate in August 2022 with a thesis entitled
+[_Structural properties of conditional Galton-Watson trees_]({{ site.baseurl }}/research/msc-thesis.pdf).
+
 My research interests include:
 
 + probabilistic analysis of algorithms
@@ -13,11 +16,9 @@ My research interests include:
 + enumerative combinatorics
 + additive combinatorics
 
-I submitted my M.Sc. thesis, entitled "Structural properties of conditional Galton-Watson trees", in April 2022.
-
 ### Papers
 
-__P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). To appear in _Combinatorics, Probability and Computing_, 23&nbsp;pp.
+__P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and the leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). To appear in _Combinatorics, Probability and Computing_, 23&nbsp;pp.
 [[arXiv](https://arxiv.org/abs/2106.14389)]  
 __P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://dmtcs.episciences.org/paper/view/id/9237).
 _Discrete Mathematics and Theoretical Computer Science_ __24__,1 (2022), \#7, 16&nbsp;pp.
@@ -33,13 +34,14 @@ __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an
 Papers submitted for publication in refereed journals.
 
 &#x2600; (with Jonah Saks) [Alternating-sum statistics for certain sets of integers](https://arxiv.org/abs/2206.12535). _arXiv preprint 2206.12535_ (2022), 12&nbsp;pp.  
-&#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_ (2022), 15&nbsp;pp.  
+&#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_ (2021), 15&nbsp;pp.  
 
-### Reports
+### Reports and theses
 
 Various project and research reports. Some reports were written for internal distribution only, and are therefore
 not available for download.
 
+__R5.__ [Structural properties of conditional Galton-Watson trees]({{ site.baseurl }}/research/msc-thesis.pdf). M.Sc. thesis, McGill University (Montréal, Québec, August 2022), vi + 75 pp.  
 __R4.__ [Finding regularity in Tlingit verb prefixes]({{ site.baseurl }}/research/tlingit-report.pdf). Semester project report, McGill University (Montréal, Québec, April 2021), 7 pp.  
 __R3.__ Grid-building algorithms on manifolds. Summer research report, McGill University (Montréal, Québec, August 2020), 10 pp.  
 __R2.__ [Typechecking proof scripts: making interactive proof assistants robust]({{ site.baseurl }}/research/typechecking-proof-scripts.pdf). Honours project report, McGill University (Montréal, Québec, December 2019), 10 pp.  
