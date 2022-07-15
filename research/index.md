@@ -51,6 +51,8 @@ __R1.__ [The OPythn programming language]({{ site.baseurl }}/research/opythn-rep
 
 I contributed the following sequences to the [OEIS](https://oeis.org):
 
++ [A355147](https://oeis.org/A355147): Triangle read by rows: $T(n,k)$ is the number of product-free subsets of $$\{1,\ldots,n\}$$ with cardinality $k$; $n\ge 0$, $0\le k\le $[A028391](https://oeis.org/A028391)($n$).
++ [A355146](https://oeis.org/A355146): Triangle read by rows: $T(n,k)$ is the number of subsets of $$\{1,\ldots,n\}$$ of cardinality $k$ in which every pair of elements if coprime; $n\ge 0$, $0\le k\le $[A036234](https://oeis.org/A036234)($n$).
 + [A355145](https://oeis.org/A355145): Triangle read by rows: $T(n,k)$ is the number of primitive subsets of $\{1,\ldots,n\}$ of cardinality $k$; $n\ge 0$, $0\le k\le \lceil n/2\rceil$.
 + [A347580](https://oeis.org/A347580): The number of chains of length $k$ in the poset of all arithmetic progressions contained in $$\{1,\ldots,n\}$$ of length in the range $[1.\,.n-1]$, ordered by inclusion.
 + [A341822](https://oeis.org/A341822): The longest known length of a 2-increasing sequence of positive integer triples with entries $\leq n$.

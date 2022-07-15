@@ -2,6 +2,9 @@
 layout: page
 title: Blog Archive
 ---
+### 2022
+- (15.07.2022) [Alternating-sum statistics for certain sets of integers]({{ site.baseurl }}/2022/07/15/alternating-sum-statistics.html)
+
 ### 2021
 - (24.09.2021) [Orthogonal groups of four-dimensional real quadratic spaces]({{ site.baseurl }}/2021/09/24/real-quadratic-spaces.html)
 - (11.06.2021) [The lattice of arithmetic progressions]({{ site.baseurl }}/2021/06/11/lattice-arithmetic-progressions.html)

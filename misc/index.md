@@ -47,4 +47,5 @@ __E9.__ [The analytic rank of a tensor]({{ site.baseurl }}/misc/expo/tensorrank.
 + &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
 + &#78328; [Matej Pederson](https://xjetam.github.io)
 + &#77839; [Denali Relles](https://denali-relles.github.io)
++ &#77857; [Jonah Saks](https://jonahsaks.github.io)
 + &#78264; [Rosie Zhao](https://rosieyzh.github.io/)
