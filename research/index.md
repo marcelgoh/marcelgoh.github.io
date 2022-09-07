@@ -4,11 +4,6 @@ title: Research
 mathjax: true
 ---
 
-I am currently pursuing an M.Sc. in Mathematics, working on the probabilistic analysis
-of combinatorial objects under the supervision of [Luc Devroye](http://luc.devroye.org).
-I am set to graduate in August 2022 with a thesis entitled
-[_Structural properties of conditional Galton-Watson trees_]({{ site.baseurl }}/research/msc-thesis.pdf).
-
 My research interests include:
 
 + probabilistic analysis of algorithms
@@ -18,12 +13,15 @@ My research interests include:
 
 ### Papers
 
+__P5.__ (with Jad Hamdan and Jonah Saks) The lattice of arithmetic progressions. To appear in
+_Australasian Journal of Combinatorics_, 15&nbsp;pp.
+[[arXiv](https://arxiv.org/abs/2106.05949)]  
 __P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and the leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). To appear in _Combinatorics, Probability and Computing_, 23&nbsp;pp.
 [[arXiv](https://arxiv.org/abs/2106.14389)]  
 __P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://dmtcs.episciences.org/paper/view/id/9237).
 _Discrete Mathematics and Theoretical Computer Science_ __24__,1 (2022), \#7, 16&nbsp;pp.
 [[arXiv](https://arxiv.org/abs/2105.12046)]  
-__P2.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://onlinelibrary.wiley.com/doi/abs/10.1002/rsa.21072). To appear in _Random Structures and Algorithms_, 24&nbsp;pp.
+__P2.__ (with Anna M. Brandenberger and Luc Devroye) [Root estimation in Galton-Watson trees](https://onlinelibrary.wiley.com/doi/abs/10.1002/rsa.21072). _Random Structures and Algorithms_ __61__,3 (2022), 520--542.
 [[arXiv](https://arxiv.org/abs/2007.05681)]  
 __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an additive set](http://math.colgate.edu/~integers/v89/v89.pdf). _Integers: Electronic Journal of Combinatorial Number Theory_ __21__ (2021),
 \#A89, 19 pp.
@@ -34,7 +32,6 @@ __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an
 Papers submitted for publication in refereed journals.
 
 &#x2600; (with Jonah Saks) [Alternating-sum statistics for certain sets of integers](https://arxiv.org/abs/2206.12535). _arXiv preprint 2206.12535_ (2022), 12&nbsp;pp.  
-&#x2600; (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://arxiv.org/abs/2106.05949). _arXiv preprint 2106.05949_ (2021), 15&nbsp;pp.  
 
 ### Reports and theses
 
@@ -61,6 +58,14 @@ I contributed the following sequences to the [OEIS](https://oeis.org):
 + [A338993](https://oeis.org/A338993): Triangle read by rows: $T(n,k)$ is the number of $k$-permutations of $$\{1,\ldots,n\}$$ that form a non-trivial arithmetic progression, $1\leq k\leq n$.
 + [A338550](https://oeis.org/A338550): The number of binary trees of height $n$ such that the number of nodes at depth $d$ equals $d+1$ for every $d\in \{0,\ldots,n\}$.
 + [A335562](https://oeis.org/A335562): The number of unlabelled unary-binary trees with $n$ nodes such that every node with two children has children of different subtree sizes.
+
+### Galton--Watson trees
+
+For my M.Sc., I worked on the probabilistic analysis
+of combinatorial objects under the supervision of [Luc Devroye](http://luc.devroye.org). In particular,
+we focused our attention on Galton--Watson trees and various structural parameters thereof.
+I graduated in August 2022 with a thesis entitled
+[_Structural properties of conditional Galton-Watson trees_]({{ site.baseurl }}/research/msc-thesis.pdf).
 
 ### Summer 2020
 
