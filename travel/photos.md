@@ -9,6 +9,16 @@ I've uploaded these in a somewhat painfully small resolution, since GitHub Pages
 that much storage space, but feel free to email me for a larger version of any of these photos.
 
 <figure class="figure">
+<img src="/media/travel/lakecomo.jpg" class="center-image">
+<figcaption class="caption"><i>Lake Como, Italy, July 2022</i></figcaption>
+</figure>
+
+<figure class="figure">
+<img src="/media/travel/chimborazo.jpg" class="center-image">
+<figcaption class="caption"><i>Chimborazo High Camp, Ecuador, May 2022</i></figcaption>
+</figure>
+
+<figure class="figure">
 <img src="/media/travel/orinoco.jpg" class="center-image">
 <figcaption class="caption"><i>Mexico City, Mexico, March 2022</i></figcaption>
 </figure>
@@ -56,11 +66,6 @@ that much storage space, but feel free to email me for a larger version of any o
 <figure class="figure">
 <img src="/media/travel/howdareyou.jpg" class="center-image">
 <figcaption class="caption"><i>Montréal, Que., Canada, September 2019</i></figcaption>
-</figure>
-
-<figure class="figure">
-<img src="/media/travel/phuketcow.jpg" class="center-image">
-<figcaption class="caption"><i>Phuket, Thailand, July 2019</i></figcaption>
 </figure>
 
 <figure class="figure">
