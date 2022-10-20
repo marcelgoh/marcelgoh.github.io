@@ -26,11 +26,6 @@ __E9.__ [The analytic rank of a tensor]({{ site.baseurl }}/misc/expo/tensorrank.
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)
 
 
-### Other
-
-+ [Poetry]({{ site.baseurl }}/misc/poetry.html)
-+ [Noise]({{ site.baseurl }}/misc/noise.html)
-
 ### Friends
 
 + &#78553; [Anna Brandenberger](https://abrandenberger.github.io/)
