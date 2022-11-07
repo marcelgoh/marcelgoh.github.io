@@ -10,8 +10,10 @@
 \def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
 \def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
 \def\supp{\op{{\rm supp}}}
+\def\sgn{\op{{\rm sgn}}}
 \def\smallsupp{\op{{\sevenrm supp}}}
 \def\divides{\backslash}
+\def\del{\partial}
 
 \widemargins
 \bookheader{THE DISCRETE FOURIER UNCERTAINTY PRINCIPLE}{MARCEL K. GOH}
@@ -24,8 +26,9 @@
 
 Let $Z$ be a finite abelian group. A {\it character} on $Z$ is a homomorphism from $Z$ to the multiplicative
 group $\CC\setminus \{0\}$. It is easily seen that $|\chi(x)|$ must equal $1$ for all $x\in Z$.
-The set of characters forms a group, which we shall call $\hat Z$.
-Now if $Z = \ZZ_{n_1}\times \ZZ_{n_2} \times\cdots\times \ZZ_{n_r}$, then for every $u = (u_1,\ldots,u_r)\in Z$
+The set of characters forms a group, which we shall denote by $\hat Z$. This is the Pontryagin dual of $Z$.
+Letting $\ZZ_n$ be the $n$-element cyclic group,
+if $Z = \ZZ_{n_1}\times \ZZ_{n_2} \times\cdots\times \ZZ_{n_r}$, then for every $u = (u_1,\ldots,u_r)\in Z$
 the function $\chi_u : Z\to \CC$ given by
 $$\chi_u(x_1,\ldots,x_r) = \prod_{i=1}^r \exp\biggl( {2\pi i u_i x_i\over n_i} \biggr)$$
 is a character, and in fact the map $u\mapsto \chi_u$ gives an isomorphism of groups from $Z$ to $\hat Z$.
@@ -41,6 +44,12 @@ $$ \hat f(\chi) = \langle f,\chi\rangle
 Of course, we can associate to any $\alpha\in Z$ the character $\chi_\alpha\in \hat Z$, so we may write
 $\hat f(\alpha)$ to mean $\hat f(\chi_\alpha)$, and this is called the {\it Fourier coefficient
 of $f$ at $\alpha$}.
+
+It is not difficult to prove that any two distinct characters are orthogonal in the space
+of functions from $Z$ to $\CC$. Furthermore, for any $x\in Z$ we can define a function $F_x : \hat Z\to \CC$
+by $F_x(\chi) = \chi(x)$, and one can similarly show that if $x\ne y$, then $\langle F_x, F_y\rangle = 0$.
+So since both of the vector spaces $\CC^Z$ and $\CC^{\hat Z}$ have dimension $n$, we have found orthogonal
+bases for these spaces, namely $\{\chi_u : u\in Z\}$ and $\{F_x : x\in Z\}$ respectively.
 
 We have the following important formulas, whose proofs
 can be found in any book on Fourier analysis.
@@ -119,7 +128,7 @@ cyclotomic polynomial}, which we shall denote by $\Phi_n$, is given by
 $$\Phi_n(z) = \prod_{\omega} (z-\omega),$$
 where in the product, $\omega$ runs over the primitive $n$th roots of unity.
 As some small examples, we have $\Phi_1(z) = z-1$, $\Phi_2(z) = z+1$, $\Phi_3(z) = z^2 + z + 1$,
-and $\Phi_4(z) = z^2 + 1$. Observe that so far, all the coefficients have been polynomial, a fact which
+and $\Phi_4(z) = z^2 + 1$. Observe that so far, all the coefficients have been integers, a fact which
 is not obvious from the definition but can be shown by induction (and indeed we shall).
 
 In the proof of the next lemma we will also require the {\it von Mangoldt function} $\Lambda(n)$,
@@ -174,13 +183,28 @@ $$a_{t+1} = {c_{t+1} - a_t b_1 - a_{t-1} b_2 - \cdots - a_0 b_{t+1}\over b_0},$$
 from which we conclude by induction on $t$ that
 $$a_{t+1} = \pm (c_{t+1} - a_t b_1 - a_{t-1} b_2 - \cdots - a_0 b_{t+1})$$
 is an integer. This also completes the induction on $n$, so we have shown that $\Phi_n$ is a monic polynomial
-with integer coefficients for all $n$.
+with integer coefficients for all $n$.\slug
 
 \advsect Irreducibility of cyclotomic polynomials
 
-A polynomial $p(z)$ with integer coefficients is said to be {\it irreducible over $\ZZ$} if it cannot be expressed
+A polynomial $f(z)$ with integer coefficients is said to be {\it irreducible over $\ZZ$} if it cannot be expressed
 as a product of two nonconstant polynomials in $\ZZ[z]$. This section will be devoted to proving that
-the cyclotomic polynomials $\Phi_n$ are irreducible over $\ZZ$.
+the cyclotomic polynomials $\Phi_n$ are irreducible over $\ZZ$. First we need a lemma in the ring
+of formal polynomials $\FF_p[z]$.
+
+\proclaim Lemma \advthm. Let $f(z)$ be a polynomial with coefficients in $\FF_p$. Then $f(z^p) = f(z)^p$
+in $\FF_p[z]$.
+
+\proof Let $f(z) = a_0 + a_1z + \cdots + a_m z^m$. We have
+$$ f(z)^p = (a_0 + a_1z + \cdots + a_mz^m)^p = \sum_{k_1+\cdots+k_m = p} {p \choose k_1,\ldots, k_m}
+\prod_{j=1}^m (a_jz^j) ^{k_j}$$
+by the multinomial theorem. But unless some $k_i = p$ and all the others are $0$,
+there is a $p$ in the numerator of
+the multinomial coefficient that does not appear in the denominator. Hence in $\FF_p$ we have
+$${p\choose k_1,\ldots,k_m} = \cases{1, & if $k_i = p$ for some $i$;\cr 0, & otherwise.}$$
+Applying Fermat's little theorem, which states that $a^p = a$ in $\FF_p$, we have
+$$f(z)^p = \sum_{i=1}^m (a_iz^i)^p = \sum_{i=1}^m a_i (z^i)^p = f(z^p),$$
+which is what we wanted to show.\slug
 
 \proclaim Theorem \advthm. The $n$th cyclotomic polynomial is irreducible over $\ZZ$.
 
@@ -191,18 +215,18 @@ Since any two primitive roots are powers of one another, there exists $\omega\in
 that $\omega^m \in B$. Factor $m$ into primes $m = p_1p_1\cdots p_k$. Let $\omega_0 = \omega$ and
 for $1\le i\le k$ let $\omega_i = \omega^{p_1p_2\cdots p_i}$. Let $j$ be the
 smallest integer such that $\omega_j\in B$. (Since $\omega_0\in A$ and $\omega_k = \omega^m\in B$, such
-a $j$ must exist.) Now formally replacing $\omega$ by $\omega^{p_1\cdots p_{j-1}}$ and setting $p=p_j$,
-we have found some $\omega\in A$ and some prime $p$ such that $\omega^p\in B$.
+a $j$ must exist.) Now letting $\omega' = \omega^{p_1\cdots p_{j-1}}$ and setting $p=p_j$,
+we have found some $\omega'\in A$ and some prime $p$ such that $\omega^p\in B$.
 
-This means that $\omega$ is a root of both $f(z)$ and $g(z^p)$. Let $h(z)$ be the greatest common divisor
+This means that $\omega'$ is a root of both $f(z)$ and $g(z^p)$. Let $h(z)$ be the greatest common divisor
 of $f(z)$ and $g(z^p)$. By the Euclidean algorithm there exist polynomials $r(z)$ and $s(z)$
 such that
 $$ h(z) = f(z)r(z) + g(z^p)s(z),$$
-showing that $h(z)$ has $\omega$ as a root and, in particular, is not constant.
-Now we work modulo $p$.
-By Fermat's little theorem, $a^p = a$ for all $a\in \FF_p$, so we have
-$h(z^p) = h(z) = h(z)^p$ and $z^{np}-1 = z^n-1 = (z^n-1)^p$.
-Now since $\Phi_n(z^p) = f(z^p)g(z^p) = f(z)^pg(z^p)$, we find that in $\FF_p$,
+showing that $h(z)$ has $\omega'$ as a root and, in particular, is not constant.
+Now we consider everything as polynomials in $\FF_p[z]$, which is a unique factorisation domain.
+Applying the previous lemma twice, we have
+$h(z^p) = h(z)^p$ and $z^{np}-1 = (z^n-1)^p$ in this ring.
+Now since $\Phi_n(z^p) = f(z^p)g(z^p) = f(z)^pg(z^p)$, we find that in $\FF_p[z]$,
 the polynomial $h(z)^{p+1}$ divides $\Phi_n(z^p)$, and because $\Phi_n(z^p)$ divides $z^{np}-1 = (z^n -1)^p$,
 we see that $h(z)^{p+1}$ divides $(z^n-1)^p$ as well. This means that $h(z)^2$ divides $z^n-1$.
 Putting $p(z) = z^n-1$, this means that there is some polynomial $q$ such that $p = h^2q$. Then we
@@ -217,6 +241,217 @@ nz^{n-1} &= (-1)(-nz^{n-1}) + 0,\cr
 }$$
 discovering that the greatest common divisor of these two polynomials is $1$.
 This contradiction shows that $\Phi_n(z)$ is irreducible over $\ZZ$.\slug
+
+\advsect Vandermonde determinants
+
+In our journey towards proving a stronger uncertainty principle over $\FF_p$, we will require special
+polynomials called
+{\it Vandermonde determinants}. These are indexed by $n\ge 1$ and defined by
+$$\Delta_n(z_1,\ldots,z_n) = \prod_{i=1}^n \prod_{j=i+1}^n (z_j-z_i).$$
+The next lemma justifies the name ``determinant''.
+
+\proclaim Lemma \advthm. Let $z_1,\ldots,z_n$ be indeterminates.
+Letting
+$$V = \pmatrix{
+1 & z_1 & {z_1}^2 & \cdots & {z_1}^{n-1} \cr
+1 & z_2 & {z_2}^2 & \cdots & {z_2}^{n-1} \cr
+\vdots & \vdots & \vdots & \ddots & \vdots \cr
+1 & z_n & {z_n}^2 & \cdots & {z_n}^{n-1} \cr
+},$$
+we have $\Delta_n(z_1,\ldots,z_n) = \det V$.
+
+\proof By the Leibniz formula for determinants, we have
+$$\det V = \sum_{\pi\in {\frak S}_n} \sgn(\pi) \prod_{i=1}^n {z_i}^{\pi(i) - 1},$$
+where ${\frak S}_n$ is the symmetric group of all permutations on $n$ letters. (The factor $\sgn(\pi)$ is
+$1$ if the permutation $\pi$ factors as a product of an even number of transpositions,
+and $-1$ if it factors as an odd number of transpositions.) Since the $i$th column of $V$
+contains only monomials of degree $i-1$, every term of $\det V$ is a monomial in which the sum
+of the degrees over all coefficients is $0 + 1 + \cdots n-1 = n(n-1)/2$.
+
+In the formula
+$$\Delta_n(z_1,\ldots,z_n) = \prod_{i=1}^n \prod_{j=i+1}^n (z_j-z_i),$$
+note that since the product runs over ${n\choose 2} = n(n-1)/2$ linear factors, every term in this sum
+is a monomial of total degree $n(n-1)/2$ as well. Because $\det V$ is equal to zero if any two
+of the $z_i$ are equal, $\det V$ is divisible by
+the linear polynomial $z_j-z_i$ for all $i < j$. Repeating this for all such $i$ and $j$, we
+conclude that $\Delta_n(z_1,\ldots,z_n)$ divides $\det V$; that is,
+$\det V = \Delta_n f$ for some polynomial $f$. But since both of them consist purely of
+monomials of total degree $n$, $f$ must be a constant polynomial. To find out what this
+constant factor is, note that the term corresponding to the identity permutation in the Leibniz formula
+is $z_2{z_3}^2{z_4}^3\cdots {z_n}^{n-1}$, and expanding
+$$\Delta_n(z_1,\ldots,z_n) = (z_2-z_1)(z_3-z_2)(z_3-z_1)(z_4-z_3)\cdots(z_n-z_{1}),$$
+a moment's scrutiny reveals that this term is also $z_2{z_3}^2{z_4}^3\cdots {z_n}^{n-1}$, and hence
+$f$ must equal $1$, which is what we needed.\slug
+
+\newcount\vandermonde
+\vandermonde=\thmcount
+\proclaim Lemma \advthm. Let $n_1,\ldots, n_k$ be positive integers and let $P\in \ZZ[z_1,\ldots,z_k]$
+be the polynomial given by
+$$ P(z_1,\ldots,z_n) = \sum_{\pi\in {\frak S}_k} \sgn(\pi) \prod_{i=1}^k {z_i}^{n_{\pi(i)}}.$$
+Then we may factor $P = \Delta_k Q$, where $Q\in \ZZ[z_1,\ldots,z_k]$ is such that
+$$Q(1,1,\ldots,1) = \Delta_k(n_1, \ldots, n_k) / \Delta_k(1,\ldots,k).$$
+
+\proof By the Leibniz formula, $P(z_1,\ldots,z_n)$ is the determinant of
+the $k\times k$ matrix whose entry in the $i$th row and $j$th column is $z_j^{n_i}$. As in the previous
+proof, $P$ is divisible by $z_j-z_i$ for all $i<j$ and dividing out these linear factors, we obtain
+a polynomial $Q$ such that $P = \Delta_k Q$.
+
+It remains to compute $Q(1,1,\ldots,1)$. To do so, we make use of the normalised differentiation operators
+$D_i = z_i(\del /\del z_i)$.
+It is easy to see that these operators obey the product rule $D_i(fg) = fD_ig+ D_if g$. Since
+$$D_i({z_1}^{n_1} \cdots {z_k}^{n_k}) = n_i ({z_1}^{n_1} \cdots {z_k}^{n_k}),$$
+this monomial is an eigenfunction of $D_i$ with eigenvalue $n_i$. Now consider the polynomial
+$$(D_2 {D_3}^2 {D_4}^3 \cdots {D_k}^{k-1}) P = 
+(D_2 {D_3}^2 {D_4}^3 \cdots {D_k}^{k-1}) \Bigl(Q \cdot \prod_{i<j} (z_j-z_i)\Bigr),$$
+evaluated at $1$. There are $k(k-1)/2$ differentiation operators to be applied and the same
+number of linear factors on the right-hand side. Repeatedly applying the product rule, we obtain
+$2^{k(k-1)/2}$ terms, but
+the only terms that survive when evaluated at $(1,\ldots,1)$ are the ones in which each
+linear factor $z_j-z_i$ is acted upon by either $D_j$ or $D_i$, yielding $z_j$ or $-z_i$ respectively.
+
+Note that there are $k-1$ instances of the operator $D_k$ to be applied, and there are only
+$k-1$ factors with the variable $z_k$ appearing, namely the
+factors of the form $z_k-z_i$ for some $i<k$. So all those operators must hit those factors (yielding
+$z_k$), and there are $(k-1)!$ ways for this to happen. With those out of the way, there are now
+$k-2$ instances of $D_{k-1}$ to be applied, and the only undifferentiated factors with the variable $z_{k-1}$
+appearing are the factors of the form $z_{k-1}-z_i$, of which there are $k-2$. So there are $(k-2)!$
+ways for this to happen. Continuing in this manner, we see that
+$$(D_2 {D_3}^2 {D_4}^3 \cdots {D_k}^{k-1} P) (1,\ldots,1) = 0!1!2!\cdots(k-1)! Q(1,\ldots,1).$$
+But note that
+$$\Delta_k(1,\ldots,k) = \prod_{i=1}^k \prod_{j=i+1}^k (j-i) = \prod_{i=1}^k (i-1)!
+= 0!1!2!\cdots(k-1)!,$$
+so
+$$(D_2 {D_3}^2 {D_4}^3 \cdots {D_k}^{k-1} P) (1,\ldots,1) = \Delta_k(1,\ldots,k) Q(1,\ldots,1).$$
+
+But from the definition of $P$ and the observation that $z_i^{n_{\pi(i)}}$ is an eigenfunction
+of the operator $D_i$ with eigenvalue $n_{\pi(i)}$, we directly compute
+$$(D_2 {D_3}^2 {D_4}^3 \cdots {D_k}^{k-1} P) (z_1,\ldots,z_k) =
+\sum_{\pi\in {\frak S}_n} \sgn(\pi) \prod_{i=1}^k {n_{\pi(i)}}^{i-1} z_i^{n_{\pi(i)}}.$$
+Evaluating at $z_1=\cdots=z_k = 1$ and noting that the sum over all $\pi$ in ${\frak S}_n$ also
+runs over all $\pi^{-1}$ in ${\frak S}_n$ ($\pi$ and $\pi^{-1}$ have the same sign), we see that
+$$(D_2 {D_3}^2 {D_4}^3 \cdots {D_k}^{k-1} P) (1,\ldots,1) = \Delta_k(n_1,\ldots,n_k).$$
+Combining this with our earlier computation gives the conclusion
+$$Q(1,\ldots,1) = \Delta_k(n_1,\ldots,n_k) / \Delta_k(1,\ldots,k) ,$$
+which is what we wanted to prove.\slug
+
+\advsect Chebotar\"ev's lemma
+
+Armed with the irreducibility of cyclotomic polynomials and the computation from the last section,
+we can now prove a useful lemma concerning matrices of $q$th roots of unity, where $q$ is a prime
+power. First we prove
+a criterion for the nonvanishing of polynomials on $q$th roots of unity.
+
+\proclaim Lemma \advthm. Let $p$ be a prime and $q$ an integer power of $p$. Let $Q\in \ZZ[z_1,\ldots,z_k]$
+be such that $Q(1,\ldots,1)$ is not divisible by $p$. Then for any $k$-tuple $(\omega_1,\ldots,\omega_k)$
+of $q$th roots of unity, $Q(\omega_1,\ldots,\omega_k)\ne 0$.
+
+\proof We proceed by contraposition. Suppose that $\omega_1,\ldots,\omega_k$ exist such
+that $Q(\omega_1,\ldots,\omega_k) = 0$. Letting $\omega$ be a primitive root of unity, there
+are integers $n_1,\ldots,n_k$ such that for all $i$, $\omega_i = \omega^{n_i}$. Let $R\in \ZZ[z]$
+be given by $R(z) = Q(z^{n_1},\ldots,z^{n_k})$. Then $R(\omega) = 0$. Thus $R(z)$ has a root in common
+with the cyclotomic polynomial $\Phi_q(z)$. But we showed earlier that
+this polynomial is irreducible, implying
+that $\Phi_q(z)$ divides $R(z)$. So $Q(1,\ldots,1) = R(1)$ is divisible by $\Phi_q(1) = p$.\slug
+
+We are now able to prove the following useful result, which is named after N.~Chebotar\"ev.
+
+\parenproclaim Lemma {\advthm} (Chebotar\"ev, {\rm 1926}). Let $q$ be a prime power, let $1\le k<p$,
+and let $\omega_1,\ldots,\omega_k$ be distinct $q$th roots of unity. Let $n_1,\ldots,n_k$
+be integers that are all distinct modulo $p$. Then the $k\times k$ matrix whose entry in the $i$th
+row and $j$th column is ${\omega_i}^{n_j}$ has nonzero determinant.
+
+\proof Let $P(z_1,\ldots,z_k)$ be the determinant of the matrix $({z_i}^{n_j})_{1\le i,j\le k}$. This
+is the polynomial from Lemma~{\the\vandermonde}, and that lemma says that we can factor
+$P = \Delta_k Q$, where $Q$ is a polynomial with integer coefficients such that
+$$Q(1,\ldots,1) = \Delta_k(n_1,\ldots,n_k)/\Delta_k(1,\ldots,k).$$
+We want to show that $P(\omega_1,\ldots,\omega_k)$ is not zero. Since
+$\omega_i$ are all distinct, $\Delta_k(\omega_1,\ldots,\omega_k)$ is a product of ${k\choose 2}$
+nonzero elements, and in particular is nonzero. So we need only show that $Q(\omega_1,\ldots,\omega_k)\ne 0$
+and by the previous lemma, it suffices to show that $Q(1,\ldots,1)$ is not divisible by $p$.
+But the numerator in the formula for $Q(1,\ldots,1)$, namely $\Delta_k(n_1,\ldots,n_k)$ is a product
+of differences $n_j-n_i$ for all $1\le i<j\le k$, and these differences were all assumed to be nonzero
+modulo $p$. Thus their product is nonzero modulo $p$; in other words, their product is not divisible by $p$.
+This completes the proof.\slug
+
+\advsect Tao's improved uncertainty principle
+
+Chebotar\"ev's lemma is all we need to prove Tao's improved Fourier uncertainty principle for
+functions $f:\ZZ_p\to \CC$. First we state a corollary of that lemma.
+
+\proclaim Corollary \advthm. Let $p$ be a prime and let $A$ and $B$ be subsets of $\ZZ_p$
+with $|A| = |B|$. The linear transformation $\CC^A\to \CC^B$ define by $T f = \hat f|_B$ (that is,
+we restrict the Fourier transform of $f$ to $B$) is invertible. (We write, for instance, $\CC^A$
+to denote functions from $A$ to $\CC$, or in other words, functions $f:\ZZ_p\to \CC$ such that
+$\supp(f)\subseteq A$.)
+
+\proof Write $Z = \ZZ_p$.
+Recall that the sets $\{\chi_u : u\in Z\}$ and $\{F_x : x\in Z\}$, as defined in the introduction, are
+orthogonal bases for $\CC^Z$ and $\CC^{\hat Z}$ respectively. In the first basis, by the Fourier
+inversion formula, the function $f$ is represented by the vector
+$\bigl(\hat f(0), \ldots, \hat f(p-1))\bigr)$, and in the second basis, by the definition of
+Fourier transform, the function $\hat f$ is represented by the vector $p^{-1}\bigl(f(0),\ldots, f(p-1)\bigr)$.
+If we set $\omega = e^{2\pi i/p}$, then the Fourier inversion formula can be expressed as
+$$\eqalign{
+\pmatrix{ f(0) \cr f(1)\cr \vdots \cr f(p-1) }
+&= \pmatrix{ \chi_0(0) & \chi_1(0) & \cdots & \chi_{p-1}(0) \cr
+\chi_0(1) & \chi_1(1) & \cdots & \chi_{p-1}(1) \cr
+\vdots & \vdots & \ddots & \vdots \cr
+\chi_0(p-1) & \chi_1(p-1) & \cdots & \chi_{p-1}(p-1) \cr}
+\pmatrix{ \hat f(0) \cr \hat f(1)\cr \vdots \cr \hat f(p-1) }\cr
+&=
+\pmatrix{(\omega^0)^0 & \omega^0 & \cdots & ({\omega^0})^{p-1} \cr
+(\omega^1)^0 & \omega^1 & \cdots & ({\omega^1})^{p-1} \cr
+\vdots & \vdots & \ddots & \vdots \cr
+(\omega^{p-1})^0 & \omega^{p-1} & \cdots & ({\omega^{p-1}})^{p-1} \cr}
+\pmatrix{ \hat f(0) \cr \hat f(1)\cr \vdots \cr \hat f(p-1) }.
+}$$
+Hence, letting $k= |A| = |B|$, the matrix of $T$ is some $k\times k$ minor of the matrix above.
+But now letting the $z_i$ be the $i$th powers of $\omega$ for $i\in A$ and letting $n_j = j$
+for all $j\in B$, we see that this matrix satisfies the hypotheses of Chebotar\"ev's lemma, and must
+therefore be invertible.\slug
+
+\parenproclaim Theorem {\advthm} (Tao, {\rm 2005}). Let $p$ be a prime number. If $f:\ZZ_p\to \CC$
+is a nonzero function, then
+$$\norm{f}_0 + \norm{\hat f}_0 \ge p+1.$$
+Conversely, if $A$ and $B$ are two nonempty subsets of $\ZZ_p$ such that $|A|+|B|\ge p+1$,
+then there exists a function $f$ such that $\supp(f) = A$ and $\supp(\hat f) = B$.
+
+\proof Suppose, for a contradiction, that $f$ is such that $\norm{f}_0 + \norm{\hat f}_0 \le p$. Letting
+$A = \supp(f)$, we can then find a set $B$ with $|B| = |A|$ that is disjoint from $\supp({\hat f})$.
+Now the Fourier transform of $f$ restricted to $B$ must be zero. But applying the corollary wit
+with $A$ and $B$, we see that $T$ should have nonzero determinant, which gives a contradiction since
+we have just found that $Tf = 0$ for some $f\ne 0$.
+
+Now we prove the converse. First let us handle the case where $|A|+|B| = p+1$. In this situation we
+may choose $A'$ with $|A'| = |A|$ such that $A'\cup B = \ZZ_p$ and
+$|A'\cap B| = 1$; say $A'\cap B = \{x\}$. Now, apply
+the corollary with $A$ and $A'$ to find that $T : \CC^A \to \CC^{A'}$ is invertible. Letting $g\in \CC^{A'}$
+be a function with $g(x)\ne 0$ and $g(y) = 0$ for all $y\in A'\setminus\{x\}$, we can find $f\in \CC^A$
+such that $Tf = g$, that is, the restriction of $\hat f$ to $A'$ equals $g$. Now, since
+$\supp({\hat f}) \subseteq {A'}^c \cup \{x\} = B$, we have $\norm{\hat f}_0 \le |B|$ and then since
+$\supp(f)\subseteq A$, we have $\norm{f}_0 \le |A|$. But in order not to contradict
+what we proved in the previous paragraph, we must have $\supp(f) = A$ and $\supp({\hat f}) = B$.
+
+Now assume that $|A|+|B|>p+1$. Consider the set
+$$S = \{(A', B') : A'\subseteq A, B'\subseteq B, |A|+|B| = p+1\}.$$
+This set is finite, so let us index its elements $(A_1,B_1),\ldots, (A_s, B_s)$. From
+the previous paragraph, there exist functions $f_1,\ldots,f_s$ such that for all $1\le i\le s$,
+$\supp(f_i) = A_i$ and $\supp(\hat{f_i}) = B_i$. Now let
+$$f = \lambda_1 f_1 + \cdots \lambda_s f_s$$
+for some scalars $\lambda_i\in \CC$ to be chosen later. It is clear that $\supp(f) \subseteq A$
+and, since the Fourier transform is linear, we also have
+$\supp(\hat f) \subseteq B$. This is true regardless of our choices for the $\lambda_i$. Now we must prove
+that we can pick the $\lambda_i$ so that $A\subseteq \supp(f)$ and $B\subseteq \supp(\hat f)$. For
+$x\in A$, let
+$$ V_x = \Bigl\{ (\lambda_1,\ldots,\lambda_s) \in \CC^s : \sum_{i=1}^s \lambda_i f_i(x) = 0 \Bigr\}.$$
+This is a subspace of codimension $1$ in $\CC^s$, since we have $s$ degrees of freedom and one nontrivial
+linear constraint. Similarly, for all $x\in B$, let
+$$ W_x = \Bigl\{ (\lambda_1,\ldots,\lambda_s) \in \CC^s : \sum_{i=1}^s \lambda_i \hat{f_i}(x) = 0 \Bigr\}.$$
+Now
+$$\bigcup_{x\in A} V_x \cup \bigcup_{x\in B} W_x$$
+is a finite union of subspaces of codimension $1$. Thus its complement is nonempty and we can choose
+$\lambda_1,\ldots,\lambda_s$ such that the resulting $f$ has $f(x) \ne 0$ for all $x\in A$
+and ${\hat f}(x)\ne 0$ for all $x\in B$. This completes the proof.\slug
 
 \section References
 

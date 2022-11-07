@@ -572,12 +572,12 @@ $\langle f,g\rangle = \langle \hat f, \hat g\rangle$.
 \proof First, we expand all the definitions and rearrange sums to obtain
 $$\eqalign{
 \langle \hat f, \hat g\rangle &= \sum_{\chi\in \hat Z} \hat f(\chi)\bar{\hat g(\chi)} \cr
-&=  \sum_{\chi\in \hat Z} \ex_{x\in Z} f(x)\bar{\chi(x)} \ex_{y\in Z} g(y)\bar{\chi(y)} \cr
-&=   \ex_{x\in Z} f(x) \ex_{y\in Z} g(y) \sum_{\chi\in \hat Z}\bar{\chi(x)}\bar{\chi(y)}.\cr
+&=  \sum_{\chi\in \hat Z} \ex_{x\in Z} f(x)\bar{\chi(x)} \bar{\ex_{y\in Z} g(y)\bar{\chi(y)}} \cr
+&=   \ex_{x\in Z} f(x) \bar{\ex_{y\in Z} \bar{g(y)} \sum_{\chi\in \hat Z}\chi(x)\bar{\chi(y)}}.\cr
 }$$
 By the second orthogonality relation and the fact that $|\hat Z| = |Z|$, the inner sum equals $|Z|$ when
 $y = x$ and $0$ otherwise. Thus for any given $x$, we have
-$$\ex_{y\in Z} g(y) \sum_{\chi\in \hat Z}\chi(x)\bar{\chi(y)} = g(x),$$
+$$\ex_{y\in Z} \bar{g(y)} \sum_{\chi\in \hat Z}\chi(x)\bar{\chi(y)} = \bar{g(x)},$$
 which is exactly what we need for the whole thing to equal $\langle f,g\rangle$.\slug
 
 We also have the following inversion formula that recovers the original function $f$ from $\hat f$.
