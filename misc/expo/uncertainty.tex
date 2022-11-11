@@ -418,7 +418,7 @@ then there exists a function $f$ such that $\supp(f) = A$ and $\supp(\hat f) = B
 
 \proof Suppose, for a contradiction, that $f$ is such that $\norm{f}_0 + \norm{\hat f}_0 \le p$. Letting
 $A = \supp(f)$, we can then find a set $B$ with $|B| = |A|$ that is disjoint from $\supp({\hat f})$.
-Now the Fourier transform of $f$ restricted to $B$ must be zero. But applying the corollary wit
+Now the Fourier transform of $f$ restricted to $B$ must be zero. But applying the corollary
 with $A$ and $B$, we see that $T$ should have nonzero determinant, which gives a contradiction since
 we have just found that $Tf = 0$ for some $f\ne 0$.
 
@@ -452,6 +452,56 @@ $$\bigcup_{x\in A} V_x \cup \bigcup_{x\in B} W_x$$
 is a finite union of subspaces of codimension $1$. Thus its complement is nonempty and we can choose
 $\lambda_1,\ldots,\lambda_s$ such that the resulting $f$ has $f(x) \ne 0$ for all $x\in A$
 and ${\hat f}(x)\ne 0$ for all $x\in B$. This completes the proof.\slug
+
+\advsect The Cauchy--Davenport theorem
+
+We now use Tao's uncertainty principle for cyclic groups of prime order to prove the Cauchy--Davenport theorem.
+First, we need to define the {\it convolution} of two functions $f,g:Z \to \CC$. This is denoted $f * g$
+and given by
+$$ (f*g)(x) = \ex_{y+z = x} f(y)g(z).$$
+The following easy theorem describes the nice behaviour of convolutions under Fourier transform.
+
+\parenproclaim Theorem C (Convolution law). Let $Z$ be a finite abelian group and $f,g: Z\to \CC$.
+For all $\chi\in \hat Z$, we have $\hat{f * g} (\chi) = \hat f(\chi)\hat g(\chi)$.
+
+\proof We expand
+$$\hat{f*g}(\chi) = \ex_{x\in Z} (f*g)(x)\bar{\chi(x)} = \ex_{x\in Z} \ex_{y+z=x} f(y)g(z)\bar{\chi(y)\chi(z)}.$$
+But note that $x$ does not appear anywhere in the summand, so we can rewrite this as an expectation over
+{\it all} $y$ and $z$ (their sum must equal $x$ for some $x\in Z$). So
+$$\hat{f*g}(\chi) = \ex_{y\in Z}\ex_{z\in Z} f(y)\bar{\chi(y)} g(z)\bar{\chi(z)}
+=\hat f(\chi)\hat g(\chi),$$
+which is what we wanted.\slug
+
+Now let $Z$ be a finite abelian group and let $A$ and $B$ be subsets of $Z$. We define the {\it sumset}
+$A+B$ to be the set of all sums $a+b$ where $a\in A$ and $b\in B$. This is related to the
+convolution operation above, since if $\supp (f) = A$
+and $\supp (g) = B$, then $\supp(f*g)\subseteq A+B$. Also notice that the convolution law gives
+$\supp\bigl(\hat{f*g}\bigr) = \supp(\hat f)\cap \supp(\hat g)$.
+
+\parenproclaim Theorem {\advthm} (Cauchy--Davenport theorem). Let $A$ and $B$ be nonempty subsets of
+$\ZZ_p$. Then we have
+$$|A+B| \ge \min\bigl( |A|+|B| - 1, p\bigr).$$
+
+\proof Since $A$ is nonempty, we can build a nonempty set $X\subseteq \ZZ_p$ with $p+1-|A|$ elements, so that
+$\ZZ_p \setminus X$ has $|A|-1$ elements. Then since $B$ is nonempty, if $|X|+1 > |B|$, then
+we can pick $Y'\subseteq X$ with $|X|+1-|B|$ elements, and let $Y = Y' \cup (\ZZ_p \setminus X)$, so that
+$$|Y| = p+1 - |A| +1 -|B| + |A|-1 = p+1-|B|.$$
+If instead $|X| + 1 \le |B|$, then we let $Y'$ be any singleton subset of $X$ and
+since $p-|X| \ge p+1-|B|$ we can find a subset $Y''$ of
+$\ZZ_p\setminus X$ of size $p-|B|$. Letting $Y = Y' \cup Y''$, we also have $|Y| = p+1-|B|$ in this case,
+and in both cases we have
+$$|X\cap Y| = \max\bigl(|X|+1-|B|, 1\bigr) = \max\bigl( |X|+|Y|-p, 1\bigr).$$
+
+Now since $|A|+|X| = |B|+|Y| = p+1$, by Tao's uncertainty principle we can find $f : \ZZ_p\to \CC$ with
+$\supp(f) = A$ and $\supp(\hat f) = X$, as well as $g:\ZZ_p\to \CC$ with
+$\supp(g) = B$ and $\supp(\hat g) = Y$. As we saw before, the convolution $f*g$ has support contained in $A+B$ and
+the support of its Fourier transform equals $X\cap Y$. By the other direction of Tao's uncertainty principle,
+we must have
+$$|A+B|+|X\cap Y| \ge |\supp(f*g)| + \bigl|\supp\bigl( \hat{f*g}\bigr)\bigr| \ge p+1.$$
+But since $|X|+|Y|-p = p+2-|A|-|B|$,
+$$|A+B| \ge p+1 - \max\bigl( |X|+|Y|-1, 1\bigr) = \min(|A|+|B|-1, p),$$
+exactly what we wanted to show.\slug
+
 
 \section References
 
