@@ -14,5 +14,10 @@ word counts. When a story gets published I'll add a link!
 &#x2600; "Of You and Me" (7700 words)  
 &#x2600; "The Girl on the Yellowhead" (7500 words)  
 &#x2600; "C'est À Elle De Décider" (8000 words)  
+&#x2600; "Things Can't All Be Bad" (2641 words)  
 
 I don't write poetry in any serious capacity. But here are [some poems]({{ site.baseurl }}/writing/poetry.html).
+
+I've been trying to read more in recent months (haven't we all).
+Here is a [list]({{ site.baseurl }}/writing/booksiveread.html)
+of the books I've read in recent years.
