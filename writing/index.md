@@ -18,6 +18,6 @@ word counts. When a story gets published I'll add a link!
 
 I don't write poetry in any serious capacity. But here are [some poems]({{ site.baseurl }}/writing/poetry.html).
 
-I've been trying to read more in recent months (haven't we all).
+I've been trying to read more in recent months.
 Here is a [list]({{ site.baseurl }}/writing/booksiveread.html)
 of the books I've read in recent years.

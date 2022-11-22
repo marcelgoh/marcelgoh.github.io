@@ -9,7 +9,7 @@ This is a landing page for things that, for whatever reason, might not have a pl
 ### Expository notes
 
 __E1.__ [On the probability that two integers are relatively prime]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/coprime-probability.tex))  
-__E2.__ [The Burnside problem]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/burnside.tex))  
+__E2.__ [The Burnside problem]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/burnside.tex), [video](https://youtu.be/GxiFu0tpL_s))  
 __E3.__ [Weyl trees of famous irrational numbers]({{ site.baseurl }}/misc/expo/weyl.pdf) ([code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))  
 __E4.__ [A crash course on generating functions]({{ site.baseurl }}/misc/expo/genfcts.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/genfcts.tex))  
 __E5.__ [On the divisibility of a random variable]({{ site.baseurl }}/misc/proofs/random-divisibility.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/random-divisibility.tex))  

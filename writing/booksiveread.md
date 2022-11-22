@@ -136,4 +136,5 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Shape_ (2021), Jordan Ellenberg  
 1. _I Know Why the Caged Bird Sings_ (1969), Maya Angelou  
 1. _L'Étranger_ (1942), Albert Camus [French]  
+1. _Little Women_ (1868), Louisa May Alcott
 
