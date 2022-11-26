@@ -52,6 +52,9 @@
 \newcount\reportcount
 \reportcount=1
 \def\repitem{\pubitem R\the\reportcount. \global\advance\reportcount by -1}
+\newcount\fictioncount
+\fictioncount=1
+\def\ficitem{\pubitem F\the\fictioncount. \global\advance\fictioncount by -1}
 
 \def\datethis{\eightrm \today}
 
@@ -291,6 +294,15 @@ Tutored various students in grades 4 through 11 in chemistry, physics, math, and
 \smallskip
 Led children aged 4--15 through various activities (e.g. archery, canoeing, zipline) at a sleepaway camp.
 \medbreak
+
+\sectheader{Published Short Fiction}
+
+\begingroup\frenchspacing
+\fictioncount=1
+\pubbegin F
+\ficitem ``Mountain Pass,'' {\sl Prairie Journal of Canadian Literature} {\bf 79} (2023), 48--55.
+\endgroup%end the frenchspacing
+
 
 \sectheader{Skills}
 
