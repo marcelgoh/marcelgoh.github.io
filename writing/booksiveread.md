@@ -139,4 +139,10 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Little Women_ (1868), Louisa May Alcott
 1. _Something I've Been Meaning to Tell You_ (1974), Alice Munro
 1. _Dubliners_ (1914), James Joyce
+1. _Ethan Frome_ (1911), Edith Wharton
+1. _Bluebeard's Egg_ (1983), Margaret Atwood
+1. _The Journey to the East_ (1932), Hermann Hesse
+1. _Cat's Cradle_ (1963), Kurt Vonnegut
+1. _Little Ironies: Stories of Singapore_ (1978), Catherine Lim
+1. _Bonheur d'occasion_ (1945), Gabrielle Roy
 

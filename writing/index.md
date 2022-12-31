@@ -9,13 +9,13 @@ title: Writing
 I write short stories in my spare time.
 Here are my stories that have appeared (or will appear very soon) in literary magazines.
 
-__F1.__ "Mountain Pass," _[Prairie Journal of Canadian Literature](http://prairiejournal.org/)_ __79__ (2023), 48-55.
+__F1.__ "Mountain Pass," _[Prairie Journal of Canadian Literature](http://prairiejournal.org/)_ __79__ (2023), 48--55.
 
 ### Unpublished stories
 
 Here are stories I am working on and hope to get published one day.
 Unlike academic journals, literary magazines do not usually accept drafts that have
-appeared online. So for now you'll just have to get excited about the story titles and (approximate)
+appeared online. So for now you'll just have to get excited about the (working) story titles and (approximate)
 word counts. Whenever a story gets picked up I'll move it up to the "published" list.
 
 &#x2600; "Senang Diri" (2900 words)  
@@ -23,12 +23,13 @@ word counts. Whenever a story gets picked up I'll move it up to the "published" 
 &#x2600; "Of You and Me" (7700 words)  
 &#x2600; "The Girl on the Yellowhead" (7500 words)  
 &#x2600; "C'est À Elle De Décider" (8000 words)  
-&#x2600; "Things Can't All Be Bad" (2641 words)  
+&#x2600; "Things Can't All Be Bad" (2600 words)  
+&#x2600; "The Vigil" (3200 words)  
 
 ### Other
 
 I don't write poetry in any serious capacity. But here are [some poems]({{ site.baseurl }}/writing/poetry.html).
 
-I've been trying to read more in recent months.
+Lately I've been trying to read more.
 Here is a [list]({{ site.baseurl }}/writing/booksiveread.html)
 of the books I've read in recent years.
