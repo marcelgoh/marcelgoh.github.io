@@ -146,3 +146,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Little Ironies: Stories of Singapore_ (1978), Catherine Lim
 1. _Bonheur d'occasion_ (1945), Gabrielle Roy
 
+### 2023
+
+1. _Bunny_ (2019), Mona Awad
+

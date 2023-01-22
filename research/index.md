@@ -15,7 +15,7 @@ My research interests include:
 
 __P5.__ (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://ajc.maths.uq.edu.au/pdf/84/ajc_v84_p357.pdf). _Australasian Journal of Combinatorics_ __84__,3 (2022), 357--374.
 [[arXiv](https://arxiv.org/abs/2106.05949)]  
-__P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and the leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). To appear in _Combinatorics, Probability and Computing_, 23&nbsp;pp.
+__P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and the leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). _Combinatorics, Probability and Computing_ __32__,1 (2023), 68--90.
 [[arXiv](https://arxiv.org/abs/2106.14389)]  
 __P3.__ (with Anna M. Brandenberger, Luc Devroye, and Rosie Y. Zhao) [Leaf multiplicity in a Bienaymé-Galton-Watson tree](https://dmtcs.episciences.org/paper/view/id/9237).
 _Discrete Mathematics and Theoretical Computer Science_ __24__,1 (2022), \#7, 16&nbsp;pp.
