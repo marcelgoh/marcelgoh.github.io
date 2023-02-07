@@ -13,6 +13,9 @@ My research interests include:
 
 ### Papers
 
+Research articles published in peer-reviewed journals, in reverse order of acceptance (and not necessarily
+appearance).
+
 __P5.__ (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://ajc.maths.uq.edu.au/pdf/84/ajc_v84_p357.pdf). _Australasian Journal of Combinatorics_ __84__,3 (2022), 357--374.
 [[arXiv](https://arxiv.org/abs/2106.05949)]  
 __P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and the leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). _Combinatorics, Probability and Computing_ __32__,1 (2023), 68--90.
@@ -30,7 +33,8 @@ __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an
 
 Papers submitted for publication in refereed journals.
 
-&#x2600; (with Jonah Saks) [Alternating-sum statistics for certain sets of integers](https://arxiv.org/abs/2206.12535). _arXiv preprint 2206.12535_ (2022), 12&nbsp;pp.  
+&#x2600; [An uncertainty principle for Möbius inversion on posets](https://arxiv.org/abs/2302.02466). _arXiv preprint 2302.02466_ (2023), 5&nbsp;pp.  
+&#x2600; (with Jonah Saks) [On the homology of several number-theoretic set families](https://arxiv.org/abs/2206.12535). _arXiv preprint 2206.12535_ (2022), 16&nbsp;pp.  
 
 ### Reports and theses
 
