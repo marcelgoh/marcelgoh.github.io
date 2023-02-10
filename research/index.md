@@ -51,6 +51,7 @@ __R1.__ [The OPythn programming language]({{ site.baseurl }}/research/opythn-rep
 
 I contributed the following sequences to the [OEIS](https://oeis.org):
 
++ [A360285](https://oeis.org/A360285): Triangle read by rows: $T(n,k)$ is the number of subsets of $$\{1,\ldots,n\}$$ of cardinality $k$ in which no two elements are coprime; $n\ge 0$, $0\le k\le \lfloor n/2 \rfloor + [n=1]$.
 + [A355147](https://oeis.org/A355147): Triangle read by rows: $T(n,k)$ is the number of product-free subsets of $$\{1,\ldots,n\}$$ with cardinality $k$; $n\ge 0$, $0\le k\le $[A028391](https://oeis.org/A028391)($n$).
 + [A355146](https://oeis.org/A355146): Triangle read by rows: $T(n,k)$ is the number of subsets of $$\{1,\ldots,n\}$$ of cardinality $k$ in which every pair of elements if coprime; $n\ge 0$, $0\le k\le $[A036234](https://oeis.org/A036234)($n$).
 + [A355145](https://oeis.org/A355145): Triangle read by rows: $T(n,k)$ is the number of primitive subsets of $\{1,\ldots,n\}$ of cardinality $k$; $n\ge 0$, $0\le k\le \lceil n/2\rceil$.
