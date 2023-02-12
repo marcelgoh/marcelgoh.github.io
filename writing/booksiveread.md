@@ -151,4 +151,6 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Bunny_ (2019), Mona Awad
 1. _Malay Sketches_ (2012), Alfian Sa'at
 1. _St. Urbain's Horseman_ (1971), Mordecai Richler
+1. _The Pearl_ (1947), John Steinbeck
+1. _Complex Variables_ (1972), Francis Flanigan
 
