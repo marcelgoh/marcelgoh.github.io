@@ -153,4 +153,11 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _St. Urbain's Horseman_ (1971), Mordecai Richler
 1. _The Pearl_ (1947), John Steinbeck
 1. _Complex Variables_ (1972), Francis Flanigan
+1. _Jacob's Room_ (1922), Virginia Woolf
+1. _As I Lay Dying_ (1930), William Faulkner
+1. _A Portrait of the Artist as A Young Man_ (1916), James Joyce
+1. _To Have and Have Not_ (1937), Ernest Hemingway
+1. _Frankenstein_ (1818), Mary Shelley
+1. _The Queen of Spades and Other Stories_ (1834), Alexander Pushkin
+1, _The Juniper Tree_ (1985), Barbara Comyns
 

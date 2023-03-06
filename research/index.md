@@ -33,7 +33,7 @@ __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an
 
 Papers submitted for publication in refereed journals.
 
-&#x2600; [An uncertainty principle for Möbius inversion on posets](https://arxiv.org/abs/2302.02466). _arXiv preprint 2302.02466_ (2023), 5&nbsp;pp.  
+&#x2600; [An uncertainty principle for Möbius inversion on posets](https://arxiv.org/abs/2302.02466). _arXiv preprint 2302.02466_ (2023), 7&nbsp;pp.  
 &#x2600; (with Jonah Saks) [On the homology of several number-theoretic set families](https://arxiv.org/abs/2206.12535). _arXiv preprint 2206.12535_ (2022), 16&nbsp;pp.  
 
 ### Reports and theses
