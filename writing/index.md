@@ -21,10 +21,11 @@ word counts. Whenever a story gets picked up I'll move it up to the "published" 
 &#x2600; "Senang Diri" (2900 words)  
 &#x2600; "Terminal Velocity" (3200 words)  
 &#x2600; "Of You and Me" (7700 words)  
-&#x2600; "The Girl on the Yellowhead" (7500 words)  
+&#x2600; "Yellowhead" (6400 words)  
 &#x2600; "C'est À Elle De Décider" (8000 words)  
 &#x2600; "Things Can't All Be Bad" (2600 words)  
 &#x2600; "The Vigil" (3200 words)  
+&#x2600; "Syazwani" (2300 words)  
 
 ### Other
 

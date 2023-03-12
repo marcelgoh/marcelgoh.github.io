@@ -160,4 +160,5 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Frankenstein_ (1818), Mary Shelley
 1. _The Queen of Spades and Other Stories_ (1834), Alexander Pushkin
 1. _The Juniper Tree_ (1985), Barbara Comyns
+1. _Crime and Punishment_ (1866), Fyodor Dostoevsky
 
