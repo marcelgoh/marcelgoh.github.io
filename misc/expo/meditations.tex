@@ -1,6 +1,8 @@
 \input fontmac
 
-\def\quo#1.{\par\textindent{\it #1.}}
+\newcount\quocount
+
+\def\quo{\par\textindent{\it \the\quocount\global\advance\quocount by 1.}}
 
 \widemargins
 \bookheader{MEDITATIONS OF A MATHEMATICS STUDENT}{MARCEL K. GOH}
@@ -13,16 +15,20 @@
 \centerline{\bf I}
 \medskip
 
-\quo 1. From my grandfather I learned the multiples of five and how they may be used to tell the time.
-\quo 2. From my mother, how my fingers can be used to recall the multiples of nine.
-\quo 3. From Luc, how to do research: how to formulate problems and seek out their solutions.
+\quocount=1
+\quo From my grandfather I learned the multiples of five and how they may be used to tell the time.
+\quo From my mother, how my fingers can be used to recall the multiples of nine.
+\quo From my uncle, the long division algorithm for integers. When I was older my uncle also introduced me
+to basic concepts of philosophy, and he was an early inspiration for me to view
+scholarly endeavour for its own sake as not only acceptable, but also noble.
+\quo From Luc, how to do research: how to formulate problems and seek out their solutions.
 From him too I learned that, weather permitting, mathematics should be done and taught outdoors; and that
 incorporating exercise and fresh air into one's day often sharpens one's productivity.
-\quo 4. With my friends Rosie, Anna, Jad, and Jonah (among others), that the joy of
+\quo With my friends Rosie, Anna, Jad, and Jonah (among others), that the joy of
 discovery is something easily shared. I also learned through their example
 the value of hard work, and how diligence
 and devotion to one's studies can be translated into erudition and academic success.
-\quo 5. From the books and writings of Knuth, not to chase scholarly trends, and how indeed the popularity
+\quo From the books and writings of Knuth, not to chase scholarly trends, and how indeed the popularity
 of a given subfield is often in direct correlation with the shallowness of the research therein. Knuth also
 impressed on me the importance of striking a balance between theory and practice in all my academic endeavours.
 
@@ -31,14 +37,19 @@ impressed on me the importance of striking a balance between theory and practice
 \centerline{\bf II}
 \medskip
 
-\quo 1. Recall how early in your university days you were discouraged by the ease with which
+\quocount=1
+\quo Recall how early in your university days you were discouraged by the ease with which
 your peers seemed to grasp course concepts, and later discovered this impression to be largely baseless, that
 their skills were not drastically better than your own. Take care, even in times of greatest insecurity,
 not to overrepresent your
 knowledge when speaking to a acquaintance,
 for such a fa\c{c}ade will only impede your own learning, and by boasting you are liable to discourage others.
+\quo Avoid saying that you will do something, be it of personal or professional nature, to a friend or
+family member or a professor or a colleague, etc., and then not following through on it.
+It is always better to do or accomplish the thing and then announce it after the fact. But undoubtedly the best
+practice is to make promises and then fulfill them, to declare clear intentions and act upon them.
 
 \bigskip
-\rightline{\sl Last updated 12.IX.2022, Edmonton, Alberta.}
+\rightline{\sl Last updated 22.III.2023, Edmonton, Alberta.}
 
 \bye
