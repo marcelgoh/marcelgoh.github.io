@@ -9,7 +9,7 @@ title: Writing
 I write short stories in my spare time.
 Here are my stories that have appeared (or will appear very soon) in literary magazines.
 
-__F1.__ "Mountain Pass," _[Prairie Journal of Canadian Literature](http://prairiejournal.org/)_ __79__ (2023), 48--55.
+__F1.__ "Mountain Pass," _[Prairie Journal of Canadian Literature](https://prairiejournal.org/index.html)_ __79__ (2023), 48--55.
 
 ### Unpublished stories
 

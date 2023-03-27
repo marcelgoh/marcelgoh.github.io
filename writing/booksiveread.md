@@ -144,7 +144,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Journey to the East_ (1932), Hermann Hesse
 1. _Cat's Cradle_ (1963), Kurt Vonnegut
 1. _Little Ironies: Stories of Singapore_ (1978), Catherine Lim
-1. _Bonheur d'occasion_ (1945), Gabrielle Roy
+1. _Bonheur d'occasion_ (1945), Gabrielle Roy [French]
 
 ### 2023
 
@@ -161,4 +161,8 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Queen of Spades and Other Stories_ (1834), Alexander Pushkin
 1. _The Juniper Tree_ (1985), Barbara Comyns
 1. _Crime and Punishment_ (1866), Fyodor Dostoevsky
+1. _The Burnout Society_ (2010), Byung-Chul Han
+1. _Ces enfants de ma vie_ (1977), Gabrielle Roy [French]
+1. _The Communist Manifesto_ (1848), Karl Marx and Friedrich Engels
+1. _White Nights and Bobok_ (1848, 1873), Fyodor Dostoevsky
 
