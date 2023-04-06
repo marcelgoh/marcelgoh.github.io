@@ -81,7 +81,7 @@ that he was due to start soon, and I strongly
 considered applying as well. Ultimately, I decided not to, mostly for cost reasons, but I was willing
 to drop some money on learning how to write, so I ended up getting a freelance editor to look at
 my work. It wasn't necessarily cheap either, but still significantly less than the creative writing course,
-and because I paid story (whose individual cost was based on word count) I wouldn't have to commit to
+and because I paid per story (whose individual cost was based on word count) I wouldn't have to commit to
 spending $3600 all at once, and indeed during the last year I only spent a fraction of that.
 The feedback
 I got was excellent, consisting of line edits (like you'd get on Critique Circle) as well as a separate
@@ -92,7 +92,10 @@ I think ultimately most authors have workshops or small circles of author friend
 from which they can get quality feedback of this sort for free (in return for feedback of their own), but
 if you're starting out and want something one step about the quality of critiques from an online
 platform like Critique Cirle but are not quite ready to invest or commit to something like a creative
-writing course, I highly recommend the freelance option.
+writing course, I highly recommend the freelance option, especially for this learning phase. It is not
+at all economical if you're hoping to make money writing short stories, but then again you shouldn't be
+hoping to make money writing short stories!
+
 I'm not going to disclose the identity of my editor here since I didn't run this post by them and I'm not
 sure how actively they are looking for more editing work, but they are a successful literary fiction author
 in their own right, with&mdash;I think&mdash;a novel forthcoming.
