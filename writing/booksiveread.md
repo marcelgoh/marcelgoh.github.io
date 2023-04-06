@@ -165,4 +165,8 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Ces enfants de ma vie_ (1977), Gabrielle Roy [French]
 1. _The Communist Manifesto_ (1848), Karl Marx and Friedrich Engels
 1. _White Nights and Bobok_ (1848, 1873), Fyodor Dostoevsky
+1. _The Epic of Gilgamesh_, translation by Nancy Sandars (1972)
+1. _The Housing Monster_ (2011), prole.info
+1. _Solaris_ (1961), Stanisław Lem
+1. _Ghost Forest_ (2021), Pik-Shuen Fung
 

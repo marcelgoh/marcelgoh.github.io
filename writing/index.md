@@ -3,10 +3,12 @@ layout: page
 title: Writing
 ---
 
+I write short stories in my spare time. Here's a
+[blog post]({{ site.baseurl }}/2023/04/06/one-year-short-stories.html)
+I wrote about my first year of writing and submitting short fiction.
 
 ### Published stories
 
-I write short stories in my spare time.
 Here are my stories that have appeared (or will appear very soon) in literary magazines.
 
 __F1.__ "Mountain Pass," _[Prairie Journal of Canadian Literature](https://prairiejournal.org/index.html)_ __79__ (2023), 48--55.

@@ -2,6 +2,10 @@
 layout: page
 title: Blog Archive
 ---
+
+### 2023
+- (06.04.2023) [One year of writing and submitting short stories]({{ site.baseurl }}/2023/04/06/one-year-short-stories.html)
+
 ### 2022
 - (15.07.2022) [Alternating-sum statistics for certain sets of integers]({{ site.baseurl }}/2022/07/15/alternating-sum-statistics.html)
 
