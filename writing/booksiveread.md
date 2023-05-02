@@ -169,4 +169,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Housing Monster_ (2011), prole.info
 1. _Solaris_ (1961), Stanisław Lem
 1. _Ghost Forest_ (2021), Pik-Shuen Fung
-
+1. _First Person Singular_ (2020), Haruki Murakami
+1. _The Moons of Jupiter_ (1982), Alice Munro
+1. _Stone Mattress_ (2014), Margaret Atwood
+1. _May_ (1836), Karel Hynek Mácha

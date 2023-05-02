@@ -17,8 +17,8 @@ My favourite polygon is the pentagon.
 
 From 2017 to 2021, I volunteered with the [McGill Student Emergency Response Team](http://msert.sus.mcgill.ca/).
 
-When I'm not doing math or attending school, I enjoy bouldering, writing,
-[travelling]({{ site.baseurl }}/travel/index.html)
+When I'm not doing math or attending school, I enjoy bouldering, [writing]({{ site.baseurl }}/writing/index.html),
+[travelling]({{ site.baseurl }}/travel/index.html),
 and [photography]({{ site.baseurl }}/travel/photos.html).
 
 My CV is available in both

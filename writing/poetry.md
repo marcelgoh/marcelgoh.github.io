@@ -58,3 +58,18 @@ oh-two. The exam has now started._ You turn the page over and breathe.
 
 _June 2022_
 
+### Winter Sunset
+
+I mean those days on the prairie when winter needs neither wet nor wind nor storm to
+sustain itself and so exists---shining, glimmering, blazing---in stagnant perpetuity,
+when the cold seems to come from within your very soul, the frost of you spilling out and pooling with the
+frost of the world. The winter that reigns on these days is one that smiles bright and harsh, that does not operate
+under cloak of shadow or justify its blows with clouds of gloom. On such clear days when night arrives
+it rises
+from all directions as a purple-orange fog, salvation in the form of a palliative void, its darkness no longer
+light's opposite but instead inheriting the violence of a cruel, icy sun, and when the earth
+sinks into its frigid depths it does not fall into the clutches of the hostile, but remains under the vicious
+tyranny of the same.
+
+_April 2023_
+
