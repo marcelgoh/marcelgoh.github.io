@@ -9,11 +9,13 @@
 \def\bignorm#1{\big|\!\big|#1\big|\!\big|}
 \def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
 \def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+\def\mone{-\!\one}  % aesthetic quibble
+
 
 \widemargins
 \bookheader{NOTES ON ADDITIVE COMBINATORICS}{MARCEL K. GOH}
 
-\maketitle{Notes on additive combinatorics}{by}{Marcel K. Goh}{23 March 2022}
+\maketitle{Notes on additive combinatorics}{by}{Marcel K. Goh}{5 May 2023}
 
 \floattext4.5 \ninebf Note.
 \ninepoint
@@ -480,8 +482,6 @@ a $k$-isomorphism. For fixed $r$, the restriction to $A_{j,r}$ is not a $k$-isom
 if there exist $j$ and $a_1,\ldots,a_k,b_1,\ldots,b_k\in A_{j,r}$ such that
 $a_1+\cdots+a_k \ne b_1+\cdots+b_k$ but $\phi(a_1)+\cdots+\phi(a_k) = \phi(b_1)+\cdots+\phi(b_k)$.
 
-
-
 \advsect Basics of discrete Fourier analysis
 
 Let $Z$ be a finite abelian group. A {\it character} on $Z$ is a homomorphism from
@@ -660,6 +660,74 @@ with $a_1+\cdots+a_k=b_1+\cdots+b_k$ is a member of $A^{2k}$ is $\norm{\one_A}_{
 the number of $(x,y,z,w)\in A^4$ with $x+y = z+w$
 is the additive energy $E(A)$ of $A$; we just showed above that
 $E(A) = |Z|^3 \norm{\one_A}_4^4$.
+
+\advsect Bohr sets and Bogolyubov's lemma
+
+Let $G$ be a finite abelian group, let $\chi_1, \ldots, \chi_k$ be characters on $G$, and let
+$\delta>0$. The {\it Bohr set} $B(\chi_1,\ldots,\chi_k;\delta)$ is the set
+$$\bigl\{ x\in G : \chi_i(x)\in e\bigl([-\delta,\delta]\bigr)\ \hbox{for all}\ 1\le i\le k\bigr\}.$$
+(As before, we write $e(\alpha)$ for $e^{2\pi i\alpha}$.) We say that such a Bohr set has {\it dimension} $k$
+and {\it width} $\delta$.
+
+If $G= \FF_p^n$, we can write $\chi_i = \chi_{u_i}$ where $\chi_{u_i}(x) = e(u_i\cdot x/p$. If $\delta<1/p$,
+then $\chi_{u_i}(x)\in e\bigl([-\delta,\delta]\bigr)$ if and only if
+$(u_i\cdot x) / p \bmod 1\in [-\delta,\delta]$. But $u_i\cdot x$ is an integer, so this is true if and only
+if $u_i\cdot x = 0$, so consequently
+$$B(\chi_1,\ldots,\chi_k;\delta) = \{ x\in \FF_p^n : u_i\cdot x = 0\ \hbox{for all}\ 1\le i\le k\},$$
+which is a subspace cut out by $k$ linear conditions, i.e., of codimension at most $k$.
+
+\parenproclaim Lemma {\advthm} (Bogolyubov). Let $G$ be a finite abelian group. Let $A\subseteq G$ be a
+subset of density $\alpha$. Then $2A-2A$ contains a Bohr set of dimension at most $1/\alpha^2$ and width
+$1/4$.
+
+\proof For $x\in G$, let
+$$\eqalign{
+f(x) &= \bigl( \one_A * \one_A * (\mone_A) * (\mone_A)\bigr)(x) \cr
+&= \ex_{p+q-r-s=x} \one_A(p)\one_A(q)\one_A(r)\one_A(s).
+}$$
+Then $x\in 2A-2A$ if and only if $f(x)\ne 0$. We want to find a Bohr set on which $f$ does not vanish.
+
+Note first that for any character $\chi$,
+$$\hat{\mone_A}(\chi) = \ex_x \one_A(-x)\bar{\chi(x)} = \ex_x \one_A(x)\bar{\chi(-x)} = \ex_x\one_A(x)\chi(x)
+=\bar{\hat{\one_A}(\chi)}.$$
+(The last identity relies on the fact that $\one_A(x)$ is real.) This implies that
+$\hat{\one_A}(\hat{\mone_A}) = |\one_A|^2$. Now we apply the Fourier inversion
+formula and the convolution law to expand
+$$\eqalign{
+f(x) &= \sum_\chi \hat{\one_A*\one_A*(\mone_A)*(\mone_A)}(\chi)(\chi)(x) \cr
+&= \sum_\chi \hat{\one_A}(\chi)^2 \hat{\mone_A}(\chi)^2 \chi(x) \cr
+&= \sum_\chi \bigl| \hat{\one_A}(\chi) \bigr|^4 \chi(x). \cr
+}$$
+Let
+$$K = \bigl\{ \chi\in \hat G : \bigl| \hat{\one_A}(\chi) \bigr| \ge \alpha^{3/2}\bigr\}$$
+and let $B$ be the Bohr set $B(K;1/4)$. Then the expression above for $f(x)$ can be split into
+$$f(x) =
+\bigl| \hat{\one_A}(\chi_0) \bigr|^4
++ \sum_{\chi\in K} \bigl| \hat{\one_A}(\chi) \bigr|^4 \chi(x)
++ \sum_{\chi\notin K\cup \{\chi_0\}} \bigl| \hat{\one_A}(\chi) \bigr|^4 \chi(x).$$
+We shall assume that $x\in B$ and deal with each of the three terms separately.
+
+The first term is easy; since $A$ has density $\alpha$, $\hat{\one_A}(\chi_0) = \alpha$, and thus the first
+time is $\alpha^4$. For the second term, note that if $\chi\in K$ and $x\in B$, then
+$\chi(x)\in e\bigl([-1/4, 1/4]\bigr)$. This means that $\chi(x)$ has argument between $-\pi/2$ and $\pi/2$,
+and {\it a fortiori} has nonnegative real part. Now, if $\chi\notin K$ and $\chi\ne \chi_0$,
+then $\bigl|\hat{\one_A}\bigr| < \alpha^{3/2}$, so we take the absolute value of the third term
+and apply the triangle inequality and Parseval's identity to obtain
+$$\Bigl|\sum_{\chi\notin K\cup \{\chi_0\}} \bigl| \hat{\one_A}(\chi) \bigr|^4 \chi(x)\Bigr|
+\le \sum_{\chi\notin K\cup\{\chi_0\}} \bigl|\hat{\one_A}(\chi)\bigr|^4
+< \sum_{\chi\in \hat G} \alpha^3 \bigl| \hat{\one_A}(\chi)\bigr|^2
+= \alpha^3\langle \hat{\one_A},\hat{\one_A}\rangle.$$
+But by Parseval's identity, the right-hand side equals $\alpha^3 \langle \one_A,\one_A\rangle = \alpha^4$,
+so we find that the real part of the third term is more than $-\alpha^4$. This means that $\Re f(x) > 0$,
+so $f(x)\ne 0$ for all $x\in B$; that is, $B\subseteq 2A-2A$.
+
+It remains to give an upper bound on the size of $K$. We have
+$$\alpha = \sum_{\chi\in \hat G} \bigl| \one_A(\chi)\bigr|^2 \ge
+\sum_{\chi\in K} \bigl|\hat{\one_A(\chi)}\bigr|^2 \ge |K|\alpha^3,$$
+meaning that $|K|\le 1/\alpha^2$.\slug
+
+When $A$ is a subset of density $\alpha$ in $G = \FF_p^n$, Bogolyubov's lemma tells us that $2A-2A$ contains
+a subspace of codimension at most $1/\alpha^2$.
 
 \section References
 
