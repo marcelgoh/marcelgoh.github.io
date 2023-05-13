@@ -43,9 +43,17 @@
 %Q plunnecke
 %A Helmut Pl\"unnecke
 %T Eigenschaften und Absch\"atzungen von Wirkungsfunktionen
-%I Berichte der Gasellschaft f\"ur Mathematik und Datenverarbeitung
+%I Berichte der Gesellschaft f\"ur Mathematik und Datenverarbeitung
 %C Bonn
 %Y 1969
+
+%Q roth1953
+%A Klaus Friedrich Roth
+%T On certain sets of integers
+%J Journal of the London Mathematical Society
+%V 28
+%D 1953
+%P 104-109
 
 %Q ruzsa1989
 %A Imre Zolt\'an Ruzsa
@@ -58,6 +66,14 @@
 %Q ruzsa1996
 %O Imre Zolt\'an Ruzsa, ``Sums of finite sets,'' {\sl Number Theory: New York Seminar 1991--1995} (1996).
 
+%Q szemeredi1975
+%A Endre Szemer\'edi
+%T On sets of integers containing no $k$ elements in arithmetic progression
+%J Acta Arithmetica
+%V 27
+%D 1975
+%P 199-245
+
 %Q additivecombinatorics
 %A Terence Tao
 %A Van Ha Vu
@@ -65,5 +81,13 @@
 %I Cambridge University Press
 %C Cambridge
 %Y 2006
+
+%Q vanderwaerden1927
+%A Bartel Leendert van~der~Waerden
+%T Beweis einer Baudetschen Vermutung
+%J Nieuw Archief voor Wiskunde
+%V 15
+%D 1927
+%P 212-216
 
 END
