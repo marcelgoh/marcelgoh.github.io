@@ -927,6 +927,41 @@ $\ex_{x,d} A(x)B(x+d)C(x+2d) > \alpha\beta\gamma/2$. The further assumption that
 allows us to conclude that there is some $x$ for which $\ex_{d} A(x)B(x+d)C(x+2d) > 1$, and thus some
 $d\ge 0$ such that $(x,x+d,x+2d)\in A\times B\times C$.\slug
 
+In the next lemma, we define the {\it diameter} of $X\subseteq \CC$ to be the quantity
+$\sup_{z_1,z_2\in X} |z_1-z_2|$.
+
+\proclaim Lemma {\advthm}. For every $\theta\in \RR$, $\eps>0$, and $n\in \NN$ sufficiently large, the
+set $[n]$ can be partitioned
+into disjoint arithmetic progressions $P_1, \ldots, P_m$, each of size at least $\sqrt{\eps n/(32 \pi)}$,
+such that the diameter of $e(\theta P_i)\le \eps$ for all $1\le i\le m$.
+
+\proof Let $t$ be a positive integer to be chosen later. Dividing the unit circle into $t$ segments of
+length $2\pi/t$, by the pigeonhole principle there must be some segment that contains more than one of
+the $t+1$ points $e(0), e(\theta), \ldots, e(t\theta)$. Thus there are $u$ and $v$ with $0\le u<v\le r$ such that
+$\bigl|e(u\theta) - e(v\theta)\bigr|\le 2\pi/t$. Let $d = v-u$. By multiplying both $e(u\theta)$ and
+$e(v\theta)$ by $e(-u\theta)$, we find that $\bigl|1-e(d\theta)\bigr| \le 2\pi/t$ as well. Then by telescoping and
+applying the triangle inequality, we may expand
+$$\bigl|1-e(sd\theta)\bigl| \le \sum_{k=1}^s \bigl|e\bigl((k-1)d\theta-e(kd\theta)\bigr|.$$
+But by applying rotations as above, each of the terms in the sum can is equal to $\bigl|1-e(d\theta)\bigr|$,
+implying that $\bigl|1-e(sd\theta)\bigl| \le 2\pi s/t$.
+
+The reason this is important is that
+whenever $P$ is any arithmetic progression with common difference $d$, any $x,y\in P$ will
+have $\bigl|e(x\theta) - e(y\theta)\bigr| = \bigl|1-e(sd\theta)\bigr|$ for some $s$ that is at most
+the length of $P$. Hence if $P$ is an arithmetic progression with common difference $d$ and length
+at most $\eps t/(2\pi)$, then the diameter of $e(\theta P)$ will be at most $\eps$.
+
+Take $[n]$ and partition it into residue classes modulo $d$. Within each residue class, we would like
+to further group the elements into ``intervals'' of size roughly $\eps t/(2\pi)$. First we need to make
+sure that the residue classes are large enough. If a residue class has size at least $\eps t/(2\pi)$,
+then it can be subdivided into intervals of size between $\eps t/(4\pi)$ and $\eps t/(2\pi)$.
+To ensure this, we note that the residue classes have size $\lfloor n/d\rfloor \ge \lfloor n/t\rfloor$,
+so we shall set $t \le \sqrt{2\pi n / \eps}$. With this choice we find that each $P_i$ has size
+$$\biggl\lfloor {\eps t\over 4\pi}\biggr\rfloor \le  \Biggl\lfloor {\eps\over 4\pi} \sqrt{2\pi n\over \eps}
+\Biggr\rfloor = \Biggl\lfloor \sqrt{\eps n\over 8\pi} \Biggr\rfloor \le \sqrt{\eps n\over 32\pi}.$$
+
+
+
 \section References
 
 \bye

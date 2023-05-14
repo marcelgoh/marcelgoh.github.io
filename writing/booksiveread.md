@@ -174,3 +174,4 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Stone Mattress_ (2014), Margaret Atwood
 1. _May_ (1836), Karel Hynek Mácha
 1. _Du côté de chez Swann_ (1913), Marcel Proust
+1. _Strange News from Another Star_ (1919), Hermann Hesse
