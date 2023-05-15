@@ -880,6 +880,7 @@ Before we get there we first establish three lemmas. In their proofs we will wri
 of $\one_A$, and identify
 $r$ with its corresponding element $\chi_r\in \hat{\ZZ_N}$, writing $\hat f(r)$ instead of $\hat f(\chi_r)$.
 
+\edef\lemABC{\the\thmcount}
 \proclaim Lemma {\advthm}. Let $N$ be odd and let $A$, $B$, and $C$ be subsets of $\ZZ_N$ with densities
 $\alpha$, $\beta$, and $\gamma$ respectively. Suppose that $N > 2/(\alpha\beta\gamma)$. Then either
 there exists $x$ and $d\ne 0$ such that $(x,x+d,x+2d)\in A\times B\times C$, or there exists $r\ne 0$
@@ -930,7 +931,7 @@ $d\ge 0$ such that $(x,x+d,x+2d)\in A\times B\times C$.\slug
 In the next lemma, we define the {\it diameter} of $X\subseteq \CC$ to be the quantity
 $\sup_{z_1,z_2\in X} |z_1-z_2|$.
 
-\proclaim Lemma {\advthm}. For every $\theta\in \RR$, $\eps>0$, and $n\in \NN$ sufficiently large, the
+\proclaim Lemma {\advthm}. For every $\theta\in \RR$, $n\in \NN$, and $\eps > 0$, the
 set $[n]$ can be partitioned
 into disjoint arithmetic progressions $P_1, \ldots, P_m$, each of size at least $\sqrt{\eps n/(32 \pi)}$,
 such that the diameter of $e(\theta P_i)\le \eps$ for all $1\le i\le m$.
@@ -942,7 +943,7 @@ $\bigl|e(u\theta) - e(v\theta)\bigr|\le 2\pi/t$. Let $d = v-u$. By multiplying b
 $e(v\theta)$ by $e(-u\theta)$, we find that $\bigl|1-e(d\theta)\bigr| \le 2\pi/t$ as well. Then by telescoping and
 applying the triangle inequality, we may expand
 $$\bigl|1-e(sd\theta)\bigl| \le \sum_{k=1}^s \bigl|e\bigl((k-1)d\theta-e(kd\theta)\bigr|.$$
-But by applying rotations as above, each of the terms in the sum can is equal to $\bigl|1-e(d\theta)\bigr|$,
+But by applying rotations as above, each term in the sum is equal to $\bigl|1-e(d\theta)\bigr|$,
 implying that $\bigl|1-e(sd\theta)\bigl| \le 2\pi s/t$.
 
 The reason this is important is that
@@ -958,9 +959,108 @@ then it can be subdivided into intervals of size between $\eps t/(4\pi)$ and $\e
 To ensure this, we note that the residue classes have size $\lfloor n/d\rfloor \ge \lfloor n/t\rfloor$,
 so we shall set $t \le \sqrt{2\pi n / \eps}$. With this choice we find that each $P_i$ has size
 $$\biggl\lfloor {\eps t\over 4\pi}\biggr\rfloor \le  \Biggl\lfloor {\eps\over 4\pi} \sqrt{2\pi n\over \eps}
-\Biggr\rfloor = \Biggl\lfloor \sqrt{\eps n\over 8\pi} \Biggr\rfloor \le \sqrt{\eps n\over 32\pi}.$$
+\Biggr\rfloor = \Biggl\lfloor \sqrt{\eps n\over 8\pi} \Biggr\rfloor \le \sqrt{\eps n\over 32\pi}.\noskipslug$$
 
+We use this lemma immediately to prove another one, which is key for the density-increment argument
+of Roth's proof.
 
+\edef\lemdensityincrement{\the\thmcount}
+\proclaim Lemma {\advthm}. Let $A\subseteq \ZZ_N$ be a set of density $\delta$, let $\eta>0$ and suppose
+there exists $r$ such that $\bigl| \hat A(r)\bigr| \ge \eta$. Then there is a progression $P$ of length
+at least $\sqrt{\eta N/(64\pi)}$ such that $|A\cap P| \ge (\delta + \eta/4)|P|$.
+
+\proof Define $f(x) = A(x)-\delta$. Then $\sum_{x\in \ZZ_n} f(x) = 0$ and
+$$ \hat f(\chi) = \ex_x (A(x) - \delta)\bar{\chi(x)} = \ex_x A(x)\bar{\chi(x)} - \delta \ex_x \bar{\chi(x)} $$
+If $\chi = \chi_0$ then this whole expression equals $0$; otherwise the second expectation disappears and
+$\hat f(\chi)$ just equals $\hat A(\chi)$. Let $r$ be such that $\bigl| \hat f(r)\bigr| = \bigl| \hat A(r)\bigr|
+\ge \eta$. Then
+$$ \eta N \le N\bigl| \hat f(r)\bigr| = N \Bigl| \sum_{x\in \ZZ_N} f(x) e(-rx/N)\Bigr|.$$
+By the previous lemma with $\theta = -r/N$ and $\eps = \eta/2$,
+we can partition $[N]$ into progressions $P_1,\ldots,P_m$, each of size at least $\sqrt{\eta n / (64\pi)}$
+such that every set $e(-rP_i/N)$ has diameter at most $\eta/2$. Thus by the triangle inequality,
+$$\eta N \le \sum_{i=1}^m \Bigl| \sum_{x\in P_i} f(x) e(-rx/N) \Bigr|.$$
+For each $i$, pick some element $x_i\in P_i$. Then
+$$\eqalign{
+\eta N &\le \sum_{i=1}^m \Bigl| \sum_{x\in P_i} f(x) e(-rx_i/N) \Bigr|
+  +\sum_{i=1}^m \Bigl| \sum_{x\in P_i} f(x) \bigl(e(-rx/N) - e(-rx_i/N) \bigr)\Bigr| \cr
+&\le \sum_{i=1}^m \bigl|e(-rx_i/N)\bigr|\cdot\Bigl| \sum_{x\in P_i} f(x) \Bigr| + {\eta N\over 2},
+}$$
+whence
+$$ \sum_{i=1}^m \Bigl| \sum_{x\in P_i} f(x) \Bigr| \ge {\eta N\over 2} = {\eta\over 2} \sum_{i=1}^m |P_i|.$$
+But $\sum_{i=1}^m \sum_{x\in P_i} f(x) = 0$, so we may add these terms into the sum to obtain
+$$ \sum_{i=1}^m \biggl(\sum_{x\in P_i} f(x) + \Bigl| \sum_{x\in P_i} f(x) \Bigr|\biggr)
+\sum_{i=1}^m {\eta\over 2}|P_i|,$$
+and deduce that there must be some $i$ such that
+$$ \sum_{x\in P_i} f(x) + \Bigl| \sum_{x\in P_i} f(x) \Bigr| \ge {\eta\over 2} |P_i|.$$
+For this $i$ we have
+$$|A\cap P_i| - \delta|P_i| =
+\sum_{x\in P_i} A(x) - \delta|P_i| = \sum_{x\in P_i} f(x) \ge {\eta\over 4}|P_i|,$$
+which implies that $|A\cap P_i| \ge (\delta + \eta/4)|P_i|$.\slug
+
+We are now equipped to prove Roth's theorem.
+
+\parenproclaim Theorem {\advthm} (Roth, {\rm 1953}). For every $\delta>0$ there exists
+$N\le \exp\bigl(\exp(300/\delta)\bigr)$ such that
+every $A\subseteq [N]$ with $|A|\ge \delta N$ contains an arithmetic progression of length $3$.
+
+\proof Let $N$ be an integer to be specified later. Let $A_0$ be a subset of $N$ of density
+$\delta = \delta$If $N$ is even, we can express $N = L_0+M_0$
+where both $L_0$ and $M_0$ are odd integers at least $N/4$. Either
+$$\bigl|A_0 \cap [L_0]\bigr| \ge \delta |L_0|\ \hbox{or}
+\ \bigl|A_0\cap [L_0+1, N]\bigr| \ge \delta M_0$$
+In the first case let $N_0 = L_0$ and set $A = A_0\cap [L_0]$, and in the second case set $N_0=M_0$
+and set $A = \bigl(A_0\cap [L_0+1,N]\bigr) - \{L_0\}$.
+
+Now we reach another crossroads. If $\bigl| A\cap (N_0/3, 2N_0/3]\bigr| < \delta N_0/5$, then one of
+$\bigl| A\cap [1,N_0/3]\bigr|$ or $\bigl| A\cap (2N_0/3,N_0]\bigr|$ must be greater than $2\delta N_0 / 5$.
+Either way, we get a progression $P$ of length roughly $N_0/3$ such that $|A\cap P| \ge \delta_1|P|$,
+where $\delta_1$ is roughly $6\delta/5$. Thus we may iterate the argument with $A = A\cap P$, $N$
+roughly equal to $N_0/3$, and $\delta = \delta_1$. Here we can be very sloppy with bounds and say that
+the new choice of $N$ is at least $N/24$, and the new choice of $\delta$ is at least $11\delta/10$.
+
+It is the case $\bigl| A\cap (N_0/3, 2N_0/3]\bigr| \ge \delta N_0/5$ in which we must use the lemmas
+above. Let $B = C = A\cap [N_0/3, 2N_0/3)$. This choice for $B$ and $C$ ensures that if $d\ne 0$ and
+$(x,x+d,x+2d)\in A\times B\times C$ where $A$, $B$, and $C$ are regarded as subsets of $\ZZ_{N_0}$, then
+$x,x+d,x+2d$ is still an arithmetic progression in $\ZZ$. This is clear because if
+$y,z\in [N_0/3,2N_0/3)\subseteq \ZZ$ and $d$ is the common difference $y-z$, then $|d| < N_0/3$, which
+ensures that $x\in [N_0]$.
+
+So if $A\times B\times C$ contains a triple $(x,x+d,x+2d)$ with $d\ne 0$, then we have an arithmetic
+progression of length $3$ in $[N_0]$ (and thus in $[N]$), so we are done. If not,
+let $\alpha$, $\beta$, and $\gamma$ be the densities of $A$, $B$, and $C$ respectively.
+$\alpha \ge \delta$ and $\beta,\gamma\ge \delta/5$. By Lemma~{\lemABC}, so long as
+$N_0 > 50/\delta^3 \ge 2/(\alpha\beta\gamma)$, there is some $r\ne 0$ such that
+$\hat A(r) \ge \alpha\sqrt{\beta\gamma} \ge \delta^2/10$. By Lemma~{\lemdensityincrement} with
+$\eta = \delta^2/10$, there is a progression $P$ in $A$ of size at least $\delta \sqrt{N_0/(640\pi)}$
+such that $|A\cap P| \ge (\delta + \delta^2/40)|P|$.
+
+By scaling and translating, we obtain a subset of $\bigl[|P|\bigr]$ of size at least $(\delta+\delta^2/40)|P|$,
+so we can repeat the argument with $A$ set to $A = A\cap P$ and $N$ set to $|P|$. It is clear that
+we cannot iterate forever, since $\delta \le 1$, so we will eventually find an arithmetic progression
+of length $3$. It remains to calculate how many iterations it takes for this to happen, which in turn tells
+us an upper bound for $N$.
+
+Well, as long as $\delta \le 4/21$, we have $\delta + \delta^2/40 \le 11\delta/10$, so the
+second case has the smaller density increment. In this case, note that if we iterate $40/\delta$ times,
+then the density at least doubles. Then to double it again we need to iterate $40/(2\delta) = 20/\delta$
+times, and so on. By repeating this argument, we only need to iterate at most
+$$ {40\over\delta} \biggl(1 + {1\over 2} + {1\over 4} + \cdots \biggr) = {80\over \delta}$$
+times and we will eventually have to find an arithmetic progression of length $3$, otherwise $\delta$ would
+become greater than $1$. We can even be extra pedantic here and say that this only gets us to $\delta >4/21$,
+and then $20$ more iterations is sufficient to get to $\delta > 1$. (This is because $\log_{11/10}(21/4) < 20$).
+
+In the argument we required $N_0 > 50/\delta^3$, which means that $N$ must always be greater than
+$200/\delta^3$. To further simplify our calculations, we note that
+$$\delta \sqrt{N_0\over 640\pi } \ge {\delta\sqrt N\over 100} \ge N^{1/3}$$
+as long as $N\ge (100/\delta)^6$. Requiring this condition ensures that in any iteration, the next
+value of $N$ is at least $N^{1/3}$. So to eventually find a $3$-term arithmetic
+progression, we need to start with an $N$ such that $N^{3^{-80/\delta+20}} \ge (100/\delta)^6$.
+Taking the logarithm of both sides, we get
+$$ 3^{-80/\delta+20} \log N \ge 6\log(100/\delta),$$
+and then taking another logarithm yields
+$$ \log\log N \ge \biggl({80\over\delta} + 20\biggr)\log 3 +\log 6 + \log\log(100/\delta),$$
+We'll be lazy here and set $\log\log N\ge 300/\delta$ as
+a sufficient condition, which is the bound claimed in the theorem statement.\slug
 
 \section References
 
