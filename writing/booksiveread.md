@@ -175,3 +175,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _May_ (1836), Karel Hynek Mácha
 1. _Du côté de chez Swann_ (1913), Marcel Proust
 1. _Strange News from Another Star_ (1919), Hermann Hesse
+1. _The Master and Margarita_ (1966), Mikhail Bulgakov
+1. _My Year of Rest and Relaxation_ (2018), Ottessa Moshfegh
+1. _To the Lighthouse_ (1927), Virginia Woolf
+1. _El camino familiar del pez combativo_ (1992), Pierre Alferi [Spanish, French]

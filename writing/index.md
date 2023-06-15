@@ -11,6 +11,7 @@ I wrote about my first year of writing and submitting short fiction.
 
 Here are my stories that have appeared (or will appear very soon) in literary magazines.
 
+__F3.__ "Senang Diri," _[Existere](https://existere.info.yorku.ca/)_ __42__.2 (2023), 17--25.  
 __F2.__ ["The Vigil,"](https://ricepapermagazine.ca/2023/05/the-vigil-by-marcel-goh/)
 [_Ricepaper Magazine_](https://ricepapermagazine.ca/) (2023), online.  
 __F1.__ "Mountain Pass," _[Prairie Journal of Canadian Literature](https://prairiejournal.org/index.html)_ __79__ (2023), 48--55.
