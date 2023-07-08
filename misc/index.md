@@ -45,3 +45,8 @@ __E10.__ [The discrete Fourier uncertainty principle]({{ site.baseurl }}/misc/ex
 + &#77839; [Denali Relles](https://denali-relles.github.io)
 + &#77857; [Jonah Saks](https://jonahsaks.github.io)
 + &#78264; [Rosie Zhao](https://rosieyzh.github.io/)
+
+### Secrets
+
+1. There's something hidden in the sidebar.
+

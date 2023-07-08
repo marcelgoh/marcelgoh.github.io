@@ -3,8 +3,6 @@ layout: page
 title: Cows under trees
 ---
 
-Exactly what it sounds like.
-
 <figure class="figure">
 <img src="/media/travel/alpscow.jpg" class="center-image">
 <figcaption class="caption"><i>Les Houches, France, July 2022</i></figcaption>

@@ -179,3 +179,6 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _My Year of Rest and Relaxation_ (2018), Ottessa Moshfegh
 1. _To the Lighthouse_ (1927), Virginia Woolf
 1. _El camino familiar del pez combativo_ (1992), Pierre Alferi [Spanish, French]
+1. _Lesser Known Monsters of the 21st Century_ (2022), Kim Fu
+1. _The Grapes of Wrath_ (1939), John Steinbeck
+1. _Last Exit to Brooklyn_ (1964), Hubert Selby Jr.
