@@ -1,0 +1,138 @@
+\input fontmac
+\input mathmac
+
+\def\eps{\epsilon}
+\def\FF{{\bf F}}
+\def\bar#1{\overline{#1}}
+\def\hat#1{\widehat{#1}}
+\def\norm#1{|\!|#1|\!|}
+\def\bignorm#1{\big|\!\big|#1\big|\!\big|}
+\def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
+\def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+
+\widemargins
+\bookheader{KELLEY AND MEKA'S PROOF OF ROTH'S THEOREM}{MARCEL K. GOH}
+
+\maketitle{Kelley and Meka's proof of Roth's theorem}{by}{Marcel K. Goh}{5 August 2023}
+
+\bigskip
+
+\advsect Introduction
+
+Let $A$ be a subset of $\ZZ$. We want to know how dense $A$ can be before it must contain a subset
+$\{x,y,z\}\subseteq A$ with $x+z = 2y$, that is, an arithmetic progression of length $3$.
+
+\medskip
+\boldlabel Basic definitions and elementary lemmas.
+We will use $G$ primarily to refer to a finite abelian group, on which we have the normalised counting measure.
+For functions $f,g:G\to \CC$ we have the inner product
+$$\langle f,g\rangle = \ex_{x\in G} f(x)\bar{g(x)}$$
+and the $L_p$ norm
+$$ \norm{f}_p = \Bigl( \ex_{x\in G} \bigl| f(x) \bigr|^p \Bigr)^{1/p}.$$
+In $L_p$ spaces we have the useful H\"older inequality
+$$ \bigl| \langle f,g\rangle \bigr| \le \norm{f}_p  \cdot \norm{g}_{1-p},$$
+for $p,q\in [1,\infty]$ with $1/p + 1/q = 1$.
+Assuming now that $f$ and $g$ are $\RR$-valued, we also have the convolution
+$$ (f*g)(x) = \ex_{y\in G} f(y) g(x-y)$$
+and the difference convolution
+$$ (f\circ g)(x) = \ex_{y\in G} f(y) g(x+y)$$
+that are related by the following adjoint property.
+
+\parenproclaim Lemma~{\advthm} (Adjoint property).
+Let $G$ be a finite abelian group and let $f,g,h:G\to \RR$. Then
+$$\langle f,g*h\rangle = \langle h\circ f, g\rangle.$$
+
+\proof First expand
+$$\eqalign{
+\langle f, g*h \rangle &= \ex_{x\in G} f(x) (g*h)(x) \cr
+&= \ex_{x\in G} f(x) \ex_{y\in G} g(y) h(x-y) \cr
+&= \ex_{y\in G} g(y) \ex_{x\in G} f(x) h(x-y). \cr
+}$$
+Then substituting $z = x-y$ so that $x = z+y$ yields
+$$\eqalign{
+\langle f, g*h\rangle &= \ex_{y\in G} g(y) \ex_{z\in G} f(z+y) h(z) \cr
+&= \ex_{z\in G} (h\circ f)(z) g(z) \cr
+&= \langle h\circ f, g\rangle .\noskipslug\cr
+}$$
+
+For a group $G$ the dual group $\hat G$ is the set of all homomorphisms from $G\to \CC^\times$.
+The Fourier transform of $f:G\to \RR$ is the function $\hat f:\hat G\to \CC$ given by
+$$ \hat f(\chi) = \ex_{x\in G} f(x)\chi(-x).$$
+The following lemma describes how the convolution and difference convolution behave under the Fourier
+transform.
+
+\parenproclaim Lemma~{\advthm} (Convolution laws).
+Let $G$ be a finite abelian group and let $f,g:G\to \RR$. Then the following identities hold:
+\medskip
+\item{i)} $\hat{f*g} = \hat f\cdot \hat g$
+\smallskip
+\item{ii)} $\hat{f\circ g} = \bar{\hat f} \cdot \hat g$
+\medskip\noindent
+In particular, $\hat {f\circ f} = |\hat f|^2$.
+
+\proof Expand
+$$\hat{f*g}(\chi) = \ex_{x\in G} (f*g)(\chi)\chi(-x)$$
+and multiply the right-hand side by $1 = \chi(-y)\chi(y)$ to get
+$$\hat{f*g}(\chi) = \ex_{x\in G} \ex_{y\in G} f(y)g(x-y) \chi(-y) \chi(y-x).$$
+Then we may interchange the order of summation and substitute $z = x-y$ to arrive at
+$$\hat{f*g}(\chi) = \ex_{y\in G} \ex_{z\in G} f(y)g(z) \chi(-y) \chi(-z) = \hat f(\chi)\hat g(\chi),$$
+which proves (i). For part (ii), we expand and multiply by the same $1$ to get
+$$\widehat{f\circ g}(\chi) = \ex_{x\in G} (f\circ g)(\chi)\chi(-x)
+= \ex_{x\in G} \ex_{y\in G} f(y)g(x+y) \chi(y) \chi(-x-y).$$
+We again interchange the order of summation; this time substituting $z = x+y$ gives us
+$$\eqalign{
+\hat{f\circ g}(\chi) &= \ex_{y\in G} \ex_{z\in G} f(y)g(z) \chi(y)\chi(-z) \cr
+&= \bar{\ex_{y\in G} f(y)\chi(-y) } \ex_{z\in G} g(z)\chi(-z) \cr
+&=  \bar{\hat f(\chi)}\hat g(\chi),\cr
+}$$
+which is what we wanted.\slug
+
+
+For sets $A$ and $X$, let $\mu_X(A) = |A\cap X|/|X|$ denote the
+relative density of $A$ in $X$, and if $X$ is understood to be a subset of a larger set $G$, then we
+use $\mu_X$ also to denote the normalised indicator function given by
+$$\mu_X(x) = \cases{ 1/\mu_G(X), & if $x\in X$;\cr 0, & otherwise.}.$$
+The scaling is done so that $\norm{\mu_X}_1 = 1$ for any $X\subseteq G$, as can easily be checked.
+
+\advsect H\"older lifting and unbalancing
+
+Here we state and prove two lemmas that are general enough to apply in both the integer and finite-field
+settings.
+
+\parenproclaim Lemma~{\advthm} (H\"older lifting). Let $\eps\ge 0$ and let $A$ and $C$ be subsets of
+a finite abelian group $G$, where $C$ has relative density $\gamma$. Then at least one of
+the following two statements holds.
+\medskip
+\item{i)} $\bigl|\langle \mu_A *\mu_A, \mu_C\rangle\bigr| \le \eps$
+\smallskip
+\item{ii)} $\norm{\mu_A\circ \mu_A - 1}_p \ge \eps/2$ for some $p = O\bigl(\log(1/\gamma)\bigr)$.
+
+\proof Bilinearity of the inner product gives
+$$\langle \mu_A *\mu_A -1, \mu_C \rangle = \langle \mu_A * \mu_A ,\mu_C\rangle + \langle -1,\mu_C\rangle
+= \langle\mu_A*\mu_A,\mu_C\rangle -1,$$
+so if the first statement does not hold, then for $q = 1/(1-1/p)$, we have, by H\"older's inequality,
+$$\eqalign{
+\eps &< \bigl|\langle \mu_A *\mu_A, \mu_C\rangle\bigr|
+\le \norm{\mu_A*\mu_A-1}_p \Bigl( \ex_{x\in G} \bigl| \mu_C(x)\bigr|^q\Bigr)^{1/q} \cr
+&\le \norm{\mu_A*\mu_A-1}_p \gamma^{1/q-1} \le \norm{\mu_A*\mu_A-1}_p \gamma^{-1/p}.\cr
+}$$
+Letting $p$ be an even integer greater than $\log_2(1/\gamma)$, we have $\log\gamma \ge p\log (1/2)$,
+whence $\gamma^{1/p} \ge 1/2$, which gives the inequality
+$$ \norm{\mu_A*\mu_A - 1}_p \ge {\epsilon\over 2}.$$
+Lastly, observe that since $p$ is even,
+
+\advsect The finite-field case
+
+First, we give bounds for the size of a $3$-AP-free subset of $\FF_q^n$. As is common with problems of this
+sort, the finite-field case is a simpler prototype of the integer one.
+
+
+
+
+
+
+
+\section References
+
+\bye
+
