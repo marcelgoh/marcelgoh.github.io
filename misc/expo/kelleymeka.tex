@@ -13,32 +13,29 @@
 \widemargins
 \bookheader{KELLEY AND MEKA'S PROOF OF ROTH'S THEOREM}{MARCEL K. GOH}
 
-\maketitle{Kelley and Meka's proof of Roth's theorem}{by}{Marcel K. Goh}{5 August 2023}
+\maketitle{Kelley and Meka's proof of Roth's theorem}{by}{Marcel K. Goh}{23 August 2023}
 
 \bigskip
 
-\advsect Introduction
+\advsect Definitions and elementary facts
 
-Let $A$ be a subset of $\ZZ$. We want to know how dense $A$ can be before it must contain a subset
-$\{x,y,z\}\subseteq A$ with $x+z = 2y$, that is, an arithmetic progression of length $3$.
-
-\medskip
-\boldlabel Basic definitions and elementary lemmas.
-We will use $G$ primarily to refer to a finite abelian group, on which we have the normalised counting measure.
+We will use $G$ primarily to refer to a finite abelian group.
 For functions $f,g:G\to \CC$ we have the inner product
 $$\langle f,g\rangle = \ex_{x\in G} f(x)\bar{g(x)}$$
 and the $L_p$ norm
 $$ \norm{f}_p = \Bigl( \ex_{x\in G} \bigl| f(x) \bigr|^p \Bigr)^{1/p}.$$
 In $L_p$ spaces we have the useful H\"older inequality
-$$ \bigl| \langle f,g\rangle \bigr| \le \norm{f}_p  \cdot \norm{g}_{1-p},$$
-for $p,q\in [1,\infty]$ with $1/p + 1/q = 1$.
+$$ \bigl| \langle f,g\rangle \bigr| \le \norm{f}_p  \cdot \norm{g}_q,$$
+for $p,q\in [1,\infty)$ with $1/p + 1/q = 1$.
 Assuming now that $f$ and $g$ are $\RR$-valued, we also have the convolution
 $$ (f*g)(x) = \ex_{y\in G} f(y) g(x-y)$$
 and the difference convolution
-$$ (f\circ g)(x) = \ex_{y\in G} f(y) g(x+y)$$
+$$ (f\circ g)(x) = \ex_{y\in G} f(y) g(x+y).$$
+It is easy to check that for all $x\in G$, $(f*g)(x) = (g*f)(x)$, but with the difference convolution
+we have $(f\circ g)(x) = (g\circ f)(-x)$.
 that are related by the following adjoint property.
 
-\parenproclaim Lemma~{\advthm} (Adjoint property).
+\parenproclaim Proposition~{\advthm} (Adjoint property).
 Let $G$ be a finite abelian group and let $f,g,h:G\to \RR$. Then
 $$\langle f,g*h\rangle = \langle h\circ f, g\rangle.$$
 
@@ -58,10 +55,11 @@ $$\eqalign{
 For a group $G$ the dual group $\hat G$ is the set of all homomorphisms from $G\to \CC^\times$.
 The Fourier transform of $f:G\to \RR$ is the function $\hat f:\hat G\to \CC$ given by
 $$ \hat f(\chi) = \ex_{x\in G} f(x)\chi(-x).$$
-The following lemma describes how the convolution and difference convolution behave under the Fourier
+The following proposition describes how the convolution and difference convolution behave under the Fourier
 transform.
 
-\parenproclaim Lemma~{\advthm} (Convolution laws).
+\edef\convolutions{\the\thmcount}
+\parenproclaim Proposition~{\advthm} (Convolution laws).
 Let $G$ be a finite abelian group and let $f,g:G\to \RR$. Then the following identities hold:
 \medskip
 \item{i)} $\hat{f*g} = \hat f\cdot \hat g$
@@ -87,50 +85,476 @@ $$\eqalign{
 }$$
 which is what we wanted.\slug
 
+When we convolve two functions $\hat f$ and $\hat g$ on the dual group, we
+take a sum instead of an expectation:
+$$(\hat f\circ \hat g)(\chi) = \sum_{\psi\in G} \hat f(\psi)\hat g(\chi\psi^{-1}).$$
+The same goes in the definition of the inner product $\langle \hat f, \hat g\rangle$.
+
+Let $f^{*k}$ denote the $k$-fold
+convolution of a function $f$.
+The next proposition interprets $k$-norms in terms of $k$-fold convolutions of the Fourier transform.
+
+\edef\knorms{\the\thmcount}
+\proclaim Proposition \advthm. Let $G$ be a finite abelian group, let $k\ge 1$ be an integer, and let
+$\chi_0$ denote the identity element of the dual group $\hat G$ of $G$. We have the identity
+$$\ex_{x\in G} f(x)^k = {\hat f} ^{*p} (\chi_0).$$
+
+\proof
+Expand by the Fourier inversion formula to get
+$$\eqalign{
+\ex_{x\in G} f(x)^k &= \ex_{x\in G} \Bigl(\sum_{\chi\in \hat G} \hat f(\chi) \chi(x)\Bigr)^k \cr
+&= \ex_{x\in G} \sum_{\chi_1 \in \hat G} \cdots \sum_{\chi_k \in \hat G} \hat f(\chi_1)\cdots \hat f(\chi_k)
+\chi_1(x)\cdots\chi_k(x) \cr
+&= \sum_{\chi_1 \in \hat G} \cdots \sum_{\chi_k \in \hat G} \hat f(\chi_1)\cdots \hat f(\chi_k)
+\ex_{x\in G} \chi_1\cdots\chi_k(x). \cr
+}$$
+By orthogonality of characters, the inner expectation is zero when $\chi_1\cdots\chi_k \ne \chi_0$, so we have
+$$\ex_{x\in G} f(x)^k = \sum_{\chi_1\cdots\chi_k = \chi_0} \hat f(\chi_1)\cdots \hat f(\chi_k) =
+{\hat f}^{*p}(\chi_0).\noskipslug$$
 
 For sets $A$ and $X$, let $\mu_X(A) = |A\cap X|/|X|$ denote the
 relative density of $A$ in $X$, and if $X$ is understood to be a subset of a larger set $G$, then we
 use $\mu_X$ also to denote the normalised indicator function given by
 $$\mu_X(x) = \cases{ 1/\mu_G(X), & if $x\in X$;\cr 0, & otherwise.}.$$
 The scaling is done so that $\norm{\mu_X}_1 = 1$ for any $X\subseteq G$, as can easily be checked.
+We denote the ordinary indicator function by $\one_X = \mu_G(X)\mu_X$, and sometimes
+write $\one_x$ for the indicator function $\one_{\{x\}}$ of a singleton set. Lastly, we also sometimes use the
+same symbol to denote the indicator function of a statement; i.e., $\indic{P}$ is $1$ if the statement $P$
+is true and $0$ if it is false.
+
+It is easy to check that if $\mu$ has $\norm{\mu}_1 = 1$, then so does $\mu*\mu$ and $\mu\circ\mu$.
+We shall say that $\mu:G\to \RR_{\ge 0}$ is a {\it probability measure} on $G$ if $\norm{\mu}_1 = 1$. The
+following proposition concerns such measures.
+
+\edef\normonefourier{\the\thmcount}
+\proclaim Proposition \advthm. Let $G$ be a finite abelian group.
+If $\mu:G\to \RR_{\ge 0}$ is a probability measure, then
+$$ \hat{\mu-1} = \hat \mu (1-\one_{\chi_0}).$$
+
+\proof We expand
+$$\eqalign{
+\hat{\mu-1}(\chi_0) &=  \ex_{x\in G} \bigl(\mu(x)-1\bigr) \chi(-x) \cr
+&= \ex_{x\in G} \mu(x)\chi(-x) - \ex_{x\in G} \chi(-x).\cr
+&= \hat\mu(\chi) - \ex_{x\in G} \chi(-x).\cr
+}$$
+If $\chi\ne\chi_0$, then the expectation vanishes, and
+if $\chi = \chi_0$, then the expection clearly equals $1$, and $\mu(\chi_0) = \norm{\mu}_1 = 1$, so the whole
+expression is zero.\slug
+
+If $\mu:G\to \RR_{\ge 0}$ is a probability measure and $f,g:G\to \CC$ we write
+$$\langle f,g\rangle_\mu = \ex_{x\in G} \mu(x)f(x)\bar{g(x)}$$
+for the inner product relative to $\mu$, and for $1\le p<\infty$ we write
+$$\norm{f}_{p(\mu)} = \Bigl( \ex_{x\in G} \mu(x) \bigl| f(x)\bigr|^p \Bigr)^{1/p}$$
+for the $L_p$ norm relative to $\mu$. The following basic proposition establishes the monotonicity of
+$L_p$ norms with respect to $p$.
+
+\edef\monotonenorm{\the\thmcount}
+\parenproclaim Proposition~{\advthm} (Monotonicity of $L_p$ norms). Let $G$ be a finite abelian group.
+Let $\mu:G\to \RR_{\ge 0}$ be a probability measure and let $f:G\to \CC$.
+For $1\le p<q<\infty$, we have
+$$\norm{f}_{p(\mu)} \le \norm{f}_{q(\mu)}.$$
+
+\proof Let $r = q/p > 1$ and let $s = r/(r-1)$ so that $1/r+1/s = 1$.
+We have
+$$\ex_{x\in G} \mu(x) \bigl| f(x)\bigr|^p = \ex_{x\in G} \mu(x) \bigl| f(x)\bigr|^{q/r} \cdot 1$$
+Now by H\"older's inequality, we have
+$$\eqalign{
+\ex_{x\in G} \mu(x) \bigl| f(x)\bigr|^p &\le
+\Bigl(\ex_{x\in G} \mu(x) \bigl| f(x)\bigr|^q \Bigr)^{1/r} \Bigl( \ex_{x\in G} 1^s\Bigr)^{1/s} \cr
+&= \Bigl(\ex_{x\in G}\mu(x)\bigl| f(x)\bigr|^q \Bigr)^{p/q}. \cr
+}$$
+Taking $p$th roots of both sides now produces the inequality we wanted.\slug
+
+For convenience, when $\mu:G\to \RR_{\ge 0}$ is a probability measure and $X\subseteq G$, we write
+$$\mu(X) = \norm{\one_X}_{1(\mu)} = \ex_{x\in G} \mu(x) \one_X(x),$$
+and refer to this quantity as the {\it density of $X$ relative to $\mu$}.
 
 \advsect H\"older lifting and unbalancing
 
-Here we state and prove two lemmas that are general enough to apply in both the integer and finite-field
-settings.
+With preliminaries out of the way, we begin the proof of Kelley and Meka~\ref{kelleymeka2023}, as described
+and reworked by Bloom and Sisask~\ref{bloomsisask2023}.
+In this section we perform the first two steps of the proof,
+which are identical in both the integer and finite-field settings.
 
+\edef\holderlifting{\the\thmcount}
 \parenproclaim Lemma~{\advthm} (H\"older lifting). Let $\eps\ge 0$ and let $A$ and $C$ be subsets of
 a finite abelian group $G$, where $C$ has relative density $\gamma$. Then at least one of
 the following two statements holds.
 \medskip
-\item{i)} $\bigl|\langle \mu_A *\mu_A, \mu_C\rangle\bigr| \le \eps$
+\item{i)} $\bigl|\langle \mu_A *\mu_A, \mu_C\rangle - 1\bigr| \le \eps$
 \smallskip
 \item{ii)} $\norm{\mu_A\circ \mu_A - 1}_p \ge \eps/2$ for some $p = O\bigl(\log(1/\gamma)\bigr)$.
 
-\proof Bilinearity of the inner product gives
+\proof Linearity of the inner product in the first argument gives
 $$\langle \mu_A *\mu_A -1, \mu_C \rangle = \langle \mu_A * \mu_A ,\mu_C\rangle + \langle -1,\mu_C\rangle
 = \langle\mu_A*\mu_A,\mu_C\rangle -1,$$
 so if the first statement does not hold, then for $q = 1/(1-1/p)$, we have, by H\"older's inequality,
 $$\eqalign{
-\eps &< \bigl|\langle \mu_A *\mu_A, \mu_C\rangle\bigr|
+\eps &< \bigl|\langle \mu_A *\mu_A-1, \mu_C\rangle\bigr|
 \le \norm{\mu_A*\mu_A-1}_p \Bigl( \ex_{x\in G} \bigl| \mu_C(x)\bigr|^q\Bigr)^{1/q} \cr
 &\le \norm{\mu_A*\mu_A-1}_p \gamma^{1/q-1} \le \norm{\mu_A*\mu_A-1}_p \gamma^{-1/p}.\cr
 }$$
 Letting $p$ be an even integer greater than $\log_2(1/\gamma)$, we have $\log\gamma \ge p\log (1/2)$,
-whence $\gamma^{1/p} \ge 1/2$, which gives the inequality
+whence $\gamma^{1/p} \ge 1/2$. This gives the inequality
 $$ \norm{\mu_A*\mu_A - 1}_p \ge {\epsilon\over 2}.$$
-Lastly, observe that since $p$ is even,
+Since $p$ is even,
+$$ \norm{\mu_A*\mu_A-1}_p^p = \ex_{x\in G} \bigl|(\mu_A*\mu_A-1)(x)\bigr|^p
+= \ex_{x\in G} (\mu_A*\mu_A-1)(x)^p,$$
+and we can apply Proposition~{\knorms} to get
+$$\norm{g}_p^p = \hat g^{*p} (\chi_0),$$
+where we have put $g = \mu_A*\mu_A-1$.
+It was noted earlier that $\mu_A*\mu_A$ has $1$-norm equal to $1$, so we can apply
+Propositions~{\normonefourier} and~{\convolutions} in that order to get
+$$\norm{\mu_A*\mu_A-1}_p^p
+= \bigl(\hat{\mu_A*\mu_A}(1-\one_{\chi_0})\bigr)^{*p} (\chi_0)
+= \bigl(\hat{\mu_A}^2(1-\one_{\chi_0})\bigr)^{*p} (\chi_0).$$
+Repeating this whole process with $\mu_A\circ\mu_A$ in place of $\mu_A*\mu_A$ produces the very similar identity
+$$\norm{\mu_A\circ\mu_A-1}_p^p = \bigl(|\hat{\mu_A}|^2(1-\one_{\chi_0})\bigr)^{*p} (\chi_0),$$
+from which we conclude that
+$$\norm{\mu_A\circ\mu_A-1}_p^p \ge \norm{\mu_A*\mu_A-1}_p^p \ge {\epsilon\over 2}.\noskipslug$$
+
+This lemma tells us that if $\langle \mu_A*\mu_A,\mu_C\rangle \ge 1/2$, then $\norm{\mu\circ \mu_A-1}_p \ge 1/4$
+for some $p = O\bigl(\log(1/\gamma)\bigr)$. This information can then be fed to the following general lemma.
+
+\edef\unbalancing{\the\thmcount}
+\parenproclaim Lemma~{\advthm} (Unbalancing of spectrally nonnegative functions). Let $\eps\in (0,1)$
+and let $\nu : G\to \RR_{\ge 0}$ be a probability measure with $\hat \nu\ge 0$. If $f : G\to \RR$ has
+$\hat f\ge 0$ and $\norm{f}_{p(\nu)} \ge \eps$ for some $p\ge 1$, then
+$$ \norm{f+1}_{p'(\nu)} \ge 1 + {\eps\over 2}$$
+for some $p' = O\bigl(\eps^{-1} \log(\eps^{-1}) p\bigr)$.
+
+\proof Proposition~{\monotonenorm} tells us that $\norm{f}_{p(\mu)}$ is monotonically increasing in $p$, so
+without loss of generality we can pick $p$ odd and at least $5$. As usual, we denote the identity in $\hat G$
+by $\chi_0$. Using the Fourier inversion formula
+and orthogonality of characters as we did in the proof of Proposition~{\knorms}, we observe that
+$$\eqalign{
+\norm{f}_{p(\nu)}^p &= \ex_{x\in G}
+\Bigl(\sum_{\chi\in \hat G} \hat\nu(\chi)\chi(x)\Bigr)\Bigl(\sum_{\chi\in \hat G} \hat f(\chi)\chi(x)\Bigr)^k \cr
+&= \sum_{\chi_1\in \hat G} \cdots \sum_{\chi_{k+1}\in \hat G}
+\hat f(\chi_1)\cdots\hat f(\chi_k) \hat \nu(\chi_{k+1} )\ex_{x\in G} \chi_1(x)\cdots\chi_{k+1}(x) \cr
+&= \sum_{\chi_1\cdots\chi_{k+1} =\chi_0} \hat f(\chi_1) \cdots \hat f(\chi_k) \hat\nu(\chi_{k+1} )\cr
+&= \hat\nu * {\hat f}^{*p}(\chi_0). \cr
+}$$
+Let $P = \{x\in G : f(x)\ge 0\}$ and let $g(x) = \max\{f(x), 0\}$. It is easy to see that
+$2g(x) = f(x) + \bigl|f(x)\bigr|$, so
+$$\eqalign{
+2\langle \one_P, f^p\rangle_\nu &= 2 \ex_{x\in G} \nu(x)\one_P(x)f(x)^p \cr
+&= 2\ex_{x\in G} \nu(x) g(x) f(x)^{p-1}  \cr
+&= \langle 2g,f^{p-1}\rangle_\nu \cr
+&= \ex_{x\in G} \nu(x) f(x)^p + \bigl\langle |f|, f^{p-1}\bigr\rangle_\nu \cr
+&= \hat\nu * {\hat f}^{*p}(\chi_0)+ \bigl\langle |f|, |f|^{p-1}\bigr\rangle_\nu, \cr
+}$$
+where in the last line we used the fact that $f$ is real-valued as well as evenness of $p-1$.
+Since the Fourier transforms of $f$ and $\nu$ are both nonnegative, the first term is nonnegative, so
+$$\langle \one_P, f^p\rangle_\nu \ge {\bigl\langle |f|, |f|^{p-1}\bigr\rangle_\nu \over 2}
+= {\norm{f}_{p(\nu)}^p\over 2} \ge {\eps^p\over 2} .$$
+Now let $T = \{x\in P : f(x) \ge 3\eps / 4\}$. Then
+$$\eqalign{
+\langle \one_{P\setminus T}, f^p \rangle &= \langle \one_P - \one_T, f^p \rangle \cr
+&= \langle \one_P , f^p \rangle - \langle \one_T, f^p \rangle \cr
+&\ge {\eps\over 2} - \ex_{x\in G} \one_T(x)f(x)^p \cr
+&\ge {\eps\over 2} - \ex_{x\in G} 3\eps/4 \cr
+&= {\eps\over 4},\cr
+}$$
+so $\langle \one_T, f^p \rangle_\nu \ge \eps^p/4$ and we have
+$$\eqalign{
+{\eps\over 4} &\le \langle \one_T,f^p\rangle_\nu \cr
+&= \ex_{x\in G} \bigl( \nu(x)^{1/2}\one_T(x)\bigr) \bigl(\nu(x)^{1/2} f(x)^p\bigr) \cr
+&= \Bigl( \ex_{x\in G} \nu(x)\one_T(x)^2\Bigr)^{1/2} \Bigl(\ex_{x\in G}\nu(x) f(x)^{2p}\Bigr)^{1/2} \cr
+&= \Bigl( \ex_{x\in G} \nu(x)\one_T(x)\Bigr)^{1/2} \Bigl(\ex_{x\in G} \nu(x) |f(x)|^{2p}\Bigr)^{p/(2p)} \cr
+&= \nu(T)^{1/2} \norm{f}_{2p(\nu)}^p\cr
+}$$
+by the Cauchy--Schwarz inequality.
+
+Now if $\norm{f}_{2p(\nu)}^p > 2$, then we could take $p' = 2p$, so assume that this norm is at most $2$.
+By the triangle inequality, we have
+$$\norm{f}_{2p(\nu)} \le \norm{-1}_{2p(\nu)} + \norm{f+1}_{2p(\nu)} \le 3,$$
+hence
+$$ \nu(T)^{1/2} 3^p \le {\eps^p\over 4}.$$
+Since we assumed that $p\ge 5$, and since $4 < 1024/243$, we have $4^{1/p} < 4/3$ and thus
+$$ \nu(T) \ge {\eps^{2p} \over 16 \cdot 3^{2p}} = \biggl( {\eps \over 4^{1/p} \cdot 3} \biggr)^{2p}
+> \biggl({\eps\over 4}\biggr)^{2p}.$$
+This allows us to bound
+$$\eqalign{
+\norm{f+1}_{p'(\nu)}
+&= \Bigl( \ex_{x\in G} \nu(x) \bigl| f(x)+1\bigr|^{p'}\Bigr)^{1/p'} \cr
+&\ge \Bigl( \ex_{x\in G} \nu(x) \one_T(x) \bigl| f(x)+1\bigr|^{p'}\Bigr)^{1/p'} \cr
+&\ge \bigl( \nu(T) (1+3\eps/4)^{p'} \bigr)^{1/p'} \cr
+&> \biggl( {\eps \over 4} \biggr)^{2p/p'} \biggl(1+{3\over 4}\eps\biggr). \cr
+}$$
+Now if $p' \ge (8p/\eps)\log(4/\eps) = O\bigl(\eps^{-1} \log(\eps^{-1}) p\bigr)$, then
+$\eps/4 \ge (2p/p')\log(4/\eps)$ and thus
+$$ -{2p\over p'} \log\biggl({4\over \eps}\biggr) \ge -{\eps\over 4}.$$
+Taking $e$ to the power of both sides gives us
+$$\biggl({4\over \eps}\biggr) ^{-2p/p'} \ge e^{-\eps/4} \ge 1-{\eps\over 4},$$
+and plugging this in above gives the bound
+$$\norm{f+1}_{p'(\nu)} > \biggl(1-{\eps\over 4}\biggr)\biggl(1+{3\over 4}\eps\biggr)
+= 1+{\eps \over 2} -{3\eps^2\over 16} \ge 1+{\eps\over 2},$$
+which is what we needed.\slug
+
+\advsect Dependent random choice
+
+The next lemma uses a dependent random choice argument to pass the information from the previous
+step down to high density subsets, which allows us to iterate the argument.
+
+\parenproclaim Lemma~{\advthm} (Dependent random choice). Let $G$ be a finite abelian group and let $A$
+be a subset of $G$ with density $\alpha$. Let $B_1,B_2\subseteq G$ and $\mu = \mu_{B_1}\circ \mu_{B_2}$.
+For any function $f:G\to \RR_{\ge 0}$ there exist sets $A_1\subseteq B_1$ and $A_2\subseteq B_2$ with
+densities satisfying
+$$\min\bigl\{\mu_{B_1}(A_1), \mu_{B_2}(A_2)\bigr\}
+\ge {1\over 4} \alpha^{2p} \norm{\mu_A\circ\mu_A}_{p(\mu)}^{2p}k.$$
+and such that
+$$ \langle \mu_{A_1}\circ \mu_{A_2}, f\rangle \le 2 {\bigl\langle (\mu_A\circ\mu_A)^p, f\bigr\rangle_\mu
+\over \norm{\mu_A\circ\mu_A}_{p(\mu)}^p}.$$
+
+\proof For $s = (s_1,\ldots,s_p)\in G^p$ let
+$A_1(s) = B_1\cap (A+s_1) \cap \cdots \cap (A+s_p)$, and define $A_2(s)$ analogously.
+First we expand
+$$\eqalign{
+\bigl \langle (\mu_A\circ \mu_A)^p, f\bigr\rangle_{\mu}
+&= \ex_{x\in G} \mu(x) (\mu_A\circ \mu_A)(x)^p f(x) \cr
+&=  \ex_{x\in G} \ex_{y\in G} \mu_{B_1}(y) \mu_{B_2}(x+y)  (\mu_A\circ \mu_A)(x)^p f(x)\cr
+&= {1\over |B_1|\cdot |B_2|} \sum_{x\in G} \sum_{y\in G}
+\one_{B_1}(y) \one_{B_2}(x+y) (\mu_A\circ\mu_A)(x)^p f(x).\cr
+}$$
+Renaming $b_1 = y$ and performing the change of variable $b_2 = x+b_1 = x+y$, we have
+$$\eqalign{
+\bigl \langle (\mu_A\circ \mu_A)^p, f\bigr\rangle_{\mu}
+&= {1\over |B_1||B_2|} \displaystyle\sum_{\scriptstyle b_1\in G\atop \scriptstyle b_2\in G}
+\one_{B_1}(b_1) \one_{B_2}(b_2) (\mu_A\circ\mu_A)(b_2-b_1)^p f(b_2-b_1)\cr
+&= \ex_{b_1\in B_1, b_2\in B_2} (\mu_A\circ\mu_A)(b_2-b_1)^p f(b_2-b_1)\cr
+&= \ex_{b_1\in B_1, b_2\in B_2} \Bigl( \alpha^{-2}\ex_{y\in G} \one_A(y) \one_A(b_2-b_1+y)\Bigr)^p f(b_2-b_1).\cr
+}$$
+Now since $y\in A$ if and only if $b_1\in A+b_1-y$ and $b_2-b_1+y \in A$ if and only if $b_2 \in A+b_1-y$, so
+writing $t = b_1-y$ and changing variables, we have
+$$\eqalign{
+\bigl \langle (\mu_A\circ \mu_A)^p, f\bigr\rangle_{\mu}
+&= \ex_{b_1\in B_1, b_2\in B_2}
+ \Bigl( \alpha^{-2}\ex_{t\in G} \one_{A+t}(b_1) \one_{A+t}(b_2)\Bigr)^p f(b_2-b_1)\cr
+&= \alpha^{-2p}\ex_{b_1\in B_1, b_2\in B_2} \ex_{s\in G^p} \one_{A_1(s)}(b_1) \one_{A_2(s)}(b_2) f(b_2-b_1).\cr
+}$$
+Putting $y=b_2-b_1$ so that $b_2 = y+b_1$, we have
+$$\eqalign{
+\bigl \langle (\mu_A\circ \mu_A)^p, f\bigr\rangle_{\mu}
+&= \alpha^{-2p} \ex_{s\in G^p} \ex_{b_1\in B_1} {|G|\over|B_2|} \ex_{y\in G}
+ \one_{A_1(s)}(b_1) \one_{A_2(s)}(y+b_1) f(y)\cr
+&= {|G|\over \alpha^{2p}|B_2|} \ex_{s\in G^p} \ex_{b_1\in B_1}
+\bigl\langle \one_{A_1(s)}\circ \one_{A_2(s)}, f\bigr\rangle\cr
+&= {|G|^2\over \alpha^{2p}|B_1|\cdot|B_2|} \ex_{s\in G^p} 
+\bigl\langle \one_{A_1(s)}\circ \one_{A_2(s)}, f\bigr\rangle.\cr
+}$$
+Thus we let $\beta_i = |B_i|/|G|$ and $\alpha_i(s) = {|A_i(s)|\over|G|}$
+for $i\in\{1,2\}$, and then apply the above in the case where $f$ is the constant function $1$ to obtain
+$$\eqalign{
+\bignorm{(\mu_A\circ \mu_A)^p, f}_{p(\mu)}^p
+&= {|G|^2\over \alpha^{2p}|B_1|\cdot|B_2|} \ex_{s\in G^p} 
+\ex_{x\in G} \ex_{y\in G} \one_{A_1(s)}(y) \one_{A_2(s)}(x+y)\cr
+&= {1\over \alpha^{2p}\beta_1\beta_2} \ex_{s\in G^p} 
+\ex_{y\in G} \one_{A_1(s)}(y) \ex_{x\in G}\one_{A_2(s)}(x+y)\cr
+&= {1\over \alpha^{2p}\beta_1\beta_2} \ex_{s\in G^p} \alpha_1(s)\alpha_2(s)\cr
+}$$
+The constants out front do not depend on $f$, so we see that
+$$ {\bigl\langle (\mu_A\circ\mu_A)^p, f\bigr\rangle_{\mu}\over \norm{\mu_A\circ\mu_A}_{p(\mu)}^p}
+= {\ex_{s\in G^p} \bigl\langle \one_{A_1(s)}\circ \one_{A_2(s)}, f\bigr\rangle
+\over \ex_{s\in G^p} \alpha_1(s)\alpha_2(s)};$$
+call this quotient $\eta$ for brevity.
+Now we consider the quantity
+$$\ex_{s\in G^p} \ex_{x\in G} \one_{A_1(s)}(x).$$
+For a given $s = (s_1,\ldots,s_p)\in G^p$ and $x\in G$, the corresponding $\one_{A_1(s)}(x)$ term is $1$ if and
+only if $x\in B_1$ and $x-s_i\in A$ for all $1\le i\le p$. Hence we have
+$$\ex_{s\in G^p} \ex_{x\in G} \one_{A_1(s)}(x) = {|B_1|\cdot |A|^p\over |G|^{p+1}} = \alpha^p\beta_1.$$
+The analogous identity holds for $A_2(s)$. So, letting
+$$M = {1\over 2} \alpha^p (\beta_1\beta_2)^{1/2} \norm{\mu_A\circ\mu_A}^p_{p(\mu)},$$
+we have
+$$\eqalign{
+\ex_{s\in G^p} \indic{\alpha_1(s)\alpha_2<M^2} \alpha_1(s)\alpha_2(s)
+ &< \ex_{s\in G^p} M \sqrt{\alpha_1(s)\alpha_2(s)} \cr
+ &\le \Bigl( \ex_{s\in G^p} M \alpha_1(s) \Bigr)^{1/2} \Bigl( \ex_{s\in G^p} M \alpha_2(s) \Bigr)^{1/2} \cr
+ &= M \Bigl( \ex_{s\in G^p} \ex_{x\in G} \one_{A_1(s)}(x) \Bigr)^{1/2} \cr
+ &\hskip70pt\Bigl( \ex_{s\in G^p} \ex_{x\in G} \one_{A_2(s)}(x) \Bigr)^{1/2} \cr
+ &= M\alpha^p \sqrt{\beta_1\beta_2} \cr
+ &= {1\over 2} \alpha^{2p}\beta_1\beta_2 \norm{\mu_A\circ\mu_A}^p_{p(\mu)} \cr
+&= {1\over 2} \ex_{s\in G^p} \alpha_1(s)\alpha_2(s) \cr
+}$$
+and consequently
+$$\ex_{s\in G^p} \indic{\alpha_1(s)\alpha_2\ge M^2} \alpha_1(s)\alpha_2(s)
+> {1\over 2} \ex_{s\in G^p} \alpha_1(s)\alpha_2(s).$$
+So we have
+$$\eqalign{
+\ex_{s\in G^p} \bigl\langle \one_{A_1(s)}\circ\one_{A_2(s)}, f\bigr\rangle
+&= \eta \ex_{s\in G^p} \alpha_1(s)\alpha_2(s) \cr
+  &< 2\eta \ex_{s\in G^p} \alpha_1(s)\alpha_2(s)\indic{\alpha_1(s)\alpha_2(s)\ge M^2}, \cr
+}$$
+and thus there must be some $s$ such that
+$$\bigl\langle \one_{A_1(s)}\circ\one_{A_2(s)}, f\bigr\rangle
+< 2\eta \alpha_1(s)\alpha_2(s)\indic{\alpha_1(s)\alpha_2(s)\ge M^2}.$$
+Since $f(x)\ge 0$ for all $x$, the left-hand side is nonnegative, meaning that the right-hand side cannot be $0$.
+Thus such an $s$ must satisfy $\alpha_1(s)\alpha_2(s)\ge M^2$. Letting $A_1 = A_1(s)$ and
+$A_2 = A_2(s)$ for this particular $s$, we have
+$${|A_1|\cdot|A_2|\over |G|^2} \ge
+{1\over 4} \alpha^{2p} {|B_1|\cdot|B_2|\over |G|^2}\norm{\mu_A\circ\mu_A}_{p(\mu)}^{2p},$$
+whence
+$$\mu_{B_1}(A_1)\mu_{B_2}(A_2) \ge {1\over 4} \alpha^{2p} \norm{\mu_A\circ\mu_A}_{p(\mu)}^{2p},$$
+so neither $\mu_{B_1}(A_1)$ nor $\mu_{B_2}(A_2)$ can be less than the right-hand side.
+
+On the other hand, letting $\alpha_1 = \alpha_1(s)$ and $\alpha_2 = \alpha_2(s)$, we also have
+$$\eqalign{
+\langle\mu_{A_1}\circ\mu_{A_2}, f\rangle &= \ex_{x\in G} \ex_{y\in G} \mu_{A_1}(y)\mu_{A_2}(x+y) f(x) \cr
+&= {\alpha_1}^{-1}{\alpha_2}^{-1} \ex_{x\in G} \ex_{y\in G} \one_{A_1}(y)\one_{A_2}(x+y) f(x) \cr
+&= {\alpha_1}^{-1}{\alpha_2}^{-1} \langle \one_{A_1}\circ\one_{A_2},f\rangle  \cr
+&< 2\eta \cr
+&= 2 {\bigl\langle (\mu_A\circ\mu_A)^p, f\bigr\rangle_\mu \over \norm{\mu_A\circ\mu_A}_{p(\mu)}^p}, \cr
+}$$
+which proves the lemma.\slug
+
+This lemma is slightly more general than we shall require. The version that suffices for all our applications
+is the following.
+
+\edef\dependentrandom{\the\thmcount}
+\proclaim Lemma~\advthm. Let $G$ be a finite abelian group, let $p\ge 1$ be an integer, and let
+$\eps,\delta>0$. Let $B_1$ and $B_2$ be subsets of $G$ and let $\mu = \mu_{B_1}\circ \mu_{B_2}$.
+If $A\subseteq G$ has density $\alpha$ and
+$$S = \bigl\{x\in G : (\mu_A\circ\mu_A)(x) > (1-\eps)\norm{\mu_A\circ\mu_A}_{p(\mu)}\bigr\},$$
+then there exist $A_1\subseteq B_1$ and $A_2\subseteq B_2$ with densities satisfying
+$$\min\bigl\{ \mu_{B_1}(A_1), \mu_{B_2}(A_2)\bigr\}
+= \Omega\bigl( (\alpha \norm{\mu_A\circ\mu_A}_{p(\mu)})^{2p+O(\eps^{-1}\log(\delta^{-1}))}\bigr).$$
+such that
+$$\langle \mu_{A_1}\circ\mu_{A_2}, \one_S\rangle \ge 1-\delta.$$
+
+\proof Let $p'$ be the smallest even integer at least $p+\eps^{-1}\log(\delta^{-1})$.
+By the previous lemma applied to the set
+$\one_{G\setminus S}$, there exist sets $A_1\subseteq B_1$ and $A_2\subseteq B_2$ with densities
+satisfying
+$$\eqalign{
+\min\bigl\{\mu_{B_1}(A_1), \mu_{B_2}(A_2)\bigr\} &\ge
+{1\over 4} \alpha^{2p'} \norm{\mu_A\circ\mu_A}_{p'(\mu)}^{2p'}  \cr
+&\ge {1\over 4}\bigl(\alpha\norm{\mu_A\circ\mu_A}_{p(\mu)}\bigr)^{2p+2\eps^{-1}\log(\delta^{-1})+O(1)} \cr
+&= \Omega\bigl( (\alpha \norm{\mu_A\circ\mu_A}_{p(\mu)})^{2p+O(\eps^{-1}\log(\delta^{-1}))}\bigr)\cr
+}$$
+such that
+$$\langle \mu_{A_1}\circ\mu_{A_2}, \one_{G\setminus S}\rangle
+\le {\bigl\langle (\mu_A\circ\mu_A)^{p'}, \one_{G\setminus S}\bigr\rangle_{\mu} \over
+\norm{\mu_A\circ\mu_A}^{p'}_{p'(\mu)}}.$$
+Our construction of $S$ ensures that
+$${\bigl\langle (\mu_A\circ\mu_A)^{p'}, \one_{G\setminus S}\bigr\rangle_{\mu} \over
+\norm{\mu_A\circ\mu_A}^{p'}_{p'(\mu)}} \le (1-\eps)^p,$$
+and since $p'\ge \eps^{-1}\log(\delta^{-1})$, we have
+$$(1-\eps)^p\le e^{-\eps p} \le \delta.$$
+Putting everything together, we have
+$$\langle \mu_{A_1}\circ\mu_{A_2}, \one_{G\setminus S}\rangle \le \delta,$$
+so that
+$$\langle \mu_{A_1}\circ\mu_{A_2}, \one_S\rangle
+= 1- \langle \mu_{A_1}\circ\mu_{A_2}, \one_{G\setminus S}\rangle \ge 1-\delta,$$
+which completes the proof.\slug
+
 
 \advsect The finite-field case
 
-First, we give bounds for the size of a $3$-AP-free subset of $\FF_q^n$. As is common with problems of this
-sort, the finite-field case is a simpler prototype of the integer one.
+We now use the methods of Kelley and Meka to give upper bounds on the size of a subset of $\FF_q^n$
+without any three-term arithmetic progressions.
+First, we restate the dependent random choice lemma in the special case that applies to this finite field
+context.
 
+\edef\deprandcorollary{\the\thmcount}
+\proclaim Corollary~{\advthm}. Let $p\ge 1$ be an integer and $\eps\in (0,1/2]$. If $A\subseteq G$ is such that
+$\norm{\mu_A\circ\mu_A}_p \ge 1+\eps$ and
+$S = \bigl\{x\in G: (\mu_A\circ\mu_A)(x) > 1+\eps/2\bigr\}$, then there are
+subsets $A_1$ and $A_2$ of $G$, each of density $\Omega\bigl( \alpha^{2p+O(\eps^{-1}\log(\eps^{-1}))}\bigr)$,
+such that
+$$\langle \mu_{A_1}\circ\mu_{A_2}, \one_S\rangle \ge 1-\eps/8.$$
 
+\proof Let $S' = \bigl\{x\in G : (\mu_A\circ\mu_A)(x) > (1+\eps)\norm{\mu_A\circ\mu_A}_p\bigr\}$, and apply
+Lemma~{\dependentrandom} with the same $p$ and $\eps$, but $\delta$ set to $\eps/8$, $S$ set to $S'$,
+and $B_1 = B_2 = G$ so that $\mu = \mu_{B_1} = \mu_{B_2}$ is the uniform measure on $G$. Hence the
+sets $A_1$ and $A_2$ given by the lemma will each have density
+$$\Omega\bigl((\alpha(1+\eps))^{2p+O(\eps^{-1}\log(8/\eps))}\bigr)
+=\Omega\bigl(\alpha^{2p+O(\eps^{-1}\log(\eps^{-1}))}\bigr)$$
+in $G$, and since
+$$(1-\eps)\norm{\mu_A\circ\mu_A}_p \ge (1-\eps)(1+\eps) = 1-\eps^2 \ge 1-\eps/2,$$
+we have $S'\subseteq S$ and thus
+$$\langle \mu_{A_1}\circ\mu_{A_2}, \one_S\rangle \ge
+\langle \mu_{A_1}\circ\mu_{A_2}, \one_{S'}\rangle \ge 1-\eps/8.\noskipslug$$
 
+There is a theorem that we need which, for now, we shall just state without proof. (This is Theorem 3.2
+of~\ref{schoensisask2016}.)
+[TODO: Add whole section proving this.]
 
+\edef\almostperiodicity{\the\thmcount}
+\parenproclaim Theorem~{\advthm} (Schoen--Sisask, {\rm 2016}).
+Let $\eps\in (0,1)$, let $S\subseteq \FF_q^n$, and
+let $A_1,A_2\subseteq \FF_q^n$ be subsets
+of relative density at least $\alpha$. There is a subspace $V$ of codimension
+$O\bigl(\eps^{-2}\log(\eps^{-1}\alpha^{-1})^2\log(\alpha^{-1})^2\bigr)$
+such that
+$$\bigl| \langle \mu_V*\mu_{A_1}*\mu_{A_2}, \one_S\rangle -
+ \langle \mu_{A_1}*\mu_{A_2}, \one_S\rangle\bigr| \le \eps.$$
 
+The following lemma encapsulates the density increment argument that underlies the proof of Roth's theorem.
 
+\parenproclaim Lemma~{\advthm} (Density increment). Let $\eps\in (0,1)$ and let $A$ and $C$
+be subsets of $G =\FF_q^n$ with relative densities $\alpha$ and $\gamma$, respectively. Then either
+\medskip
+\item{i)} $\bigl|\langle \mu_A*\mu_A,\mu_C\rangle-1\bigr| \le \eps$; or
+\smallskip
+\item{ii)} there is a subspace $V$ of codimension
+$$O\Bigl(\eps^{-2}\bigl(\log(1/\gamma)+\eps^{-1}\log(\eps^{-1})\bigr)^4\log(1/\alpha)^4\Bigr)$$
+such that $\max_{x\in G}\;(\one_A*\mu_V)(x) \ge \bigl(1+\eps/32\bigr)\alpha$.
+\medskip
+
+\proof Suppose that (i) fails. Then by Lemma~{\holderlifting} there is some $p = O\bigl(\log(1/\gamma)\bigr)$
+such that $\norm{\mu_A\circ\mu_A - 1}_p\ge \eps/ 2$. By the second convolution law (part (ii) of
+Proposition~{\convolutions}), $\mu_A\circ\mu_A$ is a nonnegative function, and note also that if
+$\nu$ is the uniform measure on $\FF_q^n$, then for any $\chi:\hat{\FF_q^n}\to \CC$,
+$$\hat\nu(\chi) = \ex_{x\in G} \nu(x)\chi(-x) = \cases{q^{-n}, & if $\chi$ is the trivial character;
+\cr 0, & otherwise.}$$
+This implies in particular that $\hat\nu \ge 0$,
+so by Lemma~{\unbalancing} applied with $f=\mu_A\circ\mu_A$ and the uniform measure for $\nu$, we find
+that $\norm{\mu_A\circ\mu_A}_{p'}\ge 1+\eps/4$ for some
+$p' = O\bigl(2\log(2) p\bigr)= O\bigl(\log(1/\gamma)\bigr)$.
+Let $C(\eps) = \eps^{-1}\log(\eps^{-1})$. By Corollary~{\deprandcorollary},
+there are sets $A_1,A_2\subseteq G$, each of density
+$\Omega(\alpha^{2p'+O(C(\eps))})$, such that
+$$\langle \mu_{A_1}\circ\mu_{A_2}, \one_S\rangle \ge 1 - \eps/32,$$
+where $S = \bigl\{ x \in G:(\mu_A\circ\mu_A)(x)\ge 1+\eps/8\bigr\}$. Feeding $-A_1$, $A_2$, and $S$
+into Theorem~{\almostperiodicity} with $\eps/32$ gives us a subspace $V$ of codimension
+$$\eqalign{
+O\Bigl(\eps^{-2}&\log\bigl(\eps^{-1}\alpha^{-2p'-O(C(\eps))}\bigr)^2
+\log\bigl(\alpha^{-2p'-O(C(\eps))}\bigr)^2\Bigr) \cr
+&= O\Bigl(\eps^{-2} (2p'+C(\eps))^2\log(1/\alpha)^2
+\bigl((2p'+C(\eps))\log(1/\alpha)+\log(\eps^{-1})\bigr)^2
+\Bigr)\cr
+&=O\Bigl(\eps^{-2}\bigl(\log(1/\gamma)+C(\eps)\bigr)^4\log(1/\alpha)^4\Bigr) \cr
+}$$
+such that
+$$\bigl| \langle \mu_V*\mu_{-A_1}*\mu_{A_2}, \one_S\rangle -
+ \langle \mu_{-A_1}*\mu_{A_2}, \one_S\rangle\bigr| \le \eps/32.$$
+It is easily checked that $\mu_{-A_1}*\mu_{A_2} = \mu_{A_1}\circ\mu_{A_2}$, so we find that
+$$\bigl\langle \mu_V*(\mu_{A_1}\circ\mu_{A_2}), \one_S\bigr\rangle \ge 1-\eps/16.$$
+Now we observe that
+$$\bignorm{(\mu_{A_1}\circ\mu_{A_2})\circ\mu_{A_2}}_1
+= \ex_{z\in G}\mu_{A_1}(z)\ex_{y\in G} \mu_{A_2}(y+z) \ex_{x\in G} \mu_A(x+y) = 1,$$
+so that,
+$$\eqalign{
+\max_{x\in G}\;(\mu_V*\one_A)(x) &= \alpha\max_{x\in G}\;(\mu_V*\mu_A)(x) \cr
+&= \alpha \bignorm{(\mu_{A_1}\circ\mu_{A_2})\circ\mu_A}_1 \max_{x\in G}\;(\mu_V*\mu_A)(x)\cr
+&\ge \alpha\bigl\langle \mu_V*\mu_A, (\mu_{A_1}\circ\mu_{A_2})\circ\mu_A\bigr\rangle\cr
+&= \alpha\bigl\langle \mu_V*\mu_A * (\mu_{A_1}\circ\mu_{A_2}), \mu_A\bigr\rangle\cr
+&= \alpha\bigl\langle \mu_V* (\mu_{A_1}\circ\mu_{A_2}), \mu_A\circ\mu_A\bigr\rangle,\cr
+}$$
+where in the last two lines we have employed the adjoint property
+$\langle f,g*h \rangle = \langle h\circ f,g\rangle$, as well as the commutative properties
+$f*g = g*f$ and $\langle f,g\rangle = \langle g,f\rangle$,
+all of which hold for functions $f,g,h : G\to \RR$. But by the construction of $S$, we have
+$\one_S(x)(\mu_A\circ\mu_A)(x) \ge (1+\eps/8)\one_S$, so
+$$\eqalign{
+\bigl\langle \mu_V* (\mu_{A_1}\circ\mu_{A_2}), \mu_A\circ\mu_A\bigr\rangle
+&\ge \bigl\langle \mu_V* (\mu_{A_1}\circ\mu_{A_2}), \one_S(\mu_A\circ\mu_A)\bigr\rangle \cr
+&\ge (1+\eps/8)\bigl\langle \mu_V* (\mu_{A_1}\circ\mu_{A_2}), \one_S\bigr\rangle \cr
+&\ge (1+\eps/8)(1-\eps/16) \cr
+&\ge 1+\eps/32, \cr
+}$$
+hence we conclude that
+$$\max_{x\in G}\;(\one_A*\mu_V)(x) \ge (1+\eps/32)\alpha\noskipslug$$
 
 \section References
 
