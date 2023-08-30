@@ -33,7 +33,7 @@ and the difference convolution
 $$ (f\circ g)(x) = \ex_{y\in G} f(y) g(x+y).$$
 It is easy to check that for all $x\in G$, $(f*g)(x) = (g*f)(x)$, but with the difference convolution
 we have $(f\circ g)(x) = (g\circ f)(-x)$.
-that are related by the following adjoint property.
+We also have the following adjoint property.
 
 \parenproclaim Proposition~{\advthm} (Adjoint property).
 Let $G$ be a finite abelian group and let $f,g,h:G\to \RR$. Then
@@ -52,7 +52,7 @@ $$\eqalign{
 &= \langle h\circ f, g\rangle .\noskipslug\cr
 }$$
 
-For a group $G$ the dual group $\hat G$ is the set of all homomorphisms from $G\to \CC^\times$.
+For a group $G$ the dual group $\hat G$ is the set of all homomorphisms from $G$ to $\CC^\times$.
 The Fourier transform of $f:G\to \RR$ is the function $\hat f:\hat G\to \CC$ given by
 $$ \hat f(\chi) = \ex_{x\in G} f(x)\chi(-x).$$
 The following proposition describes how the convolution and difference convolution behave under the Fourier
@@ -169,12 +169,11 @@ For convenience, when $\mu:G\to \RR_{\ge 0}$ is a probability measure and $X\sub
 $$\mu(X) = \norm{\one_X}_{1(\mu)} = \ex_{x\in G} \mu(x) \one_X(x),$$
 and refer to this quantity as the {\it density of $X$ relative to $\mu$}.
 
-\advsect H\"older lifting and unbalancing
+\advsect H\"older lifting and unbalancing for finite groups
 
 With preliminaries out of the way, we begin the proof of Kelley and Meka~\ref{kelleymeka2023}, as described
 and reworked by Bloom and Sisask~\ref{bloomsisask2023}.
-In this section we perform the first two steps of the proof,
-which are identical in both the integer and finite-field settings.
+In this section we perform the first two steps of the proof, in the general setting of finite groups.
 
 \edef\holderlifting{\the\thmcount}
 \parenproclaim Lemma~{\advthm} (H\"older lifting). Let $\eps\ge 0$ and let $A$ and $C$ be subsets of
@@ -477,7 +476,6 @@ $$\langle \mu_{A_1}\circ\mu_{A_2}, \one_S\rangle \ge
 
 There is a theorem that we need which, for now, we shall just state without proof. (This is Theorem 3.2
 of~\ref{schoensisask2016}.)
-[TODO: Add whole section proving this.]
 
 \edef\almostperiodicity{\the\thmcount}
 \parenproclaim Theorem~{\advthm} (Schoen--Sisask, {\rm 2016}).
@@ -491,6 +489,7 @@ $$\bigl| \langle \mu_V*\mu_{A_1}*\mu_{A_2}, \one_S\rangle -
 
 The following lemma encapsulates the density increment argument that underlies the proof of Roth's theorem.
 
+\edef\densityincrement{\the\thmcount}
 \parenproclaim Lemma~{\advthm} (Density increment). Let $\eps\in (0,1)$ and let $A$ and $C$
 be subsets of $G =\FF_q^n$ with relative densities $\alpha$ and $\gamma$, respectively. Then either
 \medskip
@@ -555,6 +554,57 @@ $$\eqalign{
 }$$
 hence we conclude that
 $$\max_{x\in G}\;(\one_A*\mu_V)(x) \ge (1+\eps/32)\alpha\noskipslug$$
+
+\parenproclaim Theorem~{\advthm} (Finite field). Let $q$ be a power of an odd prime and let $A$ be
+a subset of $G = \FF_q^n$ of cardinality $\alpha q^n$. The number of (possibly trivial)
+three-term arithmetic progressions contained in $A$ is at least
+$${\alpha^3\over 2}q^{2n-O(\log(1/\alpha)^9)}.$$
+Hence if $A\subseteq \FF_q^n$ contains no nontrivial three-term arithmetic progressions, then
+$\alpha \le e^{-\Omega(n^{1/9})} = O\bigl(q^{-\Omega(n^{1/9})}\bigr)$.
+
+\proof Let $C = 2\cdot A = \{2a : a\in A\}$, so that $\gamma = |C|/q^n = \alpha$. By Lemma~{\densityincrement}
+applied to $A$ and $C$ with parameter $\eps = 1/2$, we find that either
+$\langle \mu_A*\mu_A,\mu_C\rangle \ge 1/2$ or there is a subspace $V$ of codimension
+$O\bigl(\log(1/alpha)^8\bigr)$ such that $\max_{x\in G}\;(\one_A*\mu_V)(x)\ge (1+\eps/64)\alpha$.
+
+In the second case, there exists some $x\in G$ such that
+$$\ex_{y\in G} \one_A(y)\mu_V(x-y) \ge (1+\eps/64)\alpha.$$
+But $x-y\in V$ if and only if $y-x\in V$ if and only if $y\in V+x$, so we find that
+$$|A\cap V+x| \ge (1+\eps/64)\alpha|V|.$$
+Now $A$ has exactly the same number of three-term arithmetic progressions as $A-x$, so we can invoke
+Lemma~{\densityincrement} again with $V$ in place of $G$ and $A-x$ in place of $A$, but note that $\alpha$
+has been replaced by $(1+\eps/64)\alpha$, so this iteration can only happen
+$\log_{1+\eps/64}(1/\alpha) = O\bigl(\log(1/\alpha)\bigr)$ times
+before the second case of the lemma becomes impossible, since $\alpha\le 1$. Hence we deduce that
+there is some subspace $V$ of codimension $O\bigl(\log(1/\alpha)^9\bigr)$ and some translate $A+x'$ of $A$
+such that
+$$\ex_{x\in V} \ex_{y\in V} \mu_{A'}(y)\mu_{A'}(x-y)\mu_{2\cdot A'}(x) \ge {1\over 2},$$
+where $A' = (A+x)\cap V$ and
+the relative densities are taken with respect to the subspace $V$. Expanding further, this implies that
+$${|V|^3\over |A'|^3|V|^2} \sum_{x\in V}\sum_{y\in V}
+\one_{A'}(y) \one_{A'}(x-y)\one_{2\cdot A'}(x) \ge {1\over 2};$$
+that is,
+$$\bigl| \{ (x,y)\in (2\cdot A) \times A : x-y\in A'\}\bigr| \ge {|A'|^3|V|^5\over 2|V|^3}
+\ge {\alpha^3\over 2}q^{2n-O(\log(1/\alpha)^9)}.$$
+Renaming variables, this counts the number of pairs $(x,z) \in A'\times A'$ such that $x+z = 2y$ for some
+$y\in A'$. Since this equation implies that $z-y = y-x$, the above expression
+counts the number of three-term arithmetic
+progressions in $A'$, including the $|A'|$ trivial instances of $x=y=z$. This proves the first part of the
+theorem.
+
+For the last part of the theorem statement,
+suppose that $A$ does not contain any nontrivial three-term arithmetic progressions.
+Then
+$${\alpha^3\over 2}q^{2n-O(\log(1/\alpha)^9)} \le \bigl| \{ (x,y)\in (2\cdot A) \times A : x-y\in A'\}\bigr|
+\le |A'| \le \alpha q^n,$$
+whence
+$$q^n \le {2q^{O(\log(1/\alpha)^9)}\over \alpha^2},$$
+and taking $q$th logs of both sides yields
+$$n \le \log_q\biggl({2q^{O(\log(1/\alpha)^9)}\over \alpha^2}\biggr) = O\bigl(\log(1/\alpha)^9\bigr).$$
+Letting $C$ be the constant implicit in the $O$-notation, we invert this to obtain the bound
+$$\alpha\le e^{-n^{1/9}/C^{1/9}} = e^{-\Omega(n^{1/9})},$$
+which is what we wanted.\slug
+
 
 \section References
 
