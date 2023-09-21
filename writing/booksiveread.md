@@ -182,3 +182,10 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Lesser Known Monsters of the 21st Century_ (2022), Kim Fu
 1. _The Grapes of Wrath_ (1939), John Steinbeck
 1. _Last Exit to Brooklyn_ (1964), Hubert Selby Jr.
+1. _The Waves_ (1931), Virginia Woolf
+1. _Unsaid: An Asian Anthology_ (2022), ed. Anitha Devi Pillai
+1. _The Torrents of Spring_ (1926), Ernest Hemingway
+1. _Oryx and Crake_ (2003), Margaret Atwood
+1. _The Art of Love_ (2), Ovid
+1. _Magister Ludi_ (1943), Hermann Hesse
+

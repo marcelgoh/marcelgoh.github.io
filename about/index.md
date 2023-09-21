@@ -5,9 +5,12 @@ title: About me
 
 ![me]({{ site.baseurl }}/about/profile.jpeg){: .center-image}
 
-I am currently taking a year off school, after having just got my M.Sc. in Mathematics from
-[McGill University](https://www.mcgill.ca).
-Before that, I graduated from McGill's B.Sc. Joint Honours Mathematics and Computer Science program,
+I am a Ph.D. student in Mathematics at McGill University, supervised by
+[Andrew Granville](https://dms.umontreal.ca/~andrew/index.php) and
+[Hamed Hatami](https://www.cs.mcgill.ca/~hatami/). My primary research interest is in additive combinatorics.
+I got my M.Sc. and B.Sc. from McGill as well. My master's thesis
+was supervised by [Luc Devroye](http://luc.devroye.org/),
+and my B.Sc. was in the Joint Honours Mathematics and Computer Science program,
 with a minor in Linguistics. I also did an exchange semester at Charles University in Prague.
 
 I was born in Singapore but spent most of my childhood in Leduc, Alberta. I graduated from Beaumont

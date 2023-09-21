@@ -75,7 +75,7 @@ $$\hat{f*g}(\chi) = \ex_{x\in G} \ex_{y\in G} f(y)g(x-y) \chi(-y) \chi(y-x).$$
 Then we may interchange the order of summation and substitute $z = x-y$ to arrive at
 $$\hat{f*g}(\chi) = \ex_{y\in G} \ex_{z\in G} f(y)g(z) \chi(-y) \chi(-z) = \hat f(\chi)\hat g(\chi),$$
 which proves (i). For part (ii), we expand and multiply by the same $1$ to get
-$$\widehat{f\circ g}(\chi) = \ex_{x\in G} (f\circ g)(\chi)\chi(-x)
+$$\widehat{f\circ g}(\chi) = \ex_{x\in G} (f\circ g)(x)\chi(-x)
 = \ex_{x\in G} \ex_{y\in G} f(y)g(x+y) \chi(y) \chi(-x-y).$$
 We again interchange the order of summation; this time substituting $z = x+y$ gives us
 $$\eqalign{
@@ -97,7 +97,7 @@ The next proposition interprets $k$-norms in terms of $k$-fold convolutions of t
 \edef\knorms{\the\thmcount}
 \proclaim Proposition \advthm. Let $G$ be a finite abelian group, let $k\ge 1$ be an integer, and let
 $\chi_0$ denote the identity element of the dual group $\hat G$ of $G$. We have the identity
-$$\ex_{x\in G} f(x)^k = {\hat f} ^{*p} (\chi_0).$$
+$$\ex_{x\in G} f(x)^k = {\hat f} ^{*k} (\chi_0).$$
 
 \proof
 Expand by the Fourier inversion formula to get
@@ -133,7 +133,7 @@ $$ \hat{\mu-1} = \hat \mu (1-\one_{\chi_0}).$$
 
 \proof We expand
 $$\eqalign{
-\hat{\mu-1}(\chi_0) &=  \ex_{x\in G} \bigl(\mu(x)-1\bigr) \chi(-x) \cr
+\hat{\mu-1}(\chi) &=  \ex_{x\in G} \bigl(\mu(x)-1\bigr) \chi(-x) \cr
 &= \ex_{x\in G} \mu(x)\chi(-x) - \ex_{x\in G} \chi(-x).\cr
 &= \hat\mu(\chi) - \ex_{x\in G} \chi(-x).\cr
 }$$
@@ -217,7 +217,7 @@ for some $p = O\bigl(\log(1/\gamma)\bigr)$. This information can then be fed to 
 
 \edef\unbalancing{\the\thmcount}
 \parenproclaim Lemma~{\advthm} (Unbalancing of spectrally nonnegative functions). Let $\eps\in (0,1)$
-and let $\nu : G\to \RR_{\ge 0}$ be a probability measure with $\hat \nu\ge 0$. If $f : G\to \RR$ has
+and let $\nu : G\to \RR_{\ge 0}$ have $\norm{\mu}_1 = 1$ and $\hat \nu\ge 0$. If $f : G\to \RR$ has
 $\hat f\ge 0$ and $\norm{f}_{p(\nu)} \ge \eps$ for some $p\ge 1$, then
 $$ \norm{f+1}_{p'(\nu)} \ge 1 + {\eps\over 2}$$
 for some $p' = O\bigl(\eps^{-1} \log(\eps^{-1}) p\bigr)$.
@@ -228,10 +228,10 @@ by $\chi_0$. Using the Fourier inversion formula
 and orthogonality of characters as we did in the proof of Proposition~{\knorms}, we observe that
 $$\eqalign{
 \norm{f}_{p(\nu)}^p &= \ex_{x\in G}
-\Bigl(\sum_{\chi\in \hat G} \hat\nu(\chi)\chi(x)\Bigr)\Bigl(\sum_{\chi\in \hat G} \hat f(\chi)\chi(x)\Bigr)^k \cr
-&= \sum_{\chi_1\in \hat G} \cdots \sum_{\chi_{k+1}\in \hat G}
-\hat f(\chi_1)\cdots\hat f(\chi_k) \hat \nu(\chi_{k+1} )\ex_{x\in G} \chi_1(x)\cdots\chi_{k+1}(x) \cr
-&= \sum_{\chi_1\cdots\chi_{k+1} =\chi_0} \hat f(\chi_1) \cdots \hat f(\chi_k) \hat\nu(\chi_{k+1} )\cr
+\Bigl(\sum_{\chi\in \hat G} \hat\nu(\chi)\chi(x)\Bigr)\Bigl(\sum_{\chi\in \hat G} \hat f(\chi)\chi(x)\Bigr)^p \cr
+&= \sum_{\chi_1\in \hat G} \cdots \sum_{\chi_{p+1}\in \hat G}
+\hat f(\chi_1)\cdots\hat f(\chi_p) \hat \nu(\chi_{p+1} )\ex_{x\in G} \chi_1(x)\cdots\chi_{p+1}(x) \cr
+&= \sum_{\chi_1\cdots\chi_{p+1} =\chi_0} \hat f(\chi_1) \cdots \hat f(\chi_p) \hat\nu(\chi_{p+1} )\cr
 &= \hat\nu * {\hat f}^{*p}(\chi_0). \cr
 }$$
 Let $P = \{x\in G : f(x)\ge 0\}$ and let $g(x) = \max\{f(x), 0\}$. It is easy to see that
@@ -249,28 +249,29 @@ $$\langle \one_P, f^p\rangle_\nu \ge {\bigl\langle |f|, |f|^{p-1}\bigr\rangle_\n
 = {\norm{f}_{p(\nu)}^p\over 2} \ge {\eps^p\over 2} .$$
 Now let $T = \{x\in P : f(x) \ge 3\eps / 4\}$. Then
 $$\eqalign{
-\langle \one_{P\setminus T}, f^p \rangle &= \langle \one_P - \one_T, f^p \rangle \cr
-&= \langle \one_P , f^p \rangle - \langle \one_T, f^p \rangle \cr
-&\ge {\eps\over 2} - \ex_{x\in G} \one_T(x)f(x)^p \cr
-&\ge {\eps\over 2} - \ex_{x\in G} 3\eps/4 \cr
-&= {\eps\over 4},\cr
+\langle \one_T, f^p \rangle_\nu &= \langle \one_P - \one_{P\setminus T}, f^p \rangle_\nu \cr
+&\ge \langle\one_P, f^p\rangle_\nu - \langle \one_{P\setminus T}, f^p\rangle_\nu \cr
+&\ge {\eps^p\over 2}- \ex_{x\in G} \one_{P\setminus T} f(x)^p\nu(x)\cr
+&> {\eps^p\over 2}- \ex_{x\in G} (3\eps/4)^p \nu(x)\cr
+&\ge {\eps^p\over 4}, \cr
 }$$
-so $\langle \one_T, f^p \rangle_\nu \ge \eps^p/4$ and we have
+where in the last line we used the fact that $(3/4)^p \le (3/4)^5 < 243/1024 < 4$.
+From this we deduce
 $$\eqalign{
-{\eps\over 4} &\le \langle \one_T,f^p\rangle_\nu \cr
+{\eps^p\over 4} &\le \langle \one_T,f^p\rangle_\nu \cr
 &= \ex_{x\in G} \bigl( \nu(x)^{1/2}\one_T(x)\bigr) \bigl(\nu(x)^{1/2} f(x)^p\bigr) \cr
-&= \Bigl( \ex_{x\in G} \nu(x)\one_T(x)^2\Bigr)^{1/2} \Bigl(\ex_{x\in G}\nu(x) f(x)^{2p}\Bigr)^{1/2} \cr
+&\le \Bigl( \ex_{x\in G} \nu(x)\one_T(x)^2\Bigr)^{1/2} \Bigl(\ex_{x\in G}\nu(x) f(x)^{2p}\Bigr)^{1/2} \cr
 &= \Bigl( \ex_{x\in G} \nu(x)\one_T(x)\Bigr)^{1/2} \Bigl(\ex_{x\in G} \nu(x) |f(x)|^{2p}\Bigr)^{p/(2p)} \cr
 &= \nu(T)^{1/2} \norm{f}_{2p(\nu)}^p\cr
 }$$
 by the Cauchy--Schwarz inequality.
 
-Now if $\norm{f}_{2p(\nu)}^p > 2$, then we could take $p' = 2p$, so assume that this norm is at most $2$.
+Now if $\norm{f+1}_{2p(\nu)} > 2$, then we could take $p' = 2p$, so assume that this norm is at most $2$.
 By the triangle inequality, we have
 $$\norm{f}_{2p(\nu)} \le \norm{-1}_{2p(\nu)} + \norm{f+1}_{2p(\nu)} \le 3,$$
 hence
-$$ \nu(T)^{1/2} 3^p \le {\eps^p\over 4}.$$
-Since we assumed that $p\ge 5$, and since $4 < 1024/243$, we have $4^{1/p} < 4/3$ and thus
+$$ \nu(T)^{1/2} 3^p \ge {\eps^p\over 4}.$$
+Once again using the fact that $4 < 1024/243$, we have $4^{1/p} < 4/3$ and thus
 $$ \nu(T) \ge {\eps^{2p} \over 16 \cdot 3^{2p}} = \biggl( {\eps \over 4^{1/p} \cdot 3} \biggr)^{2p}
 > \biggl({\eps\over 4}\biggr)^{2p}.$$
 This allows us to bound
@@ -509,7 +510,7 @@ $$\hat\nu(\chi) = \ex_{x\in G} \nu(x)\chi(-x) = \cases{q^{-n}, & if $\chi$ is th
 This implies in particular that $\hat\nu \ge 0$,
 so by Lemma~{\unbalancing} applied with $f=\mu_A\circ\mu_A$ and the uniform measure for $\nu$, we find
 that $\norm{\mu_A\circ\mu_A}_{p'}\ge 1+\eps/4$ for some
-$p' = O\bigl(2\log(2) p\bigr)= O\bigl(\log(1/\gamma)\bigr)$.
+$p' = O\bigl((2/\eps)\log(2/\eps) p\bigr)= O\bigl(\eps^{-1}\log(\eps^{-1})\log(1/\gamma)\bigr)$.
 Let $C(\eps) = \eps^{-1}\log(\eps^{-1})$. By Corollary~{\deprandcorollary},
 there are sets $A_1,A_2\subseteq G$, each of density
 $\Omega(\alpha^{2p'+O(C(\eps))})$, such that
@@ -560,12 +561,12 @@ a subset of $G = \FF_q^n$ of cardinality $\alpha q^n$. The number of (possibly t
 three-term arithmetic progressions contained in $A$ is at least
 $${\alpha^3\over 2}q^{2n-O(\log(1/\alpha)^9)}.$$
 Hence if $A\subseteq \FF_q^n$ contains no nontrivial three-term arithmetic progressions, then
-$\alpha \le e^{-\Omega(n^{1/9})} = O\bigl(q^{-\Omega(n^{1/9})}\bigr)$.
+$\alpha \le q^{-\Omega(n^{1/9})}$.
 
 \proof Let $C = 2\cdot A = \{2a : a\in A\}$, so that $\gamma = |C|/q^n = \alpha$. By Lemma~{\densityincrement}
 applied to $A$ and $C$ with parameter $\eps = 1/2$, we find that either
 $\langle \mu_A*\mu_A,\mu_C\rangle \ge 1/2$ or there is a subspace $V$ of codimension
-$O\bigl(\log(1/alpha)^8\bigr)$ such that $\max_{x\in G}\;(\one_A*\mu_V)(x)\ge (1+\eps/64)\alpha$.
+$O\bigl(\log(1/\alpha)^8\bigr)$ such that $\max_{x\in G}\;(\one_A*\mu_V)(x)\ge (1+\eps/64)\alpha$.
 
 In the second case, there exists some $x\in G$ such that
 $$\ex_{y\in G} \one_A(y)\mu_V(x-y) \ge (1+\eps/64)\alpha.$$
@@ -600,9 +601,10 @@ $${\alpha^3\over 2}q^{2n-O(\log(1/\alpha)^9)} \le \bigl| \{ (x,y)\in (2\cdot A) 
 whence
 $$q^n \le {2q^{O(\log(1/\alpha)^9)}\over \alpha^2},$$
 and taking $q$th logs of both sides yields
-$$n \le \log_q\biggl({2q^{O(\log(1/\alpha)^9)}\over \alpha^2}\biggr) = O\bigl(\log(1/\alpha)^9\bigr).$$
-Letting $C$ be the constant implicit in the $O$-notation, we invert this to obtain the bound
-$$\alpha\le e^{-n^{1/9}/C^{1/9}} = e^{-\Omega(n^{1/9})},$$
+$$n \le \log_q\biggl({2q^{O(\log(1/\alpha)^9)}\over \alpha^2}\biggr) = O\bigl(\log(1/\alpha)^9\bigr)
+= O\bigl(\log_q(1/\alpha)^9\bigr).$$
+Letting $C$ be the constant implicit in the last big-$O$ bound, we invert this to obtain
+$$\alpha\le q^{-n^{1/9}/C^{1/9}} = q^{-\Omega(n^{1/9})},$$
 which is what we wanted.\slug
 
 
