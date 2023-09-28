@@ -56,6 +56,10 @@ as well. (Click map below for bigger version.)
 
 [![countries]({{ site.baseurl }}/media/travel/countries.svg)]({{ site.baseurl }}/media/travel/countries.svg)
 
+(This is an SVG I stole from Wikipedia and edited; if you are an SVG guru and
+know how to highlight (France, Morocco, Russia) without
+highlighting (French Guiana, Western Sahara, Crimea) respectively, please email me.)
+
 Closer to home, I've been to six provinces (I hope to fix this soon by
 heading to the Maritimes) and two territories.
 
@@ -69,5 +73,6 @@ at the Lake Como School of Advanced Studies.
 
 + [Hitchhiking from Montréal to Edmonton]({{ site.baseurl }}/travel/hitchhiking.html)
 + [Cows under trees]({{ site.baseurl }}/travel/cows-under-trees.html)
++ [Fish]({{ site.baseurl }}/travel/fish.html)
 + [My brother chasing chickens]({{ site.baseurl }}/travel/chickens.html)
 + [More photos]({{ site.baseurl }}/travel/photos.html)

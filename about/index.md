@@ -8,10 +8,10 @@ title: About me
 I am a Ph.D. student in Mathematics at McGill University, supervised by
 [Andrew Granville](https://dms.umontreal.ca/~andrew/index.php) and
 [Hamed Hatami](https://www.cs.mcgill.ca/~hatami/). My primary research interest is in additive combinatorics.
-I got my M.Sc. and B.Sc. from McGill as well. My master's thesis
-was supervised by [Luc Devroye](http://luc.devroye.org/),
-and my B.Sc. was in the Joint Honours Mathematics and Computer Science program,
-with a minor in Linguistics. I also did an exchange semester at Charles University in Prague.
+I got my M.Sc. and B.Sc. from McGill as well. My master's thesis,
+supervised by [Luc Devroye](http://luc.devroye.org/), was on Galton--Watson trees.
+My B.Sc. was in the Joint Honours Mathematics and Computer Science program,
+with a minor in Linguistics. In 2019, I also did an exchange semester at Charles University in Prague.
 
 I was born in Singapore but spent most of my childhood in Leduc, Alberta. I graduated from Beaumont
 Composite High School before serving in the Singapore Armed Forces from 2015 to 2017.

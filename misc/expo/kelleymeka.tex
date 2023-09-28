@@ -9,11 +9,17 @@
 \def\bignorm#1{\big|\!\big|#1\big|\!\big|}
 \def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
 \def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+\def\Bohr{\op{\rm Bohr}}
 
 \widemargins
 \bookheader{KELLEY AND MEKA'S PROOF OF ROTH'S THEOREM}{MARCEL K. GOH}
 
 \maketitle{Kelley and Meka's proof of Roth's theorem}{by}{Marcel K. Goh}{23 August 2023}
+
+\floattext4.5 \ninebf Note.
+\ninepoint This exposition of Kelley and Meka's proof closely follows that of Bloom and Sisask,
+but with many extra details supplied. I hope that it will be useful to other students at the Ph.D.-student
+level.
 
 \bigskip
 
@@ -302,7 +308,7 @@ be a subset of $G$ with density $\alpha$. Let $B_1,B_2\subseteq G$ and $\mu = \m
 For any function $f:G\to \RR_{\ge 0}$ there exist sets $A_1\subseteq B_1$ and $A_2\subseteq B_2$ with
 densities satisfying
 $$\min\bigl\{\mu_{B_1}(A_1), \mu_{B_2}(A_2)\bigr\}
-\ge {1\over 4} \alpha^{2p} \norm{\mu_A\circ\mu_A}_{p(\mu)}^{2p}k.$$
+\ge {1\over 4} \alpha^{2p} \norm{\mu_A\circ\mu_A}_{p(\mu)}^{2p}.$$
 and such that
 $$ \langle \mu_{A_1}\circ \mu_{A_2}, f\rangle \le 2 {\bigl\langle (\mu_A\circ\mu_A)^p, f\bigr\rangle_\mu
 \over \norm{\mu_A\circ\mu_A}_{p(\mu)}^p}.$$
@@ -437,9 +443,9 @@ $$\langle \mu_{A_1}\circ\mu_{A_2}, \one_{G\setminus S}\rangle
 \norm{\mu_A\circ\mu_A}^{p'}_{p'(\mu)}}.$$
 Our construction of $S$ ensures that
 $${\bigl\langle (\mu_A\circ\mu_A)^{p'}, \one_{G\setminus S}\bigr\rangle_{\mu} \over
-\norm{\mu_A\circ\mu_A}^{p'}_{p'(\mu)}} \le (1-\eps)^p,$$
+\norm{\mu_A\circ\mu_A}^{p'}_{p'(\mu)}} \le (1-\eps)^{p'},$$
 and since $p'\ge \eps^{-1}\log(\delta^{-1})$, we have
-$$(1-\eps)^p\le e^{-\eps p} \le \delta.$$
+$$(1-\eps)^{p'}\le e^{-\eps p'} \le \delta.$$
 Putting everything together, we have
 $$\langle \mu_{A_1}\circ\mu_{A_2}, \one_{G\setminus S}\rangle \le \delta,$$
 so that
@@ -607,6 +613,66 @@ Letting $C$ be the constant implicit in the last big-$O$ bound, we invert this t
 $$\alpha\le q^{-n^{1/9}/C^{1/9}} = q^{-\Omega(n^{1/9})},$$
 which is what we wanted.\slug
 
+\advsect Bohr sets
+
+To transfer the ideas of the finite-field proof over to the integer case, we will need the machinery of Bohr
+sets. These are, in some sense, the analogue in general abelian groups to subspaces in $\FF_q^n$.
+
+Let $G$ be a finite abelian group, $\Gamma$ be a nonempty subset of $\hat G$, and let $\nu:\Gamma\to [0,2]$.
+The {\it Bohr set} $B = \Bohr_\nu(\Gamma)$ corresponding to this data is the set
+$$\Bohr_\nu(\Gamma) = \bigl\{x\in G: |1-\gamma(x)| \le \nu(\gamma)\ \hbox{for all}\ \gamma\in \Gamma\bigr\}.$$
+The set $\Gamma$ is called the {\it frequency set} of $B$, and $\nu$ is its {\it width function}.
+We shall also say that $B$ has rank $d$ if $|\Gamma| = d$.
+Bohr sets contain $0$, since $\gamma(0) = 1$ for all characters $\gamma$, and $x\in B$ if and only if $-x\in B$,
+since $|1-\gamma(x)| = |1-\gamma(-x)|$.
+Note that the set $\Bohr_\nu(\Gamma)$ does not uniquely determine the pair $(\Gamma,\nu)$.
+When we write $B'\subseteq B$ for Bohr sets $B'$ and $B$, we mean an inclusion of sets, and do not intend
+to say anything about the corresponding frequency sets or width functions.
+
+Let $B = \Bohr_\nu(\Gamma)$ be a Bohr set and let $\rho>0$. Let $\nu_\rho:\Gamma\to[0,2]$ be the width function
+given by $\nu_\rho(\gamma) = \max\bigl\{\rho\cdot\nu(\gamma),2\bigr\}$. We define the {\it dilate} of
+$B$ by $\rho$
+to be the Bohr set $\Bohr_{\rho\nu}(\Gamma)$. If $\rho\le 1$, $\rho \nu(\gamma)\le \nu$, meaning that
+the condition $|1-\gamma(x)|\le \rho\nu(\gamma)$ is now stronger. so $B_\rho\subseteq B$, and similarly
+$B\subseteq B_\rho$ if $\rho\ge 1$.
+
+We now introduce a definition that characterises when a Bohr set is approximately closed under
+addition. Let $B$ be a Bohr set of rank $d$. We say that $B$ is {\it regular} if for all $\kappa$
+with $|\kappa|\le 1/(100d)$,
+$$\bigl(1-100d|\kappa|\bigr)|B| \le |B_{1+\kappa}| \le \bigl(1+100d|\kappa|\bigr)|B|.$$
+
+The following proposition will be used frequently in the following sections.
+
+\proclaim Proposition \advthm. Let $G$ be a finite abelian group and let $k$ be an integer with
+$\gcd\bigl(k,|G|\bigr) = 1$. If $B = \Bohr_\nu(\Gamma)$ is a regular Bohr set of rank $d$, then
+$k\cdot B$ is also a regular Bohr set of rank $d$.
+
+\proof We will construct the frequency set and width function of $k\cdot B$.
+Note first that if we have $kx = kx'$, then $k(x-x') = 0$. But since $\gcd\bigl(k,|G|\bigr) = 1$,
+$k(x-x') = 0$ implies that $x-x' = 0$, so $x=x'$ and thus the function $x\mapsto kx$ permutes
+$G$. We will write its inverse as $x\mapsto x/k$. For all $\gamma\in\Gamma$,
+let $\gamma_k$ be given by $\gamma_k(x) = \gamma(kx)$, and let $\gamma_{k^{-1}}(x) = \gamma(x/k)$.
+We let
+$$\Gamma' = \{\gamma_{k^{-1}} : \gamma\in \Gamma\}$$
+and let $\nu':\Gamma'\to [0,2]$ be given by $\nu'(\gamma') = \gamma'_k$.
+Then we have a bijection $\gamma \mapsto \gamma'$ such that $\nu(\gamma) = \nu'(\gamma')$,
+so we see that
+$$\eqalign{
+k\cdot B &= \bigl\{ kx\in G : \gamma(x) \le \nu(\gamma)\ \hbox{for all}\ \gamma\in \Gamma\bigr\} \cr
+&= \bigl\{ x\in G : \gamma_{k^{-1}}(x) \le \nu(\gamma)\ \hbox{for all}\ \gamma\in \Gamma\bigr\} \cr
+&= \bigl\{ x\in G : \gamma'(x) \le \nu'(\gamma')\ \hbox{for all}\ \gamma'\in \Gamma'\bigr\} \cr
+&= \Bohr_{\nu'}(\Gamma'), \cr
+}$$
+so $k\cdot B$ is a Bohr set of rank $d$ as well.
+
+To check regularity, it suffices to show that $\bigl| (k\cdot B)_{1+\kappa}\bigr| = |B_{1+\kappa}|$.
+We actually have the stronger fact that
+$$\eqalign{
+(k\cdot B)_{1+\kappa}&=\bigl\{x\in G:\gamma'(x)\le(1+\kappa)\nu'(\gamma')\hbox{ for all }\gamma'\in \Gamma'\bigr\}\cr
+&=\bigl\{x\in G:\gamma_{k^{-1}}(x)\le(1+\kappa)\nu(\gamma)\hbox{ for all }\gamma\in \Gamma\bigr\}\cr
+&=\bigl\{kx\in G:\gamma(x)\le(1+\kappa)\nu(\gamma)\hbox{ for all }\gamma\in \Gamma\bigr\}\cr
+&= k\cdot B_{1+\kappa} .\noskipslug
+}$$
 
 \section References
 
