@@ -14,7 +14,7 @@
 \widemargins
 \bookheader{KELLEY AND MEKA'S PROOF OF ROTH'S THEOREM}{MARCEL K. GOH}
 
-\maketitle{Kelley and Meka's proof of Roth's theorem}{by}{Marcel K. Goh}{23 August 2023}
+\maketitle{Kelley and Meka's proof of Roth's theorem}{by}{Marcel K. Goh}{12 October 2023}
 
 \floattext4.5 \ninebf Note.
 \ninepoint This exposition of Kelley and Meka's proof closely follows that of Bloom and Sisask,
@@ -183,7 +183,7 @@ In this section we perform the first two steps of the proof, in the general sett
 
 \edef\holderlifting{\the\thmcount}
 \parenproclaim Lemma~{\advthm} (H\"older lifting). Let $\eps\ge 0$ and let $A$ and $C$ be subsets of
-a finite abelian group $G$, where $C$ has relative density $\gamma$. Then at least one of
+a finite abelian group $G$, where $C$ has relative density at least $\gamma$. Then at least one of
 the following two statements holds.
 \medskip
 \item{i)} $\bigl|\langle \mu_A *\mu_A, \mu_C\rangle - 1\bigr| \le \eps$
@@ -218,7 +218,8 @@ $$\norm{\mu_A\circ\mu_A-1}_p^p = \bigl(|\hat{\mu_A}|^2(1-\one_{\chi_0})\bigr)^{*
 from which we conclude that
 $$\norm{\mu_A\circ\mu_A-1}_p^p \ge \norm{\mu_A*\mu_A-1}_p^p \ge {\epsilon\over 2}.\noskipslug$$
 
-This lemma tells us that if $\langle \mu_A*\mu_A,\mu_C\rangle \ge 1/2$, then $\norm{\mu\circ \mu_A-1}_p \ge 1/4$
+This lemma tells us that if $\langle \mu_A*\mu_A,\mu_C\rangle \ge 1/2$, then
+$\norm{\mu_A\circ \mu_A-1}_p \ge 1/4$
 for some $p = O\bigl(\log(1/\gamma)\bigr)$. This information can then be fed to the following general lemma.
 
 \edef\unbalancing{\the\thmcount}
@@ -352,7 +353,7 @@ $$\eqalign{
 Thus we let $\beta_i = |B_i|/|G|$ and $\alpha_i(s) = {|A_i(s)|\over|G|}$
 for $i\in\{1,2\}$, and then apply the above in the case where $f$ is the constant function $1$ to obtain
 $$\eqalign{
-\bignorm{(\mu_A\circ \mu_A)^p, f}_{p(\mu)}^p
+\bignorm{\mu_A\circ \mu_A}_{p(\mu)}^p
 &= {|G|^2\over \alpha^{2p}|B_1|\cdot|B_2|} \ex_{s\in G^p} 
 \ex_{x\in G} \ex_{y\in G} \one_{A_1(s)}(y) \one_{A_2(s)}(x+y)\cr
 &= {1\over \alpha^{2p}\beta_1\beta_2} \ex_{s\in G^p} 
@@ -373,7 +374,7 @@ The analogous identity holds for $A_2(s)$. So, letting
 $$M = {1\over 2} \alpha^p (\beta_1\beta_2)^{1/2} \norm{\mu_A\circ\mu_A}^p_{p(\mu)},$$
 we have
 $$\eqalign{
-\ex_{s\in G^p} \indic{\alpha_1(s)\alpha_2<M^2} \alpha_1(s)\alpha_2(s)
+\ex_{s\in G^p} \indic{\alpha_1(s)\alpha_2(s)<M^2} \alpha_1(s)\alpha_2(s)
  &< \ex_{s\in G^p} M \sqrt{\alpha_1(s)\alpha_2(s)} \cr
  &\le \Bigl( \ex_{s\in G^p} M \alpha_1(s) \Bigr)^{1/2} \Bigl( \ex_{s\in G^p} M \alpha_2(s) \Bigr)^{1/2} \cr
  &= M \Bigl( \ex_{s\in G^p} \ex_{x\in G} \one_{A_1(s)}(x) \Bigr)^{1/2} \cr
@@ -428,7 +429,7 @@ such that
 $$\langle \mu_{A_1}\circ\mu_{A_2}, \one_S\rangle \ge 1-\delta.$$
 
 \proof Let $p'$ be the smallest even integer at least $p+\eps^{-1}\log(\delta^{-1})$.
-By the previous lemma applied to the set
+By the previous lemma applied to the function
 $\one_{G\setminus S}$, there exist sets $A_1\subseteq B_1$ and $A_2\subseteq B_2$ with densities
 satisfying
 $$\eqalign{

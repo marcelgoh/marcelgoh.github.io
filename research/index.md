@@ -6,16 +6,16 @@ mathjax: true
 
 My research interests include:
 
-+ probabilistic analysis of algorithms
-+ analysis of random discrete structures
-+ enumerative combinatorics
 + additive combinatorics
++ enumerative combinatorics
++ analysis of random discrete structures
 
 ### Papers
 
 Research articles published in peer-reviewed journals, in reverse order of acceptance (and not necessarily
 appearance).
 
+__P6.__ (with Jonah Saks) On the homology of several number-theoretic set families. To appear in _Enumerative Combinatorics and Applications_ (2024), 17&nbsp;pp. [[arXiv](https://arxiv.org/abs/2206.12535)]  
 __P5.__ (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://ajc.maths.uq.edu.au/pdf/84/ajc_v84_p357.pdf). _Australasian Journal of Combinatorics_ __84__,3 (2022), 357--374.
 [[arXiv](https://arxiv.org/abs/2106.05949)]  
 __P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and the leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). _Combinatorics, Probability and Computing_ __32__,1 (2023), 68--90.
@@ -29,12 +29,9 @@ __P1.__ (with Rosie Y. Zhao) [Arithmetic subsequences in a random ordering of an
 \#A89, 19 pp.
 [[arXiv](https://arxiv.org/abs/2012.12339)]  
 
-### Submitted papers
-
-Papers submitted for publication in refereed journals.
-
-&#x2600; [An uncertainty principle for Möbius inversion on posets](https://arxiv.org/abs/2302.02466). _arXiv preprint 2302.02466_ (2023), 7&nbsp;pp.  
-&#x2600; (with Jonah Saks) [On the homology of several number-theoretic set families](https://arxiv.org/abs/2206.12535). _arXiv preprint 2206.12535_ (2022), 16&nbsp;pp.  
+For recent preprints and unpublished manuscripts, consult the full list
+of my [articles on arXiv](https://arxiv.org/a/goh_m_2.html), or my
+[Google Scholar profile](https://scholar.google.ca/citations?user=Fa8bQiEAAAAJ).
 
 ### Reports and theses
 

@@ -16,7 +16,7 @@ North America, freshwater:
 + Lac Vingt Sous, Que. (yellow perch)
 + Rivière du Diable, Que. (northern pike, fallfish)
 + South Anna River, Va. (redbreast sunfish, fallfish)
-+ St. Lawrence River / Lachine Canal, Que. (yellow perch, pumpkinseed)
++ St. Lawrence River / Lachine Canal, Que. (yellow perch, pumpkinseed, round goby)
 
 North America, saltwater:
 

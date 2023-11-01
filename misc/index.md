@@ -39,12 +39,14 @@ __E10.__ [The discrete Fourier uncertainty principle]({{ site.baseurl }}/misc/ex
 + &#78818; [Adam Hamdan](http://adamhamdan.ca/)
 + &#78764; [Rasha Lama](https://rashalama.com)
 + &#78069; [Cheng Lin](https://cheng-lin.me)
++ &#77862; [Michelle Lin](https://mchll-ln.github.io/)
 + &#78048; [Diego Lopez](https://diegolopez.me)
 + &#78179; [Bronwyn Neufeld](https://www.bneufeld.com/)
 + &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
 + &#78328; [Matej Pederson](https://xjetam.github.io)
 + &#77839; [Denali Relles](https://denali-relles.github.io)
 + &#77857; [Jonah Saks](https://jonahsaks.github.io)
++ &#78223; [Christian Táfula](https://dms.umontreal.ca/~tafula/)
 + &#78264; [Rosie Zhao](https://rosieyzh.github.io/)
 
 ### Secrets

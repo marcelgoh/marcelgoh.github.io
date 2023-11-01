@@ -57,11 +57,10 @@ as well. (Click map below for bigger version.)
 [![countries]({{ site.baseurl }}/media/travel/countries.svg)]({{ site.baseurl }}/media/travel/countries.svg)
 
 (This is an SVG I stole from Wikipedia and edited; if you are an SVG guru and
-know how to highlight (France, Morocco, Russia) without
-highlighting (French Guiana, Western Sahara, Crimea) respectively, please email me.)
+know how to highlight {France, Morocco, Russia} without
+highlighting {French Guiana, Western Sahara, Crimea} respectively, please email me.)
 
-Closer to home, I've been to six provinces (I hope to fix this soon by
-heading to the Maritimes) and two territories.
+Closer to home, I've been to the six non-Maritime provinces, as well as Yukon and the Northwest Territories.
 
 ### Past events
 

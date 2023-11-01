@@ -188,4 +188,8 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Oryx and Crake_ (2003), Margaret Atwood
 1. _The Art of Love_ (2), Ovid
 1. _Magister Ludi_ (1943), Hermann Hesse
+1. _Bad Cree_ (2023), Jessica Johns
+1. _Lieutenant Kurosawa's Errand Boy_ (2017), Warran Kalasegaran
+1. _Letters to a Young Poet_ (1902&ndash;1908), Rainer Maria Rilke
+1. _Are You Willing to Die for the Cause?_ (2023), Chris Oliveros
 
