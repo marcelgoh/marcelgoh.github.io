@@ -192,4 +192,5 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Lieutenant Kurosawa's Errand Boy_ (2017), Warran Kalasegaran
 1. _Letters to a Young Poet_ (1902&ndash;1908), Rainer Maria Rilke
 1. _Are You Willing to Die for the Cause?_ (2023), Chris Oliveros
+1. _Our Lady of Mile End_ (2023), Sarah Gilbert
 

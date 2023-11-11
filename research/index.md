@@ -15,7 +15,7 @@ My research interests include:
 Research articles published in peer-reviewed journals, in reverse order of acceptance (and not necessarily
 appearance).
 
-__P6.__ (with Jonah Saks) On the homology of several number-theoretic set families. To appear in _Enumerative Combinatorics and Applications_ (2024), 17&nbsp;pp. [[arXiv](https://arxiv.org/abs/2206.12535)]  
+__P6.__ (with Jonah Saks) [On the homology of several number-theoretic set families](https://ecajournal.kms-ks.org/Volume2024/ECA2024_S2A12.pdf). _Enumerative Combinatorics and Applications_ __4__,2 (2024), \#S2R12, 11&nbsp;pp. [[arXiv](https://arxiv.org/abs/2206.12535)]  
 __P5.__ (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://ajc.maths.uq.edu.au/pdf/84/ajc_v84_p357.pdf). _Australasian Journal of Combinatorics_ __84__,3 (2022), 357--374.
 [[arXiv](https://arxiv.org/abs/2106.05949)]  
 __P4.__ (with Luc Devroye and Rosie Y. Zhao) [On the peel number and the leaf-height of a Galton-Watson tree](https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/on-the-peel-number-and-the-leafheight-of-galtonwatson-trees/631190C0A22C46DD848D98D26A5AC5CD). _Combinatorics, Probability and Computing_ __32__,1 (2023), 68--90.
