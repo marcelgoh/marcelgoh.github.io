@@ -6,7 +6,6 @@ title: About me
 ![me]({{ site.baseurl }}/about/profile.jpeg){: .center-image}
 
 I am a Ph.D. student in Mathematics at McGill University, supervised by
-[Andrew Granville](https://dms.umontreal.ca/~andrew/index.php) and
 [Hamed Hatami](https://www.cs.mcgill.ca/~hatami/). My primary research interest is in additive combinatorics.
 I got my M.Sc. and B.Sc. from McGill as well. My master's thesis,
 supervised by [Luc Devroye](http://luc.devroye.org/), was on Galton--Watson trees.
