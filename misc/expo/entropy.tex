@@ -1,0 +1,184 @@
+\input fontmac
+\input mathmac
+
+\def\eps{\epsilon}
+\def\FF{{\bf F}}
+\def\bar#1{\overline{#1}}
+\def\hat#1{\widehat{#1}}
+\def\norm#1{|\!|#1|\!|}
+\def\bignorm#1{\big|\!\big|#1\big|\!\big|}
+\def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
+\def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+\def\Bohr{\op{\rm Bohr}}
+\def\Eta{\op{\bf H}}
+\def\II{\op{\bf I}}
+\def\given{\mathbin{|}}
+
+\widemargins
+\bookheader{ENTROPY AND THE FREIMAN--RUZSA THEOREM}{MARCEL K. GOH}
+
+\maketitle{Entropy and the polynomial Freiman--Ruzsa theorem}{by}{Marcel K. Goh}{23 November 2023}
+
+\floattext4.5 \ninebf Note.
+\ninepoint This is a gentle introduction to the notion of entropy as it is used
+in combinatorics, with a view towards understanding the new proof of the polynomial Freiman--Ruzsa
+conjecture by W.~T.~Gowers, B.~Green, F.~Manners, and T.~Tao. The preliminary portion of
+these notes are largely transcribed from lectures given by W.~T.~Gowers.
+
+\bigskip
+
+\advsect The Khintchine--Shannon axioms
+
+Let $X$ be a discrete random variable. Its entropy $\Eta\{X\}$ is a real number
+(or $\infty$) that measures the ``information content'' of $X$. For example, if $X$ is
+a constant random variable, then $\Eta\{X\}$ should be zero (we do not gain any information
+from knowing the value of $X$), and if $X$ is
+uniformly distributed on $\{0,1\}^n$, then $\Eta\{X\}$ should be proportional to $n$, since $X$ is
+determined by
+$n$ bits of information. It satisfies the following axioms, which are
+sometimes called the Khinchine--Shannon axioms.
+\medskip
+\item{a)} ({\it Invariance.}) If $X$ takes values in $A$, $Y$ takes values in $B$,
+$\phi:A\to B$ is a bijection, and $\pr\{Y = \phi(a)\} = \pr\{X = a\}$ for all $a\in A$,
+then $\Eta\{X\} = \Eta\{Y\}$.
+\smallskip
+\item{b)} ({\it Extensibility.}) If $X$ takes values in $A$ and $Y$ takes values in $B$ for
+a set $B$ such that $A\subseteq B$, and furthermore $\pr\{Y=a\} = \pr\{X=a\}$ for all $a\in A$,
+then $\Eta\{X\} = \Eta\{Y\}$.
+\smallskip
+\item{c)} ({\it Continuity.}) The quantity $\Eta\{X\}$ depends continuously on the probabilities
+$\pr\{X=a\}$.
+\smallskip
+\item{d)} ({\it Maximisation.}) Over all possible random variables $X$ taking values in a finite
+set $A$, the quantity $\Eta\{X\}$ is maximised for the uniform distribution.
+\smallskip
+\item{e)} ({\it Additivity.})
+For $X$ taking values in $A$ and $Y$ taking values in $B$, we have the formula
+$$ \Eta\{X,Y\} = \Eta\{X\} + \Eta\{ Y \given X\},$$
+where $\Eta\{X,Y\} = \Eta\bigl\{ (X,Y)\bigr\}$ and
+$$ \Eta\{Y\given X\} = \sum_{x\in A} \pr\{X=x\} \Eta\{ Y\given X = x\}.$$
+\medskip
+
+For now, we shall take it on faith that there really exists a function on random variables satisfying
+these axioms. Later on, when we prove this, we will find that actually, the axioms only define entropy
+up to a multiplicative constant, so we shall add the following axiom.
+
+\medskip
+\item{f)} ({\it Normalisation.}) If $X$ is uniformly distributed on $\{0,1\}$, then
+$\Eta\{X\} = \log_2(e)$.
+\medskip
+
+It is actually more common (for obvious reasons, especially in computer science)
+for one to set the entropy of a uniform random variable on $\{0,1\}$
+to $1$, but we shall
+follow the convention of Gowers et al., since the eventual goal of these notes is to understand their proof
+of the polynomial Freiman--Ruzsa conjecture.
+
+Immediate from the definition of the conditional entropy $\Eta\{Y\given X\}$ given
+in the additivity axiom is that if
+$X$ and $Y$ are independent, then $\Eta\{Y\given X\} = \Eta\{Y\}$. But since the uniform distribution
+on $\{0,1\}^n$ is the joint distribution $(X_1,\ldots,X_n)$ where the $X_i$ are independent and
+uniformly distributed on $\{0,1\}$, we can additionally use the normalisation axiom to conclude that
+$$\Eta\{X\} = \Eta\{X_1,\ldots,X_n\} = \sum_{i=1}^n \Eta\{X_i\} = \log_2(e)\cdot n,$$
+by induction. Induction also yields the chain rule
+$$\Eta\{X_1,\ldots,X_n\} = \Eta\{X_1\} + \Eta\{X_2\given X_1\} + \cdots+\Eta\{X_n \given X_1,\ldots,X_{n-1}\}.$$
+
+The first proposition establishes the intuitive fact
+that the entropy of a uniform random variable supported on a set $A$ is at most
+the entropy of a uniform random variable supported on a superset $B$ of $A$.
+
+\proclaim Proposition \advthm. Let $A\subseteq B$ with $B$ finite,
+let $X$ be uniformly distributed on $A$, and let $Y$ be uniformly distributed on $B$.
+Then $\Eta\{X\} \le \Eta\{Y\}$, with equality if and only if $A = B$.
+
+\proof
+
+The next proposition is that $\Eta\{X\}$ is always nonnegative. The following
+proof is attributed to S.~Prendiville.
+
+\proclaim Proposition \advthm. For any random variable $X$ taking values in a finite set $A$,
+we have $\Eta\{X\} \ge 0$.
+
+\proof First we consider the case that there exists $n\in \NN$ such that for all $x\in A$, there is some
+$c_x$ such that $\pr\{X = x\} = c_x/n$. Let $Y$ be uniform on $[n]$ and let $E_x$ be a partition
+of $[n]$ such that $|E_x| = c_x$ for all $x\in X$. Then let $Z$ be given by $Z = x$ if $Y\in E_x$.
+This random variable $Z$ takes values in $A$ and has the exact same distribution as $X$, so
+by the invariance axiom, $\Eta\{X\} = \Eta\{Z\}$.
+This means that $Z = f(Y)$ for some function $f$, meaning that there is a bijection between
+values $y$ taken by $Y$ and values $\bigl(y, f(y)\bigr)$ taken by $(Y,Z)$. So we may apply the invariance
+axiom again to conclude that $\Eta\{Y,Z\} = \Eta\{Y\}$.
+
+Now by the additivity axiom, $\Eta\{Y,Z\} = \Eta\{Y\given Z\} + \Eta\{Z\}$, so we
+have $\Eta\{Y\} = \Eta\{Y\given Z\} + \Eta\{Z\}$. 
+
+If $X$ is a random variable such that $X = f(X)$ for some random variable $Y$, then we say
+that $X$ is {\it determined by} $Y$ or $Y$ {\it determines} $X$. The following proposition formalises
+the idea that we get more information from $Y$ than we get from $X$.
+
+\proclaim Proposition \advthm. Let $X$ and $Y$ be random variables such that $Y$ determines $X$. Then
+$$\Eta\{ X\} \le \Eta\{Y\}.$$
+
+\proof The 
+
+For random variables $X$ and $Y$, the {\it mutual information} $\II\{X : Y\}$ is defined
+by the equivalent formulas
+$$\eqalign{
+\II\{ X : Y\} &= \Eta\{X\} + \Eta\{Y\} - \Eta\{X,Y\} \cr
+&= \Eta\{X\} - \Eta\{X\given Y\} \cr
+&= \Eta\{Y\} - \Eta\{Y\given X\}. \cr
+}$$
+It measures, roughly speaking, how much information one can get from one variable
+by looking at the other one. From the formula it is clear that $\II\{X : Y\}  = 0$
+if and only if $X$ and $Y$ are independent, and we also have the
+inequality $\Eta\{X \given Y\} \le \Eta\{X\}$. Given a triple $(X,Y,Z)$ of random variables,
+we can apply this with $(X\given Z = z)$ to obtain the inequality
+$$ \Eta\{ X\given Y,Z\} \le \Eta\{X\given Z\},$$
+which is called {\it submodularity}. An equivalent statement is
+$$\Eta\{X,Y,Z\} + \Eta\{Z\} \le \Eta\{X,Z\} + \Eta\{Y,Z\}.$$
+If $Z$ takes values in a set $C$, the {\it conditional mutual information} is defined by
+$$\eqalign{
+\II\{ X : Y \given Z\} &= \sum_{z\in C} p_Z(z) \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\} \cr
+&= \Eta\{ X\given Z\} + \Eta\{Y\given Z\} - \Eta\{ X, Y \given Z \} \cr
+&= \Eta\{ X, Z\} -2\Eta\{ Z\} + \Eta\{Y,Z\} - \Eta\{ X, Y ,Z \} + \Eta\{Z\}\cr
+&= \Eta\{ X, Z\} + \Eta\{Y,Z\} - \Eta\{ X, Y ,Z \} - \Eta\{Z\},\cr
+}$$
+so we see that submodularity is equivalent to the statement $\II\{X : Y\given Z\} \ge 0$.
+Analogously to the unconditional case, we have equality if and only if $X$ and $Y$ are
+independent when conditioned on $Z$.
+
+\medskip\boldlabel The formula for entropy.
+Now we finally give the formula for the entropy of a random variable. For a discrete random
+variable $X$, we let $p_X : S\to [0,1]$ denote the probability mass function of $X$, given by
+$p_X(x) = \pr\{X = x\}$ for all $x\in S$. Unless subscripted, $\log$ always denotes the natural logarithm.
+
+\proclaim Proposition \advthm. Let $X$ be a random variable taking values in a finite set $S$.
+Then $\Eta\{X\}$ satisfies axioms (a) through (e) as well as the additional normalisation axiom (f)
+if and only if
+$$\Eta\{X\} = \ex\bigl\{ 1/\log p_X(X) \bigr\} = \sum_{x\in S} p_X(x) \log {1\over p_X(s)},$$
+where we adopt the convention that $0\log(1/0) = 0$.
+
+\proof [TODO: Prove this.]\slug
+
+Equipped now with a formula for the entropy $\Eta\{X\}$ of a random variable $X$, we can prove further useful
+facts. We saw in the previous section that the entropy of a uniform random variable whose range is $\{0,1\}^n$
+is $\log_2(e)\cdot n = \log(2^n)$, and we know, by the maximisation axiom, that this is the largest
+the entropy of any $X$ taking values in $\{0,1\}^n$ can be. The following proposition generalises
+this notion.
+
+\proclaim Proposition \advthm. For any random variable $X$ taking values in a finite set $S$,
+we have
+$$\Eta\{X\} \le \log |S|.$$
+
+\proof By Jensen's inequality, we have
+$$\eqalign{
+\Eta\{X\} &= \ex\bigl\{ \log(1/p_X(X)\bigr\} \cr
+&\le \log \ex\bigl\{ 1/p_X(X)\bigr\} \cr
+&= \log \sum_{x\in S} \pr\{X = x\} {1\over \pr\{X = x\}} \cr
+&= \log |S|.\noskipslug \cr
+}$$
+
+
+\section References
+
+\bye
+

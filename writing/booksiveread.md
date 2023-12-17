@@ -173,7 +173,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Moons of Jupiter_ (1982), Alice Munro
 1. _Stone Mattress_ (2014), Margaret Atwood
 1. _May_ (1836), Karel Hynek Mácha
-1. _Du côté de chez Swann_ (1913), Marcel Proust
+1. _Du côté de chez Swann_ (1913), Marcel Proust [French]
 1. _Strange News from Another Star_ (1919), Hermann Hesse
 1. _The Master and Margarita_ (1966), Mikhail Bulgakov
 1. _My Year of Rest and Relaxation_ (2018), Ottessa Moshfegh
@@ -195,4 +195,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Our Lady of Mile End_ (2023), Sarah Gilbert
 1. _Capitalist Realism_ (2009), Mark Fisher
 1. _All About Love_ (2000), bell hooks
+1. _Interpreter of Maladies_ (1999), Jhumpa Lahiri
+1. _The Selected Poetry of Rainer Maria Rilke_ (collected 1948), Rainer Maria Rilke
+1. _The Agony of Eros_ (2012), Byung-Chul Han
 

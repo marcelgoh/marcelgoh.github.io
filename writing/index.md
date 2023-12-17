@@ -6,10 +6,12 @@ title: Writing
 I write short stories in my spare time. Here's a
 [blog post]({{ site.baseurl }}/2023/04/06/one-year-short-stories.html)
 I wrote about my first year of writing and submitting short fiction.
+I am a cofounder and editor of [Ahoy](https://ahoyliterary.github.io), a literary magazine
+that publishes short fiction and poetry. We aim to
+put out our inaugural issue in Spring 2024. If you have some poems or stories sitting in a drawer, you might
+consider sending them our way!
 
 ### Published stories
-
-Here are my stories that have appeared (or will appear very soon) in literary magazines.
 
 __F3.__ "Senang Diri," _[Existere](https://existere.info.yorku.ca/)_ __42__.2 (2023), 17--25.  
 __F2.__ ["The Vigil,"](https://ricepapermagazine.ca/2023/05/the-vigil-by-marcel-goh/)
