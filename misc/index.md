@@ -42,6 +42,7 @@ __E10.__ [The discrete Fourier uncertainty principle]({{ site.baseurl }}/misc/ex
 + &#78069; [Cheng Lin](https://cheng-lin.me)
 + &#77862; [Michelle Lin](https://mchll-ln.github.io/)
 + &#78048; [Diego Lopez](https://diegolopez.me)
++ &#78106; [Jessie Meanwell](https://sites.jessiemeanwell.com/)
 + &#78179; [Bronwyn Neufeld](https://www.bneufeld.com/)
 + &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
 + &#78328; [Matej Pederson](https://xjetam.github.io)
