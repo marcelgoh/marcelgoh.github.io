@@ -17,11 +17,11 @@
 \widemargins
 \bookheader{ENTROPY AND THE FREIMAN--RUZSA THEOREM}{MARCEL K. GOH}
 
-\maketitle{Entropy and the polynomial Freiman--Ruzsa theorem}{by}{Marcel K. Goh}{23 November 2023}
+\maketitle{Entropy and additive combinatorics}{by}{Marcel K. Goh}{23 November 2023}
 
 \floattext4.5 \ninebf Note.
 \ninepoint This is a gentle introduction to the notion of entropy as it is used
-in combinatorics, with a view towards understanding the new proof of the polynomial Freiman--Ruzsa
+in additive combinatorics, with a view towards understanding the new proof of the polynomial Freiman--Ruzsa
 conjecture by W.~T.~Gowers, B.~Green, F.~Manners, and T.~Tao. The preliminary portion of
 these notes are largely transcribed from lectures given by W.~T.~Gowers.
 
@@ -74,16 +74,52 @@ to $1$, but we shall
 follow the convention of Gowers et al., since the eventual goal of these notes is to understand their proof
 of the polynomial Freiman--Ruzsa conjecture.
 
-Immediate from the definition of the conditional entropy $\Eta\{Y\given X\}$ given
-in the additivity axiom is that if
-$X$ and $Y$ are independent, then $\Eta\{Y\given X\} = \Eta\{Y\}$. But since the uniform distribution
-on $\{0,1\}^n$ is the joint distribution $(X_1,\ldots,X_n)$ where the $X_i$ are independent and
-uniformly distributed on $\{0,1\}$, we can additionally use the normalisation axiom to conclude that
-$$\Eta\{X\} = \Eta\{X_1,\ldots,X_n\} = \sum_{i=1}^n \Eta\{X_i\} = \log_2(e)\cdot n,$$
-by induction. Induction also yields the chain rule
+Notationally, we would expect that $\Eta\{Y\given X\} = \Eta\{Y\}$ if $X$ and $Y$ are independent.
+This is the first proposition we will carefully prove using the axioms above.
+
+\proclaim Let $X$ and $Y$ be independent random variables. Then
+$\Eta\{Y\given X\} = \Eta\{Y\}$ and consequently
+$\Eta\{X,Y\} = \Eta\{X\} + \Eta\{Y\}$.
+
+\proof Suppose $X$ takes values in a finite set $A$. Then for all $x\in A$, the distribution of
+$Y$ and $Y$ given that $X = x$ is the same, so
+$$\Eta\{Y \given X\} = \sum_{x\in A} \pr\{X = x\} \Eta\{Y\given X = x\} = \sum_{x\in A} \pr\{X = x\} \Eta\{Y\}
+=\Eta\{Y\}.$$
+The second version of the statement is a consequence of the additivity axiom.\slug
+
+We will sometimes use the notation $X^n$ to denote the vector $(X_1,\ldots,X_n)$ where the $X_i$
+are independent copies of the random variable $X$.
+
+\proclaim Corollary \advthm. For a discrete random variable $X$, we have $\Eta\{X^n\} = n\Eta\{X\}$.
+
+\proof Perform induction on $n$ and use the previous proposition.\slug
+
+In the case where $X$ is the uniform distribution on $\{0,1\}$, and $X_1,\ldots,X_n$ are independent
+and distributed as $X$,
+we can additionally use the normalisation axiom to conclude that
+$$\Eta\{X^n\} = \Eta\{X_1,\ldots,X_n\} = \sum_{i=1}^n \Eta\{X_i\} = \log_2(e)\cdot n,$$
+by induction. For general random variables $X_1,\ldots,X_n$, induction also yields the {\it chain rule}
 $$\Eta\{X_1,\ldots,X_n\} = \Eta\{X_1\} + \Eta\{X_2\given X_1\} + \cdots+\Eta\{X_n \given X_1,\ldots,X_{n-1}\}.$$
 
-The first proposition establishes the intuitive fact
+Next we show that a constant random variable has zero entropy. This reflects the idea that we get
+no information from sampling a random variable if it always takes the same value no matter what.
+
+\proclaim Proposition \advthm. Let $X$ be a discrete random variable.
+Then $\Eta\{X\} = 0$ if and only if it takes exactly one value.
+
+\proof First suppose that $X$ takes only one value.
+Let $a$ be the value of $X$ such that $\pr\{X=a\} = 1$.
+Then $(X,X)$ equals $(a,a)$ with probability $1$ as well,
+so $\Eta\{X\} = \Eta\{X,X\}$ by the invariance axiom. But it can easily be checked that
+$X$ and $(X,X)$ are independent (we have, for example, $\pr\bigl\{X = a, (X,X)= (a,a)\bigr\} =
+\pr\{X = a\}\pr\bigl\{(X,X) = (a,a)\bigr\}$), so $\Eta\{X,X\} = 2\Eta\{X\}$. Thus we conclude
+that $\Eta\{X\} = 0$.
+
+Now suppose that $X$ takes more than one value; let $A$ be the set of $a$ such that
+$\pr\{X = a\} > 0$.
+\slug
+
+Now we establish the intuitive fact
 that the entropy of a uniform random variable supported on a set $A$ is at most
 the entropy of a uniform random variable supported on a superset $B$ of $A$.
 
@@ -91,7 +127,12 @@ the entropy of a uniform random variable supported on a superset $B$ of $A$.
 let $X$ be uniformly distributed on $A$, and let $Y$ be uniformly distributed on $B$.
 Then $\Eta\{X\} \le \Eta\{Y\}$, with equality if and only if $A = B$.
 
-\proof
+\proof By the extensibility axiom, $\Eta\{X\}$ is not affected if we regard $X$ as a function
+taking values in $B$. Then by the maximisation axiom, $\eta\{X\}\le \eta\{Y\}$, since $Y$ is
+uniform on $B$. If $A = B$, then it is clear that $\Eta\{X\} = \Eta\{Y\}$, since $X$ and $Y$
+are the same random variable.
+Now say $|A| = m$ and $|B| = n$ with $m<n$. If $m=1$, then by the previous proposition
+we have $\Eta\{X\} = 0$, and $Y$ takes at least two values, 
 
 The next proposition is that $\Eta\{X\}$ is always nonnegative. The following
 proof is attributed to S.~Prendiville.

@@ -1062,6 +1062,150 @@ $$ \log\log N \ge \biggl({80\over\delta} + 20\biggr)\log 3 +\log 6 + \log\log(10
 We'll be lazy here and set $\log\log N\ge 300/\delta$ as
 a sufficient condition, which is the bound claimed in the theorem statement.\slug
 
+\advsect The Furstenberg--S\'ark\"ozy theorem
+
+In this section, we'll prove a bound on the size of {\it square-difference-free sets}. These are sets
+$A\subseteq \NN$ such that $A-A$ does not contain any of the squares $\{1,4,9,16,\ldots\}$.
+The proof, which is due to B.~Green, T.~Tao, and T.~Ziegler,
+makes use of a density increment argument similar to the one used in the proof of
+Roth's theorem, but does not use any Fourier analysis. We begin with the following lemma, which allows
+us to increment the density of a set containing a square in its difference set.
+
+\proclaim Lemma~\advthm. There exists a real constant $c>0$ such that the following holds.
+Suppose that there is $N\in \NN$ and $A\subseteq [N]$ of density $\delta = |A|/N$ such that
+$A-A$ does not contain any positive square numbers. Then there exists an arithmetic progression
+$P$ of length $\lfloor N^{1/3}\rfloor$ such that $|A\cap P| \ge (\delta + c\delta^3)|P|$.
+
+Suppose that for
+some $\delta_0>0$ such that for arbitrarily large $N\in \NN$, we can find $A\subseteq [N]$
+of size $|A|\ge \delta_0 N$ such that $A-A$ does not contain a square. Then for
+arbitrarily large $N'\in \NN$, there exists a subset
+$A'\subseteq [N']$ such that $|A'|\ge (\delta_0 + c{\delta_0}^3)N'$ and $A'-A'$ does not contain a square.
+
+\proof Suppose $\delta_0>0$ is such that for arbitrarily large $N$ we can find $A\subseteq [N]$
+of density $\delta = |A|/N \ge \delta_0$ such that $A-A$ does not contain a square. Then for all
+$n\in [N]$, we have
+$$ \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]} \one_A(n) \one_A\bigl( n+(r+h)^2\bigr) = 0.$$
+Now for $n\in [N]$, note that $n+(r+h)^2$ is in $[N]$ for all
+$n\le N-(N^{1/3}-N^{1/100})^2 = N-O(N^{2/3})$. This means that
+$$ \ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}
+\one_{[N]}\bigl( n+(r+h)^2\bigr) = 1 - O(N^{-1/3}).$$
+By further requiring that $n\in A$ inside the expectation, we have
+$$ \ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}
+\one_A(n)\one_{[N]}\bigl( n+(r+h)^2\bigr) = \delta - O(N^{-1/3}),$$
+since the proportion of $n\in [N]$ that are also in $A$ is $\delta$.
+Lastly, by a simple change of variables we have
+$$\eqalign{
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} &\ex_{h\in [N^{1/100}]} \one_A\bigl(n+(r+h)^2\bigr) \cr
+&=\ex_{m\in A} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]} \one_{[N]}\bigl(m-(r+h)^2\bigr) \cr
+&= \delta - O(N^{-1/3}). \cr
+}$$
+Set $f = \one_A - \delta\one_{[N]}$. From the above computations we deduce that
+$$\eqalign{
+\ex_{n\in [N]} &\ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}
+f(n) f\bigl( n+(r+h)^2\bigr) \cr
+&= 
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}\cr
+&\qquad\qquad\Bigl(\one_A(n)\one_A\bigl(n+(r+h)^2\bigr)
+-\delta\one_A(n)\one_{[N]}\bigl(n+(r+h)^2\bigr) \cr
+&\qquad\qquad\qquad\qquad\qquad- \delta\one_A\bigl(n+(r+h)^2\bigr)
++ \delta^2\one\bigl(n+(r+h)^2\bigr)\Bigr) \cr
+&= 0 - \delta^2 - \delta^2 +\delta^2 + O(N^{-1/3}) \cr
+&= -\delta^2 + O(N^{-1/3}) .\cr
+}$$
+The triangle inequality then gives
+$$ \ex_{n\in [N]} \bigl| f(n)\bigr| \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in [N^{1/100}]} f\bigl( n+(r+h)^2\bigr)
+\Bigr| \ge \delta^2-O(N^{-1/3}) \gg \delta^2,$$
+where here and in the rest of the proof, the Vinogradov notation hides an absolute constant that works
+for all $N\in \NN$. We also have
+$$\eqalign{
+\ex_{n\in [N]} \bigl| f(n)\bigr| ^2
+&= \ex_{n\in [N]} \Bigl(\one_A(n) - 2\delta \one_A(n)\one_{[N]}(n) + \delta^2 \one_{[N]}(n)\Bigr)\cr
+&= \delta-\delta^2, \cr
+}$$
+so by the Cauchy--Schwarz inequality,
+$$\eqalign{
+\delta^4-O(N^{1/3}) &\le
+\biggl(\ex_{n\in [N]} \bigl| f(n)\bigr| \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in [N^{1/100}]} f\bigl( n+(r+h)^2\bigr)
+\Bigr|\biggr)^2 \cr
+&\le \ex_{n\in [N]} \bigl| f(n) \bigr|^2 
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in N^{1/100}} f\bigl(n+(r+h)^2\bigr)\Bigr|^2\cr
+&= (\delta-\delta^2)
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in N^{1/100}} f\bigl(n+(r+h)^2\bigr)\Bigr|^2,\cr
+}$$
+and therefore
+$$
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in N^{1/100}} f\bigl(n+(r+h)^2\bigr)\Bigr|^2
+\gg {\delta^4\over \delta-\delta^2} \ge \delta^3.$$
+We can rewrite this as
+$$
+\ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} 
+f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \gg \delta^3.
+$$
+Replacing $n$ by $n-(r+h)^2$ in the innermost expectation introduces an error term of at most $O(N^{-1/3})$
+and deleting the diagonal case $h=h'$ introduces an error term of at most $O(N^{-1/100})$,
+so we have
+$$\eqalign{
+\ex_{h,h'\in N^{1/100}}&\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} 
+f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \cr
+&\le
+\ex_{h,h'\in N^{1/100}}\Bigl|\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} 
+f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \Bigr|\cr
+&\le
+\ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}  \cr
+&\qquad\qquad f(n) f\bigl(n-(r+h)^2+(r+h')^2\bigr) + O(N^{-1/3})\cr
+&= \ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}  \cr
+&\qquad\qquad f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) + O(N^{-1/3})\cr
+&= \ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}  \cr
+&\qquad\qquad f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) + O(N^{-1/3})\cr
+&= \ex_{h\ne h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} \cr
+&\qquad\qquad f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) + O(N^{-1/100}),\cr
+}$$
+whence
+$$\ex_{h\ne h'\in N^{1/100}}\Bigl|\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
+f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) \Bigr| \gg \delta^3 $$
+by the triangle inequality. From this we see that
+there are distinct $h$ and $h'$ in $[N^{1/100}]$ with
+$$\Bigl|\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
+f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr)\Bigr| \gg \delta^3$$
+Here another application of the triangle inequality and the fact that $\bigl|f(n)\bigr| \le 1$ together
+give
+$$\ex_{n\in [N]} \Bigl|\ex_{r\in [N^{1/3}]}
+f\bigl(n- (h'-h)(2r+h'-h)\bigr)\Bigr|\gg \delta^3.$$
+Now we will perform another shift on $n$, this time by $(h'-h)(h'+h) = O(N^{1/50})$. In the expectation
+over $n$, this produces an error term of at most $O(N^{-49/50})$, which we can hide behind the Vinogradov notation
+as well. Letting $d = 2(h'-h)$, we have
+$$\eqalign{
+\ex_{n\in [N]} \Bigl| &\ex_{r\in [N^{1/3}]} f(n+dr)\Bigr| \cr
+&= \ex_{n\in [N]} \Bigl| \ex_{r\in [N^{1/3}]} f\bigl(n+2(h'-h)r\bigr)\Bigr| \cr
+&\ge \ex_{n\in [N]} \Bigl| \ex_{r\in [N^{1/3}]} f\bigl(n+(h'-h)(2r+h+h')\bigr)\Bigr| - O(N^{-49/50}) \cr
+&\gg \delta^3 \cr
+}$$
+But recall that we have
+$$\sum_{n\in [N]} f(n) = 0,$$
+so since $d \le 2N^{1/100}$ and $r\le N^{1/3}$, we have
+$$\sum_{n\in [N]} f(n+dr) = O(N^{1/3+ 1/100})$$
+for all $r\in [N^{1/3}]$, and hence
+$$\ex_{n\in [N]} \ex_{f\in [N^{1/3}]} f(n+dr) = O(N^{-2/3+ 1/100}).$$
+Then since $\bigl(x+|x|\bigr)/2 = \max(x,0)$ for all $x\in \RR$, we have
+$$ \eqalign{
+\ex_{n\in [N]} \max\Bigl( \ex_{r\in [N^{1/3}]} &f(n+dr), 0\Bigr) \cr
+&\gg {\delta^3 + O(N^{-2/3+1/100})\over 2} \cr
+&\gg \delta^3.\cr
+}$$
+By artificially zeroing out all terms corresponding to the largest $2N^{1/3+1/100}$ elements of the interval $[N]$,
+we introduce an error
+term of $N^{-2/3+1/100}$, which disappears behind the asymptotic notation.
+Then by the pigeonhole principle we may find $n\in [N-2N^{1/3+1/100}]$ such that
+$$\ex_{r\in [N^{1/3}]} f(n+dr) \gg \delta^3.$$
+Let $P\subseteq [N]$ be the arithmetic progression $\bigl\{n + dr : r\in [N^{1/3}]\bigr\}$ and let
+$c$ be the absolute constant implied by the Vinogradov notation. We have
+$$\ex_{x\in P} f(x) \ge c\delta ^3,$$
+and can unravel the definition of $f$ to obtain
+$${|A\cap P|\over |P|} \ge \delta + c\delta^3,$$
+which is what we wanted.\slug
+
+
 \section References
 
 \bye

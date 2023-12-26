@@ -1,9 +1,7 @@
 ---
 layout: page
-title: Fish
+title: Fish I've caught
 ---
-
-## Fish I've caught
 
 North America, freshwater:
 
