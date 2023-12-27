@@ -33,6 +33,7 @@ __E10.__ [The discrete Fourier uncertainty principle]({{ site.baseurl }}/misc/ex
 + &#78553; [Anna Brandenberger](https://abrandenberger.github.io/)
 + &#77848; [Luc Devroye](http://luc.devroye.org/)
 + &#77952; [Shereen Elaidi](https://shereenelaidi.github.io/)
++ &#77868; [Lisa Elnagar](https://lisaelnagar.com/)
 + &#78216; [Stephen Fay](https://stephenfay.xyz)
 + &#78064; [Cheyenne Goh](https://cheyennegoh.github.io/)
 + &#78704; [Amanda Gu](https://amandagu.github.io/)

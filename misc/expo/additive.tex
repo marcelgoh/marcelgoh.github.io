@@ -1071,20 +1071,13 @@ makes use of a density increment argument similar to the one used in the proof o
 Roth's theorem, but does not use any Fourier analysis. We begin with the following lemma, which allows
 us to increment the density of a set containing a square in its difference set.
 
-\proclaim Lemma~\advthm. There exists a real constant $c>0$ such that the following holds.
+\proclaim Lemma~\advthm.
 Suppose that there is $N\in \NN$ and $A\subseteq [N]$ of density $\delta = |A|/N$ such that
 $A-A$ does not contain any positive square numbers. Then there exists an arithmetic progression
-$P$ of length $\lfloor N^{1/3}\rfloor$ such that $|A\cap P| \ge (\delta + c\delta^3)|P|$.
+$P$ of length $\lfloor N^{1/3}\rfloor$ and step size at most $2N^{1/100}$
+such that $|A\cap P| \ge (\delta + c\delta^3)|P|$, where $c$ does not depend on $\delta$ or $N$.
 
-Suppose that for
-some $\delta_0>0$ such that for arbitrarily large $N\in \NN$, we can find $A\subseteq [N]$
-of size $|A|\ge \delta_0 N$ such that $A-A$ does not contain a square. Then for
-arbitrarily large $N'\in \NN$, there exists a subset
-$A'\subseteq [N']$ such that $|A'|\ge (\delta_0 + c{\delta_0}^3)N'$ and $A'-A'$ does not contain a square.
-
-\proof Suppose $\delta_0>0$ is such that for arbitrarily large $N$ we can find $A\subseteq [N]$
-of density $\delta = |A|/N \ge \delta_0$ such that $A-A$ does not contain a square. Then for all
-$n\in [N]$, we have
+\proof By hypothesis, $n\in [N]$, we have
 $$ \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]} \one_A(n) \one_A\bigl( n+(r+h)^2\bigr) = 0.$$
 Now for $n\in [N]$, note that $n+(r+h)^2$ is in $[N]$ for all
 $n\le N-(N^{1/3}-N^{1/100})^2 = N-O(N^{2/3})$. This means that
@@ -1156,8 +1149,6 @@ f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \Bigr|\cr
 &\qquad\qquad f(n) f\bigl(n-(r+h)^2+(r+h')^2\bigr) + O(N^{-1/3})\cr
 &= \ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}  \cr
 &\qquad\qquad f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) + O(N^{-1/3})\cr
-&= \ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}  \cr
-&\qquad\qquad f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) + O(N^{-1/3})\cr
 &= \ex_{h\ne h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} \cr
 &\qquad\qquad f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) + O(N^{-1/100}),\cr
 }$$
@@ -1186,7 +1177,7 @@ $$\sum_{n\in [N]} f(n) = 0,$$
 so since $d \le 2N^{1/100}$ and $r\le N^{1/3}$, we have
 $$\sum_{n\in [N]} f(n+dr) = O(N^{1/3+ 1/100})$$
 for all $r\in [N^{1/3}]$, and hence
-$$\ex_{n\in [N]} \ex_{f\in [N^{1/3}]} f(n+dr) = O(N^{-2/3+ 1/100}).$$
+$$\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} f(n+dr) = O(N^{-2/3+ 1/100}).$$
 Then since $\bigl(x+|x|\bigr)/2 = \max(x,0)$ for all $x\in \RR$, we have
 $$ \eqalign{
 \ex_{n\in [N]} \max\Bigl( \ex_{r\in [N^{1/3}]} &f(n+dr), 0\Bigr) \cr
@@ -1205,6 +1196,22 @@ and can unravel the definition of $f$ to obtain
 $${|A\cap P|\over |P|} \ge \delta + c\delta^3,$$
 which is what we wanted.\slug
 
+Recall that at the analogous point in the proof of Roth's theorem, we were able to shift and
+rescale our progression to become an interval, and then iterate the argument until the density
+increased above $1$. Unfortunately,
+now we can't simply scale the progression $P$ to transform it into a {\it bona fide} interval, since then
+square differences between elements in $A$ may no longer be square and vice versa. For
+this reason, we will need another lemma that is suited for iteration.
+
+\proclaim Lemma~\advthm.
+Suppose that there is $N\in \NN$ and $A\subseteq [N]$ of density $\delta = |A|/N$ such that
+$A-A$ does not contain any positive square numbers. Then there is a set $A'\subseteq [N^{1/4}]$
+with $A' \ge (\delta + c'\delta^3) N^{1/4}$, where $c$ is an absolute constant, such that $A'-A'$
+also does not contain any squares.
+
+\proof By the previous lemma, there is a progression $P\subseteq [N]$ of length $\lfloor N^{1/3}$
+and step size $1\le d \le 2N^{1/100}$ such that $|A\cap P|/|P| \ge \delta + c\delta^3$ for an absolute
+constant $c$.
 
 \section References
 
