@@ -198,4 +198,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Interpreter of Maladies_ (1999), Jhumpa Lahiri
 1. _The Selected Poetry of Rainer Maria Rilke_ (collected 1948), Rainer Maria Rilke
 1. _The Agony of Eros_ (2012), Byung-Chul Han
+1. _Warlight_ (2018), Michael Ondaatje
+1. _The Vet's Daughter_ (1959), Barbara Comyns
+1. _Sweet Thursday_ (1954), John Steinbeck
 

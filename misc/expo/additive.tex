@@ -482,7 +482,7 @@ a $k$-isomorphism. For fixed $r$, the restriction to $A_{j,r}$ is not a $k$-isom
 if there exist $j$ and $a_1,\ldots,a_k,b_1,\ldots,b_k\in A_{j,r}$ such that
 $a_1+\cdots+a_k \ne b_1+\cdots+b_k$ but $\phi(a_1)+\cdots+\phi(a_k) = \phi(b_1)+\cdots+\phi(b_k)$.
 
-\advsect Basics of discrete Fourier analysis
+\advsect Rudiments of discrete Fourier analysis
 
 Let $Z$ be a finite abelian group. A {\it character} on $Z$ is a homomorphism from
 $Z$ to the multiplicative group $\C\setminus\{0\}$. If $\chi$ is such a homomorphism, then
@@ -1000,7 +1000,7 @@ which implies that $|A\cap P_i| \ge (\delta + \eta/4)|P_i|$.\slug
 We are now equipped to prove Roth's theorem.
 
 \parenproclaim Theorem {\advthm} (Roth, {\rm 1953}). For every $\delta>0$ there exists
-$N\le \exp\bigl(\exp(300/\delta)\bigr)$ such that
+$N\le \bigl\lceil\exp\bigl(\exp(300/\delta)\bigr)\bigr\rceil$ such that
 every $A\subseteq [N]$ with $|A|\ge \delta N$ contains an arithmetic progression of length $3$.
 
 \proof Let $N$ be an integer to be specified later. Let $A_0$ be a subset of $N$ of density
@@ -1062,6 +1062,10 @@ $$ \log\log N \ge \biggl({80\over\delta} + 20\biggr)\log 3 +\log 6 + \log\log(10
 We'll be lazy here and set $\log\log N\ge 300/\delta$ as
 a sufficient condition, which is the bound claimed in the theorem statement.\slug
 
+We can flip the roles of $\delta$ and $N$ to arrive at the following statement,
+equivalent to what we just proved: {\sl Any subset of $[N]$
+of size at least $300/\log\log N$ contains a nontrivial arithmetic progression of length $3$.}
+
 \advsect The Furstenberg--S\'ark\"ozy theorem
 
 In this section, we'll prove a bound on the size of {\it square-difference-free sets}. These are sets
@@ -1074,10 +1078,13 @@ us to increment the density of a set containing a square in its difference set.
 \proclaim Lemma~\advthm.
 Suppose that there is $N\in \NN$ and $A\subseteq [N]$ of density $\delta = |A|/N$ such that
 $A-A$ does not contain any positive square numbers. Then there exists an arithmetic progression
-$P$ of length $\lfloor N^{1/3}\rfloor$ and step size at most $2N^{1/100}$
+$P$ of length $\lfloor N^{1/3}\rfloor$
 such that $|A\cap P| \ge (\delta + c\delta^3)|P|$, where $c$ does not depend on $\delta$ or $N$.
 
-\proof By hypothesis, $n\in [N]$, we have
+The exponents $1/3$ and $1/100$ in this statement are not really important, and the proof
+may be modified to replace these with other small constants if desired.
+
+\proof By hypothesis, for any $n\in [N]$ we have
 $$ \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]} \one_A(n) \one_A\bigl( n+(r+h)^2\bigr) = 0.$$
 Now for $n\in [N]$, note that $n+(r+h)^2$ is in $[N]$ for all
 $n\le N-(N^{1/3}-N^{1/100})^2 = N-O(N^{2/3})$. This means that
@@ -1097,7 +1104,7 @@ Set $f = \one_A - \delta\one_{[N]}$. From the above computations we deduce that
 $$\eqalign{
 \ex_{n\in [N]} &\ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}
 f(n) f\bigl( n+(r+h)^2\bigr) \cr
-&= 
+&=
 \ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}\cr
 &\qquad\qquad\Bigl(\one_A(n)\one_A\bigl(n+(r+h)^2\bigr)
 -\delta\one_A(n)\one_{[N]}\bigl(n+(r+h)^2\bigr) \cr
@@ -1121,7 +1128,7 @@ $$\eqalign{
 \delta^4-O(N^{1/3}) &\le
 \biggl(\ex_{n\in [N]} \bigl| f(n)\bigr| \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in [N^{1/100}]} f\bigl( n+(r+h)^2\bigr)
 \Bigr|\biggr)^2 \cr
-&\le \ex_{n\in [N]} \bigl| f(n) \bigr|^2 
+&\le \ex_{n\in [N]} \bigl| f(n) \bigr|^2
 \ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in N^{1/100}} f\bigl(n+(r+h)^2\bigr)\Bigr|^2\cr
 &= (\delta-\delta^2)
 \ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in N^{1/100}} f\bigl(n+(r+h)^2\bigr)\Bigr|^2,\cr
@@ -1132,17 +1139,17 @@ $$
 \gg {\delta^4\over \delta-\delta^2} \ge \delta^3.$$
 We can rewrite this as
 $$
-\ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} 
+\ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
 f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \gg \delta^3.
 $$
 Replacing $n$ by $n-(r+h)^2$ in the innermost expectation introduces an error term of at most $O(N^{-1/3})$
 and deleting the diagonal case $h=h'$ introduces an error term of at most $O(N^{-1/100})$,
 so we have
 $$\eqalign{
-\ex_{h,h'\in N^{1/100}}&\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} 
+\ex_{h,h'\in N^{1/100}}&\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
 f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \cr
 &\le
-\ex_{h,h'\in N^{1/100}}\Bigl|\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} 
+\ex_{h,h'\in N^{1/100}}\Bigl|\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
 f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \Bigr|\cr
 &\le
 \ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}  \cr
@@ -1196,22 +1203,67 @@ and can unravel the definition of $f$ to obtain
 $${|A\cap P|\over |P|} \ge \delta + c\delta^3,$$
 which is what we wanted.\slug
 
-Recall that at the analogous point in the proof of Roth's theorem, we were able to shift and
+Recall that at this analogous point in the proof of Roth's theorem, we were able to shift and
 rescale our progression to become an interval, and then iterate the argument until the density
 increased above $1$. Unfortunately,
 now we can't simply scale the progression $P$ to transform it into a {\it bona fide} interval, since then
 square differences between elements in $A$ may no longer be square and vice versa. For
-this reason, we will need another lemma that is suited for iteration.
+this reason, we will need another lemma.
 
+\edef\lemfurstenbergsarkozy{\the\thmcount}
 \proclaim Lemma~\advthm.
-Suppose that there is $N\in \NN$ and $A\subseteq [N]$ of density $\delta = |A|/N$ such that
-$A-A$ does not contain any positive square numbers. Then there is a set $A'\subseteq [N^{1/4}]$
-with $A' \ge (\delta + c'\delta^3) N^{1/4}$, where $c$ is an absolute constant, such that $A'-A'$
-also does not contain any squares.
+Suppose that there is $N\in \NN$ and a square-difference-free
+subset $A\subseteq [N]$ of density $\delta = |A|/N$. Then there is a square-difference-free
+subset $A'\subseteq [N^{1/4}]$
+of size $|A'| \ge (\delta + c'\delta^3) N^{1/4}$, where $c$ is an absolute constant.
 
-\proof By the previous lemma, there is a progression $P\subseteq [N]$ of length $\lfloor N^{1/3}$
-and step size $1\le d \le 2N^{1/100}$ such that $|A\cap P|/|P| \ge \delta + c\delta^3$ for an absolute
-constant $c$.
+\proof By the previous lemma, there is a progression $P\subseteq [N]$ of length $\lfloor N^{1/3}\rfloor$
+such that $|A\cap P|/|P| \ge \delta + c\delta^3$ for an absolute
+constant $c$. We can partition this progression into subprogressions of length $\lfloor N^{1/4}\rfloor$
+and step size $d^2$, with a little bit left over at the end that is of size $O(N^{1/4})$. The density
+of $A$ on the union of the progressions is at least $\delta + c\delta^3 - O(N^{-1/12})$,
+which is at least $\delta + c'\delta^3$ for some new absolute constant $c'$. By the pigeonhole principle,
+$A$ has density at least $\delta + c'\delta^3$ on one of the subprogressions, call it
+$$P' = \bigl\{ n' + d^2r' : r'\in [N^{1/4}]\bigr\}.$$
+Now consider the set $A' = \bigl\{ r'\in [N^{1/4}] : n' + d^2 r'\in A\bigr\}$. We claim that
+$A'$ does not contain two elements that differ by a square. For if $A'$ did contain an integer $m$ and $m+s^2$
+for some $s\ne 0$, then we would have $n' + d^2m$ and $m'+d^2(m+s^2)$ in
+$A$, but these two elements differ by $(ds)^2$, and we know that $A$ does not contain two elements
+that differ by a square. This completes the proof.\slug
+
+We are now ready to state and prove a version of the Furstenberg--S\'ark\"ozy theorem.
+
+\parenproclaim Theorem~{\advthm} (Furstenberg, {\rm 1977;} S\'ark\"ozy, {\rm 1978}).
+There is an absolute constant $C$ such that the following holds.
+For all $\delta > 0$ there exists $N \le \bigl\lceil \exp\bigl(\exp(C/\delta^2)\bigr)\bigr\rceil$ such that
+any subset $A\subseteq [N]$
+with $|A|\ge \delta N$ contains two elements whose difference is a positive square integer.
+
+\proof If the theorem does not hold, then there is a square-difference-free subset $A\subseteq [N]$ of density
+at least $\delta$. Then we can repeatedly apply Lemma~{\lemfurstenbergsarkozy}, at each iteration replacing
+$\delta$ by $\delta + c'\delta^3$, where $c'$ is an absolute constant, and replacing $N$ by
+$\lfloor N^{1/4}\rfloor$.
+After $1/(c\delta^2)$ iterations of the increment $\delta\mapsto \delta + c\delta^3$,
+the density at least doubles. Then to double it again we need to iterate $1/\bigl((c(2\delta)^2\bigr)
+= 1/(4c\delta^2)$ times, and so on. In general, after iterating at most
+$$ {1\over c\delta^2} \biggl( 1 + {1\over 4} + {1\over 16} + \cdots\biggr)
+= {4\over 3c\delta^2}$$
+times, the density of the set $A$ will exceed $1$, a contradiction.
+
+To avoid any messiness arising from $N$ eventually equalling $1$, we will insist that in the final
+round of the iteration,
+$N\ge 100$. This means that in the very first step we must have $N^{4^{-4/(3c\delta^2)}} \ge 100$.
+Taking the logarithm of both sides, we need
+$$ 4^{-4/(3c\delta^2)} \log N \ge \log 100,$$
+and then taking the logarithm again makes this equivalent to
+$$\log\log N \ge {4\over 3c'\delta^2} \log 4 + \log\log 100.$$
+There is an absolute constant $C$ such that the condition $\log\log N \ge C/\delta^2$ implies the one above,
+so we see that a sufficient condition on $N$ for this whole argument to work is
+$$ N \ge \exp\bigl(\exp(C/\delta^2)\bigr).\noskipslug$$
+
+What we just proved can equivalently be stated as follows: {\sl There exists a constant $C'$
+such that for all $N$, any subset of $[N]$ with density at least $C'/\sqrt{\log\log N}$ contains
+two elements that differ by a nonzero square.}
 
 \section References
 
