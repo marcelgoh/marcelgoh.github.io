@@ -5,7 +5,7 @@ mathjax: true
 ---
 
 I was once a computer science undergraduate student and wrote a lot of code back then.
-I write less code now as a math graduate student, but it still comes in now and then. Here
+I write less code now as a math graduate student, but it still comes in handy now and then. Here
 are some programs I've written over the years.
 
 ### Literate programs
