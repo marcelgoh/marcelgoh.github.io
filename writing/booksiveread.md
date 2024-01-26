@@ -202,3 +202,8 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Vet's Daughter_ (1959), Barbara Comyns
 1. _Sweet Thursday_ (1954), John Steinbeck
 
+### 2024
+
+1. _Beautiful Losers_ (1966), Leonard Cohen
+1. _Steppenwolf_ (1927), Hermann Hesse
+

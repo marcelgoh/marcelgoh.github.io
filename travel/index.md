@@ -58,7 +58,7 @@ as well. (Click map below for bigger version.)
 
 (This is an SVG I stole from Wikipedia and edited; if you are an SVG guru and
 know how to highlight {France, Morocco, Russia} without
-highlighting {French Guiana, Western Sahara, Crimea} respectively, please email me.)
+highlighting {French Guiana, Western Sahara, Crimea}, please email me.)
 
 Closer to home, I've been to the six non-Maritime provinces, as well as Yukon and the Northwest Territories.
 

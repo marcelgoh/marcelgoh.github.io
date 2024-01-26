@@ -12,12 +12,13 @@
 \def\Bohr{\op{\rm Bohr}}
 \def\Eta{\op{\bf H}}
 \def\II{\op{\bf I}}
+\def\dd{\op{\bf d}}
 \def\given{\mathbin{|}}
 
 \widemargins
-\bookheader{ENTROPY AND THE FREIMAN--RUZSA THEOREM}{MARCEL K. GOH}
+\bookheader{ENTROPY AND ADDITIVE COMBINATORICS}{MARCEL K. GOH}
 
-\maketitle{Entropy and additive combinatorics}{by}{Marcel K. Goh}{23 November 2023}
+\maketitle{Entropy and additive combinatorics}{by}{Marcel K. Goh}{16 January 2024}
 
 \floattext4.5 \ninebf Note.
 \ninepoint This is a gentle introduction to the notion of entropy as it is used
@@ -77,7 +78,7 @@ of the polynomial Freiman--Ruzsa conjecture.
 Notationally, we would expect that $\Eta\{Y\given X\} = \Eta\{Y\}$ if $X$ and $Y$ are independent.
 This is the first proposition we will carefully prove using the axioms above.
 
-\proclaim Let $X$ and $Y$ be independent random variables. Then
+\proclaim Proposition \advthm. Let $X$ and $Y$ be independent random variables. Then
 $\Eta\{Y\given X\} = \Eta\{Y\}$ and consequently
 $\Eta\{X,Y\} = \Eta\{X\} + \Eta\{Y\}$.
 
@@ -85,11 +86,12 @@ $\Eta\{X,Y\} = \Eta\{X\} + \Eta\{Y\}$.
 $Y$ and $Y$ given that $X = x$ is the same, so
 $$\Eta\{Y \given X\} = \sum_{x\in A} \pr\{X = x\} \Eta\{Y\given X = x\} = \sum_{x\in A} \pr\{X = x\} \Eta\{Y\}
 =\Eta\{Y\}.$$
-The second version of the statement is a consequence of the additivity axiom.\slug
+The second version of the statement follows from the additivity axiom.\slug
 
 We will sometimes use the notation $X^n$ to denote the vector $(X_1,\ldots,X_n)$ where the $X_i$
 are independent copies of the random variable $X$.
 
+\edef\corxn{\the\thmcount}
 \proclaim Corollary \advthm. For a discrete random variable $X$, we have $\Eta\{X^n\} = n\Eta\{X\}$.
 
 \proof Perform induction on $n$ and use the previous proposition.\slug
@@ -98,11 +100,67 @@ In the case where $X$ is the uniform distribution on $\{0,1\}$, and $X_1,\ldots,
 and distributed as $X$,
 we can additionally use the normalisation axiom to conclude that
 $$\Eta\{X^n\} = \Eta\{X_1,\ldots,X_n\} = \sum_{i=1}^n \Eta\{X_i\} = \log_2(e)\cdot n,$$
-by induction. For general random variables $X_1,\ldots,X_n$, induction also yields the {\it chain rule}
-$$\Eta\{X_1,\ldots,X_n\} = \Eta\{X_1\} + \Eta\{X_2\given X_1\} + \cdots+\Eta\{X_n \given X_1,\ldots,X_{n-1}\}.$$
+by induction.
 
-Next we show that a constant random variable has zero entropy. This reflects the idea that we get
-no information from sampling a random variable if it always takes the same value no matter what.
+A similar induction on general random variables $X_1,\ldots,X_n$ gives the following statement,
+often known as the {\it chain rule}.
+
+\parenproclaim Proposition~{\advthm} (Chain rule).
+Let $X_1,\ldots,X_n$ be random variables. Then
+$$\Eta\{X_1,\ldots,X_n\} = \Eta\{X_1\} + \Eta\{X_2\given X_1\}
++ \cdots+\Eta\{X_n \given X_1,\ldots,X_{n-1}\}.\noskipslug$$
+
+Next we establish the intuitive fact
+that the entropy of a uniform random variable supported on a set $A$ is at most
+the entropy of a uniform random variable supported on a superset $B$ of $A$.
+
+\edef\propunifineq{\the\thmcount}
+\proclaim Proposition \advthm. Let $A\subseteq B$ with $B$ finite,
+let $X$ be uniformly distributed on $A$, and let $Y$ be uniformly distributed on $B$.
+Then $\Eta\{X\} \le \Eta\{Y\}$, with equality if and only if $A = B$.
+
+\proof By the extensibility axiom, $\Eta\{X\}$ is not affected if we regard $X$ as a function
+taking values in $B$. Then by the maximisation axiom, $\Eta\{X\}\le \Eta\{Y\}$, since $Y$ is
+uniform on $B$. If $A = B$, then it is clear that $\Eta\{X\} = \Eta\{Y\}$, since $X$ and $Y$
+are the same random variable.
+On the other hand, say $|A| = m$ and $|B| = n$ with $m<n$. If $m=1$, then by the previous proposition
+we have $\Eta\{X\} = 0$, and by normalisation and invariance, $\Eta\{Y\} = \log_2(e)$.\slug
+
+If $Y$ is a random variable such that $Y = f(X)$ for some random variable $Y$ and some function $f$,
+then we say that $Y$ is {\it determined by} $X$ or $X$ {\it determines} $Y$.
+We want to show that $\Eta\{Y\}\le \Eta\{X\}$, which reflects the idea that we get more information
+from $X$ than from $Y$. This, rather annoyingly, seems to require two steps.
+
+\proclaim Lemma \advthm. If $Y = f(X)$ then $\Eta\{X\} = \Eta\{Y\} + \Eta\{X\given Y\}$.
+
+\proof There is a a bijection between values $x$ taken
+by $Y$ and values $\bigl(x,f(x)\bigr)$ taken by $(X,Y)$, so we have
+$$\Eta\{X\} = \Eta\{X,Y\} = \Eta\{Y\} + \Eta\{X\given Y\}$$
+by additivity.\slug
+
+We are now done if we can show that entropy is nonnegative.
+This can also be derived straight from the axioms. The following proof is due to S.~Eberhard.
+
+\proclaim Proposition \advthm. Let $X$ be a discrete random variable taking values in a finite
+set $A$. Then $\Eta\{X\} \ge 0$.
+
+\proof First we will work in the case where there exists $n$ such that $\pr\{X = a\}$ is a multiple of
+$1/n$ for all $a\in A$. Let $Y$ be uniformly distributed on $[n]$ and let $\{E_a\}_{a\in A}$
+be a partition of $[n]$ such that $|E_a| = n\pr\{X= a\}$ for all $a\in A$, and let $Z = a$
+if $Y\in E_a$. This definition makes $Z$ and $X$ identically distributed, so $\Eta\{Z\} = \Eta\{X\}$
+by the invariance axiom, and it suffices to prove $\Eta\{Z\} \ge 0$.
+
+Since $Z$ is determined by $Y$, we have $\Eta\{Y\} = \Eta\{Z\} + \Eta\{Y\given Z\}$ by the previous lemma.
+Furthermore, for every $a\in A$, the conditional entropy $\Eta\{Y \given Z = a\}$ is uniformly
+distributed on a set of size at most $n$, whereas is uniformly distributed on $n$, so by
+Proposition~{\propunifineq}, we have $\pr\{Y \given Z = a\} \le \Eta\{Y\}$. This implies
+that $\Eta\{Y\} \ge \Eta\{Y\given Z\}$, which in turn gives us $\Eta\{Z\}\ge 0$.\slug
+
+\proclaim Corollary \advthm. If $Y = f(X)$ then $\Eta\{X\} \ge \Eta\{Y\}$.\slug
+
+Now we show that a random variable has zero entropy if and only if it is constant.
+This reflects the idea that the variables from which we get no information are those which take
+the same value no matter what.
 
 \proclaim Proposition \advthm. Let $X$ be a discrete random variable.
 Then $\Eta\{X\} = 0$ if and only if it takes exactly one value.
@@ -111,56 +169,26 @@ Then $\Eta\{X\} = 0$ if and only if it takes exactly one value.
 Let $a$ be the value of $X$ such that $\pr\{X=a\} = 1$.
 Then $(X,X)$ equals $(a,a)$ with probability $1$ as well,
 so $\Eta\{X\} = \Eta\{X,X\}$ by the invariance axiom. But it can easily be checked that
-$X$ and $(X,X)$ are independent (we have, for example, $\pr\bigl\{X = a, (X,X)= (a,a)\bigr\} =
-\pr\{X = a\}\pr\bigl\{(X,X) = (a,a)\bigr\}$), so $\Eta\{X,X\} = 2\Eta\{X\}$. Thus we conclude
+$X$ and $(X,X)$ are independent (we have
+$$\pr\bigl\{X = a, (X,X)= (a,a)\bigr\} = \pr\{X = a\}\pr\bigl\{(X,X) = (a,a)\bigr\}$$
+for instance), so $\Eta\{X,X\} = 2\Eta\{X\}$. Thus we conclude
 that $\Eta\{X\} = 0$.
 
 Now suppose that $X$ takes more than one value; let $A$ be the set of $a$ such that
-$\pr\{X = a\} > 0$.
-\slug
+$\pr\{X = a\} > 0$ and let $\alpha = \max_{a\in A} \pr\{X = a\}$. For all $n$ let $X^n$ denote
+the tuple of $n$ independent copies of $X$; the maximum probability of any particular value (in $A^n$)
+that $X^n$ takes is $\alpha^n$. But $\alpha < 1$ since $X$ takes more than one value, so for any
+$\eps > 0$ we can find $n$ such that $\alpha^n < \eps$. This means that we can partition $A^n$ into
+two disjoint sets $E$ and $F$ such that $\pr\{X^n \in E\}$ and $\pr\{X^n \in F\}$ are both
+in the range $[1/2-\eps, 1/2+\eps]$.
 
-Now we establish the intuitive fact
-that the entropy of a uniform random variable supported on a set $A$ is at most
-the entropy of a uniform random variable supported on a superset $B$ of $A$.
+Let $Y$ be the random variable taking the value $0$ if $X^n\in E$ and $1$ if $X^n\in F$. Then
+by Corollary~{\corxn}, $\Eta\{X^n\} = n\Eta\{X\}$, and since $X^n$ determines $Y$,
+$$\Eta\{X^n\} = \Eta\{Y\} + \Eta\{X^n\given Y\} \ge \Eta\{Y\}.$$
+But $\Eta\{Y\} > 0$ for $\eps$ small enough, the normalisation and continuity axioms. So
+$\Eta\{X\} \ge \Eta\{Y\}/n > 0$ as well.\slug
 
-\proclaim Proposition \advthm. Let $A\subseteq B$ with $B$ finite,
-let $X$ be uniformly distributed on $A$, and let $Y$ be uniformly distributed on $B$.
-Then $\Eta\{X\} \le \Eta\{Y\}$, with equality if and only if $A = B$.
-
-\proof By the extensibility axiom, $\Eta\{X\}$ is not affected if we regard $X$ as a function
-taking values in $B$. Then by the maximisation axiom, $\eta\{X\}\le \eta\{Y\}$, since $Y$ is
-uniform on $B$. If $A = B$, then it is clear that $\Eta\{X\} = \Eta\{Y\}$, since $X$ and $Y$
-are the same random variable.
-Now say $|A| = m$ and $|B| = n$ with $m<n$. If $m=1$, then by the previous proposition
-we have $\Eta\{X\} = 0$, and $Y$ takes at least two values, 
-
-The next proposition is that $\Eta\{X\}$ is always nonnegative. The following
-proof is attributed to S.~Prendiville.
-
-\proclaim Proposition \advthm. For any random variable $X$ taking values in a finite set $A$,
-we have $\Eta\{X\} \ge 0$.
-
-\proof First we consider the case that there exists $n\in \NN$ such that for all $x\in A$, there is some
-$c_x$ such that $\pr\{X = x\} = c_x/n$. Let $Y$ be uniform on $[n]$ and let $E_x$ be a partition
-of $[n]$ such that $|E_x| = c_x$ for all $x\in X$. Then let $Z$ be given by $Z = x$ if $Y\in E_x$.
-This random variable $Z$ takes values in $A$ and has the exact same distribution as $X$, so
-by the invariance axiom, $\Eta\{X\} = \Eta\{Z\}$.
-This means that $Z = f(Y)$ for some function $f$, meaning that there is a bijection between
-values $y$ taken by $Y$ and values $\bigl(y, f(y)\bigr)$ taken by $(Y,Z)$. So we may apply the invariance
-axiom again to conclude that $\Eta\{Y,Z\} = \Eta\{Y\}$.
-
-Now by the additivity axiom, $\Eta\{Y,Z\} = \Eta\{Y\given Z\} + \Eta\{Z\}$, so we
-have $\Eta\{Y\} = \Eta\{Y\given Z\} + \Eta\{Z\}$. 
-
-If $X$ is a random variable such that $X = f(X)$ for some random variable $Y$, then we say
-that $X$ is {\it determined by} $Y$ or $Y$ {\it determines} $X$. The following proposition formalises
-the idea that we get more information from $Y$ than we get from $X$.
-
-\proclaim Proposition \advthm. Let $X$ and $Y$ be random variables such that $Y$ determines $X$. Then
-$$\Eta\{ X\} \le \Eta\{Y\}.$$
-
-\proof The 
-
+\medskip\boldlabel Mutual information.
 For random variables $X$ and $Y$, the {\it mutual information} $\II\{X : Y\}$ is defined
 by the equivalent formulas
 $$\eqalign{
@@ -171,7 +199,8 @@ $$\eqalign{
 It measures, roughly speaking, how much information one can get from one variable
 by looking at the other one. From the formula it is clear that $\II\{X : Y\}  = 0$
 if and only if $X$ and $Y$ are independent, and we also have the
-inequality $\Eta\{X \given Y\} \le \Eta\{X\}$. Given a triple $(X,Y,Z)$ of random variables,
+inequality $\Eta\{X \given Y\} \le \Eta\{X\}$; that is, {\sl conditioning cannot increase the
+entropy of a random variable}. Given a triple $(X,Y,Z)$ of random variables,
 we can apply this with $(X\given Z = z)$ to obtain the inequality
 $$ \Eta\{ X\given Y,Z\} \le \Eta\{X\given Z\},$$
 which is called {\it submodularity}. An equivalent statement is
@@ -183,41 +212,223 @@ $$\eqalign{
 &= \Eta\{ X, Z\} -2\Eta\{ Z\} + \Eta\{Y,Z\} - \Eta\{ X, Y ,Z \} + \Eta\{Z\}\cr
 &= \Eta\{ X, Z\} + \Eta\{Y,Z\} - \Eta\{ X, Y ,Z \} - \Eta\{Z\},\cr
 }$$
-so we see that submodularity is equivalent to the statement $\II\{X : Y\given Z\} \ge 0$.
+so we see that submodularity of entropy is equivalent to the statement that $\II\{X : Y\given Z\} \ge 0$.
 Analogously to the unconditional case, we have equality if and only if $X$ and $Y$ are
 independent when conditioned on $Z$.
 
-\medskip\boldlabel The formula for entropy.
-Now we finally give the formula for the entropy of a random variable. For a discrete random
-variable $X$, we let $p_X : S\to [0,1]$ denote the probability mass function of $X$, given by
-$p_X(x) = \pr\{X = x\}$ for all $x\in S$. Unless subscripted, $\log$ always denotes the natural logarithm.
+\advsect Group-valued random variables
 
-\proclaim Proposition \advthm. Let $X$ be a random variable taking values in a finite set $S$.
-Then $\Eta\{X\}$ satisfies axioms (a) through (e) as well as the additional normalisation axiom (f)
-if and only if
-$$\Eta\{X\} = \ex\bigl\{ 1/\log p_X(X) \bigr\} = \sum_{x\in S} p_X(x) \log {1\over p_X(s)},$$
-where we adopt the convention that $0\log(1/0) = 0$.
+Now we will examine the case where the random variables in question take values in an abelian group $G$,
+meaning we can take sums $X+Y$ and differences $X-Y$ of them. Note that if we condition on $Y$,
+then the values taken $X+Y$ are in bijection with values taken by $X$. This leads to the following
+proposition.
 
-\proof [TODO: Prove this.]\slug
+\edef\maxsumsetbound{\the\thmcount}
+\proclaim Proposition \advthm. Let $X$ and $Y$ be random variables each taking finitely
+many values in an abelian group $G$.
+We have
+$$\max\bigl( \Eta\{X\}, \Eta\{Y\} \bigr) - \II\{X : Y\} \le \Eta\{ X \pm Y\}.$$
+Furthermore, for any random variable $Z$, we have the conditional version
+$$\max\bigl( \Eta\{X\given Z\}, \Eta\{Y\given Z\} \bigr) - \II\{X : Y\given Z\} \le \Eta\{ X \pm Y\given Z\}$$
+of the same statement.
 
-Equipped now with a formula for the entropy $\Eta\{X\}$ of a random variable $X$, we can prove further useful
-facts. We saw in the previous section that the entropy of a uniform random variable whose range is $\{0,1\}^n$
-is $\log_2(e)\cdot n = \log(2^n)$, and we know, by the maximisation axiom, that this is the largest
-the entropy of any $X$ taking values in $\{0,1\}^n$ can be. The following proposition generalises
-this notion.
-
-\proclaim Proposition \advthm. For any random variable $X$ taking values in a finite set $S$,
-we have
-$$\Eta\{X\} \le \log |S|.$$
-
-\proof By Jensen's inequality, we have
+\proof Since conditioning does not increase entropy, we have
+$$\Eta\{ X\pm Y\} \ge \Eta\{ X\pm Y \given Y\},$$
+and since the probabilities $\pr\{ X + Y = z \given Y = y\} = \pr\{ X = z-y \given Y = y\}$ for all $z\in G$,
+by invariance we have
+$$\Eta\{ X\pm Y\} \ge \Eta\{X\given Y\} = \Eta\{X\} - \II\{X : Y\}.$$
+Repeating the same argument but exchanging the roles of $X$ and $Y$, we get
+$$\Eta\{ X\pm Y\} \ge \Eta\{Y\given X\} = \Eta\{Y\} - \II\{X : Y\},$$
+so
+$$\Eta\{ X\pm Y\} \ge \max\bigl(\Eta\{X\}, \Eta\{Y\}\bigr) - \II\{X : Y\}.$$
+Now let $Z$ be any random variable with finite support.
 $$\eqalign{
-\Eta\{X\} &= \ex\bigl\{ \log(1/p_X(X)\bigr\} \cr
-&\le \log \ex\bigl\{ 1/p_X(X)\bigr\} \cr
-&= \log \sum_{x\in S} \pr\{X = x\} {1\over \pr\{X = x\}} \cr
-&= \log |S|.\noskipslug \cr
+\Eta\{ X\pm Y\given Z\} &= \sum_{z\in G} \pr\{Z = z\} \Eta\{ X \pm Y \given Z = z\} \cr
+&\ge \Bigl(\max\bigl(\Eta\{X\given Z\}, \Eta\{Y\given Z\}\bigr) - \II\{X : Y\given Z\} \Bigr)
+\sum_{z\in G} \pr\{Z = z\} \cr
+&= \max\bigl(\Eta\{X\given Z\}, \Eta\{Y\given Z\}\bigr) - \II\{X : Y\given Z\} ,\cr
+}$$
+which completes the proof.\slug
+
+\proclaim Corollary \advthm. If $X$ and $Y$ are independent, then
+$$\max\bigl( \Eta\{X\}, \Eta\{Y\} \bigr) \le \Eta\{ X \pm Y\}.$$
+
+\proof The mutual information $\II\{X : Y\}$ is zero whenever $X$ and $Y$ are independent.\slug
+
+\medskip\boldlabel Entropic Ruzsa distance.
+In additive combinatorics, whenever we have two finite subsets $A$ and $B$
+of the same abelian group, we can compute the Ruzsa distance
+$$d(A,B) = \log {|A-B|\over \sqrt{|A|\cdot|B|}}$$
+between them. (This satisfies all the axioms of a metric except the one requiring $d(A,A) = 0$ for all sets
+$A$.)
+
+The entropic analogue of the Ruzsa distance is defined as follows.
+For finitely supported random variables $X$ and $Y$ taking values in the same abelian group,
+we let $X'$ and $Y'$ be independent copies of $X$
+and $Y$, respectively, and define the {\it entropic Ruzsa distance} by
+$$\dd\{X,Y\} = \Eta\{X'-Y'\} - {\Eta\{X'\} \over 2} - {\Eta\{Y'\}\over 2}.$$
+This definition only depends on the individual distributions of $X$ and $Y$ and does not require them to
+have the same sample space. Once again, we don't necessarily have $\dd\{X,X\} = 0$, but we do have
+the triangle inequality, which shall now prove.
+
+\proclaim Proposition \advthm. Let $X$, $Y$, and $Z$ be random variables with finite support in the same
+abelian group. Then
+$$\dd\{X,Z\} \le \dd\{X,Y\} + \dd\{Y,Z\},$$
+which is equivalent to
+$$\Eta\{X'-Z'\} \le \Eta\{X'-Y'\} + \Eta\{Y'-Z'\} - \Eta\{Y'\}$$
+for $X'$, $Y'$, and $Z'$ independent and distributed as $X$, $Y$, and $Z$, respectively.
+
+\proof That the two statements are equivalent is easily obtained by expanding the definition of
+entropic Ruzsa distance and cancelling some terms. So without loss of generality, we may assume that
+that $X$, $Y$, and $Z$ are independent and just prove the second statement.
+
+By submodularity, we have $\II\bigl\{ (X-Y : Z) \given X-Z\bigr\} \ge 0$, so
+\edef\eqfirstsubmodularity{\the\eqcount}
+$$\eqalign{
+0 &\le \II\bigl\{ (X-Y : Z) \given X-Z\bigr\} \cr
+&\le \Eta\{X-Y \given X-Z\} + \Eta\{ Z\given X-Z\} - \Eta\{ X-Y, Z \given X-Z\} \cr
+&\le \Eta\{X-Y, X-Z\} + \Eta\{ Z, X-Z\} - \Eta\{ X-Y, Z, X-Z\} - \Eta\{X-Z\}.\cr
+}\adveq$$
+Now, since the values $(x-y,x-z)$ taken by $(X-Y,X-Z)$ are in bijection with values
+$(x-z,y-z)$ taken by $(X-Z, Y-Z)$ via the map $(v,w) \mapsto (w, w-v)$,
+by the invariance axiom we have
+$$\Eta\{X-Y, X-Z\} = \Eta\{X-Z, Y-Z\},$$
+and
+$$\Eta\{X-Y, X-Z\} \le \Eta\{X-Y\} + \Eta\{Y-Z\}$$
+follows by submodularity. Similar invocations of the invariance axiom give
+$$\Eta\{Z, X-Z\} = \Eta\{X,Z\}$$
+and
+$$\Eta\{X-Y, Z, X-Z\} = \Eta\{X,Y,Z\} = \Eta\{X,Z\} + \Eta\{Y\},$$
+where in the latter statement the second equality follows from the fact that $(X,Y)$ and $Z$ are
+independent.
+Substituting these three inequalities into~\refeq{\eqfirstsubmodularity}, we have
+$$0\le \Eta\{X-Y\} + \Eta\{Y-Z\} +\Eta\{X,Z\} -\Eta\{X,Z\} + \Eta\{Y\} - \Eta\{X-Z\},$$
+whence
+$$ \Eta\{X-Z\} \le \Eta\{X-Y\} + \Eta\{Y-Z\} + \Eta\{Y\},$$
+which completes the proof.\slug
+
+We also define a conditional version of the entropic Ruzsa distance. If $X$ and $Y$ are $G$-valued
+random variables with finite support and $Z$ and $W$ are any random variables with finite supports
+$A$ and $B$ respectively, then we define
+$$\dd\{ X\given Z ; Y\given W\} = \sum_{z\in A} \sum_{w\in B} \pr\{Z = z\} \pr\{W=w\}
+\dd\bigl\{ (X\given Z = z) ; (Y\given W=w)\bigr\}.$$
+If $(X',Z')$ and $(Y',W')$ are independent copies of $(X,Z)$ and $(Y,W)$ respectively, then this
+distance is also given by the formula
+$$\dd\{ X\given Z ; Y\given W\} = \Eta\{X'-Y'\given Z',W'\} - {\Eta\{X'\given Z'\}\over 2}
+- {\Eta\{Y'\given W'\}\over 2}.$$
+
+\advsect The Pl\"unnecke--Ruzsa inequality
+
+In additive combinatorics, one of the most useful sumset inequalities is the following.
+
+\parenproclaim Theorem A (Pl\"unnecke--Ruzsa inequality). Let $A$ and $B$ be finite subsets of an
+abelian group and suppose that $|A+B|\le K|A|$ for some constant $K$. Then for any integers
+$r,s\ge 0$, not both zero, we have $|rB-sB| \le K^{r+s}|A|$.\slug
+
+In this section we will develop an entropic analogue of this statement, in which sets are replaced
+by random variables of finite support and cardinality is replaced with the exponential of
+entropy. First, a technical lemma.
+
+\proclaim Lemma \advthm. Let $X$, $Y$, and $Z$ be independent random variables taking values in a common
+abelian group. Then
+$$\Eta\{X+Y+Z\} - \Eta\{X+Y\} \le \Eta\{Y+Z\} -\Eta\{Y\}.$$
+
+\proof By submodularity, the quantity $\II\{ X : Z\given X+Y+Z\}$ is nonnegative, so we have
+$$\eqalign{
+0&\le \II\{ X : Z\given X+Y+Z\} \cr
+&= \Eta\{X, X+Y+Z\} + \Eta\{Z, X+Y+Z\}\cr
+&\qquad\qquad\qquad\qquad- \Eta\{X,Z,X+Y+Z\} - \Eta\{X+Y+Z\}.\cr
+}$$
+Since $X$, $Y$, and $Z$ are independent, we have
+$$\Eta\{X,X+Y+Z\} = \Eta\{X,Y+Z\} = \Eta\{X\} + \Eta\{Y+Z\},$$
+where in the first equality we use invariance. By similar reasoning we have
+$$\Eta\{Z, X+Y+Z\} = \Eta\{Z\} + \Eta\{X+Y\}$$
+and
+$$\Eta\{X,Z,X+Y+Z\} = \Eta\{X\} + \Eta\{Y\} + \Eta\{Z\}.$$
+Plugging these three identities into the inequality above yields
+$$\eqalign{
+0&\le \Eta\{X\} + \Eta\{Y+Z\} + \Eta\{Z\} + \Eta\{X+Y\} \cr
+&\qquad\qquad -\Eta\{X\} - \Eta\{Y\} - \Eta\{Z\} - \Eta\{X+Y+Z\} \cr
+&= \Eta\{Y+Z\} + \Eta\{X+Y\} - \Eta\{Z\} - \Eta\{X+Y+Z\},\cr
+}$$
+whence the claim follows upon rearranging.\slug
+
+From here we are not far from proving the entropic Pl\"unnecke--Ruzsa inequality, a result of T.~Tao.
+
+\proclaim Theorem \advthm. Let $X,Y_1,\ldots,Y_m$ be independent random variables of finite entropy
+taking values in an abelian group $G$, such that
+$$\Eta\{X+Y_i\} \le \Eta\{X\} + \log K_i$$
+for all $1\le i\le m$ and some scalars $K_1,\ldots,K_m\ge 1$. Then
+$$\Eta\{X+Y_1+\cdots+Y_m\} \le \Eta\{X\} + \log(K_1\cdots K_m).$$
+
+\proof We prove the claim by induction on $m$. If $m=1$, then we are done by hypothesis. Now
+suppose that $\Eta\{X+Y_1+\cdots+Y_{m-1}\} \le \Eta\{X\} + \log(K_1\cdots K_{m-1})$. Then by
+the previous lemma, the induction hypothesis, and the hypothesis on $\Eta\{X+Y_m\}$, we have
+$$\eqalign{
+\Eta\{Y_1 + \cdots + Y_{m-1} + X + Y_m\}
+&\le \Eta\{Y_1 + \cdots + Y_{m-1} + X\} \cr
+&\qquad\qquad\qquad\qquad+ \Eta\{X+Y_m\} - \Eta\{X\}\cr
+&\le \Eta\{X\} + \log(K_1\cdots K_{m-1}) + \log K_m\cr
+&\le \Eta\{X\} + \log(K_1\cdots K_m),\cr
+}$$
+which is what we sought to prove.\slug
+
+We can make this look bit more like the version of the Pl\"unnecke--Ruzsa inequality above
+by using the triangle inequality.
+
+\parenproclaim Corollary {\advthm} (Entropic Plunnecke--Ruzsa inequality). Let $X$ and $Y$ be random variables
+with $\Eta\{X+Y\} \le \Eta\{X\} + \log K$. Then for any $r,s\ge 0$ not both zero, we have
+$$\Eta\{ Y_1 + \cdots + Y_r - Z_1 - \cdots - Z_s \} \le \Eta\{X\} + (r+s)\log K,$$
+where $Y_1,\ldots,Y_r,Z_1,\ldots,Z_s$ are independent copies of $Y$.
+
+\proof By the entropic Ruzsa triangle inequality, we have
+$$\eqalign{
+&\Eta\{ Y_1 + \cdots + Y_r - Z_1 - \cdots - Z_s \} \le \cr
+&\qquad\qquad\Eta\{Y_1 + \cdots + Y_r + X\} + \Eta\{-X - Z_1 - \cdots - Z_s\} - \Eta\{-X\}. \cr
+}$$
+The values of $-X$ are in bijection with values of $X$, and the values of $-X-Z_1-\cdots-Z_s$
+are in bijection with the values of $X+Z_1+\cdots+Z_s$ (with the same probabilities in both cases),
+so by the invariance axiom, we have
+$$\eqalign{
+&\Eta\{ Y_1 + \cdots + Y_r - Z_1 - \cdots - Z_s \} \le \cr
+&\qquad\qquad\Eta\{X+Y_1 + \cdots + Y_r\} + \Eta\{X+ Z_1 + \cdots + Z_s\} - \Eta\{X\},\cr
+}$$
+and we can apply the the previous theorem twice to get
+$$\eqalign{
+\Eta\{ Y_1 + \cdots + Y_r - Z_1 - \cdots - Z_s \}  &\le \Eta\{X\} + \log (K^r) + \log (K^s),\cr
+&= \Eta\{X\} + (r+s)\log K.\noskipslug\cr
 }$$
 
+% \medskip\boldlabel The formula for entropy.
+% Now we finally give the formula for the entropy of a random variable. For a discrete random
+% variable $X$, we let $p_X : S\to [0,1]$ denote the probability mass function of $X$, given by
+% $p_X(x) = \pr\{X = x\}$ for all $x\in S$. Unless subscripted, $\log$ always denotes the natural logarithm.
+% 
+% \proclaim Proposition \advthm. Let $X$ be a random variable taking values in a finite set $S$.
+% Then $\Eta\{X\}$ satisfies axioms (a) through (e) as well as the additional normalisation axiom (f)
+% if and only if
+% $$\Eta\{X\} = \ex\bigl\{ 1/\log p_X(X) \bigr\} = \sum_{x\in S} p_X(x) \log {1\over p_X(s)},$$
+% where we adopt the convention that $0\log(1/0) = 0$.
+% 
+% \proof [TODO: Prove this.]\slug
+% 
+% Equipped now with a formula for the entropy $\Eta\{X\}$ of a random variable $X$, we can prove further useful
+% facts. We saw in the previous section that the entropy of a uniform random variable whose range is $\{0,1\}^n$
+% is $\log_2(e)\cdot n = \log(2^n)$, and we know, by the maximisation axiom, that this is the largest
+% the entropy of any $X$ taking values in $\{0,1\}^n$ can be. The following proposition generalises
+% this notion.
+% 
+% \proclaim Proposition \advthm. For any random variable $X$ taking values in a finite set $S$,
+% we have
+% $$\Eta\{X\} \le \log |S|.$$
+% 
+% \proof By Jensen's inequality, we have
+% $$\eqalign{
+% \Eta\{X\} &= \ex\bigl\{ \log(1/p_X(X)\bigr\} \cr
+% &\le \log \ex\bigl\{ 1/p_X(X)\bigr\} \cr
+% &= \log \sum_{x\in S} \pr\{X = x\} {1\over \pr\{X = x\}} \cr
+% &= \log |S|.\noskipslug \cr
+% }$$
 
 \section References
 
