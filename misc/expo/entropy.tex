@@ -11,20 +11,26 @@
 \def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
 \def\Bohr{\op{\rm Bohr}}
 \def\Eta{\op{\bf H}}
+\def\Etaseven{\op{\sevenbf H}}
 \def\II{\op{\bf I}}
 \def\dd{\op{\bf d}}
+\def\ee{\op{\bf e}}
 \def\given{\mathbin{|}}
+\def\argmax{\limitop{arg$\;$max}}
+\def\advthm{\the\sectcount.\the\thmcount\global\advance \thmcount by 1}
+\def\advsect{\global\advance\sectcount by 1\section\the\sectcount\global\thmcount=1. }
+\sectcount=0
 
 \widemargins
 \bookheader{ENTROPY AND ADDITIVE COMBINATORICS}{MARCEL K. GOH}
 
-\maketitle{Entropy and additive combinatorics}{by}{Marcel K. Goh}{16 January 2024}
+\maketitle{Entropy and additive combinatorics}{by}{Marcel K. Goh}{15 February 2024}
 
-\floattext4.5 \ninebf Note.
-\ninepoint This is a gentle introduction to the notion of entropy as it is used
-in additive combinatorics, with a view towards understanding the new proof of the polynomial Freiman--Ruzsa
-conjecture by W.~T.~Gowers, B.~Green, F.~Manners, and T.~Tao. The preliminary portion of
-these notes are largely transcribed from lectures given by W.~T.~Gowers.
+\floattext4.5 \ninebf Abstract.
+\ninepoint These expository notes give a gentle introduction to the notion of entropy as it is used
+in additive combinatorics, with a view towards understanding the proof of the polynomial Freiman--Ruzsa
+conjecture by W.~T.~Gowers, B.~Green, F.~Manners, and T.~Tao. Much of the first section has been
+transcribed from lectures given by W.~T.~Gowers.
 
 \bigskip
 
@@ -60,20 +66,17 @@ where $\Eta\{X,Y\} = \Eta\bigl\{ (X,Y)\bigr\}$ and
 $$ \Eta\{Y\given X\} = \sum_{x\in A} \pr\{X=x\} \Eta\{ Y\given X = x\}.$$
 \medskip
 
-For now, we shall take it on faith that there really exists a function on random variables satisfying
-these axioms. Later on, when we prove this, we will find that actually, the axioms only define entropy
+We shall take it on faith that there really exists a function on random variables satisfying
+these axioms.
+In fact, the axioms only define entropy
 up to a multiplicative constant, so we shall add the following axiom.
+(It is very possible you have met this function somewhere on your travels, but you will not find it anywhere in
+these notes.)
 
 \medskip
 \item{f)} ({\it Normalisation.}) If $X$ is uniformly distributed on $\{0,1\}$, then
-$\Eta\{X\} = \log_2(e)$.
+$\Eta\{X\} = 1$.
 \medskip
-
-It is actually more common (for obvious reasons, especially in computer science)
-for one to set the entropy of a uniform random variable on $\{0,1\}$
-to $1$, but we shall
-follow the convention of Gowers et al., since the eventual goal of these notes is to understand their proof
-of the polynomial Freiman--Ruzsa conjecture.
 
 Notationally, we would expect that $\Eta\{Y\given X\} = \Eta\{Y\}$ if $X$ and $Y$ are independent.
 This is the first proposition we will carefully prove using the axioms above.
@@ -89,23 +92,18 @@ $$\Eta\{Y \given X\} = \sum_{x\in A} \pr\{X = x\} \Eta\{Y\given X = x\} = \sum_{
 The second version of the statement follows from the additivity axiom.\slug
 
 We will sometimes use the notation $X^n$ to denote the vector $(X_1,\ldots,X_n)$ where the $X_i$
-are independent copies of the random variable $X$.
+are independent copies of the random variable $X$. We have the following three corollaries, which
+are each proved by induction. The second also requires the normalisation axiom,
+and the third is often known as the {\it chain rule}.
 
-\edef\corxn{\the\thmcount}
-\proclaim Corollary \advthm. For a discrete random variable $X$, we have $\Eta\{X^n\} = n\Eta\{X\}$.
+\edef\corxn{\the\sectcount.\the\thmcount}
+\proclaim Corollary \advthm. We have $\Eta\{X^n\} = n\Eta\{X\}$.\slug
 
-\proof Perform induction on $n$ and use the previous proposition.\slug
+\edef\cortwon{\the\sectcount.\the\thmcount}
+\proclaim Corollary \advthm. If $X$ is uniformly distributed on a set of size $2^n$, then
+$$\Eta\{X\} = n.\noskipslug$$
 
-In the case where $X$ is the uniform distribution on $\{0,1\}$, and $X_1,\ldots,X_n$ are independent
-and distributed as $X$,
-we can additionally use the normalisation axiom to conclude that
-$$\Eta\{X^n\} = \Eta\{X_1,\ldots,X_n\} = \sum_{i=1}^n \Eta\{X_i\} = \log_2(e)\cdot n,$$
-by induction.
-
-A similar induction on general random variables $X_1,\ldots,X_n$ gives the following statement,
-often known as the {\it chain rule}.
-
-\parenproclaim Proposition~{\advthm} (Chain rule).
+\parenproclaim Corollary~{\advthm} (Chain rule).
 Let $X_1,\ldots,X_n$ be random variables. Then
 $$\Eta\{X_1,\ldots,X_n\} = \Eta\{X_1\} + \Eta\{X_2\given X_1\}
 + \cdots+\Eta\{X_n \given X_1,\ldots,X_{n-1}\}.\noskipslug$$
@@ -114,35 +112,78 @@ Next we establish the intuitive fact
 that the entropy of a uniform random variable supported on a set $A$ is at most
 the entropy of a uniform random variable supported on a superset $B$ of $A$.
 
-\edef\propunifineq{\the\thmcount}
+\edef\propunifineq{\the\sectcount.\the\thmcount}
 \proclaim Proposition \advthm. Let $A\subseteq B$ with $B$ finite,
 let $X$ be uniformly distributed on $A$, and let $Y$ be uniformly distributed on $B$.
 Then $\Eta\{X\} \le \Eta\{Y\}$, with equality if and only if $A = B$.
 
 \proof By the extensibility axiom, $\Eta\{X\}$ is not affected if we regard $X$ as a function
 taking values in $B$. Then by the maximisation axiom, $\Eta\{X\}\le \Eta\{Y\}$, since $Y$ is
-uniform on $B$. If $A = B$, then it is clear that $\Eta\{X\} = \Eta\{Y\}$, since $X$ and $Y$
+uniform on $B$.
+
+If $A = B$, then it is clear that $\Eta\{X\} = \Eta\{Y\}$, since $X$ and $Y$
 are the same random variable.
+
 On the other hand, say $|A| = m$ and $|B| = n$ with $m<n$. If $m=1$, then by the previous proposition
-we have $\Eta\{X\} = 0$, and by normalisation and invariance, $\Eta\{Y\} = \log_2(e)$.\slug
+we have $\Eta\{X\} = 0$, and by normalisation and invariance, $\Eta\{Y\} = 1$.
+When $m\ge 2$, pick $k$ such that $m^k \le n^{k-1}$, so that $|A^k| \le |B^{k-1}|$.
+Then by Corollary~{\corxn} and the inequality we showed in the first paragraph of this proof, we have
+$$n\Eta\{X\} = \Eta\{X^n\} \le \Eta\{X^{n-1}\} = (n-1)\Eta\{Y\},$$
+whence $\Eta\{X\} < \Eta\{Y\}$.\slug
+
+The link between entropy and additive combinatorics is rather a fine one. It is based on the following
+observation. (In this and the rest of the notes, $\lg$ denotes the base-$2$ logarithm. This base can
+be changed by modifying the normalisation axiom.)
+
+\edef\proplogeq{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Let $X$ be a uniform random variable on a finite set $A$.
+Then
+$$\Eta\{X\} = \lg |A|.$$
+
+\proof For any positive integer $n$ we can let
+$X^n$ denote a tuple of independent copies of $X$; Corollary~{\corxn} tells us $\Eta\{X^n\} = n\Eta\{X\}$.
+Let $m$ be such that $2^m \le |A|^n \le 2^{m+1}$ so that
+$${m\over n} \le \lg |A| \le {(m+1)\over n}.$$
+Let $Y$ be uniform on a set of size $2^m$,
+and let $Z$ be uniform on a set of size $2^{m+1}$. Then by Corollary~{\cortwon} we have
+$\Eta\{Y\} = m $ and $\Eta\{Z\} = (m+1)$. Then by Proposition~{\propunifineq}
+we have
+$${m\over n} \le \Eta\{X\} \le {(m+1)\over n}.$$
+In other words, $\Eta\{X\}$ satisfies the same bounds as $\lg |A|$. Taking $n$ large, we can make
+these bounds arbitrarily tight, proving the claim.\slug
+
+The maximisation axiom gives the following corollary.
+
+\edef\corlogineq{\the\sectcount.\the\thmcount}
+\proclaim Corollary \advthm. Let $X$ be a random variable supported on a finite set $A$.
+Then
+$$\Eta\{X\} \le \lg |A|.\noskipslug$$
+
+Hence the entropy $\Eta\{X\}$ is at most the exponential of the size of its support. As we will see,
+simply replacing (logarithms of) cardinalities with entropies, we at useful ``entropic analogues''
+of combinatorial statements. But first, we need more lemmas.
 
 If $Y$ is a random variable such that $Y = f(X)$ for some random variable $Y$ and some function $f$,
 then we say that $Y$ is {\it determined by} $X$ or $X$ {\it determines} $Y$.
 We want to show that $\Eta\{Y\}\le \Eta\{X\}$, which reflects the idea that we get more information
-from $X$ than from $Y$. This, rather annoyingly, seems to require two steps.
+from $X$ than from $Y$. This, rather annoyingly, seems to require a couple of steps.
 
 \proclaim Lemma \advthm. If $Y = f(X)$ then $\Eta\{X\} = \Eta\{Y\} + \Eta\{X\given Y\}$.
 
 \proof There is a a bijection between values $x$ taken
-by $Y$ and values $\bigl(x,f(x)\bigr)$ taken by $(X,Y)$, so we have
+by $X$ and values $\bigl(x,f(x)\bigr)$ taken by $(X,Y)$, so we have
 $$\Eta\{X\} = \Eta\{X,Y\} = \Eta\{Y\} + \Eta\{X\given Y\}$$
-by additivity.\slug
+by invariance and additivity.\slug
 
 We are now done if we can show that entropy is nonnegative.
-This can also be derived straight from the axioms. The following proof is due to S.~Eberhard.
+This is a corollary of the following lemma. The following proof is a modification of
+one due to S.~Eberhard.
 
-\proclaim Proposition \advthm. Let $X$ be a discrete random variable taking values in a finite
-set $A$. Then $\Eta\{X\} \ge 0$.
+\edef\lemmaxprob{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Let $X$ be a discrete random variable supported on a set $A$ and let
+$$a^* = \argmax_{a\in A} \pr\{X = a\}.$$
+Then
+$$\pr\{X = a^*\} \ge 2^{-\Etaseven\{X\}}.$$
 
 \proof First we will work in the case where there exists $n$ such that $\pr\{X = a\}$ is a multiple of
 $1/n$ for all $a\in A$. Let $Y$ be uniformly distributed on $[n]$ and let $\{E_a\}_{a\in A}$
@@ -150,15 +191,38 @@ be a partition of $[n]$ such that $|E_a| = n\pr\{X= a\}$ for all $a\in A$, and l
 if $Y\in E_a$. This definition makes $Z$ and $X$ identically distributed, so $\Eta\{Z\} = \Eta\{X\}$
 by the invariance axiom, and it suffices to prove $\Eta\{Z\} \ge 0$.
 
+For every $a\in A$, the conditional entropy $\Eta\{Y \given Z = a\}$ is uniformly
+distributed on a set of size $|E_a|$. From our choice of $a^*$
+we have $|E_{a^*}| \ge |E_a|$ for all $a\in A$. Hence by Proposition~{\proplogeq}, we have
+$$\Eta\{Y\given Z\} = \sum_{a\in A} \pr\{X = a\} \Eta\{Y\given X = a\}
+\sum_{a\in A} \pr\{X = a\} \log |E_a| \le \log |E_{a^*}|.$$
 Since $Z$ is determined by $Y$, we have $\Eta\{Y\} = \Eta\{Z\} + \Eta\{Y\given Z\}$ by the previous lemma.
-Furthermore, for every $a\in A$, the conditional entropy $\Eta\{Y \given Z = a\}$ is uniformly
-distributed on a set of size at most $n$, whereas is uniformly distributed on $n$, so by
-Proposition~{\propunifineq}, we have $\pr\{Y \given Z = a\} \le \Eta\{Y\}$. This implies
-that $\Eta\{Y\} \ge \Eta\{Y\given Z\}$, which in turn gives us $\Eta\{Z\}\ge 0$.\slug
+So by another invocation of Proposition~{\proplogeq}, we have
+$$\eqalign{
+\Eta\{Z\} &= \Eta\{Y\} - \Eta\{Y\given Z\} \cr
+&\ge \log n - \log |E_{a^*}| \cr
+&\ge \log \biggl({n\over |E_{a^*}|}\biggr) \cr
+&= \log\biggl({1\over \pr\{X = a^*\}}\biggr), \cr
+}$$
+and hence $2^{-\Etaseven\{X\}} = 2^{-\Etaseven\{Z\}} \le \pr\{X = a^*\}$.
 
+The general case follows from the continuity axiom.\slug
+
+This proof came dangerously close to deriving the formula for entropy, but we will not need any such formula,
+so we will refrain from mentioning it.
+From the fact that $\pr\{X = a^*\} \le 1$ we can immediately conclude that entropy is nonnegative.
+
+\edef\corentropynonneg{\the\sectcount.\the\thmcount}
+\proclaim Corollary \advthm. Let $X$ be a discrete random variable taking values in a finite
+set $A$. Then $\Eta\{X\} \ge 0$.\slug
+
+This observation completes the proof that a random variable has a smaller entropy than one by which
+it is determined.
+
+\edef\cordetermines{\the\sectcount.\the\thmcount}
 \proclaim Corollary \advthm. If $Y = f(X)$ then $\Eta\{X\} \ge \Eta\{Y\}$.\slug
 
-Now we show that a random variable has zero entropy if and only if it is constant.
+Next we show that a random variable has zero entropy if and only if it is constant.
 This reflects the idea that the variables from which we get no information are those which take
 the same value no matter what.
 
@@ -198,23 +262,83 @@ $$\eqalign{
 }$$
 It measures, roughly speaking, how much information one can get from one variable
 by looking at the other one. From the formula it is clear that $\II\{X : Y\}  = 0$
-if and only if $X$ and $Y$ are independent, and we also have the
-inequality $\Eta\{X \given Y\} \le \Eta\{X\}$; that is, {\sl conditioning cannot increase the
-entropy of a random variable}. Given a triple $(X,Y,Z)$ of random variables,
-we can apply this with $(X\given Z = z)$ to obtain the inequality
-$$ \Eta\{ X\given Y,Z\} \le \Eta\{X\given Z\},$$
-which is called {\it submodularity}. An equivalent statement is
-$$\Eta\{X,Y,Z\} + \Eta\{Z\} \le \Eta\{X,Z\} + \Eta\{Y,Z\}.$$
-If $Z$ takes values in a set $C$, the {\it conditional mutual information} is defined by
+if $X$ and $Y$ are independent. In general, we still have the inequality $\II\{X : Y\} \ge 0$,
+which a corollary of the following lemma, which expresses the intuitive fact that conditioning
+cannot increase the entropy of a random variable.
+The proof, which is due to C.~West, uses an argument similar to the one
+we used to prove Lemma~{\lemmaxprob}.
+
+\proclaim Proposition {\advthm}. Let $X$ and $Y$ be discrete random variables. Then
+$$\Eta\{X\given Y\} \le \Eta\{X\}.$$
+
+\proof Let $A$ be the support of $X$ and $B$ be the support of $Y$.
+First we consider the case that $X$ is uniform on $A$ (so $A$ is finite). Then by the definition
+of conditional entropy,
+$$\Eta\{X\given Y\} = \sum_{b\in B} \pr\{Y = b\} \Eta\{X \given Y= b\}.$$
+But for each $b$, the random variable $(X\given Y = b)$ takes values in $A$, so its entropy is
+bounded above by $\Eta\{X\}$ by the maximisation axiom. Hence $\Eta\{X\given Y\} \le \Eta\{X\}$.
+
+Next, suppose that $A$ and $B$ are both finite and suppose further that $\pr\{Y = b\}$
+is rational for all $b$. Then there is an integer $n$ and integers $\{m_b\}_{b\in B}$
+such that $\pr\{Y= b\} = m_b/n$ for all $b\in B$. Now partition $[n]$ into sets $\{E_b\}_{b\in B}$,
+where $|E_b| = m_b$ for all $b\in B$. We define a random variable $Z$ by sampling uniformly at
+random from $E_b$ if $Y = b$, and doing so independently of $(X\given Y=b)$. The result is
+a random variable $Z$ that is uniform on $[n]$ and which is independent of $X\given Y$.
+Furthermore, since $Z$ determines $Y$, we have $\Eta\{Z\} = \Eta\{Y,Z\}$ by the invariance
+axiom. Hence
+$$\eqalign{
+\Eta\{X\given Y\} &= \Eta\{X\given Y, Z\} \cr
+&= \Eta\{X,Y,Z\} - \Eta\{Y,Z\} \cr
+&= \Eta\{X,Z\} - \Eta\{Z\} \cr
+&= \Eta\{X\given Z\} \cr
+&\le \Eta\{X\},\cr
+}$$
+where the inequality on the last line follows from the previous paragraph.
+
+The general case follows from the continuity axiom and the fact that any discrete random
+variable can be approximated by discrete random variables with finite support and rational
+probabilities.\slug
+
+By the additivity axiom, the previous proposition is equivalent to
+$$\Eta\{X,Y\} \le \Eta\{X\} + \Eta\{Y\}.$$
+and we shall use this to prove the following submodularity inequality.
+
+\parenproclaim Proposition {\advthm} (Submodularity).
+Suppose $X$, $Y$, $Z$, and $W$ are random variables such that $(Z,W)$ determines
+$X$, $Z$ determines $Y$, and $W$ also determines $Y$. Then
+$$\Eta\{X\} + \Eta\{Y\} \le \Eta\{Z\} + \Eta\{W\}.$$
+
+\proof The hypotheses give the three inequalities
+$$\Eta\{X\} \le \Eta\{Z,W\}, \quad \Eta\{Y\}\le \Eta\{Z\},\quad\hbox{and}\quad \Eta\{Y\}\le \Eta\{W\}.$$
+From this we see that
+$$2\Eta\{X\} + 2\Eta\{Y\} \le 2\Eta\{Z,W\} + \Eta\{Z\} + \Eta\{Y\}.$$
+But then since conditioning does not increase entropy, we have
+$$2\Eta\{X\} + 2\Eta\{Y\} \le 2\Eta\{Z\} + 2\Eta\{Y\},$$
+whence dividing both sides by $2$ completes the proof.\slug
+
+The submodularity inequality is often stated in terms of a triple of random variables in terms of
+the {\it conditional mutual information}, which is defined by
+$$\II\{ X : Y \given Z\} = \sum_{z\in C} p_Z(z) \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\}.$$
+
+\proclaim Proposition \advthm. Let $X$, $Y$, and $Z$ be discrete random variables. Then
+$$\Eta\{X,Y,Z\} + \Eta\{Z\} \le \Eta\{X,Z\} + \Eta\{Y,Z\},$$
+which is equivalent to
+$$\II\{X : Y\given Z\} \ge 0.$$
+
+\proof It is clear from the additivity axiom that both sides in the first
+inequality are equal to $\Eta\{X\} + \Eta\{Y\} + 2\Eta\{Z\}$
+if and only if $X$ and $Y$ are independent conditional on $Z$.
+
+To prove the first inequality, note that $(X,Y,Z)$ is jointly determined by $(X,Z)$ and $(Y,Z)$,
+and $Z$ is determined by both $(X,Z)$ and $(Y,Z)$ separately, then apply the previous proposition.
+Now by the definition of conditional mutual information,
 $$\eqalign{
 \II\{ X : Y \given Z\} &= \sum_{z\in C} p_Z(z) \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\} \cr
 &= \Eta\{ X\given Z\} + \Eta\{Y\given Z\} - \Eta\{ X, Y \given Z \} \cr
 &= \Eta\{ X, Z\} -2\Eta\{ Z\} + \Eta\{Y,Z\} - \Eta\{ X, Y ,Z \} + \Eta\{Z\}\cr
 &= \Eta\{ X, Z\} + \Eta\{Y,Z\} - \Eta\{ X, Y ,Z \} - \Eta\{Z\},\cr
 }$$
-so we see that submodularity of entropy is equivalent to the statement that $\II\{X : Y\given Z\} \ge 0$.
-Analogously to the unconditional case, we have equality if and only if $X$ and $Y$ are
-independent when conditioned on $Z$.
+and this proves that the first statement is equivalent to the second.\slug
 
 \advsect Group-valued random variables
 
@@ -223,7 +347,7 @@ meaning we can take sums $X+Y$ and differences $X-Y$ of them. Note that if we co
 then the values taken $X+Y$ are in bijection with values taken by $X$. This leads to the following
 proposition.
 
-\edef\maxsumsetbound{\the\thmcount}
+\edef\maxsumsetbound{\the\sectcount.\the\thmcount}
 \proclaim Proposition \advthm. Let $X$ and $Y$ be random variables each taking finitely
 many values in an abelian group $G$.
 We have
@@ -258,7 +382,7 @@ $$\max\bigl( \Eta\{X\}, \Eta\{Y\} \bigr) \le \Eta\{ X \pm Y\}.$$
 \medskip\boldlabel Entropic Ruzsa distance.
 In additive combinatorics, whenever we have two finite subsets $A$ and $B$
 of the same abelian group, we can compute the Ruzsa distance
-$$d(A,B) = \log {|A-B|\over \sqrt{|A|\cdot|B|}}$$
+$$d(A,B) = \lg {|A-B|\over \sqrt{|A|\cdot|B|}}$$
 between them. (This satisfies all the axioms of a metric except the one requiring $d(A,A) = 0$ for all sets
 $A$.)
 
@@ -317,11 +441,86 @@ distance is also given by the formula
 $$\dd\{ X\given Z ; Y\given W\} = \Eta\{X'-Y'\given Z',W'\} - {\Eta\{X'\given Z'\}\over 2}
 - {\Eta\{Y'\given W'\}\over 2}.$$
 
+\medskip\boldlabel The sum-difference inequality.
+The Ruzsa triangle inequality bounds the size of a difference set by passing through a different subset. There
+is another inequality that relates the size of a sumset with the size of a difference set.
+If $A$ and $B$ are nonempty finite subsets of an abelian group $G$, then
+$$|A+B| \le {|A-B|^3\over |A||B|}.$$
+If we replace cardinalities by exponentials of entropies, then we obtain the statement of the following
+proposition.
+
+\proclaim Proposition \advthm.
+Let $X$ and $Y$ be independent random variables taking values in the same abelian group. Then
+$$\Eta\{X+Y\} \le 3\Eta\{X-Y\} - \Eta\{X\} - \Eta\{Y\}.$$
+
+Before we proceed to the proof, we establish the following definition, which will be needed later in these
+notes as well. Let $X$ and $Y$ be random variables (not necessarily independent). We say that
+$X_1$ and $Y_1$ are {\it conditionally independent trials of $X$ and $Y$ relative to $Z$} if for all
+$z$ in the range
+of $Z$, the random variables distributed as $(X_1\given Z=z)$ and $(Y_1\given Z=z)$ are independent,
+$(X_1\given Z=z)$ has the same distribution as $(X\given Z=z)$,
+and similarly for $Y_1$ and $Y$.
+In particular, if $X=Y$ and $X_1$ and $X_2$ are conditionally independent trials of $X$ relative
+to $Z$, we have
+$$\Eta\{X_1,X_2\given Z\} = \Eta\{X_1\given Z\} + \Eta\{X_2\given Z\} = 2\Eta\{X\given Z\},$$
+by additivity and independence. From this we obtain
+\edef\eqcondindep{\the\eqcount}
+$$\Eta\{X_1,X_2,Z\} = 2\Eta\{X\given Z\} + \Eta\{Z\} = 2\Eta\{X,Z\} - \Eta\{Z\}.\adveq$$
+It is also important to observe that $(X_1,Z)$ and $(X_2,Z)$ both have the same distributions
+as $(X,Z)$.
+
+\proof Let $(X_1,Y_1)$ and $(X_2,Y_2)$ be conditionally independent trials of $(X,Y)$ relative
+to $X-Y$. Since $(X,Y)$ determines $X-Y$, we have $X_1-Y_1 = =X-Y= X_2-Y_2$. Let $(X_3,Y_3)$ be another
+trial of $(X,Y)$ independent of $(X_1, X_2, Y_1, Y_2)$. Then
+$$X_3 + Y_3 = X_3 + Y_3 + X_1 - Y_1 - X_2 + Y_2 = (X_3-Y_2) - (X_1-Y_3) + X_2 + Y_1,$$
+so $(X_3-Y_2, X_1-Y_3, X_2, Y_1)$ and $(X_3, Y_3)$ each determine $X_3+ Y_3$. On the other hand,
+$(X_3-Y_2, X_1-Y_3, X_2, Y_1)$ and $(X_3,Y_3)$ together determine the sextuple $(X_1,X_2,X_3,Y_1,Y_2,Y_3)$,
+so by the submodularity inequality, we have
+\edef\eqsumdiff{\the\eqcount}
+$$\eqalign{
+\Eta\{X_1,X_2,X_3,Y_1,Y_2,&Y_3\} + \Eta\{X_3+Y_3\} \cr
+&\le \Eta\{X_3-Y_2, X_1-Y_3, X_2, Y_1\} + \Eta\{X_3, Y_3\}.\cr
+}\adveq$$
+We have
+$$\Eta\{X_3,Y_3\} = \Eta\{X,Y\} = \Eta\{X\} + \Eta\{Y\}$$
+by independence of
+$X$ and $Y$, and
+since $(X_3,Y_3)$ and $(X_1,X_2,Y_1,Y_2)$ are independent, we have
+$$\eqalign{
+\Eta\{X_1,X_2,X_3,Y_1,Y_2,Y_3\} &= \Eta\{X_1,X_2,Y_1,Y_2\} + \Eta\{X_3,Y_3\} \cr
+&= \Eta\{X_1, Y_1,X_2,Y_2,X-Y\} + \Eta\{X\} + \Eta\{Y\} \cr
+&= 2\Eta\{X,Y,X-Y\} - \Eta\{X-Y\} + \Eta\{X\} + \Eta\{Y\} \cr
+&= 2\Eta\{X,Y\} - \Eta\{X-Y\} + \Eta\{X\} + \Eta\{Y\}\cr
+&= 3\Eta\{X\} + 3\Eta\{Y\} - \Eta\{X-Y\},\cr
+}$$
+where in the third line we applied~\refeq{\eqcondindep}. On the other hand,
+$$\Eta\{X_3 + Y_3\} = \Eta\{X+Y\}$$
+and
+$$\eqalign{
+\Eta\{X_3-Y_2, &X_1-Y_3, X_2, Y_1\} \cr
+&\le \Eta\{X_3-Y_2\} + \Eta\{X_1-Y_3\} + \Eta\{X_2\} + \Eta\{Y_1\} \cr
+&= 2\Eta\{X-Y\} + \Eta\{X\} + \Eta\{Y\}.
+}$$
+Substituting everything into~\refeq{\eqsumdiff} yields
+$$\eqalign{
+3\Eta\{X\} + 3\Eta\{Y\} - &\Eta\{X-Y\} + \Eta\{X+Y\} \cr
+&\le 2\Eta\{X-Y\} + 2\Eta\{X\} + 2\Eta\{Y\},
+}$$
+and the desired inequality follows upon rearrangement of terms.\slug
+
+The entropic sum-difference inequality can also be stated in terms of entropic Ruzsa distances;
+independence is not necessary here because independent trials are baked into the definition
+of entropic Ruzsa distance.
+
+\proclaim Corollary \advthm. Let $X$ and $Y$ be discrete random variables taking values in the same
+abelian group. Then
+$$\dd\{X, -Y\} \le 3\dd\{X,Y\}.\noskipslug$$
+
 \advsect The Pl\"unnecke--Ruzsa inequality
 
 In additive combinatorics, one of the most useful sumset inequalities is the following.
 
-\parenproclaim Theorem A (Pl\"unnecke--Ruzsa inequality). Let $A$ and $B$ be finite subsets of an
+\parenproclaim Theorem {\advthm} (Pl\"unnecke--Ruzsa inequality). Let $A$ and $B$ be finite subsets of an
 abelian group and suppose that $|A+B|\le K|A|$ for some constant $K$. Then for any integers
 $r,s\ge 0$, not both zero, we have $|rB-sB| \le K^{r+s}|A|$.\slug
 
@@ -399,36 +598,302 @@ $$\eqalign{
 &= \Eta\{X\} + (r+s)\log K.\noskipslug\cr
 }$$
 
-% \medskip\boldlabel The formula for entropy.
-% Now we finally give the formula for the entropy of a random variable. For a discrete random
-% variable $X$, we let $p_X : S\to [0,1]$ denote the probability mass function of $X$, given by
-% $p_X(x) = \pr\{X = x\}$ for all $x\in S$. Unless subscripted, $\log$ always denotes the natural logarithm.
-% 
-% \proclaim Proposition \advthm. Let $X$ be a random variable taking values in a finite set $S$.
-% Then $\Eta\{X\}$ satisfies axioms (a) through (e) as well as the additional normalisation axiom (f)
-% if and only if
-% $$\Eta\{X\} = \ex\bigl\{ 1/\log p_X(X) \bigr\} = \sum_{x\in S} p_X(x) \log {1\over p_X(s)},$$
-% where we adopt the convention that $0\log(1/0) = 0$.
-% 
-% \proof [TODO: Prove this.]\slug
-% 
-% Equipped now with a formula for the entropy $\Eta\{X\}$ of a random variable $X$, we can prove further useful
-% facts. We saw in the previous section that the entropy of a uniform random variable whose range is $\{0,1\}^n$
-% is $\log_2(e)\cdot n = \log(2^n)$, and we know, by the maximisation axiom, that this is the largest
-% the entropy of any $X$ taking values in $\{0,1\}^n$ can be. The following proposition generalises
-% this notion.
-% 
-% \proclaim Proposition \advthm. For any random variable $X$ taking values in a finite set $S$,
-% we have
-% $$\Eta\{X\} \le \log |S|.$$
-% 
-% \proof By Jensen's inequality, we have
-% $$\eqalign{
-% \Eta\{X\} &= \ex\bigl\{ \log(1/p_X(X)\bigr\} \cr
-% &\le \log \ex\bigl\{ 1/p_X(X)\bigr\} \cr
-% &= \log \sum_{x\in S} \pr\{X = x\} {1\over \pr\{X = x\}} \cr
-% &= \log |S|.\noskipslug \cr
-% }$$
+\advsect The Balog--Szemer\'edi--Gowers theorem
+
+If $A$ and $B$ are subsets of the same abelian group such that $|A+B|$ is much smaller than $|A|\cdot|B|$,
+then it stands to reason that there must be a lot of redundancy in $A+B$; that is, many elements of $A+B$ can
+be expressed as $a+b$ in lots of different ways. To capture this notion, we can define the
+{\it additive energy} between two sets $A$ and $B$ to be
+$$E(A,B) = \bigl| \bigl\{ (a,a',b,b') \in A\times A\times B\times B : a + b = a'+b'\bigr\}\bigr\}.$$
+
+We now define an entropic version of $E(A,B)$. Let $X$ and $Y$ be discrete random variables taking values
+in the same
+abelian group. Let $(X_1, Y_1)$ and $(X_2, Y_2)$ be conditionally independent trials of $(X,Y)$ relative to
+$X+Y$. These  $X_1 + Y_1 = X_2 + Y_2 = A+B$.
+The {\it entropic additive energy} between $X$ and $Y$ is
+$$ \ee\{X,Y\} = \Eta\{X_1, Y_1, X_2, Y_2\}.$$
+This definition makes clear the analogy between this value and the additive energy of sets, but
+by conditional independence and the fact that $(X_1, Y_1, X_2, Y_2)$ determines $X_1+Y_1 = X+Y$,
+we can rewrite
+$$\eqalign{
+\ee\{X,Y\} &= \Eta\{X_1, Y_1, X_2, Y_2, X+Y\} \cr
+&= 2\Eta\{X,Y,X+Y\} - \Eta\{X+Y\} \cr
+&= 2\Eta\{X,Y\} - \Eta\{X+Y\},\cr
+}$$
+where in the second equality we applied~\refeq{\eqcondindep}. This formula is something we will use
+often, as it makes no direct mention of the variables $(X_1, Y_1)$ and $(X_2,Y_2)$.
+
+Quantifying the idea that small sumset must imply large additive energy, we have the following
+proposition.
+
+\edef\propinversebalog{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm.
+Let $A$ and $B$ be finite subsets of an abelian group.
+If $|A+B|\le K|A|^{1/2} |B|^{1/2}$ for some constant $K$, then we have
+$$E(A,B) \ge {1\over K} |A|^{3/2} |B|^{3/2}.\noskipslug$$
+
+Somewhat surprisingly, if we convert
+these statements into their entropic analogues in the na\"ive way, as we've been doing,
+the implication goes the other way!
+However, we have a weak equivalence (with worse constants in one direction)
+under the further assumption that the random variables in
+question are not too dependent.
+
+\edef\propnaive{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Let $X$ and $Y$ be discrete random variables taking values in the
+same abelian group. If
+\global\edef\eqenergybound{\the\eqcount}
+$$\ee\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2}\Eta\{Y\} - \log K,\adveq$$
+for some constant $K$, then
+\global\edef\eqsumbound{\the\eqcount}
+$$\Eta\{ X+Y\} \le {1\over 2} \Eta\{X\} + {1\over 2} \Eta\{Y\} + \log K.\adveq$$
+If one adds the further assumption that
+$\Eta\{X,Y\} \ge \Eta\{X\} + \Eta\{Y\} - C$,
+then~{\rm \refeq{\eqsumbound}} implies~{\rm \refeq{\eqenergybound}} with a worse constant, namely,
+we may only conclude
+\global\edef\eqworsebound{\the\eqcount}
+$$\ee\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2}\Eta\{Y\} - \log K - 2C.\adveq$$
+In particular, if $X$ and $Y$ are independent, then we can recover~{\rm \refeq{\eqenergybound}}
+from~{\rm \refeq{\eqsumbound}}.
+
+\proof Assuming the lower bound on the additive energy, we have
+$$2\Eta\{X,Y\} - \Eta\{X+Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2} \Eta\{Y\} - \log K,$$
+so
+$$\eqalign{
+\Eta\{X+Y\} &\le 2\Eta\{X,Y\} - {3\over 2} \Eta\{X\} - {3\over 2} \Eta\{Y\} + \log K \cr
+&\le 2\Eta\{X\} + 2\Eta\{Y\} - {3\over 2} \Eta\{X\} - {3\over 2} \Eta\{Y\} + \log K \cr
+&= {1\over 2} \Eta\{X\} + {1\over 2} \Eta\{Y\} + \log K .\cr
+}$$
+On the other hand, assuming this upper bound on $\Eta\{X+Y\}$, we have
+$$\eqalign{
+\ee\{X,Y\} &= 2\Eta\{X,Y\} - \Eta\{X+Y\}  \cr
+&\ge 2\Eta\{X,Y\} - {1\over 2} \Eta\{X\} - {1\over 2} \Eta\{Y\} - \log K ,\cr
+}$$
+and if $2\Eta\{X,Y\} \ge 2 \Eta\{X\} + 2\Eta\{Y\} - 2C$, then~\refeq{\eqworsebound} follows
+directly.\slug
+
+The fact that the implication goes the ``wrong'' way may seem somewhat baffling at first. We will now get
+to the bottom of this.
+If $A$ and $B$ are subsets of a finite abelian group, we can let $X$ and $Y$ be the uniform
+distributions on $A$ and $B$, respectively. We have been operating under the belief that $\Eta\{X+Y\}$
+should correspond (up to taking powers or logarithms) to the size of $A+B$. But this is not true, since
+$X$ and $Y$ may be given a joint distribution that is not uniform on $A\times B$, even if
+its marginals are uniform on $A$ and $B$.
+
+For example, let $A$ and $B$ be subsets of $G$ and consider any regular bipartite graph $H$ on the
+vertex set $A\cup B$. Let $(X,Y)$ be defined by sampling an edge from $H$ uniformly at random, letting
+$X$ be its endpoint in $A$ and $Y$ be its endpoint in $B$. Since the graph is regular, $X$ is uniform
+on $A$ and $Y$ is uniform on $B$, but $X+Y$ can only take values $a+b$ where $(a,b)$ is an edge of $H$.
+In other words, $X+Y$ samples from the {\it partial sumset}
+$$ A +_H B = \bigl\{ a + b : (a,b)\in E(H)\bigr\},$$
+where elements that are represented more times as the sum of edge endpoints are given a greater weight.
+The way to properly recover the ordinary sumset $A+B$ is to let $H$ be all of $A\times B$, in which case
+$X$ and $Y$ are independent. The extra assumption we added in Proposition~{\propnaive} is analogous to
+stipulating that $|H| \ge K |A|\cdot |B|$, so that the resulting $X$ and $Y$ are ``nearly'' independent.
+
+Simply put, in the entropic setting the bound~\refeq{\eqenergybound} is
+stronger than~\refeq{\eqsumbound} because the entropy $\Eta\{X,Y\}$ of the joint distribution appears in
+the formula for $\ee\{X,Y\}$, whereas~\refeq{\eqsumbound} says nothing whatsoever about this joint distribution.
+
+The converse to Proposition~{\propinversebalog} does not hold in general; that is, large additive energy
+does not necessarily imply a small sumset. However, there does exist a partial converse,
+which says that if sets $A$ and $B$ have a large additive energy, then there are dense subsets $A'\subseteq A$
+and $B'\subseteq B$ such that the sumset $|A+B|$ is small. This is the celebrated
+Balog--Szemer\'edi--Gowers theorem.
+
+\parenproclaim Theorem {\advthm} (Balog--Szemer\'edi--Gowers theorem). Let $A$ be a finite
+subset of an abelian group with $E(A,B) \ge c |A|^{3/2} |B|^{3/2}$. Then there are subsets
+$A'\subseteq A$ and $B'\subseteq B$ with $|A'| \ge c' |A|$ and $|B'|\ge c''|B|$ such that
+$$|A'+B'| \le C |A|^{1/2}|B|^{1/2},$$
+where $c'$, $c''$, and $C$ depend only on $c$.
+
+In the entropy setting, the operation on random variables that corresponds to taking subsets is
+to conditioning. (As a sanity check, recall that conditioning never increases entropy, just
+as taking subsets never increases cardinality.) The Balog--Szemer\'edi--Gowers theorem gives
+us subsets between which we can take a {\it bona fide} sumset, so its entropic analogue
+should return conditionings $X'$ and $Y'$ of $X$ and $Y$ relative to some random variable $Z$,
+such that
+\medskip
+\item{i)} $X'$ and $Y'$ are conditionally independent relative to $Z$;
+\smallskip
+\item{ii)} the entropies $\Eta\{X'\given Z\}$ and
+$\Eta\{Y'\given Z\}$ are not too small compared to their unconditioned analogues; and
+\smallskip
+\item{iii)} $\Eta\{X'+Y'\given Z\}$ is small.
+\medskip
+In fact, the conditioning we shall perform is exactly the one used to define additive energy.
+
+First, we need a lemma, which we state separately since it will also be used later in the proof of
+the polynomial Freiman--Ruzsa theorem.
+
+\edef\lematwo{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Let $X$ and $Y$ be discrete random variables taking values in the same abelian
+group. Let $(X_1, Y_1)$ and $(X_2,Y_2)$ be conditionally
+independent trials of $(X,Y)$ relative to $X+Y$. Then we have
+$$\max\bigl(\Eta\{X_1- X_2\}, \Eta\{X_1-Y_2\}\bigr) \le \Eta\{X+Y\} - \II\{X:Y\}.$$
+The right-hand side of this expression can also be written $2\Eta\{X\} + 2\Eta\{Y\} - \ee\{X,Y\}$.
+
+\proof First we perform the proof for $X_1 - Y_2$.
+Submodularity gives us
+$$\Eta\{X_1, Y_1, X_1-Y_2\} + \Eta\{X_1-Y_2\} \le
+\Eta\{ X_1, X_1-Y_2\} + \Eta\{Y_1, X_1-Y_2\}.$$
+Since $X_1 + Y_1 = X+Y = X_2 + Y_2$, given $(X_1, Y_1, X_1-Y_2)$ we can recover
+the values of $X_2$ and $Y_2$. So $(X_1, Y_1, X_1-Y_2)$ and $(X_1,Y_1,X_2,Y_2)$ determine each
+other and hence
+$$\Eta\{X_1, Y_1, X_1-Y_2\} = \Eta\{X_1, Y_1, X_2, Y_2\} = 2\Eta\{X,Y\} - \Eta\{X+Y\}.$$
+On the other side of the inequality, we have
+$$\Eta\{ X_1, X_1-Y_2\} = \Eta\{X_1, Y_2\} \le \Eta\{X\} + \Eta\{Y\},$$
+and similarly
+$$\Eta\{ Y_1, X_1-Y_2\} = \Eta\{Y_1, X_2-Y_1\} = \Eta\{X_2, Y_1\} \le \Eta\{X\} + \Eta\{Y\}.$$
+Therefore,
+$$\eqalign{
+\Eta\{X_1-Y_2\} &\le \Eta\{X+Y\} - 2\Eta\{X,Y\} + 2\Eta\{X\} + 2\Eta\{Y\} \cr
+&= \Eta\{X+Y\} - \II\{X : Y\}.\cr
+}$$
+The same holds with the roles of $X_2$ and $Y_2$ exchanged.\slug
+
+\parenproclaim Theorem {\advthm} (Entropic Balog--Szemer\'edi--Gowers theorem).
+Let $X$ and $Y$ be discrete random variables taking values in the same abelian group, and
+suppose that
+$$\ee\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2} \Eta\{Y\} + \log K$$
+for some constant $K$.
+Then letting $(X_1, Y_1)$ and $(X_2,Y_2)$ be conditionally
+independent trials of $(X,Y)$ relative to $X+Y$, we have
+$$ \Eta\{ X_1 \given X+Y\} \ge \Eta\{X\} - 2\log K$$
+and
+$$ \Eta\{ Y_2 \given X+Y\} \ge \Eta\{Y\} - 2\log K.$$
+Furthermore, the variables $X_1$ and $Y_2$ are conditionally independent relative to $X+Y$, and
+we have
+$$\Eta\{ X_1 + Y_2 \given X+Y\} \le {1\over 2}\Eta\{X\} + {1\over 2} \Eta\{Y\} + \log K.$$
+
+\proof Using the coupling $X+Y = X_1+Y_1 = X_2 + Y_2$, we have
+$$\eqalign{
+\Eta\{X_1\given X + Y\} &= \Eta\{X_1, X_1+Y_1\} - \Eta\{X+Y\} \cr
+&= \Eta\{X,Y\} - \Eta\{X+Y\} \cr
+&= \ee\{X,Y\} - \Eta\{X,Y\} \cr
+&\ge {3\over 2} \Eta\{X\} + {3\over 2} \Eta\{Y\} - \log K - \Eta\{X,Y\} \cr
+&\ge {1\over 2} \Eta\{X\} + {1\over 2}\Eta\{Y\} -\log K.\cr
+}$$
+where in the fourth line we used the hypothesis on $\ee\{X,Y\}$, and in the last line we observed
+that $\Eta\{X\} + \Eta\{Y\} - \Eta\{X,Y\} \ge 0$. The bound
+$$\Eta\{Y_2, X+Y\} \ge {1\over 2} \Eta\{X\} + {1\over 2}\Eta\{Y\} -\log K$$
+is shown in the exact same way; only the first step differs.
+
+Now, taking the sum of both these bounds, we arrive at
+$$\Eta\{X_1\given X+Y\} + \Eta\{Y_2 \given X+Y\} \ge \Eta\{X\} + \Eta\{Y\} - 2\log K.$$
+From this one deduces
+$$\eqalign{
+\Eta\{X_1\given X+Y\} &\ge \Eta\{X\} + \Eta\{Y_2\} - \Eta\{Y_2\given X+Y\}  - 2\log K \cr
+&\ge \Eta\{X\} - 2\log K.\cr
+}$$
+The corresponding lower bound on $\Eta\{Y_2\given X+Y\}$ is proved similarly.
+
+It remains to prove the upper bound on $\Eta\{X_1 + Y_2 \given X+Y\}$.
+Note that $(X_1, Y_2, X+Y)$ and $(X_1 - X_2, X+Y)$ jointly determine $(X_1, X_2, X+Y)$.
+Then given $X_1 - X_2$ and $X+Y$ we can calculate
+$$X_1 + Y_2 = X_1 - X_2 + X_2 + Y_2 = (X_1 - X_2) + (X+Y),$$
+so $(X_1, Y_2, X+Y)$ and $(X_1 - X_2, X+Y)$
+each separately determine $(X_1 + Y_2, X+Y)$. Hence the submodularity inequality yields
+$$ \Eta\{X_1, X_2, X+Y\} + \Eta\{X_1+Y_2, X+Y\} \le \Eta\{X_1, Y_2, X+Y\} + \Eta\{X_1- X_2, X+Y\}.$$
+From $(X_1, X_2, X+Y)$
+we can calculate $Y_1 = X+Y-X_1$ and $Y_2 = X+Y-X_2$, so this triple and the triple
+$(X_1, X_2, Y_1, Y_2)$ determine each other. So the first term above is simply the additive energy
+between $X$ and $Y$; that is
+$$ \Eta\{X_1, X_2, X+Y\} = \Eta\{X_1, X_2, Y_1, Y_2\} = 2\Eta\{X,Y\} - \Eta\{X+Y\}.$$
+Now since $X_1$ and $Y_2$ are conditionally independent relative to $X+Y$, we have
+$$\eqalign{
+\Eta\{X_1, Y_2, X+Y\} &= \Eta\{X_1, X+Y\} + \Eta\{Y_2, X+Y\} - \Eta\{X+Y\} \cr
+&= \Eta\{X, X+Y\} + \Eta\{Y, X+Y\} - \Eta\{X+Y\} \cr
+&= 2\Eta\{X,Y\} - \Eta\{X+Y\} \cr
+}$$
+For the last term above we split
+$$\Eta\{X_1 - X_2, X+Y\} = \Eta\{X_1 - X_2 \given X+Y\} - \Eta\{X+Y\}.$$
+Putting everything together, we obtain
+$$\eqalign{
+2\Eta\{X,Y\} - \Eta\{X+&Y\} + \Eta\{X_1 + Y_2, X+Y\} \cr
+&\le 2\Eta\{X,Y\} + \Eta\{X_1-X_2\given X+Y\} - 2\Eta\{X+Y\},\cr
+}$$
+so that
+$$\Eta\{ X_1 + Y_2\given X+Y\} \le \Eta\{X_1 - X_2\given X+Y\} - 2\Eta\{X+Y\}\le \Eta\{X_1 - X_2\}.$$
+The previous lemma then gives
+$$\Eta\{ X_1 + Y_2\given X+Y\} \le 2\Eta\{X\} + 2\Eta\{Y\} - \ee\{X,Y\},$$
+and from our lower bound on $\ee\{X,Y\}$, we conclude that
+$$\Eta\{ X_1 + Y_2\given X+Y\} \le {1\over 2} \Eta\{X\} + {1\over 2} \Eta\{Y\} + \log K,$$
+which is what we wanted to show.\slug
+
+\advsect The Freiman--Ruzsa theorem
+
+Both Pl\"unnecke's theorem and the Balog--Szemer\'edi--Gowers theorem have to do with the ratio $|A+A|/|A|$
+of a finite set $A$. Let us now give this ratio a name. It is called the {\it doubling constant} of $A$.
+Pl\"unnecke's theorem says that if the doubling constant is at most $K$,
+then the ratio $|rA-sA|/|A|$ is at most $K^{r+s}$. The Balog--Szemer\'edi--Gowers theorem, on the other hand,
+says that sets $A$ with large additive energy contain large subsets $A$ and $A''$ such that
+$|A' + A''|/|A|$ is bounded from above by some constant.
+
+It is natural to ask whether there is some way to characterise the structure of sets $A$ with small doubling
+constant (in some asymptotic sense). One reason why $A$ might have $|A+A|\le K|A|$ is if $A$ is contained
+in some subgroup $H$, since subgroups are closed under addition. If $H$ is not much larger than $A$,
+then this would explain why the doubling constant of $A$ is small. It turns out that the converse of
+this statement holds; that is, if $A$ has small doubling constant, then it has high density as a subset
+of a subgroup. This is called the Freiman--Ruzsa theorem.
+
+\parenproclaim Theorem {\advthm} (Freiman--Ruzsa theorem). Let $A\subseteq G = (\ZZ/r\ZZ)^n$ and suppose
+that $|A+A|\le K|A|$. Then there is a subgroup $H$ of $G$ such that $A\subseteq H$ and $|H|\le K'|A|$,
+where $K'$ depends only on $K$ and $r$.
+
+But subspaces may not be a very efficient way of covering sets with small doubling. One can easily
+cook up examples where there is enough linear independence in $A$ so that the smallest subspace
+containing $A$ has size exponential in $|A|$.
+
+Returning to first
+principles, observe that if the doubling
+constant of $A$ is $1$, then the structure of $A$ is completely determined, as shown by the following proposition.
+
+\proclaim Proposition \advthm. Let $A$ be a finite subset of an abelian group $G$. If $|A+A| = |A|$,
+then $A$ is a coset of a subgroup $H$.
+
+\proof First we assume that $A$ contains $0$. Then
+$$A = A + \{0\} \subseteq A+A,$$
+but since $|A+A| = |A|$ this implies that $A+A = A$. Now let $H = \{h\in G : A + h = A$. The above observation
+shows that $A\subseteq H$. But if $h\in H$, then $A = A+h$ contains the element $0+h = h$, so in
+fact $H=A$.
+
+If $x,y\in H$, then $A+x = A$ and $A+y=A$, so adding $y$ to both sides of the second identity we obtain
+$A-y = A$, and adding $x$ to both sides of this, we get
+$$A + x-y = A+x = A,$$
+so $x-y\in H$.
+This along with the fact that $0\in H$ shows that $H$ is a subgroup of $G$.
+
+Thus in the case where $A$ contains $0$, we see that $A$ is actually a subgroup of $G$, and
+in the general case we may translate $A$ without changing $|A+A|$, so $A$ is the translate of a subgroup;
+that is, $A$ is a coset of $H$.\slug
+
+So in the case that $A$ is a union of not too many cosets, we also expect $A+A$ to be quite small, since
+each individual coset does not grow under addition (the only possible growth comes from additions between cosets).
+
+It is believed that the converse of this statement holds and yields a more efficient version
+of the Freiman--Ruzsa theorem; that is,
+if $A$ has doubling constant bounded above by $K$, then $A$ is contained in a union of cosets,
+where the number of cosets needed can be taken to be no more than polynomial in the doubling constant.
+This conjecture is due to K.~Marton.
+
+\proclaim Conjecture \advthm. Let $A\subseteq \bigl(\ZZ/r\ZZ\bigr)^n$ have $|A+A|\le K|A|$
+for some constant $K$. Then there is a subgroup $H$ with $|H|\le |A|$ such that $A$
+is contained in a union of $K^C$ cosets of $H$, where $C$ is a constant that can depend
+on $r$ but not on $n$ or $K$.
+
+In 2023, the first special case of this conjecture was proved by W.~T.~Gowers, B.~Green, F.~Manners, and
+T.~Tao.
+
+\edef\thmpfr{\the\sectcount.\the\thmcount}
+\parenproclaim Theorem {\advthm} (Gowers--Green--Manners--Tao, {\rm 2023}).
+There is a constant $C$ such that the following holds.
+Let $A\subseteq \FF_2^n$ have $|A+A|\le K|A|$
+for some constant $K$. Then there is a subgroup $H$ with $|H|\le |A|$ such that $A$
+is contained in a union of $2K^C$ cosets of $H$.
+
+The proof, which is almost entirely information-theoretic in nature, will be our main concern for the
+remainder of these notes.
 
 \section References
 
