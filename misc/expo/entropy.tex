@@ -15,8 +15,10 @@
 \def\II{\op{\bf I}}
 \def\dd{\op{\bf d}}
 \def\ee{\op{\bf e}}
+\def\P{{\cal P}}
 \def\given{\mathbin{|}}
-\def\argmax{\limitop{arg$\;$max}}
+\def\argmax{\limitop{\rm arg$\,$max}}
+\def\dTV{d_{\rm TV}}
 \def\advthm{\the\sectcount.\the\thmcount\global\advance \thmcount by 1}
 \def\advsect{\global\advance\sectcount by 1\section\the\sectcount\global\thmcount=1. }
 \sectcount=0
@@ -24,7 +26,7 @@
 \widemargins
 \bookheader{ENTROPY AND ADDITIVE COMBINATORICS}{MARCEL K. GOH}
 
-\maketitle{Entropy and additive combinatorics}{by}{Marcel K. Goh}{15 February 2024}
+\maketitle{Entropy and additive combinatorics}{}{Marcel K. Goh}{15 February 2024}
 
 \floattext4.5 \ninebf Abstract.
 \ninepoint These expository notes give a gentle introduction to the notion of entropy as it is used
@@ -66,11 +68,16 @@ where $\Eta\{X,Y\} = \Eta\bigl\{ (X,Y)\bigr\}$ and
 $$ \Eta\{Y\given X\} = \sum_{x\in A} \pr\{X=x\} \Eta\{ Y\given X = x\}.$$
 \medskip
 
+The continuity axiom presupposes a topology on the set of all distributions on the target
+space of $X$. This topology will only be important here and there, so we will not give a complete
+description of it now, but simply introduce the relevant properties as needed later on.
+
 We shall take it on faith that there really exists a function on random variables satisfying
 these axioms.
 In fact, the axioms only define entropy
 up to a multiplicative constant, so we shall add the following axiom.
-(It is very possible you have met this function somewhere on your travels, but you will not find it anywhere in
+(It is very possible you have met the formula for entropy
+somewhere on your travels, but you will not find it anywhere in
 these notes.)
 
 \medskip
@@ -179,7 +186,7 @@ We are now done if we can show that entropy is nonnegative.
 This is a corollary of the following lemma. The following proof is a modification of
 one due to S.~Eberhard.
 
-\edef\lemmaxprob{\the\sectcount.\the\thmcount}
+\edef\propmaxprob{\the\sectcount.\the\thmcount}
 \proclaim Proposition \advthm. Let $X$ be a discrete random variable supported on a set $A$ and let
 $$a^* = \argmax_{a\in A} \pr\{X = a\}.$$
 Then
@@ -266,7 +273,7 @@ if $X$ and $Y$ are independent. In general, we still have the inequality $\II\{X
 which a corollary of the following lemma, which expresses the intuitive fact that conditioning
 cannot increase the entropy of a random variable.
 The proof, which is due to C.~West, uses an argument similar to the one
-we used to prove Lemma~{\lemmaxprob}.
+we used to prove Proposition~{\propmaxprob}.
 
 \proclaim Proposition {\advthm}. Let $X$ and $Y$ be discrete random variables. Then
 $$\Eta\{X\given Y\} \le \Eta\{X\}.$$
@@ -296,8 +303,9 @@ $$\eqalign{
 where the inequality on the last line follows from the previous paragraph.
 
 The general case follows from the continuity axiom and the fact that any discrete random
-variable can be approximated by discrete random variables with finite support and rational
-probabilities.\slug
+variable, regarded as a vector in $l_1(\RR)$,
+by vectors with finite support, and these in turn can be approximated by vectors of finite support
+and rational coordinates.\slug
 
 By the additivity axiom, the previous proposition is equivalent to
 $$\Eta\{X,Y\} \le \Eta\{X\} + \Eta\{Y\}.$$
@@ -374,6 +382,7 @@ $$\eqalign{
 }$$
 which completes the proof.\slug
 
+\edef\cormaxsumineq{\the\sectcount.\the\thmcount}
 \proclaim Corollary \advthm. If $X$ and $Y$ are independent, then
 $$\max\bigl( \Eta\{X\}, \Eta\{Y\} \bigr) \le \Eta\{ X \pm Y\}.$$
 
@@ -392,7 +401,25 @@ we let $X'$ and $Y'$ be independent copies of $X$
 and $Y$, respectively, and define the {\it entropic Ruzsa distance} by
 $$\dd\{X,Y\} = \Eta\{X'-Y'\} - {\Eta\{X'\} \over 2} - {\Eta\{Y'\}\over 2}.$$
 This definition only depends on the individual distributions of $X$ and $Y$ and does not require them to
-have the same sample space. Once again, we don't necessarily have $\dd\{X,X\} = 0$, but we do have
+have the same sample space. When $X$ and $Y$ are independent, the Ruzsa distance enjoys some
+nice properties.
+
+\edef\propabsdist{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Let $X$ and $Y$ be independent taking values in the same group. Then
+$$\bigl| \Eta\{X\} - \Eta\{Y\} \bigr| \le 2\dd\{X,Y\}$$
+and
+$$\max\bigl( \Eta\{X-Y\} - \Eta\{X\}, \Eta\{X-Y\} - \Eta\{Y\} \bigr) \le 2\dd\{X,Y\}$$
+
+\proof By independence we have
+$$2\dd\{X,Y\} = 2\Eta\{X-Y\} - \Eta\{X\} - \Eta\{Y\}\over 2,$$
+Corollary~{\cormaxsumineq} tells us that $2\Eta\{X-Y\} \ge 2\Eta\{X\}$, so this is at least $\Eta\{X\}-\Eta\{Y\}$.
+The same corollary also says that $2\Eta\{X-Y\} \ge 2\Eta\{Y\}$, which allows us to add the absolute value bars
+to the inequality.
+
+The second inequality is proved using the same corollary, but only applying it to one of the $\Eta\{X-Y\}$
+terms.\slug
+
+Similarly to the Ruzsa distance on sets, we don't necessarily have $\dd\{X,X\} = 0$, but we do have
 the triangle inequality, which shall now prove.
 
 \proclaim Proposition \advthm. Let $X$, $Y$, and $Z$ be random variables with finite support in the same
@@ -604,7 +631,7 @@ If $A$ and $B$ are subsets of the same abelian group such that $|A+B|$ is much s
 then it stands to reason that there must be a lot of redundancy in $A+B$; that is, many elements of $A+B$ can
 be expressed as $a+b$ in lots of different ways. To capture this notion, we can define the
 {\it additive energy} between two sets $A$ and $B$ to be
-$$E(A,B) = \bigl| \bigl\{ (a,a',b,b') \in A\times A\times B\times B : a + b = a'+b'\bigr\}\bigr\}.$$
+$$E(A,B) = \bigl| \bigl\{ (a,a',b,b') \in A\times A\times B\times B : a + b = a'+b'\bigr\}\bigr|.$$
 
 We now define an entropic version of $E(A,B)$. Let $X$ and $Y$ be discrete random variables taking values
 in the same
@@ -849,6 +876,7 @@ Returning to first
 principles, observe that if the doubling
 constant of $A$ is $1$, then the structure of $A$ is completely determined, as shown by the following proposition.
 
+\edef\propdoublingone{\the\sectcount.\the\thmcount}
 \proclaim Proposition \advthm. Let $A$ be a finite subset of an abelian group $G$. If $|A+A| = |A|$,
 then $A$ is a coset of a subgroup $H$.
 
@@ -858,7 +886,7 @@ but since $|A+A| = |A|$ this implies that $A+A = A$. Now let $H = \{h\in G : A +
 shows that $A\subseteq H$. But if $h\in H$, then $A = A+h$ contains the element $0+h = h$, so in
 fact $H=A$.
 
-If $x,y\in H$, then $A+x = A$ and $A+y=A$, so adding $y$ to both sides of the second identity we obtain
+If $x,y\in H$, then $A+x = A$ and $A+y=A$, so subtracting $y$ from both sides of the second identity we obtain
 $A-y = A$, and adding $x$ to both sides of this, we get
 $$A + x-y = A+x = A,$$
 so $x-y\in H$.
@@ -892,8 +920,238 @@ Let $A\subseteq \FF_2^n$ have $|A+A|\le K|A|$
 for some constant $K$. Then there is a subgroup $H$ with $|H|\le |A|$ such that $A$
 is contained in a union of $2K^C$ cosets of $H$.
 
-The proof, which is almost entirely information-theoretic in nature, will be our main concern for the
-remainder of these notes.
+The proof of this theorem will occupy the
+remainder of these notes. As a first step, we shall show that
+Theorem~{\thmpfr} follows from an entirely information-theoretic statement.
+In this and the rest of the notes, for $A$ finite
+we use the notation $U_A$ to denote the random variable that is uniform on $A$.
+
+\edef\thmsubgroup{\the\sectcount.\the\thmcount}
+\proclaim Theorem \advthm. There is a constant $C'$ such that the following holds.
+Let $G = \FF_2^n$ and let $X_1^*$ and $X_2^*$ be random variables taking values in
+$G$. There is some subgroup $H\subseteq G$ such that
+$$\dd\{ X_1^*, U_H\} + \dd\{ X_2^*, U_H\} \le C'\dd\{X_1^*, X_2^*\}.$$
+
+In the proof that this theorem implies the previous one, we shall need the Ruzsa covering lemma,
+whose proof is short enough that we include it for completeness.
+
+\edef\lemruzsacovering{\the\sectcount.\the\thmcount}
+\parenproclaim Lemma {\advthm} (Ruzsa covering lemma). Let $G$ be an abelian group and let $A$ and
+$B$ be finite subsets of $Z$. Then there is a set $L\subseteq A$ of size at most $|A+B|/|B|$ such that
+$A\subseteq L+B-B$.
+
+\proof Let $L = \{a_1,\ldots,a_l\}$ be a maximal subset of $A$ with the property that the sets $a_i+B$
+are disjoint. For all $a\in A$ there is $i$ such that $(a+B) \cap (a_i+B) \ne \emptyset$, otherwise we
+could add $a$ to $L$ and contradict maximality. Equivalently, we can find $b$ and $b'$ such that
+$a+b = a_i + b'$ so $a\in a_i + B - B$. Hence $A\subseteq L+B-B$. Lastly, $|L|\cdot |B| = |K+B| \le |A+B|$.\slug
+
+We now show that if Theorem~{\thmsubgroup} holds for some constant $C'$, then
+Theorem~{\thmpfr} holds with $C=C'+1$.
+
+\medskip\noindent{\it Proof of Theorem~{\thmpfr} assuming Theorem~{\thmsubgroup}.}\enspace
+Let $A\subseteq \FF_2$ and $K\ge 1$
+such that $|A+A|\le K|A|$. Let $U_A$ be the uniform distribution on $A$, so that $\Eta\{U_A\} = \lg|A|$.
+Letting $U_A'$ and $U_A''$ be two independent copies of $U_A$, the sum $U_A' - U_A''$ belongs to $|A+A|$,
+so $\Eta\{U_A' + U_A''\} \le \lg|A+A|$, and we have
+$$\dd\{U_A, U_A\} = \Eta\{U_A' + U_A''\} - \Eta\{U_A\} \le \lg|A+A|-\lg|A| \le \lg K,$$
+since $U_A' + U_A'' = U_A' - U_A''$ in $\FF_2^n$. By Theorem~{\thmsubgroup}, we can find
+$H\subseteq G$ such that
+$$2\dd\{ U_A, U_H\} \le C'\lg K,$$
+where $U_H$ is taken to be uniform on $H$ independently of $U_A$. Independence and the definition
+of Ruzsa distance let us conclude
+$$\Eta\{U_A-U_H\} \le {\lg|A| + \lg|H| + C'\lg K\over 2},$$
+from which applying Proposition~{\propmaxprob} allows us to procure some $x_0 \in \FF_2^n$ such that
+$$\pr\{ U_A - U_H = x_0\} \ge {1\over |A|^{1/2} |H|^{1/2} K^{C'/2}}.$$
+Since $U_A$ and $U_H$ are uniformly and independently random on $A$ and $H$ respectively, we rewrite this as
+$${\bigl| A\cap (H+x_0)\bigr| \over |A|\cdot|H|}  \ge {1\over |A|^{1/2} |H|^{1/2} K^{C'/2}},$$
+whence
+$$\bigl| A\cap (H+x_0)\bigr|  \ge {|A|^{1/2} |H|^{1/2} \over K^{C'/2}}.$$
+By the Ruzsa covering lemma applied to the sets $A$ and $A\cap (H+x_0)$, there is a set $L\subseteq A$ of size
+$$\eqalign{
+|L| &\le {\bigl| A + (A\cap (H+x_0))\bigr|\over \bigl| A\cap (H+x_0)\bigr|} \cr
+&\le {|A + A|\over \bigl| A\cap (H+x_0)\bigr|} \cr
+&\le {K|A|\cdot K^{C'/2} \over |A|^{1/2} |H|^{1/2} } \cr
+&= {K^{C'/2+1}|A|^{1/2} \over |H|^{1/2} } \cr
+}$$
+such that
+$$A \subseteq L+\bigl(A\cap (H+x_0)\bigr) - \bigl(A\cap (H+x_0)\bigr) \subseteq L+H.$$
+Proposition~{\propabsdist} tells us that
+$$\bigl| \lg|H| - \lg|A|\bigr| = \bigl| \Eta\{U_H\} - \Eta\{H_A\}\bigr| \le 2\dd\{ U_A, U_H\} \le C'\lg K,$$
+so
+$$\max\biggl( {|H|\over |A|}, {|A|\over |H|}\biggr) \le K^{C'}$$
+and we have
+$$|L| \le K^{C'+1}.$$
+If $|H|\le |A|$ then we are done (and the factor of $2$ is unnecessary in the theorem statement),
+since $A$ is a subset of $|L|$ cosets of $H$.
+
+If not, then we can pick a
+subgroup $H'$ of $H$ with $|A|/2 \le |H'|\le |A|$ by iteratively taking hyperplanes until the condition is met.
+The group $H$ may be covered by $|H|/|H'| \le 2|H|/|A|$ translates of $H'$, so $A$ can be covered by
+$${2|H|\over |A|}|L| \le {2|H|\over |A|}\cdot {K^{C'/2+1}|A|^{1/2} \over |H|^{1/2} } 
+= 2 {C'/2+1} {|H|^{1/2} \over |A|^{1/2}} \le 2K{C'+1}$$
+translates of $H'$.\slug
+
+\advsect A compactness argument
+
+We have reduced the proof of the Freiman--Ruzsa theorem to proving the inform\-ation-theoretic
+Theorem~{\thmsubgroup}. In this section, we shall reduce the proof to a different statement via a compactness
+argument. First we recall some basic topological properties of probability measures.
+
+Fix a finite set $G$ of size $n$. Ordering the elements of $G$ from $1$ to $n$, one can associate
+to each probability distribution $\mu$ on $G$ the vector
+$$\bigl( \mu(\{1\}), \mu(\{2\}), \ldots, \mu(\{n\})\bigr)$$
+in $\RR^n$. (Starting now we will write $\mu_i$ instead of $\mu(\{i\})$.)
+Let $\P(G)$ denote the set of all probability distributions on $G$.
+This is a metric space under the {\it total variation
+distance} $\dTV$, where if $\mu = (\mu_1,\ldots,\mu_n)$
+and $\nu = (\nu_1,\ldots,\nu_n)$ are two probability distributions on $G$, then
+$$\dTV(\mu,\nu) = \sum_{i=1}^n |\mu_i - \nu_i|.$$
+Regarding the space as a subset of $\RR^n$, this norm is equivalent to the $L_1$ norm; hence
+the total variation metric on $\P(G)$ is equivalent to the Euclidean metric on $\RR^n$.
+Since probabilities are in $[0,1]$, the space $\P(G)$ is a subset of the closed set $[0,1]^n$,
+and since $\P(G)$ is the inverse image of the set $\{1\}$ under the continuous function
+$$(x_1,\ldots,x_n) \mapsto x_1 + \cdots + x_n,$$
+we conclude that $\P(G)$ is a compact topological space. In passing, we note here that this is
+the topology under which the continuity axiom asserts that $\Eta\{X\}$ is continuous.
+
+Next we show that the Ruzsa distance is also continuous with respect to this topology.
+
+\edef\propruzsacontinuous{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Let $G$ be a finite abelian group.
+The Ruzsa distance $\dd$, regarded as a functional
+from $\P(G)\times \P(G)\to \RR$, is continuous.
+
+Let $X$ and $Y$ be random variables; without loss of generality, we may assume they are independent,
+so that
+$$\dd\{X,Y\} = \Eta\{X-Y\} - {\Eta\{X\} \over 2} - {\Eta\{Y\}\over 2}.$$
+The entropy functional is continuous by axiom, so from here it suffices to show that
+the function $f : \P(G)\times \P(G) \to \P(G)$ mapping $(X,Y)\mapsto X-Y$ is continuous.
+
+Since all norms on finite-dimensional spaces are equivalent, we may work with
+$\P(G)\times \P(G)$ and $\P(G)$ as normed spaces using the $L_1$ norm on $\RR^{2n}$ and $\RR^n$
+respectively.
+Let $\mu_g = \pr\{X = g\}$, $\nu_g = \pr\{ Y = g\}$, and $\xi_g = \pr\{X-Y = g\}$ for all $g\in G$.
+Given another pair $(X', Y')$ of random variables, define $\mu_g'$, $\nu_g'$, and $\xi_g'$ accordingly.
+Now let $\eps > 0$ and suppose that the vectors $(\mu, \nu)$ and $(\mu', \nu')$
+have $\bignorm{(\mu,\nu), (\mu',\nu')}_1 < \delta$ for some $\delta>0$ to be specified later; writing
+this out in full, we have
+$$\sum_{g\in G} \big(|\mu_g - \mu_g'| + |\nu_g - \nu_g|\bigr) < \delta.$$
+Observe that
+$$\xi_g = \pr\{X-Y= g\} = \sum_{h\in G} \pr\{X = g+h\} \pr\{Y = h\} = \sum_{h\in G} \mu_{g+h}\nu_h$$
+and similarly for $\xi_g'$. From this we can expand and bound
+$$\eqalign{
+\norm{\xi, \xi'}_1 &= \sum_{g\in G} |\xi_g - \xi_g'| \cr
+&= \sum_{g\in G} \Bigl| \sum_{h\in G} \mu_{g+h}\nu_h - \sum_{h\in G} \mu_{g+h}\nu_h\Bigr| \cr
+&\le \sum_{g\in G} \sum_{h\in G} \bigl( |\mu_{g+h}\nu_h - \mu_{g+h}'\nu_h| +
+|\mu_{g+h}'\nu_h - \mu_{g+h}'\nu_h'|\bigl) \cr
+&= \sum_{h\in G} \nu_h \sum_{g\in G} |\mu_{g+h} - \mu_{g+h}'|
++ \sum_{g\in G} \mu_g \sum_{h\in G} |\nu_h - \nu_h'| \cr
+&= \sum_{g\in G} |\mu_{g} - \mu_{g}'| + \sum_{h\in G} |\nu_h - \nu_h'| \cr
+&< \delta,
+}$$
+so in fact we can set $\delta = \eps$.\slug
+
+So much for topology. Returning to entropies, we now prove an entropic version of
+Proposition~{\propdoublingone}.
+
+\edef\propentropydoublingone{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Let $X$ be a random variable taking values in an abelian group $G$.
+Then $\dd\{X, -X\} = 0$ if and only if $X$ is uniformly distributed on a coset of a finite subgroup of $G$.
+
+\proof If $X$ is the uniform distribution on a coset $a+H$ of a finite subgroup $H$, then letting $X'$ be an
+independent copy of $X$, the random variable $X+X'$ is uniform on the coset $a+a+H$, which has the
+same size as $|a+H|$, so $\Eta\{X+X'\} = \Eta\{X\}$, meaning that
+$$\dd\{X, -X\} = \Eta\{X+X'\} - {\Eta\{X\}\over 2} - {\Eta\{X'\} \over 2} = 0.$$
+On the other hand, suppose that $\Eta\{X+X'\} = \Eta\{X\}$, where $X'$ is an independent copy of $X$.
+Then
+$$\eqalign{
+\Eta\{X+X'\} &= 2\Eta\{X\} - \Eta\{X\} \cr
+&= \Eta\{X, X'\} - \Eta\{X'\} \cr
+&= \Eta\{X+X', X'\} - \Eta\{X'\} \cr
+&= \Eta\{X+X'\given X'\},\cr
+}$$
+so $X+X'$ is independent of $X'$.
+
+Let $A$ denote the support of $X$. We have shown that the distribution
+$(X + X' \given X' = x)$ is the same
+regardless of our choice of $x\in A$. Then for all $x,y\in A$, the distribution of $X+x$ is the
+same as that of $X+y$, so the distribution of
+of $X+x-y$ is the same as that of $X$. This implies that $A$ is finite,
+$X$ is the uniform distribution on $A$,
+and adding an element $h\in A-A$ to the set $A$ simply permutes the set.
+
+As in the proof
+of Proposition~{\propdoublingone}, let $H = \{h\in G : A+h = A\}$. We proved back then that $H$ is a subgroup
+of $G$, and the conclusion of the previous paragraph
+asserts that $A-A \subseteq H$. But letting $h\in H$, the fact that
+$h+A = A$ implies that $h\in A-A$. We conclude that
+$A-A$ is a finite subgroup of $G$, whence $A$ is a coset of a finite subgroup of $G$.\slug
+
+From this, we are able to prove the special case of Theorem~{\thmsubgroup} in which the Ruzsa distance between
+the two given random variables is zero.
+
+\edef\lemzerosubgroup{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Let $X_1$ and $X_2$ be random variables taking values in $\FF_2^n$ with
+$\dd\{X_1,X_2\} = 0$. Then there exists a subgroup $H$ of $\FF_2^n$ such that
+$$\dd\{X_1, U_H\} = \dd\{X_2,U_H\} = 0.$$
+
+\proof The triangle inequality gives $\dd\{X_1,X_1\} = 0$, and since $-x = x$ in $\FF_2^n$,
+we also have $\dd\{X_1, - X_1\} = 0$. By the previous proposition, there is a subgroup $H$ such that
+$X_1$ has the same distribution as $H$. So $\dd\{X_1, U_H\} = 0$ and by the triangle inequality once again,
+$\dd\{X_2, U_H\} = 0$ as well.\slug
+
+Recall that in the previous section, we reduced the proof of the polynomial Freiman--Ruzsa theorem
+to a statement involving some random variables $X_1^*$ and $X_2^*$. For the remainder of these notes,
+we shall consider these variables to be fixed, and we also fix $\eta = 1/9$ for short.
+Defining the functional
+$$\tau(X_1, X_2) = \dd\{X_1, X_2\} - \eta\dd\{X_1^*, X_1\} - \eta\dd\{X_2^*, X_2\},$$
+we can then reduce the proof of Theorem~{\thmsubgroup} (and consequently the entire proof) to showing the
+following proposition.
+
+\edef\propmaintau{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Let $X_1$ and $X_2$ be two $\FF_2^n$-valued random variables with
+$\dd\{ X_1, X_2\} > 0$. Then there are $\FF_2^n$-valued random variables $X_1'$ and $X_2'$ such that
+$$\tau\{X_1', X_2'\} < \tau\{X_1, X_2\}.$$
+
+If we can prove this proposition, then we have Theorem~{\thmsubgroup} with a certain constant $C'$ which
+we shall make explicit during the proof.
+
+\medskip\noindent{\it Proof of Theorem~{\thmsubgroup} assuming Proposition~{\propmaintau}}.\enspace
+We proved earlier that $\P(\FF_2^n)$ is a compact topological space, thus so its Cartesian product with
+itself. By Proposition~{\propruzsacontinuous}, the Ruzsa distance functional is continuous on this space,
+which implies that $\tau$ is as well. Hence $\tau$ attains its infimum on the space $\P(\FF_2^n)^2$;
+let $X_1$ and $X_2$ be two distributions such that $\tau\{X_1, X_2\}$ is minimal. By the contrapositive
+of Proposition~{\propmaintau}, we must have $\dd\{X_1, X_2\} = 0$, so by Lemma~{\lemzerosubgroup},
+there exists a subgroup $H$ of $\FF_2^n$ such that
+$$\dd\{X_1, U_H\} = \dd\{X_2, U_H\} = 0.$$
+This means that
+$$\dd\{X_1^*, U_H\} \le \dd\{X_1^*, X_1\} + \dd\{ X_1, U_H\} = \dd\{X_1^*, X_1\}$$
+and
+$$\dd\{X_1^*, X_1\} \le \dd\{X_1^*, U_H\} + \dd\{U_H, X_1\} = \dd\{X_1^*, U_H\},$$
+so $\dd\{X_1^*, U_H\} = \dd\{X_1^*, X_1\}$. The same holds for $X_2^*$ and $X_2$.
+Then since $\dd\{X_1, X_2\} = 0$ and by minimality of $\tau\{X_1, X_2\}$, we obtain
+$$\eqalign{
+\eta\dd\{X_1^*, U_H\} + \eta\dd\{X_2^*, U_H\} &= \eta\dd\{X_1, U_H\} + \eta\dd\{X_2, U_H\} \cr
+&= \tau\{X_1, X_2\} \cr
+&\le \tau\{X_1^*, X_2^*\} \cr
+&= \dd\{X_2^*, X_1^*\} + \eta\dd\{X_1^*, X_2^*\} + \eta\dd\{X_2^*, X_1^*\} \cr
+&= (1+2\eta) \dd\{X_1^*, X_2^*\}. \cr
+}$$
+From our choice of $\eta = 1/9$ we can multiply both sides by $9$ to get
+$$\dd\{X_1^*, U_H\} + \dd\{X_2^*, U_H\} \le 11\dd\{X_1^*, X_2^*\},$$
+and furthermore, since
+$$\bigl| \dd\{X_1, U_H\} - \dd\{X_2, U_H\} \bigr| \le \dd\{X_1, X_2\}$$
+by two invocations of the triangle inequality, neither $\dd\{X_1^*, U_H\}$ nor
+$\dd\{X_2^*, U_H\}$ can be greater than $6\dd\{X_1^*, X_2^*\}$.\slug
+
+For convenience, we restate what we have just proved with the constants plugged in.
+
+\proclaim Theorem~{\thmsubgroup}$\mathbold'$.
+Let $X_1^*$ and $X_2^*$ be random variables taking values in
+$\FF_2^n$. There is some subgroup $H\subseteq \FF_2^n$ such that
+$$\dd\{ X_1^*, U_H\} + \dd\{ X_2^*, U_H\} \le 11\dd\{X_1^*, X_2^*\},$$
+and furthermore,
+$$\max\bigl( \dd\{X_1^*, U_H\}, \dd\{X_2^*, U_H\}\bigr) \le 6\dd\{X_1^*, X_2^*\}.\noskipslug$$
 
 \section References
 
