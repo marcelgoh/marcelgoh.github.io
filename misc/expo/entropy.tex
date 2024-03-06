@@ -26,13 +26,17 @@
 \widemargins
 \bookheader{ENTROPY AND ADDITIVE COMBINATORICS}{MARCEL K. GOH}
 
-\maketitle{Entropy and additive combinatorics}{}{Marcel K. Goh}{15 February 2024}
+\maketitle{Entropy and additive combinatorics}{}{Marcel K. Goh}{\sl Department of Mathematics and Statistics,
+McGill University}
 
 \floattext4.5 \ninebf Abstract.
 \ninepoint These expository notes give a gentle introduction to the notion of entropy as it is used
-in additive combinatorics, with a view towards understanding the proof of the polynomial Freiman--Ruzsa
-conjecture by W.~T.~Gowers, B.~Green, F.~Manners, and T.~Tao. Much of the first section has been
-transcribed from lectures given by W.~T.~Gowers.
+in additive combinatorics, moving at a leisurely pace through the entropic analogues of Pl\"unnecke's
+theorem and the Balog--Szemer\'edi--Gowers theorem before tackling the recent
+proof of the polynomial Freiman--Ruzsa
+conjecture by W.~T.~Gowers, B.~Green, F.~Manners, and T.~Tao. Effort has been put into making this
+document as self-contained as possible, and extra proof details have been supplied in the hope
+that these notes may be accessible to the average graduate student or enterprising undergraduate.
 
 \bigskip
 
@@ -44,7 +48,8 @@ a constant random variable, then $\Eta\{X\}$ should be zero (we do not gain any 
 from knowing the value of $X$), and if $X$ is
 uniformly distributed on $\{0,1\}^n$, then $\Eta\{X\}$ should be proportional to $n$, since $X$ is
 determined by
-$n$ bits of information. It satisfies the following axioms, which are
+$n$ bits of information.
+It satisfies the following axioms, which are
 sometimes called the Khinchine--Shannon axioms.
 \medskip
 \item{a)} ({\it Invariance.}) If $X$ takes values in $A$, $Y$ takes values in $B$,
@@ -74,11 +79,11 @@ description of it now, but simply introduce the relevant properties as needed la
 
 We shall take it on faith that there really exists a function on random variables satisfying
 these axioms.
-In fact, the axioms only define entropy
-up to a multiplicative constant, so we shall add the following axiom.
 (It is very possible you have met the formula for entropy
 somewhere on your travels, but you will not find it anywhere in
 these notes.)
+In fact, the axioms only define entropy
+up to a multiplicative constant, so we shall add the following axiom.
 
 \medskip
 \item{f)} ({\it Normalisation.}) If $X$ is uniformly distributed on $\{0,1\}$, then
@@ -86,7 +91,9 @@ $\Eta\{X\} = 1$.
 \medskip
 
 Notationally, we would expect that $\Eta\{Y\given X\} = \Eta\{Y\}$ if $X$ and $Y$ are independent.
-This is the first proposition we will carefully prove using the axioms above.
+This is the first proposition we will carefully prove, using only the axioms. The axiomatic description above,
+as well as many of the proofs in
+this section, are transcribed (with some adaptations here and there) from lectures given by W.~T.~Gowers.
 
 \proclaim Proposition \advthm. Let $X$ and $Y$ be independent random variables. Then
 $\Eta\{Y\given X\} = \Eta\{Y\}$ and consequently
@@ -115,7 +122,7 @@ Let $X_1,\ldots,X_n$ be random variables. Then
 $$\Eta\{X_1,\ldots,X_n\} = \Eta\{X_1\} + \Eta\{X_2\given X_1\}
 + \cdots+\Eta\{X_n \given X_1,\ldots,X_{n-1}\}.\noskipslug$$
 
-Next we establish the intuitive fact
+Next we establish the intuitive statement
 that the entropy of a uniform random variable supported on a set $A$ is at most
 the entropy of a uniform random variable supported on a superset $B$ of $A$.
 
@@ -138,7 +145,14 @@ Then by Corollary~{\corxn} and the inequality we showed in the first paragraph o
 $$n\Eta\{X\} = \Eta\{X^n\} \le \Eta\{X^{n-1}\} = (n-1)\Eta\{Y\},$$
 whence $\Eta\{X\} < \Eta\{Y\}$.\slug
 
-The link between entropy and additive combinatorics is rather a fine one. It is based on the following
+The thread connecting entropy and additive combinatorics is rather a precarious one.
+As noted by I.~Ruzsa~\ref{ruzsa2008}, there are scenarios in which combinatorial inequalities and
+their corresponding entropy ones
+are equivalent, scenarios in which they both hold but their equivalence cannot be established,
+and further scenarios where an inequality holds in one world but cannot (or has not) been proven in the other.
+
+The ``dictionary'' that allows us to translate
+statements between cardinality inequalities and entropy inequalities is based, in part, on the following
 observation. (In this and the rest of the notes, $\lg$ denotes the base-$2$ logarithm. This base can
 be changed by modifying the normalisation axiom.)
 
@@ -326,7 +340,11 @@ whence dividing both sides by $2$ completes the proof.\slug
 
 The submodularity inequality is often stated in terms of a triple of random variables in terms of
 the {\it conditional mutual information}, which is defined by
-$$\II\{ X : Y \given Z\} = \sum_{z\in C} p_Z(z) \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\}.$$
+$$\eqalign{
+\II\{ X : Y \given Z\} &= \sum_{z\in C} p_Z(z) \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\} \cr
+&= \Eta\{X\given Z\} - \Eta\{X\given Y, Z\} \cr
+&= \Eta\{Y\given Z\} - \Eta\{Y\given X, Z\}.\cr
+}$$
 
 \proclaim Proposition \advthm. Let $X$, $Y$, and $Z$ be discrete random variables. Then
 $$\Eta\{X,Y,Z\} + \Eta\{Z\} \le \Eta\{X,Z\} + \Eta\{Y,Z\},$$
@@ -369,7 +387,7 @@ $$\Eta\{ X\pm Y\} \ge \Eta\{ X\pm Y \given Y\},$$
 and since the probabilities $\pr\{ X + Y = z \given Y = y\} = \pr\{ X = z-y \given Y = y\}$ for all $z\in G$,
 by invariance we have
 $$\Eta\{ X\pm Y\} \ge \Eta\{X\given Y\} = \Eta\{X\} - \II\{X : Y\}.$$
-Repeating the same argument but exchanging the roles of $X$ and $Y$, we get
+Repeating the same argument but exchanging the r\^oles of $X$ and $Y$, we get
 $$\Eta\{ X\pm Y\} \ge \Eta\{Y\given X\} = \Eta\{Y\} - \II\{X : Y\},$$
 so
 $$\Eta\{ X\pm Y\} \ge \max\bigl(\Eta\{X\}, \Eta\{Y\}\bigr) - \II\{X : Y\}.$$
@@ -393,15 +411,16 @@ In additive combinatorics, whenever we have two finite subsets $A$ and $B$
 of the same abelian group, we can compute the Ruzsa distance
 $$d(A,B) = \lg {|A-B|\over \sqrt{|A|\cdot|B|}}$$
 between them. (This satisfies all the axioms of a metric except the one requiring $d(A,A) = 0$ for all sets
-$A$.)
+$A$.) This ``distance'' is called the {\it Ruzsa distance} as it was first defined by I.~Ruzsa~\ref{ruzsa1996}.
 
 The entropic analogue of the Ruzsa distance is defined as follows.
 For finitely supported random variables $X$ and $Y$ taking values in the same abelian group,
 we let $X'$ and $Y'$ be independent copies of $X$
 and $Y$, respectively, and define the {\it entropic Ruzsa distance} by
 $$\dd\{X,Y\} = \Eta\{X'-Y'\} - {\Eta\{X'\} \over 2} - {\Eta\{Y'\}\over 2}.$$
-This definition only depends on the individual distributions of $X$ and $Y$ and does not require them to
-have the same sample space. When $X$ and $Y$ are independent, the Ruzsa distance enjoys some
+This definition, first established by T.~Tao~\ref{tao2010},
+only depends on the individual distributions of $X$ and $Y$ and does not require them to
+have the same sample space. When $X$ and $Y$ are independent, the entropic Ruzsa distance enjoys some
 nice properties.
 
 \edef\propabsdist{\the\sectcount.\the\thmcount}
@@ -411,7 +430,7 @@ and
 $$\max\bigl( \Eta\{X-Y\} - \Eta\{X\}, \Eta\{X-Y\} - \Eta\{Y\} \bigr) \le 2\dd\{X,Y\}$$
 
 \proof By independence we have
-$$2\dd\{X,Y\} = 2\Eta\{X-Y\} - \Eta\{X\} - \Eta\{Y\}\over 2,$$
+$$2\dd\{X,Y\} = 2\Eta\{X-Y\} - \Eta\{X\} - \Eta\{Y\}.$$
 Corollary~{\cormaxsumineq} tells us that $2\Eta\{X-Y\} \ge 2\Eta\{X\}$, so this is at least $\Eta\{X\}-\Eta\{Y\}$.
 The same corollary also says that $2\Eta\{X-Y\} \ge 2\Eta\{Y\}$, which allows us to add the absolute value bars
 to the inequality.
@@ -468,6 +487,26 @@ distance is also given by the formula
 $$\dd\{ X\given Z ; Y\given W\} = \Eta\{X'-Y'\given Z',W'\} - {\Eta\{X'\given Z'\}\over 2}
 - {\Eta\{Y'\given W'\}\over 2}.$$
 
+The following inequality relates the conditional and unconditional versions of Ruzsa distance.
+
+\edef\lemfiveone{\the\sectcount.\the\thmcount}
+\parenproclaim Lemma {\advthm} ({\rm\ref{pfr2023},} Lemma 5.1). Let $(X,Z)$, and $(Y,W)$ be random
+variables, with $X$ and $Y$ taking values in the same abelian group. Then
+$$\dd\{ X\given Z ; Y\given W\} \le \dd\{X,Y\} + {1\over 2} \II\{X:Z\} + {1\over 2}\II\{Y:W\}.$$
+
+\proof Letting $(X',Z')$ and $(Y',W')$ be independent copies of the given random variables, we
+expand
+$$\eqalign{
+\dd\{ X\given Z ; Y\given W\}
+&= \Eta\{X'-Y'\given Z',W'\} - {\Eta\{X'\given Z'\}\over 2} - {\Eta\{Y'\given W'\}\over 2} \cr
+&\le \Eta\{X'-Y'\} - {\Eta\{X',Z'\}-\Eta\{Z'\}\over 2} \cr
+&\hskip130pt- {\Eta\{Y', W'\}-\Eta\{W'\}\over 2} \cr
+&= \dd\{X-Y\} + {\Eta\{X'\} + \Eta\{Z'\} -\Eta\{X',Z'\}\over 2} \cr
+&\hskip90pt+ {\Eta\{Y'\} + \Eta\{W'\} - \Eta\{Y', W'\}\over 2} \cr
+&= \dd\{X-Y\} + {1\over 2}\II\{X:Z\} + {1\over 2}\II\{Y:W\},\cr
+}$$
+by independence and the fact that conditioning does not increase entropy.\slug
+
 \medskip\boldlabel The sum-difference inequality.
 The Ruzsa triangle inequality bounds the size of a difference set by passing through a different subset. There
 is another inequality that relates the size of a sumset with the size of a difference set.
@@ -497,7 +536,7 @@ It is also important to observe that $(X_1,Z)$ and $(X_2,Z)$ both have the same 
 as $(X,Z)$.
 
 \proof Let $(X_1,Y_1)$ and $(X_2,Y_2)$ be conditionally independent trials of $(X,Y)$ relative
-to $X-Y$. Since $(X,Y)$ determines $X-Y$, we have $X_1-Y_1 = =X-Y= X_2-Y_2$. Let $(X_3,Y_3)$ be another
+to $X-Y$. Since $(X,Y)$ determines $X-Y$, we have $X_1-Y_1 =X-Y= X_2-Y_2$. Let $(X_3,Y_3)$ be another
 trial of $(X,Y)$ independent of $(X_1, X_2, Y_1, Y_2)$. Then
 $$X_3 + Y_3 = X_3 + Y_3 + X_1 - Y_1 - X_2 + Y_2 = (X_3-Y_2) - (X_1-Y_3) + X_2 + Y_1,$$
 so $(X_3-Y_2, X_1-Y_3, X_2, Y_1)$ and $(X_3, Y_3)$ each determine $X_3+ Y_3$. On the other hand,
@@ -555,7 +594,9 @@ In this section we will develop an entropic analogue of this statement, in which
 by random variables of finite support and cardinality is replaced with the exponential of
 entropy. First, a technical lemma.
 
-\proclaim Lemma \advthm. Let $X$, $Y$, and $Z$ be independent random variables taking values in a common
+\edef\lemaone{\the\sectcount.\the\thmcount}
+\parenproclaim Lemma {\advthm} ({\rm\ref{pfr2023},} Lemma A.1).
+Let $X$, $Y$, and $Z$ be independent random variables taking values in a common
 abelian group. Then
 $$\Eta\{X+Y+Z\} - \Eta\{X+Y\} \le \Eta\{Y+Z\} -\Eta\{Y\}.$$
 
@@ -624,6 +665,66 @@ $$\eqalign{
 \Eta\{ Y_1 + \cdots + Y_r - Z_1 - \cdots - Z_s \}  &\le \Eta\{X\} + \log (K^r) + \log (K^s),\cr
 &= \Eta\{X\} + (r+s)\log K.\noskipslug\cr
 }$$
+
+We conclude this section by recording two consequences of Lemma~{\lemaone} and will
+be of use in the proof of the polynomial Freiman--Ruzsa theorem.
+
+\edef\lemfivetwo{\the\sectcount.\the\thmcount}
+\parenproclaim Lemma {\advthm} ({\rm\ref{pfr2023},} Lemma 5.2).
+Let $X$, $Y$, and $Z$ be random variables taking values in an abelian group,
+with $Y$ and $Z$ independent. Then
+$$\eqalign{
+\dd\{X, Y-Z\} - \dd\{X, Y\} &\le {\Eta\{Y-Z\} - \Eta\{Y\}\over 2} \cr
+&= {1\over 2} \dd\{Y, Z\} + {1\over 4}\Eta\{Z\} - {1\over 4}\Eta\{Y\}\cr
+}$$
+and
+$$\eqalign{
+\dd\{X; Y\given Y-Z\} - \dd\{X, Y\} &\le {\Eta\{Y-Z\} - \Eta\{Z\}\over 2} \cr
+&= {1\over 2} \dd\{Y, Z\} + {1\over 4}\Eta\{Z\} - {1\over 4}\Eta\{Z\}.\cr
+}$$
+
+\proof For the first inequality, let $X'$ be a copy of $X$ that is independent of $(Y,Z)$, so that
+$$\eqalign{
+\dd\{X, Y-Z\} - \dd\{X, Y\}
+&= \Eta\{X'-Y+Z\} - {1\over 2}\Eta\{X'\} - {1\over 2} \Eta\{Y-Z\} \cr
+&\hskip60pt-\Eta\{X'-Y\} + {1\over 2}\Eta\{X'\} + {1\over 2}\Eta\{Y\}. \cr
+&= \Eta\{X'-Y+Z\} - {1\over 2} \Eta\{Y-Z\} \cr
+&\hskip110pt-\Eta\{X'-Y\} + {1\over 2}\Eta\{Y\}.\cr
+}$$
+Lemma~\ref{\lemaone} with $X'$ in place of $X$ and $-Y$ in place of $Y$ yields
+$$\Eta\{X'-Y+Z\} - \Eta\{X'-Y\} \le \Eta\{Y-Z\} -\Eta\{Y\},$$
+so
+$$\dd\{X, Y-Z\} - \dd\{X, Y\} \le {1\over 2} \Eta\{Y-Z\} - {1\over 2}\Eta\{Y\},$$
+as desired. The alternate version of the statement follows directly from the definition of Ruzsa distance,
+since $Y$ and $Z$ are independent.
+
+For the other inequality, we apply Lemma~\ref{\lemfiveone} with $W = Y-Z$ (and the variable $Z$ in that lemma
+set to anything that is independent of $X$) to obtain
+$$\eqalign{
+\dd\{X; Y\given Y-Z\} - \dd\{X,Y\} &\le {1\over 2} \II\{Y:Y-Z\} \cr
+&= {1\over 2}\bigl(\Eta\{Y\} + \Eta\{Y-Z\} - \Eta\{Y, Y-Z\}\bigr) \cr
+&= {1\over 2}\bigl(\Eta\{Y\} + \Eta\{Y-Z\} - \Eta\{Y, Z\}\bigr) \cr
+&= {1\over 2}\bigl(\Eta\{Y-Z\} - \Eta\{Z\}\bigr),\cr
+}$$
+where in the last line we used independence of $Y$ and $Z$. Independence also gives the alternative version
+of the right-hand-side expression.\slug
+
+Changing variables in the first inequality and then adding the second inequality gives us the following.
+
+\edef\lemsevenone{\the\sectcount.\the\thmcount}
+\parenproclaim Lemma {\advthm} ({\rm\ref{pfr2023},} Lemma 7.1).
+Let $X$, $Y$, $Z$, and $W$ be random variables taking values in the same abelian group, with $Y$, $Z$,
+and $W$ independent. Then
+$$\eqalign{
+\dd\{&X; Y-Z\given Y-Z-W\} - \dd\{X,Y\} \cr
+&\le {1\over 2} \bigl( \Eta\{Y-Z-W\} + \Eta\{Y-Z\} - \Eta\{Y\} - \Eta\{W\}\bigr) .\cr
+}$$
+
+\proof The second inequality of Lemma~\ref{\lemfivetwo} (setting $Y \gets Y-Z$ and $Z\gets W$) yields
+$$\dd\{X; Y-Z\given Y-Z-W\} - \dd\{X, Y-Z\} \le {\Eta\{Y-Z-W\} - \Eta\{W\}\over 2},$$
+and the first inequality (without any change of variables) is
+$$\dd\{X, Y-Z\} - \dd\{X, Y\} \le {\Eta\{Y-Z\} - \Eta\{Y\}\over 2}.$$
+Adding these two inequalites proves the lemma.\slug
 
 \advsect The Balog--Szemer\'edi--Gowers theorem
 
@@ -699,7 +800,7 @@ $$\eqalign{
 and if $2\Eta\{X,Y\} \ge 2 \Eta\{X\} + 2\Eta\{Y\} - 2C$, then~\refeq{\eqworsebound} follows
 directly.\slug
 
-The fact that the implication goes the ``wrong'' way may seem somewhat baffling at first. We will now get
+The fact that the implication goes the ``wrong'' way may seem somewhat baffling. Let us get
 to the bottom of this.
 If $A$ and $B$ are subsets of a finite abelian group, we can let $X$ and $Y$ be the uniform
 distributions on $A$ and $B$, respectively. We have been operating under the belief that $\Eta\{X+Y\}$
@@ -735,7 +836,7 @@ $$|A'+B'| \le C |A|^{1/2}|B|^{1/2},$$
 where $c'$, $c''$, and $C$ depend only on $c$.
 
 In the entropy setting, the operation on random variables that corresponds to taking subsets is
-to conditioning. (As a sanity check, recall that conditioning never increases entropy, just
+conditioning. (As a sanity check, recall that conditioning never increases entropy, just
 as taking subsets never increases cardinality.) The Balog--Szemer\'edi--Gowers theorem gives
 us subsets between which we can take a {\it bona fide} sumset, so its entropic analogue
 should return conditionings $X'$ and $Y'$ of $X$ and $Y$ relative to some random variable $Z$,
@@ -754,7 +855,8 @@ First, we need a lemma, which we state separately since it will also be used lat
 the polynomial Freiman--Ruzsa theorem.
 
 \edef\lematwo{\the\sectcount.\the\thmcount}
-\proclaim Lemma \advthm. Let $X$ and $Y$ be discrete random variables taking values in the same abelian
+\parenproclaim Lemma {\advthm} ({\rm\ref{pfr2023},} Lemma A.2).
+Let $X$ and $Y$ be discrete random variables taking values in the same abelian
 group. Let $(X_1, Y_1)$ and $(X_2,Y_2)$ be conditionally
 independent trials of $(X,Y)$ relative to $X+Y$. Then we have
 $$\max\bigl(\Eta\{X_1- X_2\}, \Eta\{X_1-Y_2\}\bigr) \le \Eta\{X+Y\} - \II\{X:Y\}.$$
@@ -777,7 +879,7 @@ $$\eqalign{
 \Eta\{X_1-Y_2\} &\le \Eta\{X+Y\} - 2\Eta\{X,Y\} + 2\Eta\{X\} + 2\Eta\{Y\} \cr
 &= \Eta\{X+Y\} - \II\{X : Y\}.\cr
 }$$
-The same holds with the roles of $X_2$ and $Y_2$ exchanged.\slug
+The same holds with $Y_2$ replaced by $X_2$.\slug
 
 \parenproclaim Theorem {\advthm} (Entropic Balog--Szemer\'edi--Gowers theorem).
 Let $X$ and $Y$ be discrete random variables taking values in the same abelian group, and
@@ -870,10 +972,9 @@ where $K'$ depends only on $K$ and $r$.
 
 But subspaces may not be a very efficient way of covering sets with small doubling. One can easily
 cook up examples where there is enough linear independence in $A$ so that the smallest subspace
-containing $A$ has size exponential in $|A|$.
+containing $A$ has size exponential in $|A|$, but $A$ still has small doubling.
 
-Returning to first
-principles, observe that if the doubling
+On the other hand, in the extreme case that the doubling
 constant of $A$ is $1$, then the structure of $A$ is completely determined, as shown by the following proposition.
 
 \edef\propdoublingone{\the\sectcount.\the\thmcount}
@@ -991,6 +1092,7 @@ $${2|H|\over |A|}|L| \le {2|H|\over |A|}\cdot {K^{C'/2+1}|A|^{1/2} \over |H|^{1/
 = 2 {C'/2+1} {|H|^{1/2} \over |A|^{1/2}} \le 2K{C'+1}$$
 translates of $H'$.\slug
 
+\edef\sectcompactness{\the\sectcount}
 \advsect A compactness argument
 
 We have reduced the proof of the Freiman--Ruzsa theorem to proving the inform\-ation-theoretic
@@ -1117,7 +1219,7 @@ If we can prove this proposition, then we have Theorem~{\thmsubgroup} with a cer
 we shall make explicit during the proof.
 
 \medskip\noindent{\it Proof of Theorem~{\thmsubgroup} assuming Proposition~{\propmaintau}}.\enspace
-We proved earlier that $\P(\FF_2^n)$ is a compact topological space, thus so its Cartesian product with
+We proved earlier that $\P(\FF_2^n)$ is a compact topological space, thus so is its Cartesian product with
 itself. By Proposition~{\propruzsacontinuous}, the Ruzsa distance functional is continuous on this space,
 which implies that $\tau$ is as well. Hence $\tau$ attains its infimum on the space $\P(\FF_2^n)^2$;
 let $X_1$ and $X_2$ be two distributions such that $\tau\{X_1, X_2\}$ is minimal. By the contrapositive
@@ -1144,7 +1246,7 @@ $$\bigl| \dd\{X_1, U_H\} - \dd\{X_2, U_H\} \bigr| \le \dd\{X_1, X_2\}$$
 by two invocations of the triangle inequality, neither $\dd\{X_1^*, U_H\}$ nor
 $\dd\{X_2^*, U_H\}$ can be greater than $6\dd\{X_1^*, X_2^*\}$.\slug
 
-For convenience, we restate what we have just proved with the constants plugged in.
+For posterity, let us restate what we have just proved with the constants plugged in.
 
 \proclaim Theorem~{\thmsubgroup}$\mathbold'$.
 Let $X_1^*$ and $X_2^*$ be random variables taking values in
@@ -1152,6 +1254,243 @@ $\FF_2^n$. There is some subgroup $H\subseteq \FF_2^n$ such that
 $$\dd\{ X_1^*, U_H\} + \dd\{ X_2^*, U_H\} \le 11\dd\{X_1^*, X_2^*\},$$
 and furthermore,
 $$\max\bigl( \dd\{X_1^*, U_H\}, \dd\{X_2^*, U_H\}\bigr) \le 6\dd\{X_1^*, X_2^*\}.\noskipslug$$
+
+\advsect Entropy distance under homomorphisms
+
+Our goal has been reduced to showing that if $X_1$ and $X_2$ have $\dd\{X_1, X_2\} > 0$, then
+there exist $X_1'$ and $X_2'$ with $\tau\{X_1', X_2'\} < \tau\{X_1, X_2\}$. Remember that
+the fixed variables $X_1^*$ and $X_2^*$ still play a r\^ole in this statement, since
+they feature in the definition of the functional $\tau$.
+
+We have elected to first prove all the technical lemmas
+then stitch them into a complete proof.
+We employ this ``bottom-up'' approach not because
+it is necessarily more natural, but because the original proof is written
+in a rather ``top-down'' style, and the reader may find it enlightening to have both expositions at his
+or her disposal.
+
+Having said this, the remainder of this section will be devoted to the study of how entropy
+behaves under homomorphism. This appeared as Proposition~1.4
+in~\ref{revisited2023}, and reproved in~\ref{pfr2023} with the
+explicit error term shown below.
+
+\edef\propfourone{\the\sectcount.\the\thmcount}
+\parenproclaim Proposition {\advthm} ({\rm\ref{pfr2023},} Proposition 4.1).
+Let $\pi : G\to G'$ be a homomorphism of abelian groups and let
+$Z_1$ and $Z_2$ be $G$-valued random variables. Then
+$$\dd\{Z_1, Z_2\} \ge \dd\bigl\{ \pi(Z_1), \pi(Z_2)\bigr\}
++ \dd\bigl\{ Z_1\given \pi(Z_1); Z_2\given \pi(Z_2)\bigr\}.$$
+If $Z_1$ and $Z_2$ are assumed to be independent, then the two sides differ by
+$$\II\bigl\{ Z_1 - Z_2 : \bigl( \pi(Z_1), \pi(Z_2)\bigr) \mathbin{\big|} \pi(Z_1-Z_2)\bigr\}.$$
+
+\proof Let $Z_1'$ and $Z_2'$ be independent copies of $Z_1$ and $Z_2$. Then
+$$\eqalign{
+\dd\bigl\{ Z_1\given &\pi(Z_1); Z_2\given \pi(Z_2)\bigr\} \cr
+&= \Eta\bigl\{Z_1'-Z_2'\given \pi(Z_1'), \pi(Z_2') \bigr\}
+ - {1\over 2}\Eta\bigl\{ Z_1' \given \pi(Z_1')\bigr\} - {1\over 2}\Eta\bigl\{ Z_2' \given \pi(Z_2')\bigr\} \cr
+&\le \Eta\bigl\{Z_1'-Z_2'\given \pi(Z_2') \bigr\}
+ - {1\over 2}\Eta\bigl\{ Z_1' \given \pi(Z_1')\bigr\} - {1\over 2}\Eta\bigl\{ Z_2' \given \pi(Z_2')\bigr\} \cr
+&= \Eta\bigl\{Z_1'-Z_2'\given \pi(Z_1'- Z_2') \bigr\}
+ - {1\over 2}\Eta\bigl\{ Z_1' \given \pi(Z_1')\bigr\} - {1\over 2}\Eta\bigl\{ Z_2' \given \pi(Z_2')\bigr\} \cr
+&= \Eta\{Z_1'-Z_2'\} - \Eta\bigl\{ \pi(Z_1'-Z_2')\bigr\} \cr
+&\qquad\qquad
++{1\over 2}\Eta\{Z_1'\} - {1\over 2}\Eta\bigl\{ \pi(Z_1')\bigr\} 
++{1\over 2}\Eta\{Z_2'\} - {1\over 2}\Eta\bigl\{ \pi(Z_2')\bigr\} \cr
+&= \dd\{Z_1, Z_2\} - \dd\bigl\{ \pi(Z_1),\pi(Z_2)\bigr\},\cr
+}$$
+where the inequality follows from submodularity, and in the second-last equality we used (three times)
+the identity
+$$\Eta\bigl\{X\given \pi(X)\bigr\} = \Eta\{X\} - \Eta\bigl\{\pi(X)\bigr\},$$
+which holds for any $G$-valued random variable $X$, since $X$ determines $\pi(X)$.
+
+If $Z_1$ and $Z_2$ are independent, then the difference between the two sides is
+$$\eqalign{
+\Eta\bigl\{&Z_1-Z_2\given \pi(Z_1-Z_2) \bigr\}-\Eta\bigl\{Z_1-Z_2\given \pi(Z_1), \pi(Z_2) \bigr\} \cr
+&= \Eta\bigl\{Z_1-Z_2\given \pi(Z_1-Z_2) \bigr\}-\Eta\bigl\{Z_1-Z_2\given \pi(Z_1), \pi(Z_2), \pi(Z_1-Z_2)
+\bigr\}.\cr
+}$$
+But one of the definitions of conditional mutual information is
+$$\II\{X:Y\given Z\} = \Eta\{X\given Z\} - \Eta\{X\given Y, Z\},$$
+so letting $X = Z_1-Z_2$, $Y=\bigl(\pi(Z_1), \pi(Z_2)\bigr)$, and $Z=\pi(Z_1-Z_2)$, we
+see that the two sides of the inequality differ by exactly the conditional mutual information term
+claimed above.\slug
+
+We will use this proposition in the following special case.
+
+\edef\corfourtwo{\the\sectcount.\the\thmcount}
+\parenproclaim Corollary {\advthm} ({\rm\ref{pfr2023},} Corollary 4.2).
+Let $G$ be an abelian group and let $Y_1$, $Y_2$, $Y_3$, and $Y_4$ be independent
+$G$-valued random variables. Then
+$$\eqalign{
+\dd\{Y_1, Y_2\} + \dd\{Y_3,Y_4\} = \dd\{Y_1 - Y_3;&\ Y_2 - Y_4\}
++ \dd\{ Y_1\given Y_1 - Y_3;\ Y_2\given Y_2-Y_4\}\cr
+&+ \II\{Y_1 - Y_2 : Y_2-Y_4 \given Y_1 - Y_2 - Y_3 + Y_4\}. \cr
+}$$
+
+\proof We apply this with the subtraction homomorphism $\pi : G\times G\to G$ given by $\pi(x,y) = x-y$.
+Then the previous proposition applied to $Z_1 = (Y_1, Y_3)$ and $Z_2 = (Y_2, Y_4)$ yields the equality
+$$\eqalign{
+\dd\bigl\{&(Y_1, Y_3);\ (Y_2, Y_4)\bigr\} \cr
+&= \dd\bigl\{ Y_1-Y_3, Y_2-Y_4\bigr\}
++ \dd\bigl\{ (Y_1, Y_3)\given Y_1-Y_3;\ (Y_2,Y_4)\given Y_2-Y_4\bigr\}\cr
+&\hskip40pt+\II\bigl\{ (Y_1-Y_2, Y_3-Y_4) : (Y_1-Y_3, Y_2-Y_4)\mathbin{\big|} Y_1 - Y_2 - Y_3 - Y_4\bigr\} \cr
+&= \dd\bigl\{ Y_1-Y_3, Y_2-Y_4\bigr\} + \dd\bigl\{ Y_1\given Y_1-Y_3;\ Y_2\given Y_2-Y_4\bigr\}.\cr
+&\hskip40pt+\II\bigl\{ Y_1-Y_2 : Y_2-Y_4 \mathbin{\big|} Y_1-Y_2-Y_3+Y_4\bigr\} \cr
+}$$
+where in the last line we used the fact that $(Y_1-Y_2, Y_1-Y_2-Y_3+Y_4)$ determines $Y_3-Y_4$ as well
+as the fact that $(Y_2-Y_4, Y_1-Y_2-Y_3+Y_4)$ determines $Y_1-Y_3$.
+But by independence,
+$$\eqalign{
+\dd\bigl\{(Y_1, Y_3);\ (Y_2, Y_4)\bigr\}
+&= \Eta\{ Y_1-Y_2, Y_3-Y_4\} - {\Eta\{Y_1, Y_3\}\over 2} - {\Eta\{Y_2, Y_4\}\over 2} \cr
+&= \dd\{Y_1, Y_2\} + \dd\{Y_3, Y_4\},\cr
+}$$
+so the corollary is proved.\slug
+
+\advsect Sums and fibres
+
+In Section~{\sectcompactness}, we showed that to prove the polynomial Freiman--Ruzsa theorem,
+it suffices to produce, for every pair $(X_1, X_2)$ of random variables taking values in $G = \FF_2^n$
+with $\dd\{X_1, X_2\}>0$,
+a pair $(X_1',X_2')$ with $\tau\{X_1', X_2'\} < \tau\{X_1, X_2\}$. (This was Proposition~{\propmaintau}.)
+Recall that the definition of $\tau$ involves the ``global'' variables $X_1^*$ and $X_2^*$, as well as the global
+constant $\eta = 1/9$.
+
+To prove this statement, it is somewhat more convenient to work with its contrapositive. That is,
+we shall assume that $(X_1, X_2)$ has $\dd\{X_1, X_2\} = k$ and that
+this pair minimises $\tau$; that is, $\tau\{X_1', X_2'\} \ge \tau\{X_1,X_2\}$
+for all $(X_1',X_2')$.
+Without loss of generality we may further assume that $X_1$ and $X_2$ are independent.
+Our aim is to show that $k=0$.
+The first lemma we prove amounts to little more than expansion of definitions, but is worth writing
+explicitly nonetheless.
+
+\edef\lemionehelper{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Suppose $(X_1, X_2)\in \P(G)^2$
+is a minimiser of $\tau$ with $\dd\{X_1, X_2\} = k$.
+Then for all $(X_1',X_2')\in \P(G)^2$,
+$$\dd\{X_1', X_2'\} \ge k-\eta\bigl(\dd\{X_1^*, X_1'\} - \dd\{X_1^*, X_1\}
++ \dd\{X_2^*, X_2'\} - \dd\{X_2^*, X_2\}\bigr),$$
+and for all $(X_1',X_2')\in \P(G)^2$ and any discrete random variables $Y_1$ and $Y_2$, we have
+$$\eqalign{
+\dd\{&X_1'\given Y_1; X_2'\given Y_2\} \cr
+&\ge k-\eta\bigl(\dd\{X_1^*; X_1'\given Y_1\} - \dd\{X_1^*, X_1\}
++ \dd\{X_2^*; X_2'\given Y_2\} - \dd\{X_2^*, X_2\} \bigr). \cr
+}$$
+
+\proof The first inequality follows directly from $\tau\{X_1',X_2'\} \ge \tau\{X_1, X_2\}$ and
+the definition of $\tau$. For the second inequality, suppose that $Y_1$ has support $A_1$ and
+$Y_2$ has support $A_2$ and sum the inequalities
+$\tau\{X_1\given Y_1 = y_1;\ X_2\given Y_2 = y_2\}\ge \tau\{X_1,X_2\}$,
+weighted by $\pr\{Y_1 = y_1, Y_2 = y_2\}$ for all $(y_1, y_2)\in A_1\times A_2$.\slug
+
+The task now is to investigate specific
+choices of $(X_1',X_2')$ and see what information we can glean about a minimising pair $(X_1, X_2)$.
+The next lemma proves our first inequality in this direction.
+
+\edef\lemionebound{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Let $G = \FF_2^n$
+and suppose $(X_1, X_2)\in \P(G)^2$ is a minimiser of $\tau$ with $\dd\{X_1, X_2\} = k$.
+Then letting
+$$I_1 = \II\{ X_1 + X_2 : \bar X_1 + X_2 \given X_1 + X_2 + \bar X_1 + \bar X_2\},$$
+where
+$X_1$ and $\bar X_1$ be copies of $X_1$ and $X_2$ and $\bar X_2$ be copies of $X_2$ such that $X_1$,
+$\bar X_1$, $X_2$, and $\bar X_2$ are all independent,
+we have
+$$I_1 \le 2\eta k.$$
+Furthermore, we have
+$$\Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\} \le {1\over 2} \Eta\{X_1\} + {1\over 2} \Eta\{X_2\}+(2+\eta)k - I_1.$$
+
+\proof Since
+$$ k = \dd\{X_1, X_2\} = \dd\{X_1, \bar X_2\} = \dd\{X_2, \bar X_1\},$$
+applying Lemma~{\lemfivetwo} four times gives us the inequalities
+$$\eqalign{
+\dd\{X_1^*; X_1 + \bar X_2\}-\dd\{X_1^*, X_1\}&\le{1\over 2}k + {1\over 4}\Eta\{X_2\}-{1\over 4}\Eta\{X_1\},\cr
+\dd\{X_2^*; X_2 + \bar X_1\}-\dd\{X_2^*, X_2\}&\le{1\over 2}k + {1\over 4}\Eta\{X_1\}-{1\over 4}\Eta\{X_2\},\cr
+\dd\{X_1^*; X_1\given X_1-\bar X_2\}-\dd\{X_1^*,X_1\}
+  &\le{1\over 2}k + {1\over 4}\Eta\{X_1\} - {1\over 4}\Eta\{X_2\},\cr
+}$$
+and
+$$\dd\{X_2^*; X_2\given X_2-\bar X_1\}-\dd\{X_2^*,X_2\}
+  \le{1\over 2}k + {1\over 4}\Eta\{X_2\} - {1\over 4}\Eta\{X_1\}.$$
+By summing these four inequalites, we obtain
+\edef\eqfoursum{\the\eqcount}
+$$\eqalign{
+2k &\ge \dd\{X_1^*; X_1 + \bar X_2\} + \dd\{X_2^*; X_2 + \bar X_1\} \cr
+&\qquad\qquad+\dd\{X_1^*; X_1\given X_1 + \bar X_2\} + \dd\{X_2^*; X_2\given X_2 + \bar X_1\} \cr
+&\qquad\qquad-2\dd\{X_1^*, X_1\} - 2\dd\{X_2^*, X_2\} .\cr
+}\adveq$$
+On the other hand,
+Corollary~{\corfourtwo} with $(Y_1, Y_2, Y_3, Y_4)$ set to $(X_1, X_2, \bar X_2, \bar X_1)$
+gives us
+$$\eqalign{
+\dd\{X_1, X_2\} + \dd\{\bar X_2,\bar X_1\} = \dd\{&X_1 - \bar X_2;\ X_2 - \bar X_1\} \cr
+&+ \dd\{ X_1\given X_1 - \bar X_2;\ X_2\given X_2-\bar X_1\}\cr
+&+ \II\{X_1 - X_2 : X_2-\bar X_1 \given X_1 - X_2 - \bar X_2 + \bar X_1\}. \cr
+}$$
+which can be rewritten
+\edef\eqioneidentity{\the\eqcount}
+$$\eqalign{
+2k &=
+\dd\{X_1 + \bar X_2;\ X_2 + \bar X_1\} +\dd\{ X_1\given X_1 + \bar X_2;\ X_2\given X_2+\bar X_1\}\cr
+&\qquad\qquad+ \II\{X_1 + X_2 : X_2+\bar X_1 \given X_1 + X_2 + \bar X_1 + \bar X_2\}\cr
+&=  \dd\{X_1 + \bar X_2;\ X_2 + \bar X_1\} + \dd\{ X_1\given X_1 + \bar X_2;\ X_2\given X_2+\bar X_1\}+I_1\cr
+}\adveq$$
+since $\dd\{X_1,X_2\} = k$ and we are working in $G = \FF_2^n$.
+By Lemma~{\lemionehelper}, we have
+$$\eqalign{
+\dd\{X_1 + \bar X_2; X_2 + \bar X_1\} &\ge k-\eta\bigl(\dd\{X_1^*, X_1 + \bar X_2\}-\dd\{X_1^*, X_1\}\cr
+&\qquad + \dd\{X_2^*, X_2 + \bar X_1\}- \dd\{X_2^*, X_2\}\bigr) \cr
+}\adveq$$
+and
+\edef\eqioneconditional{\the\eqcount}
+$$\eqalign{
+\dd\{X_1\given X_1 + \bar X_2;X_2\given X_2 + \bar X_1\}
+&\ge k-\eta\bigl(\dd\{X_1^*; X_1\given  X_1 + \bar X_2\} - \dd\{X_1^*, X_1\}\cr
+&\qquad+ \dd\{X_2^*, X_2\given X_2 + \bar X_1\}- \dd\{X_2^*, X_2\} \bigr).\cr
+}\adveq$$
+Substituting these two inequalities into~\refeq{\eqioneidentity} yields
+$$\eqalign{
+2k &\ge I_1 + 2k - \eta\bigl( \dd\{X_1^*, X_1 + \bar X_2\} + \dd\{X_1^*, X_1\given X_1+\bar X_2\} \cr
+&\qquad\qquad\qquad\qquad+ \dd\{X_2^*, X_2 + \bar X_1\} + \dd\{X_2^*, X_2\given X_2+\bar X_2\},\cr
+&\qquad\qquad\qquad\qquad -2\dd\{X_1^*, X_1\} - 2\{X_2^*, X_2\} \bigl)\cr
+}$$
+whence
+$$\eqalign{
+I_1&\le \eta\bigl( \dd\{X_1^*, X_1 + \bar X_2\} + \dd\{X_1^*, X_1\given X_1+\bar X_2\} \cr
+&\qquad\qquad\qquad\qquad+ \dd\{X_2^*, X_2 + \bar X_1\} + \dd\{X_2^*, X_2\given X_2+\bar X_2\} ,\cr
+&\qquad\qquad\qquad\qquad -2\dd\{X_1^*, X_1\} - 2\{X_2^*, X_2\} \bigl)\cr
+}$$
+and we can substitute the inequality~\refeq{\eqfoursum} to get $I_1\le 2\eta k$.
+
+To prove the other claim, we substitute~\refeq{\eqioneconditional} into~\refeq{\eqioneidentity}
+to obtain
+$$\eqalign{
+k&\ge I_1 + \dd\{X_1 + \bar X_2 ; X_2 + \bar X_1\}
+  -\eta\bigl(\dd\{X_1^*; X_1\given  X_1 + \bar X_2\} - \dd\{X_1^*, X_1\}\cr
+&\hskip150pt+ \dd\{X_2^*, X_2\given X_2 + \bar X_1\}- \dd\{X_2^*, X_2\} \bigr) \cr
+&\ge I_1 + \dd\{X_1 + \bar X_2; X_2 + \bar X_1\} -\eta k, \cr
+}$$
+where in the second line we have used two of the four inequalities begotten by Lemma~{\lemfivetwo}.
+So $(1+\eta)k - I_1 \ge \dd\{X_1 + \bar X_2; X_2 + \bar X_1\}$, which we expand to
+$$\eqalign{
+(1-\eta)k-I_1 &\ge \Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\} - {1\over 2}\Eta\{X_1 + \bar X_2\} - 
+{1\over 2} \Eta\{X_2+\bar X_1\} \cr
+&=  \Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\}-\dd\{X_1, X_2\} - {1\over 2} \Eta\{X_1\}-{1\over 2}\Eta\{X_2\}\cr
+}$$
+by independence and the fact that subtraction is addition in $G$. Since
+$\dd\{X_1, X_2\}=k$, rearranging completes
+the proof.\slug
+
+We can interpret this lemma as saying that if setting $X_1' = X_1 + \bar X_2$ and $X_2' = X_2 + \bar X_1$
+gives the inequality $\tau\{X_1',X_2'\} \ge \tau\{X_1,X_2\}$, and furthermore if the same holds when
+setting $(X_1',X_2')$ to any pair
+$$\bigl(X_1 \given X_1+\bar X_2 = v_1, X_2\given X_2+\bar X_1 = v_2\bigr)$$
+of ``fibres'', where $(v_1, v_2)\in G^2$,
+then we have a bound on a certain mutual information quantity $I_1$.
+
+Now we perform a similar analysis, where instead of taking sums $X_1+\bar X_2$ and
+$X_2+\bar X_1$ across variables, now we sum copies of the {\it same} variables.
 
 \section References
 

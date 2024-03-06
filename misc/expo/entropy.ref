@@ -1,0 +1,86 @@
+%Q balogszemeredi1994
+%A Antal Balog
+%A Endre Szemer\'edi
+%T A statistical theorem of set addition
+%J Combinatorica
+%V 14
+%D 1994
+%P 263-268
+
+%Q gowers1998
+%A William Timothy Gowers
+%T A new proof of Szemer\'edi's theorem for arithmetic progressions of length four
+%J Geometric and Functional Analysis
+%V 8
+%D 1998
+%P 529-551
+
+%Q ruzsa1989
+%A Imre Zolt\'an Ruzsa
+%T An application of graph theory to additive number theory
+%J Scientia, Series A
+%V 3
+%P 97-109
+%D 1989
+
+%Q ruzsa1996
+%O Imre Zolt\'an Ruzsa, ``Sums of finite sets,'' {\sl Number Theory: New York Seminar 1991--1995} (1996).
+
+%Q additivecombinatorics
+%A Terence Tao
+%A Van Ha Vu
+%T Additive Combinatorics
+%I Cambridge University Press
+%C Cambridge
+%Y 2006
+
+%Q tao2010
+%A Terence Tao
+%T Sumset and inverse sumset theory for Shannon entropy
+%J Combinatorics, Probability, and Computing
+%V 19
+%P 603-639
+%D 2010
+
+%Q ruzsa2008
+%A Imre Zolt\'an Ruzsa
+%T Sumsets and entropy
+%J Random Structures and Algorithms
+%V 34
+%P 1-10
+%D 2008
+
+%Q revisited2023
+%A Ben Green
+%A Freddie Manners
+%A Terence Tao
+%T Sumsets and entropy revisited
+%J arXiv:2306.13403
+%P 37~pp
+%D 2023
+
+%Q pfr2023
+%A William Timothy Gowers
+%A Ben Green
+%A Freddie Manners
+%A Terence Tao
+%T On a conjecture of Marton
+%J arXiv:2311.05762
+%P 33~pp
+%D 2023
+
+%Q petridis2012
+%A Giorgis Petridis
+%T New proofs of Pl\"unnecke-type estimates for product sets in groups.
+%J Combinatorica
+%V 32
+%P 721-733
+%D 2012
+
+%Q plunnecke
+%A Helmut Pl\"unnecke
+%T Eigenschaften und Absch\"atzungen von Wirkungsfunktionen
+%I Berichte der Gesellschaft f\"ur Mathematik und Datenverarbeitung
+%C Bonn
+%Y 1969
+

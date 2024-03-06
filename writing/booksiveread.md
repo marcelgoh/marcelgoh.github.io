@@ -206,4 +206,9 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 
 1. _Beautiful Losers_ (1966), Leonard Cohen
 1. _Steppenwolf_ (1927), Hermann Hesse
+1. _Silas Marner_ (1861), George Eliot
+1. _Ice_ (1967), Anna Kavan
+1. _The Compleat Angler_ (1653, 5th ed. 1676), Izaak Walton
+1. _La chute_ (1956), Albert Camus [French]
+1. _Worn: A People's History of Clothing_ (2022), Sofi Thanhauser
 
