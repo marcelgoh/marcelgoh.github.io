@@ -210,13 +210,13 @@ $$\pr\{X = a^*\} \ge 2^{-\Etaseven\{X\}}.$$
 $1/n$ for all $a\in A$. Let $Y$ be uniformly distributed on $[n]$ and let $\{E_a\}_{a\in A}$
 be a partition of $[n]$ such that $|E_a| = n\pr\{X= a\}$ for all $a\in A$, and let $Z = a$
 if $Y\in E_a$. This definition makes $Z$ and $X$ identically distributed, so $\Eta\{Z\} = \Eta\{X\}$
-by the invariance axiom, and it suffices to prove $\Eta\{Z\} \ge 0$.
+by the invariance axiom.
 
 For every $a\in A$, the conditional entropy $\Eta\{Y \given Z = a\}$ is uniformly
 distributed on a set of size $|E_a|$. From our choice of $a^*$
 we have $|E_{a^*}| \ge |E_a|$ for all $a\in A$. Hence by Proposition~{\proplogeq}, we have
 $$\Eta\{Y\given Z\} = \sum_{a\in A} \pr\{X = a\} \Eta\{Y\given X = a\}
-\sum_{a\in A} \pr\{X = a\} \log |E_a| \le \log |E_{a^*}|.$$
+= \sum_{a\in A} \pr\{X = a\} \log |E_a| \le \log |E_{a^*}|.$$
 Since $Z$ is determined by $Y$, we have $\Eta\{Y\} = \Eta\{Z\} + \Eta\{Y\given Z\}$ by the previous lemma.
 So by another invocation of Proposition~{\proplogeq}, we have
 $$\eqalign{
@@ -341,7 +341,7 @@ whence dividing both sides by $2$ completes the proof.\slug
 The submodularity inequality is often stated in terms of a triple of random variables in terms of
 the {\it conditional mutual information}, which is defined by
 $$\eqalign{
-\II\{ X : Y \given Z\} &= \sum_{z\in C} p_Z(z) \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\} \cr
+\II\{ X : Y \given Z\} &= \sum_{z\in C} \pr\{Z = z\} \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\} \cr
 &= \Eta\{X\given Z\} - \Eta\{X\given Y, Z\} \cr
 &= \Eta\{Y\given Z\} - \Eta\{Y\given X, Z\}.\cr
 }$$
@@ -350,6 +350,7 @@ $$\eqalign{
 $$\Eta\{X,Y,Z\} + \Eta\{Z\} \le \Eta\{X,Z\} + \Eta\{Y,Z\},$$
 which is equivalent to
 $$\II\{X : Y\given Z\} \ge 0.$$
+Equality holds if and only if $X$ and $Y$ are independent conditional on $Z$.
 
 \proof It is clear from the additivity axiom that both sides in the first
 inequality are equal to $\Eta\{X\} + \Eta\{Y\} + 2\Eta\{Z\}$
@@ -359,7 +360,7 @@ To prove the first inequality, note that $(X,Y,Z)$ is jointly determined by $(X,
 and $Z$ is determined by both $(X,Z)$ and $(Y,Z)$ separately, then apply the previous proposition.
 Now by the definition of conditional mutual information,
 $$\eqalign{
-\II\{ X : Y \given Z\} &= \sum_{z\in C} p_Z(z) \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\} \cr
+\II\{ X : Y \given Z\} &= \sum_{z\in C} \pr\{Z=z\} \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\} \cr
 &= \Eta\{ X\given Z\} + \Eta\{Y\given Z\} - \Eta\{ X, Y \given Z \} \cr
 &= \Eta\{ X, Z\} -2\Eta\{ Z\} + \Eta\{Y,Z\} - \Eta\{ X, Y ,Z \} + \Eta\{Z\}\cr
 &= \Eta\{ X, Z\} + \Eta\{Y,Z\} - \Eta\{ X, Y ,Z \} - \Eta\{Z\},\cr
@@ -370,7 +371,7 @@ and this proves that the first statement is equivalent to the second.\slug
 
 Now we will examine the case where the random variables in question take values in an abelian group $G$,
 meaning we can take sums $X+Y$ and differences $X-Y$ of them. Note that if we condition on $Y$,
-then the values taken $X+Y$ are in bijection with values taken by $X$. This leads to the following
+then the values taken by $X+Y$ are in bijection with values taken by $X$. This leads to the following
 proposition.
 
 \edef\maxsumsetbound{\the\sectcount.\the\thmcount}
@@ -462,10 +463,8 @@ $$\eqalign{
 Now, since the values $(x-y,x-z)$ taken by $(X-Y,X-Z)$ are in bijection with values
 $(x-z,y-z)$ taken by $(X-Z, Y-Z)$ via the map $(v,w) \mapsto (w, w-v)$,
 by the invariance axiom we have
-$$\Eta\{X-Y, X-Z\} = \Eta\{X-Z, Y-Z\},$$
-and
-$$\Eta\{X-Y, X-Z\} \le \Eta\{X-Y\} + \Eta\{Y-Z\}$$
-follows by submodularity. Similar invocations of the invariance axiom give
+$$\Eta\{X-Y, X-Z\} = \Eta\{X-Z, Y-Z\} \le \Eta\{X-Z\} + \Eta\{Y-Z\}.$$
+Similar invocations of the invariance axiom give
 $$\Eta\{Z, X-Z\} = \Eta\{X,Z\}$$
 and
 $$\Eta\{X-Y, Z, X-Z\} = \Eta\{X,Y,Z\} = \Eta\{X,Z\} + \Eta\{Y\},$$
@@ -1401,7 +1400,8 @@ $$I_1 \le 2\eta k.$$
 Furthermore, we have
 $$\Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\} \le {1\over 2} \Eta\{X_1\} + {1\over 2} \Eta\{X_2\}+(2+\eta)k - I_1.$$
 
-\proof Since
+\proof
+Since
 $$ k = \dd\{X_1, X_2\} = \dd\{X_1, \bar X_2\} = \dd\{X_2, \bar X_1\},$$
 applying Lemma~{\lemfivetwo} four times gives us the inequalities
 $$\eqalign{
@@ -1414,7 +1414,7 @@ and
 $$\dd\{X_2^*; X_2\given X_2-\bar X_1\}-\dd\{X_2^*,X_2\}
   \le{1\over 2}k + {1\over 4}\Eta\{X_2\} - {1\over 4}\Eta\{X_1\}.$$
 By summing these four inequalites, we obtain
-\edef\eqfoursum{\the\eqcount}
+\edef\eqionefoursum{\the\eqcount}
 $$\eqalign{
 2k &\ge \dd\{X_1^*; X_1 + \bar X_2\} + \dd\{X_2^*; X_2 + \bar X_1\} \cr
 &\qquad\qquad+\dd\{X_1^*; X_1\given X_1 + \bar X_2\} + \dd\{X_2^*; X_2\given X_2 + \bar X_1\} \cr
@@ -1461,14 +1461,14 @@ I_1&\le \eta\bigl( \dd\{X_1^*, X_1 + \bar X_2\} + \dd\{X_1^*, X_1\given X_1+\bar
 &\qquad\qquad\qquad\qquad+ \dd\{X_2^*, X_2 + \bar X_1\} + \dd\{X_2^*, X_2\given X_2+\bar X_2\} ,\cr
 &\qquad\qquad\qquad\qquad -2\dd\{X_1^*, X_1\} - 2\{X_2^*, X_2\} \bigl)\cr
 }$$
-and we can substitute the inequality~\refeq{\eqfoursum} to get $I_1\le 2\eta k$.
+and we can substitute the inequality~\refeq{\eqionefoursum} to get $I_1\le 2\eta k$.
 
 To prove the other claim, we substitute~\refeq{\eqioneconditional} into~\refeq{\eqioneidentity}
 to obtain
 $$\eqalign{
 k&\ge I_1 + \dd\{X_1 + \bar X_2 ; X_2 + \bar X_1\}
   -\eta\bigl(\dd\{X_1^*; X_1\given  X_1 + \bar X_2\} - \dd\{X_1^*, X_1\}\cr
-&\hskip150pt+ \dd\{X_2^*, X_2\given X_2 + \bar X_1\}- \dd\{X_2^*, X_2\} \bigr) \cr
+&\hskip150pt+ \dd\{X_2^*; X_2\given X_2 + \bar X_1\}- \dd\{X_2^*, X_2\} \bigr) \cr
 &\ge I_1 + \dd\{X_1 + \bar X_2; X_2 + \bar X_1\} -\eta k, \cr
 }$$
 where in the second line we have used two of the four inequalities begotten by Lemma~{\lemfivetwo}.
@@ -1478,8 +1478,7 @@ $$\eqalign{
 {1\over 2} \Eta\{X_2+\bar X_1\} \cr
 &=  \Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\}-\dd\{X_1, X_2\} - {1\over 2} \Eta\{X_1\}-{1\over 2}\Eta\{X_2\}\cr
 }$$
-by independence and the fact that subtraction is addition in $G$. Since
-$\dd\{X_1, X_2\}=k$, rearranging completes
+by independence and the fact that subtraction is addition in $G$. Rearranging terms completes
 the proof.\slug
 
 We can interpret this lemma as saying that if setting $X_1' = X_1 + \bar X_2$ and $X_2' = X_2 + \bar X_1$
@@ -1491,6 +1490,77 @@ then we have a bound on a certain mutual information quantity $I_1$.
 
 Now we perform a similar analysis, where instead of taking sums $X_1+\bar X_2$ and
 $X_2+\bar X_1$ across variables, now we sum copies of the {\it same} variables.
+
+\edef\lemitwobound{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Let $G = \FF_2^n$
+and suppose $(X_1, X_2)\in \P(G)^2$ is a minimiser of $\tau$ with $\dd\{X_1, X_2\} = k$.
+Then letting
+$$I_2 = \II\{ X_1 + X_2 : X_1 + \bar X_1 \given X_1 + X_2 + \bar X_1 + \bar X_2\},$$
+where
+$X_1$ and $\bar X_1$ be copies of $X_1$ and $X_2$ and $\bar X_2$ be copies of $X_2$ such that $X_1$,
+$\bar X_1$, $X_2$, and $\bar X_2$ are all independent,
+we have
+$$I_2 \le 2\eta k + {2\eta(2\eta k- I_1)\over 1-\eta}.$$
+
+\proof
+Applying Lemma~{\lemfivetwo} four times gives us the inequalities
+\edef\eqitwofourineq{\the\eqcount}
+$$\eqalign{
+\dd\{X_1^*; X_1 + \bar X_1\}-\dd\{X_1^*, X_1\}&\le{1\over 2}\dd\{X_1, X_1\},\cr
+\dd\{X_2^*; X_2 + \bar X_2\}-\dd\{X_2^*, X_2\}&\le{1\over 2}\dd\{X_2, X_2\},\cr
+\dd\{X_1^*; X_1\given X_1-\bar X_1\}-\dd\{X_1^*,X_1\} &\le {1\over 2}\dd\{X_1, X_1\},\cr
+}\adveq$$
+and
+$$\dd\{X_2^*; X_2\given X_2-\bar X_2\}-\dd\{X_2^*,X_2\} \le{1\over 2}\dd\{X_2,X_2\}.\adveq$$
+These inequalities and Lemma~{\lemionehelper} together give
+\edef\eqitwounconditional{\the\eqcount}
+$$\eqalign{
+\dd\{X_1 + \bar X_1; X_2 + \bar X_2\} &\ge k-\eta\bigl(\dd\{X_1^*, X_1 + \bar X_1\}-\dd\{X_1^*, X_1\}\cr
+&\qquad + \dd\{X_2^*, X_2 + \bar X_2\}- \dd\{X_2^*, X_2\}\bigr) \cr
+&\ge k-{\eta\over 2}\dd\{X_1, X_1\} -{\eta\over 2} \dd\{X_2, X_2\} \cr
+}\adveq$$
+and
+\edef\eqitwoconditional{\the\eqcount}
+$$\eqalign{
+\dd\{X_1\given X_1 + \bar X_1;X_2\given X_2 + \bar X_2\}
+&\ge k-\eta\bigl(\dd\{X_1^*; X_1\given  X_1 + \bar X_1\} - \dd\{X_1^*, X_1\}\cr
+&\qquad+ \dd\{X_2^*, X_2\given X_2 + \bar X_2\}- \dd\{X_2^*, X_2\} \bigr)\cr
+&\ge k-{\eta\over 2}\dd\{X_1, X_1\} -{\eta\over 2} \dd\{X_2, X_2\}. \cr
+}\adveq$$
+Corollary~{\corfourtwo}, with $(Y_1, Y_2, Y_3, Y_4)$ set to $(X_2, X_1, \bar X_2, \bar X_1)$ this time,
+yields
+\edef\eqitwoidentity{\the\eqcount}
+$$\eqalign{
+2k &=
+\dd\{X_2 + \bar X_2;\ X_1 + \bar X_1\} +\dd\{ X_2\given X_2 + \bar X_2;\ X_1\given X_1+\bar X_1\}\cr
+&\qquad\qquad+ \II\{X_1 + X_2 : X_1+\bar X_1 \given X_1 + X_2 + \bar X_1 + \bar X_2\}\cr
+&=  \dd\{X_1 + \bar X_1;\ X_2 + \bar X_2\} + \dd\{ X_1\given X_1 + \bar X_1;\ X_2\given X_2+\bar X_2\}+I_2,\cr
+}\adveq$$
+into which we substitute~\refeq{\eqitwounconditional} and~\refeq{\eqitwoconditional} to obtain
+\edef\eqitwoalmostdone{\the\eqcount}
+$$ I_2 \le \eta\bigl( \dd\{X_1, X_1\} + \dd\{X_2,X_2\}\bigr).$$
+It remains to bound $\dd\{X_1, X_1\} + \dd\{X_2,X_2\}$.
+
+Since $\Eta\{X_1 + \bar X_1\}= \Eta\{X_1\} + \dd\{X_1, X_1\}$ and similarly for $X_2$, we may expand
+$$\eqalign{
+\dd\{X_1 + \bar X_1; X_2 + \bar X_2\} &= \Eta\{X_1 + \bar X_1 + X_2 + \bar X_2\} \cr
+&\qquad\qquad-{1\over 2} \Eta\{X_1+\bar X_1\} - {1\over 2} \Eta\{X_2+\bar X_2\} \cr
+&= \Eta\{X_1 + \bar X_1 + X_2 + \bar X_2\} - {1\over 2}\Eta\{X_1\}
+-{1\over 2} \Eta\{X_2\} \cr
+&\qquad\qquad-{1\over 2} \dd\{X_1,X_1\} - {1\over 2} \Eta\{X_2,X_2\}.\cr
+}$$
+But recall that the second conclusion of Lemma~{\lemionebound} was
+$$\Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\} \le {1\over 2} \Eta\{X_1\} + {1\over 2} \Eta\{X_2\}+(2+\eta)k - I_1,$$
+meaning that
+$$\dd\{X_1+\bar X_1; X_2+\bar X_2\}\le (2+\eta)k - {1\over 2}\dd\{X_1, X_1\} -{1\over 2}\dd\{X_2,X_2\}-I_1.$$
+Chaining this with~\refeq{\eqitwounconditional} yields
+$$ k-{\eta\over 2}\dd\{X_1,X_1\} - {\eta\over 2}\dd\{X_2,X_2\} \le
+(2+\eta)k-{1\over 2}\dd\{X_1, X_1\} -{1\over 2}\dd\{X_2,X_2\}-I_1,$$
+which simplifies to
+$$\dd\{X_1,X_1\} + \dd\{X_2,X_2\} \le {2k +2\eta k - 2I_1\over 1-\eta} = 2k + {2(2\eta k -I_1)\over 1-\eta} $$
+and hence
+$$I_2 \le 2\eta k + {2\eta(2\eta k -I_1)\over 1-\eta}.\noskipslug$$
+
 
 \section References
 

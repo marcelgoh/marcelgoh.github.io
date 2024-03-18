@@ -211,4 +211,5 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Compleat Angler_ (1653, 5th ed. 1676), Izaak Walton
 1. _La chute_ (1956), Albert Camus [French]
 1. _Worn: A People's History of Clothing_ (2022), Sofi Thanhauser
+1. _Silver Repetition_ (2024), Lily Wang
 
