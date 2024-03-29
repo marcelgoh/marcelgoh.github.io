@@ -690,14 +690,14 @@ $$\eqalign{
 &= \Eta\{X'-Y+Z\} - {1\over 2} \Eta\{Y-Z\} \cr
 &\hskip110pt-\Eta\{X'-Y\} + {1\over 2}\Eta\{Y\}.\cr
 }$$
-Lemma~\ref{\lemaone} with $X'$ in place of $X$ and $-Y$ in place of $Y$ yields
+Lemma~{\lemaone} with $X'$ in place of $X$ and $-Y$ in place of $Y$ yields
 $$\Eta\{X'-Y+Z\} - \Eta\{X'-Y\} \le \Eta\{Y-Z\} -\Eta\{Y\},$$
 so
 $$\dd\{X, Y-Z\} - \dd\{X, Y\} \le {1\over 2} \Eta\{Y-Z\} - {1\over 2}\Eta\{Y\},$$
 as desired. The alternate version of the statement follows directly from the definition of Ruzsa distance,
 since $Y$ and $Z$ are independent.
 
-For the other inequality, we apply Lemma~\ref{\lemfiveone} with $W = Y-Z$ (and the variable $Z$ in that lemma
+For the other inequality, we apply Lemma~{\lemfiveone} with $W = Y-Z$ (and the variable $Z$ in that lemma
 set to anything that is independent of $X$) to obtain
 $$\eqalign{
 \dd\{X; Y\given Y-Z\} - \dd\{X,Y\} &\le {1\over 2} \II\{Y:Y-Z\} \cr
@@ -719,11 +719,11 @@ $$\eqalign{
 &\le {1\over 2} \bigl( \Eta\{Y-Z-W\} + \Eta\{Y-Z\} - \Eta\{Y\} - \Eta\{W\}\bigr) .\cr
 }$$
 
-\proof The second inequality of Lemma~\ref{\lemfivetwo} (setting $Y \gets Y-Z$ and $Z\gets W$) yields
+\proof The second inequality of Lemma~{\lemfivetwo} (setting $Y \gets Y-Z$ and $Z\gets W$) yields
 $$\dd\{X; Y-Z\given Y-Z-W\} - \dd\{X, Y-Z\} \le {\Eta\{Y-Z-W\} - \Eta\{W\}\over 2},$$
 and the first inequality (without any change of variables) is
 $$\dd\{X, Y-Z\} - \dd\{X, Y\} \le {\Eta\{Y-Z\} - \Eta\{Y\}\over 2}.$$
-Adding these two inequalites proves the lemma.\slug
+Adding these two inequalities proves the lemma.\slug
 
 \advsect The Balog--Szemer\'edi--Gowers theorem
 
@@ -858,7 +858,7 @@ the polynomial Freiman--Ruzsa theorem.
 Let $X$ and $Y$ be discrete random variables taking values in the same abelian
 group. Let $(X_1, Y_1)$ and $(X_2,Y_2)$ be conditionally
 independent trials of $(X,Y)$ relative to $X+Y$. Then we have
-$$\max\bigl(\Eta\{X_1- X_2\}, \Eta\{X_1-Y_2\}\bigr) \le \Eta\{X+Y\} - \II\{X:Y\}.$$
+$$\max\bigl(\Eta\{X_1- X_2\}, \Eta\{X_1-Y_2\}\bigr) \le \Eta\{X+Y\} + 2\II\{X:Y\}.$$
 The right-hand side of this expression can also be written $2\Eta\{X\} + 2\Eta\{Y\} - \ee\{X,Y\}$.
 
 \proof First we perform the proof for $X_1 - Y_2$.
@@ -949,6 +949,35 @@ and from our lower bound on $\ee\{X,Y\}$, we conclude that
 $$\Eta\{ X_1 + Y_2\given X+Y\} \le {1\over 2} \Eta\{X\} + {1\over 2} \Eta\{Y\} + \log K,$$
 which is what we wanted to show.\slug
 
+Let us also extract the specific consequence of Lemma~{\lematwo} that we need for the polynomial
+Freiman--Ruzsa theorem.
+
+\edef\lematwopfr{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Let $X$ and $Y$ be $G$-valued random variables, let $Z = X+Y$, and let $C$
+denote the support of $Z$. Then
+$$\eqalign{
+\sum_{z\in C} \pr\{Z=z\} \dd\bigl\{ &(X\given Z=z); (Y\given Z=z)\bigr\} \cr
+&\le 2\II\{X:Y\}+2\Eta\{Z\}-\Eta\{X,Y\}. \cr
+}$$
+
+\proof Let $(X_1, Y_1)$ and $(X_2, Y_2)$ be as in the proof of Lemma~{\lematwo}. Note that
+$X_1$ and $Y_2$ are conditionally independent copies of $X$ and $Y$ relative to $Z$, so it suffices
+to show that
+\edef\eqxoneytwoa{\the\eqcount}
+$$\eqalign{
+\Eta\{X_1 - Y_2\given Z\} - {1\over 2} &\Eta\{X_1\given Z\} - {1\over 2} \Eta\{Y_2\given Z\} \cr
+&\le 2\II\{X:Y\}+2\Eta\{Z\}-\Eta\{X,Y\}. \cr
+}\adveq$$
+Lemma~{\lematwo} tells us that $\Eta\{X_1 - Y_2\} \le \Eta\{Z\} + 2\II\{X:Y\}$, so that
+\edef\eqxoneytwob{\the\eqcount}
+$$\Eta\{X_1 - Y_2\given Z\} \le \Eta\{Z\} + 2\II\{X:Y\},\adveq$$
+since conditioning does not increase entropy. Then
+we expand
+\edef\eqxoneytwoc{\the\eqcount}
+$$\Eta\{X_1\given Z\} = \Eta\{X_1, X_1 + Y_1\} - \Eta\{Z\} = \Eta\{X,Y\} - \Eta\{Z\},\adveq$$
+and $\Eta\{Y_2\given Z\}$ is equal to this quantity as well. Subtracting~\refeq{\eqxoneytwoc}
+from~\refeq{\eqxoneytwob} gives us~\refeq{\eqxoneytwoa}, which completes the proof.\slug
+
 \advsect The Freiman--Ruzsa theorem
 
 Both Pl\"unnecke's theorem and the Balog--Szemer\'edi--Gowers theorem have to do with the ratio $|A+A|/|A|$
@@ -1020,6 +1049,13 @@ Let $A\subseteq \FF_2^n$ have $|A+A|\le K|A|$
 for some constant $K$. Then there is a subgroup $H$ with $|H|\le |A|$ such that $A$
 is contained in a union of $2K^C$ cosets of $H$.
 
+The reason we need the factor of two is that if $A$ is almost all of a subgroup, then $K$ is very close
+to $1$ and the largest
+subgroup of $\FF_2^n$ has cardinality just slightly above half that of $A$. That creates the possibility
+that $K^C$ is much less than $2$, making it impossible to satisfy the statement of the conjecture.
+Adding the factor of two solves this issue because if $A\subseteq H_0$ with $|A| \ge (1-\eps)|H_0|$, then
+we may take a subgroup $H$ of $H_0$ of index $2$ and cover $A$ by two cosets of $H$.
+
 The proof of this theorem will occupy the
 remainder of these notes. As a first step, we shall show that
 Theorem~{\thmpfr} follows from an entirely information-theoretic statement.
@@ -1037,7 +1073,7 @@ whose proof is short enough that we include it for completeness.
 
 \edef\lemruzsacovering{\the\sectcount.\the\thmcount}
 \parenproclaim Lemma {\advthm} (Ruzsa covering lemma). Let $G$ be an abelian group and let $A$ and
-$B$ be finite subsets of $Z$. Then there is a set $L\subseteq A$ of size at most $|A+B|/|B|$ such that
+$B$ be finite subsets of $G$. Then there is a set $L\subseteq A$ of size at most $|A+B|/|B|$ such that
 $A\subseteq L+B-B$.
 
 \proof Let $L = \{a_1,\ldots,a_l\}$ be a maximal subset of $A$ with the property that the sets $a_i+B$
@@ -1049,7 +1085,7 @@ We now show that if Theorem~{\thmsubgroup} holds for some constant $C'$, then
 Theorem~{\thmpfr} holds with $C=C'+1$.
 
 \medskip\noindent{\it Proof of Theorem~{\thmpfr} assuming Theorem~{\thmsubgroup}.}\enspace
-Let $A\subseteq \FF_2$ and $K\ge 1$
+Let $A\subseteq \FF_2^n$ and $K\ge 1$
 such that $|A+A|\le K|A|$. Let $U_A$ be the uniform distribution on $A$, so that $\Eta\{U_A\} = \lg|A|$.
 Letting $U_A'$ and $U_A''$ be two independent copies of $U_A$, the sum $U_A' - U_A''$ belongs to $|A+A|$,
 so $\Eta\{U_A' + U_A''\} \le \lg|A+A|$, and we have
@@ -1088,7 +1124,7 @@ If not, then we can pick a
 subgroup $H'$ of $H$ with $|A|/2 \le |H'|\le |A|$ by iteratively taking hyperplanes until the condition is met.
 The group $H$ may be covered by $|H|/|H'| \le 2|H|/|A|$ translates of $H'$, so $A$ can be covered by
 $${2|H|\over |A|}|L| \le {2|H|\over |A|}\cdot {K^{C'/2+1}|A|^{1/2} \over |H|^{1/2} } 
-= 2 {C'/2+1} {|H|^{1/2} \over |A|^{1/2}} \le 2K{C'+1}$$
+= 2K^{C'/2+1} {|H|^{1/2} \over |A|^{1/2}} \le 2K^{C'+1}$$
 translates of $H'$.\slug
 
 \edef\sectcompactness{\the\sectcount}
@@ -1163,7 +1199,7 @@ Then $\dd\{X, -X\} = 0$ if and only if $X$ is uniformly distributed on a coset o
 independent copy of $X$, the random variable $X+X'$ is uniform on the coset $a+a+H$, which has the
 same size as $|a+H|$, so $\Eta\{X+X'\} = \Eta\{X\}$, meaning that
 $$\dd\{X, -X\} = \Eta\{X+X'\} - {\Eta\{X\}\over 2} - {\Eta\{X'\} \over 2} = 0.$$
-On the other hand, suppose that $\Eta\{X+X'\} = \Eta\{X\}$, where $X'$ is an independent copy of $X$.
+On the other hand, suppose that $\Eta\{X+X'\} = 2\Eta\{X\}$, where $X'$ is an independent copy of $X$.
 Then
 $$\eqalign{
 \Eta\{X+X'\} &= 2\Eta\{X\} - \Eta\{X\} \cr
@@ -1197,8 +1233,11 @@ $\dd\{X_1,X_2\} = 0$. Then there exists a subgroup $H$ of $\FF_2^n$ such that
 $$\dd\{X_1, U_H\} = \dd\{X_2,U_H\} = 0.$$
 
 \proof The triangle inequality gives $\dd\{X_1,X_1\} = 0$, and since $-x = x$ in $\FF_2^n$,
-we also have $\dd\{X_1, - X_1\} = 0$. By the previous proposition, there is a subgroup $H$ such that
-$X_1$ has the same distribution as $H$. So $\dd\{X_1, U_H\} = 0$ and by the triangle inequality once again,
+we also have $\dd\{X_1, - X_1\} = 0$. By the previous proposition, there is a coset $S$ of a
+subgroup $H$ such that
+$X_1$ has the same distribution as $U_S$. So
+$$\dd\{X_1, U_H\} = \Eta\{U_S - U_H\} - {1\over 2}\Eta\{U_S\} - {1\over 2}\Eta\{U_H\} = 0,$$
+since $U_S-U_H$ is uniform on $S$ and $|H| = |S|$. Then by the triangle inequality once again,
 $\dd\{X_2, U_H\} = 0$ as well.\slug
 
 Recall that in the previous section, we reduced the proof of the polynomial Freiman--Ruzsa theorem
@@ -1215,7 +1254,7 @@ $\dd\{ X_1, X_2\} > 0$. Then there are $\FF_2^n$-valued random variables $X_1'$ 
 $$\tau\{X_1', X_2'\} < \tau\{X_1, X_2\}.$$
 
 If we can prove this proposition, then we have Theorem~{\thmsubgroup} with a certain constant $C'$ which
-we shall make explicit during the proof.
+shall be made explicit during the proof.
 
 \medskip\noindent{\it Proof of Theorem~{\thmsubgroup} assuming Proposition~{\propmaintau}}.\enspace
 We proved earlier that $\P(\FF_2^n)$ is a compact topological space, thus so is its Cartesian product with
@@ -1241,7 +1280,7 @@ $$\eqalign{
 From our choice of $\eta = 1/9$ we can multiply both sides by $9$ to get
 $$\dd\{X_1^*, U_H\} + \dd\{X_2^*, U_H\} \le 11\dd\{X_1^*, X_2^*\},$$
 and furthermore, since
-$$\bigl| \dd\{X_1, U_H\} - \dd\{X_2, U_H\} \bigr| \le \dd\{X_1, X_2\}$$
+$$\bigl| \dd\{X_1^*, U_H\} - \dd\{X_2^*, U_H\} \bigr| \le \dd\{X_1^*, X_2^*\}$$
 by two invocations of the triangle inequality, neither $\dd\{X_1^*, U_H\}$ nor
 $\dd\{X_2^*, U_H\}$ can be greater than $6\dd\{X_1^*, X_2^*\}$.\slug
 
@@ -1417,7 +1456,7 @@ By summing these four inequalites, we obtain
 \edef\eqionefoursum{\the\eqcount}
 $$\eqalign{
 2k &\ge \dd\{X_1^*; X_1 + \bar X_2\} + \dd\{X_2^*; X_2 + \bar X_1\} \cr
-&\qquad\qquad+\dd\{X_1^*; X_1\given X_1 + \bar X_2\} + \dd\{X_2^*; X_2\given X_2 + \bar X_1\} \cr
+&\qquad\qquad+\dd\{X_1^*; X_1\given X_1 - \bar X_2\} + \dd\{X_2^*; X_2\given X_2 - \bar X_1\} \cr
 &\qquad\qquad-2\dd\{X_1^*, X_1\} - 2\dd\{X_2^*, X_2\} .\cr
 }\adveq$$
 On the other hand,
@@ -1453,7 +1492,7 @@ Substituting these two inequalities into~\refeq{\eqioneidentity} yields
 $$\eqalign{
 2k &\ge I_1 + 2k - \eta\bigl( \dd\{X_1^*, X_1 + \bar X_2\} + \dd\{X_1^*, X_1\given X_1+\bar X_2\} \cr
 &\qquad\qquad\qquad\qquad+ \dd\{X_2^*, X_2 + \bar X_1\} + \dd\{X_2^*, X_2\given X_2+\bar X_2\},\cr
-&\qquad\qquad\qquad\qquad -2\dd\{X_1^*, X_1\} - 2\{X_2^*, X_2\} \bigl)\cr
+&\qquad\qquad\qquad\qquad -2\dd\{X_1^*, X_1\} - 2\dd\{X_2^*, X_2\} \bigl)\cr
 }$$
 whence
 $$\eqalign{
@@ -1474,7 +1513,7 @@ k&\ge I_1 + \dd\{X_1 + \bar X_2 ; X_2 + \bar X_1\}
 where in the second line we have used two of the four inequalities begotten by Lemma~{\lemfivetwo}.
 So $(1+\eta)k - I_1 \ge \dd\{X_1 + \bar X_2; X_2 + \bar X_1\}$, which we expand to
 $$\eqalign{
-(1-\eta)k-I_1 &\ge \Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\} - {1\over 2}\Eta\{X_1 + \bar X_2\} - 
+(1+\eta)k-I_1 &\ge \Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\} - {1\over 2}\Eta\{X_1 + \bar X_2\} - 
 {1\over 2} \Eta\{X_2+\bar X_1\} \cr
 &=  \Eta\{X_1 + X_2 + \bar X_1 + \bar X_2\}-\dd\{X_1, X_2\} - {1\over 2} \Eta\{X_1\}-{1\over 2}\Eta\{X_2\}\cr
 }$$
@@ -1561,6 +1600,186 @@ $$\dd\{X_1,X_1\} + \dd\{X_2,X_2\} \le {2k +2\eta k - 2I_1\over 1-\eta} = 2k + {2
 and hence
 $$I_2 \le 2\eta k + {2\eta(2\eta k -I_1)\over 1-\eta}.\noskipslug$$
 
+\advsect Endgame
+
+We now approach the phase of the proof which the authors of~\ref{pfr2023} theatrically call the `endgame.'
+There is just one more lemma we need before we can give a full proof of Proposition~{\propmaintau}.
+
+\edef\lemseventwo{\the\sectcount.\the\thmcount}
+\proclaim Lemma~\advthm. Let $X_1$ and $Y_1$ be any $\FF_2^n$-valued random variables,
+and let $T_1$, $T_2$, and $T_3$ be $\FF_2^n$-valued random variables
+such that $T_1 + T_2 + T_3 = 0$ holds identically. Putting
+$$\delta = \II\{T_1 : T_2\} + \II\{T_1:T_3\} + \II\{T_2 : T_3\}$$
+and letting $\psi$ be the functional given by
+$$\psi\{T_1', T_2'\}
+= \dd\{T_1', T_2'\} + \eta\bigl( \dd\{X_1^*,T_1'\}-\dd\{X_1^*,X_1\}+\dd\{X_2^*,T_2'\}-\dd\{X_2^*, X_2\}\bigr),$$
+there exist random variables $T_1'$ and $T_2'$ such that
+$$\psi\{T_1', T_2'\} \le \biggl(1+{\eta\over 3}\biggr)\delta
++ {\eta\over 3}\sum_{i=1}^2\sum_{j=1}^3 \bigl(\dd\{X_i^*, T_j\}-\dd\{X_i^*, X_i\}\bigr)$$
+
+\proof From the fact that any two of the $T_j$ determine the full triple $(T_1, T_2, T_3)$,
+we have
+$$\Eta\{T_1, T_2\} = \Eta\{T_1, T_3\} = \Eta\{T_2,T_3\} = \Eta\{T_1, T_2, T_3\}.$$
+Then since $T_1 + T_2 = T_3$ we may apply Lemma~{\lematwopfr} with
+$(X,Y,Z) = (T_1, T_2, T_3)$ to bound
+$$\eqalign{
+\sum_{t_3\in \FF_2^n} \pr\{T_3 &= t_3\} \dd\bigl\{ (T_1\given T_3 = t_3);
+(T_2\given T_3 = t_3)\bigr\} \cr
+&\le 2\II\{T_1:T_2\} + 2\Eta\{T_3\} - \Eta\{T_1,T_2\} \cr
+&= 2\Eta\{T_1\} + 2\Eta\{T_2\} + 2\Eta\{T_3\} - 3\Eta\{T_1,T_2\} \cr
+&= \II\{T_1,T_2\} + \II\{T_1, T_3\} + \II\{T_2,T_3\} \cr
+&= \delta.
+}$$
+Letting $Z$ be a random variable independent of both $X_1^*$ and $X_2^*$, we apply Lemma~{\lemfiveone}
+with $(X,Z,Y,W) = (X_1^*, Z, T_1, T_3)$ to obtain
+$$\eqalign{
+\sum_{t_3\in\FF_2^n}\pr\{T_3 = t_3\}\bigl(\dd\bigl\{X_1^*;(T_1\given T_3&=t_3)\bigr\}-\dd\{X_1^*, X_1\}\bigr) \cr
+&= \dd\{ X_1^*, T_1\given T_3\} - \dd\{X_1^*, X_1\} \cr
+&\le \dd\{X_1^*, T_1\} + {1\over 2}\II\{T_1:T_3\} - \dd\{X_1^*, X_1\}, \cr
+}$$
+and applying the same lemma with $(X,Z,Y,W) = (X_2^*, Z, T_2, T_3)$ yields
+$$\eqalign{
+\sum_{t_3\in\FF_2^n}\pr\{T_3 = t_3\}\bigl(\dd\bigl\{X_2^*;(T_2\given T_3&=t_3)\bigr\}-\dd\{X_2^*, X_2\}\bigr) \cr
+&\le \dd\{X_2^*, T_2\} + {1\over 2}\II\{T_2:T_3\} - \dd\{X_2^*, X_2\}. \cr
+}$$
+Putting the three observations together, we have
+$$\eqalign{
+&\sum_{t_3\in\FF_2^n}\pr\{T_3 = t_3\}\psi\bigl\{(T_1\given T_3=t_3);(T_2\given T_3=t_3)\bigr\} \cr
+&\hskip10pt = \sum_{t_3\in\FF_2^n}\pr\{T_3 = t_3\}\Bigl(\dd\bigl\{(T_1\given T_3=t_3);(T_2\given T_3=t_3)\bigr\} \cr
+&\hskip103pt + \eta\dd\bigl\{X_1^*;(T_1\given T_3=t_3)\bigr\}+ \eta\dd\bigl\{X_2^*;(T_2\given T_3=t_3)\bigr\} \cr
+&\hskip192pt - \eta\dd\{X_1^*, X_1\} - \eta\dd\{X_2^*, X_2\} \Bigr) \cr
+&\hskip10pt \le \delta + \eta\bigl( \dd\{X_1^*, T_1\} - \dd\{X_1^*, X_1\}+\dd\{X_2^*, T_2\}-\dd\{X_2^*, X_2\}\cr
+&\hskip180pt 
++ {1\over 2} \II\{T_1 : T_3\} + {1\over 2}\II\{T_2:T_3\} \bigr), \cr
+}$$
+Choosing some $t_3$ in the support of $T_3$ such that the value of $\phi$ inside
+the sum is minimal and then setting $T_{1,3}' = (T_1\given T_3 = t_3)$ and
+$T_{2,3}' = (T_2\given T_3 = t_3)$, we have
+$$\eqalign{
+\psi\bigl\{T_{1,3}', T_{2,3}'\bigr\} \le \delta + \eta\bigl( \dd\{X_1^*, T_1\} - \dd\{X_1^*, X_1\}
+&+ \dd\{X_2^*, T_2\} - \dd\{X_2^*, X_2\} \cr
+& + {1\over 2} \II\{T_1 : T_3\} + {1\over 2}\II\{T_2:T_3\} \bigr)\cr
+}$$
+We can now repeat this for all six permutations $(\alpha, \beta, \gamma)$ of $(1,2,3)$ and average the
+corresponding bounds for $(T_\alpha, T_\beta, T_\gamma)$ to obtain
+$$\eqalign{
+{1\over 6} \sum_{(\alpha,\beta,\gamma)\in {\frak S}_3}
+\psi\bigl\{T_{\alpha,\gamma}', T_{\beta,\gamma}'\bigr\}
+\le \delta &- \eta\dd\{X_1^*, X_1\} - \eta\dd\{X_2^*, X_2\} \cr
+&+ {\eta\over 6}\sum_{(\alpha,\beta,\gamma)\in {\frak S}_3}
+\bigl( \dd\{X_1^*, T_\alpha\} + \dd\{X_2^*, T_\beta\} \cr
+&\hskip68pt+ {1\over 2} \II\{T_\alpha : T_\gamma\} + {1\over 2}\II\{T_\beta:T_\gamma\} \bigr).\cr
+}$$
+Since each of $\{1,2,3\}$ appears twice as $\alpha$ and twice as $\beta$, we have
+$$\sum_{(\alpha,\beta,\gamma)\in {\frak S}_3} \bigl(\dd\{X_1^*, T_\alpha\} + \dd\{X_2^*, T_\beta\}\bigr)
+= 2\sum_{i=1}^2\sum_{j=1}^3 \dd\{X_i^*, T_j\}$$
+and
+$$\sum_{(\alpha,\beta,\gamma)\in {\frak S}_3}
+\biggl({1\over 2} \II\{T_\alpha : T_\gamma\} + {1\over 2}\II\{T_\beta:T_\gamma\}\biggr) = 2\delta.$$
+Consequently, the average of
+$\psi\bigl\{T_{\alpha,\gamma}', T_{\beta,\gamma}'\bigr\}$
+over all permutations $(\alpha,\beta,\gamma)$ is bounded above by
+$$\biggl(1+{\eta\over 3}\biggr)\delta
+- \eta\dd\{X_1^*, X_1\} -\eta\dd\{X_2^*, X_2\} + {\eta\over 3}\sum_{i=1}^2\sum_{j=1}^3 \dd\{X_i^*, T_j\},$$
+so the result follows by letting $(T_1', T_2')$ equal the pair $(T_{\alpha,\gamma}', T_{\beta,\gamma}')$
+for the choice of $(\alpha,\beta,\gamma)$ that minimises
+$\psi\bigl\{T_{\alpha,\gamma}', T_{\beta,\gamma}'\bigr\}$.\slug
+
+We are now able to prove Proposition~{\propmaintau}, which we shall restate in the contrapositive.
+Just as in previous sections, the functional $\tau$ depends on the fixed random variables $X_1^*$ and $X_2^*$
+as well as the choice of constant $\eta = 1/9$.
+
+\proclaim Proposition~{\propmaintau}$\mathbold'$. Let $X_1$ and $X_2$ be $\FF_2^n$-valued random variables
+with the property that $\tau\{X_1', X_2'\} \ge \tau\{X_1, X_2\}$ for all random variables
+$X_1'$ and $X_2'$ on $\FF_2^n$. Then $\dd\{X_1, X_2\} = 0$.
+
+\proof Let $k=\dd\{X_1, X_2\}$. Let $X_1$ and $\bar X_1$ be copies of $X_1$ and $X_2$ and $\bar X_2$ copies
+of $X_2$ such that $X_1$, $\bar X_1$, $X_2$, and $\bar X_2$ are all independent. Let $I_1$ and $I_2$
+be as in the previous section, and let
+$$I_3 = \II\{\bar X_1 + X_2 : X_1 + \bar X_1\given X_1 + X_2 + \bar X_1 + \bar X_2\},$$
+so that $I_3 = I_2$ (which follows from interchanging the r\^oles of $X_1$ and $\bar X_1$).
+For brevity of notation, let
+$$U = X_1+X_2,\qquad V=\bar X_1 + X_2,\qquad W = X_1 + \bar X_1,$$
+and
+$$S = X_1 + X_2 + \bar X_1 + \bar X_2.$$
+Then
+$$I_1 = \II\{ U : V\given S\},\qquad I_2 = \II\{W:U\given S\},\qquad\hbox{and}\qquad I_3 = \II\{V:W\given S\}.$$
+Lemma~{\lemionebound} gave us
+$$I_3 = I_2 \le 2\eta k + {2\eta(2\eta k-I_1)\over 1-\eta},$$
+so setting
+$$\bar\delta = \II\{U:V\given S\} + \II\{W:U\given S\} + \II\{V:W\given S\},$$
+we have
+\edef\eqbardeltabound{\the\eqcount}
+$$\eqalign{
+\bar \delta &\le I_1+4\eta k+{4\eta(2\eta k - I_1)\over 1-\eta} \cr
+&= {I_1 - \eta I_n + 4\eta k - 4\eta^2 k + 6\eta^2 k - 4\eta I_1\over 1-\eta} \cr
+&= 6\eta k + {(1-5\eta)I_1 + 4\eta k + 4\eta^2 k - 6\eta k + 6\eta^2 k \over 1-\eta} \cr
+&= 6\eta k + {(1-5\eta)I_1 - 2\eta k + 10\eta^2 k \over 1-\eta} \cr
+&= 6\eta k - {1-5\eta \over 1-\eta}(2\eta k - I_1) \cr
+}\adveq$$
+
+Now we peform invocations of Lemma~{\lemsevenone} to obtain bounds on various Ruzsa distances. Setting
+$(X,Y,Z,W) = (X_1^*, X_1, X_2, \bar X_1+\bar X_2)$, gives
+$$\eqalign{
+\dd\{X_1^*; U\given S\} - \dd\{X_1^*, X_1\}
+&\le {1\over 2}\bigl( \Eta\{S\} + \Eta\{U\} - \Eta\{X_1\} - \Eta\{\bar X_1+\bar X_2\}\bigr)\cr
+&= {1\over 2} \bigl( \Eta\{S\} - \Eta\{X_1\}\bigr),
+}$$
+where in the second line we used the fact that
+$$\Eta\{U\} = \Eta\{X_1 + X_2\} = \Eta\{\bar X_1 + \bar X_2\}.$$
+Similarly, we have
+$$\eqalign{
+\dd\{X_2^*; U\given S\} - \dd\{X_2^*, X_2\} &= {1\over 2} \bigl( \Eta\{S\} - \Eta\{X_2\}\bigr), \cr
+\dd\{X_1^*; V\given S\} - \dd\{X_1^*, X_1\} &= {1\over 2} \bigl( \Eta\{S\} - \Eta\{X_1\}\bigr), \cr
+\dd\{X_2^*; V\given S\} - \dd\{X_2^*, X_2\} &= {1\over 2} \bigl( \Eta\{S\} - \Eta\{X_2\}\bigr), \cr
+}$$
+and
+$$\dd\{X_1^*, W\given S\} - \dd\{X_1^*, X_1\}
+= {1\over 2} \bigl( \Eta\{S\} + \Eta\{W\} - \Eta\{X_1\} - \Eta\{W'\}\bigr),$$
+where $W' = X_2 + \bar X_2$. To address the asymmetry in the last bound, we note that for any fixed value
+$s$ taken by $S$, we have $W' = W + s$, so $\dd\{X_2^*; W\given S\} = \dd\{X_2^*; W'\given S\}$. Now
+applying Lemma~{\lemsevenone} to $W'$ yields
+$$\dd\{X_1^*; W\given S\} - \dd\{X_1^*, X_1\}
+= {1\over 2} \bigl( \Eta\{S\} + \Eta\{W\} - \Eta\{X_1\} - \Eta\{W'\}\bigr).$$
+The sum of these six inequalities is
+\edef\eqsixsum{\the\eqcount}
+$$\sum_{i=1}^2 \sum_{A\in \{U,V,W\}} \bigl( \dd\{X_i^*; A\given S\} - \dd\{X_i^*, X_i\}\bigr)
+\le 3\Eta\{S\} - {3\over 2} \Eta\{X_1\} - {3\over 2} \Eta\{X_2\}.\adveq$$
+The second part of Lemma~{\lemionebound} states that
+$$\Eta\{S\} \le {1\over 2} \Eta\{X_1\} + {1\over 2} \Eta\{X_2\} + (2+\eta)k - I_1,$$
+which can be plugged into~\refeq{\eqsixsum} to give
+\edef\eqdistancebounds{\the\eqcount}
+$$\eqalign{
+\sum_{i=1}^2 \sum_{A\in \{U,V,W\}} \bigl( \dd\{X_i^*; A\given S\} - \dd\{X_i^*, X_i\}\bigr)
+&\le 3(2+\eta)k - 3I_1 \cr
+&\le 6k -3\eta k + 6\eta k - 3I_1 \cr
+&\le (6-3\eta)k + 3(2\eta k - I_1).\cr
+}\adveq$$
+
+Let $\psi$ be defined as in Lemma~{\lemseventwo}. By Lemma~{\lemionehelper}, $k\le \psi\{T_1', T_2'\}$
+for all random variables $T_1'$ and $T_2'$, so
+for any random variables $(T_1, T_2, T_3)$, the pair $(T_1',T_2')$ furnished by Lemma~{\lemseventwo}
+satisfies
+$$k\le \psi\{T_1', T_2'\} \le \biggl(1+{\eta\over 3}\biggr)\delta
++ {\eta\over 3}\sum_{i=1}^2\sum_{j=1}^3 \bigl(\dd\{X_i^*, T_j\}-\dd\{X_i^*, X_i\}\bigr).$$
+In particular, since $(U+V+W\given S=s)$ is identically zero for all possible values $s$ of $S$,
+we can set
+$$T_1 = (U\given S=s),\qquad T_2 = (V\given S=s), \qquad\hbox{and}\qquad T_3 = (W\given S=s)$$
+and then average the above inequality over all $s\in \FF_2^n$, weighted by $\pr\{S=s\}$ to obtain
+$$k\le \biggl(1+{\eta\over 3}\biggr)\bar\delta
++ {\eta\over 3}\sum_{i=1}^2\sum_{A\subseteq\{U,V,W\}} \bigl(\dd\{X_i^*, A\given S\}-\dd\{X_i^*, X_i\}\bigr).$$
+We now substitute the upper bounds~\refeq{\eqbardeltabound} and~\refeq{\eqdistancebounds} to get
+$$\eqalign{
+k &\le \biggl(1+{\eta\over 3}\biggr)\biggl(6\eta k - {1-5\eta \over 1-\eta}(2\eta k - I_1)\biggr)
++ {\eta\over 3}\biggl( (6-3\eta)k + 3(2\eta k - I_1)\biggr) \cr
+&= (8\eta - \eta^2)k + \biggl(\eta-\Bigl(1+{\eta\over 3}\Bigr){1-5\eta\over 1-\eta} \biggr)
+(2\eta k - I_1).\cr
+}$$
+With the choice $\eta = 1/9$,
+$$\eta-\Bigl(1+{\eta\over 3}\Bigr){1-5\eta\over 1-\eta} = -{11\over 27} \le 0$$
+and $2\eta k - I_1\ge 0$ by Lemma~{\lemionebound}, hence one concludes that
+$$ k \le (8\eta + \eta^2)k = {73\over 81}k,$$
+which is nonsense unless $k=0$.\slug
 
 \section References
 
