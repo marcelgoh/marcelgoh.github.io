@@ -212,4 +212,14 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _La chute_ (1956), Albert Camus [French]
 1. _Worn: A People's History of Clothing_ (2022), Sofi Thanhauser
 1. _Silver Repetition_ (2024), Lily Wang
+1. _Psychopolitics_ (2014), Byung-Chul Han
+1. _Middlemarch_ (1972), George Eliot
+1. _Open Secrets_ (1994), Alice Munro
+1. _Moral Disorder_ (2006), Margaret Atwood
+1. _Everything that Rises Must Converge_ (1965), Flannery O'Connor
+1. _The Fifth Column and Four Stories of the Spanish Civil War_ (1969), Ernest Hemingway
+1. _The Paris Review, Issue 247_ (2024), ed. Emily Stokes
+1. _Hateship, Friendship, Courtship, Loveship, Marriage_ (2001), Alice Munro
+1. _The Namesake_ (2003), Jhumpa Lahiri
+1. _Negotiating with the Dead_ (2002), Margaret Atwood
 
