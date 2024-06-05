@@ -29,10 +29,21 @@ These are some of my favourite quotes and blurbs about computer science, math, e
 >
 > &mdash; <cite>Edsger Dijkstra</cite>
 
-> When the first mathematical, logical, and natural uniformities, the first laws, were discovered, men were so carried away by the clearness, beauty and simplification that resulted, that they believed themselves to have deciphered authentically the eternal thoughts of the Almighty.
+> "When the first mathematical, logical, and natural uniformities, the first laws, were discovered, men were so carried away by the clearness, beauty and simplification that resulted, that they believed themselves to have deciphered authentically the eternal thoughts of the Almighty."
 >
 > &mdash; William James
 
-> One of the main causes of the fall of the Roman Empire was that, lacking zero, they had no way to indicate successful termination of their C programs.
+> "One of the main causes of the fall of the Roman Empire was that, lacking zero, they had no way to indicate successful termination of their C programs."
 >
 > &mdash; <cite>Robert Firth</cite>
+
+> "&hellip; le problème n’est plus de faire que les gens s’expriment, mais de
+> leur ménager des vacuoles de solitude et de silence à partir desquelles ils
+> auraient enfin quelque chose à dire. Les forces de répression n’empêchent pas
+> les gens de s’exprimer, elles les forcent au contraire à s’exprimer. Douceur
+> de n’avoir rien à dire, droit ne n’avoir rien à dire, puisque c’est la
+> condition pour que se forme quelque chose de rare ou de raréfié qui
+> mériterait un peu d’être dit."
+>
+> &mdash; <cite>Gilles Deleuze</cite>
+

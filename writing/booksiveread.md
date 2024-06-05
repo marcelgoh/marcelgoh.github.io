@@ -213,7 +213,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Worn: A People's History of Clothing_ (2022), Sofi Thanhauser
 1. _Silver Repetition_ (2024), Lily Wang
 1. _Psychopolitics_ (2014), Byung-Chul Han
-1. _Middlemarch_ (1972), George Eliot
+1. _Middlemarch_ (1872), George Eliot
 1. _Open Secrets_ (1994), Alice Munro
 1. _Moral Disorder_ (2006), Margaret Atwood
 1. _Everything that Rises Must Converge_ (1965), Flannery O'Connor
@@ -222,4 +222,9 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Hateship, Friendship, Courtship, Loveship, Marriage_ (2001), Alice Munro
 1. _The Namesake_ (2003), Jhumpa Lahiri
 1. _Negotiating with the Dead_ (2002), Margaret Atwood
+1. _The Art of Repair_ (2021), Molly Martin
+1. _La belle bête_ (1959), Marie-Claire Blais [French]
+1. _Rosshalde_ (1914), Hermann Hesse
+1. _The Long Valley_ (1938), John Steinbeck
+1. _The Whole Animal_ (2023), Corinna Chong
 

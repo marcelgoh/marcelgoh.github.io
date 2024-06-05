@@ -64,8 +64,11 @@ Closer to home, I've been to the six non-Maritime provinces, as well as Yukon an
 
 ### Past events
 
-+ In July 2022, I was a teaching assistant for a two-week summer school on
-[Random Structures and Combinatorial Statistics](https://bocconi2022.lakecomoschool.org/program/)
++ From 3 to 7 June 2024, I attended a
+[conference celebrating the 80th birthday of Richard Stanley](https://www.math.harvard.edu/event/math-conference-honoring-richard-p-stanley/),
+held at Harvard University.
++ From 11 to 22 July 2022, I was a teaching assistant for a summer school on
+[Random Structures and Combinatorial Statistics](https://lakecomoschool.org/past-schools/)
 at the Lake Como School of Advanced Studies.
 
 ### Fun

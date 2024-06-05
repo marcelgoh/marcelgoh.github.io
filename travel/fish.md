@@ -12,7 +12,9 @@ North America, freshwater:
 + Lac des Seize Îles, Que. (pumpkinseed, rock bass)
 + Lac Garry, Que. (many small fish of the same species, couldn't identify)
 + Lac Vingt Sous, Que. (yellow perch)
++ Red River, Man. (black bullhead)
 + Rivière du Diable, Que. (northern pike, fallfish)
++ Shannon Lake, B.C. (largemouth bass)
 + South Anna River, Va. (redbreast sunfish, fallfish)
 + St. Lawrence River / Lachine Canal, Que. (yellow perch, pumpkinseed, round goby)
 
