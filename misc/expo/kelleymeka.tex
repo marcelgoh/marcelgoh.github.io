@@ -129,12 +129,11 @@ same symbol to denote the indicator function of a statement; i.e., $\indic{P}$ i
 is true and $0$ if it is false.
 
 It is easy to check that if $\mu$ has $\norm{\mu}_1 = 1$, then so does $\mu*\mu$ and $\mu\circ\mu$.
-We shall say that $\mu:G\to \RR_{\ge 0}$ is a {\it probability measure} on $G$ if $\norm{\mu}_1 = 1$. The
-following proposition concerns such measures.
+The following proposition concerns functions with this $1$-norm.
 
 \edef\normonefourier{\the\thmcount}
 \proclaim Proposition \advthm. Let $G$ be a finite abelian group.
-If $\mu:G\to \RR_{\ge 0}$ is a probability measure, then
+If $\mu:G\to \RR_{\ge 0}$ has $\norm{\mu}_1 = 1$, then
 $$ \hat{\mu-1} = \hat \mu (1-\one_{\chi_0}).$$
 
 \proof We expand
@@ -144,10 +143,11 @@ $$\eqalign{
 &= \hat\mu(\chi) - \ex_{x\in G} \chi(-x).\cr
 }$$
 If $\chi\ne\chi_0$, then the expectation vanishes, and
-if $\chi = \chi_0$, then the expection clearly equals $1$, and $\mu(\chi_0) = \norm{\mu}_1 = 1$, so the whole
+if $\chi = \chi_0$, then the expectation
+clearly equals $1$, and $\mu(\chi_0) = \norm{\mu}_1 = 1$, so the whole
 expression is zero.\slug
 
-If $\mu:G\to \RR_{\ge 0}$ is a probability measure and $f,g:G\to \CC$ we write
+For $\mu:G\to \RR_{\ge 0}$ with $\norm{\mu}_1 = 1$ and arbitrary $f,g:G\to \CC$ we write
 $$\langle f,g\rangle_\mu = \ex_{x\in G} \mu(x)f(x)\bar{g(x)}$$
 for the inner product relative to $\mu$, and for $1\le p<\infty$ we write
 $$\norm{f}_{p(\mu)} = \Bigl( \ex_{x\in G} \mu(x) \bigl| f(x)\bigr|^p \Bigr)^{1/p}$$
@@ -156,7 +156,7 @@ $L_p$ norms with respect to $p$.
 
 \edef\monotonenorm{\the\thmcount}
 \parenproclaim Proposition~{\advthm} (Monotonicity of $L_p$ norms). Let $G$ be a finite abelian group.
-Let $\mu:G\to \RR_{\ge 0}$ be a probability measure and let $f:G\to \CC$.
+Let $\mu:G\to \RR_{\ge 0}$ have $\norm{\mu}_1 = 1$ and let $f:G\to \CC$.
 For $1\le p<q<\infty$, we have
 $$\norm{f}_{p(\mu)} \le \norm{f}_{q(\mu)}.$$
 
@@ -171,7 +171,7 @@ $$\eqalign{
 }$$
 Taking $p$th roots of both sides now produces the inequality we wanted.\slug
 
-For convenience, when $\mu:G\to \RR_{\ge 0}$ is a probability measure and $X\subseteq G$, we write
+For convenience, when $\mu:G\to \RR_{\ge 0}$ has $\norm{\mu}_1 = 1$ and $X\subseteq G$, we write
 $$\mu(X) = \norm{\one_X}_{1(\mu)} = \ex_{x\in G} \mu(x) \one_X(x),$$
 and refer to this quantity as the {\it density of $X$ relative to $\mu$}.
 
@@ -472,7 +472,7 @@ $$\langle \mu_{A_1}\circ\mu_{A_2}, \one_S\rangle \ge 1-\eps/8.$$
 
 \proof Let $S' = \bigl\{x\in G : (\mu_A\circ\mu_A)(x) > (1+\eps)\norm{\mu_A\circ\mu_A}_p\bigr\}$, and apply
 Lemma~{\dependentrandom} with the same $p$ and $\eps$, but $\delta$ set to $\eps/8$, $S$ set to $S'$,
-and $B_1 = B_2 = G$ so that $\mu = \mu_{B_1} = \mu_{B_2}$ is the uniform measure on $G$. Hence the
+and $B_1 = B_2 = G$ so that $\mu = \mu_{B_1} = \mu_{B_2}$ is the constant function $1$ on $G$. Hence the
 sets $A_1$ and $A_2$ given by the lemma will each have density
 $$\Omega\bigl((\alpha(1+\eps))^{2p+O(\eps^{-1}\log(8/\eps))}\bigr)
 =\Omega\bigl(\alpha^{2p+O(\eps^{-1}\log(\eps^{-1}))}\bigr)$$
@@ -511,11 +511,11 @@ such that $\max_{x\in G}\;(\one_A*\mu_V)(x) \ge \bigl(1+\eps/32\bigr)\alpha$.
 \proof Suppose that (i) fails. Then by Lemma~{\holderlifting} there is some $p = O\bigl(\log(1/\gamma)\bigr)$
 such that $\norm{\mu_A\circ\mu_A - 1}_p\ge \eps/ 2$. By the second convolution law (part (ii) of
 Proposition~{\convolutions}), $\mu_A\circ\mu_A$ is a nonnegative function, and note also that if
-$\nu$ is the uniform measure on $\FF_q^n$, then for any $\chi:\hat{\FF_q^n}\to \CC$,
-$$\hat\nu(\chi) = \ex_{x\in G} \nu(x)\chi(-x) = \cases{q^{-n}, & if $\chi$ is the trivial character;
+$\nu$ is the constant function $1$ on $\FF_q^n$, then for any $\chi:\hat{\FF_q^n}\to \CC$,
+$$\hat\nu(\chi) = \ex_{x\in G} \nu(x)\chi(-x) = \cases{1, & if $\chi$ is the trivial character;
 \cr 0, & otherwise.}$$
 This implies in particular that $\hat\nu \ge 0$,
-so by Lemma~{\unbalancing} applied with $f=\mu_A\circ\mu_A$ and the uniform measure for $\nu$, we find
+so by Lemma~{\unbalancing} applied with $f=\mu_A\circ\mu_A$ and the constant function $1$ for $\nu$, we find
 that $\norm{\mu_A\circ\mu_A}_{p'}\ge 1+\eps/4$ for some
 $p' = O\bigl((2/\eps)\log(2/\eps) p\bigr)= O\bigl(\eps^{-1}\log(\eps^{-1})\log(1/\gamma)\bigr)$.
 Let $C(\eps) = \eps^{-1}\log(\eps^{-1})$. By Corollary~{\deprandcorollary},

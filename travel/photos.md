@@ -6,7 +6,32 @@ title: Photos
 Here are some photos I've taken over the years, mostly while travelling, but some at home.
 All of them were shot on 35mm film.
 I've uploaded these in a somewhat painfully small resolution, since GitHub Pages doesn't allow
-that much storage space, but feel free to email me for a larger version of any of these photos.
+that much storage space; feel free to email me for a larger version of any of these photos.
+
+<figure class="figure">
+<img src="/media/travel/haling.jpg" class="center-image">
+<figcaption class="caption"><i>Ha Ling Peak, Alta., Canada, May 2024</i></figcaption>
+</figure>
+
+<figure class="figure">
+<img src="/media/travel/eclipse.jpg" class="center-image">
+<figcaption class="caption"><i>Montréal, Que., Canada, April 2024</i></figcaption>
+</figure>
+
+<figure class="figure">
+<img src="/media/travel/kilimanjaro.jpg" class="center-image">
+<figcaption class="caption"><i>Mount Kilimanjaro, Tanzania, June 2023</i></figcaption>
+</figure>
+
+<figure class="figure">
+<img src="/media/travel/ftprovidence.jpg" class="center-image">
+<figcaption class="caption"><i>Fort Providence, N.W.T., Canada, June 2023</i></figcaption>
+</figure>
+
+<figure class="figure">
+<img src="/media/travel/rundle.jpg" class="center-image">
+<figcaption class="caption"><i>Mount Rundle, Alta., Canada, May 2023</i></figcaption>
+</figure>
 
 <figure class="figure">
 <img src="/media/travel/lakecomo.jpg" class="center-image">

@@ -14,6 +14,7 @@ North America, freshwater:
 + Lac Vingt Sous, Que. (yellow perch)
 + Red River, Man. (black bullhead)
 + Rivière du Diable, Que. (northern pike, fallfish)
++ Rivière des Prairies, Que. (yellow perch)
 + Shannon Lake, B.C. (largemouth bass)
 + South Anna River, Va. (redbreast sunfish, fallfish)
 + St. Lawrence River / Lachine Canal, Que. (yellow perch, pumpkinseed, round goby)

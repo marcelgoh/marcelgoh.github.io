@@ -50,6 +50,7 @@ __E10.__ [The discrete Fourier uncertainty principle]({{ site.baseurl }}/misc/ex
 + &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
 + &#78328; [Matej Pederson](https://xjetam.github.io)
 + &#77839; [Denali Relles](https://denali-relles.github.io)
++ &#78163; [Jacob Reznikov](https://axiomofchoice.dev/)
 + &#77857; [Jonah Saks](https://jonahsaks.github.io)
 + &#78223; [Christian Táfula](https://dms.umontreal.ca/~tafula/)
 + &#78264; [Rosie Zhao](https://rosieyzh.github.io/)
