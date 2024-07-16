@@ -9,6 +9,11 @@ I've uploaded these in a somewhat painfully small resolution, since GitHub Pages
 that much storage space; feel free to email me for a larger version of any of these photos.
 
 <figure class="figure">
+<img src="/media/travel/superior2024.jpg" class="center-image">
+<figcaption class="caption"><i>North Algoma District, Ont., Canada, May 2024</i></figcaption>
+</figure>
+
+<figure class="figure">
 <img src="/media/travel/haling.jpg" class="center-image">
 <figcaption class="caption"><i>Ha Ling Peak, Alta., Canada, May 2024</i></figcaption>
 </figure>

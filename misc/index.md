@@ -8,20 +8,22 @@ This is a landing page for things that, for whatever reason, might not have a pl
 
 ### Expository notes
 
-__E1.__ [On the probability that two integers are relatively prime]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/coprime-probability.tex))  
-__E2.__ [The Burnside problem]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/burnside.tex), [video](https://youtu.be/GxiFu0tpL_s))  
-__E3.__ [Weyl trees of famous irrational numbers]({{ site.baseurl }}/misc/expo/weyl.pdf) ([code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))  
-__E4.__ [A crash course on generating functions]({{ site.baseurl }}/misc/expo/genfcts.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/genfcts.tex))  
-__E5.__ [On the divisibility of a random variable]({{ site.baseurl }}/misc/proofs/random-divisibility.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/random-divisibility.tex))  
-__E6.__ [The Littlewood-Offord problem]({{ site.baseurl }}/misc/expo/littlewood-offord.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/littlewood-offord.tex), [video](https://youtu.be/ntMfj9G3MQg))  
-__E7.__ [Ergodic theory and arithmetic progressions]({{ site.baseurl }}/misc/expo/furstenberg.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/furstenberg.tex), [video](https://youtu.be/Qr59etv0Tsw))  
-__E8.__ [Tsirelson's space and other exotic constructions]({{ site.baseurl }}/misc/expo/exotic.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/exotic.tex), [video](https://youtu.be/YMe_Z9YJm9Y))  
-__E9.__ [The analytic rank of a tensor]({{ site.baseurl }}/misc/expo/tensorrank.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/tensorrank.tex), [videos](https://youtube.com/playlist?list=PLnTUn2PYmGJSbZK2nDSbRqLdyvIu9Axm7))  
+__E11.__ [Entropy and additive combinatorics]({{ site.baseurl }}/misc/expo/entropy.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/entropy.tex))  
 __E10.__ [The discrete Fourier uncertainty principle]({{ site.baseurl }}/misc/expo/uncertainty.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/uncertainty.tex), [videos](https://youtube.com/playlist?list=PLnTUn2PYmGJRxcULXJAQvkRMsN8lu1_zg))  
+__E9.__ [The analytic rank of a tensor]({{ site.baseurl }}/misc/expo/tensorrank.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/tensorrank.tex), [videos](https://youtube.com/playlist?list=PLnTUn2PYmGJSbZK2nDSbRqLdyvIu9Axm7))  
+__E8.__ [Tsirelson's space and other exotic constructions]({{ site.baseurl }}/misc/expo/exotic.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/exotic.tex), [video](https://youtu.be/YMe_Z9YJm9Y))  
+__E7.__ [Ergodic theory and arithmetic progressions]({{ site.baseurl }}/misc/expo/furstenberg.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/furstenberg.tex), [video](https://youtu.be/Qr59etv0Tsw))  
+__E6.__ [The Littlewood-Offord problem]({{ site.baseurl }}/misc/expo/littlewood-offord.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/littlewood-offord.tex), [video](https://youtu.be/ntMfj9G3MQg))  
+__E5.__ [On the divisibility of a random variable]({{ site.baseurl }}/misc/proofs/random-divisibility.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/random-divisibility.tex))  
+__E4.__ [A crash course on generating functions]({{ site.baseurl }}/misc/expo/genfcts.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/genfcts.tex))  
+__E3.__ [Weyl trees of famous irrational numbers]({{ site.baseurl }}/misc/expo/weyl.pdf) ([code](https://github.com/marcelgoh/organic-trees/tree/master/weyl))  
+__E2.__ [The Burnside problem]({{ site.baseurl }}/misc/expo/burnside.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/expo/burnside.tex), [video](https://youtu.be/GxiFu0tpL_s))  
+__E1.__ [On the probability that two integers are relatively prime]({{ site.baseurl }}/misc/proofs/coprime-probability.pdf) ([TeX](https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/misc/proofs/coprime-probability.tex))  
 
 
 ### Science and mathematics
 
++ [Code I've written]({{ site.baseurl }}/code/)
 + [My favourite classic theorems]({{ site.baseurl }}/misc/theoremata.html)
 + [My favourite quotes]({{ site.baseurl }}/misc/quotes.html)
 + [Study notes]({{ site.baseurl }}/misc/study-notes.html)

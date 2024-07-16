@@ -7,9 +7,9 @@ I write short stories in my spare time. Here's a
 [blog post]({{ site.baseurl }}/2023/04/06/one-year-short-stories.html)
 I wrote about my first year of writing and submitting short fiction.
 I am a cofounder and editor of [Ahoy](https://ahoyliterary.github.io), a literary magazine
-that publishes short fiction and poetry. We aim to
-put out our inaugural issue in Spring 2024. If you have some poems or stories sitting in a drawer, you might
-consider sending them our way!
+that publishes short fiction and poetry. As of July 2024, we have just put out our first issue!
+Visit our [Instagram profile](https://instagram.com/ahoyliterary) for up-to-date information on
+how to buy an issue or submit your own work!
 
 ### Published stories
 

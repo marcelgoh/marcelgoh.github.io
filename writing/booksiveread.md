@@ -6,7 +6,8 @@ title: Books I've read
 Here are the books I've read in the past few years (I can't remember anything before 2016 or so), listed
 in the order I read them.
 
-Math textbooks are only listed if I read (but not necessarily understood) them cover to cover.
+Math textbooks are only listed if I read them cover to cover. This doesn't necessarily mean I understood them
+fully, but it is useful to retain pointers (in the computer-science sense) for later.
 
 Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436335-marcel).
 
@@ -230,4 +231,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Surfacing_ (1972), Margaret Atwood
 1. _Jude the Obscure_ (1895), Thomas Hardy
 1. _Friend of My Youth_ (1990), Alice Munro
+1. _The Conquest of Happiness_ (1930), Bertrand Russell
+1. _Old Babes in the Wood_ (2023), Margaret Atwood
+1. _Down Below_ (1944), Leonora Carrington
 

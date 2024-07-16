@@ -13,7 +13,8 @@ My B.Sc. was in the Joint Honours Mathematics and Computer Science program,
 with a minor in Linguistics. In 2019, I also did an exchange semester at Charles University in Prague.
 
 I am one of the founding editors of [Ahoy Literary Magazine](https://ahoyliterary.github.io/). If you write
-poetry or prose we would be honoured if you submitted it to us!
+poetry or prose we would be honoured if you submitted it to us! You could also follow our
+[Instagram profile](https://instagram.com/ahoyliterary).
 
 I was born in Singapore but spent most of my childhood in Leduc, Alberta. I graduated from Beaumont
 Composite High School before serving in the Singapore Armed Forces from 2015 to 2017.
