@@ -1,0 +1,349 @@
+\input fontmac
+\input mathmac
+\widemargins
+\bookheader{\tenpoint\sc marcel goh}{\tenpoint\sc math {\oldstyle 240} fall {\oldstyle 2024}}
+
+\def\datestamp#1#2 {\llap{{\oldstyle #1}{\rm.}{\sc #2}\hskip12pt}}
+\def\bar{\overline}
+\def\symdiff{\mathrel{\triangle}}
+
+\maketitle{MATH 240 Fall 2024}{notes by}{Marcel Goh}{}
+
+\floattext 4.5 \ninebf A note on these notes.
+\ninepoint After each class, this document will be updated with the new material that was
+just covered. The datestamps in the left margin indicate when the notes from each day start.
+Subsections labelled with a $*$ are optional. This document is based on notes by
+Jeremy Macdonald, but any errors are likely my own. Please email me if you find any.
+
+\bigskip
+
+\advsect Set theory
+
+\datestamp{1}{}
+A {\it set} is a collection of distinct objects, called its {\it elements} or its {\it members}. If
+$x$ is a member of set $A$, then we write $x\in A$, and if $x$ is not an element of $A$,
+then we write $x\notin A$.
+Sets can be written by listing out its elements. For example,
+$$\{1,4,7,10,\sqrt{782}\}$$
+and
+$$\bigl\{\{1,2\}, \pi, \{4\}\bigr\}$$
+are both sets (the second example shows that sets can themselves contain other sets). The order of the elements
+is not important, and duplicate elements are ignored (so $\{1,2\} = \{2,1\} = \{1,1,2\}$).
+The notation using $\{$ and $\}$
+is useful for defining small, concrete examples, but expressing large sets can become
+very cumbersome. The first way one can describe larger sets is to use the $\ldots$ symbol and the power of
+suggestion. For instance, anyone faced with the notation
+$$A = \{1,3,5,7,9,\ldots\}$$
+can quickly guess that this set is supposed to contain all the positive odd integers. We can also use $\ldots$
+to define finite sets. Most Canadians will be able to tell you that the set
+$$\{\hbox{\rm Alberta}, \hbox{\rm British Columbia}, \ldots, \hbox{\rm Yukon}\}$$
+of provinces and territories contains $13$ elements.
+But this notation inherently produces some ambiguity. For example, since the sequence of positive palindromic
+binary numbers starts $1,3,5,7,9,15,17,21,27,\ldots$,
+we are left with some doubt as to whether the set $A$ above should be the set of odd numbers or the set of
+palindromic binary numbers.
+
+But there is another, less ambiguous way to define large sets. It is called set-builder notation
+and it refers to any construction of the form
+$$\bigl\{x \in U : P(x)\bigr\},$$
+where $x$ is a variable, $U$ is a set,
+and $P$ is a statement about $x$. The resulting set contains {\sl all $x$ such that $P(x)$
+holds}. For example, letting $\NN$ denote the set $\{0,1,2,3,\ldots\}$ of counting numbers (more on this later),
+to define the set of all odd numbers, we can write
+$$A = \{ x\in \NN : \hbox{there exists}\ k\in \NN\ \hbox{such that}\ x = 2k + 1\}.$$
+Note that the statement $P(x)$ must contain $x$, but it may also contain other previously defined symbols, as well
+as new symbols defined within the statement (such as $k$ in the example above).
+
+\medskip\boldlabel Special sets of numbers.
+There are certain infinite sets of numbers that are used so often as to be given special bold notation.
+Back in elementary school, you learned to use the counting numbers $0, 1, 2, 3, \ldots$. We already saw this
+set in the previous paragraph; in the business,
+this set is known as the {\it natural numbers}, because if you go on a nature hike you
+can use them to count the number of bluebells, donkeys, etc.~that you see.
+(Many mathematicians use the symbol $\NN$ to denote this set without zero. When in doubt,
+clarify with the person you're talking to; in this class, $0\in \NN$.)
+
+Sometime towards the start of junior high you were introduced to the concept of natural numbers. The set
+$$\ZZ=\{ \ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}$$
+is called the set of {\it integers} or {\it whole numbers}.
+(The word {\it integer} just means ``whole'' in Latin; cf.~French {\it entier}. We use the letter $\ZZ$
+because of the German word {\it Zahl} meaning ``number.'')
+
+Even before you learned about negative numbers, you probably learned about fractions. They can be defined
+in set-builder notation as a collection of ratios of integers, where the denominator is not zero:
+$$\QQ = \{ p/q : p, q\in \ZZ, q\ne 0\}.$$
+(The nitpicky reader will notice that $p/q$ is not stipulated to be a member of any set here. This is because
+a rigorous definition of $\QQ$ involves quotienting out by an equivalence relation, which we don't know how to
+do yet.)
+This is the set of {\it rational numbers}.
+Remember that sets only contain distinct elements, so $2/3$, $4/6$, $6/9$, etc.~are all considered the
+same rational number.
+
+Lastly, we have the set $\RR$ of real numbers. Constructing this set using only notions from set theory
+and logic is quite the byzantine task and well outside the scope of this course, but you can think of
+$\RR$ as the set of decimal numbers with a finite number of digits to the left of the decimal point, and
+a possibly infinite number of digits to the right of the decimal point.
+
+A set of numbers near and dear to many mathematicians' hearts is the set of {\it prime} numbers $P$,
+defined by
+$$P = \bigl\{ p\in \NN : p\ge 2,\ \hbox{and if $p = ab$ then $\{a,b\} = \{1,p\}$}\bigr\}.$$
+(You may have met a different definition of prime numbers in the past. Pause a moment and convince
+yourself that the statement above defines the set of prime numbers as you know it.)
+
+\medskip\boldlabel Set inclusion.
+When we use set builder notation $B = \bigl\{x\in A : P(x)\bigr\}$, every element of $B$ is necessarily
+a member of the set $A$ as well, since $B$ is defined to be the set of all $x$ in $A$ satisfying
+$P(x)$. This is one way in which we can obtain
+a {\it subset} of another set. More generally, we write $B\subseteq A$ if every element of $B$ is also
+an element of $A$, and $B\supseteq A$ if every element of $A$ is an element of $B$. Sometimes, if $B\supseteq A$,
+we say that $B$ {\it contains} $A$, or $B$ {\it includes} $A$. For example, we have the chain
+$$\NN\subseteq \ZZ \subseteq \QQ\subseteq \RR$$
+for the special sets of numbers defined earlier.
+
+Symbols like $\subseteq$, $\supseteq$, and $=$ (that are
+used to produce statements) can be
+negated with a slash; for example, if there is some element of $B$ that is not an element of $A$,
+then we write $B\not\subseteq A$.
+
+The concept of set inclusion is important, because
+the most common way to prove that two sets $A$ and $B$ are equal is to show that $A$ is a subset of $B$,
+then show that $B$ is a subset of $A$. We illustrate this with the following example.
+
+\proclaim Proposition \advthm. The sets
+$$A = \{ x\in \ZZ : \hbox{there exists}\ k\in \ZZ\ \hbox{such that}\ x = 2k + 1\}$$
+and
+$$A = \{ x\in \ZZ : \hbox{there exists}\ l\in \ZZ\ \hbox{such that}\ x = 2l + 5\}$$
+are equal. (Both are different ways of expressing the set of all odd integers.)
+
+\proof Let $x\in A$. Then there exists $k\in\ZZ$ such that $x = 2k+1$. Letting $l = k-2$, we find that
+$l$ is an integer (since $k$ was). Furthermore,
+$$x = 2k+1 = 2k - 4 + 5 = 2(k-2)+5 = 2l+5.$$
+We have found $l$ such that $x = 2l+5$, so $x\in B$. This shows that $A\subseteq B$.
+
+On the other hand, let $x\in B$, so that there exists $l\in \ZZ$ such that $x = 2l+5$. Now we let $k = l+2$;
+$k\in \ZZ$ since $l\in \ZZ$. We have
+$$x = 2l+5 = 2l + 4 + 1 = 2(l+2) + 1 = 2k+1.$$
+This shows that $x\in A$, and we have proved that $B\subseteq A$. This combined with the previous paragraph
+shows that $A = B$.\slug
+
+The above result is not so important, but pay attention to the structure of this proof. It is called a ``proof
+by double inclusion,'' since we have shown that $A$ includes $B$ and $B$ includes $A$.
+
+\medskip\boldlabel Set operations.
+Now we describe a number of operations that may be performed on sets to produce other sets. They can all be
+built up from the following two operations.
+\medskip
+\item{$\bullet$} The {\it union} $A\cup B$ of two sets $A$ and $B$ is the set of all elements that are either in
+$A$ or in $B$ (or both).
+\smallskip
+\item{$\bullet$} The {\it intersection} $A\cap B$ of $A$ and $B$ is the set of all elements that are in both $A$
+and $B$.
+\medskip
+As an example, if $A = \{1,2,4\}$ and $B = \{1,3,5\}$, then $A\cup B = \{1,2,3,4,5\}$ and $A\cap B = \{1\}$.
+
+To avoid logical difficulties, we always assume that the sets we're working with are a subset of some
+larger ambient set $U$, often called the {\it universe}.
+Once we know what $U$ is, we may define the {\it complement}
+of a set $A$ to be the set $\bar A$ of all the elements in $U$ except those that are in $A$.
+So if $U = \{1,2,3,4,5\}$ in the example above, then $\bar A = \{3,5\}$ and $\bar B = \{2,4\}$.
+What about $\bar{A\cup B}$? Well since $A\cup B$ is all of $U$, its complement must be empty, and we can denote
+it $\{\}$. This is one valid notation for the {\it empty set}. The other is $\emptyset$.
+
+Now is a good time to define the cardinality $|A|$ of a set $A$.
+This is the number of elements in it, so $|A| = |B| = 3$
+in our example, and $|A\cup B| = 5$, etc. We have $|\emptyset| = 0$, and it is possible for the cardinality of
+a set to be infinity; for example, $|\NN| = \infty$. We also have $|\RR| = \infty$, but this infinity
+is, in some sense, larger than $|\NN|$. (More on that later.)
+
+Next, we define the {\it difference} $B\setminus A$ of two sets. This is the set of all elements
+in $B$ that are {\it not} in $A$. So, using the complement notation we just learned about,
+we can express $B\setminus A = B \cap \bar A$. It is not necessary that $A$ be a subset of $B$. In
+the small example above, we have $A\setminus B = \{2,4\}$ and $B\setminus A = \{3,5\}$.
+
+Lastly, we define the {\it symmetric difference} $A \symdiff B$ of two sets $A$ and $B$ to be the set of all
+elements that are either in $A$ or in $B$ {\it but not both}. Invoking the above example one last time, we
+have $A\symdiff B = \{2,3,4,5\}$. To practise using all the different operations we just learned,
+convince yourself that the following are all valid ways to express the symmetric difference:
+$$A\symdiff B = (A\cup B)\setminus (A\cap B) = (A\setminus B) \cup (B\setminus A) =
+\bar{\bar{A\cup B} \cup (A\cap B)}$$
+\datestamp{2}{} More set identities abound. We state the following proposition without proof; you should try going
+though this list and convincing yourself that each identity holds, for all sets $A$, $B$, and $C$.
+(This is a great way of practising proofs by double inclusion.)
+
+\proclaim Proposition 2. Let $A$, $B$, and $C$ be subsets of a universe $U$. Then
+\medskip
+\item{i)} $A\cap U = A$ and $A\cup \emptyset = A$;
+\smallskip
+\item{ii)} $A\cup U = U$ and $A\cap \emptyset = \emptyset$;
+\smallskip
+\item{iii)} $A\cup A = A$ and $A\cap A = A$;
+\smallskip
+\item{iv)} $\bar{\bar A} = A$;
+\smallskip
+\item{v)} $A\cup B = B\cup A$ and $A\cap B = B\cap A$;
+\smallskip
+\item{vi)} $A\cup (B\cup C) = (A\cup B) \cup C$ and $A\cap (B\cap C) = (A\cap B)\cap C)$;
+\smallskip
+\item{vii)} $A\cup (B\cap C) = (A\cup B) \cap (A\cup C)$ and $A\cap (B\cup C) = (A\cap B)\cup (A\cap C)$;
+\smallskip
+\item{viii)} $A\cup (A\cap B) = A$ and $A\cap (A\cup B) = A$; and
+\smallskip
+\item{ix)} $A\cup \bar A = U$ and $A\cap \bar A = \emptyset$.\slug
+\medskip
+
+Some of these laws have names: (v) is called the commutative law, (vi) is called the associative
+law, (vii) is the distributive law, (viii) is called the absorption law, and (ix) is the complement law.
+
+\medskip\boldlabel \llap{*}Analogy with addition and multiplication.
+Some of these laws bear some resemblance to laws about numbers that you already know. As an exercise,
+replace $\cup$ with $+$ (addition), $\cap$ with $\cdot$ (multiplication), $\bar A$ with $-A$ (negation),
+$U$ with $1$, and $\emptyset$ with $0$ in all the formulas
+above, and now assume that $A$, $B$, and $C$ are arbitrary real numbers. Which identities still hold in
+the number setting, and which ones don't? As a more advanced exercise, try replacing $\cup$
+with $\symdiff$ in the identities above (some statements will have to be tweaked a bit so that they're
+actually true, some won't). Now do the same
+replacement as before, except replace $\symdiff$ with $+$. You will find that many more identities
+carry over.
+
+\medskip\boldlabel De Morgan's laws. There are two important laws relating complements with union and intersection.
+We shall state them as a proposition, this time giving a proof (of one of them).
+
+\parenproclaim Proposition {\advthm} (De Morgan's laws). Let $A$ and $B$ be sets. Then
+\medskip
+\item{i)} $\bar{A\cup B} = \bar A \cap \bar B$; and
+\smallskip
+\item{ii)} $\bar{A\cap B} = \bar A \cup \bar B$.
+\medskip
+
+\proof
+Let $x\in \bar{A\cup B}$. This means that $x$ does not belong to the union of $A$ and $B$,
+$x$ cannot be in $A$, nor can it be in $B$. Since $x\notin A$, $x\in \bar A$, and since $x\notin B$,
+$x\in \bar B$. Therefore, $x\in \bar A\cap \bar B$. This shows that $\bar{A\cup B}\subseteq \bar A\cap \bar B$.
+
+Now assume that $x\in \bar A\cap \bar B$. So $x\in \bar A$ and $x\in \bar B$, meaning that $x\notin A$
+and $x\notin B$. Since $x$ is in neither $A$ nor $B$, it is also not a member of the union $A\cup B$.
+We conclude that $x\in \bar{A\cup B}$. We have shown that $\bar A\cap \bar B \subseteq \bar{A\cup B}$,
+which fact, combined with the previous paragraph, completes the proof of (i).
+
+The proof of (ii) is similar and left to the reader as an exercise.\slug
+
+Armed with all of these laws, we are able to perform lots of mechanical set manipulations to simplify
+expressions. For example, consider the expression
+$$\bigl( (A\setminus B)\cup A\bigr) \cap \bar{A\cap \bar B}.$$
+Since $A\setminus B = A\cap \bar B$ and invoking the second De Morgan law on the right of the intersection
+yields
+$$\bigl( (A\cap \bar B)\cup A\bigr) \cap (\bar A \cup B).$$
+Now, we can use absorption on the left-hand side to obtain
+$$A \cap (\bar A \cup B),$$
+and then distributing gives us
+$$(A\cap \bar A) \cup (A\cap B) = \emptyset \cup (A\cap B) = A\cap B.$$
+We thus see that the nasty expression $\bigl( (A\setminus B)\cup A\bigr) \cap \bar{A\cap \bar B}$ is
+simply another way of writing $A\cap B$.
+
+\medskip\boldlabel The Cartesian product and power set. From the real line $\RR$, we can geometrically construct
+the Cartesian plane $\RR^2$ by lining up parallel copies of $\RR$, one for each element of the original line
+and all parallel to the original line.
+Notationally, $\RR^2$ is the set of all ordered pairs $(a,b)$, where $a,b\in \RR$. Generalising this,
+for any sets $A$ and $B$ we can define the {\it Cartesian product} $A\times B$
+to be the set
+$$A \times B = \bigl\{ (a,b) : a\in A, b\in B\bigr\}.$$
+We sometimes write $A^2$ for $A\times A$, and more generally $A^n$ for the $n$-fold Cartesian product
+of $A$ with itself. (This explains the notation $\RR^2$ for the Cartesian plane, and $\RR^n$ for the
+$n$-dimensional vector space over $\RR$.)
+Note that $A\times B$ is not equal to $B\times A$ in general.
+
+\proclaim Proposition \advthm. If $A$ and $B$ are finite sets, then $|A\times B| = |A|\cdot |B|$.
+
+\proof The set $A\times B$ consists of all ordered pairs $(a,b)$ where $a\in A$ and $b\in B$. There are
+$|A|$ choices for $a$, and for $a$, there are $|B|$ ways to pair it with a $b$ from $B$. So there
+are $|A|\cdot |B|$ pairs in total.\slug
+
+Now we define the {\it power set}. For a set $A$, this is the set of all subsets of $A$, and is
+commonly denoted by ${\cal P}(A)$ or $2^A$. (We will use the latter notation in these notes.)
+In set-builder notation, we have
+$$2^A = \{X\subseteq U : X\subseteq A\}.$$
+As an example, if $A = \{1,2,3\}$, then
+$$2^A = \bigl\{\emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\}\bigr\}.$$
+Note that even though, say, $1\in A$, we do not have $1\in 2^A$. We do, however, have $\{1\}\in 2^A$.
+
+Another example is $2^\ZZ$, the set of all subsets of integers. If $P$ is the set of primes, then
+$P\in 2^\ZZ$. Also in $2^\ZZ$ is the set $S = \{n^2 : n\in \ZZ\}$ of square numbers.
+
+There is a way of encoding subsets with strings of $0$s and $1$s. Suppose we have a set
+$$\{-3, 1, 7, 19, 23\}.$$
+Fixing this order of the elements, for any arbitrary subset of this set, we can associate to it a binary string.
+Consider the subset $\{1, 19, 23\}$. This corresponds to the binary string $01011$: since the first element,
+$3$, is not in the subset, we write a $0$. Then $1$ is in the subset, so we write a $1$, and so on.
+This is a reversible process. Given a binary string of length $5$, say, $00101$, we can reconstruct the
+subset that corresponds to it. The first two $0$s mean that $-3$ and $1$ do not belong to the set,
+but $7$ does, $19$ doesn't, and $23$ does. So the subset is $\{7, 23\}$. In this way we see that there
+is a one-to-one correspondence between the elements of $2^A$ and binary strings of length $|A|$.
+We'll use this fact in the proof of the following proposition.
+
+\proclaim Proposition \advthm. If $A$ is finite, then
+$|2^A| = 2^{|A|}$.
+
+\proof We just saw that there is a one-to-one correspondence between elements of $2^A$ and binary strings
+of length $|A|$. So it suffices to count the number of binary strings of length $|A|$. Well, each digit
+can be either $0$ or $1$, and there are $|A|$ digits, so the number of strings is
+$$\underbrace{2\cdot 2\cdot \cdots \cdot 2}_{|A|\ \hbox{\sevenrm times}} = 2^{|A|}.\noskipslug$$
+
+\medskip\boldlabel Counterexamples in proofs.
+We finish this subsection with a little example problem. {\sl Is it true that $2^A \cup 2^B = 2^{A\cup B}$
+for all sets $A$ and $B$?}
+
+Let's start by trying to prove the statement is true. As usual, we will attempt a double-inclusion proof.
+Let $2^A\cup 2^B$. This means $X$ is either a subset of $A$ or it is a subset of $B$. Either way,
+$X$ is a subset of $A\cup B$, so $X\in 2^{A\cup B}$. So far so good; we have proved that
+$2^A\cup 2^B \subseteq 2^{A\cup B}$.
+
+Now we try the other direction. Let $X\in 2^{A\cup B}$. So $X$ is a subset of $A\cup B$. From here
+we want to say that $X$ must be a subset of $A$ or it must be a subset of $B$, but is that necessarily true?
+It is possible that $X$ is contained slightly in $A$ and slightly in $B$. So we have failed
+to prove that $2^{A\cup B} \subseteq 2^A \cup 2^B$ in general. But just because we have failed to prove
+that something is true doesn't mean we have proved it is false!
+
+To actually prove that $2^{A\cup B} \subseteq 2^A \cup 2^B$ doesn't hold in general, we need to find
+a {\it counterexample}. That is, we need to construct sets $A$ and $B$ such that the statement is false.
+In this case, we can let $A = \{1,2\}$, $B = \{3,4\}$, so that $A\cup B = \{1,2,3,4\}$.
+Then the set $\{1,3\}$ is a subset of $A\cup B$ but is not a subset of $A$ and it is not a subset of $B$.
+In other words, $\{1,3\}\in 2^{A\cup B}$ but $\{1,3\} \notin 2^A\cup 2^B$, proving that
+$2^{A\cup B} \not\subseteq 2^A \cup 2^B$.
+
+\medskip\boldlabel\datestamp{3}{} Russell's paradox. Earlier, we said that the sets we are working with
+need to be a subset of a universe $U$, which has already been proven to be a set. We gave lots of
+ways to make sets out of new sets, such as the union and intersection operations, etc. Starting with
+the empty set $\emptyset$ is a set, it is possible to define the set of natural numbers as follows.
+We can define $0 = \emptyset$, $1 = \{0\}$, and $2 = \{0,1\}$, and so on.
+Now we take the set of all of these, and call this $\NN$.
+(We can also define addition and multiplication on these set-theoretic ``numbers''
+so that they behave like addition and multiplication do on $\NN$.) From here we can do more funky stuff
+to define $\ZZ$, $\QQ$, and $\RR$, and prove that these are all sets (you can see this in a higher-level
+course on set theory, if you're interested). So there isn't much of a problem
+with all the sets we have played with so far; they are all subsets of things that are already known to be sets.
+
+Ungodly things can happen if we don't stick by these rules. An example, due to Bertrand Russell, is the ``set''
+$$R = \{\hbox{sets}\ X : X \notin X \}.$$
+In plain English, $R$ is defined to be the set of all sets that contain themselves.
+This is not a subset of any known thing, so by our criterion above we would not consider it a set.
+But supposing it is, let us ask ourselves the following question. Does $R$ contain itself?
+If it does not, then $R\notin R$, so $R$ would be a set that satisfied the condition of $R$, so $R\in R$.
+But on the other hand, if $R\in R$, then $R$ violates the condition defining $R$, so $R\notin R$.
+Round and round we go in a circle of contradiction.
+
+Such is the price of meddling with ``sets'' that aren't subsets of known sets.
+
+\advsect Propositional logic
+
+A {\it proposition} is a statement that is true or false. For example ``$8$ is even'' is a statement
+we know to be true, and ``$8$ is prime'' is a statement we know to be false. The statement
+``$n$ is prime'' is not a proposition because its truth or falsity depends on what $n$ is. (But if
+$n$ is previously fixed to stand for some value, then this would be a proposition.) The statement
+``$2^{2^240} - 1$ is prime'' is a proposition, because it is either true or false (even though you or I
+might not know which one it is).
+
+A {\it propositional variable} or a {\it boolean variable} is a variable which can take either the
+value $0$ or $1$, where $0$ means ``false'' and $1$ means ``true.'' Usually we use letters $p$, $q$,
+and $r$ to denote propositional variables.
+
+\bye

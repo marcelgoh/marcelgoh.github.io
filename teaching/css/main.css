@@ -1,0 +1,111 @@
+/* Main CSS file for Ahoy Literary website. Written by Marcel Goh 16.XII.2023 */
+
+/* Colours:
+ * Light blue: #355ff2
+ * Dark blue:  #23348d
+ * White:      #f8f8f8
+ * Orange:     #ff8b03
+ * Yellowy:    #e0c165
+ * Off-white:  #e3ddd2
+ */
+
+html {
+    padding: 36px;
+}
+hr {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+a:link {
+      text-decoration: none;
+      color: #23348D;
+}
+a:visited {
+      text-decoration: none;
+      color: #23348D;
+}
+a:hover {
+      color: #355ff2;
+}
+a:active {
+      color: #23348D;
+      text-decoration: none;
+}
+body {
+    margin-top: 36px;
+    margin-bottom: 36px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 560px;
+    max-width:  784px;
+    background-color: #fff3db;
+    line-height: 1.5;
+}
+h1 {
+    text-align: center;
+    font-size: 72px;
+    font-weight: bold;
+}
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+}
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 18px;
+}
+.menu {
+    text-align: center;
+    font-family: Libertine, Georgia, serif;;
+    font-size: 28px;
+}
+menutab {
+  display: inline-block;
+  margin-left: 72px;
+}
+icontab {
+  display: inline-block;
+  margin-left: 24px;
+}
+.center {
+    text-align: center;
+}
+.languages {
+    text-align: right;
+}
+.icon {
+    width: 36px;
+}
+.logo {
+    width: 288px;
+}
+.headshot {
+    float: left;
+    padding: 12px;
+    height: 168px;
+}
+* {
+    box-sizing: border-box;
+}
+.twobox {
+    float: left;
+    width: 50%;
+    padding-left: 70px;
+    padding-right; 70px;
+}
+.threebox {
+    float: left;
+    width: 33.33%;
+    padding-left: 12px;
+    padding-right; 12px;
+}
+img.orangeborder {
+    border-style: solid;
+    border-color: #ff8b03;
+}
