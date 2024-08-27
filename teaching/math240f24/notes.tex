@@ -1,18 +1,22 @@
 \input fontmac
 \input mathmac
+
+\input epsf
 \widemargins
 \bookheader{\tenpoint\sc marcel goh}{\tenpoint\sc math {\oldstyle 240} fall {\oldstyle 2024}}
 
 \def\datestamp#1#2 {\llap{{\oldstyle #1}{\rm.}{\sc #2}\hskip12pt}}
 \def\bar{\overline}
 \def\symdiff{\mathrel{\triangle}}
+\def\To{\Rightarrow}
+\def\Gets{\Leftarrow}
 
 \maketitle{MATH 240 Fall 2024}{notes by}{Marcel Goh}{}
 
 \floattext 4.5 \ninebf A note on these notes.
 \ninepoint After each class, this document will be updated with the new material that was
 just covered. The datestamps in the left margin indicate when the notes from each day start.
-Subsections labelled with a $*$ are optional. This document is based on notes by
+Subsections labelled with a $*$ are optional. This document is heavily based on notes by
 Jeremy Macdonald, but any errors are likely my own. Please email me if you find any.
 
 \bigskip
@@ -155,22 +159,30 @@ in our example, and $|A\cup B| = 5$, etc. We have $|\emptyset| = 0$, and it is p
 a set to be infinity; for example, $|\NN| = \infty$. We also have $|\RR| = \infty$, but this infinity
 is, in some sense, larger than $|\NN|$. (More on that later.)
 
-Next, we define the {\it difference} $B\setminus A$ of two sets. This is the set of all elements
+Next, we define the {\it difference} $B\setminus A$ (sometimes $B-A$) of two sets.
+This is the set of all elements
 in $B$ that are {\it not} in $A$. So, using the complement notation we just learned about,
 we can express $B\setminus A = B \cap \bar A$. It is not necessary that $A$ be a subset of $B$. In
 the small example above, we have $A\setminus B = \{2,4\}$ and $B\setminus A = \{3,5\}$.
 
 Lastly, we define the {\it symmetric difference} $A \symdiff B$ of two sets $A$ and $B$ to be the set of all
-elements that are either in $A$ or in $B$ {\it but not both}. Invoking the above example one last time, we
-have $A\symdiff B = \{2,3,4,5\}$. To practise using all the different operations we just learned,
-convince yourself that the following are all valid ways to express the symmetric difference:
+elements that are either in $A$ or in $B$ {\it but not both}.
+Invoking the above example one last time, we
+have $A\symdiff B = \{2,3,4,5\}$.
+We can express it as using unions, intersections,
+and complements as
+\edef\eqsymdiffdef{\the\eqcount}
+$$A \symdiff B = (A\cup B) \cap \bar{A \cap B}.\adveq$$
+To practise using all the different operations we just learned,
+convince yourself that the following are three more valid ways to express the symmetric difference:
 $$A\symdiff B = (A\cup B)\setminus (A\cap B) = (A\setminus B) \cup (B\setminus A) =
 \bar{\bar{A\cup B} \cup (A\cap B)}$$
 \datestamp{2}{} More set identities abound. We state the following proposition without proof; you should try going
 though this list and convincing yourself that each identity holds, for all sets $A$, $B$, and $C$.
 (This is a great way of practising proofs by double inclusion.)
 
-\proclaim Proposition 2. Let $A$, $B$, and $C$ be subsets of a universe $U$. Then
+\edef\propsetlaws{\the\thmcount}
+\proclaim Proposition \advthm. Let $A$, $B$, and $C$ be subsets of a universe $U$. Then
 \medskip
 \item{i)} $A\cap U = A$ and $A\cup \emptyset = A$;
 \smallskip
@@ -191,8 +203,10 @@ though this list and convincing yourself that each identity holds, for all sets 
 \item{ix)} $A\cup \bar A = U$ and $A\cap \bar A = \emptyset$.\slug
 \medskip
 
-Some of these laws have names: (v) is called the commutative law, (vi) is called the associative
-law, (vii) is the distributive law, (viii) is called the absorption law, and (ix) is the complement law.
+These laws have names, some of which we will use more often than others:
+(i) is called the identity law, (ii) the domination law, (iii) the idempotent law,
+(iv) the law of double negation, (v) the commutative law, (vi) the associative law,
+(vii) the distributive law, (viii) the absorption law, and (ix) the complement law.
 
 \medskip\boldlabel \llap{*}Analogy with addition and multiplication.
 Some of these laws bear some resemblance to laws about numbers that you already know. As an exercise,
@@ -337,13 +351,982 @@ Such is the price of meddling with ``sets'' that aren't subsets of known sets.
 
 A {\it proposition} is a statement that is true or false. For example ``$8$ is even'' is a statement
 we know to be true, and ``$8$ is prime'' is a statement we know to be false. The statement
-``$n$ is prime'' is not a proposition because its truth or falsity depends on what $n$ is. (But if
-$n$ is previously fixed to stand for some value, then this would be a proposition.) The statement
-``$2^{2^240} - 1$ is prime'' is a proposition, because it is either true or false (even though you or I
+``$n$ is prime'' is not a proposition because its truth or falsity depends on what $n$ is.
+The statement
+``$2^{2^{240}} - 1$ is prime'' is a proposition, because it is either true or false (even though you or I
 might not know which one it is).
 
 A {\it propositional variable} or a {\it boolean variable} is a variable which can take either the
 value $0$ or $1$, where $0$ means ``false'' and $1$ means ``true.'' Usually we use letters $p$, $q$,
-and $r$ to denote propositional variables.
+and $r$ to denote propositional variables. The simplest logical operator is negation, defined
+by the table
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil \cr
+p & \neg p \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 1 \cr
+1 & 0 \cr
+}}.
+$$
+This is also called the {\mc NOT} operator, since if $p$ is true, then $\neg p$
+is false, and vice versa.
+Next is {\it conjunction}, which has the table
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil \cr
+p & q & p\wedge q \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 0 & 0 \cr
+0 & 1 & 0 \cr
+1 & 0 & 0 \cr
+1 & 1 & 1 \cr
+}}.
+$$
+This is also called the {\mc AND} operator, because $p\wedge q$ is true if and only if $p$ and
+$q$ are both true. The {\mc OR} operator, also called {\it disjunction}, has the table
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil \cr
+p & q & p\vee q \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 0 & 0 \cr
+0 & 1 & 1 \cr
+1 & 0 & 1 \cr
+1 & 1 & 1 \cr
+}}.
+$$
+We see that $p\vee q$ is true if $p$ or $q$ is true (or both). The symbol $\vee$ is meant to recall
+the Latin word {\it vel}, meaning ``or.'' (One of the most important early treatises on mathematical
+logic and set theory was {\sl Arithmetices principia, nova methodo exposita}, published in Latin in 1889
+by Giuseppe Peano. It established the now-standard axiomatisation of the natural numbers.)
+
+On the other hand, in English, we often use the word ``or''
+to mean an {\it exclusive} or; that is, either $p$ and $q$ are true but not both. In mathematics, on the
+other hand, ``or'' is usually {\it inclusive}, so both $p$ and $q$ are allowed to hold at the same time.
+It is possible to express the exclusive disjunction (often called {\mc XOR})
+by a table, however. We will use the symbol $\oplus$ for this operator, and its table looks like this:
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil \cr
+p & q & p\oplus q \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 0 & 0 \cr
+0 & 1 & 1 \cr
+1 & 0 & 1 \cr
+1 & 1 & 0 \cr
+}}
+$$
+So $p\oplus q$ is true if $p$ is true or $q$ is true, but not both.
+
+A {\it formula} is an expression containing propositional variables, $0$, $1$, logical operators, and
+parentheses. The formula must syntactically make sense; for instance, $0 (\vee \wedge q \neg $ is
+not a formula. Just as in ordinary mathematical notation,
+parentheses are used to clarify which operators should be evaluated first. We will assume that negation
+applies first, but an expression such as $p\vee q \wedge r$ is ambiguous. (In many programming languages,
+conjunction has higher priority than disjunction, but in this class, just add parentheses to clarify.)
+
+Above we have illustrated the basic logical operators
+by writing out their {\it truth tables}. These are tables that give the value of
+a formula for all possible values of its variables. We can write truth tables for more complex formulas as
+well:
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil \cr
+p & q & p\wedge q & \neg(p \wedge q) & \neg(p\wedge q) \oplus q \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 0 & 0 & 1 & 1 \cr
+0 & 1 & 0 & 1 & 0 \cr
+1 & 0 & 0 & 1 & 1 \cr
+1 & 1 & 1 & 0 & 1 \cr
+}}
+$$
+Strictly speaking, the third and fourth columns are not necessary, but these intermediary columns help us
+verify the accuracy of the following ones.
+
+Two formulas $f_1$ and $f_2$ are said to be {\it logically equivalent} if they have the same truth table;
+that is, they produce the same output if given the same input. In this case we write $f_1 \equiv f_2$.
+For example, let $f_1 = \neg(p\wedge q) \oplus q$, the formula whose truth table is illustrated above.
+Now let $f_2 = p \vee \neg q$. Its truth table is
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil \cr
+p & q & \neg q & p\vee \neg q \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 0 & 1 & 1 \cr
+0 & 1 & 0 & 0 \cr
+1 & 0 & 1 & 1 \cr
+1 & 1 & 0 & 1 \cr
+}},
+$$
+so we conclude that $f_1 \equiv f_2$. As a larger example, suppose we want to find all
+values of $p$, $q$, and $r$ such that
+$$ f = (p\vee q)\wedge (\neg q \vee \neg r)$$
+evaluates to $1$. The truth table
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil &
+\hfil$#$\hfil & \hfil$#$\hfil  \cr
+p & q & r & p\vee q & \neg q \vee \neg r & f \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 0 & 0 & 0 & 1 & 0 \cr
+0 & 0 & 1 & 0 & 1 & 0 \cr
+0 & 1 & 0 & 1 & 1 & 1 \cr
+0 & 1 & 1 & 1 & 0 & 0 \cr
+1 & 0 & 0 & 1 & 1 & 1 \cr
+1 & 0 & 1 & 1 & 1 & 1 \cr
+1 & 1 & 0 & 1 & 1 & 1 \cr
+1 & 1 & 1 & 1 & 0 & 0 \cr
+}}
+$$
+shows that $f$ evaluates to $1$ precisely when
+$$(p,q,r) \in \bigl\{(0,1,0), (1,0,0), (1,0,1), (1,1,0)\bigr\}.$$
+To write out the truth table for a formula with $n$ variables, we need $2^n$ rows, so this
+method is unsuitable for formulas with more than three or four variables.
+
+\medskip\boldlabel Simplifying logical formulas. Just as we have rules for simplifying set expressions,
+there are ways to turn complicated logical formulas into simpler ones that are logically equivalent.
+What might surprise you is that the rules turn out to be exactly the same! To see the basis for this
+correspondence, consider the definition of a union of sets $A$ and $B$. In set-builder notation,
+this is
+$$A \cup B = \{ x\in U : x\in A\ \hbox{or}\ x\in B\}.$$
+The ``or'' in the definition suggests that $\cup$ is intimately related to the $\vee$ operation in
+propositional logic. Repeating this process, we have the ``dictionary''
+$$
+\vbox{
+\tabskip=3em plus.005em minus .005em
+\halign{
+\hfil{\ninepoint #}\hfil & \hfil{\ninepoint #}\hfil \cr
+Set theory & Propositional logic\cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+sets $A$, $B$ & variables $p$, $q$ \cr
+unions $A\cup B$ & disjunctions $p\vee q$ \cr
+intersections $A\cap B$ & conjunctions $p\wedge q$ \cr
+complements $\bar A$ & negations $\neg p$ \cr
+symmetric differences $A\symdiff B$ & exclusive disjunctions $p\oplus q$ \cr
+the empty set $\emptyset$ & $0$ \cr
+the universe $U$ & $1$ \cr
+}}
+$$
+Exploiting this connection, we have the following analogue of Proposition~{\propsetlaws}.
+
+\proclaim Proposition 2. Let $p$, $q$, and $r$ be propositional variables. Then
+\medskip
+\item{i)} $p\wedge 1 \equiv p$ and $p\vee 0 \equiv p$;
+\smallskip
+\item{ii)} $p \vee 1 \equiv 1$ and $p \wedge 0 \equiv 0$;
+\smallskip
+\item{iii)} $p \vee p \equiv p$ and $p\wedge p \equiv p$;
+\smallskip
+\item{iv)} $\neg\neg p \equiv p$;
+\smallskip
+\item{v)} $p \vee q \equiv q \vee p$ and $p\wedge q \equiv q\wedge p $;
+\smallskip
+\item{vi)} $p\vee (q\vee r) \equiv (p\vee q) \vee r$ and $p\wedge (q\wedge r) \equiv (p\wedge q)\wedge r)$;
+\smallskip
+\item{vii)} $p\vee (q\vee r) \equiv (p\vee q) \wedge (p\vee r)$ and
+$p\wedge (q\vee r) \equiv (p\wedge q)\vee (p\wedge r)$;
+\smallskip
+\item{viii)} $p\vee (p\wedge q) \equiv p$ and $p\wedge (p\vee q) \equiv p$; and
+\smallskip
+\item{ix)} $p\cup \bar p \equiv 1$ and $p\wedge \bar p \equiv 0$.\slug
+\medskip
+
+Since they are essentially the same as their set equivalents, the names of these laws are the same as in the
+realm of sets.
+We also have the propositional equivalent of De Morgan's law, which states that
+\medskip\begingroup\sl
+\item{x)} $\neg(p\vee q) \equiv \neg p \wedge \neg q$ and $\neg(p\wedge q) \equiv \neg p \vee \neg q$.\endgroup%sl
+\medskip
+
+Using these rules, we can now show that $\neg(p\wedge q) \oplus q \equiv p\vee\neg q$, which we
+already saw earlier from their truth tables. First we observe that
+\edef\eqxordef{\the\eqcount}
+$$p\oplus q \equiv (p\vee q)\wedge \neg(p\wedge q),\adveq$$
+which is analogous to the identity~\refeq{\eqsymdiffdef} for symmetric differences. So
+$$\eqalign{
+\neg(p\wedge q)\oplus q&\equiv\bigl(\neg(p\wedge q)\vee q\bigr)\wedge\neg\bigl(\neg(p\wedge q)\wedge q\bigr)\cr
+&\equiv (\neg p \vee\neg q \vee q) \wedge \bigl((p\wedge q) \vee \neg q\bigr) \cr
+&\equiv (\neg p \vee 1) \wedge \bigl((p\vee \neg q) \wedge (q\vee \neg q)\bigr) \cr
+&\equiv 1 \wedge \bigl((p\vee \neg q) \wedge 1\bigr) \cr
+&\equiv p\vee \neg q, \cr
+}$$
+where in the first line we use~\refeq{\eqxordef}, in the second line we use De Morgan's law twice, in
+the third line we use the complement and distributive laws, the fourth line we use the domination and
+complement laws, and in the last line we use the identity law (twice). (It is not super important
+to remember the names of all these laws, as long as you remember their statements, but you may actually find
+it is easier to remember the names along with the statements, just as it might be easier to remember faces of
+people you've met if you also know their names.)
+
+\medskip\boldlabel\datestamp{4}{} Conditional and biconditional. We now examine the {\it conditional}
+logical relation {\mc IF} $p$ {\mc THEN} $q$. It is denoted by $p\To q$ and its truth table is given by
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil \cr
+p & q & p\To q \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 0 & 1 \cr
+0 & 1 & 1 \cr
+1 & 0 & 0 \cr
+1 & 1 & 1 \cr
+}}.
+$$
+Within the conditional statement, $p$ is called the {\it antecedent}; this is the assumption. The
+statement that is asserted, conditional that the antecendent holds, is called the {\it consequent} $q$.
+You can quickly check that the relation $p\To q$ is equivalent to $\neg p \vee q$. This fact is useful
+when performing mechanical simplifications.
+In English, the statement ``if $p$ then $q$'' asserts a causal relation between $p$ and $q$.
+Take a moment and reconcile this idea with the truth table above.
+It is normal to get a little tripped up if it's your first time seeing this table.
+In the first row, $q$ doesn't even happen, so it might feel weird to say that $p$
+has ``caused'' $q$ to happen in this case, and
+in the second row, $p$ is not true
+and $q$ is true, so it might seem odd that we have set $p\To q$ to true, because there seems to be no relation
+between $p$ and $q$.
+But it should make sense if you think
+of $p$ as a precondition to a promise $q$, and then considering whether the promise is broken. As an example,
+suppose your friend says: ``If it snows tomorrow I'll work in Trottier with you.'' If it doesn't snow
+and she doesn't pull up, she hasn't technically broken her promise. If it doesn't
+snow and she shows up, then she still hasn't broken her promise. The only way she can break her promise is if
+it snows and she doesn't come to Trottier; this situation corresponds to the only $0$-row in the truth table.
+
+The conditional is a very important logical operator to understand, because most theorem statements assume
+some hypothesis and claim some conclusion. You will be asked to prove statements of this form, so it is
+important to understand the logical nature of the statements to begin with.
+
+The last relation is called the {\it biconditional}, and it asserts that variables $p$ and $q$ are logically
+equivalent. That is, $p$ happens if and only if $q$ happens. It's truth table
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil \cr
+p & q & p\Leftrightarrow q \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+0 & 0 & 1 \cr
+0 & 1 & 0 \cr
+1 & 0 & 0 \cr
+1 & 1 & 1 \cr
+}}
+$$
+is pretty self-explanatory; in it, $p\Leftrightarrow q$ is true whenever $p$ and $q$ have the same truth value.
+The name ``biconditional'' is suggested by (part of) the following proposition.
+
+\proclaim Proposition {\advthm}. Let $p$ and $q$ be propositional variables. Then
+$$\eqalign{
+p \Leftrightarrow q &\equiv (p\To q) \wedge (q\To p) \cr
+&\equiv \bigl( (\neg p)\vee q\bigr) \wedge \bigl( (\neg q)\vee p\bigr) \cr
+&\equiv (p\wedge q) \vee \bigl( (\neg p) \wedge (\neg q)\bigr).\cr
+}$$
+
+\proof We leave the first equivalence to the reader (writing out the truth table is one way of proving it).
+The second equivalence follows from our earlier observation that $p\To q \equiv \neg p \vee q$, and
+the third equivalence follows from the distributive, complement, and identity laws.\slug
+
+A formula $f$ is called a
+\medskip
+\item{i)} {\it tautology} if $f\equiv 1$, i.e., $f$ always evaluates to true;
+\smallskip
+\item{ii)} {\it contradiction} if $f\equiv 0$, i.e., $f$ always evaluates to false;
+\smallskip
+\item{iii)} {\it contingency} if $f$ can evaluate to both $1$ and $0$, depending on the
+values of its variables;
+\smallskip
+\item{iv)} {\it satisfiable} if $f$ evaluates to $1$ for at least one input; and
+\smallskip
+\item{v)} {\it falsifiable} if $f$ evaluates to $0$ for at least one input.
+\medskip
+An example of a tautology is $p\vee\neg p$ and an example of a contradiction is $p\wedge \neg p$.
+This follows from the complement laws. To say that something is satisfiable is precisely to
+say that it is not a contradiction, and to say that something is falsifiable is equivalent to saying
+that it is not a tautology. Contingencies are those formulas that are both satisfiable
+and falsifiable (in other words, formulas that are neither tautologies nor contradictions).
+
+Suppose we are asked which of the above definitions the formula
+$$f \equiv \bigl( p\wedge (p\To q)\bigr) \To q$$
+satisfies. This formula only has two variables, so it is easy enough to use a truth table
+for this purpose, but we will take the opportunity to practise simplifying the expression
+symbolically. First of all, let's change all conditionals of the form $r \To s$,
+to disjunctions of the form $\neg r \vee s$. This gives us
+$$f\equiv \neg\bigl( p\wedge (\neg p \vee q)\bigr) \vee q.$$
+Now we use the distributive law to distribute the conjunction over the innermost disjunction,
+obtaining
+$$f\equiv \neg\bigl((p\wedge \neg p) \vee (p\wedge q)\bigr) \vee q;$$
+by the complement and identity laws in that order, this simplifies to
+$$f\equiv \neg(p\wedge q) \vee q.$$
+Now De Morgan's law and associativity give
+$$f\equiv (\neg p \vee \neg q) \vee q \equiv \neg p \vee (\neg q \vee q),$$
+and thus
+$$f\equiv \neg p \vee 1 \equiv 1,$$
+by the complement and domination laws in that order. We conclude that $f$ is a tautology,
+which also means that it is satisfiable.
+
+The fact that $\bigl( p\wedge (p\To q)\bigr) \To q$ is a tautology symbolically justifies
+the argument that of $p$ is true and $p\To q$ is true, then we should be able to conclude $q$.
+This form of argument is called {\it modus ponens}, and it dates back to ancient times. You probably
+use {\it modus ponens} all the time in everyday life without knowing it, and we will
+certainly use it in this class a lot.
+
+\medskip\boldlabel Encoding problems in propositional logic.
+Many algorithmic and logical problems can be encoded in propositional logic (and then later
+solved by a computer program). For example, suppose we want to play $4\times 4$ Sudoku. In this
+game, we have a $4\times 4$ grid and we want to fill it with the numbers $1$ through $4$ such that
+\medskip
+\item{i)} every row contains $1$ through $4$;
+\smallskip
+\item{ii)} every column contains $1$ through $4$; and
+\smallskip
+\item{iii)} the four subsquares each contain $1$ through $4$.
+\medskip
+In a given instance of the game, some cells are already filled in. The puzzle is: {\sl Is there a
+solution and if so, what is it?}
+\midinsert
+$$\epsfbox{sudoku.ps}$$
+\vskip5pt
+\caption{An example $4\times 4$ Sudoku game.}
+\endinsert
+\goodbreak
+To represent a Sudoku game in propositional logic, we can define boolean variables
+$p_{i,j,k}$, where $i$, $j$, and $k$ range over $\{1,2,3,4\}$. (So there are $4^3$ variables
+in total.) We shall set
+$$ p_{i,j,k} = \cases{1, & if the number $k$ is in row $i$ and column $j$;\cr 0, & otherwise.}$$
+We'll  number the rows increasing from the top and the columns increasing
+from left to right.
+For example, in Fig.~1 there is a $2$ in row $1$ and column $3$, so $p_{1,3,2} = 1$.
+
+Now we set to work encoding the conditions of a Sudoku grid in propositional logic:
+\medskip
+\item{i)} To stipulate that every row contain $1$ through $4$, we first define auxiliary variables
+$$r_{i,k} = p_{i,1,k} \vee p_{i,2,k} \vee p_{i,3,k} \vee p_{i,3,k},$$
+for $i,k\in \{1,2,3,4\}$.
+With these helper variables, we now see that
+$$ r_{1,1} \wedge r_{1,2} \wedge r_{1,3} \wedge r_{1,4} $$
+encodes the requirement that row $1$ contains one of each number.
+We do the same for rows $2$, $3$, and $4$ as well, and then combine with {\mc AND}.
+\smallskip
+\item{ii)} We do a similar thing as in part (i) for each of the four columns.
+\smallskip
+\item{iii)} Ditto for subsquares.
+\smallskip
+\item{iv)} We need to set the initial values of the grid. For the grid in Fig.~1, we have
+the formula
+$$p_{1,3,2} \wedge p_{3,1,1} \wedge p_{3,2,3}.$$
+\smallskip
+\item{v)} Lastly, we need to make sure that there is not more than one number per cell. To do
+this, for each cell $(i,j)\in \{1,2,3,4\}^2$ we write
+$$ p_{i,j,1} \To (\neg p_{i,j,2} \wedge \neg p_{i,j,3} \wedge \neg p_{i,j,4}),$$
+and so on (four conditionals in total). Of course we'll need to {\mc AND} all these together.
+\medskip
+Now we combine the formulas from each of these five steps into one long formula $f$ such that
+$f$ is satisfiable if and only if the grid has a solution, and the values for $p_{i,j,k}$ give
+a solution.
+
+Defining all of these variables was a rather arduous and cumbersome process, and not entirely worth
+it for a $4\times 4$ game of Sudoku (which can just be solved by eyeballing the grid).
+But one could imagine writing a general computer program to encode larger and larger grids.
+In fact, there are lots of problems that can be {\it reduced} to the problem of
+determining if a boolean formula is satisfiable. This means that if we have a program
+capable of taking a formula $f$ as input and spitting out whether or not it is satisfiable (in a
+reasonable amount of time), then there are lots of real-world problems that this program
+could be applied to.
+
+This problem is called the {\it boolean satisfiability problem}, often abbreviated {\mc SAT}. One
+way of solving it for any given $f$ is to just compute its truth table. We already know the
+downside of this approach: if $f$ has $n$ variables, then its truth table will have $2^n$ rows.
+Given a few minutes, you are certainly capable of writing down a formula $f$ that has $300$
+variables, call them $p_1, \ldots, p_{300}$. The truth table of $f$ will have $2^{300}$ rows,
+which is more than the number of atoms in the observable universe. You can learn a lot more
+about {\mc SAT} in a higher-level class on computational complexity (e.g., {\mc COMP 360/362}).
+
+\advsect Predicate logic
+
+\datestamp{5}{}
+Propositional logic allows us to work with simple declarations, but this isn't powerful enough
+to express some deeper mathematical concepts. For this purpose, we now introduce the notion of
+a {\it predicate}. This is a statement involving some number of variables, each of which may take
+values coming from a universe $U$, such that the statement evaluates to either true or false {\sl once
+all variables are assigned values}. The statement $P(n)$ given by ``$n$ is prime''
+is an example of this, where $n$
+can take any value in the universe $\ZZ$. An example with two variables is the
+predicate $L(x,y)$ defined by ``$x$ is less than $y$.''
+(A more commonly-used notation for this predicate is ``$x<y$.'')
+
+Predicates contain variables, but at the moment we don't have any way of introducing new variables into
+a statement. This is done using two different {\it quantifiers}.
+The first is the
+{\it universal quantifier}, denoted $\forall$ and meaning ``for all.'' The statement $\forall n:P(n)$
+is true if and only if $P(n)$ is true for every possible value that $n$ can take. The second quantifier
+is the {\it existential quantifier}, written ``$\exists$'' and with the meaning ``there exists.''
+The statement $\exists n:P(n)$ is true if and only if there is (at least) one value that $n$ can take
+such that $P(n)$ is true. The colon doesn't really have any mathematical meaning in these formulas;
+they just visually set the quantifiers apart from the predicates that follow.
+
+For instance, taking $P(n)$ to be the statement ``$n$ is prime,'' where the universe $U$ is $\NN$,
+the statement $\exists n P(n)$ is true and the statement $\forall n:P(n)$ is false.
+What about the statement $\forall x\,\exists y:y< x$? Well, if the universe $U$ is taken to be $\NN$,
+then the statement is false, because setting $x$ equal to $0$, there is no element $y$ of $\NN$ such that
+$y<0$. But if $U = \ZZ$, then the statement is true, since for every integer $x$, we can put $y = x-1$,
+so that $y<x$.
+
+Now we practise translating converting mathematical statements written in English into formulas
+in predicate logic. Suppose we want to write: ``Every integer is even or odd.'' The universe here is
+is the set $\ZZ$ of integers. The word ``every'' has the same meaning as ``for all,'' so right
+off the bat, we can reexpress the statement as: ``For all $n\in \ZZ$, $n$ is even or $n$ is odd.''
+In symbols, this is
+$$ \forall n\,(n\ \hbox{even} \vee n\ \hbox{odd}).$$
+Lastly, we need to figure out how to express the property of being even or being odd.
+An integer $n$ is even if an only if it is a multiple of two; that is, if there is some integer $k$
+such that $2k = n$. Likewise, an integer is odd if and only if it is one more than a multiple of two.
+The corresponding formula is $\exists k : 2k+1 = n$.
+So our statement can be expressed
+$$\forall n\, \bigl((\exists k : n = 2k)\vee (\exists k : n = 2k+1)\bigr).$$
+The variable $k$ appears twice in this formula, but its first instance is independent of its second instance,
+because of the parentheses. (Readers who write computer programs will be familiar with the concept of
+a variable ``going out of scope.'') So there is nothing wrong with this formula, but to be extra
+clear that the first $k$ is different from the second $k$, why don't we replace it with a different letter?
+Thus we arrive at
+$$\forall n\, \bigl((\exists k : n = 2k)\vee (\exists l : n = 2l+1)\bigr),$$
+a formula in predicate logic that means ``every integer is even or odd.''
+
+\medskip\boldlabel Restrictions using quantifiers. It is not true that every real number has a multiplicative
+inverse, since one cannot divide by zero. However, the statement ``every nonzero real number has a multiplicative
+inverse'' is true. How should we write this as a formula in predicate logic?
+One way is to use the conditional: over the universe $U = \RR$, we could write
+$$\forall x : (x\ne 0 \To \exists y : xy = 1).$$
+Another is to use subscripts: in the same universe, we write
+$$\forall x_{x\ne 0}\, \exists y : xy = 1.$$
+Using subscripts is slightly informal, since we didn't formally define above what a subscript is supposed
+to mean, but it is something that you might encounter. The last way is to simply restrict the universe itself:
+in the universe $U = \RR\setminus\{0\}$, the statement
+$$\forall x\, \exists y : xy = 1$$
+is true.
+
+\medskip\boldlabel Multiple quantifiers. Withing a formula, quantifiers cannot be interchanged
+willy-nilly. The order of $\forall$ and $\exists$ matters! They are read from left to right.
+Consider the following examples, over the universe $U = \RR$.
+The statement
+$$ \forall x\, \exists y : x+y = 0$$
+is true, since for each given $x$ we can take $y$ to be $-x$. On the other hand,
+$$ \exists y\, \forall x : x+y = 0$$
+is false, since it would mean that there is some integer that adds up to zero with {\it any} integer.
+Of course, sometimes switching the order of quantifiers, doesn't change the truth value of a statement.
+Both
+$$\exists y\, \forall x: xy = 0$$
+and
+$$\forall x\, \exists y: xy = 0$$
+are true, since in the first case, we can take $y = 0$, and in the second case, we can set $y$ to $0$ no
+matter what $x$ is given.
+
+So we know that the order of $\forall$ and $\exists$ matters in general, but repeated instances
+of the {\it same} quantifier {\it can} be interchanged. For instance,
+$$\forall x\, \forall y : x^2 + y^4 \ge 0$$
+is the same as
+$$\forall y\, \forall x : x^2 + y^4 \ge 0,$$
+and we can even write $\forall x,y : x^2 + y^4 \ge 0$, to introduce both variables simultaneously.
+
+\medskip\boldlabel Negating quantifiers. The universal quantifier is sort of like a big chain of conjunctions
+that goes over the whole of the universe. For example, in the universe $\NN$, the
+statement $\forall n : P(n)$ is equivalent to
+$$P(1) \wedge P(2) \wedge P(3) \wedge \cdots,$$
+if this were a valid propositional formula (it isn't because we don't allow propositional formulas to be
+infinite). Likewise, the existential quantifier $\exists n : P(n)$ is equivalent to
+$$P(1)\vee P(2) \vee P(3) \vee\cdots.$$
+We know, by De Morgan's laws, that negating a big series of conjunctions requires us to
+flip all the {\mc AND}s to {\mc OR}s. So, once again abusing notation somewhat, we expect
+$$\neg\bigl(P(1) \wedge P(2) \wedge P(3) \wedge \cdots\bigr)
+\equiv \neg P(1) \vee \neg P(2)\vee \neg P(3)\vee\cdots.$$
+Thus we conclude that
+$$\neg\bigl(\forall n : P(n)\bigr) \equiv \exists n : \neg P(n).$$
+You can play the same game with the other De Morgan's law to show that
+$$\neg \bigl(\exists n : P(n)\bigr) \equiv \forall n : \neg P(n).$$
+Going back to our example of $P(n)$ denoting ``$n$ is prime,'' the statement $\neg \bigl( \forall n : P(n)\bigr)$
+is true, since not all integers $n$ are prime, and we have just shown that this is equivalent to the
+statement $\exists n : \neg P(n)$; that is, there exists $n$ such that $n$ is not prime.
+
+We end this section with a longer example. Let's express the statement, ``There is a nonzero
+real number such that every real number is not its inverse or is negative.'' In the universe $\RR$,
+the formula corresponding to this statement is
+$$ \exists x : ( x\ne 0 \wedge (\forall y : xy\ne 1 \vee y< 0)\bigr) .$$
+(Work it out yourself!) Is this statement true or false? It turns out that it is true. You might be able
+to stare at the formula long enough to convince yourself of this fact, but another way to see
+that it's true is to note that its negation is false. Let's do this now (it's a good excuse to
+practise negating a formula). We have
+$$\eqalign{
+\neg\Bigl(\exists x :( x\ne 0 \wedge (\forall y : x&y\ne 1 \vee y< 0)\bigr)\Bigr) \cr
+&\equiv \forall x : \neg ( x\ne 0 \wedge (\forall y : xy\ne 1 \vee y< 0)\bigr) \cr
+&\equiv \forall x : \bigr(x= 0 \vee \neg(\forall y : xy\ne 1 \vee y< 0)\bigr) \cr
+&\equiv \forall x : \bigr(x= 0 \vee \exists y : \neg (xy\ne 1 \vee y< 0)\bigr) \cr
+&\equiv \forall x : \bigr(x= 0 \vee \exists y : (xy = 1 \wedge y\ge 0)\bigr).\cr
+}$$
+This negated statement is false, since if $x = -2$, then $x=0$ doesn't hold, so the left-hand
+side of the {\mc OR} isn't true, and there is no $y$ such that $-2 y = 1$ and $y\ge 0$ are both
+true, since the only $y$ satisfying $-2y = 1$ is $-1/2$.
+
+Negating a formula in predicate logic is entirely mechanical.
+The $\neg$ symbol moves from left to right like a bulldozer that flips quantifiers and negates
+predicates it finds along the way, until eventually its job is done and it disappears.
+More broadly, we write mathematical statements in formal logic to make things more precise and mechanical.
+This can be useful to humans, since English is often ambiguous whereas the notation we just established
+is not. It can be useful to machines as well,
+since, as we just saw, manipulating a formula is something that can very easily be automated.
+
+\advsect Proofs
+
+\datestamp{6}{}
+We're getting to the fun part of the course now.
+Further back in these notes, we already proved a few statements about sets. This was just a taste of
+what's to come, as the main focus of this course is to teach you how to prove mathematical statements.
+These will all be statements that can ultimately be stated in predicate logic, so using the tools
+from the previous section, you can boil them down to their logical skeleton. In this section, we will
+formally define what it means to prove a statement in predicate logic.
+
+To prove a statement, we always process the quantifiers from left to right. Whenever we encounter something
+of the form $\exists x: P(x)$, we are allowed to choose the value for $x$ (from the given universe), and we
+just need to show that $P(x)$ holds for that value of $x$. Here's an example.
+
+\proclaim Proposition \advthm. There exists an integer $m>0$ and an integer $n<0$ such that $m^2 + n^2 = 25$.
+
+\noindent We've written the statement in words, and we will continue to do so for all the propositions
+in these notes because we are humans and not cyborgs,
+but notice that the underlying predicate logical formula here is
+$$\exists m\,\exists n : m>0 \wedge n< 0 \wedge m^2 + n^2 = 25,$$
+with $U = \ZZ$. For the remainder of this section, we'll continue to write out the formulaic equivalents
+of propositions, to practise converting between the two worlds.
+
+\proof After a moment's contemplation, we notice that $9 + 16 = 25$. So we need a positive integer that
+squares to to $9$ and a negative number that squares to $16$. Hence we may pick $m = 3$ and $n=-4$,
+and $m^2 + n^2 = 25$.\slug
+
+On the other hand, to prove a statement of the form $\forall x : P(x)$, we are not allowed to choose the
+value of $x$. Instead, we imagine it is given to us, and we still have to prove $P(x)$, no matter what
+the $x$ might be. Here's what we mean.
+
+\proclaim Proposition \advthm. For all $x\in \QQ$, there exists $y\in \ZZ$ such that
+$xy \in \ZZ$.
+
+\noindent The formula this time is
+$$\forall x\, \exists y : y\in \ZZ \wedge xy\in \ZZ,$$
+over $U = \QQ$.
+
+\proof Let $x \in \QQ$. Then $x$ can be expressed as the ratio of two integers; write $x = m/n$ with
+$m,n\in \ZZ$. Then, setting $y=n\in \ZZ$, we have $xy = (m/n)\cdot n = m\in \ZZ$.\slug
+
+Notice how we introduced the variable $x$ in the above proof.
+Because we're trying to prove a ``for all'' statement, we use
+the word ``let,'' to indicate that $x$ is given to us by some higher power. In fact, we should sort
+of view this higher power as possibly being malicious. A very useful way to think about writing proof is
+to imagine a game in which you are trying to prove a statement in predicate logic, and a supernatural adversary
+is attempting to thwart you. Let's say this predicate has four variables, so the statement is
+$$\exists x \, \forall y \, \forall z\, \exists w : P(x,y,z,w).$$
+The variables in the statement are introduced from left to right. Each time you see a $\exists$
+symbol, it's your turn. In the example above, you get to set the variable $x$ to any element of the
+given universe (keeping in mind that your eventual goal is to prove $P(x,y,z,w)$). Each time there
+is a $\forall$ symbol, it's the adversary's turn, and you should be prepared for whatever he throws at you.
+So in our example, the adversary may set $y$ and $z$ to anything in the universe, and he knows you picked
+$x$. Lastly, you get to pick $w$. If $P(x,y,z,w)$ is true, you win, and if not, the adversary wins.
+Writing a proof is equivalent to describing a winning strategy for the player against the adversary.
+
+Many mathematical statements introduce some hypotheses, then assert some conclusion. Thus they are some
+kind of statement of the form $p\To q$. To prove this kind of statement,
+we assume that $p$ holds, then prove that $q$ is true. This is because the only way a statement for $p\To q$
+to be false is if $p$ is true and $q$ is false, so we're showing this cannot happen. Take a look at
+the following example.
+
+\edef\propoddimpliessquareodd{\the\thmcount}
+\proclaim Proposition \advthm. If $n$ is an odd integer, then $n^2$ is also odd.
+
+\noindent
+The underlying formula is $\forall n\bigl( (\exists k : n= 2k+1) \To (\exists l : n^2 = 2l+1)\bigr)$,
+in the universe $U=\ZZ$.
+
+\proof Let $n$ be an arbitrary odd integer, so that there exists $k$ such that $n = 2k+1$. Then
+$$n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k)+1,$$
+so setting $l = 2k^2 + 2k$, which is an integer, we have $n^2 = 2l+1$. Hence $n^2$ is odd.\slug
+
+To disprove a statement, we simply prove that its negation is true. For example, suppose we want
+to disprove the statement $\exists x\, \forall y : x+y = 0$ (this was a statement we encountered
+in the previous section). Its negation is
+$$\forall x\, \exists y : x+y \ne 0,$$
+and to prove it we let $x$ be given, set $y = -x + 1$, and observe that $x+y = x + (-x+1) = 1$, which is
+not equal to $0$.
+
+Now we define two words that sound similar but are very different, logically speaking.
+The {\it converse}
+of a conditional statement $p\To q$ is the statement $q\To p$. The
+statement $p\To q$ and its converse both hold if and only if
+the biconditional statement $p\Leftrightarrow q$ holds.
+On the other hand, the {\it contrapositive} to $p\To q$ is the statement
+$\neg q \To \neg p$. What's the deal with this silly-looking conditional? Well, it turns out to actually
+be equivalent to $p\To q$. Check it out:
+$$\eqalign{
+p\To q &\equiv \neg p \vee q \cr
+&\equiv q \vee \neg p \cr
+&\equiv \neg (\neg q) \vee \neg p \cr
+&\equiv \neg q \To \neg p \cr
+}$$
+So to prove a statement of the form $p\To q$, it is sufficient to prove $\neg q\To \neg p$. Sometimes,
+this can make the proof a lot easier. Here's an example. (It is the converse of
+Proposition~{\propoddimpliessquareodd}.)
+
+\edef\propsquareoddimpliesodd{\the\thmcount}
+\proclaim Proposition \advthm. If $n$ is an integer such that $n^2$ is odd, then $n$ is odd.
+
+\noindent{\it Proof attempt.}\enspace Assume $n^2$ is odd, so that $n^2 = 2k+1$ for some integer $k$.
+Then $n = \sqrt{2k+1}$.
+\medskip
+
+Where do we go from here? It's not even clear that $\sqrt{2k+1}$ is an integer, let alone an odd one.
+The contrapositive comes to the rescue.
+
+\medskip\noindent{\it Proof of Proposition~{\propsquareoddimpliesodd}.}\enspace
+We proceed by contraposition.
+Suppose that $n$ is not odd; that is, $n$ is even. So there
+exists an integer $k$ such that $n=2k$. Then $n^2 = (2k)^2 = 4k^2$. Setting $l = 2k^2$, we have
+$n^2 = 2l$, so $n^2$ is even. Hence $n^2$ is not odd.\slug
+
+\medskip\boldlabel Proofs by contradiction. We now discuss a powerful method of proof, which dates
+back to at least the
+ancient Greeks and referred to for much of Western history by its Latin name,
+{\it reductio ad absurdum}. It proceeds to prove
+a statement $p$ by assuming its negation $\neg p$
+holds, then deriving a contradiction, i.e., a statement whose truth value is $0$.
+By doing this, one will have proved that $\neg p\To 0$, which in turn shows that $p$ is true, since
+$$\neg p \To 0 \equiv \neg(\neg p) \vee 0 \equiv p\vee 0 \vee p.$$
+Here is an example of a proof by contradiction.
+
+\proclaim Proposition \advthm. There is no least positive rational number.
+
+\noindent In $U = \QQ$, one way to formulate this is
+$$\neg \bigl(\exists x: x > 0 \wedge (\forall y : y > 0 \To x \le y)\bigr).$$
+
+\proof Suppose, towards a contradiction, that there exists some rational $x>0$ such that for all $y\in \QQ$
+with $y > 0$, $x\le y$. Then, we can apply this property with $y = x/2$ to see that $x \le x/2$.
+Since $x$ is positive, we can divide this inequality by $x$ on both sides to obtain $1\le 1/2$. But this
+is absurd, since $1/2 < 1$. This contradiction completes the proof.\slug
+
+Here is another classical example of a proof by contradiction. It was known to the Pythagoreans.
+
+\edef\propsqrttwo{\the\thmcount}
+\proclaim Proposition \advthm. The number $\sqrt 2$ is irrational.
+
+\proof Suppose, towards a contradiction, that $\sqrt 2$ is rational. Then there are integers $p$ and $q$
+such that $\sqrt 2 = p/q$, and furthermore, we can assume that $p$ and $q$ do not have any common factors,
+since if they did, we could divide them out and the ratio would remain the same.
+Squaring both sides of the equation, we have $2 = p^2/q^2$, or in other words, $2q^2 = p^2$. This implies
+that $p^2$ is even, so by (the contrapositive of) Proposition~{\propsquareoddimpliesodd}, $p$ is even as well.
+That means we can write $p=2r$ for some integer $r$, and substitute this new information
+into the above equation to obtain $2q^2 = (2r)^2 = 4r^2$. Dividing out by $2$ yields $q^2 = 4r^2$,
+so $q^2$ is even, and so is $q$.
+
+We have deduced that $p$ and $q$ are both even. On the other hand, we assumed they had no common factors.
+This is a contradiction.\slug
+
+Earlier we described the composition of a proof as playing a game with a supernatural adversary.
+To prove something by contradiction, then is is akin to starting the game
+by letting adversary believe he has already won,
+and then working from that assumption to derive an impossibility. Quite the devious strategem.
+
+\bigskip
+\begingroup\obeylines\eightssi
+\hfill {\eightss Reductio ad absurdum}, which Euclid loved so much,
+\hfill is one of a mathematicians finest weapons.
+\hfill It is a far finer gambit than any chess gambit:
+\hfill a chess player may offer the sacrifice of a pawn
+\hfill or even a piece,
+\hfill but a mathematician offers the {\eightss game}.
+\eightss
+\smallskip
+\hfill --- G.~H.~HARDY, {\eightssi A Mathematician's Apology} (1940)
+\endgroup%\obeylines
+\bigskip\goodbreak
+
+\medskip\boldlabel Case analysis.
+For all $n\ge 2$ and all propositions $p_1, \ldots, p_n, q$, we have the equivalence
+$$(p_1\vee p_2 \vee \cdots \vee p_n) \To q \equiv (p_1\To q) \wedge (p_2\To q) \wedge \cdots \wedge
+(p_n\To q).$$
+(As an exercise, prove this when $n=2$. Later on, when we learn about mathematical induction,
+you'll be able to prove it in general.)
+
+Why is this useful? Well, if we have two or more propositions $p_1, p_2, \ldots, p_n$
+such that at least one of them must hold, that is,
+$$p_1\vee p_2 \vee \cdots \vee p_n \equiv 1,$$
+then if we are able to show that
+$$p_1 \To q,\quad p_2\To q,\quad \ldots,\quad\hbox{and}\quad p_n\To q$$
+all hold, then we will have shown
+$$1\To q \equiv \neg 1 \vee q \equiv 0 \vee q \equiv q.$$
+Let's see an example of this in action.
+
+\proclaim Proposition \advthm. For all integers $n\ge 0$, $1 + (-1)^n (2n-1)$ is a multiple
+of $4$.
+
+\proof Let an integer $n\ge 0$ be given. We know that $n$ is even or $n$ is odd.
+
+If $n$ is even, then $n = 2k$ for some integer $k$, and
+$$1 + (-1)^{2k} \bigl( 2(2k)-1\bigr) = 1 + 1^k (4k-1) = 4k,$$
+which is a multiple of $4$.
+
+If $n$ is odd, then $n=2k+1$ for some integer $k$, and
+$$1 + (-1)^{2k+1}\bigl(2(2k+1) - 1\bigr) = 1- (4k+2-1) = 1-(4k-1) = -4k,$$
+which is also a multiple of $4$.\slug
+
+Sometimes, the cases in which to split the proof are not so obvious.
+
+\proclaim Proposition \advthm. There exist irrational numbers $a$ and $b$ such that $a^b$ is rational.
+
+\proof Consider the number $(\sqrt 2)^{\sqrt 2}$. It is either rational or irrational.
+
+If it is rational, then we can set $a = b = \sqrt 2$, which we already know to be irrational, by
+Proposition~{\propsqrttwo}.
+
+If it is irrational, then we can set $a =(\sqrt 2)^{\sqrt 2}$ and $b=\sqrt 2$. We compute
+$$a^b = \bigl((\sqrt 2)^{\sqrt 2}\bigr)^{\sqrt 2} = (\sqrt 2)^{\sqrt 2 \cdot \sqrt 2}
+= (\sqrt 2)^2 = 2,$$
+which is rational.\slug
+
+Note that in this proof, we did not need to know whether $(\sqrt 2)^{\sqrt 2}$ is rational or not;
+we just know that it must either be rational or irrational.
+(In fact, it is known that $(\sqrt 2)^{\sqrt 2}$ is irrational, but the usual proof of this
+requires some notions from complex analysis as well as Galois theory, subjects that are
+typically not encountered until at least the second or third year of a mathematics degree.)
+
+
+\medskip\boldlabel\datestamp{7}{} Mathematical induction. Sometimes we want to prove an infinite
+number of statements, indexed by the natural numbers. If the complexity of the statements
+sort of ``grows'' in $n$ (a vague notion to be made precise soon), the following theorem holds.
+
+\parenproclaim Theorem {\advthm} (Principle of mathematical induction). Let $P(n)$ be a family of predicates
+indexed by $n\in \NN$. Let $m\in \NN$. If
+\medskip
+\item{i)} $P(m)$ holds; and
+\smallskip
+\item{ii)} for all $n\ge m$,
+$$\bigl( P(m)\wedge P(m+1)\wedge \cdots \wedge P(n) \bigr) \To P(n+1)$$
+\medskip
+then $P(n)$ holds for all $n\ge m$.
+
+In the following proof, we use the fact that every nonempty subset of the natural numbers has
+a least element, the proof of which belongs to a higher-level set theory course.
+
+\proof Assume that (i) and (ii) both hold. Our goal is to prove that $P(n)$ is true for all
+$n\ge m$, so we shall suppose, towards a contradiction, that there is some $n\ge m$ such that
+$\neg P(n)$ holds. (As an exercise, convince yourself, via symbolic manipulations, that
+$$\neg \forall n : n\ge m \To P(n) \equiv \exists n : n\ge m \wedge \neg P(n).)$$
+In other words, the set of $n\ge m$ such that $\neg P(n)$ holds is nonempty, so it has a least element,
+call it $k$. So $k\ge m$, and we cannot have $k=m$ due to (i), so $k>m$. Furthermore, by the minimality
+of $k$, the statements $P(m)$, $P(m+1)$, all the way up to $P(k-1)$ are true. By (ii) though,
+this implies that $P(k)$ holds: a contradiction.\slug
+
+When proving something by induction, we need to prove two things: one of the form (i) and another
+of the form (ii). The former is called the {\it base case} and the latter the {\it induction step}
+or {\it inductive step}. The assumption to the left of the $\To$ symbol in (ii)
+is called the {\it induction hypothesis} or {\it inductive hypothesis}.
+Technically, the theorem above is called the principle of {\it strong} induction;
+the principle of {\it weak} induction has
+\medskip
+\item{ii)$'$} for all $n\ge m$, $P(n)\To P(n+1)$,
+\medskip
+instead of the stronger (ii). It turns out that both types of induction are actually equivalent,
+so we'll use both interchangeably. More often than not, the hypothesis (ii)$'$ is perfectly sufficient,
+and in these cases we'll simply use weak induction so as not to clutter our proofs with lots of unused
+hypotheses.
+
+Here is an example. Suppose we want to find (and prove) a formula for the sum of the first $n$ odd numbers.
+The first thing to do is to try some small cases. When $n = 1$, the sum is just $1$. When $n=2$,
+the sum is $1+3 = 4$, when $n=3$, we have $1+3+5 = 9$, and for $n=4$, we compute $1+3+5+7 = 16$.
+So the pattern goes $1,4,9,16,\ldots$, which leads us to conjecture that the sum of the first $n$
+odd numbers might equal $n^2$. In fact, this is true, and we shall prove it by induction.
+
+\proclaim Proposition \advthm. For all integers $n\ge 1$,
+$$\sum_{i=1}^n (2i-1) = n^2.$$
+
+\proof By induction on $n$. First we prove the base case, $n=1$. We have
+$$\sum_{i=1}^1 (2i-1) = 2-1 = 1 = 1^2.$$
+Now for the inductive step. Let $n\ge 1$ and assume that
+$$ \sum_{i=1}^n (2i-1) = n^2.$$
+Then
+$$\eqalign{
+\sum_{i=1}^{n+1} (2i-1) &= \sum_{i=1}^n (2i-1) + \bigl(2(n+1) - 1\bigr) \cr
+&= n^2 + 2n+2 - 1 \cr
+&= n^2 + 2n + 1\cr
+&= (n+1)^2,\cr
+}$$
+where it is in the second line that we used the inductive hypothesis.\slug
+
+The first thing to notice about doing a proof by induction is that the proof method itself doesn't
+tell you what it is you should prove. You have to guess at the correct statement first. Also,
+proofs by induction are often ``unenlightening,'' in that they often don't reveal the fundamental reasons
+why something might be true. (The previous proposition can be illustrated by a rather simple
+picture, which is not a proof, but is somewhat more elucidating that the induction proof.)
+
+A longer example now. Suppose we have a pile of $n$ stones, with $n\ge 1$. We have a job, which
+can be described by a pseudo-algorithm.
+
+\algbegin Algorithm S (Divide stones). The input to
+this algorithm is an integer $n\ge 1$, representing a number of stones.
+We have a list {\tt PILES} of integers representing a collection
+of piles of stones, as well as an integer variable {\tt BALANCE}.
+Initialise ${\tt PILES} \Gets 1$ (one pile with $n$ stones), and set ${\tt BALANCE}\gets 0$.
+This algorithm splits the stones into $n$ piles of $1$ stone each, accumulating profits
+into {\tt BALANCE} along the way.
+\algstep S1. [Done?] If every element of {\tt PILES} is $1$, terminate the algorithm and output
+{\tt BALANCE}.
+\algstep S2. [Choose a pile.] Select some element $m>2$
+from {\tt PILES} and remove it from the list. (The variable $m$ is the number of stones in this pile.)
+\algstep S3. [Split.] Let $k$ and $l$ be two numbers with $k+l = m$. We append ${\tt PILES}\Gets k$ and
+${\tt PILES} \Gets l$, and increment ${\tt BALANCE} \gets {\tt BALANCE} + k\cdot l$. (We have split
+pile $n$ into two piles of size $k$ and $l$, and the payout for doing so is $k\cdot l$ dollars.)
+\algstep S4. [Loop.] Go to step S1.\slug
+
+This is not, strictly speaking, an algorithm, since we didn't specify how the algorithm
+should choose the integers $k$ and $l$ that add up
+to $m$ in step S3. However, running through a few instances with, say, $n=6$, on paper, using whatever
+choices of split you like in every iteration of step S3, you'll find that the algorithm always terminates
+with ${\tt BALANCE} = 15$. Trying a few different starting values of $n$ might lead you to conjecture
+the following proposition, which we will prove by (strong) induction.
+
+\proclaim Proposition \advthm. For a given input $n$, Algorithm S always outputs ${\tt BALANCE} = n(n-1)/2$,
+regardless of the choice of split at any given iteration of step S3.
+
+\proof By induction on $n$. For the base case $n=1$, note that we immediately output ${\tt BALANCE} = 0$
+in the very first step of the algorithm, and $0 = 1(1-1)/2$.
+
+Now for the inductive step, let $n\ge 1$ and suppose that for $1\le k \le n$, the payout for running
+algorithm S on input $l$ is $l(l-1)/2$. Suppose we have a pile of $n+1$ stones. We shall divide
+it into piles of size $k$ and size $n+1-k$. The total payout will be the pay for this division,
+namely $k(n+1-k)$, plus the pay for further subdividing the two piles. Thus by the induction
+hypothesis applied twice, the total payout will be
+$$\eqalign{
+k(n+1-k) + &{k(k-1)\over 2} + {(n+1-k)(n-k)\over 2} \cr
+&= {2nk + 2k - 2k^2 + k^2 - k + n^2 + n -2nk - k + k^2\over 2} \cr
+&= {n^2 + n\over 2} \cr
+&= {(n+1)\bigl((n+1)-1\bigl)\over 2},\cr
+}$$
+which is the expected formula for $n+1$.\slug
+
+\advsect Functions
+
+A {\it function} $f$ from a set $A$ to a set $B$ is a subset $f\subseteq A\times B$ such that
+for every $a\in A$, there is exactly one $b\in B$ such that $(a,b)\in f$. If $(a,b)\in f$,
+we write $f(a) = b$. The set $A$ is called the {\it domain} and the set $B$ is the {\it codomain}.
+The notation $f:A\to B$ is a way of concisely writing ``$f$ is a function with domain $A$ and
+codomain $B$.''
+
+Here are some examples and non-examples.
+\medskip
+\item{i)} The function $f:\RR\to\RR$ given by $f(x) = x^2$ is
+$$f = \bigl\{ (a,b)\in \RR^2 : b = a^2 \bigl\},$$
+when written in set-builder notation.
+\smallskip
+\item{ii)} On the other hand, the set
+$$g = \bigl\{ (a,b)\in \RR^2 : a = b^2 \bigl\}$$
+is not a function, since $(1,1)$ and $(1,-1)$ are both in $g$. Furthermore,
+there is no element of $g$ with $-1$ as its first coordinate.
+\smallskip
+\item{iii)} If $X = \{1,4,5\}$ and $Y = \{0,1,2,3,4,5\}$, then
+$$\bigl\{ (1,0), (2, 4), (5,5)\bigr\}$$
+is a function.
+\smallskip
+\item{iv)} The set
+$$h = \bigl\{ (x,y)\in \RR^2 : y = 1/x \bigl\}$$
+is not a function, since there is no $y$ such that $(0,y)\in h$. However
+if we amend the domain and consider
+$$h = \bigl\{ (x,y)\in \bigl(\RR\setminus \{0\}\bigr)\times \RR : y = 1/x \bigl\},$$
+then in fact, $h:\RR\setminus \{0\} \to \RR$ is a function.
+\medskip
+\datestamp{8}{}
+The {\it range} or {\it image} of a function $f:A\to B$ is
+$$f(A) = \bigl\{b\in B : \hbox{there exists}\ a\in A\ \hbox{such that}\ b = f(a)\bigr\}.$$
+These are all the values $f$ actually outputs. For instance, if we let $f : \ZZ\to \NN$
+be given by $f(n) = n^2$, then
+$$\eqalign{
+f(\ZZ) &= \{\ldots, f(-2), f(-1), f(0) , f(1), f(2),\ldots\} \cr
+&= \{\ldots, 9, 4, 1, 0 1, 4, 9,\ldots\} \cr
+&= \{0, 1, 4, 9, 16, 25, \ldots\}. \cr
+}$$
+A function $f:A\to B$ is called {\it surjective} or {\it onto} if $f(A) = B$, that is,
+for every $b\in B$ there exists some $a\in A$ such that $f(a) = b$. An example of a
+surjective function is $f:\QQ\to \QQ$ sending $x\mapsto x/2$. This is because for any $q\in \QQ$,
+we can set $r = 2q$, and
+$$f(r) = {r\over 2} = {2q\over 2} = q.$$
+A function $f:A\to B$ is called {\it injective} or {\it one-to-one} if for all $a_1,a_2\in A$
+with $a_1 \ne a_2$, we also have $f(a_1)\ne f(a_2)$. Equivalently, $f$ is injective if
+$f(a_1) = f(a_2)$ implies that $a_1 = a_2$ for all $a_1, a_2 \in A$. For instance, the function
+$f:\ZZ\to \NN$ that sends $n\mapsto n^2$ is not injective since $f(-1) = f(1)$, but $-1 \ne 1$.
+On the other hand, if we modify the domain, considering $f:\NN\to \NN$ sending $n\mapsto n^2$,
+then now $f$ is injective, since if $f(m) = f(n)$, then $m^2 = n^2$, and there is only one positive
+integer that squares to any given integer, so $m=n$.
+
+Hence we see that any function can be transformed into an injective one, in principle, by shrinking its
+domain (though this new function might no longer have the properties you liked in the original one),
+and any function $f:A\to B$ can be made surjective by changing its codomain to its range, i.e.,
+letting $B = f(A)$.
+
+\medskip\boldlabel The pigeonhole principle. We now take a brief pause to introduce one of
+the most fundamental laws in discrete mathematics. It is called the {\it pigeonhole principle},
+because one formulation of it is, {\sl If $n$ pigeons nest in $n-1$ holes, then there is at least
+one hole that contains more than one pigeon.}
+First we'll prove a more general statement.
+
+\proclaim Theorem \advthm. Let $a_1, a_2, \ldots, a_m$ be a finite sequence (repeats allowed) of
+real numbers. Let
+$$a = {1\over m}\sum_{i=1}^m a_i$$
+be the average value of the sequence and let $m$ be the maximum value the sequence attains. Then $m \ge a$.
+
+\proof We have
+$$a = {1\over m}\sum_{i=1}^m a_i \le {1\over m} \sum_{i=1}^m m = {m^2\over m} = m.\noskipslug$$
+
+This statement can be summed up in one sentence: {\sl The maximum is at least the average.}
+
+A function $f$ is called {\it bijective} (or a {\it one-to-one correspondence})
+if it is injective and surjective. Bijections are important because of the following proposition.
+
+\proclaim Proposition \advthm. Let $A$ and $B$ be finite sets. Then
+\medskip
+\item{i)} there exists a bijection $f:A\to B$ if and only if $|A| = |B|$; and
+\smallskip
+\item{ii)} if $|A| = |B|$ and $f:A\to B$ then $f$ is injective if and only if $f$ is surjective.
+\medskip
+
+\proof Suppose $|A| = |B| = n$. Then choose an ordering $a_1, \ldots, a_n$ of $A$ and an ordering
+$b_1, \ldots, b_n$ of $B$. Let $f(a_i) = b_i$ for all $1\le i\le n$. By construction, this is a bijection.
+On the other hand, suppose $|A|\ne |B|$. If $A<B$, then $f$ cannot be surjective, since the image of
+$f$ has size at most $|A| < |B|$ (at least one element of $B$ must be missed). If $A>B$, then since
+$f(A)$ must 
 
 \bye

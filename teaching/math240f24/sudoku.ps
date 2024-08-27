@@ -1,0 +1,108 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 60 60
+%%HiResBoundingBox: 0 0 60 60
+
+0.5 setlinewidth
+
+/CMR10 findfont 11 scalefont setfont
+
+/r 5 def
+/s 5 def
+
+/u {15 mul} def
+
+% x y i j square
+/square {
+    /j exch def
+    /i exch def
+    /y exch def
+    /x exch def
+    newpath
+    x u y u moveto
+    i u j u rmoveto
+    1 u 0 rlineto
+    0 1 u rlineto
+    -1 u 0 rlineto
+    0 -1 u rlineto
+    stroke
+    closepath
+} def
+
+/twosquare {
+    /j exch def
+    /i exch def
+    /y exch def
+    /x exch def
+    gsave 1 setlinewidth
+    newpath
+    x u y u moveto
+    i u j u rmoveto
+    2 u 0 rlineto
+    0 2 u rlineto
+    -2 u 0 rlineto
+    0 -2 u rlineto
+    stroke
+    closepath
+    grestore%setlinewidth 0.75
+} def
+
+
+% a b c num
+/num {
+    /c exch def
+    /b exch def
+    /a exch def
+    newpath
+    a 1 sub u b 1 sub u moveto
+    5 4 rmoveto
+    c 1 string cvs show
+    closepath
+} def
+
+% x y circle
+/circle {
+    /y exch def
+    /x exch def
+    gsave 0.3 setgray
+    x 0.5 u add y 0.5 u add 5 0 360 arc closepath fill
+    grestore
+} def
+
+% x y l letter
+/letter {
+    /l exch def
+    /y exch def
+    /x exch def
+    newpath
+    x 0.35 u add y 0.25 u add moveto
+    gsave /CMR10 findfont 11 scalefont setfont
+    l show grestore
+    closepath
+} def
+
+% x y rows cols grid
+/grid {
+    /cols exch def
+    /rows exch def
+    /y exch def
+    /x exch def
+    0 1 rows 1 sub {
+        /i exch def
+        0 1 cols 1 sub {
+            /j exch def
+             x y i j square
+        } for
+    } for
+} def
+
+0 0 4 4 grid
+0 0 0 0 twosquare
+2 0 0 0 twosquare
+0 2 0 0 twosquare
+2 2 0 0 twosquare
+
+0 u 1 u (1) letter
+1 u 1 u (3) letter
+2 u 3 u (2) letter
+
+

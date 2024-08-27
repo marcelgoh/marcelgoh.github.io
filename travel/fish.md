@@ -9,7 +9,7 @@ North America, freshwater:
 + Great Slave Lake, N.W.T. (northern pike)
 ![greatslavelake]({{ site.baseurl }}/media/fish/greatslavelake.jpg)
 + Kakisa River, N.W.T. (northern pike)
-+ Lac des Seize Îles, Que. (pumpkinseed, rock bass)
++ Lac des Seize Îles, Que. (pumpkinseed, rock bass, smallmouth bass)
 + Lac Garry, Que. (many small fish of the same species, couldn't identify)
 + Lac Vingt Sous, Que. (yellow perch)
 + Red River, Man. (black bullhead)

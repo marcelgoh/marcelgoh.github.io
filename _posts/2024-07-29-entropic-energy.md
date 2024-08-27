@@ -1,31 +1,27 @@
 ---
 layout: post
-title: The Kelley–Meka bounds in finite fields
-date: 2024-06-07
-published: false
+title: On an entropic analogue of additive energy
+date: 2024-07-29
+published: true
 mathjax: true
 excerpt_separator:  <!--more-->
 ---
 
-Let $A$ be a subset of an abelian group. A question that has motivated much of additive
-combinatorics is, roughly, "How big can $A$ get before it must contain some arithmetic progression
-
-$$a, a+r, a+r+r$$
-
-for some $a$ and $r$ in the group?" In 1948 Behrend showed the existence of a constant $C$ such
-that for all $N$, one can always find $A \subseteq [N] \subseteq {\bf Z}$ satisfying
-$|A| \ge \exp(-C\sqrt{\log N}) N$ but not containing
-a three-term arithmetic progression. It has been over seventy years since then and no upper bound has come close
-to matching this lower bound, until last year, when Kelley and Meka showed there must exist $c$ such that
-for all $N$ and $A\subseteq [N]$ with $|A| \ge \exp(-c(\log N)^{1/11}) N$, $A$
-must contain a three-term arithmetic
-progression. The exponent has subsequently been improved to $1/9$ by Bloom and Sisask.
-
-I wanted to write up a fairly linear rendition of the proof, simplified to apply only to the
-setting of finite fields. We will follow the exposition of Bloom and Sisask, but simplify proofs wherever
-the generality is not needed for the finite-field case.
-
+I recently uploaded my paper
+"[On an entropic analogue of additive energy](https://youtu.be/HKybDdGHZHE?si=reVhknT9MViHux8G)" to the arXiv.
+It follows in the wake of a body of literature that connects statements involving sumsets $A+B$ and
+their cardinalities $|A+B|$ to statements involving random variables $X$ and their entropies ${\bf H}\{X\}$.
+My paper shows that the quantity $2\Eta\{X,Y\} - \Eta\{X+Y\}$ is a natural entropic analogue of the additive
+energy $E(A,B)$ between two sets.
 <!--more-->
+
+
+I had spent the winter
+semester slowly reading last year's
+[proof of the polynomial Freiman&ndash;Ruzsa conjecture](https://arxiv.org/pdf/2311.05762), due
+to Gowers, Green, Manners, and Tao, and writing up my own
+[verbose retelling of it]({{ site.baseurl }}/misc/expo/entropy.pdf). My notes build up entropy from 
+is a good introduction to entropy as 
 
 ### Definitions, notation, basic lemmas
 
