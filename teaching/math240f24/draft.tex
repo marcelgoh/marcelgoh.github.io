@@ -23,7 +23,7 @@ Jeremy Macdonald, but any errors are likely my own. Please email me if you find 
 
 \advsect Set theory
 
-\datestamp{1}{}
+\datestamp{29}{viii}
 A {\it set} is a collection of distinct objects, called its {\it elements} or its {\it members}. If
 $x$ is a member of set $A$, then we write $x\in A$, and if $x$ is not an element of $A$,
 then we write $x\notin A$.
@@ -116,7 +116,7 @@ then show that $B$ is a subset of $A$. We illustrate this with the following exa
 \proclaim Proposition \advthm. The sets
 $$A = \{ x\in \ZZ : \hbox{there exists}\ k\in \ZZ\ \hbox{such that}\ x = 2k + 1\}$$
 and
-$$A = \{ x\in \ZZ : \hbox{there exists}\ l\in \ZZ\ \hbox{such that}\ x = 2l + 5\}$$
+$$B = \{ x\in \ZZ : \hbox{there exists}\ l\in \ZZ\ \hbox{such that}\ x = 2l + 5\}$$
 are equal. (Both are different ways of expressing the set of all odd integers.)
 
 \proof Let $x\in A$. Then there exists $k\in\ZZ$ such that $x = 2k+1$. Letting $l = k-2$, we find that
@@ -207,6 +207,7 @@ These laws have names, some of which we will use more often than others:
 (i) is called the identity law, (ii) the domination law, (iii) the idempotent law,
 (iv) the law of double negation, (v) the commutative law, (vi) the associative law,
 (vii) the distributive law, (viii) the absorption law, and (ix) the complement law.
+\bye
 
 \medskip\boldlabel \llap{*}Analogy with addition and multiplication.
 Some of these laws bear some resemblance to laws about numbers that you already know. As an exercise,
@@ -346,7 +347,8 @@ If it does not, then $R\notin R$, so $R$ would be a set that satisfied the condi
 But on the other hand, if $R\in R$, then $R$ violates the condition defining $R$, so $R\notin R$.
 Round and round we go in a circle of contradiction.
 
-Such is the price of meddling with ``sets'' that aren't subsets of known sets.
+Such is the price of meddling with ``sets'' that aren't subsets of known sets. This also shows that there
+is no such thing as ``the set of all sets.''
 
 \advsect Propositional logic
 
