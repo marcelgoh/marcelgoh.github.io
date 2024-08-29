@@ -28,7 +28,7 @@ A {\it set} is a collection of distinct objects, called its {\it elements} or it
 $x$ is a member of set $A$, then we write $x\in A$, and if $x$ is not an element of $A$,
 then we write $x\notin A$.
 Sets can be written by listing out its elements. For example,
-$$\{1,4,7,10,\sqrt{782}\}$$
+$$\bigl\{1,4,7,10,\sqrt{782}\bigr\}$$
 and
 $$\bigl\{\{1,2\}, \pi, \{4\}\bigr\}$$
 are both sets (the second example shows that sets can themselves contain other sets). The order of the elements
@@ -294,6 +294,7 @@ but $7$ does, $19$ doesn't, and $23$ does. So the subset is $\{7, 23\}$. In this
 is a one-to-one correspondence between the elements of $2^A$ and binary strings of length $|A|$.
 We'll use this fact in the proof of the following proposition.
 
+\edef\propcardpowerset{\the\thmcount}
 \proclaim Proposition \advthm. If $A$ is finite, then
 $|2^A| = 2^{|A|}$.
 
@@ -1269,7 +1270,8 @@ if we amend the domain and consider
 $$h = \bigl\{ (x,y)\in \bigl(\RR\setminus \{0\}\bigr)\times \RR : y = 1/x \bigl\},$$
 then in fact, $h:\RR\setminus \{0\} \to \RR$ is a function.
 \medskip
-\datestamp{8}{}
+
+\medskip\boldlabel\datestamp{8}{} Injective and surjective functions.
 The {\it range} or {\it image} of a function $f:A\to B$ is
 $$f(A) = \bigl\{b\in B : \hbox{there exists}\ a\in A\ \hbox{such that}\ b = f(a)\bigr\}.$$
 These are all the values $f$ actually outputs. For instance, if we let $f : \ZZ\to \NN$
@@ -1298,10 +1300,8 @@ and any function $f:A\to B$ can be made surjective by changing its codomain to i
 letting $B = f(A)$.
 
 \medskip\boldlabel The pigeonhole principle. We now take a brief pause to introduce one of
-the most fundamental laws in discrete mathematics. It is called the {\it pigeonhole principle},
-because one formulation of it is, {\sl If $n$ pigeons nest in $n-1$ holes, then there is at least
-one hole that contains more than one pigeon.}
-First we'll prove a more general statement.
+the most fundamental laws in discrete mathematics, called the pigeonhole principle.
+We begin with the following intuitive theorem.
 
 \proclaim Theorem \advthm. Let $a_1, a_2, \ldots, a_m$ be a finite sequence (repeats allowed) of
 real numbers. Let
@@ -1311,9 +1311,35 @@ be the average value of the sequence and let $m$ be the maximum value the sequen
 \proof We have
 $$a = {1\over m}\sum_{i=1}^m a_i \le {1\over m} \sum_{i=1}^m m = {m^2\over m} = m.\noskipslug$$
 
-This statement can be summed up in one sentence: {\sl The maximum is at least the average.}
+This theorem can be summed up in one sentence: {\sl The maximum is at least the average.}
+Don't underestimate this theorem even though its proof was a one-liner! It is often used to prove
+highly nontrivial results.
+(As an exercise, prove the similar statement: {\sl The minimum is at most the average.})
+From here we are now equipped to prove (a general version of) the pigeonhole principle.
 
-A function $f$ is called {\it bijective} (or a {\it one-to-one correspondence})
+\edef\thmgeneralpigeonhole{\the\thmcount}
+\proclaim Theorem \advthm. Let $A$ and $B$ be finite sets with $|A| = m$ and $|B|=n$.
+For every function $f:A\to B$, then there is some $b\in B$ such that there are at least
+$\lceil m/n\rceil$ elements $a\in A$ with $f(a) = b$.
+
+\proof For $1\le i \le n$, let $r_i$ be the number of $a\in A$
+such that $f(a) = b_i$. This is a sequence that adds up to $m$, since every $a$ in $A$ maps to
+exactly one element of $B$. So the sequence has average $m/n$, and by the previous theorem,
+there must be some $j$ such that $r_j \ge m/n$. But the $r_i$ are all actually integers (since
+cardinalities of finite sets are integers), meaning that $r_j \ge \lceil m/n \rceil$. Letting
+$b = b_j$ completes the proof.\slug
+
+The reason this is called the pigeonhole principle is because of the following special case.
+
+\parenproclaim Corollary {\advthm} (Pigeonhole principle). Let $n\ge 2$. If $n$ pigeons nest in $n-1$ holes,
+there is at least one hole that contains at least two pigeons.
+
+\proof Let $A$ be the set of pigeons and $B$ the set of pigeonholes. Let $f$ be any function sending
+the set of pigeons to the set of holes. By the previous theorem, there is some hole with at least
+$\lceil n/(n-1)\rceil = 2$ pigeons in it. (This is because $1 < n/(n-1) < 2$ for all integers $n\ge 2$.)\slug
+
+\medskip\boldlabel Bijections.
+A function $f$ is called {\it bijective} (or a {\it bijection}, or a {\it one-to-one correspondence})
 if it is injective and surjective. Bijections are important because of the following proposition.
 
 \proclaim Proposition \advthm. Let $A$ and $B$ be finite sets. Then
@@ -1324,9 +1350,114 @@ if it is injective and surjective. Bijections are important because of the follo
 \medskip
 
 \proof Suppose $|A| = |B| = n$. Then choose an ordering $a_1, \ldots, a_n$ of $A$ and an ordering
-$b_1, \ldots, b_n$ of $B$. Let $f(a_i) = b_i$ for all $1\le i\le n$. By construction, this is a bijection.
-On the other hand, suppose $|A|\ne |B|$. If $A<B$, then $f$ cannot be surjective, since the image of
-$f$ has size at most $|A| < |B|$ (at least one element of $B$ must be missed). If $A>B$, then since
-$f(A)$ must 
+$b_1, \ldots, b_n$ of $B$. Let $f(a_i) = b_i$ for all $1\le i\le n$. By construction, this is a bijection,
+proving one direction of (i).
+
+On the other hand, suppose $|A|\ne |B|$ (so we prove this direction by contraposition).
+If $A<B$, then $f$ cannot be surjective, since the image of
+$f$ has size at most $|A| < |B|$ (at least one element of $B$ must be missed). If $A>B$, then
+$|A|/|B| > 1$, so by Theorem~{\thmgeneralpigeonhole}, there is some element $b\in B$
+such that the number of $a\in A$ mapping to $b$ is at least $\lceil |A|/|B| \rceil \ge 2$.
+This means that $f$ is not injective. We have proved part (i).
+
+To prove part (ii), let $|A| = |B|$ and let $f:A\to B$. First we assume that $f$ is injective.
+We enumerate $A = \{a_1, a_2, \ldots, a_n\}$. Then
+$$f(A) = \bigl\{ f(a_1), f(a_2), \ldots, f(a_n)\bigr\} \subseteq B.$$
+All of the $f(a_i)$ are distinct, since if $f(a_i) = f(a_j)$, then $a_i = a_j$. So
+$\bigl| f(A)\bigr| = |A| = n$, and $f(A)$ is a size $n$ subset of $B$, which also has size $n$.
+Hence $f(A) = B$; that is, $f$ is surjective.
+
+Lastly, suppose $f$ is not injective (again we are using contraposition). So there
+are $a_i$ and $a_j$ such that $a_i\ne a_j$ but $f(a_i) = f(a_j)$. So
+$$\bigl|f(A)\bigr| = \bigl|\bigl\{ f(a_1), f(a_2), \ldots, f(a_n)\bigr\}\bigr| < n = |B|,$$
+so $f(A) \ne B$ and $f$ is not surjective.\slug
+
+Item (i) of the previous proposition should be entirely intuitive, especially if we use the alternative
+nomenclature ``one-to-one correspondence'' instead of ``bijection.'' (In fact, we already implicitly
+used (i) in these notes, in the proof of Proposition~{\propcardpowerset}.) Item (ii) is perhaps not
+as immediate, but should become clear if you work it out with a picture.
+
+\medskip\boldlabel Bijections.
+A function $f:A\to B$ is called {\it invertible} if there exists $g:B\to A$ such that
+\medskip
+\item{i)} for all $b\in B$, $f\bigl(g(b)\bigr) = b$; and
+\smallskip
+\item{ii)} for all $a\in A$, $g\bigl(f(a)\bigr) = a$.
+\medskip
+If $g$ exists, it can be shown that $g$ must be unique, so we write $g = f^{-1}$ and speak of
+{\it the} inverse of $f$.
+
+\proclaim Proposition \advthm. Let $f:A\to B$ be a function. Then $f$ is invertible
+if and only if $f$ is bijective.
+
+\proof First we assume that $f$ is invertible. So there exists an inverse $g$ of $f$. For each $b\in B$,
+setting $a = g(b)$ we have
+$$f(a) = f\bigl(g(b)\bigr) = b.$$
+This proves that $f$ is surjective. To show that $f$ is injective, suppose that $f(a_1) = f(a_2)$.
+By applying $g$ on both sides, we have $g\bigl(f(a_1)\bigr) = g\bigl(f(a_2)\bigr)$, whence
+$a_1 = a_2$, by definition of $g$.
+
+Now assume that $f$ is bijective. We need to define $g:B\to A$. Well, gven any $b\in B$, there is
+some $a$ such that $f(a) = b$, from surjectivity of $f$, and this $a$ is unique, since $f$ is
+injective. So set $g(b) = a$ (and repeat this process for every $b\in B$). We have
+$f\bigl(g(b)\bigr) = f(a) = b$, and for every $a\in A$, by definition of $g$ the
+element $g\bigl(f(a)\bigr)$ is the unique element in $A$ that gets brought to $f(a)$ by $f$,
+has to be $a$ itself.\slug
+
+Sometimes to prove that two sets have the same cardinality, it is easier to prove that there
+exists a bijection (as we already saw in the example of Proposition~{\propcardpowerset}),
+and sometimes to prove that a function is a bijection, it is easier to show that it has an inverse,
+rather than messing around with the definitions of injective and surjective.
+Here's an example.
+
+\proclaim Proposition. Let $X$ be a finite nonempty set. Let $E$ be the set of all subsets of $X$ with
+even cardinality, and let $F$ be the set of all subsets of $X$ with odd cardinality.
+Then $|E| = |F|$.
+
+\proof We shall construct a function $f:E\to F$. Fix one specific $x\in X$;
+we can do this because $X\ne \emptyset$. Now, for all $A\in E$, let
+$$f(A) = \cases{A\setminus\{x\}, & if $x\in A$;\cr A\cup \{x\}, & if $x\notin A$.\cr}$$
+Note that since $|A|$ is even for all $A\in E$, the cardinality of $f(A)$ is odd (in the first
+case it is $|A|-1$ and in the second case it is $|A|+1$. This shows that $f$ is indeed a function
+with codomain $F$. Now to prove $|E| = |F|$ we will show that $f$ is bijective, which we
+do by showing that $f$ is an inverse (as an exercise, you might try to prove bijectivity from
+the definitions of injective and surjective).
+
+We define $g : F\to E$ by
+$$g(A) = \cases{A\setminus\{x\}, & if $x\in A$;\cr A\cup \{x\}, & if $x\notin A$.\cr}$$
+As before, $\bigl|g(A)\bigr|$ is even, since $A$ is assumed to be a member of $F$ now. Now
+for any $A\in E$,
+$$\eqalign{
+g\bigl(f(A)\bigr) &= \cases{g\bigl(A\setminus\{x\}\bigr), & if $x\in A$;\cr
+g\bigl(A\cup \{x\}\bigr), & if $x\notin A$\cr} \cr
+&= \cases{\bigl(A\setminus\{x\}\bigr)\cup \{x\}, & if $x\in A$;\cr
+\bigl(A\cup \{x\}\bigr)\setminus \{x\} , & if $x\notin A$\cr} \cr
+&= \cases{A, & if $x\in A$;\cr
+A, & if $x\notin A$\cr} \cr
+&= A.\cr
+}$$
+The proof that $f\bigl(g(A)\bigr) = A$ is similar. Thus $g$ is the inverse of $f$.\slug
+
+\advsect Cardinality
+
+\datestamp{9}{}
+Earlier, we defined the cardinality of a set to be the number of elements it contains. What, then,
+is the cardinality of $\NN$? How about $\RR$? You might say $\infty$, but this is not a number
+(at least, it's not an element of $\NN$, the way all cardinalities of finite sets are).
+So perhaps we should amend our question to the following: {\sl When do infinite sets have the same size?}
+Our experience with functions leads us to the answer: {\sl When there exists a bijection between
+them}. We shall say that $A$ and $B$ are {\it equipotent} (or {\it equinumerous}, or {\it have
+the same cardinality}) if there exists a bijection between $A$ and $B$. In this case
+we write $|A| = |B|$.
+
+As an example, the sets $\NN$ and $\NN\setminus\{0\}$ are equipotent, since $f$
+given by $n\mapsto n+1$ is a bijection $\NN\to\NN\setminus \{0\}$. (Check that
+$f^{-1}(m) = m-1$ is its inverse.)
+
+It is even possible to remove an infinite number of elements from $\NN$ and end up with
+something still equipotent with $\NN$. To see this, let $E$ be the set of nonnegative even integers,
+and consider the function $f :\NN\to E$ sending $n\mapsto 2n$. This is injective because if
+$2m = 2n$, then dividing out by $2$ on both sides yields $m=n$. It is surjective because if
+$n\in E$, then $n=2k$ for some $k\in\NN$, by definition, and $f(k) = 2k = n$.
 
 \bye

@@ -234,4 +234,8 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Conquest of Happiness_ (1930), Bertrand Russell
 1. _Old Babes in the Wood_ (2023), Margaret Atwood
 1. _Down Below_ (1944), Leonora Carrington
-
+1. _The Brothers Karamazov_ (1880), Fyodor Dostoevsky
+1. _The Summer Book_ (1972), Tove Jansson
+1. _Days at the Morisaki Bookshop_ (2010), Satoshi Yagisawa
+1. _Anne of Green Gables_ (1908), Lucy Maud Montgomery
+1. _Tortilla Flat_ (1935), John Steinbeck

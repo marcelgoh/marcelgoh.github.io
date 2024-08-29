@@ -2,7 +2,7 @@
 layout: post
 title: On an entropic analogue of additive energy
 date: 2024-07-29
-published: true
+published: false
 mathjax: true
 excerpt_separator:  <!--more-->
 ---
@@ -20,8 +20,10 @@ I had spent the winter
 semester slowly reading last year's
 [proof of the polynomial Freiman&ndash;Ruzsa conjecture](https://arxiv.org/pdf/2311.05762), due
 to Gowers, Green, Manners, and Tao, and writing up my own
-[verbose retelling of it]({{ site.baseurl }}/misc/expo/entropy.pdf). My notes build up entropy from 
-is a good introduction to entropy as 
+[verbose retelling of it]({{ site.baseurl }}/misc/expo/entropy.pdf). I build up entropy from 
+its axioms, and then prove all the results needed in the PFR paper from scratch. (Section 1 of the
+notes, in particular, I think could be a very good resource for someone who has never seen entropy
+used in combinatorics.)
 
 ### Definitions, notation, basic lemmas
 
