@@ -207,7 +207,6 @@ These laws have names, some of which we will use more often than others:
 (i) is called the identity law, (ii) the domination law, (iii) the idempotent law,
 (iv) the law of double negation, (v) the commutative law, (vi) the associative law,
 (vii) the distributive law, (viii) the absorption law, and (ix) the complement law.
-\bye
 
 \medskip\boldlabel \llap{*}Analogy with addition and multiplication.
 Some of these laws bear some resemblance to laws about numbers that you already know. As an exercise,
@@ -220,7 +219,8 @@ actually true, some won't). Now do the same
 replacement as before, except replace $\symdiff$ with $+$. You will find that many more identities
 carry over.
 
-\medskip\boldlabel De Morgan's laws. There are two important laws relating complements with union and intersection.
+\medskip\boldlabel\datestamp{03}{ix} De Morgan's laws.
+There are two important laws relating complements with union and intersection.
 We shall state them as a proposition, this time giving a proof (of one of them).
 
 \parenproclaim Proposition {\advthm} (De Morgan's laws). Let $A$ and $B$ be sets. Then
@@ -325,6 +325,7 @@ In this case, we can let $A = \{1,2\}$, $B = \{3,4\}$, so that $A\cup B = \{1,2,
 Then the set $\{1,3\}$ is a subset of $A\cup B$ but is not a subset of $A$ and it is not a subset of $B$.
 In other words, $\{1,3\}\in 2^{A\cup B}$ but $\{1,3\} \notin 2^A\cup 2^B$, proving that
 $2^{A\cup B} \not\subseteq 2^A \cup 2^B$.
+\bye
 
 \medskip\boldlabel\datestamp{3}{} Russell's paradox. Earlier, we said that the sets we are working with
 need to be a subset of a universe $U$, which has already been proven to be a set. We gave lots of
@@ -1245,7 +1246,9 @@ which is the expected formula for $n+1$.\slug
 \advsect Functions
 
 A {\it function} $f$ from a set $A$ to a set $B$ is a subset $f\subseteq A\times B$ such that
-for every $a\in A$, there is exactly one $b\in B$ such that $(a,b)\in f$. If $(a,b)\in f$,
+for every $a\in A$, there is exactly one $b\in B$ such that $(a,b)\in f$. (If there is no $b\in B$,
+or more than one, we say that $f$ is not well-defined.
+If $(a,b)\in f$,
 we write $f(a) = b$. The set $A$ is called the {\it domain} and the set $B$ is the {\it codomain}.
 The notation $f:A\to B$ is a way of concisely writing ``$f$ is a function with domain $A$ and
 codomain $B$.''
@@ -1461,5 +1464,83 @@ something still equipotent with $\NN$. To see this, let $E$ be the set of nonneg
 and consider the function $f :\NN\to E$ sending $n\mapsto 2n$. This is injective because if
 $2m = 2n$, then dividing out by $2$ on both sides yields $m=n$. It is surjective because if
 $n\in E$, then $n=2k$ for some $k\in\NN$, by definition, and $f(k) = 2k = n$.
+
+So we can find subset of $\NN$ equipotent with it. It turns out we can also find supersets of $\NN$ with
+the same property.
+
+\proclaim Theorem \advthm. We have $|\NN| = |\ZZ|$.
+
+\proof We define $f : \NN\to \ZZ$ by
+$$f(n) = \cases{{n\over 2}, & if $n$ is even;\cr {-{n+1\over 2}}, & if $n$ is odd.}$$
+We shall show that $f$ is a bijection.
+
+To show that $f$ is injective, there are four cases. Note first that if $n$ is even, then $f(n)\ge 0$,
+and if $n$ is odd, then $f(n) < 0$. So if $f(m) = f(n)$ for some $m,n\in \NN$, then $f(m)$ and $f(n)$ must
+either both be negative, or both be nonnegative. Either way, $m$ and $n$
+are either both even or they are both odd. If $m$ and $n$ are both even, then from $f(m) = f(n)$ we derive
+$${m\over 2} = {n\over 2},$$
+whence multiplying by $2$ on both sides we see that $m=n$. If $m$ and $n$ are both odd, then
+$$-{m+1\over 2} = -{n+1\over 2},$$
+so, multiplying by $-2$ and subtracting $1$ from both sides we have $m=n$ in this case as well.
+
+Now we show that $f$ is surjective. Let $k\in \ZZ$. If $k\ge 0$, then consider $n=2k$. We have
+$$f(n) = f(2k) = {2k\over 2} = k.$$
+If $k<0$, then consider $n=-2k-1$. (Check that this is an element of $\NN$.) Then
+$$f(n) = f(-2k-1) = -{-2k-1+1\over 2} = -{-2k\over 2} = k.$$
+This shows that $f$ is surjective, so $f$ is in fact bijective and we conclude that $\NN=\ZZ$.\slug
+
+We say that a set $A$ is {\it countably infinite} if there exists a bijection $f:\NN\to A$, that is,
+if $|\NN| = |A|$.
+A set is said to be {\it countable} if it is either finite or countably infinite.
+Otherwise it is called {\it uncountable}.
+The previous theorem shows that $\ZZ$ is countably infinite.
+If a set $A$ is countable, then there exists an enumeration
+$$A = \{a_0, a_1, a_2, \ldots\}.$$
+This is useful in the proof of the following theorem.
+
+\proclaim Theorem \advthm. If $A$ and $B$ are countably infinite sets,
+then $A\times B$ is also countably infinite.
+
+\noindent{\it Proof sketch.}\enspace
+Enumerate $A = \{a_1, a_2, \ldots\}$ and $B = \{b_1, b_2, \ldots\}$. Now given
+$(a_i, b_j)\in A\times B$ for some $i,j\in \NN$, we can let
+$$f(a_i, b_j) = {(i+j+1)(i+j+2)\over 2} - i - 1.$$
+Work out the values of $f(a_i, b_j)$ for small choices of $i$ and $j$, and draw a picture to convince yourself that
+$f : A\times B \to\NN$ is a bijection. (Rigorously proving this fact
+is quite tedious, so we omit the details.) This means that $f^{-1}$
+is a bijection from $\NN$ to $A\times B$, so $A\times B$ is countably infinite.\slug
+
+\proclaim Corollary \advthm. We have $|\ZZ\times \ZZ| = |\NN|$.
+
+\proof
+We proved earlier that $\ZZ$ is countably infinite, so we may apply the previous theorem with $A = B = \ZZ$.\slug
+
+One can also show that $|\QQ| = |\NN|$. We will not include the proof, but the idea is that there
+is a surjective map from $\ZZ\times\bigl( \ZZ \setminus \{0\}\bigr)\to \QQ$ given by $(m,n)\mapsto m/n$.
+On the other hand, there are infinite sets that are not countably infinite. An {\it infinite binary
+string} is a function $f:\NN\to \{0,1\}$. (By listing out
+$$ f(0), f(1), f(2), \ldots$$
+you get an infinite string of $0$s and $1$.)
+
+\proclaim The set $A$ of all infinite binary strings is uncountable.
+
+\proof Certainly $A$ is not finite, so we need to show that $|\NN|\ne A$.
+
+Let $f : \NN\to A$. We shall show that $f$ is not surjective. For all $m,n\in \NN$, let $a_{m,n}$
+be the $n$th bit of $f(m)$. Consider the infinite binary string
+$$s = (1-a_{0,0},1-a_{1,1}, 1-a_{2,2}, 1-a_{3,3}, \ldots).$$
+This string $s$ cannot equal $f(m)$ for any $m\in \NN$, since given an arbitrary $m$,
+the $m$th bit of $f(m)$ is $a_{m,m}$, whereas the $m$th bit of $s$ is $1-a{m,m}$. Hence there is some
+$s\in A$ such that $f(m)\ne s$ for all $m\in \NN$. So $f$ is not surjective.
+
+Since there can be no surjection $f:\NN\to A$, {\it a fortiori} we cannot have a bijection $\NN\to A$.
+We conclude that $|A| \ne |\NN|$.\slug
+
+The set of all infinite binary strings is in bijection with the set of all real numbers in the interval
+$[0,1)$. If we're being extra pedantic, we need to forbid an infinite trailing string of all $1$s,
+since, e.g., $0.0111\ldots = 0.1000\ldots$ after carrying the $1$s (akin to the fact
+that, e.g., $0.0999\ldots = 0.1$). After dealing with this detail, we will have shown that
+$\bigl| [0,1]\bigr| \ne |\NN|$.
+
 
 \bye

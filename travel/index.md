@@ -61,7 +61,7 @@ know how to highlight {France, Morocco, Russia} without
 highlighting {French Guiana, Western Sahara, Crimea}, please email me. __Update:__ the reverend
 [Jacob Reznikov](https://axiomofchoice.dev/) helped me fix this.)
 
-Closer to home, I've been to the six non-Maritime provinces, as well as Yukon and the Northwest Territories.
+Closer to home, I've been to every province and territory except Newfoundland/Labrador and Nunavut.
 
 ### Past events
 
