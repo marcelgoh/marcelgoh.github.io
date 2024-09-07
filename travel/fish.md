@@ -11,6 +11,7 @@ North America, freshwater:
 + Kakisa River, N.W.T. (northern pike)
 + Lac des Seize Îles, Que. (pumpkinseed, rock bass, smallmouth bass)
 + Lac Garry, Que. (many small fish of the same species, couldn't identify)
++ Lac Sans Bout, Que. (rainbow trout)
 + Lac Vingt Sous, Que. (yellow perch)
 + Red River, Man. (black bullhead)
 + Rivière du Diable, Que. (northern pike, fallfish)
