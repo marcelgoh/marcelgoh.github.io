@@ -558,7 +558,7 @@ Exploiting this connection, we have the following analogue of Proposition~{\prop
 \smallskip
 \item{vi)} $p\vee (q\vee r) \equiv (p\vee q) \vee r$ and $p\wedge (q\wedge r) \equiv (p\wedge q)\wedge r)$;
 \smallskip
-\item{vii)} $p\vee (q\vee r) \equiv (p\vee q) \wedge (p\vee r)$ and
+\item{vii)} $p\vee (q\wedge r) \equiv (p\vee q) \wedge (p\vee r)$ and
 $p\wedge (q\vee r) \equiv (p\wedge q)\vee (p\wedge r)$;
 \smallskip
 \item{viii)} $p\vee (p\wedge q) \equiv p$ and $p\wedge (p\vee q) \equiv p$; and
@@ -592,7 +592,7 @@ to remember the names of all these laws, as long as you remember their statement
 it is easier to remember the names along with the statements, just as it might be easier to remember faces of
 people you've met if you also know their names.)
 
-\medskip\boldlabel Conditional and biconditional. We now examine the {\it conditional}
+\medskip\boldlabel\datestamp{10}{ix} Conditional and biconditional. We now examine the {\it conditional}
 logical relation {\mc IF} $p$ {\mc THEN} $q$. It is denoted by $p\To q$ and its truth table is given by
 $$
 \vbox{
@@ -650,7 +650,6 @@ p & q & p\Leftrightarrow q \cr
 }}
 $$
 is pretty self-explanatory; in it, $p\Leftrightarrow q$ is true whenever $p$ and $q$ have the same truth value.
-\bye
 The name ``biconditional'' is suggested by (part of) the following proposition.
 
 \proclaim Proposition {\advthm}. Let $p$ and $q$ be propositional variables. Then
@@ -778,6 +777,7 @@ Given a few minutes, you are certainly capable of writing down a formula $f$ tha
 variables, call them $p_1, \ldots, p_{300}$. The truth table of $f$ will have $2^{300}$ rows,
 which is more than the number of atoms in the observable universe. You can learn a lot more
 about {\mc SAT} in a higher-level class on computational complexity (e.g., {\mc COMP 360/362}).
+\bye
 
 \advsect Predicate logic
 
@@ -1416,7 +1416,7 @@ and sometimes to prove that a function is a bijection, it is easier to show that
 rather than messing around with the definitions of injective and surjective.
 Here's an example.
 
-\proclaim Proposition. Let $X$ be a finite nonempty set. Let $E$ be the set of all subsets of $X$ with
+\proclaim Proposition \advthm. Let $X$ be a finite nonempty set. Let $E$ be the set of all subsets of $X$ with
 even cardinality, and let $F$ be the set of all subsets of $X$ with odd cardinality.
 Then $|E| = |F|$.
 
@@ -1468,7 +1468,6 @@ $n\in E$, then $n=2k$ for some $k\in\NN$, by definition, and $f(k) = 2k = n$.
 
 So we can find subset of $\NN$ equipotent with it. It turns out we can also find supersets of $\NN$ with
 the same property.
-
 \proclaim Theorem \advthm. We have $|\NN| = |\ZZ|$.
 
 \proof We define $f : \NN\to \ZZ$ by
@@ -1488,42 +1487,118 @@ Now we show that $f$ is surjective. Let $k\in \ZZ$. If $k\ge 0$, then consider $
 $$f(n) = f(2k) = {2k\over 2} = k.$$
 If $k<0$, then consider $n=-2k-1$. (Check that this is an element of $\NN$.) Then
 $$f(n) = f(-2k-1) = -{-2k-1+1\over 2} = -{-2k\over 2} = k.$$
-This shows that $f$ is surjective, so $f$ is in fact bijective and we conclude that $\NN=\ZZ$.\slug
+This shows that $f$ is surjective, so $f$ is in fact bijective and we conclude that $|\NN|=|\ZZ|$.\slug
 
 We say that a set $A$ is {\it countably infinite} if there exists a bijection $f:\NN\to A$, that is,
 if $|\NN| = |A|$.
 A set is said to be {\it countable} if it is either finite or countably infinite.
 Otherwise it is called {\it uncountable}.
 The previous theorem shows that $\ZZ$ is countably infinite.
-If a set $A$ is countable, then there exists an enumeration
-$$A = \{a_0, a_1, a_2, \ldots\}.$$
-This is useful in the proof of the following theorem.
 
+Sometimes it is difficult to come up with a bijection directly. Instead, we would like to find
+an injection from $A$ to $B$ (which, in some sense, shows that $|A|\le |B|$), and then an injection
+from $B$ to $A$. This is made possible by the following useful theorem, named for Ernst Schr\"oder
+and Felix Bernstein, who independently proved it in 1898. The proof is a bit difficult, so it's
+technically outside the scope of the course. For fun, you might try to do it as an exercise.
+
+\parenproclaim Theorem {\advthm}. (Schr\"oder--Bernstein theorem). If there exists an injective
+function $f:A\to B$ and another injective function $g:B\to A$, then there is a bijection
+$h:A\to B$.
+
+\proof We present the proof as a (difficult) exercise. Here is the roadmap.
+Call $b\in B$ {\it unattached} if there is no $a\in A$ such that $f(a) = b$.
+Let $h:B\to B$ be given by $h(b)  = f\bigl(g(b)\bigr)$. Given $b,b'\in B$, we shall say that
+$b$ is a {\it peer} of $b'$ if either $b = b'$ or there exists some $n\in \NN$ such
+that
+$$ b = \underbrace{h(h(\cdots(h}_{n\ \hbox{\sevenrm times.}}(b'))\cdots))$$
+Say that $b\in B$ is a {\it PAE} if it is the peer of an unattached element. (So unattached
+elements are automatically PAEs, by setting $n=0$.)
+\medskip
+\item{a)} Show that if $a\in A$ is such that
+$f(a)$ is a PAE, then
+there is a unique element $b^*\in B$ such that $g(b^*) = a$, and that
+this element is a PAE.
+\medskip
+\noindent By part (a), if $f(a)$ is a PAE, it makes sense to speak of $g^{-1}(a)$. It is
+the element $b^*\in B$ such that $g(b^*) = a$. From here we define
+$$ r(a) = \cases{ g^{-1}(a), & if $f(a)$ is a PAE;\cr
+f(a), & otherwise.}$$
+\medskip
+\item{b)} Show that if $b\in B$ is a PAE
+then so is $f\bigl(g(b)\bigr)$.
+\item{c)} Show that $r$ is surjective. [{\it Hint}: Do a proof by cases. Every $b\in B$ is either
+a PAE or it is not a PAE.]
+\smallskip
+\item{d)} We already proved in part (a) that if $f(a)$ is a PAE, then so is $r(a)$. Prove
+the converse of this statement.
+\smallskip
+\item{e)} Show that $r$ is injective, and therefore bijective. [{\it Hint}:
+Assume $r(a_1) = r(a_2)$, and do a proof by cases again. Part (d) will be useful here.]\slug
+\medskip
+
+Once again, this proof is outside the scope of the course. Don't lose sleep over it if you can't do it.
+Feel free to email me with questions if you get stuck.
+
+Using the Schr\"oder--Bernstein theorem, we now show that the Cartesian product of two countable sets is also
+countable.
+In the proof, we shall employ the fact that if a set $A$ is countable, then there exists an enumeration
+$$A = \{a_0, a_1, a_2, \ldots\}.$$
+(If $f$ is the bijection given by the definition, we can set $a_0 = f(0)$, $a_1 = f(1)$, and so on.)
+
+In the following proof, we'll also use the Fundamental Theorem of Arithmetic, which we state now, and prove
+later in the course (in the number theory section). It says that
+any integer can be factored as a product of primes, a theorem you should have learned in grade school.
+
+\parenproclaim Theorem {\advthm} (Fundamental Theorem of Arithmetic). Every positive
+integer $n\ge 2$ can be factored into a product
+$${p_1}^{v_1} {p_2}^{v_2}\cdots {p_n}^{v_n},$$
+where $n\ge 0$ is an integer and, for $1\le i\le n$, $p_i$ is a prime and $v_i$ is a positive integer.
+This factorisation is unique up to the order of the primes.\slug
+
+\edef\thmcartesiancountable{\the\thmcount}
 \proclaim Theorem \advthm. If $A$ and $B$ are countably infinite sets,
 then $A\times B$ is also countably infinite.
 
-\noindent{\it Proof sketch.}\enspace
-Enumerate $A = \{a_1, a_2, \ldots\}$ and $B = \{b_1, b_2, \ldots\}$. Now given
+\proof
+Enumerate $A = \{a_0, a_2, \ldots\}$ and $B = \{b_0, b_2, \ldots\}$. Now given
 $(a_i, b_j)\in A\times B$ for some $i,j\in \NN$, we can let
-$$f(a_i, b_j) = {(i+j+1)(i+j+2)\over 2} - i - 1.$$
-Work out the values of $f(a_i, b_j)$ for small choices of $i$ and $j$, and draw a picture to convince yourself that
-$f : A\times B \to\NN$ is a bijection. (Rigorously proving this fact
-is quite tedious, so we omit the details.) This means that $f^{-1}$
-is a bijection from $\NN$ to $A\times B$, so $A\times B$ is countably infinite.\slug
+$$f(a_i, b_j) = 2^i3^j.$$
+We show that this defines an injective function. Suppose that $f(a_i, b_j) = f(a_{i'}, f(b_{j'}).$
+Then $2^i3^j = 2^{i'} 3^{j'}$, and by the uniqueness of prime factorisations in the Fundamental
+Theorem of Arithmetic, we see that $i = i'$ and $j=j'$.
 
+Now we produce an injection $g : \NN\to A\times B$ by simply setting
+$$g(n) = (a_n, b_0).$$
+It is clear this is injective, since if $g(m) = g(n)$, then $(a_m, b_0) = (a_n, b_0)$, and
+that implies that $m=n$.\slug
+
+\edef\corzedtwocountable{\the\thmcount}
 \proclaim Corollary \advthm. We have $|\ZZ\times \ZZ| = |\NN|$.
 
 \proof
 We proved earlier that $\ZZ$ is countably infinite, so we may apply the previous theorem with $A = B = \ZZ$.\slug
 
-One can also show that $|\QQ| = |\NN|$. We will not include the proof, but the idea is that there
-is a surjective map from $\ZZ\times\bigl( \ZZ \setminus \{0\}\bigr)\to \QQ$ given by $(m,n)\mapsto m/n$.
-On the other hand, there are infinite sets that are not countably infinite. An {\it infinite binary
-string} is a function $f:\NN\to \{0,1\}$. (By listing out
-$$ f(0), f(1), f(2), \ldots$$
-you get an infinite string of $0$s and $1$.)
+This corollary concerning $\ZZ\times \ZZ$ allows us to prove that $\QQ$ is countable as well.
 
-\proclaim The set $A$ of all infinite binary strings is uncountable.
+\proclaim Theorem. The set $\QQ$ of rational numbers is countable.
+
+\proof We define $f:\QQ\to \ZZ\times \ZZ$ as follows. For an element $q\in \QQ$, we let $q = a/b$ the fraction $q$
+written in lowest terms (where $a\in \ZZ$ and $b\in \NN\setminus\{0\}$). Then we set $f(q) = (a,b)$.
+This is an injective function because if $f(q) = f(q')$, then writing $q = a/b$ and $q' = a'/b'$ in lowest
+terms, we have $(a,b) = (a',b')$, so $q = a/b = a'/b' = q'$.
+
+To define an injection $g: \ZZ\times \ZZ\to \QQ$, we recycle the injection we had from the proof
+of Theorem~{\thmcartesiancountable}. We already know that $\ZZ$ is countable, so fix an enumeration
+$\ZZ = \{a_0, a_1, a_2, \ldots\}$. Then let $g(a_i, a_j) = 2^i 3^j$. The range of $g$ is a subset of $\NN$,
+so {\it a fortiori} it is a subset of $\QQ$, and we already showed before that it is an injection.
+
+We have shown that $|\QQ| = |\ZZ\times \ZZ|$, which in turn shows that $|\QQ| = |\NN|$, after
+applying Corollary~{\corzedtwocountable}.\slug
+
+So far, we have just given lots of examples of countably infinite sets. Finally, we give an example
+of a set that is not countably infinite.
+
+\proclaim Theorem \advthm. The set $A$ of all infinite binary strings is uncountable.
 
 \proof Certainly $A$ is not finite, so we need to show that $|\NN|\ne A$.
 
@@ -1540,8 +1615,16 @@ We conclude that $|A| \ne |\NN|$.\slug
 The set of all infinite binary strings is in bijection with the set of all real numbers in the interval
 $[0,1)$. If we're being extra pedantic, we need to forbid an infinite trailing string of all $1$s,
 since, e.g., $0.0111\ldots = 0.1000\ldots$ after carrying the $1$s (akin to the fact
-that, e.g., $0.0999\ldots = 0.1$). After dealing with this detail, we will have shown that
+that, e.g., $0.0999\ldots = 0.1$). After dealing with this detail, one will have shown that
 $\bigl| [0,1]\bigr| \ne |\NN|$.
+
+\advsect Relations
+
+\datestamp{10}{} A {\it relation} on a set $X$ is a subset $R\subseteq X\times X$. If $(a,b)\in R$
+we write $aRb$ and say ``$a$ is related to $b$.'' Here are some examples.
+\medskip
+\item{i)} The set $< = \bigl\{(a,b)\in \RR\times\RR : a<b\bigr\}$ is a relation. For instance, we can
+write $(2,\pi)\in <$, or $2<\pi$ (which is the more common notation for this relation).
 
 
 \bye
