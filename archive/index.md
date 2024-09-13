@@ -3,6 +3,9 @@ layout: page
 title: Blog Archive
 ---
 
+### 2024
+- (12.09.2024) _[Best Canadian Stories 2025]({{ site.baseurl }}/2024/09/12/bcs-2025.html)_
+
 ### 2023
 - (06.04.2023) [One year of writing and submitting short stories]({{ site.baseurl }}/2023/04/06/one-year-short-stories.html)
 
