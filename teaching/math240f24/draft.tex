@@ -953,7 +953,7 @@ $m,n\in \ZZ$. Then, setting $y=n\in \ZZ$, we have $xy = (m/n)\cdot n = m\in \ZZ$
 Notice how we introduced the variable $x$ in the above proof.
 Because we're trying to prove a ``for all'' statement, we use
 the word ``let,'' to indicate that $x$ is given to us by some higher power. In fact, we should sort
-of view this higher power as possibly being malicious. A very useful way to think about writing proof is
+of view this higher power as possibly being malicious. A very useful way to think about writing a proof is
 to imagine a game in which you are trying to prove a statement in predicate logic, and a supernatural adversary
 is attempting to thwart you. Let's say this predicate has four variables, so the statement is
 $$\exists x \, \forall y \, \forall z\, \exists w : P(x,y,z,w).$$
@@ -964,8 +964,8 @@ is a $\forall$ symbol, it's the adversary's turn, and you should be prepared for
 So in our example, the adversary may set $y$ and $z$ to anything in the universe, and he knows you picked
 $x$. Lastly, you get to pick $w$. If $P(x,y,z,w)$ is true, you win, and if not, the adversary wins.
 Writing a proof is equivalent to describing a winning strategy for the player against the adversary.
-\bye
 
+\medskip\noindent\boldlabel\datestamp{17}{ix} Proving conditional statements.
 Many mathematical statements introduce some hypotheses, then assert some conclusion. Thus they are some
 kind of statement of the form $p\To q$. To prove this kind of statement,
 we assume that $p$ holds, then prove that $q$ is true. This is because the only way a statement for $p\To q$
@@ -1108,6 +1108,7 @@ which is a multiple of $4$.
 If $n$ is odd, then $n=2k+1$ for some integer $k$, and
 $$1 + (-1)^{2k+1}\bigl(2(2k+1) - 1\bigr) = 1- (4k+2-1) = 1-(4k-1) = -4k,$$
 which is also a multiple of $4$.\slug
+\bye
 
 Sometimes, the cases in which to split the proof are not so obvious.
 
