@@ -1031,7 +1031,7 @@ ancient Greeks and referred to for much of Western history by its Latin name,
 a statement $p$ by assuming its negation $\neg p$
 holds, then deriving a contradiction, i.e., a statement whose truth value is $0$.
 By doing this, one will have proved that $\neg p\To 0$, which in turn shows that $p$ is true, since
-$$\neg p \To 0 \equiv \neg(\neg p) \vee 0 \equiv p\vee 0 \vee p.$$
+$$\neg p \To 0 \equiv \neg(\neg p) \vee 0 \equiv p\vee 0 \equiv p.$$
 Here is an example of a proof by contradiction.
 
 \proclaim Proposition \advthm. There is no least positive rational number.
@@ -1106,11 +1106,11 @@ $$1 + (-1)^{2k} \bigl( 2(2k)-1\bigr) = 1 + 1^k (4k-1) = 4k,$$
 which is a multiple of $4$.
 
 If $n$ is odd, then $n=2k+1$ for some integer $k$, and
-$$1 + (-1)^{2k+1}\bigl(2(2k+1) - 1\bigr) = 1- (4k+2-1) = 1-(4k-1) = -4k,$$
+$$1 + (-1)^{2k+1}\bigl(2(2k+1) - 1\bigr) = 1- (4k+2-1) = 1-(4k+1) = -4k,$$
 which is also a multiple of $4$.\slug
-\bye
 
-Sometimes, the cases in which to split the proof are not so obvious.
+\noindent
+\datestamp{19}{ix} \hskip\parindent Sometimes, the cases into which one might split the proof are not so obvious.
 
 \proclaim Proposition \advthm. There exist irrational numbers $a$ and $b$ such that $a^b$ is rational.
 
@@ -1130,8 +1130,7 @@ we just know that it must either be rational or irrational.
 requires some notions from complex analysis as well as Galois theory, subjects that are
 typically not encountered until at least the second or third year of a mathematics degree.)
 
-
-\medskip\boldlabel\datestamp{7}{} Mathematical induction. Sometimes we want to prove an infinite
+\medskip\boldlabel Mathematical induction. Sometimes we want to prove an infinite
 number of statements, indexed by the natural numbers. If the complexity of the statements
 sort of ``grows'' in $n$ (a vague notion to be made precise soon), the following theorem holds.
 
@@ -1265,9 +1264,9 @@ $$g = \bigl\{ (a,b)\in \RR^2 : a = b^2 \bigl\}$$
 is not a function, since $(1,1)$ and $(1,-1)$ are both in $g$. Furthermore,
 there is no element of $g$ with $-1$ as its first coordinate.
 \smallskip
-\item{iii)} If $X = \{1,4,5\}$ and $Y = \{0,1,2,3,4,5\}$, then
+\item{iii)} If $X = \{1,2,5\}$ and $Y = \{0,1,2,3,4,5\}$, then
 $$\bigl\{ (1,0), (2, 4), (5,5)\bigr\}$$
-is a function.
+is a function from $X$ to $Y$.
 \smallskip
 \item{iv)} The set
 $$h = \bigl\{ (x,y)\in \RR^2 : y = 1/x \bigl\}$$
@@ -1276,6 +1275,7 @@ if we amend the domain and consider
 $$h = \bigl\{ (x,y)\in \bigl(\RR\setminus \{0\}\bigr)\times \RR : y = 1/x \bigl\},$$
 then in fact, $h:\RR\setminus \{0\} \to \RR$ is a function.
 \medskip
+\bye
 
 \medskip\boldlabel\datestamp{8}{} Injective and surjective functions.
 The {\it range} or {\it image} of a function $f:A\to B$ is

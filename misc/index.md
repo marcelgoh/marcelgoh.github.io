@@ -43,6 +43,7 @@ __E1.__ [On the probability that two integers are relatively prime]({{ site.base
 + &#78818; [Adam Hamdan](http://adamhamdan.ca/)
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/)
 + &#77945; [Hazem Hassan](https://www.math.mcgill.ca/hazem.hassan/)
++ &#78023; [Sophia Howard](https://sophiahoward22.github.io/)
 + &#78764; [Rasha Lama](https://rashalama.com)
 + &#78069; [Cheng Lin](https://cheng-lin.me)
 + &#77862; [Michelle Lin](https://mchll-ln.github.io/)
