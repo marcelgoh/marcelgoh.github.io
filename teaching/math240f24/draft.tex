@@ -1322,7 +1322,7 @@ $$h = \bigl\{ (x,y)\in \bigl(\RR\setminus \{0\}\bigr)\times \RR : y = 1/x \bigl\
 then in fact, $h:\RR\setminus \{0\} \to \RR$ is a function.
 \medskip
 
-\medskip\boldlabel\datestamp{8}{} Injective and surjective functions.
+\medskip\boldlabel\datestamp{24}{ix} Injective and surjective functions.
 The {\it range} or {\it image} of a function $f:A\to B$ is
 $$f(A) = \bigl\{b\in B : \hbox{there exists}\ a\in A\ \hbox{such that}\ b = f(a)\bigr\}.$$
 These are all the values $f$ actually outputs. For instance, if we let $f : \ZZ\to \NN$
@@ -1354,13 +1354,13 @@ letting $B = f(A)$.
 the most fundamental laws in discrete mathematics, called the pigeonhole principle.
 We begin with the following intuitive theorem.
 
-\proclaim Theorem \advthm. Let $a_1, a_2, \ldots, a_m$ be a finite sequence (repeats allowed) of
+\proclaim Theorem \advthm. Let $a_1, a_2, \ldots, a_n$ be a finite sequence (repeats allowed) of
 real numbers. Let
-$$a = {1\over m}\sum_{i=1}^m a_i$$
+$$a = {1\over n}\sum_{i=1}^n a_i$$
 be the average value of the sequence and let $m$ be the maximum value the sequence attains. Then $m \ge a$.
 
 \proof We have
-$$a = {1\over m}\sum_{i=1}^m a_i \le {1\over m} \sum_{i=1}^m m = {m^2\over m} = m.\noskipslug$$
+$$a = {1\over n}\sum_{i=1}^n a_i \le {1\over n} \sum_{i=1}^n m = {mn\over n} = m.\noskipslug$$
 
 This theorem can be summed up in one sentence: {\sl The maximum is at least the average.}
 Don't underestimate this theorem even though its proof was a one-liner! It is often used to prove
@@ -1373,7 +1373,7 @@ From here we are now equipped to prove (a general version of) the pigeonhole pri
 For every function $f:A\to B$, then there is some $b\in B$ such that there are at least
 $\lceil m/n\rceil$ elements $a\in A$ with $f(a) = b$.
 
-\proof For $1\le i \le n$, let $r_i$ be the number of $a\in A$
+\proof Enumerate $B = \{b_1, b_2, \ldots, b_n\}$. For $1\le i \le n$, let $r_i$ be the number of $a\in A$
 such that $f(a) = b_i$. This is a sequence that adds up to $m$, since every $a$ in $A$ maps to
 exactly one element of $B$. So the sequence has average $m/n$, and by the previous theorem,
 there must be some $j$ such that $r_j \ge m/n$. But the $r_i$ are all actually integers (since
@@ -1488,6 +1488,7 @@ A, & if $x\notin A$\cr} \cr
 &= A.\cr
 }$$
 The proof that $f\bigl(g(A)\bigr) = A$ is similar. Thus $g$ is the inverse of $f$.\slug
+\bye
 
 \advsect Cardinality
 

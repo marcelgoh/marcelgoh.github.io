@@ -230,7 +230,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Whole Animal_ (2023), Corinna Chong
 1. _Surfacing_ (1972), Margaret Atwood
 1. _Jude the Obscure_ (1895), Thomas Hardy
-1. _Friend of My Youth_ (1990), Alice Munro
+1. _Friend of My Youth_ (1990), Alice Munro2005
 1. _The Conquest of Happiness_ (1930), Bertrand Russell
 1. _Old Babes in the Wood_ (2023), Margaret Atwood
 1. _Down Below_ (1944), Leonora Carrington
@@ -239,3 +239,5 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Days at the Morisaki Bookshop_ (2010), Satoshi Yagisawa
 1. _Anne of Green Gables_ (1908), Lucy Maud Montgomery
 1. _Tortilla Flat_ (1935), John Steinbeck
+1. _Best Canadian Stories 2025_ (2024), ed. Stephen Beattie
+1. _The Year of Magical Thinking_ (2005), Joan Didion
