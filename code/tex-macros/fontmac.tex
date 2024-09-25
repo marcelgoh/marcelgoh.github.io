@@ -45,10 +45,10 @@
 \def\sc{\tensc}  \def\mc{\ninerm}
 
 % CYRILLIC
-\input cyracc.def
-    \font\tencyr=wncyr10   \font\ninecyr=wncyr9   \font\eightcyr=wncyr8
-    \font\tencyri=wncyi10  \font\ninecyri=wncyi9  \font\eightcyri=wncyi8
-    \def\cyr{\tencyr\cyracc} \def\cyri{\tencyri\cyracc}
+% \input cyracc.def
+%     \font\tencyr=wncyr10   \font\ninecyr=wncyr9   \font\eightcyr=wncyr8
+%     \font\tencyri=wncyi10  \font\ninecyri=wncyi9  \font\eightcyri=wncyi8
+%     \def\cyr{\tencyr\cyracc} \def\cyri{\tencyri\cyracc}
 
 % FONT SIZES (ADAPTED FROM THE TEXBOOK).
 % CHANGES MADE:
@@ -224,6 +224,7 @@
 % Block of left-justified text, in "poetry-mode"
 \def\begincode{\par\begingroup\nobreak\medskip \obeylines\obeyspaces\frenchspacing\tt}
 \def\endcode{\endgroup\medbreak\noindent}
+\def\tab{\ \ \ \ }
 
 % Fraktur font -- needs some extra tuning to work with sizes other than \tenpoint
 \font\tenfrak=eufm10
@@ -241,6 +242,7 @@
 \def\scproclaim#1.#2\par{\noindent\jankscsp #1.\enspace{\it#2\par}}
 
 % References
+\def\bref#1{[#1]}
 \def\ref#1{[#1]}
 
 \def\textbackslash{{\char`\\}}

@@ -41,11 +41,14 @@
 \def\op#1{\mathop{\hbox{#1}}\nolimits}
 \def\limitop#1{\mathop{\hbox{#1}}}
 
+% Better pmod
+\def\pmod#1{\allowbreak\mkern6mu({\rm mod}\,\,#1)}
+
 % Probability
-\def\pr{\hbox{\bf P}}
-\def\ex{\hbox{\bf E}}
-\def\var{\hbox{\bf V}}
-\def\one{\hbox{\bf 1}}
+\def\pr{\op{\bf P}}
+\def\ex{\op{\bf E}}
+\def\var{\op{\bf V}}
+\def\one{\op{\bf 1}}
 \def\indic#1{\one_{\sevenrm[#1]}}
 
 % Graphs
