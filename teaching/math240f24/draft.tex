@@ -10,8 +10,15 @@
 \def\symdiff{\mathrel{\triangle}}
 \def\To{\Rightarrow}
 \def\Gets{\Leftarrow}
+\font\titlefont=cmbx12 at 14 pt
+\def\cont#1#2{#1\hskip-2pt\leaders\hbox to 8pt{\hss.\hss}\hfil\hbox to 1em{\hss#2}}
+\def\divides{\mid}
+
+\vglue24pt
 
 \maketitle{MATH 240 Fall 2024}{notes by}{Marcel Goh}{}
+
+\bigskip
 
 \floattext 4.5 \ninebf A note on these notes.
 \ninepoint After each class, this document will be updated with the new material that was
@@ -19,7 +26,44 @@ just covered. The datestamps in the left margin indicate when the notes from eac
 Subsections labelled with a $*$ are optional. This document is heavily based on notes by
 Jeremy Macdonald, but any errors are likely my own. Please email me if you find any.
 
+\vskip60pt
+
+\vskip \medskipamount \hbox to\hsize {\relax \unhcopy \strutbox \cont
+{{\tenssbx I. Foundations \kern 3pt}}{2}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 1.\kern .5em Set theory }{3}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 2.\kern .5em Propositional logic}{10}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 3.\kern .5em Predicate logic}{17}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 4.\kern .5em Proofs}{21}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 5.\kern .5em Functions}{28}}
+%\smallskip
+%\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 6.\kern .5em Cardinality}{33}}
+%\smallskip
+%\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 7.\kern .5em Relations}{37}}
+
+\vfill\eject
+\begingroup\headline{\hfil}\footline{\hfil}
+\vglue160pt
+\centerline{\titlefont I. FOUNDATIONS}
+\vskip220pt
 \bigskip
+\begingroup\obeylines\eightssi
+\hfill Die Mathematik ist in ihrer Entwickelung v\"ollig frei
+\hfill und nur an die selbstredende R\"ucksicht gebunden,
+\hfill dass ihre Begriffe sowohl in sich widerspruchslos sind,
+\hfill als auch in festen durch Definitionen geordeneten Beziehungen
+\hfill zu den vorher gebildeten,
+\hfill bereits vorhandenen und bew\"ahrten Begriffen stehen.
+\eightss
+\smallskip
+\hfill --- GEORG CANTOR, {\eightssi Grundlagen einer allgemeinen Mannigfaltigkeits­lehre} (1883)
+\endgroup%\obeylines
+\bigskip\goodbreak
+\vfill\eject
 
 \advsect Set theory
 
@@ -93,6 +137,7 @@ defined by
 $$P = \bigl\{ p\in \NN : p\ge 2,\ \hbox{and if $p = ab$ then $\{a,b\} = \{1,p\}$}\bigr\}.$$
 (You may have met a different definition of prime numbers in the past. Pause a moment and convince
 yourself that the statement above defines the set of prime numbers as you know it.)
+\endgroup%\headline{\hfil}\footline{\hfil}
 
 \medskip\boldlabel Set inclusion.
 When we use set builder notation $B = \bigl\{x\in A : P(x)\bigr\}$, every element of $B$ is necessarily
@@ -623,7 +668,7 @@ and $q$ is true, so it might seem odd that we have set $p\To q$ to true, because
 between $p$ and $q$.
 But it should make sense if you think
 of $p$ as a precondition to a promise $q$, and then considering whether the promise is broken. As an example,
-suppose your friend says: ``If it snows tomorrow I'll work in Trottier with you.'' If it doesn't snow
+suppose your friend says, If it snows tomorrow I'll work in Trottier with you. If it doesn't snow
 and she doesn't pull up, she hasn't technically broken her promise. If it doesn't
 snow and she shows up, then she still hasn't broken her promise. The only way she can break her promise is if
 it snows and she doesn't come to Trottier; this situation corresponds to the only $0$-row in the truth table.
@@ -809,9 +854,9 @@ $y<0$. But if $U = \ZZ$, then the statement is true, since for every integer $x$
 so that $y<x$.
 
 Now we practise translating converting mathematical statements written in English into formulas
-in predicate logic. Suppose we want to write: ``Every integer is even or odd.'' The universe here is
+in predicate logic. Suppose we want to write, Every integer is even or odd. The universe here is
 is the set $\ZZ$ of integers. The word ``every'' has the same meaning as ``for all,'' so right
-off the bat, we can reexpress the statement as: ``For all $n\in \ZZ$, $n$ is even or $n$ is odd.''
+off the bat, we can reexpress the statement as, For all $n\in \ZZ$, $n$ is even or $n$ is odd.
 In symbols, this is
 $$ \forall n\,(n\ \hbox{even} \vee n\ \hbox{odd}).$$
 Lastly, we need to figure out how to express the property of being even or being odd.
@@ -826,7 +871,7 @@ a variable ``going out of scope.'') So there is nothing wrong with this formula,
 clear that the first $k$ is different from the second $k$, why don't we replace it with a different letter?
 Thus we arrive at
 $$\forall n\, \bigl((\exists k : n = 2k)\vee (\exists l : n = 2l+1)\bigr),$$
-a formula in predicate logic that means ``every integer is even or odd.''
+a formula in predicate logic that means, Every integer is even or odd.
 
 \medskip\boldlabel Restrictions using quantifiers. It is not true that every real number has a multiplicative
 inverse, since one cannot divide by zero. However, the statement ``every nonzero real number has a multiplicative
@@ -1144,8 +1189,9 @@ $$\bigl( P(m)\wedge P(m+1)\wedge \cdots \wedge P(n) \bigr) \To P(n+1)$$
 \medskip
 then $P(n)$ holds for all $n\ge m$.
 
-In the following proof, we use the fact that every nonempty subset of the natural numbers has
-a least element, the proof of which belongs to a higher-level set theory course.
+In the following proof, we use the {\it well-ordering principle}, which is the
+fact that every nonempty subset of the natural numbers has
+a least element. You can see the proof of the well-ordering principle in a higher-level set theory course.
 
 \proof Assume that (i) and (ii) both hold. Our goal is to prove that $P(n)$ is true for all
 $n\ge m$, so we shall suppose, towards a contradiction, that there is some $n\ge m$ such that
@@ -1275,7 +1321,6 @@ if we amend the domain and consider
 $$h = \bigl\{ (x,y)\in \bigl(\RR\setminus \{0\}\bigr)\times \RR : y = 1/x \bigl\},$$
 then in fact, $h:\RR\setminus \{0\} \to \RR$ is a function.
 \medskip
-\bye
 
 \medskip\boldlabel\datestamp{8}{} Injective and surjective functions.
 The {\it range} or {\it image} of a function $f:A\to B$ is
@@ -1426,7 +1471,7 @@ $$f(A) = \cases{A\setminus\{x\}, & if $x\in A$;\cr A\cup \{x\}, & if $x\notin A$
 Note that since $|A|$ is even for all $A\in E$, the cardinality of $f(A)$ is odd (in the first
 case it is $|A|-1$ and in the second case it is $|A|+1$. This shows that $f$ is indeed a function
 with codomain $F$. Now to prove $|E| = |F|$ we will show that $f$ is bijective, which we
-do by showing that $f$ is an inverse (as an exercise, you might try to prove bijectivity from
+do by showing that $f$ is an inverse (as an exercise, you might instead try to prove bijectivity from
 the definitions of injective and surjective).
 
 We define $g : F\to E$ by
@@ -1505,7 +1550,7 @@ technically outside the scope of the course. For fun, you might try to do it as 
 function $f:A\to B$ and another injective function $g:B\to A$, then there is a bijection
 $h:A\to B$.
 
-\proof We present the proof as a (difficult) exercise. Here is the roadmap.
+\noindent\llap{*}{\it Proof.}\enspace We present the proof as a (difficult) exercise. Here is the roadmap.
 Call $b\in B$ {\it unattached} if there is no $a\in A$ such that $f(a) = b$.
 Let $h:B\to B$ be given by $h(b)  = f\bigl(g(b)\bigr)$. Given $b,b'\in B$, we shall say that
 $b$ is a {\it peer} of $b'$ if either $b = b'$ or there exists some $n\in \NN$ such
@@ -1537,7 +1582,7 @@ Assume $r(a_1) = r(a_2)$, and do a proof by cases again. Part (d) will be useful
 \medskip
 
 Once again, this proof is outside the scope of the course. Don't lose sleep over it if you can't do it.
-Feel free to email me with questions if you get stuck.
+Feel free to ask questions at office hours if you get stuck.
 
 Using the Schr\"oder--Bernstein theorem, we now show that the Cartesian product of two countable sets is also
 countable.
@@ -1560,7 +1605,7 @@ This factorisation is unique up to the order of the primes.\slug
 then $A\times B$ is also countably infinite.
 
 \proof
-Enumerate $A = \{a_0, a_2, \ldots\}$ and $B = \{b_0, b_2, \ldots\}$. Now given
+Enumerate $A = \{a_0, a_1, \ldots\}$ and $B = \{b_0, b_1, \ldots\}$. Now given
 $(a_i, b_j)\in A\times B$ for some $i,j\in \NN$, we can let
 $$f(a_i, b_j) = 2^i3^j.$$
 We show that this defines an injective function. Suppose that $f(a_i, b_j) = f(a_{i'}, f(b_{j'}).$
@@ -1580,7 +1625,7 @@ We proved earlier that $\ZZ$ is countably infinite, so we may apply the previous
 
 This corollary concerning $\ZZ\times \ZZ$ allows us to prove that $\QQ$ is countable as well.
 
-\proclaim Theorem. The set $\QQ$ of rational numbers is countable.
+\proclaim Theorem \advthm. The set $\QQ$ of rational numbers is countable.
 
 \proof We define $f:\QQ\to \ZZ\times \ZZ$ as follows. For an element $q\in \QQ$, we let $q = a/b$ the fraction $q$
 written in lowest terms (where $a\in \ZZ$ and $b\in \NN\setminus\{0\}$). Then we set $f(q) = (a,b)$.
@@ -1623,8 +1668,329 @@ $\bigl| [0,1]\bigr| \ne |\NN|$.
 \datestamp{10}{} A {\it relation} on a set $X$ is a subset $R\subseteq X\times X$. If $(a,b)\in R$
 we write $aRb$ and say ``$a$ is related to $b$.'' Here are some examples.
 \medskip
-\item{i)} The set $< = \bigl\{(a,b)\in \RR\times\RR : a<b\bigr\}$ is a relation. For instance, we can
-write $(2,\pi)\in <$, or $2<\pi$ (which is the more common notation for this relation).
+\item{i)} The set $L = \bigl\{(a,b)\in \RR\times\RR : a<b\bigr\}$ is a relation. For instance, we can
+write $(2,\pi)\in L$, or $2L\pi$, or $2<\pi$ (which is the more common notation for this relation).
+\smallskip
+\item{ii)} The set $E = \bigl\{ (a,b) \in \RR\times \RR : a = b\bigr\}$ is a relation (it is the ``equals''
+relation).
+\smallskip
+\item{iii)} On $\ZZ$, the set
+$$R = \bigl\{(-1, 4), (8, -3), (0, 0), (0,1)\bigr\}$$
+is a relation.
+\smallskip
+\item{iv)} For any set $A$, a function $f:A\to A$ is by definition a subset of $A\times A$, and hence
+is an example of a relation.
+\smallskip
+\item{v)} Let $H$ be the set of all humans, define $M\subseteq H\times H$ by setting
+$(h_1, h_2)$ if and only if $h_1$ is married to $h_2$. For instance,
+$$(\hbox{Michelle Obama}, \hbox{Barack Obama})\in M.$$
+On the other hand, it is unfortunately the case that
+$$(\hbox{Marcel Goh}, \hbox{Taylor Swift})\notin M.$$
+\medskip
+
+\medskip\boldlabel Properties of relations. Let $R\subseteq A\times A$ be a relation. $R$ is called
+\medskip
+\item{i)} {\it reflexive} if for all $a\in A$, $aRa$;
+\smallskip
+\item{ii)} {\it symmetric} if for all $a,b\in A$ with $aRb$, we also have $bRa$; and
+\smallskip
+\item{iii)} {\it transitive} if for all $a,b,c\in A$ with $aRb$ and $bRc$, we also have $aRc$.
+\medskip
+Going back to the examples we had above, the relation $L$ is transitive but neither reflexive nor symmetric,
+the relation $E$ satisfies all three properties, the relation $R$ satisfies none of them, and the relation
+$M$ is symmetric but neither reflexive nor transitive. (Convince yourself of all of these facts.)
+
+As a more involved example, let $X$ be any set with $|X|\ge 2$. On $2^X$, define a relation $R$ by
+$$(A,B)\in R \Leftrightarrow A\cap B\ne \emptyset$$
+for all $A,B\subseteq X$. Which of the three properties above does $R$ satisfy?
+
+Is it reflexive? Well, is it true that for all $A\subseteq X$, $A\cap A \ne \emptyset$? The answer
+is no, since we have $\emptyset \cap \emptyset = \emptyset$, so we have $(\emptyset, \emptyset)\notin R$.
+
+Is $R$ symmetric? Well, if $A\cap B \ne \emptyset$, then since $\cap$ is commutative, we have
+$B\cap A \ne \emptyset$ as well, so $(A,B)\in R$ implies that $(B,A)\in R$. In other words, yes, $R$ is symmetric.
+
+Is $R$ transitive? If $A\cap B\ne \emptyset$ and $B\cap C\ne \emptyset$, does that necessarily mean
+that $A\cap C\ne\emptyset$? The answer is no. Here's the proof. Since $|X|\ge 2$ we can find $x,y\in X$
+with $x\ne y$. Let $A = \{x\}$, $B = \{x,y\}$, and $C = \{y\}$. Then $A\cap B = \{x\}\ne \emptyset$,
+$B\cap C = \{y\}\ne \emptyset$, but alas $A\cap C = \emptyset$.
+
+\medskip\boldlabel Equivalence relations and classes. If $R$ is reflexive, symmetric, and transitive, then we say
+that $R$ is an {\it equivalence relation}. Here are two examples (as an exercise, prove that both of
+these are equivalence relations).
+\medskip
+\item{i)} Let $F$ be the set of all formulas in propositional logic with the variables $p$, $q$, and $r$,
+and operations $\neg$, $\wedge$, and $\vee$. The relation $\equiv$ defined by $f_1 \equiv f_2$
+if and only if $f_1$ and $f_2$ have the same truth table is an equivalence relation.
+\smallskip
+\item{ii)} On the set $\RR^2$, define the relation $R \subseteq \RR^2\times \RR^2$ by letting
+$(x,y) R (w,z)$ if and only if $\sqrt{x^2 + y^2} = \sqrt{w^2 + z^2}$. This is also an equivalence relation
+\medskip
+If $R$ is an equivalence relation, often we shall write $x\sim y$ to mean $xRy$. Sometimes we might
+even just say that $\sim$ {\it is} the equivalence relation.
+
+Let $R\subseteq A\times A$ be an equivalence relation. Define the {\it equivalence class} of $a\in A$
+to be the set
+$$[a] = \{b\in A : a\sim b\}.$$
+This is the set of all $b\in A$ that are related to $a$.
+
+Take for instance the example $F$ above of all formulas under the relation $\equiv$. The equivalence class
+of the formula $p\vee\neg p$ is the set of all formulas whose truth table contains only $1$s, that is,
+the set of all tautologies.
+And for the example $R$ above, the
+equivalence class of the point $(1,3)$ is the set
+$$\bigl[ (1,3)\bigr] = \bigl\{ (x,y)\in \RR^2 : \sqrt\{10\} = \sqrt{x^2 + y^2}\bigr\};$$
+that is, the circle of radius $\sqrt{10}$ centred about the origin.
+
+We have the following proposition concerning equivalence relations.
+
+\proclaim Proposition \advthm. Let $R$ be an equivalence relation on $A$. Then
+\medskip
+\item{i)} for all $x\in A$, $x\in [x]$;
+\smallskip
+\item{ii)} for all $x,y\in A$, $x\sim y$ if and only if $[x] = [y]$; and
+\smallskip
+\item{iii)} for all $x,y\in A$, $x\not\sim y$ if and only if $[x] \cap [y] =  \emptyset$.
+\medskip
+
+\proof Let $x\in A$. Since $R$ is reflexive, $x\sim x$, so we have $x\in [x]$. This proves (i).
+
+For part (ii), first we prove the ``only if'' direction. Let $x,y\in A$ be such that $x\sim y$. To prove that
+$[x]\subseteq [y]$, we let $z\in [x]$; so $x\sim z$. By symmetry, we have $z\sim x$, and this
+combined with $x\sim y$ allow us to deduce that $z\sim y$, by transitivity. Then by symmetry again,
+we have $y\sim z$, so $z\in [y]$. {\it Mutatis mutandis}, i.e., by swapping the roles of $x$ and $y$,
+we also have $[y]\subseteq [x]$. Hence $[x] = [y]$.
+
+Now for the ``if'' direction of (ii). Let $x,y\in A$ be such that
+$[x] = [y]$. By (i), we have $x\in [x]$, but
+then this means that $x\in [y]$. By definition of $[y]$, this means that $y\sim x$, so $x\sim y$
+by symmetry.
+
+On to part (iii). We prove both implications by contraposition (that is, we negate both sides of the
+statement). Let $x,y\in A$ be such that $[x]\cap [y] \ne \emptyset$. This means there is some $z\in A$ such
+that $z\in [x]$ and $z\in [y]$; so $x\sim z$ and $y\sim z$. By symmetry, $z\sim y$,
+so by transitivity, we have $x\sim y$.
+
+On the other hand, suppose that $x,y\in A$ satisfy $x\sim y$.
+By (i) again, we have $[x] = [y]$, so $[x] \cap [y] = [x] \ne \emptyset$,
+where we know that $[x]\ne \emptyset$ because it contains at least $x$.\slug
+
+\noindent
+\datestamp{11}{} \hskip\parindent Let $A$ be a set. A {\it partition} of $A$ is a set $P$ of subsets
+of $A$ (i.e., $P\subseteq 2^A$), such that
+\medskip
+\item{i)} for all $x\in A$ there exists $S\in P$ such that $x\in S$;
+\smallskip
+\item{ii)} for all $S_1, S_2\in P$ with $S_1\ne S_2$, the intersection $S_1\cap S_2$ is empty; and
+\smallskip
+\item{iii)} $\emptyset\notin P$.
+\medskip
+Here are some examples.
+\medskip
+\item{i)} Let $E$ be the set of all even integers and $F$ the set of all odd integers. Then $\{E,F\}$
+is a partition of $\ZZ$.
+\smallskip
+\item{ii)} The set $\bigl\{ (-\infty,0), \{0\}, (0,\infty)\bigr\}$ is a partition of $\RR$.
+\medskip
+If $\sim$ is an equivalence relation on a set $A$, then we can define the {\it quotient}
+of $A$ by $\sim$ as the set of all equivalence classes of $A$ under $\sim$. We denote this set by
+$$A/\sim = \bigl\{ [x] : x\in A\bigr\}.$$
+We use the previous proposition to prove that equivalence relations give rise to partitions.
+
+\proclaim Proposition \advthm. Let $A$ be a set and $\sim$ an equivalence relation on $A$.
+Then $A/\sim$ is a partition of $A$.
+
+\proof By part (i) the previous proposition, every $x\in A$ belongs to the equivalence class $[x]$.
+Then, by part (ii) of the previous proposition, we know that for any equivalence classes
+$[x]$ and $[y]$ such that $[x]\ne [y]$, we must have $x\not\sim y$, and by part (iii) of the previous
+proposition, we deduce that $[x]\cap [y]=\emptyset$. This shows that $A/\sim$ satisfies the second
+part of the definition of partition. Lastly, we note that $\emptyset\notin A/\sim$, since
+every element of $A/\sim$ is equal to $[x]$ for some $x\in A$, and must thus contain at least
+the element $x$.\slug
+
+Let us now revisit the examples of equivalence relations from last class, and see what partitions
+they give rise to. In the example $F$ of propositional formulas with variables $p$, $q$, and $r$,
+under the equivalence relation $\equiv$, the set of equivalence classes is the set of all possible
+truth tables on three variables. Each such truth table has $8$ rows, so there are $2^8$ equivalence
+classes. In other words, $|F/\equiv| = 2^8$.
+
+How about the relation $R$ defined on $\RR^2$ where
+$$(x,y)\sim (w,z) \qquad\hbox{if and only if}\qquad \sqrt{x^2+y^2} = \sqrt{w^2 + z^2}?$$
+Well, each $\bigl[(x,y)\bigr]$ is the circle of radius $\sqrt{x^2 + y^2}$ centred
+around the origin, so $\RR^2/\sim$ is the set of all circles in the plane centred at $(0,0)$.
+
+
+\vfill\eject
+\begingroup\headline{\hfil}\footline{\hfil}
+\vglue160pt
+\centerline{\titlefont II. NUMBER THEORY}
+\vskip220pt
+\bigskip
+\begingroup\obeylines\eightssi
+\hfill Die Mathematik ist die K\"onigin der Wissenschaften
+\hfill und die Zahlentheorie ist die K\"onigin der Mathematik.
+\eightss
+\smallskip
+\hfill --- {\eightssi Attributed to} C. F. GAUSS {\eightssi (1777--1855)}
+\endgroup%\obeylines
+\bigskip\goodbreak
+\vfill\eject
+
+\advsect Division
+
+Let $a,b\in \ZZ$. We say that $a$ {\it divides} $b$ (or $b$ is a {\it multiple} of $a$, or $b$ is {\it divisible}
+by $a$, or $a$ is a {\it factor} of $b$) if there exists $n\in \ZZ$ such that $b=na$. In this
+case we write $a\divides b$. For example, $2\divides 10$, since $10 = 5\cdot 2$, but
+$3$ does not divide $10$, since there does not exist $n\in \ZZ$ such that $10 = 3n$.
+This defines a relation on $\ZZ$.
+
+Note that for all $n\in \ZZ$, $n\divides 0$, since $0 = 0\cdot n$. We also have
+$1\divides n$ for all $n\in \ZZ$< since $n = n\cdot 1$. It is true that $0\divides 0$, since we
+have, say, $0 = 1\cdot 0$, but for all nonzero $n\in \NN$, $0$ does not divide $n$, since all multiples
+of $0$ equal $0$ (and thus cannot equal $n$). Further properties of the ``divides'' relation
+are given by the next proposition.
+
+\proclaim Proposition \advthm. For all $a,b,c,d\in \ZZ$,
+\medskip
+\item{i)} if $a\divides b$, then $a\divides bc$;
+\smallskip
+\item{ii)} if $a\divides b$ and $a\divides c$, then $a\divides (b+c)$;
+\smallskip
+\item{iii)} if $a\divides b$ and $b\divides c$, then $a\divides c$;
+\smallskip
+\item{iv)} if $a\divides b$ and $b\ne 0$, then $|a|\le |b|$; and
+\smallskip
+\item{v)} if $a\divides b$ and $b\divides a$, then $|a| = |b|$.
+\medskip
+
+\proof We leave parts (i) and (ii) as exercises to the reader.
+
+For part (iii), if $a\divides b$ and $b\divides c$,
+then there are integers $k$ and $l$ such that $b = ka$ and $c = lb$. Then $c = kla$, so $a\divides c$
+(since $kl$ is also an integer).
+
+For part (iv), suppose that $a\divides b$ and $b\ne 0$. Then $b = ka$ for some $k\in \ZZ$,
+and $k\ne 0$ since $b\ne 0$. This means that $|b| = |k|\cdot |a|$, but $|k|\ge 1$,
+so $|b|\ge |a|$.
+
+For part (v), assume that $a\divides b$ and $b\divides a$. If $a\ne 0$ and $b\ne 0$, then we may apply
+part (iv) twice to get $|a|\le |b|$ and $|b|\le |a|$, which together imply $|a| = |b|$. If $b=0$,
+then $0\divides a$ so $a = 0$ as well, and $|a| = |b|$. Likewise, if $a = 0$, then $0\divides b$,
+so $b=0$ and in this case as well, $|a| = |b|$.\slug
+
+In grade school, you learned how to divide an integer by another one, obtaining a quotient and a remainder.
+We state this as a theorem. Its proof (which we shall consider outside the scope of the course,
+but which we include as optional reading for those interested)
+relies on the well-ordering principle (which we've used
+already in these notes)
+and the {\it Archimedean property} of $\RR$, which states that for every $x\in \RR$ there
+exists $n\in \NN$ such that $n > x$. (One can learn the proof of the Archimedean property from an introductory
+course in analysis, e.g., {\mc MATH} 242/254.)
+
+\parenproclaim Theorem {\advthm} (Division algorithm). Let $a,b\in \ZZ$ with $b> 0$. Then there
+exist unique integers $q$ and $r$ such that $a = bq+r$ and $0\le r\le |b|$.
+
+\noindent\llap{*}{\it Proof.}\enspace First we show that such integers $q$ and $r$
+exist. If $b\divides a$ then $a = kb$ for some $k\in \ZZ$,
+and we can set $q = k$ and $r = 0$.
+
+If $a$ is not divisible by $b$, then consider the numbers
+$$ \ldots, a - 3b, a-2b, a-b, a, a+b, a+2b, a+3b, \ldots.$$
+Let $S$ be the set of these integers that are positive. Symbolically, we have
+$$ S = \{a-kb : k\in \ZZ\ \hbox{and}\ a-kb\ge 0\}.$$
+By the Archimedean property, there is some $n\in \NN$ such that $n> -a$, which
+implies that $nb \ge n > -a$ (here we use the fact that if $b>0$ and $b$ is an integer, then
+$b\ge 1$). From this we derive $a > -nb$, and hence $a+nb = a - (-n)b > 0$. This shows
+that $S$ is nonempty.
+
+Since $S$ is a nonempty subset of $\NN$, by the well-ordering principle it has a least
+element, call it $r$. By definition of $S$, there must be some integer $q$ such that
+$r = a-qb$, so $a = bq + r$. We now claim that $0<r<b$.
+
+We know that $r> 0$, since all elements of $S$ are positive by definition. Suppose,
+for a contradiction, that $r\ge b$. Then $a - bq = r \ge b$, and so
+$$0 \le r-b = a - qb - b = a-(q+1)b.$$
+Since $q+1$ is an integer, by definition of $S$, either $r-b$ is an element of $S$,
+or $r-b = 0$. Since $r$ was defined to be the minimal element of $S$, it cannot be the
+case that $r-b$ is in $S$. So $r-b = 0$. But this means that $0 = a-(q+1)b$; that is,
+$a = (q+1)b$, contradicting our assumption that $b$ does not divide $a$. The contradiction
+allows us to conclude that $0<r<b$ (in the case that $b$ does not divide $a$). In general,
+we have shown that $0\le r<b$.
+
+\endgroup%\headline{\hfil}\footline{\hfil}
+Lastly, we need to prove that $q$ and $r$ are uniquely determined by the integers $a$ and
+$b$. Suppose that
+$$a = bq_1 + r_1\qquad\hbox{and}\qquad 0\le r_1 < b$$
+and
+$$a = bq_2 + r_2\qquad\hbox{and}\qquad 0\le r_2 < b,$$
+for some integers $q_1$, $q_2$, $r_1$, and $r_2$. We shall show that $q_1 = q_2$
+and $r_1 = r_2$. Well, suppose that $r_1\ne r_2$, for a contradiction. Without loss
+of generality we can assume that $r_1 < r_2$. Then subtracting the two equations, we obtain
+$$ 0 = a-a = (bq_1 + r_1) - (bq_2 + r_2) = b(q_1-q_2) + (r_1 - r_2).$$
+This means that
+$$r_2 - r_1 = b(q_1 - q_2),$$
+so we find that $b\divides (r_2 - r_1)$. By part (iv) of the previous proposition,
+we obtain $|b| \le |r_2-r_1|$, and we can simply write $b \le r_2 -r_1$, since both of
+these quantities are positive. But this is a contradiction, since
+$$ 0\le r_1 < r_2 < b,$$
+yields $r_2 - r_1 < b$. The contradiction shows that that $r_2 = r_1$. Substituting this
+into the relation $r_2 - r_1 = b(q_1 - q_2)$, we get $0 = b(q_1 - q_2)$ and conclude that
+$q_1 - q_2 = 0$, since $b>0$.\slug
+
+Let $a$ and $b$ be integers, not both zero. Their {\it greatest common divisor}, $\gcd(a,b)$
+is defined to be the greatest positive integer $d$ such that $d\divides a$ and $d\divides b$.
+Note that $\gcd(0,0)$ is not defined, since all positive integers $d$ satisfy $d\divides 0$.
+On the other hand $\gcd(x,0)$ is simply $|x|$, and $\gcd(x,1) = 1$. Lastly, we don't
+need to worry about negative signs when computing greatest common divisors; i.e.,
+$\gcd(\pm x, \pm y) = \gcd\bigl(|x|, |y|\bigr)$.
+
+Now we ask ourselves, How do we compute greatest common divisors in general? The answer
+lies in one of the oldest algorithms known to humankind. It appears in Euclid's {\sl Elements},
+written around 300~{\sc b.c.}
+
+\algbegin Algorithm E (Euclid's algorithm). Given two nonnegative integers $a$ and $b$, not both zero,
+this algorithm outputs $\gcd(a,b)$.
+\algstep E1. If $b=0$, then output $a$ and terminate the algorithm.
+\algstep E2. Since $b\ne 0$, by the division algorithm we my write $a = qb+r$, where $0\le r < b$.
+Set $a\gets b$, $b\gets r$, and return to step E1.\slug
+
+The algorithm will eventually terminate, since the stopping criterion is that $b$ be equal to $0$,
+and in step E2 we replace $b$ with a number that is strictly closer to $0$. But will it terminate
+with the correct answer? Well, we know step E1 is correct,
+because of our earlier observation that $\gcd(a,0) = a$ (whenever $a$
+is positive). On the other hand, it is not at all evident that step E2 will eventually output
+$\gcd(a,b)$, since we actually overwrite the values of $a$ and $b$ in the step! The following lemma
+clarifies the situation.
+
+\proclaim Lemma \advthm. Let $a,b,q,r\in \ZZ$ be integers such that $a = qb+r$. Then
+$\gcd(a,b) = \gcd(b,r)$.
+
+\proof We shall show that for any $d\in \ZZ$,
+$$ d\divides a\ \hbox{and}\ d\divides b\qquad\hbox{if and only if}\qquad
+d\divides b\ \hbox{and}\ d\divides r.$$
+For the forward implication, suppose that $a = kd$ and $b=ld$ for some $k,l\in \ZZ$. Substituting
+this into the identity $a=qb+r$ yields $kd = ldq+r$, whence $r = c(k-lq)$, so we conclude that $c\divides r$.
+(This is because $k-lq\in \ZZ$.)
+
+For the reverse implication, suppose that $b = ld$ and $r = md$ for some $k,l\in \ZZ$. Substituting
+this into $a=qb+r$, we have $a = ldq + md$, so $a = d(lq+m)$, which means that $c\divides a$.
+
+We have proved that $a$ and $b$ have the same common factors as $b$ and $r$, so they must have the
+same greatest common divisor.\slug
+
+Now that we are secure in the fact that Euclid's algorithm will indeed terminate with the correct output,
+let us now see it in action. Suppose we want to find $\gcd(30,112)$. We perform successive divisions
+replacing the pair $(a,b)$ with a new pair $(b,r)$ each time:
+$$\eqalign{
+30 &= 0\cdot 112 + 30 \cr
+112 &= 3\cdot 30 + 22 \cr
+30 &= 1\cdot 22 + 8 \cr
+22 &= 2\cdot 8 + 6 \cr
+8 &= 1\cdot 6 + 2 \cr
+6 &= 3\cdot 2 + 0\cr
+}$$
+We stop once the remainder $r$ equals $0$, and the answer is $\gcd(b,r) = \gcd(b,0) = b$. (So in the
+example above, the final answer is $2$.)
 
 
 \bye
