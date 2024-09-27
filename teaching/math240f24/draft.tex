@@ -40,8 +40,8 @@ Jeremy Macdonald, but any errors are likely my own. Please email me if you find 
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 4.\kern .5em Proofs}{21}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 5.\kern .5em Functions}{28}}
-%\smallskip
-%\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 6.\kern .5em Cardinality}{33}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 6.\kern .5em Cardinality}{33}}
 %\smallskip
 %\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 7.\kern .5em Relations}{37}}
 
@@ -1488,11 +1488,10 @@ A, & if $x\notin A$\cr} \cr
 &= A.\cr
 }$$
 The proof that $f\bigl(g(A)\bigr) = A$ is similar. Thus $g$ is the inverse of $f$.\slug
-\bye
 
 \advsect Cardinality
 
-\datestamp{9}{}
+\datestamp{26}{ix}
 Earlier, we defined the cardinality of a set to be the number of elements it contains. What, then,
 is the cardinality of $\NN$? How about $\RR$? You might say $\infty$, but this is not a number
 (at least, it's not an element of $\NN$, the way all cardinalities of finite sets are).
@@ -1512,7 +1511,7 @@ and consider the function $f :\NN\to E$ sending $n\mapsto 2n$. This is injective
 $2m = 2n$, then dividing out by $2$ on both sides yields $m=n$. It is surjective because if
 $n\in E$, then $n=2k$ for some $k\in\NN$, by definition, and $f(k) = 2k = n$.
 
-So we can find subset of $\NN$ equipotent with it. It turns out we can also find supersets of $\NN$ with
+So we can find subsets of $\NN$ equipotent with it. It turns out we can also find supersets of $\NN$ with
 the same property.
 \proclaim Theorem \advthm. We have $|\NN| = |\ZZ|$.
 
@@ -1520,7 +1519,7 @@ the same property.
 $$f(n) = \cases{{n\over 2}, & if $n$ is even;\cr {-{n+1\over 2}}, & if $n$ is odd.}$$
 We shall show that $f$ is a bijection.
 
-To show that $f$ is injective, there are four cases. Note first that if $n$ is even, then $f(n)\ge 0$,
+Note first that if $n$ is even, then $f(n)\ge 0$,
 and if $n$ is odd, then $f(n) < 0$. So if $f(m) = f(n)$ for some $m,n\in \NN$, then $f(m)$ and $f(n)$ must
 either both be negative, or both be nonnegative. Either way, $m$ and $n$
 are either both even or they are both odd. If $m$ and $n$ are both even, then from $f(m) = f(n)$ we derive
@@ -1609,7 +1608,7 @@ then $A\times B$ is also countably infinite.
 Enumerate $A = \{a_0, a_1, \ldots\}$ and $B = \{b_0, b_1, \ldots\}$. Now given
 $(a_i, b_j)\in A\times B$ for some $i,j\in \NN$, we can let
 $$f(a_i, b_j) = 2^i3^j.$$
-We show that this defines an injective function. Suppose that $f(a_i, b_j) = f(a_{i'}, f(b_{j'}).$
+We show that this defines an injective function. Suppose that $f(a_i, b_j) = f(a_{i'}, b_{j'}).$
 Then $2^i3^j = 2^{i'} 3^{j'}$, and by the uniqueness of prime factorisations in the Fundamental
 Theorem of Arithmetic, we see that $i = i'$ and $j=j'$.
 
@@ -1652,17 +1651,21 @@ Let $f : \NN\to A$. We shall show that $f$ is not surjective. For all $m,n\in \N
 be the $n$th bit of $f(m)$. Consider the infinite binary string
 $$s = (1-a_{0,0},1-a_{1,1}, 1-a_{2,2}, 1-a_{3,3}, \ldots).$$
 This string $s$ cannot equal $f(m)$ for any $m\in \NN$, since given an arbitrary $m$,
-the $m$th bit of $f(m)$ is $a_{m,m}$, whereas the $m$th bit of $s$ is $1-a{m,m}$. Hence there is some
+the $m$th bit of $f(m)$ is $a_{m,m}$, whereas the $m$th bit of $s$ is $1-a_{m,m}$. Hence there is some
 $s\in A$ such that $f(m)\ne s$ for all $m\in \NN$. So $f$ is not surjective.
 
 Since there can be no surjection $f:\NN\to A$, {\it a fortiori} we cannot have a bijection $\NN\to A$.
 We conclude that $|A| \ne |\NN|$.\slug
+
+The proof above was published by Georg Cantor in 1891, and hence is known as {\it Cantor's diagonal argument}.
+The technique has since been used to prove many other things.
 
 The set of all infinite binary strings is in bijection with the set of all real numbers in the interval
 $[0,1)$. If we're being extra pedantic, we need to forbid an infinite trailing string of all $1$s,
 since, e.g., $0.0111\ldots = 0.1000\ldots$ after carrying the $1$s (akin to the fact
 that, e.g., $0.0999\ldots = 0.1$). After dealing with this detail, one will have shown that
 $\bigl| [0,1]\bigr| \ne |\NN|$.
+\bye
 
 \advsect Relations
 
