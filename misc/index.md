@@ -39,6 +39,7 @@ __E1.__ [On the probability that two integers are relatively prime]({{ site.base
 + &#78216; [Stephen Fay](https://stephenfay.xyz)
 + &#78085; [Danny Gedig](https://dgedig.webflow.io/)
 + &#78064; [Cheyenne Goh](https://cheyennegoh.github.io/)
++ &#78190; [Stefan Grosser](https://blog.catalangrenade.com/p/about.html)
 + &#78704; [Amanda Gu](https://amandagu.github.io/)
 + &#78818; [Adam Hamdan](http://adamhamdan.ca/)
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/)
