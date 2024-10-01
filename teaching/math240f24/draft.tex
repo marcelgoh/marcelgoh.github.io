@@ -42,8 +42,8 @@ Jeremy Macdonald, but any errors are likely my own. Please email me if you find 
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 5.\kern .5em Functions}{28}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 6.\kern .5em Cardinality}{33}}
-%\smallskip
-%\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 7.\kern .5em Relations}{37}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 7.\kern .5em Relations}{37}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -1665,11 +1665,10 @@ $[0,1)$. If we're being extra pedantic, we need to forbid an infinite trailing s
 since, e.g., $0.0111\ldots = 0.1000\ldots$ after carrying the $1$s (akin to the fact
 that, e.g., $0.0999\ldots = 0.1$). After dealing with this detail, one will have shown that
 $\bigl| [0,1]\bigr| \ne |\NN|$.
-\bye
 
 \advsect Relations
 
-\datestamp{10}{} A {\it relation} on a set $X$ is a subset $R\subseteq X\times X$. If $(a,b)\in R$
+\datestamp{01}{x} A {\it relation} on a set $X$ is a subset $R\subseteq X\times X$. If $(a,b)\in R$
 we write $aRb$ and say ``$a$ is related to $b$.'' Here are some examples.
 \medskip
 \item{i)} The set $L = \bigl\{(a,b)\in \RR\times\RR : a<b\bigr\}$ is a relation. For instance, we can
@@ -1743,7 +1742,7 @@ of the formula $p\vee\neg p$ is the set of all formulas whose truth table contai
 the set of all tautologies.
 And for the example $R$ above, the
 equivalence class of the point $(1,3)$ is the set
-$$\bigl[ (1,3)\bigr] = \bigl\{ (x,y)\in \RR^2 : \sqrt\{10\} = \sqrt{x^2 + y^2}\bigr\};$$
+$$\bigl[ (1,3)\bigr] = \bigl\{ (x,y)\in \RR^2 : \sqrt{10}= \sqrt{x^2 + y^2}\bigr\};$$
 that is, the circle of radius $\sqrt{10}$ centred about the origin.
 
 We have the following proposition concerning equivalence relations.
@@ -1757,7 +1756,7 @@ We have the following proposition concerning equivalence relations.
 \item{iii)} for all $x,y\in A$, $x\not\sim y$ if and only if $[x] \cap [y] =  \emptyset$.
 \medskip
 
-\proof Let $x\in A$. Since $R$ is reflexive, $x\sim x$, so we have $x\in [x]$. This proves (i).
+\proof Let $x\in A$. Since $R$ is reflexive, $x\sim x$, so we have $x\in [x]$. This proves part (i).
 
 For part (ii), first we prove the ``only if'' direction. Let $x,y\in A$ be such that $x\sim y$. To prove that
 $[x]\subseteq [y]$, we let $z\in [x]$; so $x\sim z$. By symmetry, we have $z\sim x$, and this
@@ -1776,11 +1775,10 @@ that $z\in [x]$ and $z\in [y]$; so $x\sim z$ and $y\sim z$. By symmetry, $z\sim 
 so by transitivity, we have $x\sim y$.
 
 On the other hand, suppose that $x,y\in A$ satisfy $x\sim y$.
-By (i) again, we have $[x] = [y]$, so $[x] \cap [y] = [x] \ne \emptyset$,
-where we know that $[x]\ne \emptyset$ because it contains at least $x$.\slug
+By (ii), we have $[x] = [y]$, so $[x] \cap [y] = [x] \ne \emptyset$,
+where we know that $[x]\ne \emptyset$ because it contains at least $x$ (again, using (i)).\slug
 
-\noindent
-\datestamp{11}{} \hskip\parindent Let $A$ be a set. A {\it partition} of $A$ is a set $P$ of subsets
+Let $A$ be a set. A {\it partition} of $A$ is a set $P$ of subsets
 of $A$ (i.e., $P\subseteq 2^A$), such that
 \medskip
 \item{i)} for all $x\in A$ there exists $S\in P$ such that $x\in S$;
@@ -1796,13 +1794,14 @@ is a partition of $\ZZ$.
 \smallskip
 \item{ii)} The set $\bigl\{ (-\infty,0), \{0\}, (0,\infty)\bigr\}$ is a partition of $\RR$.
 \medskip
+\bye
 If $\sim$ is an equivalence relation on a set $A$, then we can define the {\it quotient}
 of $A$ by $\sim$ as the set of all equivalence classes of $A$ under $\sim$. We denote this set by
-$$A/\sim = \bigl\{ [x] : x\in A\bigr\}.$$
+$$A/{\sim} = \bigl\{ [x] : x\in A\bigr\}.$$
 We use the previous proposition to prove that equivalence relations give rise to partitions.
 
 \proclaim Proposition \advthm. Let $A$ be a set and $\sim$ an equivalence relation on $A$.
-Then $A/\sim$ is a partition of $A$.
+Then $A/{\sim}$ is a partition of $A$.
 
 \proof By part (i) the previous proposition, every $x\in A$ belongs to the equivalence class $[x]$.
 Then, by part (ii) of the previous proposition, we know that for any equivalence classes
