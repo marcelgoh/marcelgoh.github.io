@@ -28,7 +28,8 @@ Jeremy Macdonald, but any errors are likely my own. Please email me if you find 
 
 \vskip60pt
 
-\vskip \medskipamount \hbox to\hsize {\relax \unhcopy \strutbox \cont
+\vskip \medskipamount \hbox to\hsize
+{\relax \unhcopy \strutbox \cont
 {{\tenssbx I. Foundations \kern 3pt}}{2}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 1.\kern .5em Set theory }{3}}
@@ -44,6 +45,11 @@ Jeremy Macdonald, but any errors are likely my own. Please email me if you find 
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 6.\kern .5em Cardinality}{33}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 7.\kern .5em Relations}{37}}
+\medskip
+\noindent\hbox to\hsize{\relax \unhcopy \strutbox \cont
+{{\tenssbx II. Number theory \kern 3pt}}{41}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 8.\kern .5em Division }{42}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -1091,8 +1097,8 @@ is absurd, since $1/2 < 1$. This contradiction completes the proof.\slug
 
 Here is another classical example of a proof by contradiction. It was known to the Pythagoreans.
 
-\edef\propsqrttwo{\the\thmcount}
-\proclaim Proposition \advthm. The number $\sqrt 2$ is irrational.
+\edef\thmsqrttwo{\the\thmcount}
+\proclaim Theorem \advthm. The number $\sqrt 2$ is irrational.
 
 \proof Suppose, towards a contradiction, that $\sqrt 2$ is rational. Then there are integers $p$ and $q$
 such that $\sqrt 2 = p/q$, and furthermore, we can assume that $p$ and $q$ do not have any common factors,
@@ -1162,7 +1168,7 @@ which is also a multiple of $4$.\slug
 \proof Consider the number $(\sqrt 2)^{\sqrt 2}$. It is either rational or irrational.
 
 If it is rational, then we can set $a = b = \sqrt 2$, which we already know to be irrational, by
-Proposition~{\propsqrttwo}.
+Theorem~{\thmsqrttwo}.
 
 If it is irrational, then we can set $a =(\sqrt 2)^{\sqrt 2}$ and $b=\sqrt 2$. We compute
 $$a^b = \bigl((\sqrt 2)^{\sqrt 2}\bigr)^{\sqrt 2} = (\sqrt 2)^{\sqrt 2 \cdot \sqrt 2}
@@ -1594,10 +1600,12 @@ In the following proof, we'll also use the Fundamental Theorem of Arithmetic, wh
 later in the course (in the number theory section). It says that
 any integer can be factored as a product of primes, a theorem you should have learned in grade school.
 
+\edef\thmfta{\the\thmcount}
 \parenproclaim Theorem {\advthm} (Fundamental Theorem of Arithmetic). Every positive
 integer $n\ge 2$ can be factored into a product
-$${p_1}^{v_1} {p_2}^{v_2}\cdots {p_n}^{v_n},$$
-where $n\ge 0$ is an integer and, for $1\le i\le n$, $p_i$ is a prime and $v_i$ is a positive integer.
+$${p_1}^{v_1} {p_2}^{v_2}\cdots {p_m}^{v_m},$$
+where $m\ge 0$ is an integer, $p_1,p_2,\ldots,p_m$ are distinct primes, and
+$v_1,v_2,\ldots,v_m$ are positive integers.
 This factorisation is unique up to the order of the primes.\slug
 
 \edef\thmcartesiancountable{\the\thmcount}
@@ -1794,11 +1802,13 @@ is a partition of $\ZZ$.
 \smallskip
 \item{ii)} The set $\bigl\{ (-\infty,0), \{0\}, (0,\infty)\bigr\}$ is a partition of $\RR$.
 \medskip
-\bye
+
+\noindent\datestamp{03}{x} \hskip\parindent
 If $\sim$ is an equivalence relation on a set $A$, then we can define the {\it quotient}
 of $A$ by $\sim$ as the set of all equivalence classes of $A$ under $\sim$. We denote this set by
 $$A/{\sim} = \bigl\{ [x] : x\in A\bigr\}.$$
-We use the previous proposition to prove that equivalence relations give rise to partitions.
+We use the previous proposition to prove that quotients of sets by equivalence relations
+are partitions.
 
 \proclaim Proposition \advthm. Let $A$ be a set and $\sim$ an equivalence relation on $A$.
 Then $A/{\sim}$ is a partition of $A$.
@@ -1947,6 +1957,7 @@ On the other hand $\gcd(x,0)$ is simply $|x|$, and $\gcd(x,1) = 1$. Lastly, we d
 need to worry about negative signs when computing greatest common divisors; i.e.,
 $\gcd(\pm x, \pm y) = \gcd\bigl(|x|, |y|\bigr)$.
 
+\medskip\boldlabel Euclid's algorithm.
 Now we ask ourselves, How do we compute greatest common divisors in general? The answer
 lies in one of the oldest algorithms known to humankind. It appears in Euclid's {\sl Elements},
 written around 300~{\sc b.c.}
@@ -1984,6 +1995,7 @@ same greatest common divisor.\slug
 Now that we are secure in the fact that Euclid's algorithm will indeed terminate with the correct output,
 let us now see it in action. Suppose we want to find $\gcd(30,112)$. We perform successive divisions
 replacing the pair $(a,b)$ with a new pair $(b,r)$ each time:
+\edef\eqeuclid{\the\eqcount}
 $$\eqalign{
 30 &= 0\cdot 112 + 30 \cr
 112 &= 3\cdot 30 + 22 \cr
@@ -1991,9 +2003,243 @@ $$\eqalign{
 22 &= 2\cdot 8 + 6 \cr
 8 &= 1\cdot 6 + 2 \cr
 6 &= 3\cdot 2 + 0\cr
-}$$
+}\adveq$$
 We stop once the remainder $r$ equals $0$, and the answer is $\gcd(b,r) = \gcd(b,0) = b$. (So in the
 example above, the final answer is $2$.)
 
+\medskip\boldlabel B\'ezout's identity.
+The following theorem allows us to express the greatest common divisor as a linear combination
+of the two integers in question.
+
+\edef\thmbezout{\the\thmcount}
+\parenproclaim Theorem {\advthm} (B\'ezout's identity). Let $a$ and $b$ be nonzero integers
+with greatest common divisor $\gcd(a,b)$. Then there exist integers $s$ and $t$ such that
+$$\gcd(a,b) = sa+tb.$$
+Moreover, $\gcd(a,b)$ is the least positive integer that can be expressed as an
+integer linear combination of $a$ and $b$.
+
+\bye
+
+\proof Let
+$$S = \{ s'a+t'b : s',t'\in \ZZ,\ ax+by > 0\}.$$
+This set is nonempty, since if $a$ is negative then $(-1)a+0b\in S$ and if $a$ is positive,
+then $1a+0b\in S$. Since $S$ is a nonempty set of positive integers, it has
+a least element, by the well-ordering principle. Call this integer $d = sa+tb$ (for some
+specific choices of $s,t\in \ZZ$);
+the claim is that
+$d = \gcd(a,b)$.
+
+By the division algorithm, we may write
+$$a = dq+r$$
+where $q$ and $r$ are integers with $0\le r<d$. But we can write
+$$\eqalign{
+r &= a-qd \cr
+&= a - q(sa+tb) \cr
+&= (1-qs)a + (qt)b,\cr
+}$$ so $r\in S\cup \{0\}$. But $r < d$, so if $r\in S$, then $d$ would not be the smallest
+element of $S$. So we must have $r = 0$. This implies that $d$ is a divisor of $a$.
+Repeating this argument with $b$ instead of $a$, we find that $d$ divides $b$ as well.
+
+We have shown that $d$ is a common divisor of $a$ and $b$. It remains to show that it is the greatest
+one. That is, we must show that if $c\divides a$ and $c\divides b$, then $c\le d$. Well, if
+$a = kc$ and $b=lc$, then the identity
+$$d = sa+tb = skc + tlc = (sk+tl)c,$$
+shows that $d$ is a multiple of $c$ as well. Since $d>0$, this means that $c\le d$.\slug
+
+This theorem is named for \'Etienne B\'ezout, who proved an analogous result (with polynomials
+instead of integers) in 1779, but the result above for integers has been known since at least
+the 1600s.
+
+To actually find the integers $s$ and $t$ such that $\gcd(a,b) = sa + tb$, we
+first perform the Euclidean algorithm, keeping track of all our intermediate steps. Then we combine
+all the information from each step to work out what $s$ and $t$ are.
+For example, in the earlier example showing that $2 = \gcd(112,30)$, we start with
+$$ 2 = 8- 1\cdot 6,$$
+which is (a rearrangement of) the fifth line of~\refeq{\eqeuclid}.
+Then the fourth line of~\refeq{\eqeuclid} says that $6=22-2\cdot 8$, so
+$$ 2 = 8 - 1\cdot (22-2\cdot 8) = 8 - 22 + 2\cdot 8 = 3\cdot 8 - 22.$$
+The third line of~\refeq{\eqeuclid} tells us that $8 = 30-1\cdot 22$, which gives
+$$ 2 = 3\cdot (30-1\cdot 22) - 22 = 3\cdot 30 - 3\cdot 22 - 22 = 3\cdot 30 - 4\cdot 22.$$
+We now have the number $30$ appearing in the expression, we just need to get rid of the $22$
+and replace it with $112$. To do this we use the second line of~\refeq{\eqeuclid}, which
+says that $22 = 112-3\cdot 30$. We end up with
+$$ 2= 3\cdot 30 - 4(112-3\cdot 30) = 3\cdot 30 - 4\cdot 112 + 12\cdot 30 = (-4)\cdot 112 + 15\cdot 30.$$
+So in the case that $a = 112$ and $b=30$, we have $d = 2$, $s = -4$, and $t = 15$.
+
+We now summarise this section on B\'ezout's identity with a little scenario.
+Imagine a robot that lives on the line of integers. It starts at the point $0$
+and can hop in steps of $a$ or $b$ (in either direction). Theorem~{\thmbezout} tells us
+that the point $d = \gcd(a,b)$ is reachable by the robot. The next proposition characterises
+the set of {\it all} points that the robot can get to.
+
+\proclaim Proposition \advthm. Let $a$ and $b$ be nonzero integers. The set
+$$X = \{ s'a + t'b : s',t'\in \ZZ\}$$
+is exactly the set of multiples of $d = \gcd(a,b)$.
+
+\proof By B\'ezout's identity, there exist integers $s$ and $t$ such that $d = sa+tb$.
+First let $n\in \ZZ$ be a multiple of $d$. Then there is $k\in \ZZ$ such that $n=kd$,
+and we have
+$$ n = kd = d(sa+tb) = (ds)a + (dt)b,$$
+which means that $n\in X$ (since $ds$ and $dt$ are both integers).
+
+Conversely, suppose that $n\in X$, so $n = s'a + t'b$ for some $s',t'\in \ZZ$. Then since
+$d$ divides $a$ and $d$ divides $b$, we can write $a = ld$ and $b=md$ for some integers $l,m\in \ZZ$.
+So we have
+$$ n= s'a + t'b = s'ld + t'md = (s'l+t'm)d,$$
+which shows that $d\divides n$, since $s'l+t'm$ is an integer.\slug
+
+As a corollary, if $\gcd(a,b) = 1$, then it is possible for the robot to reach every integer!
+The situation in which $\gcd(a,b) = 1$ is very special, so much so that we have a name for it.
+We say that integers $a$ and $b$ are {\it relatively prime} or {\it coprime} if $\gcd(a,b) = 1$.
+By B\'ezout's identity, $a$ and $b$ are relatively prime if and only if
+there are integers $s$ and $t$ such that $1 = sa + tb$. This gives a very quick and easy way to
+check if certain numbers are relatively prime. For example, we have the following proposition.
+
+\proclaim Proposition \advthm. For all integers $n>1$, $n$ and $n+1$ are relatively prime.
+
+\proof We have $1= 1(n+1) + (-1)n$.\slug
+
+\advsect Primes
+
+An integer $p$ is {\it prime} if $p\ge 2$ and for all $d\in \NN$ with $d\divides p$,
+we either have $d=1$ or $d = p$. An integer $n$ is {\it composite}
+if $n\ge 2$ and $n$ is not prime. (By negating the definition of prime, we
+see that $n\ge 2$ is composite if and only if there exist $a,b\in \{2,\ldots,n-1\}$ such that
+$n = ab$.) Note that the integers $0$ and $1$ are neither prime nor composite.
+
+The following theorem gives another characterisation of prime numbers.
+
+\proclaim Theorem \advthm. An integer $p$ with $p\ge 2$ is prime if and only if
+for all $a,b\in \NN$, $p\divides ab$ implies that $p\divides a$ or $p\divides b$.
+
+\proof First we prove the forward implication.
+Suppose that $p$ is prime and let $a,b\in \NN$ be such that $p\divides ab$. So
+there exists an integer $k$ such that $ab = kp$.
+Consider $\gcd(a,p)$. Since the
+only divisors if $p$ are $1$ and $p$, this must be $1$ or $p$. If it is $p$,
+then $p\divides a$ and we are done. So we restrict our attention to the case that
+$\gcd(a,p) =1$, and our goal is to prove $p\divides b$. By B\'ezout's identity,
+there are integers $s$ and $t$ such that $1= sa+tp$, so multiplying both sides by $b$,
+we have
+$$ b =bsa+btp = skp + btp = (sk+bt)p,$$
+so $p\divides b$.
+
+We prove the reverse implication by contraposition.
+Now suppose that $p$ is composite. So there exist integers $2\le a,b\le p-1$
+such that $p=ab$. We want to show that $p$ does not divide $a$ and $p$ does not divide $b$.
+We shall do this by showing that $u = a/p$ and $v = b/p$ are both not integers. Well
+since $p = ab = upb$, by dividing through by $p$ we arrive at
+$1 = ub$, and since $b\ge 2$, $u = 1/b$ is between $0$ and $1$. This shows that $p$ does
+not divide $a$. On the other hand, since $p = ab = apv$, we have $1 = av$,
+and since $a\ge 2$, this means that $v = a/1$ is between $0$ and $1$. Hence
+$p$ does not divide $b$.\slug
+
+To illustrate that $p$ really does have to be prime for this theorem to hold, consider
+$p=6$, $a = 2$ and $b=15$. We have $6 \divides 30 = 2\cdot 15$, but $6$ divides neither $2$ nor $15$.
+By induction, the theorem extends to arbitrary finite products.
+
+\proclaim Corollary \advthm. Let $p$ be prime and $n$ be a positive integer. If $a_1,a_2,\ldots,a_n$
+are integers such that $p \divides a_1a_2\cdots a_n$, then $p\divides a_i$ for some
+$1\le i\le n$.
+
+\proof By induction on $n$. When $n=1$, there is nothing to prove,
+for if $p\divides a_1$, then $p\divides a_i$ for $i = 1$.
+
+Now suppose the statement holds for $n$. Assume that $p\divides a_1a_2\ldots a_n a_{n+1}$.
+By setting $a = a_1a_2\cdots a_n$ and $b=a_{n+1}$, we have $p\divides ab$, so by the previous theorem,
+either $p\divides a$ or $p\divides b$. If $p\divides b$, then $p\divides a_i$ for $i=n+1$,
+and if $p\divides a$, then $p\divides a_1\cdots a_n$, so by the induction hypothesis,
+$p\divides a_i$ for some $1\le i\le n$.\slug
+
+Back in Section~6, we used the prime factorisation of integers in a proof, but didn't prove
+that statement itself. It's finally time to do so. Recall that we statement we used
+is that any integer $n$ can be factored into a product
+$$n = {p_1}^{v_1} {p_2}^{v_2} \cdots {p_k}^{v_k}$$
+where $p_1 < p_2<\cdots<p_k$ are primes and $v_1,v_2,\ldots,v_n$ are positive integers. By renumbering
+the primes, allowing them to possibly equal one another, we have the following equivalent statement.
+
+\parenproclaim Theorem {\thmfta}$'$ (Fundamental Theorem of Arithmetic, again). Every integer
+$n\ge 2$ can be expressed as a product
+$$n = p_1p_2\cdots p_k$$
+where $p_1\le p_2\le \cdots \le p_k$ are prime numbers. Furthermore, this factorisation
+is unique.
+
+\noindent\datestamp{13}{} {\it Proof.}\enspace The proof that such a decomposition of $n$ exists is
+by (strong) induction. The base case is $n=2$. This is already a prime factorisation, since $2$ is prime.
+
+For the inductive step, let $n\ge 2$ and assume such a decomposition exists
+for all $2\le i\le n$. Now consider $n+1$. If $n+1$ is prime, then by setting $p_1 = n+1$,
+we have a prime factorisation of $n+1$ without getting out of bed. If $n+1$ is not prime,
+then $n+1 = ab$ for some integers $2\le a,b\le n$. By the induction hypothesis, $a$ and $b$
+can be factored into primes; that is, $a = p_1,\ldots,p_l$
+and $b = q_1,\ldots,q_m$ for some primes $p_1,\ldots,p_l,q_1,\ldots,q_m$. So
+$$n+1 = ab = p_1\cdots p_l q_1\cdots q_m$$
+is a factorisation of $n+1$ into primes.
+It remains to arrange the $p$s and $q$s in nondecreasing order.
+
+Now we prove that the prime factorisation of an integer is unique. In other words, $n\ge 2$
+decomposes into
+$$n = p_1p_2\cdots p_s$$
+and
+$$n = q_1q_2\cdots q_t$$
+for primes $p_1,\ldots,p_s,q_1,\ldots,q_t$,
+then $s=t$ and $p_i = q_i$ for all $1\le i\le s$. We also prove this statement by induction,
+but this time it is on the integer $s$. If $s=1$, then
+$$p_1 = n = q_1q_2\cdots q_t.$$
+Note that $t$ has to equal $1$ here, since otherwise $q_1$ and $q_2$ would both
+divide $p$ and satisfy $2\le q_1,q_2\le p_1$, contradicting the fact that $p_1$ is prime.
+So $p_1 = q_1$ and we are done.
+
+Next, suppose that the uniqueness
+statement holds for $s$ (i.e., for any integer that decomposes
+into a product of $s$ primes, the decomposition is unique) and we want to show that it holds
+for $s+1$. We assume that
+$$n = p_1p_2\cdots p_{s+1}$$
+and
+$$n = q_1q_2\cdots q_t,$$
+where $p_1\le p_2\le \cdots \le p_{s+1}$ and $q_1\le q_2\le\cdots\le q_t$. We
+have $p_{s+1}\divides n = q_1q_2\cdots q_t$, so by the preceding corollary, there
+exists $1\le i\le t$ such that $p_{s+1}\divides q_i$, and since $q_i$ is prime, this means
+that $p_{s+1} = q_i\le q_t$. Similarly, $q_t$ divides $n = q_1\ldots p_{s+1}$, so it
+divides $p_j$ for some $1\le j\le s+1$. This means that $q_t = p_j \le p_{s+1}$. Hence
+$q_t = p_{s+1}$. But
+$$p_1p_2 \cdots p_s p_{s+1} = q_1q_2 \cdots q_t,$$
+so we may divide out by $p_{s+1} = q_t$ on both sides to get
+$${n\over p_{s+1}} = p_1p_2\cdots p_s = q_1 q_2 \cdots q_{t-1}.$$
+By the induction hypothesis, the decomposition of $n/p_{s+1}$ is unique, so $t-1 = s$
+and $p_i = q_i$ for all $1\le i\le t-1$. This proves that $s+1 = t$ and
+$p_i = q_i$ for all $1\le i\le s+1$.\slug
+
+We can use the Fundamental Theorem of Arithmetic to prove the following generalisation
+of Theorem~{\thmsqrttwo}.
+
+\proclaim Theorem \advthm. Let $k$ and $n$ be positive integers. Then either
+$\root k\of n$ is an integer or it is irrational.
+
+\proof We prove this by contraposition, showing that if $\root k\of n$ is rational, then it
+must be an integer. Suppose that $\root k\of n$ is rational; so there exist integers
+$a$ and $b$ with $b\ne 0$ such that $\root k\of n = a/b$. Without loss of generality,
+we may choose $a$ and $b$ such that $\gcd(a,b) = 1$.
+Writing
+$$a = {p_1}^{v_1} {p_2}^{v_2}\cdots {p_r}^{v_r}$$
+and
+$$b = {q_1}^{w_1} {q_2}^{w_2}\cdots {q_s}^{w_s},$$
+for primes $p_1<p_2<\cdots<p_r$, primes $q_1<q_2<\cdots<q_s$, and positive integers
+$v_1,v_2,\ldots,v_r,w_1,w_2,\ldots,w_s$, all the primes $p_i$ and $q_j$ must be different,
+since if there was a prime in common, call it $p = p_i = q_j$, we would have $p\divides \gcd(a,b)$,
+contradicting the fact that $\gcd(a,b) = 1$.
+
+Taking the identity $\root k\of n = a/b$ to the power of $k$ yields
+$$n = {a^k\over b^k} = {{p_1}^{kv_1} {p_2}^{kv_2}\cdots {p_r}^{kv_r}
+\over {q_1}^{k w_1} {q_2}^{k w_2}\cdots {q_s}^{k w_s}}.$$
+Since there do not exist $1\le i\le r$ and $1\le j\le s$ such that $p_i=q_j$, this
+fraction is in reduced form. But since $n$ is an integer, that means the denominator equals $1$.
+In other words, $n= a^k$, so $\root k\of n = a$ is an integer.\slug
+
+Let's see how to use this theorem. Suppose we want to know if the number $\root 6\of 18$ is
+irrational or not. Well, since $1^6 = 1$ and $2^6 = 64$, we have $1^6 < 18 < 2^6$,
+meaning that $1<\root 6\of 18 < 2$. (This is because the function $f:\RR\to\RR$ defined
+by $f(x) = x^6$ is increasing on the interval $[1,2]$.) Hence $\root 6\of 18$ is not
+an integer, and by the theorem it must be irrational.
 
 \bye
