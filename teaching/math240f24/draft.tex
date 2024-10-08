@@ -13,6 +13,7 @@
 \font\titlefont=cmbx12 at 14 pt
 \def\cont#1#2{#1\hskip-2pt\leaders\hbox to 8pt{\hss.\hss}\hfil\hbox to 1em{\hss#2}}
 \def\divides{\mid}
+\def\percent{\mathrel{\%}}
 
 \vglue24pt
 
@@ -50,6 +51,8 @@ Jeremy Macdonald, but any errors are likely my own. Please email me if you find 
 {{\tenssbx II. Number theory \kern 3pt}}{41}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 8.\kern .5em Division }{42}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 9.\kern .5em Primes }{47}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -378,7 +381,7 @@ In other words, $\{1,3\}\in 2^{A\cup B}$ but $\{1,3\} \notin 2^A\cup 2^B$, provi
 $2^{A\cup B} \not\subseteq 2^A \cup 2^B$.
 
 \medskip\boldlabel\datestamp{05}{ix} Russell's paradox. Earlier, we said that the sets we are working with
-need to be a subset of a universe $U$, which has already been proven to be a set. We gave lots of
+need to be a subset of a universe $U$, which has already been proved to be a set. We gave lots of
 ways to make sets out of new sets, such as the union and intersection operations, etc. Starting with
 the assumption that the empty set $\emptyset$ is a set,
 it is possible to define the set of natural numbers as follows.
@@ -1816,21 +1819,21 @@ Then $A/{\sim}$ is a partition of $A$.
 \proof By part (i) the previous proposition, every $x\in A$ belongs to the equivalence class $[x]$.
 Then, by part (ii) of the previous proposition, we know that for any equivalence classes
 $[x]$ and $[y]$ such that $[x]\ne [y]$, we must have $x\not\sim y$, and by part (iii) of the previous
-proposition, we deduce that $[x]\cap [y]=\emptyset$. This shows that $A/\sim$ satisfies the second
-part of the definition of partition. Lastly, we note that $\emptyset\notin A/\sim$, since
-every element of $A/\sim$ is equal to $[x]$ for some $x\in A$, and must thus contain at least
+proposition, we deduce that $[x]\cap [y]=\emptyset$. This shows that $A/{\sim}$ satisfies the second
+part of the definition of partition. Lastly, we note that $\emptyset\notin A/{\sim}$, since
+every element of $A/{\sim}$ is equal to $[x]$ for some $x\in A$, and must thus contain at least
 the element $x$.\slug
 
 Let us now revisit the examples of equivalence relations from last class, and see what partitions
 they give rise to. In the example $F$ of propositional formulas with variables $p$, $q$, and $r$,
 under the equivalence relation $\equiv$, the set of equivalence classes is the set of all possible
 truth tables on three variables. Each such truth table has $8$ rows, so there are $2^8$ equivalence
-classes. In other words, $|F/\equiv| = 2^8$.
+classes. In other words, $|F/{\equiv}| = 2^8$.
 
 How about the relation $R$ defined on $\RR^2$ where
 $$(x,y)\sim (w,z) \qquad\hbox{if and only if}\qquad \sqrt{x^2+y^2} = \sqrt{w^2 + z^2}?$$
 Well, each $\bigl[(x,y)\bigr]$ is the circle of radius $\sqrt{x^2 + y^2}$ centred
-around the origin, so $\RR^2/\sim$ is the set of all circles in the plane centred at $(0,0)$.
+around the origin, so $\RR^2/{\sim}$ is the set of all circles in the plane centred at $(0,0)$.
 
 
 \vfill\eject
@@ -2018,9 +2021,8 @@ $$\gcd(a,b) = sa+tb.$$
 Moreover, $\gcd(a,b)$ is the least positive integer that can be expressed as an
 integer linear combination of $a$ and $b$.
 
-\bye
-
-\proof Let
+\noindent\datestamp{08}{x} {\it Proof.}\enspace
+Let
 $$S = \{ s'a+t'b : s',t'\in \ZZ,\ ax+by > 0\}.$$
 This set is nonempty, since if $a$ is negative then $(-1)a+0b\in S$ and if $a$ is positive,
 then $1a+0b\in S$. Since $S$ is a nonempty set of positive integers, it has
@@ -2067,10 +2069,11 @@ $$ 2= 3\cdot 30 - 4(112-3\cdot 30) = 3\cdot 30 - 4\cdot 112 + 12\cdot 30 = (-4)\
 So in the case that $a = 112$ and $b=30$, we have $d = 2$, $s = -4$, and $t = 15$.
 
 We now summarise this section on B\'ezout's identity with a little scenario.
-Imagine a robot that lives on the line of integers. It starts at the point $0$
+Imagine a frog that lives on a doubly-infinite line of lilypads,
+indexed by the integers. It starts at the point $0$
 and can hop in steps of $a$ or $b$ (in either direction). Theorem~{\thmbezout} tells us
-that the point $d = \gcd(a,b)$ is reachable by the robot. The next proposition characterises
-the set of {\it all} points that the robot can get to.
+that the lilypad $d = \gcd(a,b)$ is reachable by the frog. The next proposition characterises
+the set of {\it all} lilypads that the frog can get to.
 
 \proclaim Proposition \advthm. Let $a$ and $b$ be nonzero integers. The set
 $$X = \{ s'a + t'b : s',t'\in \ZZ\}$$
@@ -2109,6 +2112,7 @@ $n = ab$.) Note that the integers $0$ and $1$ are neither prime nor composite.
 
 The following theorem gives another characterisation of prime numbers.
 
+\edef\thmpdivides{\the\thmcount}
 \proclaim Theorem \advthm. An integer $p$ with $p\ge 2$ is prime if and only if
 for all $a,b\in \NN$, $p\divides ab$ implies that $p\divides a$ or $p\divides b$.
 
@@ -2164,7 +2168,7 @@ $$n = p_1p_2\cdots p_k$$
 where $p_1\le p_2\le \cdots \le p_k$ are prime numbers. Furthermore, this factorisation
 is unique.
 
-\noindent\datestamp{13}{} {\it Proof.}\enspace The proof that such a decomposition of $n$ exists is
+\proof The proof that such a decomposition of $n$ exists is
 by (strong) induction. The base case is $n=2$. This is already a prime factorisation, since $2$ is prime.
 
 For the inductive step, let $n\ge 2$ and assume such a decomposition exists
@@ -2209,6 +2213,7 @@ $${n\over p_{s+1}} = p_1p_2\cdots p_s = q_1 q_2 \cdots q_{t-1}.$$
 By the induction hypothesis, the decomposition of $n/p_{s+1}$ is unique, so $t-1 = s$
 and $p_i = q_i$ for all $1\le i\le t-1$. This proves that $s+1 = t$ and
 $p_i = q_i$ for all $1\le i\le s+1$.\slug
+\bye
 
 We can use the Fundamental Theorem of Arithmetic to prove the following generalisation
 of Theorem~{\thmsqrttwo}.
@@ -2241,5 +2246,470 @@ irrational or not. Well, since $1^6 = 1$ and $2^6 = 64$, we have $1^6 < 18 < 2^6
 meaning that $1<\root 6\of 18 < 2$. (This is because the function $f:\RR\to\RR$ defined
 by $f(x) = x^6$ is increasing on the interval $[1,2]$.) Hence $\root 6\of 18$ is not
 an integer, and by the theorem it must be irrational.
+
+Next, we show that there are infinitely many primes, a theorem first proved by Euclid.
+
+\proclaim Theorem \advthm. There are infinitely many prime numbers.
+
+\proof Suppose, towards a contradiction, that there are finitely many prime numbers, call
+them $p_1, p_2, \ldots, p_m$. Let $n = p_1p_2\cdots p_m$, and consider the integer $n+1$. Either
+it is prime or it is not. If $n+1$ is prime, then we already have a contradiction, since $n+1 > p_i$
+for all $1\le i\le m$, and we assumed that the $p_1,\ldots,p_m$ were all the primes. If $n+1$
+is not prime, then it is divisible by some prime in our list, call it $p_i$. Hence we can write
+$n = kp_i$ for some integer $k$, and we have
+$$ k p_i = n+1 = p_1 p_2\cdots p_m + 1.$$
+Rearranging this a bit, we have
+$$ 1 = kp_i - p_1 p_2\cdots p_m = p_i(k - p_1 p_2 \cdots p_{i-1} p_{i+1} \cdots p_m);$$
+in other words, $p_i$ divides $1$. This is a contradiction as $1$ is not divisible by any integer
+greater than $1$.\slug
+
+Though the set $P$ of prime numbers is infinite, it does sort of get ``sparser'' as one heads off
+towards infinity. This is quantified by the following theorem, proved independently
+in~1896 by Jacques Hadamard and Charles Jean de la Vall\'ee Poussin.
+
+\parenproclaim Theorem {\advthm} (Prime number theorem). For $x\in \RR$, let
+$$\pi(x) = \bigl| \{ p \le x : p\ \hbox{prime}\} \bigr|.$$
+Then $pi(x) \sim x/\ln x$, in the sense that
+$$\lim_{x\to\infty} {\pi(x)\over x/\ln x} = 1.$$
+
+The proof is long and arduous, requiring a lot of background in complex analysis.
+It is often taught in a first-year graduate class in analytic number theory.
+Here is an easy corollary of the prime number theorem.
+
+\proclaim Corollary \advthm. Let $n$ be a positive integer and let $m$ be chosen
+uniformly at random from the set $\{1,2,\ldots, n\}$. Then
+$$(\ln n)\pr\{m\ \hbox{prime}\}\to 1$$
+as $n\to\infty$. In other words, the probability that $m$ is prime is asymptotically
+$1/\ln n$.
+
+\proof Since $m$ is chosen uniformly at random from $\{1,\ldots,n\}$,
+the probability $\pr\{ m\ \hbox{prime}\}$ equals $\pi(n)/ n$. So
+$$\lim_{n\to\infty} (\ln n) \pr\{m\ \hbox{prime}\} = \lim_{n\to\infty} {\pi(n) \ln n\over n} 
+= 1,$$
+by the prime number theorem.\slug
+
+As an example, if we choose a $30$-digit number at random (so $n=10^{30} - 1$), the
+probability that this number is prime is roughly $1/\ln(10^{30}) = 1/(30\ln 10) = 0.0145$
+or $1.45\%$.
+
+\advsect Modular Arithmetic
+
+Fix $n\ge 1$, and let $a,b\in\ZZ$. We say {$a$ is congruent to $b$ modulo $n$}
+if $n\divides a-b$, i.e., if $a-b = kn$ for some $k\in \ZZ$. Write $a \equiv b\pmod n$
+or $a \equiv_n b$.
+
+Take for example $n=12$. We have, e.g., $4\equiv 16\pmod 14$, since $4-16 = -12 = (-1)12$,
+but, e.g., $7\not\equiv 17$, since $7-17 = -10$, and $12$ does not divide $-10$. This
+situation should be a familiar one, since we are used to working with numbers modulo $12$ when
+telling the time.
+
+For any fixed $n$, the set of all $(a,b)\in \ZZ^2$ with $a\equiv_n b$ is a relation on $\ZZ$.
+In fact, we have the following proposition.
+
+\proclaim Proposition \advthm.
+For all fixed $n$, the relation $\equiv_n$ is an equivalence relation on the set $\ZZ$.
+
+\proof We must show that $\equiv_n$ is reflexive, symmetric, and transitive.
+
+Let $a\in \ZZ$. We have $a-a = 0 = 0\cdot n$, so $a\equiv a\pmod n$, proving reflexivity.
+
+Let $a,b\in \ZZ$ and suppose that $a\equiv_n b$, so there exists $k$ such that $a-b=kn$.
+Then $b-a = (-k)n$, so $b\equiv_n a$. This proves symmetry.
+
+Lastly, let $a,b,c\in \ZZ$ be such that $a\equiv_n b$ and $b\equiv_n c$. So there
+exist integers $k,l\in \ZZ$ such that $a-b = kn$ and $b-c = ln$. Then
+$$a - c = (a-b) + (b-c) = kn +ln = (k+l)n,$$
+which shows that $a\equiv_n c$.\slug
+
+Since $\equiv_n$ is an equivalence relation, it partitions $\ZZ$ into equivalence classes.
+We shall denote by $[a]_n$ the equivalence class of $a$ modulo $n$. This is the set
+$$[a]_n = \{b\in \ZZ : a-b = kn\ \hbox{for some}\ k\in \ZZ\}
+= \{a + ln : l\in \ZZ\}.$$
+For instance, when $n = 3$, the set
+$$[0]_3 = \{\ldots, -6, -3, 0, 3, 6, \ldots\}$$
+is just the set of all multiples of $3$, and we also have
+$$[1]_3 = \{\ldots, -5, -2, 1, 4, 7,\ldots\}$$
+and
+$$[2]_3 = \{\ldots, -4, -1, 2, 5, 8,\ldots\}.$$
+These are all of the equivalence classes, since, for instance,
+$$[4]_3 = \{\ldots, -2, 1, 4, 7, 10,\ldots\} = [1]_3.$$
+
+Lastly, we shall touch upon the {\it modulo} operator, which is a feature of many programming
+languages. Let $a\in \ZZ$ and $b\ge 1$. Let $a \percent b = r$ where $q$ and $r$ are the integers
+given by the division algorithm. (That is, $a = qb+r$ where $0\le r\le b$.)
+
+\proclaim Proposition \advthm. Fix an integer $n\ge 2$.
+Let $a,b\in \ZZ$. Then $a\equiv b\pmod n$ if and only
+if
+$$a\percent n = b\percent n.$$
+
+\noindent\datestamp{14}{} {\it Proof.}\enspace
+Suppose that $a\equiv_n b$, so that there exists $k\in \NN$ such that $a-b = kn$.
+Then, let $a = nq_1 + r_1$ and $b = nq_2 + r_2$ from the division algorithm.
+(So $r_1 = a\percent n$ and $r_2 = b\percent n$, and we have $0\le r_1,r_2 < n$.)
+Write
+$$kn = a - b = (q_1-q_2) n + (r_1 - r_2),$$
+which we can rearrange to
+$$r_1 - r_2 = kn - (q_1 - q_2)n = (k-q_1 + q_2)n.$$
+This implies that $r_1 - r_2$ divides $n$, but
+since $r_1, r_2\in [0,n)$, the quantity $r_1 - r_2$ is in the range $[-n-1, n)$. Hence
+the only way it can divide $n$ is for $r_1 - r_2 = 0$. We conclude that $a\percent n = b\percent n$.
+
+For the other direction, we once again
+let $a = nq_1 + r_1$ and $b = nq_2 + r_2$ from the division algorithm.
+Now the assumption is that $r_1 = a\percent n = b\percent n = r_2$. So
+$$a - b = a - b = (q_1-q_2) n + (r_1 - r_2) = (q_1-q_2)n.$$
+This shows that $a\equiv b\pmod n$.\slug
+
+This proposition is useful in practice. For example, suppose we want to know whether
+$22\equiv 8\pmod 3$. We calculate $22 = 7\cdot 3 + 1$, so $22\percent 3 = 1$; meanwhile
+$8 = 2\cdot 3 + 2$, so $8\percent 3 = 2$. By the proposition, this means that
+$22\not\equiv 8\pmod 3$.
+
+The proposition also implies that for all $a\in \ZZ$ and $n\ge 2$ one has $[a]_n = [a\percent n]$.
+From the division algorithm, we know that $a\percent n$ is an element in the range $[0,n)$;
+it is equal to the integer $r$ in that range such that we may write $a = qn+r$ for some
+integer $q$. We may choose to denote the whole equivalence class by this element $r$. The set
+$$\ZZ/n\ZZ = \ZZ/{\equiv_n} = \bigl\{ [0], [1], \ldots, [n-1] \bigr\}$$
+is called the {\it ring of integers modulo $n$} or the {\it cyclic group on $n$ elements}.
+
+\medskip\boldlabel Computations modulo {\mathbold n}.
+We can do addition and multiplication modulo $n$ by first doing addition and multiplication
+and then taking the remainder with respect to $n$. For example, when $n=4$ we have the
+addition table
+$$
+\vbox{\ninepoint\tabskip7pt\offinterlineskip
+\halign{
+\hfil $#$ \hfil & \hfil\vrule# \hfil \enskip &
+\hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil \cr
++ && 0 & 1 & 2 & 3 \cr
+& height7pt &&&& \cr
+\noalign{\hrule}
+& height7pt &&&& \cr
+0 && 0 & 1 & 2 & 3 \cr
+& height7pt &&&& \cr
+1 && 1 & 2 & 3 & 0 \cr
+& height7pt &&&& \cr
+2 && 2 & 3 & 0 & 1 \cr
+& height7pt &&&& \cr
+3 && 3 & 0 & 1 & 2 \cr
+}}
+$$
+and the multiplication table
+$$
+\vbox{\ninepoint\tabskip7pt\offinterlineskip
+\halign{
+\hfil $#$ \hfil & \hfil\vrule# \hfil \enskip &
+\hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil & \hfil $#$ \hfil \cr
+\cdot && 0 & 1 & 2 & 3 \cr
+& height7pt &&&& \cr
+\noalign{\hrule}
+& height7pt &&&& \cr
+0 && 0 & 0 & 0 & 0 \cr
+& height7pt &&&& \cr
+1 && 0 & 1 & 2 & 3 \cr
+& height7pt &&&& \cr
+2 && 0 & 2 & 0 & 2 \cr
+& height7pt &&&& \cr
+3 && 0 & 3 & 2 & 1 \cr
+}}.
+$$
+For $x,y\in \ZZ$, if $xy = 0$, then either $x=0$ or $y=0$.
+On the other hand, from the assumption $xy \equiv 0\pmod n$ we cannot conclude
+in general that $x\equiv 0\pmod n$ or $y\equiv 0\pmod n$. As an example, when $n=4$
+and $x=y=2$, neither $x$ nor $y$ is congruent to $0$ modulo $4$, but their product is $0$ modulo $4$.
+An element $a\in \ZZ$ with $a\not\equiv 0\pmod n$ is said to be a {\it zero divisor}
+if there exists $b\in \ZZ$ with $b\not\equiv 0\pmod n$ such that $ab \equiv 0\pmod n$.
+
+Remember that the numbers in the tables above are elements of $\ZZ/n\ZZ$ (in the case $n=4$),
+hence they are not really integers so much as equivalence classes of integers, which are sets!
+So it is not immediate that addition and multiplication are well-defined modulo some fixed integer $n$.
+For instance, to say that $[3]_4 \cdot [1]_4 = [3]_4$, it is not enough to just observe that
+$3\cdot 1 = 3$. We need to show that for any integers $a\in [3]_4$ and $b\in [1]_4$, we have
+$a\cdot b\in [3]_4$. This is the essence of the following proposition.
+
+\proclaim Proposition \advthm. Let $a\equiv c\pmod n$ and $b\equiv d\pmod n$. Then
+\medskip
+\item{i)} $a+b\equiv c+d \pmod n$;
+\smallskip
+\item{ii)} $ab\equiv cd\pmod n$; and
+\smallskip
+\item{iii)} $a^m \equiv c^m \pmod n$ for all $m\in \NN$.
+\medskip
+
+\proof By assumption, there are integers $k$ and $l$ such that $a-c = kn$ and $b-d = ln$.
+
+To prove (i), we compute
+$$(a+b)-(c+d) = a-c + b-d = kn+ln = (k+l)n,$$
+so $a+b\equiv c+d\pmod n$.
+
+For part (ii), we compute
+$$\eqalign{
+ab-cd &= ab-cb+cb - cd \cr
+&= b(a-c) + c(b-d) \cr
+&= bkn + cln \cr
+&= (bk + cl) n ,\cr
+}$$
+so $ab\equiv cd \pmod n$.
+
+We prove part (iii) by induction. The base case is $m=0$; we have $a^0 = 1 = c^0$,
+so $a^0\equiv c^0\pmod n$. Now let $m\ge 0$ and assume that $a^m\equiv c^m\pmod n$.
+Combining this with the hypothesis $a\equiv c\pmod n$, we use part (ii) to
+conclude that $a\cdot a^m \equiv c\cdot c^m\pmod n$, which simplifies
+to $a^{m+1}\equiv c^{m+1}\pmod n$.\slug
+
+We can use this to perform the modulo operation on large numbers without necessarily
+knowing the large numbers themselves. For example, let $m=21^{10} - 3\cdot 13 + 14$
+and suppose we want to know $m\percent 6$.
+
+First we observe that $14\equiv 2\pmod 6$
+and $13\equiv 1\pmod 6$. So
+$$ m = 21^{10} - 3\cdot 13 + 14 \equiv_6 21^{10} - 3\cdot 1 + 2 \equiv_6 21^{10} - 1.$$
+Now we deal with the exponent by first taking the base of the exponent modulo $6$.
+We have $21\equiv 3 \pmod 6$; hence
+$$m \equiv_6 3^{10} -1.$$
+To reduce the exponent,
+we factorise $10=2\cdot 5$, yielding
+$$m \equiv_6 (3^2)^5 - 1.$$
+But again we can reduce the base here, since $9\equiv_6 3$, which gives us
+$$m \equiv_6 3^5-1.$$
+Now since the exponent $5$ is prime, we aren't able to reduce it by factorising. However,
+we do have $5 = 2+2+1$, and, using once again the fact that $3^2 = 9\equiv_6 3$, we obtain
+$$m \equiv_6 3^2\cdot 3^2 \cdot 3 - 1 \equiv_6 3\cdot 3\cdot 3 - 1 \equiv_6 3\cdot 3 - 1
+\equiv_6 3- 1 \equiv_6 2.$$
+
+\medskip\boldlabel Inverses modulo {\mathbold n}. Considering $2$ as a rational
+number, we say that the inverse of $2$ is $1/2$, since $2\cdot (1/2) = 1$.
+We write $2^{-1} = 1/2$. We shall use the same terminology in the ring of integers modulo $n$.
+An element $a\in \ZZ$ is said to be {\it invertible modulo $n$} if there exists $b\in \ZZ$
+such that $ab \equiv 1\pmod n$. In this case we shall say that $b$ is an {\it inverse} of $a$.
+In fact, inverses are unique (in $\ZZ/n\ZZ$).
+
+\proclaim Proposition \advthm. Let $a,n\in \ZZ$ with $n\ge 2$. Then if $ab \equiv 1\pmod n$
+and $ac\equiv 1\pmod n$, then $b\equiv c\pmod n$.
+
+\proof We have
+$$b \equiv b\cdot 1 \equiv b(ac) \equiv (ab)c \equiv 1\cdot c \equiv c\pmod n.\noskipslug$$
+
+Hence we may speak of {\it the} inverse of an element $a$, which we shall denote by $a^{-1}$.
+We have $a^{-1}a \equiv 1 \equiv a a^{-1}\pmod n$.
+
+For instance, when $n=5$, the fact that
+$$2\cdot 3 \equiv_5 6\equiv_5 1$$
+tells us that $2$ (and $3$, for that matter) are invertible modulo $5$.
+When $n=6$, is $2$ still invertible? Here $n$ is small enough that we can just try all the cases.
+We have $2\cdot 0 = 0$, $2\cdot 1 = 2$, $2\cdot 2 = 4$, $2\cdot 3 = 6\equiv_6 = 0$
+$2\cdot 4 = 8 \equiv_6 2$, and $2\cdot 5 = 10\equiv_6 4$. Since none of these were equivalent
+to $1$ modulo $6$, we see that $2$ is not invertible modulo $6$.
+
+It was quite a tedious process to exhaustively show that $2$ is not invertible modulo $6$. The following
+theorem gives a much easier-to-use criterion for invertibility.
+
+\proclaim Theorem \advthm. Let $a,n\in \ZZ$ with $n\ge 2$. Then
+\medskip
+\item{i)} $a$ is invertible modulo $n$ if and only if $\gcd(a,n) = 1$; and
+\smallskip
+\item{ii)} if $a$ is invertible, then there is a unique integer $b\in [0,n-1]$ such that
+$ab\equiv 1\pmod n$. Namely, if
+$$1 = sa + tn$$,
+then we can set $b = s\percent n$.
+\medskip
+
+\proof The proof of (i) is a fairly simple corollary of B\'ezout's theorem.
+f $a$ is invertible, then $ab\equiv 1\pmod n$, so there exists $k\in \ZZ$ such that
+$1-ab=kn$. Rearranging this, we have $1 = ab+kn$, and by B\'ezout's theorem (specifically,
+the final statement of Theorem~{\thmbezout}, this implies that $\gcd(a,n) = 1$.
+On the other hand, if $\gcd(a,n) = 1$, then there exists $k\in \ZZ$ such that
+$1 = ab + kn$. This means that $1-ab = kn$, so $ab\equiv 1\pmod n$.
+
+For part (ii), suppose that $s,t\in \ZZ$ are such that $1 = sa+tn$. Then
+taking this equation modulo $n$, we have
+$$ 1 = sa+tn \equiv_n sa + t\cdot 0 \equiv_n sa.$$
+Letting $b = s\percent n$, we have $1 = ba$, since $s$ and $b$ belong to the same
+equivalence class modulo $n$, and $b$ is an integer in $[0,n-1]$ by the division algorithm.
+This proves existence of such a $b$. To show uniqueness, suppose that $b$ and $c$ are both
+integers in $[0,n-1]$ with $ab \equiv 1\pmod n$ and $ac\equiv 1\pmod n$. Then
+$ab\equiv ac\pmod n$, and multiplying on both sides by $b$, we have $bab\equiv bac\pmod n$.
+But $ba\equiv 1\pmod n$, so cancelling this out in the equation, we have $b\equiv c\pmod n$.
+In other words, $n\divides b-c$. But since $b,c\in [0,n-1]$, we have $b-c\in [-n+1, n-1]$,
+and the only divisor of $n$ in this range is $0$. Hence $b-c = 0$ and we conclude that $b=c$.\slug
+
+We can use this theorem to systematically find inverses of integers modulo other integers. For instance,
+suppose we want to find the inverse of $17$ modulo $20$. First we find $\gcd(20,17)$ by Euclid's
+algorithm:
+$$\eqalign{
+20 &= 1\cdot 17 + 3 \cr
+17 &= 5\cdot 3 + 2 \cr
+3 &= 1\cdot 2 + 1 \cr
+1 &= 1\cdot 1 + 0 \cr
+}$$
+The fact that $\gcd(20,17) = 1$ tells us that $17$ indeed has an inverse. Now we go backwards to
+express $1$ as an integer linear combination of $20$ and $17$:
+$$\eqalign{
+1 &= 3-1\cdot 2 \cr
+&= 3-(17-5\cdot 3) \cr
+&= -17 + 6\cdot 3 \cr
+&= -17 + 6(20-17) \cr
+&= 6\cdot 20 - 7\cdot 17 \cr
+}$$
+So the inverse of $17$ modulo $20$ is $-7 \equiv_{20} 13$. (We can verify that
+$$17\cdot 13\equiv (-3)(-7)\equiv 21 \equiv 1\pmod {20}.$$
+As a trick for computations, use the range $-n/2$ to $n/2$ instead of $0$ to $n-1$ to keep the
+numbers a bit smaller. It might help you avoid errors.)
+
+Let's find the full list of invertible integers modulo $20$, as well as their inverses. First,
+we list the integers in the range $[0,19]$ that are relatively prime with $20$:
+$$1,3,7,9,11,13,17,19$$
+If some number is in this list, then its inverse must also be in this list (since inverses to
+a given element must themselves be invertible).
+The elements $1$ and $19$ are their own inverses, since $1\cdot 1 = 1$ and
+$19\cdot 19 \equiv_{20} (-1)(-1) = 1$.
+We already saw above that $13$ and $17$ are inverses to each other. That leaves $3$, $7$, $9$, and $11$.
+First we see that $3\cdot 7 = 21 \equiv_{20} 1$, so $3$ and $7$ are inverses to each other.
+Then we note that $9\cdot 9 = 81 \equiv_{20} 1$, so $9$ is its own inverse, leaving us to conclude
+that $11$ must also be its own inverse as well---either by the fact that we've ruled
+out all other possibilities, or by the computation
+$$11\cdot 11 \equiv_{20} (-9)(-9)  = 81 \equiv_{20} 1.$$
+
+\noindent\datestamp{14}{} \hskip\parindent
+We now investigate what happens in the particular case where we the modulus $n$ is prime.
+In this situation we have the following proposition.
+
+\edef\propinvertiblemodp{\the\thmcount}
+\proclaim Proposition \advthm. Let $p$ be prime. Then
+\medskip
+\item{i)} every $x\in \ZZ$ with $x\not\equiv 0\pmod p$ is invertible modulo $p$; and
+\smallskip
+\item{ii)} for all $a,b\in \ZZ$ with $ab\equiv 0\pmod p$ one has
+$a\equiv 0\pmod p$ or $b\equiv 0\pmod p$.
+\medskip
+
+\proof Since $p$ only has factors $1$ and $p$, $\gcd(x,p)$ must either be $1$ or $p$.
+But the condition $x\not\equiv 0\pmod p$ implies that $p$ does not divide $x$.
+Hence $\gcd(x,p) = 1$, proving part (i).
+
+For part (ii), assume that $ab\equiv 0\pmod p$, so $p\divides ab$. But $p$ is prime, so
+by Theorem~{\thmpdivides}, either $p\divides a$ or $p\divides b$. In the first
+case we have $a\equiv 0\pmod p$, and in the second case, $b\equiv 0\pmod p$.\slug
+
+\medskip\boldlabel Solving congruences modulo {\mathbold n}.
+Suppose we want to solve for all integers $x$ satisfying $x^2 \equiv x\pmod n$, first for $n=6$,
+then for $n=7$.
+
+For the case where $n=6$, it suffices to consider $x\in \{0,1,\ldots, n-1\}$,
+since if $x^2\equiv x\pmod n$ and $x\equiv a\pmod n$, then $a^2\equiv a\pmod n$.
+So we simply try all $x\in \{0,1,\ldots, 5\}$. We have $0^2 = 0$, $1^2 = 1$,
+$2^2 = 4 \not\equiv_6 2$, $3^2 = 9\equiv_6 3$, $4^2 = 16\equiv_6 4$, and
+$5^2 \equiv_2 (-1)^2 = 1\not\equiv_6 5$. We conclude that $0$, $1$, $3$, and $4$ are solutions
+to this congruence modulo $6$, and more broadly, any integer $y$ of the form
+$$y = x+6k$$
+where $k\in \ZZ$ and $x\in \{0,1,3,4\}$, is a solution $x^2\equiv x\pmod 6$.
+
+Now we tackle the case where $n=7$. In fact, the solution is no different
+if $n$ were any other prime.
+First we subtract $x$ from both sides, obtaining the congruence $x^2 - x\equiv 0\pmod 7$,
+then we factorise the left side to get $x(x-1)\equiv 0\pmod 7$. Now by the previous proposition,
+since $7$ is prime if $x(x-1)\equiv 0\pmod 7$, we must have either $x\equiv 0\pmod 7$ or
+$x-1\equiv 0\pmod 7$, so the only solutions are $x\equiv_7 0$ and $x\equiv_7 1$ (and anything
+in their equivalence classes).
+
+Replacing $7$ with any other prime $p$ in the above paragraph yields a proof of the following
+proposition.
+
+\proclaim Proposition \advthm. Let $p$ be a prime. Then $a^2\equiv a\pmod p$ if and only if
+$a$ is either congruent to $0$ or $1$ modulo $p$.\slug
+
+Here is a similar proposition.
+
+\edef\propselfinversemodp{\the\thmcount}
+\proclaim Proposition \advthm. Let $p$ be a prime and let $a\not\equiv 0\pmod p$ (so
+that $a$ is invertible. Then $a \equiv a^{-1}\pmod p$ if and only
+if $a$ is either congruent to $1$ or $-1$ modulo $p$.
+
+\proof If $a = 1$ or $a=-1$, then $a^2 = 1$, so $a^2\equiv 1$, and multiplying by $a^{-1}$ on both sides,
+we have $a\equiv a^{-1}\pmod p$.
+
+Now suppose that $a\equiv a^{-1}\pmod p$. Multiplying by $a$ on both sides, we get $a^2\equiv 1\pmod p$;
+then, subtracting $1$ from both sides and factoring the resulting polynomial, we get
+$$(a+1)(a-1)\equiv 0\pmod p.$$
+This implies that either $a+1\equiv 0\pmod p$ or $a-1\equiv 0\pmod p$. In the first case, $a \equiv_p -1$,
+and in the second case, $a\equiv_p 1$.\slug
+
+We finish off this section with an important theorem, first stated by Pierre de Fermat in~1640.
+He did not supply a proof; the first published proof of this theorem was given by
+Leonhard Euler in~1736.
+
+\edef\thmflt{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Fermat's little theorem). Let $a$ and $p$ be integers with $p$ prime.
+If $a\not\equiv 0\pmod p$, then $a^{p-1}\equiv 1\pmod p$.
+
+Before proving this theorem, we first state and prove a lemma. Recall that we define the {\it factorial}
+of $n\in \NN$ to be the product $n! = 1\cdot 2\cdots (n-1) n$.
+
+\proclaim Lemma \advthm. For all prime numbers $p$, the integer $(p-1)!$ is congruent to $-1$ modulo $p$.
+
+\proof If $p=2$, we have $(p-1)! = 1\equiv -1\pmod 2$, and if $p=3$, then $(p-1)! = 2 \equiv -1 \pmod 3$.
+
+For the rest of the proof, assume that $p\ge 5$.
+By Proposition~{\propselfinversemodp}, each element in the set $S = \{2,3,\ldots,p-3,p-2\}$
+is not its own inverse modulo $p$, so for each element $s\in S$, there is some other element $s'\in S$ with
+$s'\ne s$ such that $ss'\equiv 1\pmod p$. This means that
+$$ 2\cdot 3 \cdots (p-3)(p-2) \equiv 1\pmod p.$$
+From this, we see that
+$$(p-1)! = 1\cdot 2\ldots (p-2)(p-1) = \bigl(2\cdot 3 \cdots (p-3)(p-2)\bigr)(p-1)
+\equiv_p (p-1)\equiv_p -1.\noskipslug$$
+
+We are now able to prove Fermat's little theorem.
+
+\medskip\noindent{\it Proof of Theorem~{\thmflt}}.\enspace
+Since $a\not\equiv 0\pmod p$, it is invertible modulo $p$ by Proposition~{\propinvertiblemodp}.
+Denote its inverse by $a^{-1}$.
+Let $G = (\ZZ/p\ZZ)\setminus\{0\}$ for short. Define a function $f:G\to G$ by letting $f(x) = a\cdot x$,
+where we consider the result modulo $p$ (and hence the result is an element of $\ZZ/p\ZZ$).
+This function
+is well defined: since $a$ and $x$ are both not zero modulo $p$, their product will be an element of $G$.
+If $f(x_1) = f(x_2)$, then
+$$a\cdot x_1 \equiv a\cdot x_2\pmod p,$$
+so multiplying
+both sides by $a^{-1}$, we have $x_1 \equiv x_2\pmod p$.
+This proves that $f$ is injective. Now let $y\in G$. We want
+to find $x$ with $f(x) \equiv y\pmod p$.
+To do so, simply set $x \equiv a^{-1}y\pmod p$. Then
+$$f(x) = f(a^{-1}y) = a(a^{-1}y) \equiv y \pmod p.$$
+This proves that $f$ is surjective, and hence bijective.
+
+The bijection $f$ shows that the set
+$$\bigl\{a, 2a, \ldots,(p-2)a, (p-1)a\bigr\},$$
+taken as a subset of $\ZZ/p\ZZ$ (i.e., we take each element modulo $p$, in the range $[0,\ldots p-1]$),
+is exactly the same as the set
+$$\{1, 2, \ldots, p-2, p-1\},$$
+just that the order of elements might be permuted. Hence we have
+$$a(2a)\cdots\bigl((p-2)a\bigr)\bigl((p-1)a\bigr) \equiv (p-1)!\pmod p.$$
+Combining all the $a$ factors on the left-hand side, we get
+$$a^{p-1} (p-1)!\equiv (p-1)!\pmod p.$$
+But by the previous lemma, $-1$ is the inverse of $(p-1)!$ modulo $p$,
+so multiplying both sides of this congruence by $-1$, we get
+$$a^{p-1}\equiv 1\pmod p,$$
+which is what we wanted to show.\slug
+
+
+
+
+
+\bigskip
+\begingroup\obeylines\eightssi
+\hfill Tout nombre premier mesure infalliblement
+\hfill une des puissances - 1 de quelque progression que ce soit,
+\hfill \& l'exposant de ladite puissance est so\^us-multiple du nombre premier donn\'e - 1.
+\hfill Et apr\'es qu'on a trouv\'e la premiere puissance qui satisfait \`a la question,
+\hfill toutes celles dont les exposans sont multiples de l'exposant de la premiere
+\hfill satisfont de m\'eme \`a la question.
+\eightss
+\smallskip
+\hfill --- PIERRE DE FERMAT, {\eightssi in a letter to Bernard Fr\'enicle de Bessy} (1640)
+\endgroup%\obeylines
+\bigskip\goodbreak
+
+
 
 \bye
