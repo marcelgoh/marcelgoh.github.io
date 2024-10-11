@@ -53,6 +53,8 @@ Jeremy Macdonald, but any errors are likely my own. Please email me if you find 
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 8.\kern .5em Division }{42}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 9.\kern .5em Primes }{47}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 10.\kern .5em Modular arithmetic }{51}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -2213,8 +2215,8 @@ $${n\over p_{s+1}} = p_1p_2\cdots p_s = q_1 q_2 \cdots q_{t-1}.$$
 By the induction hypothesis, the decomposition of $n/p_{s+1}$ is unique, so $t-1 = s$
 and $p_i = q_i$ for all $1\le i\le t-1$. This proves that $s+1 = t$ and
 $p_i = q_i$ for all $1\le i\le s+1$.\slug
-\bye
 
+\noindent\datestamp{10}{x} \hskip\parindent
 We can use the Fundamental Theorem of Arithmetic to prove the following generalisation
 of Theorem~{\thmsqrttwo}.
 
@@ -2269,7 +2271,7 @@ in~1896 by Jacques Hadamard and Charles Jean de la Vall\'ee Poussin.
 
 \parenproclaim Theorem {\advthm} (Prime number theorem). For $x\in \RR$, let
 $$\pi(x) = \bigl| \{ p \le x : p\ \hbox{prime}\} \bigr|.$$
-Then $pi(x) \sim x/\ln x$, in the sense that
+Then $\pi(x) \sim x/\ln x$, in the sense that
 $$\lim_{x\to\infty} {\pi(x)\over x/\ln x} = 1.$$
 
 The proof is long and arduous, requiring a lot of background in complex analysis.
@@ -2292,7 +2294,7 @@ As an example, if we choose a $30$-digit number at random (so $n=10^{30} - 1$), 
 probability that this number is prime is roughly $1/\ln(10^{30}) = 1/(30\ln 10) = 0.0145$
 or $1.45\%$.
 
-\advsect Modular Arithmetic
+\advsect Modular arithmetic
 
 Fix $n\ge 1$, and let $a,b\in\ZZ$. We say {$a$ is congruent to $b$ modulo $n$}
 if $n\divides a-b$, i.e., if $a-b = kn$ for some $k\in \ZZ$. Write $a \equiv b\pmod n$
@@ -2343,7 +2345,7 @@ Let $a,b\in \ZZ$. Then $a\equiv b\pmod n$ if and only
 if
 $$a\percent n = b\percent n.$$
 
-\noindent\datestamp{14}{} {\it Proof.}\enspace
+\proof
 Suppose that $a\equiv_n b$, so that there exists $k\in \NN$ such that $a-b = kn$.
 Then, let $a = nq_1 + r_1$ and $b = nq_2 + r_2$ from the division algorithm.
 (So $r_1 = a\percent n$ and $r_2 = b\percent n$, and we have $0\le r_1,r_2 < n$.)
@@ -2358,9 +2360,11 @@ the only way it can divide $n$ is for $r_1 - r_2 = 0$. We conclude that $a\perce
 For the other direction, we once again
 let $a = nq_1 + r_1$ and $b = nq_2 + r_2$ from the division algorithm.
 Now the assumption is that $r_1 = a\percent n = b\percent n = r_2$. So
-$$a - b = a - b = (q_1-q_2) n + (r_1 - r_2) = (q_1-q_2)n.$$
+$$a - b = (q_1-q_2) n + (r_1 - r_2) = (q_1-q_2)n.$$
 This shows that $a\equiv b\pmod n$.\slug
+\bye
 
+\noindent\datestamp{14}{} \hskip\parindent
 This proposition is useful in practice. For example, suppose we want to know whether
 $22\equiv 8\pmod 3$. We calculate $22 = 7\cdot 3 + 1$, so $22\percent 3 = 1$; meanwhile
 $8 = 2\cdot 3 + 2$, so $8\percent 3 = 2$. By the proposition, this means that
@@ -2524,7 +2528,7 @@ $1 = ab + kn$. This means that $1-ab = kn$, so $ab\equiv 1\pmod n$.
 
 For part (ii), suppose that $s,t\in \ZZ$ are such that $1 = sa+tn$. Then
 taking this equation modulo $n$, we have
-$$ 1 = sa+tn \equiv_n sa + t\cdot 0 \equiv_n sa.$$
+$$ 1 = sa+tn \equiv_n sa + 0t \equiv_n sa.$$
 Letting $b = s\percent n$, we have $1 = ba$, since $s$ and $b$ belong to the same
 equivalence class modulo $n$, and $b$ is an integer in $[0,n-1]$ by the division algorithm.
 This proves existence of such a $b$. To show uniqueness, suppose that $b$ and $c$ are both
@@ -2571,7 +2575,7 @@ that $11$ must also be its own inverse as well---either by the fact that we've r
 out all other possibilities, or by the computation
 $$11\cdot 11 \equiv_{20} (-9)(-9)  = 81 \equiv_{20} 1.$$
 
-\noindent\datestamp{14}{} \hskip\parindent
+\noindent\datestamp{15}{} \hskip\parindent
 We now investigate what happens in the particular case where we the modulus $n$ is prime.
 In this situation we have the following proposition.
 
@@ -2646,6 +2650,7 @@ If $a\not\equiv 0\pmod p$, then $a^{p-1}\equiv 1\pmod p$.
 Before proving this theorem, we first state and prove a lemma. Recall that we define the {\it factorial}
 of $n\in \NN$ to be the product $n! = 1\cdot 2\cdots (n-1) n$.
 
+\edef\lemhalfwilson{\the\thmcount}
 \proclaim Lemma \advthm. For all prime numbers $p$, the integer $(p-1)!$ is congruent to $-1$ modulo $p$.
 
 \proof If $p=2$, we have $(p-1)! = 1\equiv -1\pmod 2$, and if $p=3$, then $(p-1)! = 2 \equiv -1 \pmod 3$.
@@ -2692,9 +2697,16 @@ so multiplying both sides of this congruence by $-1$, we get
 $$a^{p-1}\equiv 1\pmod p,$$
 which is what we wanted to show.\slug
 
+As a matter of interest, the intermediary lemma we proved is one direction of Wilson's theorem, proved
+by John Wilson in 1770.
 
+\parenproclaim Theorem {\advthm} (Wilson's theorem).
+For all integers $n\ge 2$, the congruence
+$$(n-1)!\equiv -1\pmod n$$
+holds if and only if $n$ is prime.
 
-
+\proof We already proved the ``if'' direction earlier, as Lemma~{\lemhalfwilson}.
+We leave the ``only if'' direction of the proof as an exercise for the reader.\slug
 
 \bigskip
 \begingroup\obeylines\eightssi
@@ -2710,6 +2722,97 @@ which is what we wanted to show.\slug
 \endgroup%\obeylines
 \bigskip\goodbreak
 
+\advsect Applications of number theory
 
+In this section we present a potpourri of interesting ways number theory is applied to make your life better.
 
-\bye
+\medskip\boldlabel {\ninepoint\bf ISBN} book identifiers. Every published book has an
+{\mc ISBN} code that serves as its
+unique identifier. This code is $10$ digits long for books published before 2007, but three new digits
+have been added for books published after 2007. In this section we'll deal with the simpler case of $10$ digits.
+
+What we want to do is to bake some redundancy into the codes, so that if a single digit is typed wrong,
+a computer will be able to tell the user that the code is invalid. This allows the user to correct their
+mistake. The way we do this, in a ten-digit code $d_{10}d_9d_8\cdots d_2d_1$,
+is to have only the first nine digits encode the book. The last digit is a {\it check digit},
+chosen so that
+\edef\eqvalidisbn{\the\eqcount}
+$$\sum_{i=1}^{10} i d_i \equiv 0 \pmod{11}.\adveq$$
+In other words,
+$$d_1\equiv -\sum_{i=2}^{10} id_i \pmod{11}.$$
+If $d_1$ needs to equal $10$, we use the symbol `X'.
+
+How does this solve our problem? Well, if a hapless person takes a valid {\mc ISBN} code
+and mangles it by either getting one digit wrong, or by swapping two adjacent digits,
+the result is an invalid {\mc ISBN} code, and the computer will be able to flag it.
+We formalise this statement as the following theorem.
+
+\proclaim Theorem \advthm. Let $d_{10} d_9 d_8\cdots d_2 d_1$ be a valid {\mc ISBN}
+code; that is, a code that satisfies~\refeq{\eqvalidisbn}. Then any code obtained by either
+\medskip
+\item{i)} changing exactly one digit $d_i$, for some $1\le i\le 10$, or
+\smallskip
+\item{ii)} swapping {\it distinct} adjacent digits $d_i$ and $d_{i-1}$, for some $2\le i\le 10$,
+\medskip
+is not a valid {\mc ISBN} codes (it does not satisfy~\refeq{\eqvalidisbn}).
+
+\proof First we prove (i). Suppose that $c_{10} c_9 c_8\cdots c_2c_1$ is a code that is
+equal to $d_{10} d_9 d_8\cdots d_2 d_1$ except at one place $1\le j\le 10$. So $c_j\ne d_j$,
+but for all $1\le i\le 10$ with $i\ne j$, we have $c_i = d_i$. Then
+$$\eqalign{
+\sum_{i=1}^{10} i c_i &\equiv_11 \sum_{i=1}^{10} i c_i - 0 \cr
+&\equiv_11 \sum_{i=1}^{10} i c_i - \sum_{i=1}^{10} id_i \cr
+&= \sum_{i=1}^{10} i(c_i - d_i) \cr
+&= j(c_j-d_j). \cr
+}$$
+But $j\in \{1,\ldots, 10\}$ and $(c_j-d_j) \in [-10, 10]$. So neither $j$ nor $c_j-d_j$
+are congruent to $0$ modulo $11$. Since $11$ is prime, their product cannot be congruent to $0$
+modulo $11$. We conclude that $\sum_{i=1}^{10} i c_i\not\equiv 0\pmod 11$; i.e., this is
+not a valid {\mc ISBN} code.
+
+To prove part (ii), suppose that $c_{10} c_9 c_8\cdots c_2c_1$ is a code that is
+equal to $d_{10} d_9 d_8\cdots d_2 d_1$, except that for some $2\le j\le 10$, we
+have $c_j = d_{j-1}$ and $c_{j-1}=d_j$ (the adjacent digits are swapped). Furthermore,
+assume that $d_j\ne d_{j-1}$, since swapping adjacent digits that are the same doesn't
+do anything to the code. Then
+$$\eqalign{
+\sum_{i=1}^{10} i c_i &\equiv_11 \sum_{i=1}^{10} i c_i - 0 \cr
+&\equiv_11 \sum_{i=1}^{10} i c_i - \sum_{i=1}^{10} id_i \cr
+&= \sum_{i=1}^{10} i(c_i - d_i) \cr
+&= (j-1)c_{j-1} + jc_j - (j-1)d_{j-1} - jd_j \cr
+&= (j-1)d_j + jd_{j-1} - (j-1)d_{j-1} - jd_j \cr
+&= d_{j-1} - d_j.\cr
+}$$
+But since $d_{j-1}$ and $d_j$ are both in the range $\{0,\ldots, 10\}$, their difference
+is in the range $[-10,10]$, and we assumed that $d_{j-1}\ne d_j$, so this difference is not zero.
+We conclude that $d_{j-1}-d_j\not\equiv 0\pmod 11$, so the code is not valid.\slug
+
+Something similar is done with credit card numbers, though we don't take digits modulo $11$
+(or else we'd have to use the digit 'X', which is cumbersome).
+Instead, a slightly different method called Luhn's algorithm is used. The calculation
+used to find the check digit is a bit different (let's not get into it),
+but the result is that we can still detect
+single-digit errors, and we can detect all swapping errors except for the transposition
+$09\leftrightarrow 90$.
+
+\medskip\boldlabel Divisibility tests.
+In grade school you might have learned the following divisiblity rule:
+{\sl To tell if a number is divisible by $3$, you sum up all of its digits. If this is a
+multiple of $3$, then the original number was a multiple of $3$, and if not, then the original
+number wasn't.} The same holds with $3$ replaced by $9$.
+
+Using the number theory we've learned, we are now able to prove this fact.
+
+\proclaim Proposition \advthm. Suppose that $n\in \NN$ is written in base-$10$ digits as
+$$n = d_k d_{k-1} d_{k-2}\cdots d_2 d_1 d_0,$$
+for some integer $k\ge 0$ and $d_i\in \{0,\ldots,9\}$ for $0\le i\le k$.
+Then $n$ is divisible by $3$ if and only if
+$$\sum_{i=0}^k d_i$$
+is also divisible by $3$.
+
+\proof Since $10\equiv 1\pmod 3$, any power of $10$ is also congruent to $1$ modulo $3$. So we have
+$$n = \sum_{i=0}^k d_i 10^i \equiv_3 \sum_{i=0}^k d_i,$$
+and we see that $n$ is divisible by $3$ if and only if the sum on the right-hand side is.\slug
+
+This works with $3$ replaced by $9$ since we also have $10\equiv 1\pmod 9$.
+
