@@ -4,6 +4,7 @@ title: Blog Archive
 ---
 
 ### 2024
+- (16.10.2024) [Constance Rooke CNF Prize]({{ site.baseurl }}/2024/10/16/constance-rooke.html)
 - (12.09.2024) _[Best Canadian Stories 2025]({{ site.baseurl }}/2024/09/12/bcs-2025.html)_
 
 ### 2023
