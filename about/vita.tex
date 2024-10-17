@@ -32,6 +32,10 @@
   \hskip-\parindent\fi
   \hbox to\itemindent{\bf\hfil #1.\kern.25em}%
   \hangindent=\itemindent\hangafter=1\ignorespaces}
+\def\starpubitem#1.{\ifitempar\smallskip\noindent\else\itempartrue
+  \hskip-\parindent\fi
+  \llap{*}\hbox to\itemindent{\bf\hfil #1.\kern.25em}%
+  \hangindent=\itemindent\hangafter=1\ignorespaces}
 
 \def\up#1{\leavevmode \raise.16ex\hbox{#1}}
 \def\sectheader#1{{\bigskip\elevensc #1}\smallskip\hrule\medskip}
@@ -55,6 +59,7 @@
 \newcount\fictioncount
 \fictioncount=1
 \def\ficitem{\pubitem F\the\fictioncount. \global\advance\fictioncount by -1}
+\def\starficitem{\starpubitem F\the\fictioncount. \global\advance\fictioncount by -1}
 
 \def\datethis{\eightrm \today}
 
@@ -165,10 +170,12 @@ Czech Republic, June 2019), 10 pp.
 
 \goodbreak
 
-\sectheader{Published Fiction}
+\sectheader{Published Creative Writing {\rm($*$ indicates nonfiction)}}
 
-\fictioncount=3
+\fictioncount=4
 \pubbegin F
+\starficitem ``Lanterns,'' Winner of the 2024 Constance Rooke Creative Nonfiction Prize. To appear in
+{\sl The Malahat Review}
 \ficitem ``Senang Diri,'' {\sl Existere} {\bf 42},2 (2023), 17--25.
 \ficitem ``The Vigil,'' {\sl Ricepaper Magazine} (2023), online. Reprinted in
 {\sl Best Canadian Stories 2025} (Windsor, Ont.: Biblioasis, 2024), 244--253.
