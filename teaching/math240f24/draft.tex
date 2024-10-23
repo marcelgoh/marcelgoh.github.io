@@ -2363,7 +2363,7 @@ Now the assumption is that $r_1 = a\percent n = b\percent n = r_2$. So
 $$a - b = (q_1-q_2) n + (r_1 - r_2) = (q_1-q_2)n.$$
 This shows that $a\equiv b\pmod n$.\slug
 
-\noindent\datestamp{14}{} \hskip\parindent
+\noindent\datestamp{22}{x} \hskip\parindent
 This proposition is useful in practice. For example, suppose we want to know whether
 $22\equiv 8\pmod 3$. We calculate $22 = 7\cdot 3 + 1$, so $22\percent 3 = 1$; meanwhile
 $8 = 2\cdot 3 + 2$, so $8\percent 3 = 2$. By the proposition, this means that
@@ -2488,6 +2488,7 @@ An element $a\in \ZZ$ is said to be {\it invertible modulo $n$} if there exists 
 such that $ab \equiv 1\pmod n$. In this case we shall say that $b$ is an {\it inverse} of $a$.
 In fact, inverses are unique (in $\ZZ/n\ZZ$).
 
+\edef\propinversesunique{\the\thmcount}
 \proclaim Proposition \advthm. Let $a,n\in \ZZ$ with $n\ge 2$. Then if $ab \equiv 1\pmod n$
 and $ac\equiv 1\pmod n$, then $b\equiv c\pmod n$.
 
@@ -2508,13 +2509,14 @@ to $1$ modulo $6$, we see that $2$ is not invertible modulo $6$.
 It was quite a tedious process to exhaustively show that $2$ is not invertible modulo $6$. The following
 theorem gives a much easier-to-use criterion for invertibility.
 
+\edef\thminvertiblemodn{\the\thmcount}
 \proclaim Theorem \advthm. Let $a,n\in \ZZ$ with $n\ge 2$. Then
 \medskip
 \item{i)} $a$ is invertible modulo $n$ if and only if $\gcd(a,n) = 1$; and
 \smallskip
 \item{ii)} if $a$ is invertible, then there is a unique integer $b\in [0,n-1]$ such that
 $ab\equiv 1\pmod n$. Namely, if
-$$1 = sa + tn$$,
+$$1 = sa + tn,$$
 then we can set $b = s\percent n$.
 \medskip
 
@@ -2530,11 +2532,10 @@ taking this equation modulo $n$, we have
 $$ 1 = sa+tn \equiv_n sa + 0t \equiv_n sa.$$
 Letting $b = s\percent n$, we have $1 = ba$, since $s$ and $b$ belong to the same
 equivalence class modulo $n$, and $b$ is an integer in $[0,n-1]$ by the division algorithm.
-This proves existence of such a $b$. To show uniqueness, suppose that $b$ and $c$ are both
-integers in $[0,n-1]$ with $ab \equiv 1\pmod n$ and $ac\equiv 1\pmod n$. Then
-$ab\equiv ac\pmod n$, and multiplying on both sides by $b$, we have $bab\equiv bac\pmod n$.
-But $ba\equiv 1\pmod n$, so cancelling this out in the equation, we have $b\equiv c\pmod n$.
-In other words, $n\divides b-c$. But since $b,c\in [0,n-1]$, we have $b-c\in [-n+1, n-1]$,
+This proves existence of such a $b$. To show uniqueness, we suppose that $b$ and $c$ are both
+elements of $[0,n-1]$ with $ab\equiv 1 \pmod n$ and $ac\equiv 1\pmod n$. By
+Proposition~{\propinversesunique}, we have $b\equiv c\pmod n$;
+in other words, $n\divides b-c$. But since $b,c\in [0,n-1]$, we have $b-c\in [-n+1, n-1]$,
 and the only divisor of $n$ in this range is $0$. Hence $b-c = 0$ and we conclude that $b=c$.\slug
 
 We can use this theorem to systematically find inverses of integers modulo other integers. For instance,
@@ -2574,7 +2575,6 @@ that $11$ must also be its own inverse as well---either by the fact that we've r
 out all other possibilities, or by the computation
 $$11\cdot 11 \equiv_{20} (-9)(-9)  = 81 \equiv_{20} 1.$$
 
-\noindent\datestamp{15}{} \hskip\parindent
 We now investigate what happens in the particular case where we the modulus $n$ is prime.
 In this situation we have the following proposition.
 
@@ -2594,6 +2594,8 @@ Hence $\gcd(x,p) = 1$, proving part (i).
 For part (ii), assume that $ab\equiv 0\pmod p$, so $p\divides ab$. But $p$ is prime, so
 by Theorem~{\thmpdivides}, either $p\divides a$ or $p\divides b$. In the first
 case we have $a\equiv 0\pmod p$, and in the second case, $b\equiv 0\pmod p$.\slug
+
+\bye
 
 \medskip\boldlabel Solving congruences modulo {\mathbold n}.
 Suppose we want to solve for all integers $x$ satisfying $x^2 \equiv x\pmod n$, first for $n=6$,
@@ -2814,5 +2816,150 @@ $$n = \sum_{i=0}^k d_i 10^i \equiv_3 \sum_{i=0}^k d_i,$$
 and we see that $n$ is divisible by $3$ if and only if the sum on the right-hand side is.\slug
 
 This works with $3$ replaced by $9$ since we also have $10\equiv 1\pmod 9$.
+
+\medskip\boldlabel Computing large powers modulo {\mathbold p}.
+The next application is not a precise mathemathical statement; rather, it's an observation
+that Fermat's little theorem can allow us to compute what large powers are modulo a prime
+without having to compute the number itself. We'll illustrate this by two examples.
+
+First we compute $25^{134} \pmod{11}$. We begin by noting that
+$$25\equiv 3\pmod{11},$$
+so what we really want is $3^{134}\pmod{11}$. By Fermat's little theorem, $3^{10}\equiv 1\pmod{11}$,
+so we may cast out multiples of $10$ from $134$ to arrive at the easy computation
+$$3^{134} \equiv 3^{10\cdot 13+4} \equiv (3^{10})^{13}\cdot 3^4 \equiv 3^2 \cdot 3^2
+\equiv 9\cdot 9\equiv (-2)(-2) \equiv 4\pmod{11}.$$
+
+Now let's try $25{134} \pmod{14}$. Since $14$ is not prime, we can no longer use Fermat's little theorem.
+The trick we shall use is to square $25$ repeatedly. First note that $25\equiv -3 \pmod{14}$,
+so $25^2 \equiv 9\pmod{14}$. Then, squaring again, we get
+$$25^4 \equiv 9^2 \equiv (-5)^2 \equiv 25\equiv -3\pmod{14}.$$
+This means that repeated squaring of $25$ cycles between $-3$ and $9$ modulo $14$, so we immediately
+have
+$$25^8\equiv 9,\qquad 25^{16} \equiv -3,\qquad 25^{32}\equiv 9,\qquad 25^{64} \equiv -3,$$
+and
+$$25^{128}\equiv 9$$
+modulo $14$. Now writing the exponent $134$ as a sum of powers of two allows us to conclude that
+$$ 25^{134} = 25^{128+4+2} = 25^{128}\cdot 25^4 \cdot 25^2 \equiv 9\cdot (-3)\cdot 9 \equiv (-3)(-3)
+\equiv 9\pmod{14}.$$
+
+\medskip\boldlabel Fermat's primality test.
+Fermat's little theorem says that if $n$ is prime, then for all integers $a$ with $a\not\equiv 0\pmod n$
+one has $a^{n-1}\equiv 1\pmod n$. The contrapositive of this statement is that if there
+is some integer $a$ with $a\not\equiv 0\pmod n$ and $a^{n-1}\not\equiv 1\pmod n$, then $n$ is not prime.
+This leads us to the following algorithm that can (usually) tell us when a number is not prime.
+
+\algbegin Algorithm F (Fermat's primality test). Given an integer $n\ge 4$,
+this algorithm will attempt to declare that
+$n$ is not prime. If the algorithm fails to do so, then the test is inconclusive ($n$ may either
+be prime or not).
+\algstep F1. [Initialise.] Set $a \gets 2$. (We can skip the step $a=1$ since $a^{n-1}$ will
+always equal $1$ in this case.)
+\algstep F2. [Compute power.] Set $b\gets a^{n-1} \% n$. (So $0\le b< n$.)
+\algstep F3. [Not prime?] If $b \neq 1$, output ``Not prime,'' and terminate the algorithm.
+\algstep F4. [Loop?] Set $a\gets a+1$. If $a=n$, output ``Inconclusive,'' and terminate the algorithm.
+Otherwise, go to step F2.\slug
+
+Let's see a couple of examples. Suppose we want to find out if $9$ is prime or not (we both know it isn't
+but play along for a second). In the very first step loop, when $a=2$, we have
+$$2^{9-1} = 2^8 = (2^4)^2 = 16^2 \equiv (-2)^2 = 4\pmod 9,$$
+so since $4 \not\equiv 1\pmod 9$, we conclude right away that $9$ is not prime.
+
+A harder one. Is $341$ prime? We start with $a=2$. Noting that $3\cdot 341 = 1023$, we have
+$$2^{340} = (2^{10})^{34} = 1024^{34} \equiv 1^{34}\equiv 1\pmod{341},$$
+so the test is inconclusive after the first loop. Fine. If we try $a=3$ next, we will
+find that $3^{340}\equiv 56\not\equiv 1\pmod{341}$, so we conclude that $341$ is not prime.
+(Those wishing to practise computing large powers modulo $n$ might like to verify the fact
+that $3^{340}\equiv 56\pmod {341}$. Use the squaring trick.)
+
+If $n$ causes Algorithm~F to output ``Inconclusive,'' it is very likely that $n$ is prime. However,
+there are rare cases of composite numbers $n$ that cause Algorithm~F to output ``Inconclusive.''
+These are called {\it Carmichael numbers}. The smallest one is $561$.
+
+\medskip\boldlabel Vernam's one-time pad.
+Alice and Bob want to exchange secret messages over a public channel without anyone
+being able to decipher them. A message can be encoded as a binary string $M$.
+Here is one way that Alice and Bob can securely send encrypted messages to each other.
+It is called Vernam's one-time pad, named for G.~Vernam, an {\mc AT\&T} engineer who patented
+the method in 1917.
+
+First, they need to meet in person and generate a long sequence of random bits. (How can
+one generate random numbers? This is an interesting quasi-philosophical question.) Each of
+them keeps a copy of this sequence, call it $S$.
+
+Now suppose Alice and Bob separate and Alice wants to send the message $M = 0110$ to Bob. Of course,
+she shouldn't send this string directly, as it could be intercepted by foes. She needs to use
+the sequence $S$. Suppose
+the first four bits of $S$ are $1101$. To encrypt her message, Alice adds each bit of $M$
+to the corresponding bit of $S$, modulo $2$. We will denote this by the $\oplus$ operation.
+The encrypted message is $M'=0110\oplus 1101 = 1011$. She sends it to Bob.
+
+Bob receives the string $M' = 1011$. To decode it and recover the message $M$, Bob simply has to
+perform the $\oplus$ operation using the (same) first four bits of $S$ that Alice used
+to encode the message in the first place. Indeed, we see that $1101\oplus 1101 = 0110 = M$.
+The reason that this works is that for any binary string $S$, we have $S\oplus S = 0$,
+so performing the $\oplus$ operation twice always returns the original string.
+
+If they want to send more messages, they simply discard the bits they used before and continue
+using the next few bits of $S$.
+
+The advantage to this approach is that an adversarial third-party, reading $M$', gains
+no information about the original string $M$, provided they do not know the sequence $S$.
+In other words, it is entirely secure.
+The disadvantages of Vernam's one-time pad are that Alice and Bob must meet in person beforehand,
+they need to find a way to generate random bits securely, and they need to periodically
+repeat this process to replenish the bits once they run out.
+
+\medskip\boldlabel The RSA cryptosystem.
+Now we move on to a more sophisticated method of encrypting and decrypting messages.
+It is called the {\it {\mc RSA} cryptosystem}, named for R.~Rivest, A.~Shamir, and L.~Adleman,
+who described the algorithm in 1977.
+
+Here's the scenario. Alice wants people to be able to send her messages such that
+only she can decode them. To do so, she needs to create a {\it public key}, which allows
+people to encrypt their messages before sending them to her, and then a {\it private key}
+that will allow her to decrypt messages. (Only she knows the private key.)
+
+To set things up, Alice needs two large primes, call them $p$ and $q$. (Something like $200$
+bits is sufficient.) Then she computes $n=pq$. Now, she picks some integer $k$ with $\gcd(k,n) = 1$.
+By Theorem~{\thminvertiblemodn}, there is some integer $s$ such that $ks=1$. Alice publishes
+the integer $n$ and the public key $k$. The private key is $s$; this she keeps to herself.
+
+Now Bob wants to send a secret message $M$ to Alice. Considering $M$
+as an integer (in binary), a requirement for the algorithm to work is $M<n$. Bob computes
+$\bar M = M^k\% n$ and sends $\bar M$ to $A$. (We have $0\le \bar M < n$ by the division
+algorithm.)
+
+Alice receives $\bar M$. She computes ${\bar M}^s$. It turns out that this is $M$.
+To prove this, we need a lemma.
+
+\proclaim Lemma \advthm. Let $a$ and $b$ be integers.
+\medskip
+\item{i)} For all positive integers $m$ and $n$,
+if $a\equiv b\pmod{mn}$, then $a\equiv b\pmod m$ and $a\equiv b\pmod n$.
+\medskip
+In the case that $m$ and $n$ are different primes, the converse holds; that is, the following
+holds.
+\medskip
+\item{ii)} For all primes $p$ and $q$ with $p\ne q$, if $a\equiv b\pmod p$
+and $a\equiv b\pmod q$, then $a\equiv b\pmod{pq}$.
+\medskip
+
+\proof Assume that $a\equiv b\pmod{mn}$, so there exists $k\in \ZZ$ such that
+$a-b = kmn$. This means that $a-b\equiv 0\pmod m$ and $a-b\equiv 0\pmod n$,
+so $a\equiv b\pmod m$ and $a\equiv b\pmod n$.
+
+To prove (ii), suppose that there exist $k,l\in \ZZ$ such that $a-b = kp$ and $a-b = lq$.
+We have $kp=lq$, so $p\divides lq$. Because $p$ is prime, $p$ must divide either $l$ or $q$.
+But $q$ is prime as well, so the only divisors of $q$ are $1$ and $q$. Hence $p\divides l$,
+and we may write $l = rp$ for some $r\in \ZZ$. So we have
+$$ a-b = lq = rpq,$$
+implying that $a-b\equiv 0\pmod{pq}$; that is, $a\equiv b\pmod{pq}$.\slug
+
+Now we shall prove that the encrypted message can be decrypted into the original message.
+
+\parenproclaim Theorem {\advthm} ({\mc RSA} encryption). Let $p$ and $q$ be distinct primes and
+let $n=pq$. 
+
+
 
 \bye
