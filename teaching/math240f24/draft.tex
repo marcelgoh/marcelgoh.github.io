@@ -2595,9 +2595,7 @@ For part (ii), assume that $ab\equiv 0\pmod p$, so $p\divides ab$. But $p$ is pr
 by Theorem~{\thmpdivides}, either $p\divides a$ or $p\divides b$. In the first
 case we have $a\equiv 0\pmod p$, and in the second case, $b\equiv 0\pmod p$.\slug
 
-\bye
-
-\medskip\boldlabel Solving congruences modulo {\mathbold n}.
+\medskip\boldlabel\datestamp{24}{x} Solving congruences modulo {\mathbold n}.
 Suppose we want to solve for all integers $x$ satisfying $x^2 \equiv x\pmod n$, first for $n=6$,
 then for $n=7$.
 
@@ -2610,8 +2608,8 @@ to this congruence modulo $6$, and more broadly, any integer $y$ of the form
 $$y = x+6k$$
 where $k\in \ZZ$ and $x\in \{0,1,3,4\}$, is a solution $x^2\equiv x\pmod 6$.
 
-Now we tackle the case where $n=7$. In fact, the solution is no different
-if $n$ were any other prime.
+Now we tackle the case where $n=7$. In fact, the solution would be no different
+should $n$ be any other prime.
 First we subtract $x$ from both sides, obtaining the congruence $x^2 - x\equiv 0\pmod 7$,
 then we factorise the left side to get $x(x-1)\equiv 0\pmod 7$. Now by the previous proposition,
 since $7$ is prime if $x(x-1)\equiv 0\pmod 7$, we must have either $x\equiv 0\pmod 7$ or
@@ -2761,8 +2759,8 @@ is not a valid {\mc ISBN} codes (it does not satisfy~\refeq{\eqvalidisbn}).
 equal to $d_{10} d_9 d_8\cdots d_2 d_1$ except at one place $1\le j\le 10$. So $c_j\ne d_j$,
 but for all $1\le i\le 10$ with $i\ne j$, we have $c_i = d_i$. Then
 $$\eqalign{
-\sum_{i=1}^{10} i c_i &\equiv_11 \sum_{i=1}^{10} i c_i - 0 \cr
-&\equiv_11 \sum_{i=1}^{10} i c_i - \sum_{i=1}^{10} id_i \cr
+\sum_{i=1}^{10} i c_i &\equiv_{11} \sum_{i=1}^{10} i c_i - 0 \cr
+&\equiv_{11} \sum_{i=1}^{10} i c_i - \sum_{i=1}^{10} id_i \cr
 &= \sum_{i=1}^{10} i(c_i - d_i) \cr
 &= j(c_j-d_j). \cr
 }$$
@@ -2777,8 +2775,8 @@ have $c_j = d_{j-1}$ and $c_{j-1}=d_j$ (the adjacent digits are swapped). Furthe
 assume that $d_j\ne d_{j-1}$, since swapping adjacent digits that are the same doesn't
 do anything to the code. Then
 $$\eqalign{
-\sum_{i=1}^{10} i c_i &\equiv_11 \sum_{i=1}^{10} i c_i - 0 \cr
-&\equiv_11 \sum_{i=1}^{10} i c_i - \sum_{i=1}^{10} id_i \cr
+\sum_{i=1}^{10} i c_i &\equiv_{11} \sum_{i=1}^{10} i c_i - 0 \cr
+&\equiv_{11} \sum_{i=1}^{10} i c_i - \sum_{i=1}^{10} id_i \cr
 &= \sum_{i=1}^{10} i(c_i - d_i) \cr
 &= (j-1)c_{j-1} + jc_j - (j-1)d_{j-1} - jd_j \cr
 &= (j-1)d_j + jd_{j-1} - (j-1)d_{j-1} - jd_j \cr
@@ -2786,7 +2784,7 @@ $$\eqalign{
 }$$
 But since $d_{j-1}$ and $d_j$ are both in the range $\{0,\ldots, 10\}$, their difference
 is in the range $[-10,10]$, and we assumed that $d_{j-1}\ne d_j$, so this difference is not zero.
-We conclude that $d_{j-1}-d_j\not\equiv 0\pmod 11$, so the code is not valid.\slug
+We conclude that $d_{j-1}-d_j\not\equiv 0\pmod{11}$, so the code is not valid.\slug
 
 Something similar is done with credit card numbers, though we don't take digits modulo $11$
 (or else we'd have to use the digit 'X', which is cumbersome).
@@ -2817,7 +2815,7 @@ and we see that $n$ is divisible by $3$ if and only if the sum on the right-hand
 
 This works with $3$ replaced by $9$ since we also have $10\equiv 1\pmod 9$.
 
-\medskip\boldlabel Computing large powers modulo {\mathbold p}.
+\medskip\boldlabel Computing large powers modulo {\mathbold n}.
 The next application is not a precise mathemathical statement; rather, it's an observation
 that Fermat's little theorem can allow us to compute what large powers are modulo a prime
 without having to compute the number itself. We'll illustrate this by two examples.
@@ -2854,10 +2852,12 @@ $n$ is not prime. If the algorithm fails to do so, then the test is inconclusive
 be prime or not).
 \algstep F1. [Initialise.] Set $a \gets 2$. (We can skip the step $a=1$ since $a^{n-1}$ will
 always equal $1$ in this case.)
-\algstep F2. [Compute power.] Set $b\gets a^{n-1} \% n$. (So $0\le b< n$.)
+\algstep F2. [Compute power.] Set $b\gets a^{n-1} \percent n$. (So $0\le b< n$.)
 \algstep F3. [Not prime?] If $b \neq 1$, output ``Not prime,'' and terminate the algorithm.
 \algstep F4. [Loop?] Set $a\gets a+1$. If $a=n$, output ``Inconclusive,'' and terminate the algorithm.
 Otherwise, go to step F2.\slug
+
+\bye
 
 Let's see a couple of examples. Suppose we want to find out if $9$ is prime or not (we both know it isn't
 but play along for a second). In the very first step loop, when $a=2$, we have
@@ -2920,13 +2920,15 @@ people to encrypt their messages before sending them to her, and then a {\it pri
 that will allow her to decrypt messages. (Only she knows the private key.)
 
 To set things up, Alice needs two large primes, call them $p$ and $q$. (Something like $200$
-bits is sufficient.) Then she computes $n=pq$. Now, she picks some integer $k$ with $\gcd(k,n) = 1$.
-By Theorem~{\thminvertiblemodn}, there is some integer $s$ such that $ks=1$. Alice publishes
+bits is sufficient.) Then she computes $n=pq$. Now, she picks some integer $k$ with
+$$\gcd\bigl(k,(p-1)(q-1)\bigr) = 1.$$
+By Theorem~{\thminvertiblemodn}, there is some integer $s$ such that $ks\equiv 1\pmod{(p-1)(q-1)}$.
+Alice publishes
 the integer $n$ and the public key $k$. The private key is $s$; this she keeps to herself.
 
 Now Bob wants to send a secret message $M$ to Alice. Considering $M$
 as an integer (in binary), a requirement for the algorithm to work is $M<n$. Bob computes
-$\bar M = M^k\% n$ and sends $\bar M$ to $A$. (We have $0\le \bar M < n$ by the division
+$\bar M = M^k\percent n$ and sends $\bar M$ to $A$. (We have $0\le \bar M < n$ by the division
 algorithm.)
 
 Alice receives $\bar M$. She computes ${\bar M}^s$. It turns out that this is $M$.
@@ -2955,10 +2957,123 @@ and we may write $l = rp$ for some $r\in \ZZ$. So we have
 $$ a-b = lq = rpq,$$
 implying that $a-b\equiv 0\pmod{pq}$; that is, $a\equiv b\pmod{pq}$.\slug
 
-Now we shall prove that the encrypted message can be decrypted into the original message.
+Now we shall prove that the encrypted message $\bar M = M^k$
+can be decrypted into the original message.
 
 \parenproclaim Theorem {\advthm} ({\mc RSA} encryption). Let $p$ and $q$ be distinct primes and
-let $n=pq$. 
+let $n=pq$. Let $k$ and $s$ be such that $ks\equiv 1\pmod n$. Then for all integers $0\le M < n$,
+$(M^k)^s \equiv M\pmod n$.
+
+\proof Without loss of generality, we can take $k$ and $s$ both positive. From
+$ks\equiv 1\pmod{(p-1)(q-1)}$,
+we know there is an integer $l$ such that $ks-1 =l (p-1)(q-1)$. Since $k,s>0$, this identity
+means that $l>0$ as well. Now, since $n=pq$, we have
+$$(M^k)^s \equiv M^{ks} \equiv M^{1+l(p-1)(q-1)} \equiv M(M^{p-1})^{l(q-1)} \pmod{pq}.$$
+By part (i) of the previous lemma, this means we have the same congruence modulo $p$; i.e.,
+$$(M^k)^s \equiv M(M^{p-1})^{l(q-1)} \pmod p,$$
+and by Fermat's little theorem $M^{p-1}\equiv 1$ for all $M\not\equiv 0\pmod p$, so this simplifies to
+$$\eqalign{
+(M^k)^s &\equiv_p \cases{M, & if $M\not\equiv 0\pmod p$; \cr 0, & otherwise} \cr
+&\equiv_p M.\cr
+}$$
+{\it Mutatis mutandis} (by the roles of $p$ and $q$ in the above), we have
+$(M^k)^s \equiv_q M$ as well, so part (ii) of the previous lemma can now be applied to give
+$$(M^k)^s \equiv M \pmod{pq}.\noskipslug$$
+
+Here is an example of the {\mc RSA} algorithm in action. Alice sets $p=3$ and $q=11$,
+so that $n=33$. This means that $(p-1)(q-1) = 2\cdot 10 = 20$. Using $k=7$ (which we can
+do since $\gcd(7,20) = 1$, we have $s=3$, since $3\cdot 7 = 21\equiv 1\pmod{20}$.
+Alice publishes the integer $n=33$ as well as the public key $k=7$. She keeps the number $s=3$ private.
+
+The possible messages $M$ one can send to Alice are $0,1,\ldots, 32$, since we need $0\le M<n$.
+Suppose Bob wants to send the message $00010$ to Alice; that is, we have $M=2$. Bob computes
+$$M^k = 2^7 = 2^5\cdot 2^2 = 32\cdot 4 \equiv (-1)\cdot 4 \equiv 29\pmod{33},$$
+and sends Alice $\bar M = 29$.
+
+Now Alice computes
+$$\bar M^s = 29^3 \equiv (-4)^3 = -64 \equiv -64 + 66 = 2\pmod{33}$$
+and recovers the original message $M=2$.
+
+Now imagine that there is a third person, Charlie, who wants to thwart Alice and Bob.
+The integer $n$ and the public key $n$ are known to all,
+including Charlie. If he wants to decrypt Bob's message, all Charlie needs to know is the
+the private key $s$. In this case, since $n$ is very small, the Adversary can simply
+factor $33 = 3\cdot 11$ to find out that $(p-1)(q-1) = 20$, and then use Euclid's Algorithm
+to find the inverse of $7$ modulo $20$, and he will be able to decrypt all messages between
+Alice and Bob.
+
+In real life, {\mc RSA} is implemented using very large primes $p$ and $q$.
+This makes it difficult, but not impossible, to break the encryption. To put things
+in perspective, it took a team of researchers $900$ core-years of computing time to
+factorise the $240$-digit ($795$-bit) modulus $n$ that is used
+ in {\mc RSA}-240 encryption. These researchers estimated
+that increasing the number of bits to $1024$ would make their factorisation program
+take $500$ times as long to crack the encryption.
+
+However, this does not mean there doesn't exist a fast algorithm for factorising
+integers. We just haven't found one yet (or if people have, they are keeping the algorithm
+to themselves). Most computer scientists believe that this is impossible though. It
+is conjectured
+that integer factorisation is a difficult problem---that is, there is no algorithm to
+factorise a $b$-bit integer in time polynomial in $b$. Until this conjecture is proved,
+all of the data we rely on encryption to protect could theoretically be in jeopardy.
+
+\vfill\eject
+\begingroup\headline{\hfil}\footline{\hfil}
+\vglue160pt
+\centerline{\titlefont III. GRAPH THEORY}
+\vskip220pt
+\bigskip
+\begingroup\obeylines\eightssi
+\hfill Quamobrem, cum nuper problematis cuiusdam mentio esset facta,
+\hfill quod quidem ad geometriam pertinere videbatur,
+\hfill at ita erat comparatum, ut neque determinationem quantitatum requieret,
+\hfill neque solutionem calculi quantitatum ope admitteret,
+\hfill id ad geometriam situs referre haud dubitavi:
+\hfill praesertim quod in eius solutione solus situs in considerationem veniat,
+\hfill calculus vero nullius prorsus sit usus.
+\eightss
+\smallskip
+\hfill --- LEONHARD EULER {\eightssi ``Solutio problematis ad geometriam situs pertinentis''} (1741)
+\endgroup%\obeylines
+\bigskip\goodbreak
+\vfill\eject
+
+\advsect Definitions and basic notions
+
+A {\it graph} is a pair $G = (V,E)$ where $V$ is a nonempty set and
+$$E \subseteq \bigl\{ \{u,v\} : u,v\in V\bigr\}.$$
+The elements of $V$ are called {\it vertices} and the elements of $E$ are
+called edges.
+If $e = \{u,v\}\in E$, we say that $u$ and $v$ are {\it adjacent}, and
+$e$ is {\it incident on} $u$ and $v$. For brevity, we often write $uv$ instead
+of $\{u,v\}$.
+
+For instance, we might have $V = \{1,2,3,4\}$ and
+$$E = \{12, 13, 14, 24\}.$$
+We can draw the graph $G = (V,E)$ as follows:
+\midinsert
+$$\epsfbox{firstexample.ps}$$
+\endinsert
+\goodbreak
+More examples of graphs are pictured in the figure below.
+
+\midinsert
+$$\epsfbox{smallgraphs.ps}$$
+\vskip5pt
+\caption{Some small graphs.}
+\endinsert
+\goodbreak
+
+We can define graphs in a more complicated manner. Let $G = (V,E)$
+be the graph with $V = \ZZ/5\ZZ$ and $ab\in E$ if and only if
+$$a + b \equiv 1\pmod 5\qquad\hbox{or}\qquad a+b \equiv 3\pmod 5.$$
+Here is a drawing of $G$:
+\midinsert
+$$\epsfbox{modfiveexample.ps}$$
+\endinsert
+\goodbreak
+
 
 
 
