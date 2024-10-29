@@ -241,3 +241,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Tortilla Flat_ (1935), John Steinbeck
 1. _Best Canadian Stories 2025_ (2024), ed. Stephen Beattie
 1. _The Year of Magical Thinking_ (2005), Joan Didion
+1. _Unaccustomed Earth_ (2008), Jhumpa Lahiri
+1. _I Ate Tiong Bahru_ (2013), Stephen Black
+1. _The Cyberiad_ (1965), Stanisław Lem
+

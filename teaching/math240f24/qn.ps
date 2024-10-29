@@ -1,0 +1,181 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 200 90
+%%HiResBoundingBox: 0 0 200 90
+
+% Constants
+/cm {28.35 mul} def
+/u {0.7 cm mul} def     % One unit
+/w {0.35 cm mul} def
+/xoff {0.1 cm add} def   % Offset the letters
+/yoff {0.1 cm add} def
+
+/nine {/CMMI10 findfont 9 scalefont setfont} def
+/ninetext {/CMR10 findfont 9 scalefont setfont} def
+/sixtext {/CMR8 findfont 6 scalefont setfont} def
+/symnine {/CMSY10 findfont 9 scalefont setfont} def
+
+0.5 setlinewidth
+
+% k n deg:  get degrees of k/n of the way around unit circle
+/deg {
+    /n exch def
+    /k exch def
+    360 k mul n div
+} def
+
+/dot {
+    2 0 360 arc closepath fill
+} def
+
+/s 20 string def
+/label {
+    /n exch def
+    ninetext n s cvs show
+} def
+
+% L1
+gsave
+0 u 1 w dot
+0 u 3 w dot
+newpath
+0 u 1 w moveto
+0 u 3 w lineto
+stroke
+grestore
+% L2
+gsave
+0.75 u 0 w translate
+1 u 1 w dot
+0.5 u 3 w dot
+1.5 u 3 w dot
+1 u 5 w dot
+newpath
+1 u 1 w moveto
+0.5 u 3 w lineto
+1 u 5 w lineto
+1.5 u 3 w lineto
+1 u 1 w lineto
+stroke
+1 u 0 w moveto
+grestore
+% L3
+gsave
+3.5 u 0 w translate
+1 u 1 w dot
+0 u 3 w dot
+1 u 3 w dot
+2 u 3 w dot
+0 u 5 w dot
+1 u 5 w dot
+2 u 5 w dot
+1 u 7 w dot
+newpath
+1 u 1 w moveto
+0 u 3 w lineto
+0 u 5 w lineto
+1 u 7 w lineto
+1 u 1 w moveto
+1 u 3 w lineto
+0 u 5 w lineto
+1 u 3 w moveto
+2 u 5 w lineto
+1 u 1 w moveto
+2 u 3 w lineto
+2 u 5 w lineto
+1 u 7 w lineto
+0 u 3 w moveto
+1 u 5 w lineto
+2 u 3 w lineto
+1 u 5 w moveto
+1 u 7 w lineto
+stroke
+1 u 0 w moveto
+grestore
+% L4
+gsave
+7 u 0 w translate
+2.5 u 1 w dot %emptyset
+1 u 3 w dot % 1
+2 u 3 w dot % 2
+3 u 3 w dot % 3
+4 u 3 w dot % 4
+0 u 5 w dot % 12
+1 u 5 w dot % 13
+2 u 5 w dot % 14
+3 u 5 w dot % 23
+4 u 5 w dot % 24
+5 u 5 w dot % 34
+1 u 7 w dot % 123
+2 u 7 w dot % 124
+3 u 7 w dot % 134
+4 u 7 w dot % 234
+2.5 u 9 w dot % 1234
+newpath
+2.5 u 1 w moveto %emptyset
+1 u 3 w lineto % 1
+2.5 u 1 w moveto %emptyset
+2 u 3 w lineto % 2
+2.5 u 1 w moveto %emptyset
+3 u 3 w lineto % 3
+2.5 u 1 w moveto %emptyset
+4 u 3 w lineto % 4
+1 u 3 w moveto % 1
+0 u 5 w lineto % 12
+1 u 3 w moveto % 1
+1 u 5 w lineto % 13
+1 u 3 w moveto % 1
+2 u 5 w lineto % 14
+2 u 3 w moveto % 2
+0 u 5 w lineto % 12
+2 u 3 w moveto % 2
+3 u 5 w lineto % 23
+2 u 3 w moveto % 2
+4 u 5 w lineto % 24
+3 u 3 w moveto % 3
+1 u 5 w lineto % 13
+3 u 3 w moveto % 3
+3 u 5 w lineto % 23
+3 u 3 w moveto % 3
+5 u 5 w lineto % 34
+4 u 3 w moveto % 4
+2 u 5 w lineto % 14
+4 u 3 w moveto % 4
+4 u 5 w lineto % 24
+4 u 3 w moveto % 4
+5 u 5 w lineto % 34
+1 u 7 w moveto % 123
+0 u 5 w lineto % 12
+1 u 7 w moveto % 123
+1 u 5 w lineto % 13
+1 u 7 w moveto % 123
+3 u 5 w lineto % 23
+2 u 7 w moveto % 124
+0 u 5 w lineto % 12
+2 u 7 w moveto % 124
+2 u 5 w lineto % 14
+2 u 7 w moveto % 124
+4 u 5 w lineto % 24
+3 u 7 w moveto % 134
+1 u 5 w lineto % 13
+3 u 7 w moveto % 134
+2 u 5 w lineto % 14
+3 u 7 w moveto % 134
+5 u 5 w lineto % 34
+4 u 7 w moveto % 234
+3 u 5 w lineto % 23
+4 u 7 w moveto % 234
+4 u 5 w lineto % 24
+4 u 7 w moveto % 234
+5 u 5 w lineto % 34
+2.5 u 9 w moveto % 1234
+1 u 7 w lineto % 123
+2.5 u 9 w moveto % 1234
+2 u 7 w lineto % 124
+2.5 u 9 w moveto % 1234
+3 u 7 w lineto % 134
+2.5 u 9 w moveto % 1234
+4 u 7 w lineto % 234
+stroke
+grestore
+
+showpage

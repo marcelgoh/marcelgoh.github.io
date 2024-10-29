@@ -1,0 +1,60 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 160 110
+%%HiResBoundingBox: 0 0 160 110
+
+% Constants
+/cm {28.35 mul} def
+/u {0.5 cm mul} def     % One unit
+
+0.5 setlinewidth
+
+-20 -20 translate
+
+-10 rotate
+
+/togrey {
+    /mult exch def
+    0.72 0.08 mult mul sub
+} def
+
+/dot {
+    newpath
+    1.5 0 360 arc fill
+    stroke
+} def
+
+%      0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  25  26  27  28  29  30
+/xarr [30 35 25 10 27 21 39 38 35 59 56 46 67 79 81 93 54 75 68 64 54 74 85 98 104 116 121 125 123 112 112
+% 31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48
+  108 107 102 93 112 124 129 145 138 154 140 138 130 126  95  84  92  103] def
+%      0   1  2  3   4  5  6  7  8  9   10  11  12  13  14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32
+/yarr [112 98 90 101 75 60 72 53 85 101 112 119 121 107 95 91 83 83 72 60 47 46 77 68 93 94 79 68 57 50 63 80 108
+% 33  34  35  36  37  38  39  40  41  42 43 44  45 46 47 48 
+  119 127 133 116 129 127 115 94 100 81 94 106  56 47 43 45] def
+/marr [8 8 8 8 8 8 8 8 2 2 2 4 4 1 1 1 1 1 1 1 2 2 1 1 9 9 9 9 9 9 3 3 2 2 4 4 8 8 8 8 8 8 8 8 2 3 9 9 9] def
+/uarr [0 1 8 2 8 4 8 6 8 9  10 10 9  13 14 14 17 17 18 19 19 17 22 23 45 45 45 23 30 30 30 23 31 31 31 13 32 33
+33 32 44 36 44 39 44 41 44 43] def
+/varr [1 8 2 3 4 5 6 7 9 10 11 12 13 14 15 17 16 18 19 20 21 22 23 45 46 47 48 30 27 28 29 31 24 25 26 32 33 34
+35 44 36 37 39 38 41 40 43 42] def
+/N xarr length def
+
+% Draw edges
+0 1 N 2 sub {
+    /i exch def
+    /u uarr i get def
+    /v varr i get def
+    newpath
+      xarr u get yarr u get moveto
+      xarr v get yarr v get lineto
+    stroke
+} for
+
+% Draw nodes
+0 1 N 1 sub {
+    /i exch def
+    xarr i get yarr i get dot
+} for
+
+
+
+showpage

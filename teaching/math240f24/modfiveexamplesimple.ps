@@ -1,11 +1,11 @@
 %!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 0 0 60 60
-%%HiResBoundingBox: 0 0 60 60
+%%BoundingBox: 0 0 120 20
+%%HiResBoundingBox: 0 0 120 20
 
 % Constants
 /cm {28.35 mul} def
-/u {2 cm mul} def     % One unit
-/w {2 cm mul} def
+/u {1 cm mul} def     % One unit
+/w {1 cm mul} def
 /xoff {0.1 cm add} def   % Offset the letters
 /yoff {0.1 cm add} def
 
@@ -15,6 +15,13 @@
 /symnine {/CMSY10 findfont 9 scalefont setfont} def
 
 0.5 setlinewidth
+
+% k n deg:  get degrees of k/n of the way around unit circle
+/deg {
+    /n exch def
+    /k exch def
+    360 k mul n div
+} def
 
 /dot {
     2 0 360 arc closepath fill
@@ -29,24 +36,21 @@
 % L1
 gsave
 0 u 0 w dot
-0 u 1 w dot
-1 u 1 w dot
 1 u 0 w dot
-0 u 1 w moveto
--8 0 rmoveto 1 label
-1 u 1 w moveto
-4 0 rmoveto 2 label
-0 u 0 w moveto
--8 -7 rmoveto 3 label
-1 u 0 w moveto
-4 -7 rmoveto 4 label
+2 u 0 w dot
+3 u 0 w dot
+4 u 0 w dot
 newpath
+0 u -2 add 0 w 5 add moveto 4 label
+1 u -2 add 0 w 5 add moveto 2 label
+2 u -2 add 0 w 5 add moveto 1 label
+3 u -2 add 0 w 5 add moveto 5 label
+4 u -2 add 0 w 5 add moveto 3 label
 0 u 0 w moveto
-0 u 1 w lineto
-1 u 1 w lineto
-0 u 1 w moveto
 1 u 0 w lineto
-1 u 1 w lineto
+2 u 0 w lineto
+3 u 0 w lineto
+4 u 0 w lineto
 stroke
 grestore
 

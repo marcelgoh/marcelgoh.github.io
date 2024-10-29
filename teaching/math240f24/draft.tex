@@ -14,8 +14,8 @@
 \def\cont#1#2{#1\hskip-2pt\leaders\hbox to 8pt{\hss.\hss}\hfil\hbox to 1em{\hss#2}}
 \def\divides{\mid}
 \def\percent{\mathrel{\%}}
-
-\vglue24pt
+\def\norm#1{|\!|#1|\!|}
+\def\dist{\op{\rm dist}}
 
 \maketitle{MATH 240 Fall 2024}{notes by}{Marcel Goh}{}
 
@@ -55,6 +55,15 @@ Jeremy Macdonald, but any errors are likely my own. Please email me if you find 
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 9.\kern .5em Primes }{47}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 10.\kern .5em Modular arithmetic }{51}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 11.\kern .5em Applications of
+number theory}{60}}
+\medskip
+\noindent\hbox to\hsize{\relax \unhcopy \strutbox \cont
+{{\tenssbx III. Graph theory \kern 3pt}}{68}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 12.\kern .5em Definitions and
+basic notions}{69}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -2077,6 +2086,7 @@ and can hop in steps of $a$ or $b$ (in either direction). Theorem~{\thmbezout} t
 that the lilypad $d = \gcd(a,b)$ is reachable by the frog. The next proposition characterises
 the set of {\it all} lilypads that the frog can get to.
 
+\edef\propfrogs{\the\thmcount}
 \proclaim Proposition \advthm. Let $a$ and $b$ be nonzero integers. The set
 $$X = \{ s'a + t'b : s',t'\in \ZZ\}$$
 is exactly the set of multiples of $d = \gcd(a,b)$.
@@ -2857,9 +2867,9 @@ always equal $1$ in this case.)
 \algstep F4. [Loop?] Set $a\gets a+1$. If $a=n$, output ``Inconclusive,'' and terminate the algorithm.
 Otherwise, go to step F2.\slug
 
-\bye
-
-Let's see a couple of examples. Suppose we want to find out if $9$ is prime or not (we both know it isn't
+\noindent\datestamp{29}{x} \hskip\parindent
+Let's see a couple of examples.
+Suppose we want to find out if $9$ is prime or not (we both know it isn't
 but play along for a second). In the very first step loop, when $a=2$, we have
 $$2^{9-1} = 2^8 = (2^4)^2 = 16^2 \equiv (-2)^2 = 4\pmod 9,$$
 so since $4 \not\equiv 1\pmod 9$, we conclude right away that $9$ is not prime.
@@ -2938,7 +2948,7 @@ To prove this, we need a lemma.
 \medskip
 \item{i)} For all positive integers $m$ and $n$,
 if $a\equiv b\pmod{mn}$, then $a\equiv b\pmod m$ and $a\equiv b\pmod n$.
-\medskip
+\medskip\noindent
 In the case that $m$ and $n$ are different primes, the converse holds; that is, the following
 holds.
 \medskip
@@ -3042,39 +3052,532 @@ all of the data we rely on encryption to protect could theoretically be in jeopa
 \advsect Definitions and basic notions
 
 A {\it graph} is a pair $G = (V,E)$ where $V$ is a nonempty set and
-$$E \subseteq \bigl\{ \{u,v\} : u,v\in V\bigr\}.$$
+$$E \subseteq \bigl\{ \{u,v\} : u,v\in V, u\ne v\bigr\}.$$
+The graph $G$ is said to be {\it finite} if and only if $V$ is finite.
 The elements of $V$ are called {\it vertices} and the elements of $E$ are
 called edges.
 If $e = \{u,v\}\in E$, we say that $u$ and $v$ are {\it adjacent}, and
 $e$ is {\it incident on} $u$ and $v$. For brevity, we often write $uv$ instead
-of $\{u,v\}$.
+of $\{u,v\}$. Note that an edge is defined to be a $2$-element set, not an ordered
+pair, so $uv = vu$.
 
-For instance, we might have $V = \{1,2,3,4\}$ and
+Let's start with a small example. Let $V = \{1,2,3,4\}$ and
 $$E = \{12, 13, 14, 24\}.$$
 We can draw the graph $G = (V,E)$ as follows:
 \midinsert
 $$\epsfbox{firstexample.ps}$$
 \endinsert
 \goodbreak
-More examples of graphs are pictured in the figure below.
+%More examples of graphs are pictured in the figure below.
+%\midinsert
+%$$\epsfbox{smallgraphs.ps}$$
+%\vskip5pt
+%\caption{Some small graphs.}
+%\endinsert
+%\goodbreak
 
-\midinsert
-$$\epsfbox{smallgraphs.ps}$$
-\vskip5pt
-\caption{Some small graphs.}
-\endinsert
-\goodbreak
-
-We can define graphs in a more complicated manner. Let $G = (V,E)$
-be the graph with $V = \ZZ/5\ZZ$ and $ab\in E$ if and only if
+Instead of listing out all the vertices,
+we can define graphs by setting conditions for when a pair of vertices should
+be connected by an edge.
+For instance, let $G = (V,E)$
+be the graph with $V = \ZZ/5\ZZ$ and, for $a,b\in V$ with $a\ne b$,
+we put $ab\in E$ if and only if
 $$a + b \equiv 1\pmod 5\qquad\hbox{or}\qquad a+b \equiv 3\pmod 5.$$
 Here is a drawing of $G$:
 \midinsert
 $$\epsfbox{modfiveexample.ps}$$
 \endinsert
 \goodbreak
+Turns out this graph was simpler than it might have seemed at first glance.
+Here is an alternate drawing of $G$:
+\midinsert
+$$\epsfbox{modfiveexamplesimple.ps}$$
+\endinsert
+\goodbreak
+Note that when we refer to $G$, we are talking
+about a set of vertices and edges, not any particular drawing!
+There are infinitely many valid drawings of any graph.
 
+Suppose $G = (V,E)$ has a finite number of vertices. Then we can put the elements
+of $V$ in bijection with $\{1,\ldots, n\}$. Without loss of generality, we can simply assume
+that $\{1,\ldots,n\}$ {\it is} the vertex set of $G$.
+The {\it adjacency matrix} of $G$ is then defined to be the symmetric $n\times n$ matrix
+obtained by setting
+$$A_{ij} = \cases{ 1, & if $ij\in E$,\cr 0, & otherwise.}$$
+\endgroup%\headline{\hfil}\footline{\hfil}
+For instance, the adjacency matrix of the graph on $\ZZ/5\ZZ$ defined earlier is
+$$ A = 
+\pmatrix{
+0 & 1 & 0 & 0 & 1 \cr
+1 & 0 & 0 & 1 & 0 \cr
+0 & 0 & 0 & 0 & 1 \cr
+0 & 1 & 0 & 0 & 0 \cr
+1 & 0 & 1 & 0 & 0 \cr
+}.$$
 
+We now define certain important families of graphs. For any integer $n\ge 1$, we define
+the {\it complete graph} $K_n$ to be the graph on $n$ vertices with every possible edge present.
+Small examples are illustrated in Fig.~2.
+\midinsert
+$$\epsfbox{kn.ps}$$
+\vskip5pt
+\caption{Complete graphs $K_n$ for small $n$.}
+\endinsert
+\goodbreak
+\bye
+For an integer $n\ge 1$,
+we define the {\it Hamming cube} or {\it hypercube} to be the graph $Q_n$
+whose vertex set is $\{0,1\}^n$, the set of all binary strings of length $n$,
+and whose edge set is the exactly the set of pairs of strings that differ by exactly
+one bit. Small examples are illustrated in Fig.~3. (As an exercise, try to figure out
+which strings correspond to which vertices!)
+\midinsert
+$$\epsfbox{qn.ps}$$
+\vskip5pt
+\caption{Hypercubes $Q_n$ for small $n$.}
+\endinsert
+\goodbreak
+
+\medskip\boldlabel Degrees and {\mathbold k}-regularity.
+The {\it neighbours} of a vertex $v$ are all $u\in V$ such that $uv\in E$.
+The {\it degree} of a vertex $v$, denoted by $\deg(v)$, is the number of neighbours
+that $v$ has. A graph is said to be {\it $k$-regular} for some $k\in \NN$ if every $v\in V$ has
+degree $k$. For example, let $C_n$ denote the graph on $V = \ZZ/n\ZZ$ where
+we connect $a\in V$ and $b\in V$ if and only if $a-b\equiv 1\pmod n$
+or $a-b\equiv -1\pmod n$. Every vertex $a$ has exactly two neighbours, namely,
+the congruence classes of $a-1$ and $a+1$ modulo $n$. So $C_n$ is $2$-regular for all $n$.
+In fact, complete graphs and hypercubes are also regular, for in $K_n$, each vertex
+is connected to each of the $n-1$ other vertices, and in $Q_n$, each string is
+connected to the $n$ other strings obtained by flipping each of its bits.
+
+The following theorem relates vertex degrees to the number of edges.
+
+\edef\thmdegformula{\the\thmcount}
+\proclaim Theorem \advthm. Let $G = (V,E)$ be a finite graph. Then
+$$\sum_{v\in V} \deg(v) = 2|E|.$$
+
+\proof Consider each edge $e = uv \in E$. It contributes $+2$ to the right-hand side.
+On the left-hand side, it contributes $+1$ to the degree $\deg(u)$ of $u$,
+and $+1$ to the degree $\deg(v)$ of $v$.\slug
+
+The proof of this theorem is an excellent example of a proof by double counting, where
+we have proved an identity by showing that both sides are different ways
+of counting the same thing. This theorem has the following corollary.
+
+\parenproclaim Corollary {\advthm} (Handshaking lemma).
+In every finite simple graph, the number of vertices having odd degree is even.
+
+\proof We partition $V = V_o \cup V_e$, where $V_o$ comprises all vertices of
+odd degree and $V_e$ comprises all vertices of even degree. By the previous theorem,
+we have
+$$2|E| = \sum_{v\in V} \deg (v) = \sum_{v\in V_o} \deg(v) + \sum_{v\in V_e} \deg(v).$$
+Taking this whole identity modulo $2$, we have
+$$0 \equiv \sum_{v\in V_o} 1 + \sum_{v\in V_e} 0\pmod 2.$$
+Hence
+$$|V_o| = \sum_{v\in V_o} 1 \equiv 0\pmod 2,$$
+which is what we wanted.\slug
+
+This proposition is often called the handshaking lemma (sometimes this is also used
+to refer to the preceding theorem),
+since it implies that at any gathering, the number of people who shake hands with
+an odd number of people is even. From Theorem~{\thmdegformula} we also able to derive
+a corollary that counts the number of edges in $k$-regular graphs.
+
+\proclaim Corollary \advthm. Let $G = (V,E)$ be $k$-regular. Then
+$$|E| = {k|V|\over 2}.$$
+
+\proof By Theorem~{\thmdegformula}, we have
+$$2|E| = \sum_{v\in V}\deg (v),$$
+but $\deg(v) = k$ for all $v\in V$ by $k$-regularity. Hence
+$$2|E| = \sum_{v\in V} k = k|V|,$$
+and the result follows upon rearranging.\slug
+
+\medskip\boldlabel\datestamp{18}{} Walks, paths, and cycles.
+A {\it walk} in $G = (V,E)$ is a sequence $\sigma$ of vertices
+$$\sigma = (v_0, v_1, \ldots, v_n)$$
+such that $v_i v_{i+1}\in E$ for all $0\le i \le n-1$. The {\it endpoints}
+of $\sigma$ are $v_0$ and $v_n$, and the {\it length} of $\sigma$, denoted $|\sigma|$,
+is the number of edges traversed, namely, $n$.
+The walk is said to be {\it closed} if $v_0 = v_n$ and {\it open} otherwise.
+A walk is called a {\it path} if no vertex is repeated.
+
+\proclaim Theorem \advthm. Let $G = (V,E)$ be a graph. If $u$ and $v$ are vertices
+such that there exists a walk from $u$ to $v$, then there exists a path from $u$ to $v$.
+
+\proof We perform a minimality argument.
+Let $\sigma = (v_0, v_1,\ldots, v_n)$ be a walk from $u$ to $v$ (so
+$u = v_0$ and $v = v_n$) of shortest length. We claim that $\sigma$ is in fact a path.
+Indeed, suppose for a contradiction that it is not a path; then there is some repeated vertex,
+so there exist $i,j\in\{0,1,\ldots,n\}$ such that $i<j$ and $v_i = v_j$. Hence
+there is no need to visit any of the vertices between $v_i$ and $v_j$ in $\sigma$,
+since $v_i = v_j$ is connected to $v_{j+1}$. Concretely, consider the walk
+$$\sigma' = (v_0, v_1,\ldots, v_i, v_{j+1}, \ldots, v_n).$$
+Note that $|\sigma'| = |\sigma| - (j-i)$, and $j-i > 0$, so $\sigma'$ is a shorter walk
+from $u$ to $v$. But this contradicts our choice of $\sigma$ as a walk from
+$u$ to $v$ of shortest length. We conclude that $\sigma$ is a path.\slug
+
+A {\it cycle} is a walk $\sigma = (v_0,v_1,\ldots,v_n)$ of length at least $3$
+with $v_0 = v_n$ and no vertex repeated except $v_0 = v_n$.
+
+\edef\propoddwalkoddcycle{\the\thmcount}
+\proclaim Proposition \advthm. Let $G = (V,E)$. If $G$ contains a closed walk
+of odd length, then it contains a cycle of odd length.
+
+\proof The idea is similar to the proof of the previous theorem. We perform a
+minimality argument. Let
+$\sigma = (v_0, v_1,\ldots,v_n)$ be an odd-length closed walk in $G$, and choose
+this walk to have minimal odd length (i.e, any shorter walk has even length). We shall
+prove that $\sigma$ is a cycle.
+
+For a contradiction, suppose that $\sigma$ is not a cycle, so that
+there exist indices $i$ and $j$ with $i<j$ such that $v_i = v_j$.
+Consider the two closed walks
+$$\sigma_1 = (v_0, v_1, \ldots, v_i, v_{j+1}, \ldots, v_n)$$
+and
+$$\sigma_2 = (v_i, v_{i+1}, \ldots, v_j).$$
+Both are shorter than $\sigma$, so by the minimality of $\sigma$,
+$|\sigma_1|$ and $|\sigma_2|$ are even. But this implies that
+$|\sigma| = |\sigma_1|+|\sigma_2|$ is even. This contradicts the hypothesis that $|\sigma|$
+is odd.
+
+We conclude that $\sigma$ is a cycle.\slug
+
+\medskip\boldlabel Connectedness.
+We say a graph $G = (V,E)$ is {\it connected} if for all $u,v\in V$ there exists
+a walk (and hence a path) from $u$ to $v$. All of the graphs we have
+drawn so far have been connected. Here is a graph that is disconnected:
+\midinsert
+$$\epsfbox{disconnected.ps}$$
+\endinsert
+\noindent This picture is meant to depict one graph on $8$ vertices, not three
+different graphs.
+
+The small examples of $K_n$ and $Q_n$ in Figs.~2 and~3 were all connected,
+so it is natural to assume that $K_n$ and $Q_n$ are connected for all $n$.
+This is indeed the case.
+
+\proclaim Proposition \advthm. For all $n\ge 1$, the graphs $K_n$ and $Q_n$
+are connected.
+
+\proof Any vertices $u$ and $v$ in the vertex set of $K_n$ belong to the
+edge $uv$, so we have the path $(u, v)$ of length $1$ between $u$ and $v$.
+This shows that $K_n$ is connected.
+
+Now let $u$ and $v$ be any two vertices in $K_n$. Suppose there are $m$
+bits that differ between $u$ and $v$. Then we can flip them one by one to
+change $u$ into $v$. This represents a path of length $m$ from $u$ to $v$, since there
+is an edge in $Q_n$ between any two strings in $Q_n$ that differ at exactly one
+bit.\slug
+
+Let $G = (V,E)$ and
+let $u,v\in V$. We say that {$v$ is reachable from $u$} if there exists a walk
+from $u$ to $v$. If we define a relation $\sim$ on $V$ by setting
+$u\sim v$ if and only if $v$ is reachable from $u$, then $\sim$ is an equivalence
+relation (prove this as an exercise!) and the equivalence
+classes are called the {\it connected components} of $G$.
+
+Here is an example. Let $G = (\ZZ, E)$, where for $i,j\in \ZZ$ with $i<j$, we have
+$ij\in E$ if and only if $j-i \in \{9,15\}$. That is, every edge either
+hops forwards or backwards in the number line in increments of $9$ or $15$.
+Starting at $n\in \ZZ$, we can reach any vertex $m$ that is of the form
+$$ m = n + 15s + 9t$$
+for some $s,t\in \ZZ$. By Proposition~{\propfrogs} (this was the proposition
+about frogs and lilypads, if that jogs your memory), the integers
+representable
+as $15s+9t$ for some $s,t\in \ZZ$ are exactly the multiples of
+$\gcd(9,15) = 3$. So in fact, from $n$ one can reach any integer $m$
+of the form $n+3l$ for some $l\in \ZZ$; that is, one can reach any integer
+$m$ with $m\equiv n\pmod 3$. So the three connected components in this
+graph are $[0]_3$, $[1]_3$, and $[2]_3$, the equivalence classes of integers
+modulo $3$.
+
+\advsect Triangles and bipartite graphs
+
+A {\it subgraph} of $G = (V,E)$ is a graph $G' = (V',E')$ such that
+$V'\subseteq V$ and $E'\subseteq E$ where for all $e = uv\in E'$, we have
+$u,v\in V'$. For example, the {\it triangle graph} $C_3$ is a subgraph of $K_4$ (draw it!).
+In fact, any graph on $n$ vertices or less is a subgraph of $K_n$, since
+$K_n$ contains all possible edges among $n$ vertices.
+
+We now consider an extremal question concerning
+subgraphs. An extremal question is one of the form, {\sl What is the
+extremal (maximum or minimum) number of objects we can have, subject to some restriction?}
+The extremal question we ask is, {\sl What is the maximum number of edges that a graph
+on $n$ vertices can have, assuming that it does not contain a triangle as a subgraph?}
+To answer this question, we need the following inequality, which is one of the
+most important inequalities in all of mathematics. It is named for A.~Cauchy,
+who in 1821 proved the version we shall record below,
+and H.~Schwarz, who proved a version for integrals in 1888.
+
+\parenproclaim Theorem {\advthm} (Cauchy--Schwarz inequality). For all
+$u_1,\ldots,u_n, v_1,\ldots,v_n\in \RR$, we have
+$$\biggl(\sum_{i=1}^n u_i v_i\biggr)^2
+\le \biggl( \sum_{i=1}^n {u_i}^2\biggr) \biggl( \sum_{i=1}^n {v_i}^2\biggr).$$
+
+In the proof below, you will need to recall from your high school days that
+for a quadratic polynomial $ax^2 + bx + c$, the {\it discriminant} is
+defined to be the quantity $b^2 - 4ac$. (It appears under the square-root sign
+in the quadratic formula.) If it is negative, the polynomial has no real roots,
+if it is positive, the polynomial has two real roots, and if it is zero, the polynomial
+has one real root.
+
+\proof If $u_i = 0$ for all $1\le i\le n$, then both sides are $0$ and the inequality
+is trivially true. So suppose that at least one of the $u_i$ is nonzero. Then
+$$p(x) = (u_1 x + n_1)^2 + (u_2 x + v_2)^2 + \cdots + (u_n x+v_n)^2$$
+is a quadratic polynomial in the variable $x$. Rewriting $p(x)$ in summation notation,
+we have
+$$\eqalign{
+p(x) &= \sum_{i=1}^n (u_ix + v_i)^2\cr
+&= \sum_{i=1}^n \bigl( u_i^2 x^2 + 2u_i v_i + v_i^2\bigr)\cr
+ &= \biggl(\sum_{i=1}^n u_i^2 \biggr) x^2 +
+2\biggl(\sum_{i=1}^n u_i v_i\biggr) x + \biggl( \sum_{i=1}^n {v_i}^2\biggr).\cr
+}$$
+Since it is defined as a sum of squares, $p(x)\ge 0$ for all $x\in \RR$, so it has
+at most one real root.
+This means its discriminant is nonpositive; in other words,
+$$4\biggl(\sum_{i=1}^n u_i v_i\biggr)^2
+- 4\biggl( \sum_{i=1}^n {u_i}^2\biggr) \biggl( \sum_{i=1}^n {v_i}^2\biggr) \le 0.$$
+Dividing through by $4$ and then rearranging gives exactly the inequality we sought.\slug
+
+The Cauchy--Schwarz inequality can also be proved using some results you might
+know from linear algebra.
+Defining vectors $u,v\in \RR^n$ by
+$u = (u_1,\ldots,u_n)$ and $v = (v_1,\ldots,v_n)$, the left-hand side of the
+Cauchy--Schwarz inequality is
+$(u\cdot v)^2$ and the right-hand side is $\norm{u}^2\norm{v}^2$. But,
+letting $\theta$ is the angle between $u$ and $v$,
+then $u\cdot v = \cos\theta \norm{u}\norm{v}$, and applying the fact that
+$|\cos\theta|\le 1$, we easily deduce the desired inequality.
+
+We are now able to derive the maximum number of edges in a triangle-free graph on
+$n$ vertices. The following theorem was proved by W.~Mantel in 1907.
+
+\parenproclaim Theorem {\advthm}. (Mantel's theorem). Let $G = (V,E)$ be a graph
+not containing a triangle as a subgraph. Then
+$$|E| \le \biggl\lfloor {|V|^2\over 4}\biggr\rfloor.$$
+
+\proof Consider the sum
+$$\sum_{uv\in E} \bigl(\deg(u)+\deg(v)\bigr).$$
+The term $\deg(u)$ appears in the sum exactly once for every edge incident on $u$;
+that is, it appears $\deg(u)$ times. This is true for all $u\in V$, so
+we conclude that
+$$\sum_{uv\in E} \bigl(\deg(u)+\deg(v)\bigr) = \sum_{u\in V} \deg(u)^2.$$
+On the other hand, since $G$ contains no triangle, for every pair of vertices $u$
+and $v$, the set of neighbours of $u$ is disjoint from the set of neighbours of $v$.
+So $\deg(u)+\deg(v)\le |V|$, and we have
+$$\sum_{u\in V} \deg(u)^2 = \sum_{uv\in E} \bigl(\deg(u)+\deg(v)\bigr)\le |V|\cdot |E|.$$
+By Theorem~{\thmdegformula} and the Cauchy--Schwarz inequality in that order,
+we have
+$$\eqalign{
+\bigl(2|E|\bigr)^2 &= \Bigl(\sum_{u\in V} \deg(u)\Bigr)^2 \cr
+&= \Bigl(\sum_{u\in V} \deg(u)\cdot 1\Bigr)^2 \cr
+&\le \Bigl(\sum_{u\in V} \deg(u)^2\Bigr) \Bigl(\sum_{u\in V} 1^2\Bigr) \cr
+&= |V| \Bigl(\sum_{u\in V} \deg(u)^2\Bigr).\cr
+}$$
+Hence
+$$4|E|^2 \le |V| \Bigl(\sum_{u\in V} \deg(u)^2\Bigr) \le |V|^2\cdot |E|.$$
+Rearranging this gives us
+$$|E|\le {|V|^2\over 4},$$
+and we can take the floor function on the right-hand side, since $|E|$ must be an
+integer.\slug
+
+So if $G = (V,E)$
+has $|E|\ge \lfloor |V|^2/4\rfloor$, there must be a triangle subgraph in $G$.
+Now let $|V|$ be even, so that $|V|^2/4$ is an integer. Does there exist a graph
+$G$ with exactly $|V|^2/4$ edges such that $G$ does not contain a triangle
+as a subgraph? This brings us to the definition of a bipartite graph.
+
+\medskip\boldlabel\datestamp{19}{} Bipartite graphs.
+A graph $G = (V,E)$ is called {\it bipartite} if there is a partition
+$V = A\cup B$ of the vertex set (so $A\cap B = \emptyset$) called
+the {\it bipartition} such that each edge has one endpoint in $A$ and one endpoint
+in $B$. For example, hypercubes are bipartite.
+
+\proclaim Proposition \advthm. For all $n\ge 1$, the hypercube $Q_n$ is bipartite.
+
+\proof Let $Q_n = (V,E)$. Every element $s\in V$ corresponds to a string
+$S = (s_1, \ldots, s_n)$ of bits, where $s_i\in \{0,1\}$ for all $1\le i\le n$.
+Define
+$$V_0 = \bigl\{ s\in V : s_1 + \cdots + s_n \equiv 0 \pmod 2\bigr\}$$
+and
+$$V_1 = \bigl\{ s\in V : s_1 + \cdots + s_n \equiv 1 \pmod 2\bigr\}.$$
+It is clear that $V_0 \cup V_1 = V$ and $V_0 \cap V_1 = \emptyset$, so
+this is a bipartition of the vertex set, and for every $e = s_1s_2\in E$,
+the strings $s_1$ and $s_2$ differ in exactly one bit, so if $s_1\in V_0$,
+then $s_2\in V_1$, and vice versa.\slug
+
+The {\it complete bipartite graph} $K_{m,n}$ is a graph with $V = V_m \cup V_n$, where
+$|V_m|=m$ and $|V_n| = n$, and $E$ is the set $\{uv : u\in V_m, v\in V_n\}$ of
+all possible edges between $V_m$ and $V_n$. Fig.~4 illustrates two small examples
+of complete bipartite graphs.
+
+\midinsert
+$$\epsfbox{kmn.ps}$$
+\vskip5pt
+\caption{The complete bipartite graphs $K_{2,3}$ and $K_{4,3}$.}
+\endinsert
+\goodbreak
+When $n$ is even, the graph $K_{n/2,n/2}$ has $n$ vertices and exactly $n^2/4$ edges.
+When $n$ is odd, the graph $K_{(n+1)/2, (n-1)/2}$ has $n$ vertices and
+$$ {n+1\over 2} \cdot {n-1\over 2} = {n^2-1\over 4} = {n^2\over 4}-{1\over 4}
+= \biggl\lfloor {n^2\over 4} \biggr\rfloor$$
+edges. (The last equality here follows from the fact that any odd $n$ is congruent to either $1$ or
+$3$ modulo $4$, which means its square is congruent to $1$ modulo $4$.)
+
+The calculation above shows that $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$
+always has $n$ vertices and $\lfloor n^2/4\rfloor$ edges. It is the largest possible number
+of edges such that Mantel's theorem does not apply; that is, from Mantel's theorem alone,
+we do not know whether
+there must be a triangle in $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$, but adding
+a single edge to $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$, Mantel's theorem tells
+us there must be a triangle in the resulting graph.
+
+We will actually be able to prove that $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ does not
+contain any triangles. This means that the lower bound of $\lfloor n^2/4\rfloor$ in Mantel's theorem
+is the best possible one.
+
+First we need a lemma.
+
+\proclaim Lemma \advthm. A graph $G=(V,E)$ is bipartite if and only if all of its connected components
+are bipartite.
+
+\proof Let $G_1 = (V_1, E_1), G_2 = (V_2,E_2),\ldots, G_n = (V_k, E_k)$ be the
+connected components of $G$.
+
+If each connected component is bipartite, say,
+$V_i = A_i\cup B_i$ is a bipartition of $V_i$ for all $1\le i\le n$, then
+$A = \bigcup_{i=1}^n A_i$ and $B = \bigcup_{i=1}^n B_i$ is a bipartition of $V$,
+and every $e\in E$ has one endpoint in $A$ and one endpoint in $B$.
+
+Now suppose that there is some component $G_i$ that is not bipartite.
+Now let $V = A\cup B$
+be any partition of $V$ into disjoint nonempty sets. Then $A_i = A\cap V_i$
+and $B_i = B\cap V_i$ form a partition of $V_i$
+into two nonempty sets. But $G_i$ is not bipartite, so there is some $e\in E$
+that either has both endpoints in $A_i$ or both endpoints in $B_i$. This means
+that $G$ is not bipartite either.\slug
+
+As a matter of fact, we shall prove something much stronger than just the fact that
+$K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ does not contain any triangles.
+The following theorem characterises the family of bipartite graphs as {\it exactly} those graphs not
+containing odd-length cycles.
+Its proof shall require the following metric imposed on a graph $G$. For all $u,v\in V$
+define the {\it distance} $\dist(u,v)$ between $u$ and $v$ to be the length of the shortest path
+from $u$ to $v$. If no such path between $u$ and $v$ exists, we set $\dist(u,v) = \infty$.
+
+\proclaim Theorem \advthm. A graph is bipartite if and only if it does not
+contain any cycles of odd length.
+
+\proof First, assume that $G=(V,E)$ is bipartite; let $V = A\cup B$ be the bipartition
+of the vertex set. Let $\sigma$ be a cycle in $G$. Each edge changes side (either
+$A$ to $B$ or $B$ to $A$), so in order for the starting and ending vertices of this
+cycle to be the same, $|\sigma|$ must be even.
+
+Now assume that $G = (V,E)$ has no odd-length cycles. To show that $G$ is bipartite,
+it suffices to show that each of its connected components is bipartite (by the
+previous lemma), so without
+loss of generality we may assume that $G$ is connected.
+This means that $\dist(u,v)< 0$ for all $u,v\in V$.
+
+Select one vertex $h\in V$ and set
+$$ V_0 = \{v\in V : \dist(h,v)\equiv 0\pmod 2\}$$
+and
+$$ V_1 = \{v\in V : \dist(h,v)\equiv 1\pmod 2\}.$$
+Let $e = uv\in E$.
+Consider a closed walk $\sigma$ that follows a shortest path from $u$ to $h$, then a shortest
+path from $h$ to $v$, and finally the edge $e$ going from $v$ to $u$. We have
+$$|\sigma| = \dist(u,h) + \dist(h,v) + 1.$$
+But since $G$ contains no odd-length cycles, by (the contrapositive of)
+Proposition~{\propoddwalkoddcycle}, any closed walk in $G$ must have even length.
+This means that $\dist(u,h)$ and $\dist(h,v)$ are not the same modulo $2$; that is,
+either $u\in V_0$ and $v\in V_1$ or vice versa.\slug
+
+\advsect Trees
+
+A graph $G$ is called a {\it forest} if it has no cycles. A connected forest is called
+a {\it tree}. A vertex of degree $1$ in a forest is called a {\it leaf}. Fig.~5 contains
+an example of a tree.
+
+\midinsert
+$$\epsfbox{spidery.ps}$$
+\vskip5pt
+\caption{A tree with $25$ leaves (count them!).}
+\endinsert
+\goodbreak
+Our first proposition
+concerning trees is that every tree containing at least one edge has at least two leaves.
+
+\edef\proptwoleaves{\the\thmcount}
+\proclaim Proposition \advthm. Let $F$ be a forest with at least one edge (and hence at least
+two vertices). There are at least two leaves in $F$.
+
+\proof Let $\sigma = (v_0,v_1,\ldots,v_n)$ be a path of maximum length in $F$.
+Since there is at least one edge in $F$, we have $|\sigma|\ge 1$. The claim is that
+$\deg(v_0) = \deg(v_n) = 1$. Indeed, for a contradiction, assume that one of these
+two endpoints has degree at least two. Without loss of generality, suppose it is
+$v_0$ (we can reverse the path if needed to make this the case). So there exists
+$u\in V$ such that $uv_0$ is an edge. If $u = v_i$ for some $1\le i\le n$, then
+there is a cycle $(v_i, v_0, v_1,\ldots, v_i)$, contradicting the fact that $F$ is a forest.
+So for all $1\le i\le n$, $u\ne v_i$. This means that
+$(u,v_0, \ldots, v_n)$ is a strictly longer path than $\sigma$, contradicting the maximality
+of $\sigma$.\slug
+
+The following gives a characterisation of trees.
+
+\proclaim Proposition \advthm. A graph $G = (V,E)$ is a tree if and only if
+for all $u,v\in V$, there exists a unique path from $u$ to $v$ in $G$.
+
+\proof First we assume that $G$ is a tree. Let $u,v\in V$. Since $G$ is a tree,
+it is connected, so there must exist some path $\sigma$ from $u$ to $v$ in $G$.
+Now we prove that this path is unique. For a contradiction, let $\sigma'$
+be another, different, path from $u$ to $v$ in $G$. Both $\sigma$ and $\sigma'$
+start at $u$, but eventually they are different. Let $v_1$ be the last vertex they have
+in common (this vertex could be $u$).
+Eventually, $\sigma$ and $\sigma'$ must meet again, since they both
+end at $v$. Let $v_2$ be the first time they meet again, after $v_1$ (we could have $v_2 = v$). Now
+let $\sigma$ be the path obtained by following $\sigma$ from $v_1$ to $v_2$, then
+following $\sigma'$ backwards to $v_1$. This is a cycle, by choice of $v_1$ and $v_2$.
+But this gives a contradiction, since there are no cycles in $G$.
+
+Now suppose that for all $u,v\in V$, there exists a unique path from $u$ to $v$ in $G$.
+The fact that there exists a path at all between every two vertices immediately implies
+that $G$ is connected. It remains to prove that there is no cycle in $G$. But this
+is clear, since if $\sigma$ is a cycle in $G$, then picking any two distinct vertices in $\sigma$,
+we have two different paths between those two vertices (one obtained by following $\sigma$
+clockwise, and one obtained by following it anticlockwise).\slug
+
+Another characterisation of trees is that they are exactly the connected graphs with $n-1$
+nodes. To prove this, we first need a lemma.
+
+\parenproclaim Lemma {\advthm} (Detour lemma). Let $G$ be a connected graph and let
+$\sigma$ be a cycle in $G$. If $G'$ is the graph obtained by deleting one edge
+of $\sigma$, then $G'$ is also connected.
+
+\proof Let $e = v_1v_2$ be the deleted edge. Let $u,v$ be any two vertices in $G$.
+Since $G$ is connected, there exists a walk $\tau$ from $u$ to $v$ in $G$.
+We want to show that there is a path from $u$ to $v$ in $G'$. If $\tau$ does not use
+the edge $e$, then it is also a valid path in $G'$ and we are done. If it does use $e$,
+then to get from $v_1$ to $v_2$,
+we detour around $\sigma$ in the other direction, then continue from $v_2$ to $v$, obtaining
+a walk in $G'$ from $u$ to $w$.\slug
+
+\proclaim\datestamp{20}{} Theorem \advthm. A graph $G = (V,E)$ is a tree if and only if
+$|E| = |V|-1$ and $G$ is connected.
+
+\proof We prove the forward implication by induction on $n=|V|$, the number of vertices.
+Concretely, the statement we shall prove is, {\sl For all $n\ge 1$, for all $G=(V,E)$ with
+$|V| = n$, if $G$ is a tree then $|E| = |V|-1$ and $G$ is connected.}
+
+The base case is $n=1$. Then the only possible graph $G$ is simply $\bullet$, a single vertex.
+This is a tree since it is connected and contains no cycles. We have $|E| = 0 = 1-1 = |V|-1$.
+
+For the inductive step, let $n\ge 1$ and assume the statement holds for $n$. Let $G = (V,E)$
+be a graph with $|V| = n+1$, and assume that $G$ is a tree. Since $n\ge 1$,
+$|V| \ge 2$, so there are at least two vertices, and connectedness of $G$ means that there
+is at least one edge in $G$. Hence $G$ is a forest with at least one edge, and by
+Proposition~{\proptwoleaves}, there are at least two leaves in $G$. Pick one of these leaves
+and call it $u$. Form a new graph $G' = (V', E')$ by removing $u$ and the single edge
+incident on it; we have
 
 
 \bye
