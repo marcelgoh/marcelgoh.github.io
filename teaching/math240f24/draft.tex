@@ -3124,8 +3124,7 @@ $$\epsfbox{kn.ps}$$
 \caption{Complete graphs $K_n$ for small $n$.}
 \endinsert
 \goodbreak
-\bye
-For an integer $n\ge 1$,
+\noindent\datestamp{31}{x} \hskip\parindent For an integer $n\ge 1$,
 we define the {\it Hamming cube} or {\it hypercube} to be the graph $Q_n$
 whose vertex set is $\{0,1\}^n$, the set of all binary strings of length $n$,
 and whose edge set is the exactly the set of pairs of strings that differ by exactly
@@ -3192,7 +3191,7 @@ but $\deg(v) = k$ for all $v\in V$ by $k$-regularity. Hence
 $$2|E| = \sum_{v\in V} k = k|V|,$$
 and the result follows upon rearranging.\slug
 
-\medskip\boldlabel\datestamp{18}{} Walks, paths, and cycles.
+\medskip\boldlabel Walks, paths, and cycles.
 A {\it walk} in $G = (V,E)$ is a sequence $\sigma$ of vertices
 $$\sigma = (v_0, v_1, \ldots, v_n)$$
 such that $v_i v_{i+1}\in E$ for all $0\le i \le n-1$. The {\it endpoints}
@@ -3241,6 +3240,7 @@ $|\sigma| = |\sigma_1|+|\sigma_2|$ is even. This contradicts the hypothesis that
 is odd.
 
 We conclude that $\sigma$ is a cycle.\slug
+\bye
 
 \medskip\boldlabel Connectedness.
 We say a graph $G = (V,E)$ is {\it connected} if for all $u,v\in V$ there exists
@@ -3546,8 +3546,8 @@ is clear, since if $\sigma$ is a cycle in $G$, then picking any two distinct ver
 we have two different paths between those two vertices (one obtained by following $\sigma$
 clockwise, and one obtained by following it anticlockwise).\slug
 
-Another characterisation of trees is that they are exactly the connected graphs with $n-1$
-nodes. To prove this, we first need a lemma.
+Another characterisation of trees is that they are exactly the connected graphs on $n$ vertices
+with $n-1$ edges. To prove this, we first need a lemma.
 
 \parenproclaim Lemma {\advthm} (Detour lemma). Let $G$ be a connected graph and let
 $\sigma$ be a cycle in $G$. If $G'$ is the graph obtained by deleting one edge
