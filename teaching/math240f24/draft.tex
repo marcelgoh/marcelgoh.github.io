@@ -3240,9 +3240,8 @@ $|\sigma| = |\sigma_1|+|\sigma_2|$ is even. This contradicts the hypothesis that
 is odd.
 
 We conclude that $\sigma$ is a cycle.\slug
-\bye
 
-\medskip\boldlabel Connectedness.
+\medskip\boldlabel\datestamp{05}{xi} Connectedness.
 We say a graph $G = (V,E)$ is {\it connected} if for all $u,v\in V$ there exists
 a walk (and hence a path) from $u$ to $v$. All of the graphs we have
 drawn so far have been connected. Here is a graph that is disconnected:
@@ -3387,7 +3386,7 @@ Now let $|V|$ be even, so that $|V|^2/4$ is an integer. Does there exist a graph
 $G$ with exactly $|V|^2/4$ edges such that $G$ does not contain a triangle
 as a subgraph? This brings us to the definition of a bipartite graph.
 
-\medskip\boldlabel\datestamp{19}{} Bipartite graphs.
+\medskip\boldlabel Bipartite graphs.
 A graph $G = (V,E)$ is called {\it bipartite} if there is a partition
 $V = A\cup B$ of the vertex set (so $A\cap B = \emptyset$) called
 the {\it bipartition} such that each edge has one endpoint in $A$ and one endpoint
@@ -3426,13 +3425,14 @@ $3$ modulo $4$, which means its square is congruent to $1$ modulo $4$.)
 
 The calculation above shows that $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$
 always has $n$ vertices and $\lfloor n^2/4\rfloor$ edges. It is the largest possible number
-of edges such that Mantel's theorem does not apply; that is, from Mantel's theorem alone,
+of edges such that Mantel's theorem does not apply. In other words, from Mantel's theorem alone,
 we do not know whether
 there must be a triangle in $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$, but adding
-a single edge to $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$, Mantel's theorem tells
-us there must be a triangle in the resulting graph.
+a single edge to $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ results in a graph that must
+have a triangle by Mantel's theorem.
+\bye
 
-We will actually be able to prove that $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ does not
+Soon we will actually be able to prove that $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ does not
 contain any triangles. This means that the lower bound of $\lfloor n^2/4\rfloor$ in Mantel's theorem
 is the best possible one.
 
