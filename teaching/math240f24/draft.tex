@@ -64,6 +64,11 @@ number theory}{60}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 12.\kern .5em Definitions and
 basic notions}{69}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 13.\kern .5em Triangles and bipartite
+graphs}{74}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 14.\kern .5em Trees}{78}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -3430,15 +3435,15 @@ we do not know whether
 there must be a triangle in $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$, but adding
 a single edge to $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ results in a graph that must
 have a triangle by Mantel's theorem.
-\bye
 
-Soon we will actually be able to prove that $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ does not
+We will actually be able to prove that $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ does not
 contain any triangles. This means that the lower bound of $\lfloor n^2/4\rfloor$ in Mantel's theorem
 is the best possible one.
 
 First we need a lemma.
 
-\proclaim Lemma \advthm. A graph $G=(V,E)$ is bipartite if and only if all of its connected components
+\proclaim\datestamp{08}{xi} Lemma \advthm.
+A graph $G=(V,E)$ is bipartite if and only if all of its connected components
 are bipartite.
 
 \proof Let $G_1 = (V_1, E_1), G_2 = (V_2,E_2),\ldots, G_n = (V_k, E_k)$ be the
@@ -3545,6 +3550,8 @@ that $G$ is connected. It remains to prove that there is no cycle in $G$. But th
 is clear, since if $\sigma$ is a cycle in $G$, then picking any two distinct vertices in $\sigma$,
 we have two different paths between those two vertices (one obtained by following $\sigma$
 clockwise, and one obtained by following it anticlockwise).\slug
+
+\bye
 
 Another characterisation of trees is that they are exactly the connected graphs on $n$ vertices
 with $n-1$ edges. To prove this, we first need a lemma.
