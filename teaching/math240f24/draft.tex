@@ -3886,7 +3886,6 @@ $$\epsfbox{petersen.ps}$$
 \caption{The Petersen graph.}
 \endinsert
 \goodbreak
-\bye
 
 \noindent\datestamp{22}{} \hskip\parindent
 Not only are all graphs that have $K_5$ or $K_{3,3}$ as a minor nonplanar, it turns out
@@ -3956,5 +3955,46 @@ is $|S|^5 = 4^5$. What about the number of strings of length {\it at most $5$}, 
 one empty string of length $0$? This is the number of strings of length $0$, plus the number
 of strings of length $1$, and so on up to and including length $5$; that is, this equals
 $$4^0 + 4^1 + 4^2 + 4^3 + 4^4 + 4^5.$$
+
+To count strings of length $5$ and containing at least one $a$, we let the universe
+be all strings of length $5$ and let $A$ be the set of all strings without
+any $a$, i.e., using only the letters $b$, $c$, and $d$. Then the number of strings
+containing at least one $a$ is
+$$|\bar A| = |U| - |A| = 4^5 - 3^5.$$
+
+Next we count the number of strings of length $5$, but we require that adjacent symbols
+be different. This one is best calculated by counting the number of choices we have at
+each slot. There are $4$ choices for the first symbol, but after
+that we only have choices for each letter, since they cannot match the previous one.
+Hence the count is $4\cdot 3^4$.
+
+Lastly, to count the number of strings that must have at least one of the patterns
+$aa$, $bb$, $cc$, or $dd$, we simply note that this is the complement of what
+we counted in the previous paragraph, so the answer is $4^5 - 4\cdot 3^4$.
+
+\medskip\boldlabel The principle of inclusion and exclusion. As our next toy problem,
+suppose we want to count the number of strings of length $6$, using the symbols
+$a$, $b$, $c$, and $d$, that start with $a$ or end with $aa$ (or both). The number
+of strings that start with $a$ is $4^5$, since we have no choice for the first symbol,
+but $4$ choices for each of the remaining five symbols; likewise, the number
+of strings that end with $aa$ is $4^4$. Adding these two up, we get $4^5+4^4$.
+There's a problem though. We have accidentally double-counted the strings that
+both start with $a$ {\it and} end with $aa$. How many of these are there? Well, the first, fifth, and
+sixth slots all have to be $a$, but there are four choices for each of the remaining
+three slots, for a total of $4^3$. Subtracting this from our subtotal yields
+the correct answer: $4^5+4^4-4^3$.
+\endgroup%\headline{\hfil}\footline{\hfil}
+
+This technique works with any two sets $A$ and $B$,
+i.e., $|A\cup B| = |A| + |B| - |A\cap B|$. For three sets $A$, $B$, and $C$,
+we have
+$$|A\cup B\cup C| = |A| + |B| + |C| - |A\cap B| - |A\cap C| - |B\cap C| + |A\cap B\cap C|$$
+(draw a Venn diagram and convince yourself that this is correct).
+For a general number of sets, we have the following theorem.
+
+\proclaim Theorem {\advthm} (Principle of inclusion and exclusion). 
+
+
+
 
 \bye
