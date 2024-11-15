@@ -1,0 +1,75 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 80 80
+%%HiResBoundingBox: 0 0 80 80
+
+% Constants
+/cm {28.35 mul} def
+/u {0.7 cm mul} def     % One unit
+/w {0.7 cm mul} def
+/xoff {0.1 cm add} def   % Offset the letters
+/yoff {0.1 cm add} def
+
+/nine {/CMMI10 findfont 9 scalefont setfont} def
+/ninetext {/CMR10 findfont 9 scalefont setfont} def
+/sixtext {/CMR8 findfont 6 scalefont setfont} def
+/symnine {/CMSY10 findfont 9 scalefont setfont} def
+
+0.5 setlinewidth
+
+% k n deg:  get degrees of k/n of the way around unit circle
+/deg {
+    /n exch def
+    /k exch def
+    360 k mul n div
+} def
+
+/dot {
+    2 0 360 arc closepath fill
+} def
+
+/s 20 string def
+/label {
+    /n exch def
+    ninetext n s cvs show
+} def
+
+%K5dot
+gsave
+2 u 2 w translate
+1 5 deg sin u 1 5 deg cos w dot
+2 5 deg sin u 2 5 deg cos w dot
+3 5 deg sin u 3 5 deg cos w dot
+4 5 deg sin u 4 5 deg cos w dot
+5 5 deg sin u 5 5 deg cos w dot
+1 5 deg sin u 2 mul 1 5 deg cos w 2 mul dot
+2 5 deg sin u 2 mul 2 5 deg cos w 2 mul dot
+3 5 deg sin u 2 mul 3 5 deg cos w 2 mul dot
+4 5 deg sin u 2 mul 4 5 deg cos w 2 mul dot
+5 5 deg sin u 2 mul 5 5 deg cos w 2 mul dot
+newpath
+1 5 deg sin u 2 mul 1 5 deg cos w 2 mul moveto
+2 5 deg sin u 2 mul 2 5 deg cos w 2 mul lineto
+3 5 deg sin u 2 mul 3 5 deg cos w 2 mul lineto
+4 5 deg sin u 2 mul 4 5 deg cos w 2 mul lineto
+5 5 deg sin u 2 mul 5 5 deg cos w 2 mul lineto
+1 5 deg sin u 2 mul 1 5 deg cos w 2 mul lineto
+1 5 deg sin u 1 5 deg cos w moveto
+3 5 deg sin u 3 5 deg cos w lineto
+5 5 deg sin u 5 5 deg cos w lineto
+2 5 deg sin u 2 5 deg cos w lineto
+4 5 deg sin u 4 5 deg cos w lineto
+1 5 deg sin u 1 5 deg cos w lineto
+1 5 deg sin u 2 mul 1 5 deg cos w 2 mul moveto
+1 5 deg sin u 1 5 deg cos w lineto
+2 5 deg sin u 2 mul 2 5 deg cos w 2 mul moveto
+2 5 deg sin u 2 5 deg cos w lineto
+3 5 deg sin u 2 mul 3 5 deg cos w 2 mul moveto
+3 5 deg sin u 3 5 deg cos w lineto
+4 5 deg sin u 2 mul 4 5 deg cos w 2 mul moveto
+4 5 deg sin u 4 5 deg cos w lineto
+5 5 deg sin u 2 mul 5 5 deg cos w 2 mul moveto
+5 5 deg sin u 5 5 deg cos w lineto
+stroke
+grestore
+
+showpage

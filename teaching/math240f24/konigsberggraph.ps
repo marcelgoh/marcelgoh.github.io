@@ -1,0 +1,68 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 110 75
+%%HiResBoundingBox: 0 0 110 75
+
+% Constants
+/cm {28.35 mul} def
+/u {1 cm mul} def     % One unit
+/w {0.6 cm mul} def
+/xoff {0.1 cm add} def   % Offset the letters
+/yoff {0.1 cm add} def
+
+/nine {/CMMI10 findfont 9 scalefont setfont} def
+/ninetext {/CMR10 findfont 9 scalefont setfont} def
+/sixtext {/CMR8 findfont 6 scalefont setfont} def
+/symnine {/CMSY10 findfont 9 scalefont setfont} def
+
+0.5 setlinewidth
+
+/dot {
+    2 0 360 arc closepath fill
+} def
+
+/s 20 string def
+/label {
+    /n exch def
+    nine n s cvs show
+} def
+
+0 u 2 w dot % A
+1.2 u 0 w dot % B
+1.2 u 4 w dot % C
+4 u 2 w dot % D
+newpath
+0 u 2 w moveto
+0 u 0 w 2 u 0 w 33 arcto % a
+stroke
+pop pop pop pop
+newpath
+1.2 u 0 w moveto
+1.2 u 2 w -0.8 u 2 w 33 arcto % b
+stroke
+pop pop pop pop
+newpath
+0 u 2 w moveto
+0 u 4 w 2 u 4 w 33 arcto % c
+stroke
+pop pop pop pop
+newpath
+1.2 u 4 w moveto
+1.2 u 2 w -0.8 u 2 w 33 arcto % d
+stroke
+pop pop pop pop
+newpath
+0 u 2 w moveto
+4 u 2 w lineto % e
+1.2 u 0 w moveto
+4 u 2 w lineto % f
+1.2 u 4 w moveto
+4 u 2 w lineto % g
+
+-0.4 u 1.8 w moveto (A) label
+1.4 u -0.4 w moveto (B) label
+1.4 u 4 w moveto (C) label
+4.1 u 1.8 w moveto (D) label
+stroke
+
+
+showpage
