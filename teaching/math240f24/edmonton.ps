@@ -1,0 +1,77 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 300 100
+%%HiResBoundingBox: 0 0 300 100
+
+% Constants
+/cm {28.35 mul} def
+/u {1.5 cm mul} def     % One unit
+/w {0.7 cm mul} def
+/xoff {0.1 cm add} def   % Offset the letters
+/yoff {0.1 cm add} def
+
+/nine {/CMMI10 findfont 9 scalefont setfont} def
+/ninetext {/CMR10 findfont 9 scalefont setfont} def
+/sixtext {/CMR8 findfont 6 scalefont setfont} def
+/symnine {/CMSY10 findfont 9 scalefont setfont} def
+
+0.5 setlinewidth
+
+% k n deg:  get degrees of k/n of the way around unit circle
+/deg {
+    /n exch def
+    /k exch def
+    360 k mul n div
+} def
+
+/dot {
+    2 0 360 arc closepath fill
+} def
+
+/s 20 string def
+/label {
+    /n exch def
+    ninetext n s cvs show
+} def
+
+1 u 4 w dot
+6 u 1 w dot
+newpath
+0 u 1 w moveto
+7 u 1 w lineto
+0 u 2 w moveto
+7 u 2 w lineto
+0 u 3 w moveto
+7 u 3 w lineto
+0 u 4 w moveto
+7 u 4 w lineto
+1 u 0 w moveto
+1 u 5 w lineto
+2 u 0 w moveto
+2 u 4.125 w lineto
+2 u 4.65 w moveto
+2 u 5 w lineto
+3 u 0 w moveto
+3 u 5 w lineto
+4 u 0 w moveto
+4 u 5 w lineto
+5 u 0 w moveto
+5 u 0.4 w lineto
+5 u 0.85 w moveto
+5 u 5 w lineto
+6 u 0 w moveto
+6 u 5 w lineto
+1.1 u 4.25 w moveto (85) label 0.04 u 0 w rmoveto (Ave./109) label 0.04 u 0 w rmoveto (St.) label
+4.55 u 0.45 w moveto (82) label 0.04 u 0 w rmoveto (Ave./104) label 0.04 u 0 w rmoveto (St.) label
+stroke
+gsave
+1.5 setlinewidth
+newpath
+6 u 1 w moveto
+6 u 2 w lineto
+3 u 2 w lineto
+3 u 3 w lineto
+1 u 3 w lineto
+1 u 4 w lineto
+stroke
+grestore
+showpage

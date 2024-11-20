@@ -25,7 +25,7 @@ just covered. The datestamps in the left margin indicate when the notes from eac
 Subsections labelled with a $*$ are optional. This document is heavily based on notes by
 Jeremy Macdonald, but any errors are likely my own. Please email me if you find any.
 
-\vskip48pt
+\vskip36pt
 
 \vskip \medskipamount \hbox to\hsize
 {\relax \unhcopy \strutbox \cont
@@ -72,6 +72,11 @@ graphs}{74}}
 trails and circuits}{81}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 16.\kern .5em Planar graphs}{83}}
+\medskip
+\noindent\hbox to\hsize{\relax \unhcopy \strutbox \cont
+{{\tenssbx IV. Combinatorics \kern 3pt}}{88}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 17.\kern .5em Basic counting techniques}{89}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -694,8 +699,10 @@ has ``caused'' $q$ to happen in this case, and
 in the second row, $p$ is not true
 and $q$ is true, so it might seem odd that we have set $p\To q$ to true, because there seems to be no relation
 between $p$ and $q$.
+
 But it should make sense if you think
-of $p$ as a precondition to a promise $q$, and then considering whether the promise is broken. As an example,
+of $p$ as a precondition to a promise $q$, and then consider
+whether the promise is broken. As an example,
 suppose your friend says, If it snows tomorrow I'll work in Trottier with you. If it doesn't snow
 and she doesn't pull up, she hasn't technically broken her promise. If it doesn't
 snow and she shows up, then she still hasn't broken her promise. The only way she can break her promise is if
@@ -1489,6 +1496,7 @@ and sometimes to prove that a function is a bijection, it is easier to show that
 rather than messing around with the definitions of injective and surjective.
 Here's an example.
 
+\edef\propoddevensubsets{\the\thmcount}
 \proclaim Proposition \advthm. Let $X$ be a finite nonempty set.
 Let $E$ be the set of all subsets of $X$ with
 even cardinality, and let $D$ be the set of all subsets of $X$ with odd cardinality.
@@ -2288,6 +2296,7 @@ Though the set $P$ of prime numbers is infinite, it does sort of get ``sparser''
 towards infinity. This is quantified by the following theorem, proved independently
 in~1896 by Jacques Hadamard and Charles Jean de la Vall\'ee Poussin.
 
+\edef\thmpnt{\the\thmcount}
 \parenproclaim Theorem {\advthm} (Prime number theorem). For $x\in \RR$, let
 $$\pi(x) = \bigl| \{ p \le x : p\ \hbox{prime}\} \bigr|.$$
 Then $\pi(x) \sim x/\ln x$, in the sense that
@@ -3887,7 +3896,7 @@ $$\epsfbox{petersen.ps}$$
 \endinsert
 \goodbreak
 
-\noindent\datestamp{22}{} \hskip\parindent
+\noindent\datestamp{19}{xi} \hskip\parindent
 Not only are all graphs that have $K_5$ or $K_{3,3}$ as a minor nonplanar, it turns out
 that these are the only nonplanar graphs!
 
@@ -3931,7 +3940,7 @@ either $K_5$ or $K_{3,3}$ as a minor also has a subgraph that is a subdivision o
 \bigskip\goodbreak
 \vfill\eject
 
-\advsect Basic counting techniques
+\advsect Counting techniques
 
 Combinatorics is a branch of mathematics that, broadly speaking, deals with counting (or estimating)
 the cardinalities of finite sets. Let us now recollect the counting techniques that we know.
@@ -3948,7 +3957,10 @@ length $n$ to be $2^n$. More generally, if there are $s$ different symbols and $
 slots in which to put them, then the number of strings is $s^t$. This can be phrased
 in terms of the number of functions from a set $T$ of size $t$ to a set $S$ of size $s$.
 Indeed, people often use the notation $S^T$ to denote the set of all functions from $T$ to $S$,
-and the notation should remind you that $|S^T| = |S|^{|T|}$.
+and the notation should remind you that $|S^T| = |S|^{|T|}$. Identifying the number
+$2$ with the set $\{0,1\}$, the power set $2^X$ is in bijection with the set $\{0,1\}^X$, so
+this notation for the set of all functions is consistent with our earlier notation for
+power set.
 
 For example, using the symbol set $S = \{a,b,c,d\}$, the number of strings of length $5$
 is $|S|^5 = 4^5$. What about the number of strings of length {\it at most $5$}, including
@@ -3983,7 +3995,6 @@ both start with $a$ {\it and} end with $aa$. How many of these are there? Well, 
 sixth slots all have to be $a$, but there are four choices for each of the remaining
 three slots, for a total of $4^3$. Subtracting this from our subtotal yields
 the correct answer: $4^5+4^4-4^3$.
-\endgroup%\headline{\hfil}\footline{\hfil}
 
 This technique works with any two sets $A$ and $B$,
 i.e., $|A\cup B| = |A| + |B| - |A\cap B|$. For three sets $A$, $B$, and $C$,
@@ -3991,10 +4002,832 @@ we have
 $$|A\cup B\cup C| = |A| + |B| + |C| - |A\cap B| - |A\cap C| - |B\cap C| + |A\cap B\cap C|$$
 (draw a Venn diagram and convince yourself that this is correct).
 For a general number of sets, we have the following theorem.
+\endgroup%\headline{\hfil}\footline{\hfil}
 
-\proclaim Theorem {\advthm} (Principle of inclusion and exclusion). 
+\edef\thminclusionexclusion{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Principle of inclusion and exclusion). Let $n\ge 2$
+be an integer and let $A_1,\ldots, A_n$ be finite sets. Then
+$$\biggl| \bigcup_{i=1}^n A_i\biggr|
+=\sum_{k=1}^n (-1)^{k+1}\biggl(\sum_{1\le i_1<\cdots<i_k\le n}|A_{i_1}\cap\cdots\cap A_{i_k}|\biggr).$$
 
+This sum of sums might look intimidating, but breaking down what it says bit by bit,
+we see that it is simply a sum over all possible nonempty intersections of the $A_i$, with a sign
+according to how many of the $A_i$ we are intersecting. We will prove this theorem soon,
+after we state and prove the binomial theorem. We first define, for nonnegative integers
+$n$ and $k$, the {\it binomial coefficient} ${n\choose k}$ to be the number of ways of choosing
+$k$ distinct elements out of a pool of $n$ distinct elements. (The quantity ${n\choose k}$
+is read ``$n$ choose $k$.'') We have the formula
+$${n\choose k} = {n!\over k!(n-k)!} = {n(n-1)\cdots (n-k+1)\over k(k-1)\cdots 1}.$$
+This is because we can pick $k$ elements out of an $n$-element set by permuting all the $n$ elements
+(there are $n!$ ways to do this), and then simply looking at the first $k$ elements. But the order
+of the $k$ elements we choose doesn't matter, so we arrive at the same elements no matter which
+of the $k!$ possible orders they might appear in. Same goes for the $(n-k)!$ orders the elements
+that we {\it didn't} pick can appear in.
 
+The name ``binomial coefficient'' is justified by the following theorem, first stated and
+proved by Al-Karaji in around the tenth century.
 
+\parenproclaim Theorem {\advthm} (Binomial theorem). For all $x,y\in \RR$ and positive integers $n$,
+$$(x+y)^n = \sum_{k=0}^n {n\choose k} x^k y^{n-k}.$$
+
+\proof Expanding the left-hand side
+$$(x+y)^n = (x+y)(x+y)\cdots (x+y),$$
+we see that there will be $2^n$ different terms after repeatedly using the distributive law.
+Each term will be a product of $x$ to some power and $y$ to some power, where the powers add up to $n$.
+In other words, each term looks like $x^ky^{n-k}$ for some $0\le k\le n$. The number of times
+that the term $x^k y^{n-k}$ appears in the expansion
+is the number of ways to choose $k$ items out of a pool of $n$, namely,
+${n\choose k}$. This gives exactly the right-hand side.\slug
+
+We are now able to prove the principle of inclusion and exclusion.
+
+\medskip\noindent{\it Proof of Theorem~\thminclusionexclusion.}\enspace
+Let $n\ge 2$ and let $A_1,\ldots,A_n$ be finite sets.
+Recall that the identity we want to prove is
+$$\biggl| \bigcup_{i=1}^n A_i\biggr|
+=\sum_{k=1}^n (-1)^{k+1}\biggl(\sum_{1\le i_1<\cdots<i_k\le n}|A_{i_1}\cap\cdots\cap A_{i_k}|\biggr).$$
+Let $x$ be an element that belongs to the union $\bigcup_{i=1}^n A_i$. Clearly, this contributes
+$1$ to the left-hand side, so we must show that it contributes exactly $1$ to the right-hand side
+as well. We know that $x$ is a member of at least one of the $A_i$;
+let $s\ge 1$ be the number of sets $A_i$ that contain $x$.
+
+Each time $x$ is a member of
+some $A_i$, it contributes $+1$ to the right-hand side. This happens ${s\choose 1}$ times.
+Each time it is a member of $A_i$ and
+$A_j$ for $i<j$, $x$ contributes $-1$ to the-right hand side; there are ${s\choose 2}$ of these terms.
+Generally, if $x$ is a member
+of $A_1\cap A_2\cap\cdots\cap A_r$, it contributes $+1$ if $r$ is odd and $-1$ if $r$ is even,
+and this term is repeated ${s\choose r}$ times. Hence $x$ contributes
+$${s\choose 1} - {s\choose 2} + {s\choose 3} - \cdots + (-1)^{s+1} {s\choose s}$$
+to the right-hand side.
+
+But, by the binomial theorem,
+$$0 = (1-1)^s = {s\choose 0} - {s\choose 1} + {s\choose 2} -\cdots + (-1)^s{s\choose s}.$$
+We know that ${s\choose 0} = s!/(0! s!) = 1$, so by rearranging we find that
+$${s\choose 1} - {s\choose 2} + {s\choose 3} - \cdots + (-1)^{s+1} {s\choose s} = {s\choose 0} = 1,$$
+which means that the contribution of $x$ to the right-hand side is $1$.
+We are done since $x$ is arbitrary.\slug
+
+As an application of this principle, let $X = \{1,2,\ldots, 100\}$ and suppose we want
+to count the number of $n\in X$
+with $\gcd(n,30) = 1$. To accomplish this, it turns out to be easier to count the number
+of $n\in X$ that have $\gcd(n,30)\ge 2$ (and then we must subtract this number from $|X| = 100$).
+For any positive integer $r$, let
+$$A_r = \{n\in X : r\divides n\}.$$
+Since $30 = 2\cdot 3\cdot 5$, an integer $n\in X$ has $\gcd(n,30)\ge 2$ if and only if
+$n\in A_2$, $n\in A_3$, or $n\in A_5$.
+By the principle of inclusion and exclusion,
+$$|A_2\cup A_3\cup A_5| = |A_2| + |A_3| + |A_5|
+- |A_2\cap A_3| - |A_2\cap A_5| - |A_3\cap A_5| + |A_2\cap A_3\cap A_5|.$$
+The number of even integers in $X$ is $100/2 = 50$; similarly, the number
+of integers divisible by $3$ in $X$ is $\lfloor 100/3\rfloor = 33$. In general,
+$|A_r| = \lfloor 100/r\rfloor$. Furthermore, since $\gcd(2,3) = 1$,
+the intersection $A_2\cap A_3$ is simply $A_6$, and by analogous reasoning, we see that
+$$\eqalign{
+|A_2\cup A&_3\cup A_5| \cr
+&= |A_2| + |A_3| + |A_5| - |A_6| - |A_{10}| - |A_{15}| + |A_{30}| \cr
+&= \biggl\lfloor {100\over 2}\biggr\rfloor
++\biggl\lfloor {100\over 3}\biggr\rfloor
++\biggl\lfloor {100\over 5}\biggr\rfloor
+-\biggl\lfloor {100\over 6}\biggr\rfloor
+-\biggl\lfloor {100\over 10}\biggr\rfloor
+-\biggl\lfloor {100\over 15}\biggr\rfloor
++\biggl\lfloor {100\over 30}\biggr\rfloor\cr
+&= 50 + 33 + 20 - 16 - 10 - 6 + 3 \cr
+&= 74.
+}$$
+We conclude that the number of $n\in X$ such that $\gcd(n,30) = 1$ is
+$100-74 = 26$.
+
+\advsect Permutations and combinations
+
+Suppose we have a pool of $100$ hockey players and we want to dress $20$
+of them for a game, giving them the numbers $1$ through $20$. How many ways are there to do this?
+Well, there are $100$ choices for the player with jersey number $1$, then after
+picking that player, there are $99$ choices for the player with jersey number $2$, and so on,
+so the total number is
+$$100\cdot 99\cdot 98 \cdots 82\cdot 81 = {100!\over 80!}.$$
+\bye
+
+\noindent\datestamp{23}{} \hskip\parindent
+In general, we define a {\it $k$-permutation} of a set $X$ to be an ordered subset
+of $X$ (i.e., the order of the selection matters) of size $k$. If $|X| = n$,
+the number of $k$-permutations of $X$ is denoted $P(n,k)$ and equals
+$$ P(n,k) = n\cdot (n-1)\cdots (n-k+1) = {n!\over (n-k)!}.$$
+This number is also sometimes called the {\it falling factorial} and denoted $n^{\underline k}$.
+It is the same as the number of functions from $\{1,2\ldots, k\}$ to $X$ that are injective.
+(Pause a moment to think about it if you need to.) Recall that if $|S| = s$ and $|T| = t$,
+the total cardinality of $S^T$ is $s^t$. Well, the number of
+{\it injective} functions from $T$ to $S$ is $P(s,t) = s^{\underline{t}}$.
+
+An $n$-permutation of a set of size $n$ is also just called a {\it permutation} of
+$n$. There are
+$$P(n,n) = {n!\over (n-n)!} = n!$$
+of these. (Note that $0! = 1$, by definition.)
+
+To illustrate various counting techniques associated with permutations, consider the following
+situation. We have ten books: three comic books, three books of poetry, and four novels.
+How many ways are there to order all of them on a shelf? The answer is the number of permutations
+on $10$ objects, namely, $10! = 3628800$. How about just putting five of them on the shelf?
+Then the answer
+is $P(10,5) = 10!/5! = 30240$. Lastly, what if we want to put all of them on the shelf,
+but group all the comic books together, all the poetry books together, and all the novels together.
+There are $3!$ ways to order the comic books amongst themselves, $3!$ for the poetry books
+as well, and then $4!$ for the novels. Then we must arrange the ordered bundles of books
+on the shelf; there are three bundles so there are $3!$ ways to do this. Thus the total
+number of ways is $3!3!4!3! = 5184$.
+
+Returning to the hockey-team example, suppose we still want to pick a team of $20$ out of
+$100$ possible players, but now we don't number the players; that is, we only care about
+the sets of the players themselves, not the ordering amongst them. The number $P(100,20)$
+is $20!$ times too big, since there are $20!$ different orderings of the team we choose,
+and each of them is only counted once in our new scenario. So the answer is
+$${P(100,20)\over 20!} = {100!\over 20!(100-20)!} = {100\choose 20}.$$
+We already had an intimate encounter with
+the quantity ${n\choose k}$ in the previous section. Defining a
+{\it $k$-combination} of a set $X$ to be the number of ways of choosing $k$ elements of of
+$X$, the number of $k$-combinations of a set of size $n$ is ${n\choose k}$.
+
+\medskip\boldlabel Counting grid paths.
+An application of $k$-combinations is counting the number of paths in a grid.
+If you have ever had the pleasure or misfortune of visiting
+Edmonton, Alberta, you will know that most of the city's roads
+are organised in a numbered grid pattern. Avenues run east to west and streets run north to south.
+Suppose we have just enjoyed a cortado in the trendy caf\'e
+at the corner of 82nd Avenue and 104th Street,
+and now we want to get to the sandwich shop at the corner of 85th Avenue and 109th Street.
+To do so we will have to walk three blocks north and five blocks west. How many ways are there
+to do this?
+\midinsert
+$$\epsfbox{edmonton.ps}$$
+\vskip5pt
+\caption{One possible path from the caf\'e to the sandwich shop.}
+\endinsert
+\goodbreak
+Well, the journey is eight blocks in length, so each possible path can be expressed as
+a string of eight symbols, call them {\mc N} for north and {\mc W} for west. We also know there
+must be exactly three {\mc N}s and five {\mc W}s; for example, one possible path, pictured in
+Fig.~12, is {\mc NWWWNWWN}. There are ${8\choose 3}$ different ways to choose where the {\mc N}s
+go in the string, after which the positions of the {\mc W}s is completely determined. Alternatively,
+we can pick where the {\mc W}s go, in ${8\choose 5}$ ways. Thus the number of possible paths
+from the caf\'e to the sandwich shop is
+$${8\choose 3} = {8!\over 3! 5!} = {8\choose 5} = 56.$$
+Here we see an important principle in action. {\sl The number of $k$-combinations of a set
+of size $n$ is the same as the number of $(n-k)$-combinations of the same set.}
+This is because choosing $k$ items is
+the same as choosing which $n-k$ items {\it not} to take.
+In general, the number of ways of walking $m$ blocks in one direction and $n$ blocks in a perpendicular
+direction is
+$${m+n\choose m} = {m+n\choose n}.$$
+
+\medskip\boldlabel Stars and bars.
+Suppose there is a shop selling marbles that come in six colours. How many ways are there to select
+a bag of four marbles? Imagine that the marbles are laid out in six different bins all in a row,
+one for each colour. We stand at the first bin and may take some number of them. Mark down a
+star for each one that we take. Then we step forward to the next bin; record this action by
+drawing a bar. If we take some marbles here, mark down a star for each marble taken. Then we step forward
+again, so mark down a bar. At the end, we must have taken exactly four marbles and switched bins
+five times, so there must be exactly four stars and five bars, e.g., the sequence
+$$\mid\quad\mid\star\mid\star\mid\quad\mid\star\star$$
+corresponds to taking one marble of the third colour, one of the fourth, and two of the sixth.
+There are nine slots, four of which have to be stars, so
+the number of ways to pick four marbles out of six bins is ${9\choose 4} = 126$. In general
+the number of ways to pick $m$ marbles out of $b$ bins is ${m+b-1\choose m}$. This method of
+counting is called the {\it stars-and-bars} technique.
+
+\medskip\boldlabel A night at the casino.
+Suppose we are playing a high-stakes card game at the local gambling
+house and it is somehow pertinent for us to calculate how many five-card hands there
+are with at least two hearts. A na\"\i ve attempt would run as follows. We pick two cards
+to be hearts, in ${13\choose 2}$ ways, then there are $50$ cards left to choose from,
+and we can pick any three of those, in ${50\choose 3}$ ways. This seems logical, except
+that we have counted some hands twice! For instance, suppose that in the first step we pick
+our two hearts to be $\tt2\heartsuit$ and $\tt6\heartsuit$, then for our remaining three
+cards we pick $\tt8\heartsuit$, $\tt3\diamondsuit$, and $\tt Q\spadesuit$. We can get the exact
+same hand by first picking our two hearts to be $\tt6\heartsuit$ and $\tt8\heartsuit$,
+and then choosing $\tt2\heartsuit$, $\tt3\diamondsuit$,
+and $\tt Q\spadesuit$ for the remaining three cards.
+
+One correct way of getting the correct count is to count the number of hands with
+exactly two hearts, exactly three hearts, exactly four hearts, and exactly five hearts. Since
+these possibilities all define disjoint sets, we can simply add them up at the end.
+The number of ways of drawing exactly two hearts is
+$${13\choose 2}{52-13\choose 3} = {13\choose 2}{39\choose 3} = 712842,$$
+since there are $39$ non-heart cards and we must select three of them.
+Similarly, the number of ways of drawing exactly three hearts is
+$${13\choose 3}{52-13\choose 2} = {13\choose 3}{39\choose 2} = 211926;$$
+we also calculate
+$${13\choose 4}{39\choose 1} = 27885\qquad\hbox{and}\qquad
+{13\choose 5}{30\choose 0} = 1287.$$
+Hence the number of five-card hands with at least two hearts is
+$$712842 + 211926 + 27885 + 1287 = 953940.$$
+This number has little practical value unless we know the number of five-card hands
+in total; this is ${52\choose 5} = 2598960$. We can then calculate the probability
+of a five-card hand containing at least two hearts to be $953940/2598960 \approx 36.7\%$.
+
+Deriving the total number of five-card hands suggests a different way to get
+the same count.
+We could take this total and subtract the number
+of hands with no hearts, as well as the number of hands with exactly one heart. This gives
+$${52\choose 5} - {13\choose 0}{39\choose 5} - {13\choose 1}{39\choose 4}
+= 2598960 - 575757 - 1069263 = 953940,$$
+the same figure we obtained in the previous paragraph.
+
+\medskip\boldlabel\datestamp{24}{} Identities involving binomial coefficients.
+We already observed earlier that the number of ways of picking $k$ objects out of a
+set of size $n$ is the same as the number of picking $n-k$ objects out of the same set.
+This can be seen algebraically by expanding
+$${n\choose k} = {n!\over k!(n-k)!} = {n!\over (n-k)!\bigl(n-(n-k)\bigr)!} = {n\choose n-k}.$$
+Here is another identity involving binomial coefficients.
+
+\proclaim Proposition \advthm. Let $n\ge 0$ be an integer. Then
+$$\sum_{k=0}^n {n\choose k}^2 = {2n\choose n}.$$
+
+\proof Let $X$ be set of size $2n$. The right-hand side counts the number of subsets of
+$X$ of size $n$. We count this in a different way. Let $A$ and $B$ be such that $|A| =|B| = n$,
+and $A\cup B = X$ (so we must have $A\cap B = \emptyset$). Then choosing a subset
+of $X$ is the same as choosing $k$ elements of $A$, where $0\le k\le n$,
+and then choosing the remaining $n-k$ elements from $B$. In other words,
+$${2n\choose n} = \sum_{k=0}^n {n\choose k}{n\choose n-k}
+= {n\choose k}^2.\noskipslug$$
+
+More identities can be obtained by laying out binomial coefficients in the triangle
+$$\matrix{
+&&&{0\choose 0}&&&\cr
+&&{1\choose 0}&&{1\choose 1}&&\cr
+&{2\choose 0} && {2\choose 1} && {2\choose 2}&\cr
+{3\choose 0} && {3\choose 1} && {3\choose 2} && {3\choose 3} \cr
+\vdots && \vdots && \vdots && \vdots && \cr
+}$$
+Adding a few more rows and writing out the actual values of the binomial coefficients
+yields Fig.~13. This triangle is named after B.~Pascal, who wrote a treatise regarding some of
+its properties that was published posthumously in 1665. (The triangle is known by different
+names in some different countries, as it was studied by Al-Karaji in the tenth or
+eleventh century, by O.~Khayy\'am about a hundred years later, by Yang Hui in
+the thirteenth century, and by Tartaglia in 1556, among many others.)
+\midinsert
+$$\matrix{
+&&&&&&&& 1 &&\cr
+&&&&&&& 1 && 1 &&\cr
+&&&&&& 1 && 2 && 1 &\cr
+&&&&& 1 && 3 && 3  && 1 \cr
+&&&& 1 && 4 && 6 && 4 && 1 \cr
+&&& 1 && 5 && 10 && 10 && 5 && 1 \cr
+&& 1 && 6 && 15 && 20 && 15 && 6 && 1 \cr
+& 1 && 7 && 21 && 35 && 35 && 21 && 7 && 1 \cr
+1 && 8 && 28 && 56 && 70 && 56 && 28 && 8 && 1 \cr
+\vdots &&\vdots && \vdots && \vdots && \vdots && \vdots && \vdots && \vdots &&\vdots \cr
+}$$
+\vskip5pt
+\caption{The first nine rows of Pascal's triangle}
+\endinsert
+\goodbreak
+This triangle can easily be drawn by hand by writing $1$s along its boundary, and then filling it
+it using the observation that every number is the sum of the two directly above it in the previous
+row. Of course, this rule has to be proved, so we shall do so right now.
+
+\parenproclaim Theorem {\advthm} (Pascal's identity). Let $n\ge 0$ and $k\ge 1$ be integers.
+Then
+$${n\choose k} = {n-1\choose k} + {n-1\choose k-1}.$$
+
+\proof Set $X = \{1,2,\ldots,n\}$. We count the number of sets $Y\subseteq X$ there are
+of size $k$.
+Either $1\notin Y$ or $1\in Y$. If $1\notin Y$, then there are ${n-1\choose k}$ possibilities
+for what $Y$ can be. If $1\in Y$, then there are still $k-1$ other elements of $Y$, and $n-1$
+elements to choose from, so there are ${n-1\choose k-1}$ possiblities in this case. Hence
+the right-hand side counts the number of subsets of $X$ with cardinality $k$. But this is
+exactly what the left-hand side counts as well.\slug
+
+Another thing we notice about Pascal's triangle is that the first row sums to $1$, the second
+row sums to $2$, the third to $4$, the fourth to $8$, and so on. We might therefore
+conjecture that the $n$th row of Pascal's triangle should always sum up to $2^n$. Indeed, we
+have the following easy corollary of the binomial theorem.
+
+\proclaim Proposition \advthm. For all $n\in \NN$,
+$$\sum_{k=0}^n {n\choose k} = 2^n.$$
+
+\proof By the binomial theorem with $x=y=1$, we have
+$$2^n = (1+1)^n = \sum_{k=0}^n {n\choose k} 1^k 1^{n-k} = \sum_{k=0}^n {n\choose k}.$$
+The proposition can also be proven by noting that the left-hand side counts the number
+of subsets of $\{1,2,\ldots,n\}$ of size $0$, plus the number of subsets of size $1$,
+and so on up to all subsets of size $n$. But adding these all up simply gives the total number
+of subsets of $\{1,2,\ldots, n\}$, which we know to be $2^n$.\slug
+
+The binomial theorem with a different choice of $x$ and $y$ allows us to reprove a statement
+we showed a long time ago, that for any finite nonempty set $X$, the number of subsets of $X$ with
+odd cardinality is the same as the number of subsets of $X$ with even cardinality.
+
+\medskip\noindent{\it Another proof of Proposition~{\propoddevensubsets}}.\enspace
+We re-establish the notation of the proposition statement. Let $X$ be a finite nonempty set,
+let $E$ be the set of subsets of $X$ with even cardinality, and let $O$ be the set of
+subsets with odd cardinality. By the binomial theorem with $x=-1$ and $y = 1$, we have
+$$0 = \bigl(-1+1\bigr)^n = \sum_{k=0}^n {n\choose k} (-1)^k 1^{n-k}
+= {n\choose 0} - {n\choose 1} + {n\choose 2} -\cdots + (-1)^n{n\choose n}.$$
+Hence
+$${n\choose 0} + {n\choose 2} +\cdots = {n\choose 1} + {n\choose 3} + \cdots,$$
+but the left-hand side of this is just $|E|$, and the right-hand side is $|O|$.\slug
+
+\medskip\boldlabel The freshman's dream. Back when you were in high school, you might
+have made the following computational error:
+$$(x+y)^2 = x^2 + y^2$$
+It turns out you were not wrong, provided $x$ and $y$ were integers
+and you were working modulo $2$. In general, one has the following consequence of the binomial theorem.
+
+\parenproclaim Theorem {\advthm} (Freshman's dream). Let $p$ be a prime number
+and let $x,y\in \ZZ$. Then
+$$(x+y)^p \equiv x^p + y^p \pmod p.$$
+
+\proof By the binomial theorem,
+$$(x+y)^p = \sum_{k=0}^p {p\choose k} x^k y^{p-k}
+= x^p + y^p + \sum_{k=1}^{p-1} {p\choose k}x^k y^{p-k}.$$
+Taking this equation modulo $p$,
+we are done if we can show that for all $1\le k\le p-1$, ${p\choose k} \equiv 0\pmod p$.
+
+Let $1\le k\le p-1$ and expand
+$${p\choose k} = {p!\over k!(p-k)!}$$
+Multiplying both sides by $k!(p-k)!$, we get
+$$k!(p-k)!{p\choose k} = p! = p(p-1)!.$$
+This is an integer and the
+right-hand side is a multiple of $p$, so the left-hand side is as well. Then since $p$ divides
+the product $k!(p-k)!{p\choose k}$, either $p$ divides $k!(p-k)!$ or it divides $p\choose k$.
+But
+$$k!(p-k)! = k(k-1)\cdots 2\cdot 1\cdot (p-k)(p-k-1)\cdots 2\cdot 1,$$
+and all of the factors on the right-hand side are positive integers less than $p$. So $p$ cannot divide
+any of them, and hence $p$ does not divide $k!(p-k)!$. We conclude that $p\divides {p\choose k}$.\slug
+
+\medskip\boldlabel A day spent selling milk.
+The binomial theorem can be used to find the value of a specific coefficient in a polynomial,
+without necessarily expanding the whole thing out. To illustrate this, consider the following
+scenario. Imagine that a farmer runs a roadside
+milk stand. Each time a customer visits they either
+\medskip
+\item{i)} pay her $\$6$ and buy one bottle of white, chocolate, or strawberry milk; or
+\smallskip
+\item{ii)} sell her back a glass bottle for $\$1$.
+\medskip
+So after one customer visits, there are three ways in which the farmer could have
+made $\$6$, and one way in which she could have made $-\$1$. Let us arrange these
+possibilities as a function of $x$; we write $3x^6 + x^{-1}$.
+
+What benefit is there
+of doing this? Well, suppose two customers come by. There are three ways for the
+first customer to give her $\$6$, and three ways for the second customer to give
+her $\$6$, so the number of ways for her to make $\$12$ after two customers visit is
+$9$ (where the order of the flavours she sells matters---selling chocolate then strawberry
+is different from selling strawberry then chocolate). It is also possible for her to
+net $\$5$ from two customers arriving. She could buy a bottle from the first customer
+and then sells the second a bottle of milk, or vice versa. There are three ways for
+each possibility, so six ways in total that she can make $\$5$. Lastly, there is only
+one way for her to have made $-\$2$. This is if she buys back a bottle from both of them.
+Thus the function of $x$ that describes all the fiscal possibilities of the farmer is
+$$9x^{12} + 6x^{5} + x^{-2} = (3x^6 + x^{-1})^2.$$
+By a similar reasoning, the number of ways for the farmer to make $x$ dollars after
+$n$ customers come by is $(3x^6 + x^{-1})^n$.
+When $n$ gets large we don't necessarily want to expand out this entire function
+(it has $2^n$ terms), but the binomial theorem allows this representation to be useful
+nonetheless.
+
+Suppose the farmer expects $15$ customers to come by tomorrow.
+Let's calculate the number of ways that the farmer can make $\$48$ from this.
+By the binomial theorem we have
+$$\eqalign{
+(3x^6 + x^{-1})^{15} &= \sum_{k=0}^{15} {15\choose k} (3x^6)^k (x^{-1})^{15-k} \cr
+&= \sum_{k=0}^{15} {15\choose k} 3^k x^{6k-15+k} \cr
+&= \sum_{k=0}^{15} {15\choose k} 3^k x^{7k-15}, \cr
+}$$
+and the number of ways to make $\$48$ from $15$ customers
+is the coefficient of $x^{48}$ on the right-hand side. So we want to know
+if $7k-15$ ever equals $48$ for any integers $0\le k\le 15$;
+setting $k=9$ does the trick. Hence on the right-hand side, when $k=9$,
+we have the term ${15\choose 9} 3^9 x^{48}$, meaning that the number of ways of making $\$48$ after
+$15$ customers come by is ${15\choose 9} 3^9 = 98513415$.
+
+A sum of powers of $x$ whose coefficients encode some combinatorial meaning (the number of ways
+to do something) is called a {\it generating function}. Using generating functions
+is one of the most beautiful and powerful techniques in combinatorics; the
+topic is usually covered in a second course on discrete mathematics (e.g., {\mc MATH}~340).
+
+\bigskip
+{\obeylines\eightssi
+\hfill A generating function is a clothesline
+\hfill on which we hang up a sequence for display.
+\eightss
+\smallskip
+\hfill --- HERBERT S. WILF, {\eightssi generatingfunctionology} (1989)}
+\bigskip\goodbreak
+
+\advsect Applications of the pigeonhole principle
+
+Back in Section~5, we proved the pigeonhole principle: {\sl If $n$ pigeons nest in $n-1$ holes,
+then at least one hole contains more than one pigeon.} We now present some examples illustrating
+its use.
+
+\medskip\boldlabel Sheep.
+Here is the first example. Suppose five sheep are placed in a square enclosure with a side
+length of $20$ metres. One can prove that any point in time, there are always two sheep within
+a distance of $\sqrt{200}\approx 14.14$ metres from one another.
+\midinsert
+$$\epsfbox{sheep.ps}$$
+\vskip5pt
+\caption{Five sheep in an enclosure.}
+\endinsert
+\goodbreak
+To use the pigeonhole principle, we need to decide what will be our ``pigeons'' and what will
+be our ``holes''. In this case, we can divide the enclosure into four square quadrants,
+each of side length $10$. We take our ``pigeons'' to be the sheep and our ``holes''
+to be the quadrants. Since there are five sheep and four quadrants, there is at least one quadrant
+that contains more than one sheep. But the quadrants are squares with side lengths of $10$ metres,
+so the farthest any two sheep can stand apart from each other while being in the same quadrant
+is the length of the diagonal. This is $\sqrt{10^2 + 10^2} = \sqrt{200}$ by the Pythagorean
+theorem.
+
+\medskip\boldlabel\datestamp{25} Subset sums.
+Let $A\subseteq \{1,2,\ldots, 100\}$ with $|A|=10$. Prove
+that there has to be subsets $X\subseteq A$ and $Y\subseteq A$ with $X\ne Y$ such that
+$$\sum_{x\in X} x = \sum_{y\in Y} y.$$
+We define $f:2^A\to \NN$ by letting
+$$f(X) = \sum_{x\in X} x.$$
+(So $f(\emptyset) = 0$.) What is the maximum possible sum? Well, this happens when
+$A = \{100,99, 98,\ldots, 91\}$ and $X = A$, in which case
+$$f(X) = \sum_{x\in X} x \le 100 + 99 + 98 + \cdots + 91 \le 1000.$$
+The minimum possible sum is $0$, when $X = \emptyset$,
+Hence let $2^A$ be the set of pigeons and let $\{0,1,2,\ldots,1000\}$ be the set of holes
+There are $2^{|A|} = 2^{10} = 1024$ pigeons and $1001$ holes, so by the pigeonhole principle
+there must be two pigeons that nest in the same hole; in other words, $f$ is not injective.
+Hence there are $X,Y\in 2^A$ with $X\ne Y$ such that $f(X) = f(Y)$.
+
+\medskip\boldlabel Theoretical limits to data compression. For $n\in \NN$, let $B_n$ be the set of all
+binary strings of length $n$. Let $B$ be the set of all binary strings of any finite length,
+so that
+$$B = B_0 \cup B_1 \cup B_2 \cup \cdots =  \bigcup_{n=0}^\infty B_n.$$
+Consider a string $x\in B$ as a file (containing some data encoded by the $0$s and $1$s).
+Let $L(x)$ be the length of $x$, i.e., the number
+of bits needed to encode $x$. Consider an algorithm $\alpha$ that takes a file as input and
+outputs a file. We can view $\alpha$ as a function $\alpha : B\to B$. Now imagine that the goal
+of $\alpha$ is to {\it compress} the file $x$; that is, we would ideally like to feed
+a file $x$ to $\alpha$ and get a file $y$ that is shorter in length.
+A compression algorithm $\alpha$ is {\it lossless} that for any $y$ in the range of $\alpha$,
+we can recover $x$ such that $\alpha(x) = y$. In other words, $\alpha$ is {\it lossless}
+if and only if it is injective when considered as a function $\alpha : B\to B$.
+Examples of widely-used file formats that feature lossless compression algorithms are
+{\mc ZIP}, {\mc PNG}, and {\mc GIF}.
+
+What we will prove is that any compression algorithm that decreases the file size for some inputs
+must increase the file size for other inputs. (For example, there exist some files such that
+compressing them into a {\mc ZIP} file causes them to get larger!)
+This is formalised in the following theorem.
+
+\proclaim Theorem \advthm. Let $\alpha : B\to B$ be a lossless compression algorithm such
+that for at least one $x\in B$, we have $L\bigl(\alpha(x)\bigr) < L(x)$.
+Then there exists $y\in B$ such that $L\bigl(\alpha(y)\bigr) > L(y)$.
+
+\proof For a contradiction, assume that there exists $\alpha: B\to B$ that is injective
+such that for at least some $x\in B$, $L\bigl(\alpha(x)\bigr) < L(x)$, and for all
+$y\in B$, $L\bigl(\alpha(x)\bigr) \le L(x)$.
+
+Pick $x\in B$ to be of minimal length such that
+$L\bigl(\alpha(x)\bigr) < L(x)$. Set $n = L(x)$ and $m = L\bigl(\alpha(x)\bigr)$, so that
+$n>m$. By minimality of $x$, if $y\in B$ with $L(y)<n$, then $L\bigl(\alpha(y)\bigr) \ge L(y)$,
+which, combined with our earlier assumption, means that
+$L\bigl(\alpha(y)\bigr) = L(y)$ for all $y\in B$ with $L(y)<n$.
+
+Define a new algorithm that has a restricted domain and codomain. We let
+$\alpha' : \bigl(B_m \cup \{x\}\bigr) \to B_m$ be given by $\alpha'(x) = \alpha$.
+The codomain is correct because $\alpha(y) \in B_m$ for all $y\in B_m$ and $\alpha(x)\in B_m$
+as well, by choice of $x$. Let $B_m\cup\{x\}$ be the set of pigeons and let $B_m$
+be the set of pigeonholes. Since there are $|B_m|+1$ pigeons and $|B_m|$ holes, there must
+be some $y,y'\in B_m\cup\{x\}$ with $y\ne y$ such that $\alpha'(y) = \alpha'(y')$. But this
+means that $\alpha(y) = \alpha(y')$ as well. Hence $\alpha$ is not injective: a contradiction.\slug
+
+\advsect Recurrences
+
+Let $(a_n) = a_0, a_1, a_2, \ldots$ be a sequence of real numbers (in all
+the examples we consider, they will be integers). A {\it recurrence relation}
+for the sequence is a formula for $a_n$ in terms of some of the $a_m$ with $m<n$.
+For instance, the {\it Fibonacci sequence} is the sequence $F_n$ defined by $F_0 = 0$,
+$F_1 = 1$, and $F_n = F_{n-1} + F_{n-2}$ for $n\ge 1$. The first few terms of $F_n$ are
+$$ 0 , 1, 1, 2, 3, 5, 8, 13, 21, \ldots.$$
+The sequence is named for the Italian mathematician Fibonacci, who in his 1202 book {\sl Liber Abaci}
+uses these numbers to describe the growth of a population of rabbits under certain idealised
+conditions. The sequence was known to Indian linguists many centuries earlier, as it pertains
+to the number different ways to arrange long and short Sanskrit syllables into lines of poetry.
+
+\medskip\boldlabel Finding recurrence relations.
+First we show an example of how to find a recurrence relation for a given sequence.
+For $n\ge 1$, let $C_n$ be the number of binary strings of length $n$ not containing $00$.
+We have $C_1 = 2$ ($0$ and $1$ are both fine) and $C_2 = 3$ ($01$, $10$, and $11$ are all fine,
+but $00$ is not).
+Now let $n\ge 2$ and consider how to derive a count for $C_n$, assuming
+we know the smaller values of $n$. Consider a string of length $n$ with no $00$.
+Either the string ends in $1$ or it ends in $10$, since if it ends with a $0$ the second-last
+bit must be $1$. In the first case, there are $n-1$ bits preceding the $1$, and the only requirement
+is that this string of $n-1$ bits not contain $00$. So there are $C_{n-1}$ possibilities in the
+first case. In the second case, there are $n-2$ bits preceding the $10$, and the requirement
+again is that the string $n-2$ bits not contain $00$. Hence in the second case there are
+$C_{n-2}$ possibilities. Adding up the two possibilities, we have
+$$C_n = C_{n-1} + C_{n-2}.$$
+This is the exact same recurrence relation as for the Fibonacci numbers! The only difference
+is that the answer is shifted (e.g., $C_1 = 3 = F_3$). So in general, $C_n = F_{n+2}$
+for all integers $n\ge 1$.
+
+Why don't we do another one. Let $A_n$ be the number of strings of length $n$ using the symbols
+$0$, $1$, $2$, $3$, such that there are an even number of $1$s. We have $A_1 = 3$, and
+we can calculate $A_2 = 10$, since there are $16$ possible strings, and the forbidden
+ones are $12$, $13$, $14$, $21$, $31$, and $41$. Now let $n\ge 2$ and consider a
+string of length $n$ with an even number of $1$s. Either the last number is $1$ or it is not.
+In the first case, there are $n-1$ bits preceding the $1$, and we need them to have an {\it odd}
+number of bits. The number of ways of doing this is $4^{n-1} - A_{n-1}$ (subtract the
+ones with an even number of $1$s from the total). In the second case, the last digit
+is $0$, $2$, or $3$, and in each case we just need the preceding $n-1$ bits to have an even
+number of $1$s, in $A_n$ ways. Hence there are $3A_{n-1}$ possibilities for this case.
+Adding everything up, we have
+$$A_n = 3A_{n-1} + 4^{n-1} - A_{n-1} = 2A_{n-1} + 4^{n-1}.$$
+
+\medskip\boldlabel Solving recurrences. Suppose we have a recurrence relation for a sequence $a_n$.
+We would like to ``solve'' this recurrence by deriving a formula for $a_n$ that isn't recursive,
+that is, one that does not contain any instances of $a_m$ for $m<n$ on the right-hand side.
+
+For example, in the very simple case where the recurrence has only one term, we have the following
+solution.
+
+\edef\prophomoone{\the\thmcount}
+\proclaim Proposition \advthm. Suppose $(a_n)$ is a sequence with $a_0 = c$ for some $c\in \RR$
+and, for all $n\ge 0$, $a_n = b\cdot a_{n-1}$ for some $b\in \RR$.
+Then for all $n\ge 0$, we have
+$$ a_n = c b^n.$$
+
+\proof By induction on $n$. For $n=0$, we have
+$$ a_0 = c = cb^0.$$
+(We define $0^0 = 1$). Now suppose the formula proven for $n$ and observe that
+$$ a_{n+1} = b\cdot a_n = b\cdot cb^n = cb^{n+1}.\noskipslug$$
+
+That was too easy. In general, we will consider recurrences of the form
+$$ a_n = f_1(n) a_{n-1} + f_2(n)a_{n-2} + \cdots + f_k(n) a_{n-k} + g(n)$$
+where $k\ge 1$ is an integer and $f_1, f_2, \ldots, f_k, g : \NN \to \RR$ are functions.
+These recurrences are said to be {\it linear of degree $k$}. If $g(n) = 0$,
+the recurrence is called {\it homogeneous}; otherwise, it is called {\it non-homogeneous}.
+
+For a non-homogeneous recurrence, the same recurrence without the $g(n)$ term is called
+the {\it associated homogeneous recurrence}.
+If, for all $1\le i\le k$, the function $f_i(n)$ is a constant function, then the recurrence
+is said to have {\it constant coefficients}.
+
+A sequence $(p_n)$ that satisfies the recurrence is called a {\it particular solution}.
+A {\it general solution} is a formula describing all possible solutions using some parameters.
+If we specify values for the first few terms $a_0, a_1, a_2,\ldots$, these are called
+{\it initial conditions} for the recurrence.
+
+\medskip\boldlabel\datestamp{26}{} Non-homogeneous recurrences of degree 1.
+So far, the only recurrences we know how to solve are
+linear homogeneous recurrences of degree $1$.
+As a step up in difficulty, let us now consider non-homogeneous recurrences of degree $1$.
+
+\edef\thmnonhomoone{\the\thmcount}
+\proclaim Theorem \advthm. Consider the non-homogeneous recurrence
+$$a_n = f(n)a_{n-1} + g(n),$$
+where $f,g:\NN\to \RR$. If $(p_n)$ is any particular solution to the recurrence
+and $(h_n)$ is a general solution to the associated homogenous recurrence, i.e.,
+$$ h_n = f(n) h_{n-1}$$
+for all $n\ge 1$, then the general solution for the recurrence is
+$$a_n = h_n + p_n.$$
+
+\proof Let $(b_n)$ be any solution to the recurrence and
+let $(p_n)$ be a particular solution to the recurrence, so that for $n\ge 1$ we have
+$$b_n = f(n)b_{n-1}+g(n)\qquad\hbox{and}\qquad p_n = f(n) p_{n-1} + g(n).$$
+Let $(c_n)$ be the sequence given by $c_n = b_n - p_n$. Note that for all $n\ge 1$,
+$$\eqalign{
+f(n) c_{n-1} &= f(n)(b_{n-1} - p_{n-1}) \cr
+&= f(n)b_{n-1} - f(n)p_{n-1} \cr
+&= b_n - g(n) - \bigl( p_n - g(n)\bigr) \cr
+&= b_n - p_n \cr
+&= c_n. \cr
+}$$
+So $(c_n)$ is a solution to the associated homogeneous recurrence. In other words, it is
+obtained from $(h_n)$ by specifying values for its parameters. Hence, letting
+$$a_n = h_n + p_n,$$
+the solution $b_n = c_n + p_n$ is derived by specifying specific values for parameters
+in the general solution $(a_n)$.\slug
+
+Here, then, is the general method for solving a non-homogeneous recurrence of degree $1$:
+\medskip
+\item{i)} Solve the associated homogeneous recurrence, using Proposition~{\prophomoone},
+to get a general solution $(h_n)$ with parameters.
+\smallskip
+\item{ii)} Find a solution $p_n$ to the recurrence. To do so, we often find it useful
+to guess that $p_n$ should have a similar form to $g(n)$. We'll see an example of this soon.
+\smallskip
+\item{iii)} Theorem~{\thmnonhomoone} tells us that the general solution to our recurrence is
+$$a_n = h_n + p_n.$$
+\smallskip
+\item{iv)} There will be unspecified parameters in the general solution, so if possible, we solve
+for these parameters by calculating some initial conditions.
+
+To illustrate this method, let us revisit the example from earlier about the number $A_n$ of
+strings of $0$, $1$, $2$, and $3$ that have an even number of $1$s. We derived
+the recurrence
+$$A_n = 2A_{n-1} + 4^{n-1}.$$
+Now let's solve it using Proposition~{\prophomoone} and Theorem~{\thmnonhomoone}.
+First, we find the general solution to the associated homogeneous
+recurrence $A_n = 2A_{n-1}$. By Proposition~{\prophomoone}, this is
+$$h_n = \alpha 2^n,$$
+where $\alpha\in \RR$ is a parameter that we can fill in by looking at initial conditions,
+but we'll skip that for now.
+Now we want a particular solution $p_n$. Since $g(n) = 4^{n-1}$, we guess that
+$p_n = \beta 4^n$ for some $\beta\in \RR$. We want $p_n = 2p_{n-1} + 4^{n-1}$, so
+$$ \beta 4^n = 2\beta 4^{n-1} + 4^{n-1}.$$
+Dividing through by $4^{n-1}$ yields
+$$4\beta = 2\beta + 1,$$
+so we can take $\beta = 1/2$, and $p_n = (1/2)4^n$ is a particular solution.
+By Theorem~{\thmnonhomoone}, the general solution to our original recurrence is
+$$\alpha \cdot 2^n  + {1\over 2} 4^n.$$
+Now, earlier we derived the initial condition $A_1 = 3$, so
+$$3 = A_1 = \alpha\cdot 2^1 + {1\over 2} 4^1.$$
+Solving this, we obtain $\alpha = {1\over 2}$. So for $n\ge 1$, the final formula for $A_n$ is
+$$A_n = {1\over 2} 2^n + {1\over 2} 4^n.$$
+We verify that
+$$A_2 = {1\over 2} 2^2 + {1\over 2} 4^2 = 2+8 = 10,$$
+which matches the count we performed earlier.
+
+In this example, we guessed that the particular solution
+$p_n$ should take the form $\beta 4^n$ for some $\beta$, since $g(n) = 4^{n-1}$. This sort of
+guess works for certain other classes of $g(n)$ as well. The general principle is outlined in Table~1.
+
+\topinsert
+$$\vcenter{\vbox{
+\eightpoint
+\tabskip=2em plus2em minus.5em
+\halign{
+\hfil#\hfil & \hfil#\hfil \cr
+\noalign{\hrule}
+\noalign{\medskip}
+If $g(n)$ is \dots & \dots then take $p_n$ to be \dots \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+a constant $q$, & a constant $r$. \cr
+\noalign{\medskip}
+a linear function $q_0 + q_1n$, & a linear function $r_0 + r_1 n$. \cr
+\noalign{\medskip}
+an exponential function $qt^n$, & an exponential function with the same base $rt^n$.\cr
+\noalign{\medskip}
+\noalign{\hrule}
+}
+}}$$
+\vskip5pt
+{\centerline{\ninepoint{\bf Table~1.\enspace}Particular solutions $p_n$ for certain classes of $g(n)$.}}
+\bigskip
+\endinsert\goodbreak
+
+Theorem~{\thmnonhomoone} is a special case of a more general theorem, whose proof is beyond the
+scope of this course.
+
+\edef\thmnonhomo{\the\thmcount}
+\proclaim Theorem \advthm. Consider the recurrence
+$$ a_n = f_1(n) a_{n-1} + f_2(n)a_{n-2} + \cdots + f_k(n) a_{n-k} + g(n)$$
+for some $k\ge 1$ and $f_1, f_2,\ldots, f_k,g : \NN\to \RR$. If $(p_n)$ is any particular solution
+and $(h_n)$ is a solution to the associated homogeneous recurrence, i.e.,
+$$h_n = f_1(n) a_{n-1} + f_2(n)a_{n-2} + \cdots + f_k(n) a_{n-k}$$
+for all $n\ge 1$, then the general solution for $(a_n)$ is given by $a_n = h_n + p_n$.\slug
+
+\medskip\boldlabel Recurrences with constant coefficients.
+We now turn to the case where the $f_i$ are all constant functions. This means
+there are constants $c_1, c_2, \ldots, c_k$ such that $f_1(n) = c_1$ for all $n$,
+$f_2(n) = c_2$ for all $n$, and so on.
+In light of Theorem~{\thmnonhomo}, we can
+restrict our attention to homogeneous recurrences, since we can solve non-homogeneous
+recurrences by solving their associated homogeneous recurrences and then applying the theorem.
+Homogeneous recurrences with constant coefficients look like
+$$a_n = c_1 a_{n-1} + c_2 a_{n-2} + \cdots + c_k a_{n-k},$$
+for some degree $k\ge 1$. We define the {\it characteristic equation} of such a recurrence to be the
+equation
+$$x^k = c_1 x^{k-1} + c_2 x^{k-2} + \cdots + c_k,$$
+and the {\it characteristic polynomial} is the polynomial obtained by subtracting
+the right-hand side from the left-hand side:
+$$x^k - c_1 x^{k-1} + c_2 x^{k-2} + \cdots + c_k$$
+It turns out that this
+polynomial entirely determines the general solution to the recurrence. We shall state
+and prove this theorem in the special case that $k=2$ and the two roots of the characteristic
+polynomial are distinct.
+
+\edef\thmdegtwodistinct{\the\thmcount}
+\proclaim Theorem \advthm. Consider the recurrence given by
+$$a_n = c_1 a_{n-1} + c_2 a_{n-2}.$$
+If the characteristic polynomial of this recurrence has two distinct roots $r_1$ and $r_2$, then
+the general solution of the recurrence is
+$$a_n = \alpha_1 {r_1}^n + \alpha_2 {r_2}^n.$$
+Supposing we know the initial conditions $a_0$ and $a_1$, we can solve for
+$\alpha_1$ and $\alpha_2$ via the identities
+$$\alpha_1 = {a_0 r_2 - a_1\over r_2 - r_1}
+\qquad\hbox{and}\qquad
+\alpha_2 = {a_1 - a_0 r_1\over r_2-r_1}.$$
+
+\proof The characteristic polynomial of the recurrence is
+$$ x^2 - c_1 x + c_2.$$
+For any root $r$ of this polynomial, we have
+$$ r^2 = c_1 r + c_2,$$
+so for any $n\ge 2$ we can multiply both sides by $r^{n-2}$
+to get
+$$ r^n = c_1 r^{n-1} + c_2 r^{n-2}.$$
+Hence the sequence $(r^n)$ is a solution to the recurrence. Conversely,
+if $r$ is such that $(r^n)$ is a solution to the recurrence, then
+$r^n = c_1 r^{n-1} + c_2 r^{n-2}$ for all $n\ge 2$, so we can divide by $r^{n-2}$
+to get $r^2 = c_1 r + c_2$; that is, $r$ is a root of the characteristic polynomial.
+
+What we have found so far is that $a_n = {r_1}^n$ and $a_n = {r_2}^n$ are both solutions to the
+recurrence, and that they are the only two solutions that take the form $r^n$ for some $r$.
+Now we must show that for any scalars $\alpha_1$ and $\alpha_2$,
+$$f_n = \alpha_1 {r_1}^n + \alpha_2 {r_2}^n$$
+is also a solution to the recurrence. Well,
+$$\eqalign{
+c_1 f_{n-1} + c_2 f_{n-2} &=
+c_1\bigl(\alpha_1 {r_1}^{n-1} + \alpha_2 {r_2}^{n-1}\bigr)
++ c_2\bigl(\alpha_1 {r_1}^{n-2} + \alpha_2 {r_2}^{n-2}\bigr) \cr
+&= c_1\alpha_1 {r_1}^{n-1} + c_1 \alpha_2 {r_2}^{n-1} + c_2\alpha_1 {r_1}^{n-2}
++ c_2\alpha_2 {r_2}^{n-2} \cr
+&= \alpha_1 \bigl( c_1 {r_1}^{n-1} + c_2 {r_1}^{n-2} \bigr)
++ \alpha_2 \bigl( c_1 {r_2}^{n-1} + c_2 {r_2}^{n-2} \bigr) \cr
+&= \alpha_1 {r_1}^n + \alpha_2 {r_2}^n \cr
+&= f_n,
+}$$
+So the claimed expression is in fact the general solution to the recurrence.
+
+Lastly,
+we must show that we can solve for $\alpha_1$ and $\alpha_2$ once we know
+the initial conditions $a_0$ and $a_1$. We have
+$$ a_0 = \alpha_1 {r_1}^0 + \alpha_2 {r_2}^0 = \alpha_1 + \alpha_2$$
+and
+$$ a_1 = \alpha_1 r_1 + \alpha_2 r_2.$$
+We can arrange these equations into the matrix equation
+$$\pmatrix{ 1 & 1 \cr r_1 & r_2 } \pmatrix{ \alpha_1 \cr \alpha_2 } = \pmatrix{ a_0 \cr a_1 }.$$
+This equation is solvable if and only if the determinant $r_2 - r_1$ of the matrix
+$\bigl( {1\atop r_1} {1\atop r_2} \bigr)$
+is nonzero. But we assumed $r_1\ne r_2$, so this is the case. Using the formula
+for the inverse of a $2\times 2$ matrix, we find that the inverse of
+$\bigl( {1\atop r_1} {1\atop r_2} \bigr)$ is
+$${1\over r_1-r_2} \pmatrix{ r_2 & -1 \cr -r_1 & 1 },$$
+whence
+$$\pmatrix{\alpha_1\cr \alpha_2} = {1\over r_2-r_1} \pmatrix{ r_2 & -1 \cr -r_1 & 1 }
+\pmatrix{a_0 \cr a_1}.$$
+We conclude that
+$$\alpha_1 = {a_0 r_2 - a_1\over r_2 - r_1}
+\qquad\hbox{and}\qquad
+\alpha_2 = {a_1 - a_0 r_1\over r_2-r_1},$$
+which is what we wanted to show.
+\slug
+
+Let us use this theorem to derive a non-recursive formula for the Fibonacci numbers.
+Recall that they satisfy the recurrence $F_n = F_{n-1} + F_{n-2}$, so the characteristic
+polynomial is
+$$x^2 - x - 1.$$
+By the quadratic formula, the two roots of this polynomial are
+$$r_1 = {1 - \sqrt 5\over 2}\qquad\hbox{and}\qquad r_2 = {1+\sqrt 5\over 2}.$$
+The roots are distinct; in fact, we have
+$$r_2 - r_1 = {1+\sqrt 5 - (1-\sqrt 5)\over 2} = {2\sqrt 5\over 2} = \sqrt 5.$$
+In any case, Theorem~{\thmdegtwodistinct} applies, and we have the general
+solution
+$$F_n = \alpha_1 {r_1}^n + \alpha_2 {r_2}^n.$$
+We have $F_0 = 0$ and $F_1 = 1$, so using the formulas given by the theorem,
+we calculate
+$$\alpha_1 = {0\cdot r_2 - 1\over \sqrt 5} = {-1\over \sqrt 5}$$
+and
+$$\alpha_2 = {1 - 0\cdot r_2\over \sqrt 5} = {1\over \sqrt 5}.$$
+So
+$$F_n = {-1\over \sqrt 5}\biggl({1 - \sqrt 5\over 2}\biggr)^n
++ {1\over \sqrt 5}\biggl({1+\sqrt 5\over 2}\biggr)^n.$$
+From this formula, it is not even clear that $F_n \in \NN$ for all $n$, though it must be
+since the first two terms are integer and each term is the sum of the two previous entries.
+
+The quantity $r_1 = (1+\sqrt 5)/2\approx 1.618$ is called the {\it golden ratio}, and is
+often denoted $\varphi$.
+We have $r_2 = (1-\sqrt 5)/2 \approx -0.618$, so $(-1/\sqrt 5){r_2}^n$ is very small in absolute value
+for large $n$.
+This means that
+$$ F_n \sim {1\over \sqrt 5} \biggl( {1+\sqrt 5\over 2}\biggr)^n \approx {1.61^n\over \sqrt 5}.$$
+In other words,
+$$\lim_{n\to\infty} {-1\over \sqrt 5}\biggl({1 - \sqrt 5\over 2}\biggr)^n = 0,$$
+so
+$$\lim_{n\to \infty} {F_{n+1}\over F_n} = {1+\sqrt 5\over 2}.$$
+Incidentally, it is not just the first few decimal places in the approximations of $r_1$ and $r_2$
+that match. As an exercise, prove that $r_2 = 1/r_1 = 1-r_1$.
+
+The case where the characteristic polynomial has a repeated root is not covered by
+Theorem~{\thmdegtwodistinct}. Instead, we have the following theorem, which we will
+not have time to prove in this course (though the proof is by no means difficult).
+
+\proclaim Theorem \advthm. Consider the recurrence given by
+$$a_n = c_1 a_{n-1} + c_2 a_{n-2}.$$
+If the characteristic polynomial of this recurrence has a repeated root $r$,
+then the general solution of the recurrence is
+$$a_n = \alpha_1 r^n + \alpha_2 nr^n.\noskipslug$$
+
+Theorem~{\thmdegtwodistinct} can also be generalised to higher degrees $k$. Its proof is
+morally the same as the one we gave for the case $k=2$.
+
+\proclaim Theorem \advthm. Let $k\ge 2$ be an integer and consider the recurrence given by
+$$a_n = c_1 a_{n-1} + c_2 a_{n-2} + \cdots + c_k a_{n-k}.$$
+If the characteristic polynomial of this recurrence has $k$ roots
+$r_1,r_2,\ldots, r_k$ that are pairwise distinct, then
+the general solution of the recurrence is
+$$a_n = \alpha_1 {r_1}^n + \alpha_2 {r_2}^n + \cdots + \alpha_k {r_k}^n.\noskipslug$$
 
 \bye

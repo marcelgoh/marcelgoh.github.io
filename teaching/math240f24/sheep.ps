@@ -1,0 +1,70 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 100 120
+%%HiResBoundingBox: 0 0 100 120
+
+% Constants
+/cm {28.35 mul} def
+/u {2 cm mul} def     % One unit
+/w {2 cm mul} def
+/xoff {0.1 cm add} def   % Offset the letters
+/yoff {0.1 cm add} def
+
+/nine {/CMMI10 findfont 9 scalefont setfont} def
+/ninetext {/CMR10 findfont 9 scalefont setfont} def
+/sixtext {/CMR8 findfont 6 scalefont setfont} def
+/symnine {/CMSY10 findfont 9 scalefont setfont} def
+
+0.5 setlinewidth
+
+% k n deg:  get degrees of k/n of the way around unit circle
+/deg {
+    /n exch def
+    /k exch def
+    360 k mul n div
+} def
+
+/dot {
+    2 0 360 arc closepath fill
+} def
+
+/s 20 string def
+/label {
+    /n exch def
+    ninetext n s cvs show
+} def
+
+0.5 u 0.4 w dot
+1.7 u 0.2 w dot
+1.8 u 1.9 w dot
+1.1 u 1.2 w dot
+0.1 u 1.7 w dot
+
+1 setlinewidth
+newpath
+0 u 0 w moveto
+2 u 0 w lineto
+2 u 2 w lineto
+0 u 2 w lineto
+0 u 0 w lineto
+stroke
+
+0.5 setlinewidth
+
+newpath
+2.2 u 0 w moveto
+2.2 u 2 w lineto
+2.13 u 0 w moveto
+2.27 u 0 w lineto
+2.13 u 2 w moveto
+2.27 u 2 w lineto
+2.25 u 0.95 w moveto (20) label 0.04 u 0 w rmoveto (metres) label
+stroke
+
+[2 2] 1 setdash
+newpath
+1 u 0 w moveto
+1 u 2 w lineto
+0 u 1 w moveto
+2 u 1 w lineto
+stroke
+showpage
