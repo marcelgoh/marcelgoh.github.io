@@ -245,4 +245,6 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _I Ate Tiong Bahru_ (2013), Stephen Black
 1. _The Cyberiad_ (1965), Stanisław Lem
 1. _The Mayor of Casterbridge_ (1886), Thomas Hardy
+1. _Normal People_ (2018), Sally Rooney
+1. _The Disappearance of Rituals_ (2019), Byung-Chul Han
 

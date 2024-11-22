@@ -77,6 +77,9 @@ trails and circuits}{81}}
 {{\tenssbx IV. Combinatorics \kern 3pt}}{88}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 17.\kern .5em Basic counting techniques}{89}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 18.\kern .5em Permutations and
+combinations}{92}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -3473,7 +3476,9 @@ be any partition of $V$ into disjoint nonempty sets. Then $A_i = A\cap V_i$
 and $B_i = B\cap V_i$ form a partition of $V_i$
 into two nonempty sets. But $G_i$ is not bipartite, so there is some $e\in E$
 that either has both endpoints in $A_i$ or both endpoints in $B_i$. This means
-that $G$ is not bipartite either.\slug
+that $A\cup B$ is not a valid bipartition, and since $A$ and $B$ were arbitrary,
+we conclude that
+$G$ is not bipartite either.\slug
 
 As a matter of fact, we shall prove something much stronger than just the fact that
 $K_{\lceil n/2 \rceil, \lfloor n/2 \rfloor}$ does not contain any triangles.
@@ -4107,9 +4112,8 @@ Well, there are $100$ choices for the player with jersey number $1$, then after
 picking that player, there are $99$ choices for the player with jersey number $2$, and so on,
 so the total number is
 $$100\cdot 99\cdot 98 \cdots 82\cdot 81 = {100!\over 80!}.$$
-\bye
 
-\noindent\datestamp{23}{} \hskip\parindent
+\noindent\datestamp{21}{xi} \hskip\parindent
 In general, we define a {\it $k$-permutation} of a set $X$ to be an ordered subset
 of $X$ (i.e., the order of the selection matters) of size $k$. If $|X| = n$,
 the number of $k$-permutations of $X$ is denoted $P(n,k)$ and equals
@@ -4233,7 +4237,7 @@ $${52\choose 5} - {13\choose 0}{39\choose 5} - {13\choose 1}{39\choose 4}
 = 2598960 - 575757 - 1069263 = 953940,$$
 the same figure we obtained in the previous paragraph.
 
-\medskip\boldlabel\datestamp{24}{} Identities involving binomial coefficients.
+\medskip\boldlabel Identities involving binomial coefficients.
 We already observed earlier that the number of ways of picking $k$ objects out of a
 set of size $n$ is the same as the number of picking $n-k$ objects out of the same set.
 This can be seen algebraically by expanding
@@ -4298,7 +4302,17 @@ elements to choose from, so there are ${n-1\choose k-1}$ possiblities in this ca
 the right-hand side counts the number of subsets of $X$ with cardinality $k$. But this is
 exactly what the left-hand side counts as well.\slug
 
-Another thing we notice about Pascal's triangle is that the first row sums to $1$, the second
+The only number that appears infinitely many times is $1$, since any $n\in \ZZ$
+can only appear in the first $n+1$ rows of the triangle (if $m>n$, then for all
+$0\le k\le m$, ${m\choose k}$ is either $1$ or at least $m$). A fun conjecture to think
+about is Singmaster's conjecture, put forth by D.~Singmaster in 1971: {\sl There
+exists some number $C$ such that every integer $n\ge 2$ appears in Pascal's triangle
+at most $C$ times.} Whether this statement is true is still an open problem.
+The integer (besides $1$) known to appear most often in Pascal's triangle is
+$3003$. It appears eight times, and no other integer is known to appear eight times.
+
+But let us not be too diverted by lofty conjectures. Returning to things we can prove,
+another thing we notice about Pascal's triangle is that the first row sums to $1$, the second
 row sums to $2$, the third to $4$, the fourth to $8$, and so on. We might therefore
 conjecture that the $n$th row of Pascal's triangle should always sum up to $2^n$. Indeed, we
 have the following easy corollary of the binomial theorem.
@@ -4354,8 +4368,9 @@ But
 $$k!(p-k)! = k(k-1)\cdots 2\cdot 1\cdot (p-k)(p-k-1)\cdots 2\cdot 1,$$
 and all of the factors on the right-hand side are positive integers less than $p$. So $p$ cannot divide
 any of them, and hence $p$ does not divide $k!(p-k)!$. We conclude that $p\divides {p\choose k}$.\slug
+\bye
 
-\medskip\boldlabel A day spent selling milk.
+\medskip\boldlabel\datestamp{24}{} A day spent selling milk.
 The binomial theorem can be used to find the value of a specific coefficient in a polynomial,
 without necessarily expanding the whole thing out. To illustrate this, consider the following
 scenario. Imagine that a farmer runs a roadside
