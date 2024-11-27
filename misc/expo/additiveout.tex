@@ -1,0 +1,1374 @@
+\input fontmac
+\input mathmac
+
+\def\FF{{\bf F}}
+\def\TT{{\bf T}}
+\def\bar{\overline}
+\def\hat{\widehat}
+\def\norm#1{|\!|#1|\!|}
+\def\bignorm#1{\big|\!\big|#1\big|\!\big|}
+\def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
+\def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+\def\mone{-\!\one}  % aesthetic quibble
+
+
+\widemargins
+\bookheader{NOTES ON ADDITIVE COMBINATORICS}{MARCEL K. GOH}
+
+\maketitle{Notes on additive combinatorics}{by}{Marcel K. Goh}{5 May 2023}
+
+\floattext4.5 \ninebf Note.
+\ninepoint
+I am compiling this set of expository notes primarily to solidify these fundamental results of
+additive combinatorics in
+my own mind. Sources that are far more comprehensive exist on the web, so I'm not sure
+how useful this will be to anyone else. Currently, the bulk of these notes come from
+a series of YouTube lectures of Timothy Gowers (given in early 2022), though I intend
+in future to add more relevant topics as I learn about them.
+
+\bigskip
+
+\advsect Pl\"unnecke's theorem
+
+Let $A$ and $B$ be finite subsets of an abelian group. We define the {\it sumset}
+$A+B = \{a+b : a\in A,\, b\in B\}$ as well as the {\it difference set}
+$A-B = \{a-b : a\in A,\, b\in B\}$. For a nonnegative integer $r$, the {\it $r$-fold iterated sumset}
+$rA$ is defined recursively by $0A = \{0\}$ and $rA = A+(r-1)A$. The goal of this first section
+is to show that if the cardinality of
+a sumset $|A+B|$ is small compared to the size of the set $A$, then the difference
+$rB-sB$ of two iterated sumsets must also be small relative to the size of $A$,
+in some sense. This result is called Pl\"unnecke's
+theorem as it follows from a statement given by H.~Pl\"unnecke in~1969, though this particular
+formulation of it was stated and proved by I.~Z.~Ruzsa in 1989.
+
+\edef\thmplunnecke{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Pl\"unnecke, {\rm 1969;} Ruzsa, {\rm 1989}). Let $A_0$ and
+$B$ be finite subsets of an abelian group and suppose that $|A_0+B|\le K_0|A_0|$ for some constant $K_0$.
+Then there exist $A\subseteq A_0$ and $K\le K_0$ such that
+for any nonnegative integers $r$ and $s$, not both zero, we have $|rB-sB| \le K^{r+s}|A|$. In particular,
+this means that $|rB-sB| \le {K_0}^{r+s}|A_0|$.
+
+Ruzsa used Menger's theorem from graph theory to prove this theorem, but we will use a shorter
+argument from a 2012 paper by G.~Petridis. It hinges on the following lemma. In this proof (and the
+rest of these notes), we will write $A+x$ instead of $A+\{x\}$ for convenience.
+
+\edef\lempetridis{\the\thmcount}
+\parenproclaim Lemma {\advthm} (Petridis, {\rm 2012}). Let $A$ and $B$ be subsets of an abelian
+group and let $K_0$ be such that $|A_0+B| = K_0|A_0|$. Then there exist $A\subseteq A_0$ and
+$K\le K_0$ such that $|A+B+C| \le K|A+C|$ for every finite subset $C$ of the group.
+
+\proof We pick $A\subseteq A_0$ nonempty such that the ratio $|A+B|/|A|$, which we shall
+set as $K$, is minimised. So $|A+B| = K|A|$ and $|A'+B|\ge K|A'|$ for all $A'\subseteq A_0$.
+Now we shall show by induction on $C$ that $|A+B+C|\le K|A+C|$ for all $C$. If $C$ is empty we
+are done, of course. Now assume the result holds for $C$ and let $x\notin C$ be arbitrary. We have
+$$\bigl| A+(C\cup \{x\}) \bigr| = |A+C| + |A+x| - |A'+x|$$
+where $A' = \{a\in A : a+x \in A+C\}$. But adding $x$ to everything in a set does not change its
+cardinality, so we have
+$$|A+C| + |A+x|-|A'+x| = |A+C| + |A| + |A'|.$$
+Also, any element of $A'+B+x$ is an element of $A+B+C$, since $a'+x\in A+C$ for all $a'\in A'$.
+Applying the induction hypothesis now gives
+$$\eqalign{
+\bigl| A + B + (C\cup \{x\}) \bigr| &\le |A+B+C| + |A+B+x| - |A'+B+x| \cr
+&\le K|A+B| + K|A| = K|A'| \cr
+&= K\bigl| A+(C\cup \{x\})\bigr|,
+}$$
+which completes the proof.\slug
+
+This lemma has an immediate corollary that already has some resemblance to the version of Pl\"unnecke's
+theorem that we eventually want to prove.
+
+\proclaim Corollary {\advthm}. If $|A_0 + B|\le K_0|A_0|$, then there is $A\subseteq A_0$ nonempty
+and $K\le K_0$ such that $|A+rB| \le K^r |A|$ for all nonnegative integers $r$.
+
+\proof The previous lemma gives $A$ and $K$ such that $|A+B+C|\le K|A+C|$ for all $C$. We now induce
+on $r$. The case $r=0$ is obvious. Now for $r>0$ applying the lemma again with $C = (r-1)B$ and
+then invoking the induction hypothesis gives
+$$|A+rB| = |A+B+(r-1)B| \le K|A+(r-1)B| \le K^r|A|.\noskipslug$$
+
+To get from this corollary to the full theorem, we will use a certain inequality of Rusza (1996), which
+is often called the Ruzsa triangle inequality due to its similarity to the triangle inequality in
+metric spaces.
+
+\parenproclaim Lemma {\advthm} (Ruzsa triangle inequality). Let $U$, $V$, and $W$ be finite
+subsets of an abelian group. Then
+$$|U|\cdot |V-W| \le |U-V|\cdot |U-W|.$$
+
+\proof For each $x\in V-W$, pick $v(x)\in V$ and $w(x)\in W$ such that $v(x)-w(x) = x$ (there may
+be multiple choices for each of $v(x)$ and $w(x)$, but we arbitrarily pick one).
+Define $\phi : U\times (V-W) \to (U-V)\times (U-W)$ by $\phi(u,x) = \bigl(u-v(x), u-w(x)\bigr)$.
+If $\bigl(u_1 - v(x_1), u_1 - w(x_2)\bigr) = \bigl(u_2 - v(x_2), u_2 - w(x_2)\bigr)$, then
+subtracting the second coordinate of each pair from the first, we find that
+$$x_1 = v(x_1) - w(x_1) = v(x_2) - w(x_2) = x_2,$$
+and this also implies that $u_1 = u_2$. So $\phi$ gives an injection from $U\times (V-1)$
+to $(U-V)\times (U-W)$.\slug
+
+If we define $d(U,V) = |U-V| / \bigl(|U|^{1/2}|V|^{1/2}\bigr)$, then this lemma states
+that $d(U,W) \le d(V,U)d(U,W)$. Taking logarithms gives a genuine additive triangle inequality,
+but the space of finite subsets of an abelian group does not form a metric space, since
+$|U-U|/|U|$ does not equal $1$ in general. In any case, we are now able to prove Ruzsa's
+version of Pl\"unnecke's inequality.
+
+\medskip
+\noindent{\it Proof of Theorem~{\thmplunnecke}.}\enspace Let $A$ and $K$ be given by
+Lemma~{\lempetridis}. By the corollary to that lemma, we have $|A+rB| \le K^r|A|$ and
+$|A+sB| \le K^r|A|$. Cardinalities are not changed by taking additive inverses of
+everything, so $|{-A}-rB| \le K^r|A|$ and $|{-A}-sB|\le K^r|A|$. Now an application of Ruzsa's triangle
+inequality with $U = -A$, $V = rB$ and $W = sB$ yields
+$$|A|\cdot|rB-sB| = |{-A}|\cdot|rB-sB| \le |{-A}-rB|\cdot|{-A}-sB| \le K^{r+s}|A|^2,$$
+and dividing both sides by $|A|$ proves the theorem.\slug
+
+\advsect Khovanskii's theorem
+
+The goal of this section is to prove the following wonderful theorem of A.~Khovanskii.
+
+\edef\thmkhovanskii{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Khovanskii, {\rm 1992}). Let $A$ be a finite
+subset of an abelian group and let $f_A(n) = |nA|$ for each $n\in \NN$. Then there exists
+$n_A$ and a polynomial $p_A$ such that $f_A(n) = p_A(n)$ for all $n\ge n_A$.
+
+Consider the example when $A = \{0,1,b-1,b\} \subseteq \ZZ$. Then letting $[a,b] = \{x\in \ZZ : a\le x\le b\}$,
+we have
+$$nA = [0, n] \cup [b-1,\ldots, b+n-1] \cup [2b-2, 2b+n-2] \cup\cdots\cup [n(b-1),nb].$$
+This has size $(n+1)^2$ as long as $n< b-1$, but when $n\ge b-1$, $nA$ is simply the set
+of integers in the range $[0,bn]$, which has size $bn+1$.
+
+We shall present a combinatorial proof of Khovanskii's theorem,
+given by M.~B.~Nathanson and I.~Z.~Ruzsa in 2002.
+Let $A = \{a_1,\ldots, a_r\}$ and
+for $x = (x_1,\ldots, x_r)\in {\NN_0}^r$, write
+$$\sigma(x) = \sum_{i=1}^r x_i\qquad\hbox{and}\qquad
+\alpha(x) = \sum_{i=1}^r a_ix_i.$$
+Then
+$$nA = \{ \alpha(x) : x\in {\NN_0}^r,\, \sigma(x) = n\}.$$
+Let $\prec$ be the lexicographic order on ${\NN_0}^r$; that is, $(x_1,\ldots,x_r)\prec (y_1,\ldots,y_r)$
+if there is some $i\in [r]$ such that $x_i<y_i$ and $x_j = y_j$ for all $1\le j<i$.
+Say that $x$ is {\it useless} if there is $x'\prec x$ such that $\sigma(x') = \sigma(x)$ and
+$\alpha(x') = \alpha(x)$; otherwise, say that $x$ is {\it useful}. It is easy to see that
+$|nA|$ is exactly the number of useful $x$ with $\sigma(x) = n$. Now let $\le$ denote
+the usual partial order on ${\NN_0}^r$, where $(x_1,\ldots,x_r)\le (y_1,\ldots,y_r)$
+if $x_i\le y_i$ for all $1\le i\le r$.
+
+\proclaim Lemma {\advthm}. If $x\le y$ and $x$ is useless, then $y$ is useless.
+
+\proof Since $x$ is useless, we can find $x'\prec x$ with $\sigma(x') = \sigma(x)$ and $\alpha(x') = \alpha(x)$.
+Let $y' = y+x'-x$. Since $x\le y$, $y-x$ is in ${\NN_0}^r$ and therefore so is $y'$. Then since
+$x_i' < x_i$ for the first $i$ at which the two tuples differ, the first coordinate at which $y'$ and
+$y$ differ is also $i$ and we have $y_i'<y_i$. Hence $y'\prec y$. Lastly,
+$$\sigma(y') = \sigma(y+x'-x) = \sigma(y) + \sigma(x') - \sigma(x) = \sigma(y)$$
+and the same is true with $\sigma$ replaced by $\alpha$, so $y$ is useless.\slug
+
+For each useless $x$ we can find a useless $x'$, minimal in the $\le$ order, such that $x'\le x$.
+This lemma gives a converse; it says that if $x'$ is a minimal useless element and $x'\le x$, then
+$x$ is also useless.
+
+\edef\lemminimalfinite{\the\thmcount}
+\proclaim Lemma {\advthm}. For any nonempty $U\subseteq {\NN_0}^r$, the set of minimal elements of
+$U$ (with respect to the $\le$ order) is finite.
+
+\proof We perform induction on $r$. If $r=1$, then it is clear that $U$ has exactly one minimal element.
+Now let $r>1$ and let $u$ be a minimal element of $u$. Then for every $v\in U$ with $u\not\le v$,
+there exists some $i$ and $t< u_i$ such that $v_i = t$. Let
+$$V(i,t) = \{v\in U : v_i = t\}$$
+for all $1\le i\le r$ and $0\le t<u_i$. Each set $V(i,t)$ is order-isomorphic to a subset of ${\NN_0}^{r-1}$,
+so by induction it has finitely many minimal elements. The number of $V(i,t)$ is $r\prod_{i=1}^r u_i$,
+and every minimal element of $u$ is either $u$ or a minimal element of some $V(i,t)$, so there are
+finitely many minimal elements in $U$.\slug
+
+We will need just one more lemma before we are able to prove Khovanskii's theorem. It shows that
+for any fixed $r$-tuple $x'$, the number of $x$ with $x'\le x$ and $\sigma(x) = n$
+is given by a polynomial in the variable $n$, with coefficients depending on $x'$ and $r$.
+
+\proclaim Lemma {\advthm}. Let $x'\in {\NN_0}^r$ and for $n\ge \sigma(x')$, let
+$$C(x', n) = \{n\in {\NN_0}^r : \sigma(x) = n,\,x'\le x\}.$$
+Then
+$$\bigl| C(x',n)\bigr| = {n-\sigma(x') + r-1 \choose r-1}.$$
+
+\proof Given $x\in C(x',n)$, map it to $x-x'$. This is a bijection from $C(x',n)$ to $C(0, n-\sigma(x')$.
+Now let $m = n-\sigma(x')$. The map $(x_1,\ldots,x_r) \mapsto (x_1,+1,\ldots, x_r+1)$ is a bijection
+from $C(0,m)$ to the set of $y\in \NN^r$ such that $y_1+\cdots+y_r = m+r$. Now the map
+$$(y_1,\ldots,y_r) \mapsto \{y_1, y_1+y_2, \ldots, y_1+\cdots+y_r\}$$
+is a bijection from the previous set to the set of subsets of $[m+r]$ that contain $m+r$. (It is
+inverted by the map $\{a_1, \ldots, a_r\} \mapsto (a_1, a_2-a_1, \ldots, a_r-a_{r-1})$.) But this final
+set has size ${m+r-1\choose r-1}$, so we are done.\slug
+
+Without further ado, let us now prove Khovanskii's theorem.
+
+\medskip\noindent {\it Proof of Theorem~{\thmkhovanskii}.}\enspace Let $U$ be the set of all
+useless $r$-tuples. By Lemma~{\lemminimalfinite}, the set $X\subseteq U$ of all minimal useless
+$r$-tuples is finite. Recall that $|nA|$ is the number of useful $x$ such that $\sigma(x) = n$,
+so using the notation of the previous lemma, we have
+$$|nA| = \bigl| C(0,n)\bigr| - \Bigl| \bigcup_{x'\in X} C(x',n)\Bigr|
+=\bigl| C(0,n)\bigr| - \sum_{Y\subseteq X} (-1)^{|Y|} \Bigl| \bigcap_{x'\in Y} C(x',n)\Bigr| $$
+But for any $Y\subseteq X$, $\bigcap_{x'\in Y} C(x',n) = C(x_Y, n)$, where $x_Y$ has for its
+$i$th coordinate the integer $\max_{y\in Y} y_i$. Hence every term in the inclusion-exclusion
+formula depends polynomially on $n$ once
+$$n\ge \sum_{1\le i\le r} \max_{x\in X} x_i.\noskipslug$$
+
+\advsect The Balog--Szemer\'edi--Gowers theorem
+
+Let $A$ be a finite nonempty subset of an abelian group. An {\it additive quadruple} in
+$A$ is a quadruple $(x,y,z,w)\in A^4$ such that $x+y = z+w$. The {\it additive energy}
+$E(A)$ of $A$ is the number of additive quadruples in $A$. If $(x,y,z,w)$ is an additive
+quadruple, then $w = x+y-z$, so $E(A)\le |A|^3$. The following lemma roughly states that if
+a set has a small sumset, then it has large additive energy.
+
+\proclaim Lemma {\advthm}. Let $A$ be a finite subset of an abelian group and let $C$ be such
+that $|A+A|\le C|A|$. Then $E(A)\ge |A|^3/C$.
+
+\proof Define $f : A+A\to \NN$ by letting $f(d)$ equal the number of pairs $(a,b)\in A^2$ such
+that $a+b =d$. Then
+$$\sum_{d\in A+A} f(d) = |A|^2\qquad\hbox{and}\qquad \sum_{d\in A+A} f(d)^2 = E(A).$$
+By the Cauchy--Schwarz inequality,
+$$|A|^2 = \sum_{d\ge 1} 1\cdot f(d)
+\le \Bigl(\sum_{d\ge 1} 1\Bigr)^{1/2} \Bigl( \sum_{d\ge 1} f(d)^2\Bigr)^{1/2}
+\le C^{1/2} |A|^{1/2} E(A)^{1/2}.$$
+From here, squaring the whole inequality and then dividing through by $C|A|$ gives the statement
+we want to prove.\slug
+
+The converse of this lemma does not hold. For example, we could take the disjoint
+union of an arithmetic progression with a geometric progression of the same length.
+This set has a large additive energy,
+because of the arithmetic progression, but it also has a large sumset, because of the geometric progression.
+However, we can pass to a large subset that has a small sumset (namely, the arithmetic progression), and this
+is essentially the statement of the Balog--Szemer\'edi--Gowers theorem. We shall state it later on in the
+section, after we have given the graph-theoretic definitions and lemmas needed in its proof.
+
+Let $G$ be a bipartite graph with finite vertex sets $X$ and $Y$. For a vertex $v\in X\cup Y$,
+let $d(v) = \deg(v)$ denote the {\it degree} of $x$, that is, the number of vertices adjacent to $v$.
+For $x_1,x_2\in X$, let $d(x_1,x_2)$ denote the number of paths of length $2$ from $x_1$ to $x_2$. This
+is called the {\it codegree} of $x_1$ and $x_2$. The {\it density} of $G$ is the number of edges of $G$
+divided by the maximum number of vertices it could have, namely $|X|\cdot|Y|$.
+
+\proclaim Lemma {\advthm}. Let $G$ be a bipartite graph with bipartition $X\cup Y$ and let the density
+of $G$ be $\delta$. Then for every $c>0$ there is a subset $X'\subseteq X$ with $|X'|\ge \delta|X|/\sqrt 2$
+such that the number of pairs $(x_1,x_2)\in (X')^2$ with $d(x_1,x_2) < c|Y|$ is at most $2c|X|^2/\delta^2$.
+
+\proof Let $y\in Y$ be chosen uniformly at random. Letting $X' = N(y)$, we have
+$$\ex\bigl\{ |X'|\bigr\} = \ex_{y\in Y} \bigl\{ d(y)\bigr\} = {1\over |Y|} \sum_{y\in Y} d(y)
+= {|E(G)|\over |Y|} = \delta|X|.$$
+By convexity of the map $x\mapsto x^2$, we then find that $\ex\bigl\{ |X'|^2\bigr\} \ge \delta^2|X|^2$.
+Let
+$$B = \bigl\{ (x_1,x_2)\in X^2 : d(x_1,x_2) < c|Y|\bigr\}.$$
+The probability that any $(x_1, x_2)\in B$ is also in $(X')^2$ is the same as the probability that
+$y$ is connected to both $x_1$ and $x_2$; this is less than $c|Y|$ by the construction of $B$.
+So by linearity of expectation, $\ex\bigl\{ |B\cap (X')^2| \bigr\} < c|X|^2$ and in particular, we
+have
+$$\biggl\{ |X'|^2 - {\delta^2\over 2c} |B\cap(X')^2|\biggr\}
+ >\biggl(\delta^2 - {\delta^2\over 2c}\cdot c\biggr)|X|^2 = {\delta^2\over 2}|X|^2.$$
+So there is $X'$ such that $|X'| - \bigl(\delta^2/(2c)\bigr) |B\cap (X')^2| \ge \delta^2|X|^2/2$.
+This set $X'$ has cardinality at least $\delta |X|/\sqrt 2$ and $|B\cap (X')^2| \le 2c|X'|^2/\delta^2$.\slug
+
+This lemma says that we can find a fairly large subset of $X$ such that almost every pair in this
+subset is joined by at least $c|Y|$ paths of length $2$. We would really like to remove the ``almost''
+in this statement, but to do so, we will have to pass to paths of length $3$.
+First, we need a little lemma about sums of real numbers between $0$ and $1$.
+
+\proclaim Lemma {\advthm}. Let $a_1,\ldots, a_n\in [0,1]$. If $\sum_{i=1}^n a_i \ge an$, then
+the number of $i$ such that $a_i\ge b$ is at least
+$$ \biggl( {a-b\over 1-b} \biggr) n.$$
+
+\proof Let $I$ be the set of $i$ such that $a_i\ge b$. Then we may write
+$$ an \le \sum_{i=1}^n a_i = \sum_{i\in I} a_i + \sum_{i\notin I} a_i
+\le |I| + (n-|I|)b.$$
+It remains to isolate for $|I|$.\slug
+
+For example, if $b = a/2$, then the number of $i$ with $a_i\ge b$ must be at least $an/2$, and more
+generally, if $a= 1-\theta$ and $b=1-\eta$, then the number of such $i$ is at least $(1-\theta/\eta)n$.
+If $\eta = 2\theta$, then $a_i\ge 1-2\theta$ at least half the time.
+Next we prove the lemma alluded to earlier, concerning paths of length $3$.
+
+\proclaim Lemma {\advthm}. Let $G$ be a bipartite graph with vertex sets $X$ and $Y$ and density $\delta$.
+Then there are subsets $X'\subseteq X$ and $Y'\subseteq Y$ such that
+$$|X'| \ge {\delta^2\over 8\sqrt 2} |X|\qquad\hbox{and}\qquad
+|Y'|\ge {\delta\over 4}|Y|$$
+and every $x\in X'$ and $y\in Y'$ are joined by at least $(\delta^6/2^{13}) |X|\cdot |Y|$ paths
+of length $3$ in $G$.
+
+\proof By letting $n = |X|$ and setting the $a_i$ equal to the degrees of the vertices in $X$, we have
+$a = \delta|Y|$
+and we can choose $b=a/2$ in the previous lemma
+to deduce that $X$ has a subset $X_1$ such that every vertex in $X_1$ has degree at least
+$\delta|Y|/2$ and $|X_1|\ge \delta|X|/2$. Note that the density of the bipartite subgraph with
+vertex set $X_1\cup Y$ is $\ge \delta/2$,
+so we may invoke the lemma about paths of length $2$ with $\delta$ set to $\delta/2$. It tells us that
+for any $c>0$, $X_1$ has a subset $X_2$ of size $\delta|X_1|/2^{3/2}$ such that for all but at most
+$8c|X_2|^2/\delta^2$ pairs $(x_1,x_2)\in {X_2}^2$, we have $d(x_1,x_2) \ge c|Y|$.
+
+Now let $\Gamma$ be a graph with vertex set $X_2$ and an edge between $x_1$ and $x_2$ if and only if
+$\delta(x_1,x_2)\ge c|Y|$. Note that by this definition, there may be loops in $\Gamma$. In any case,
+the average degree in $\Gamma$ is at least $(1-8c/\delta^2)|X_2|$. Invoking the previous lemma again,
+at least half the vertices in $X_2$ have degree at least $(1-16c/\delta^2)|X_2|$. Let $X'$ be the set of
+all such vertices. Then
+$$|X'| \ge {|X_2|\over 2} \ge {\delta|X_1|\over 4\sqrt 2} \ge {\delta^2 |X|\over 8\sqrt 2}.$$
+Every vertex in $X_2$ has degree at least $\delta |Y|/2$, so the bipartite subgraph on $X_2\cup Y$
+has density at least $\delta/2$ and the average degree of $y\in Y$ is at least $\delta|X_2|/2$. The
+previous lemma comes in handy once again, telling us that at least $\delta|Y|/4$ vertices in $Y$ has
+degree at least $\delta|X_2|/4$. Let $Y'$ be the set of these vertices.
+
+For any $x\in X'$ and $y\in Y'$, we know that $x$ has at least $(1-16c/\delta^2)|X_2|$ neighbours in $\Gamma$
+and $y$ has at least $\delta|X_2|/4$ neighbours in $X_2$. There must be at least
+$(\delta/4-16c/\delta^2)|X_2|$ neighbours in commmon. Letting $c=\delta^3/128$, the number of neighbours
+in common becomes $\delta|X_2|/8$, and the number of paths of length $3$ from $x$ to $y$ is at least
+$$ {\delta |X_2|\over 8} |X_2| \cdot c|Y| = {\delta\over 8}\cdot {\delta^3\over 128}
+\cdot {\delta^2\over 4\sqrt 2} |X|\cdot |Y| \ge {\delta^6\over 2^{13}}|X|\cdot |Y|,$$
+as foretold.\slug
+
+Let $A$ be a finite subset of an abelian group. We say that an element $d\in A-A$ is {\it $\theta$-popular}
+if $\bigl|\bigl\{ (a,b)\in A^2 : b-a=d\bigr\}\bigr|\ge \theta |A|$.
+
+\proclaim Lemma {\advthm}. Let $A$ be a finite subset of an abelian group and let $E(A)$ denote
+the additive energy of $A$. If $E(A)\ge c|A|^3$, then there are at least $c|A|/2$ elements of $A-A$
+that are $(c/2)$-popular.
+
+\proof Define $f : A-A\to \NN$ by $f(d) = \bigl|\bigl\{ (a,b)\in A^2 : b-a=d\bigr\}\bigr|$.
+Note that
+$$\sum_{d\in A-A} f(d) = |A|^2\qquad\hbox{and}\qquad \sum_{d\in A-A} f(d)^2 = E(A).$$
+Let $P$ be the set of $(c/2)$-popular differences and let $U = (A-A)\setminus P$. Then
+$$\eqalign{
+c|A|^3 &\le E(A)\cr
+&= \sum_{d\in A-A} f(d)^2 \cr
+&= \sum_{d\in P} f(d)^2 + \sum_{d\in U} f(d)^2 \cr
+&\le |P|\cdot |A|^2 + {c|A|\over 2} \sum_{d\in U} f(d) \cr
+&= |P|\cdot |A|^2 + {c|A|^3\over 2}, \cr
+}$$
+which implies that $|A|\ge c|A|/2$.\slug
+
+We are, at long last, ready to state and prove the Balog--Szemer\'edi--Gowers theorem. It is
+named for A.~Balog and E.~Szemer\'edi, who first proved it in 1994, as well as for W.~T.~Gowers,
+who gave an alternative proof in 1998 that yielded power-type bounds, a vast improvement to the tower-type
+bounds in Balog and Szemer\'edi's proof.
+
+\parenproclaim Theorem {\advthm} (Balog--Szemer\'edi, {\rm 1994;} Gowers, {\rm 1998}).
+Let $A$ be a finite subset of an abelian group with $E(A)\ge c|A|^3$. Then $A$ has a subset
+$A'$ of size at least $c'|A|$ such that $|A'-A'|\le C|A'|$, where $c'$ and $C$ have a power-type
+dependence on $c$. In particular, we may take
+$$ c' = {c^4\over 2^8}\qquad\hbox{and}\qquad C = {2^{68}\over c^{36}}.$$
+
+\proof Define a bipartite graph $G$ with both vertex sets being copies of $A$ (though
+we'll call one of these copies $B$ to avoid any confusion). Join $a\in A$ to
+$b\in B$ if and only if $b-a$ is $(c/2)$-popular. Each $(c/2)$-popular difference leads to at least
+$c|A|/2$ edges, so by the lemma, there are at least $c^2|A|^2/4$ edges. Let $\delta = c^2/4$.
+By the lemma concerning paths of length $3$, there exist $A'\subseteq A$ and $B'\subseteq B$
+with
+$$ |A'| \ge {\delta^2\over 8\sqrt 2} |A|\qquad\hbox{and}\qquad
+|B'|\ge {\delta \over 4} |A|$$
+such that every $a\in A$ and $b\in B$ are joined by at least $\delta^6|A|^2/2^{13}$ paths of length $3$
+in $G$.
+
+Given a path $(a,u,v,b)$ of length $3$, we have $b-a = u-a - (u-v) + b-v$, where $u-a$, $u-v$, and $b-v$
+are all $(c/2)$-popular. Hence the number of ways of writing $b-a$ as $r_1-s_1 - (r_2-s_2) + r_3 - s_3$
+is at least
+$${\delta^6\over 2^{13}} |A|^2 \biggl( {c\over 2} |A|\biggr)^3 = {c^{15}\over 2^{28}} |A|^5.$$
+But the number of possible $(r_1,s_1,r_2,s_2,r_3,s_3)$ is $|A|^6$. So
+$$ |B'-A'|\cdot {c^{15}\over 2^{28}} |A|^5 \le |A|^6 $$
+and $|B'-A'|\le 2^{28}|A|\over c^{15}$. Now the Ruzsa triangle inequality with $U = B'$ and
+$V = W = A'$ tells us that $|B'|\cdot |A'-A'| \le |B'-A'|^2$, so
+$$|A'-A'|\le {|B'-A'|^2\over |B'|} \le {2^{56}|A|^2\over c^{30}}\cdot {2^4\over c^2|A|}={2^{60}\over c^{32}}|A|.$$
+But recall that
+$$|A'| \ge {\delta^2\over 8\sqrt 2} |A| \ge {c^4\over 2^8}|A|,$$
+so $|A'-A'| \le 2^{68}|A'|/c^{36}$.\slug
+
+\advsect Freiman homomorphisms and Ruzsa embedding lemmas
+
+We have been talking a lot about finite subsets of abelian groups, so it's about time we gave
+a special name for these sets. An {\it additive set} is a pair $(A,Z)$ where $Z$ is an abelian
+group and $A$ is a finite subset of $Z$. In almost all cases we shall suppress mention of $Z$
+and speak simply of an additive set $A$.
+
+Let $A$ and $B$ be additive sets (not necessarily in the same group). A function $\phi:A\to B$
+is a {\it Freiman homomorphism of order $k$} if for any $2k$ elements $a_1,\ldots,a_k,b_1,\ldots,b_k\in A$
+satisfying
+$a_1+\cdots +a_k = b_1+\cdots+b_k$, we also have $\phi(a_1)+\cdots+\phi(a_k) =\phi(b_1)+\cdots+\phi(b_k)$.
+The existence of such a $\phi$ tells us that the additive relationships among
+the elements of $A$ are approximately the same as the additive relationships in $B$. Note that a Freiman
+homomorphism of order $k$ is also a Freiman homomorphism of order $k'$ for all $k'>k$.
+If we write simply ``Freiman
+homomorphism'', then we mean a Freiman homomorphism of order $2$, and we will sometimes write ``$k$-homomorphism''
+instead of ``Freiman homomorphism of order $k$''.
+
+A $k$-homomorphism $\phi:A\to B$ induces a map from $kA$ to $kB$. Indeed, if we define $\psi: kA\to kB$
+by
+$$\psi(a_1+\cdots+a_k) = \phi(a_1) + \cdots + \phi(a_k),$$
+then the definition of $k$-homomorphism ensures that $\phi$ is well-defined. More generally, if $\phi$
+is a $k(r+s)$-homomorphism, then defining $\psi : rA-sA \to rB-sB$ by
+$$\phi(a_1+\cdots+a_r-a_1'-\cdots-a_s') = \phi(a_1)+\cdots+\phi(a_r) -\phi(a_1')-\cdots-\phi(a_s'),$$
+it is easy to see that $\psi$ is a $k$-homomorphism. It is also clear that if $\phi$ is the
+restriction of a group homomorphism to $A$, then $\phi$ is a $k$-homomorphism for every $k$, and
+if $\phi:A\to B$ and $\psi:B\to C$ are $k$-homomorphisms, then $\psi\circ \phi : A\to C$ is a $k$-homomorphism
+as well.
+
+If $\phi : A\to B$ is a $k$-homomorphism with an inverse that is also a $k$-homomorphism, then we say that
+$\phi$ is a {\it Freiman isomorphism of order $k$} or, more briefly, a {\it $k$-isomorphism}. These
+maps preserve a lot of the properties that are of interest in additive combinatorics. Suppose that $A$
+is $k$-isomorphic to $B$. Then
+\medskip
+\item{i)} $|kA| = |kB|$;
+\smallskip
+\item{ii)} $|rA-sA| = |rB-sB|$ for all $r$ and $s$ with $r+s\le k$;
+\smallskip
+\item{iii)} $E(A) = E(B)$ if $k=2$; and
+\smallskip
+\item{iv)} if $k=2$ and $A$ contains an arithmetic progression of length $r$, then so does $B$.
+\medskip
+Of these statements, the only slightly nontrivial one is (iv). It follows from the fact that an
+arithmetic progression is a sequence $(a_1,\ldots,a_r)$ with $a_i+a_i = a_{i-1}+a_{i+1}$ for all $1<i<r$.
+Taking $\phi$ of both sides gives
+$$\phi(a_i) + \phi(a_i) = \phi(a_i+a_i) = \phi(a_{i-1}+a_{i+1}) = \phi(a_{i-1}) + \phi(a_{i+1}).$$
+Let us now state and prove two important ``embedding lemmas''. These lemmas tell us that if
+$kA-kA$ is not too large, then the additive set $A$ is $k$-isomorphic to a subset of a group that
+is simpler, in some sense.
+
+\parenproclaim Lemma {\advthm} (Ruzsa embedding lemma in $\FF_p^N$). Let $k\ge 1$ and $C>0$.
+Let $A\subseteq \FF_p^N$ be such that $|kA-kA|\le C|A|$. Then $A$ is isomorphic to a subset of
+$\FF_p^n$, where $p^{n-1} < C|A|$.
+
+\proof Let $X$ be a subspace of $\FF_p^N$ chosen uniformly at random from all subspaces of
+codimension $n$, where $n$ will be specified later. Let $q : \FF_p^N \to \FF_p^N/X$ be the
+quotient map taking $v$ to $v+X$. Since $q$ is a group homomorphism, its restriction to $A$
+is a Freiman homomorphism
+of order $k$. The only way that the restriction of $q$ to $A$ can fail to be a {\it $k$-isomorphism}
+is if there exist $a_1,\ldots,a_k,b_1,\ldots,b_k\in A$ such that $a_1+\cdots+a_k \ne b_1+\cdots+b_k$
+but $q(a_1)+ \cdots + q(a_k) = q(b_1)+\cdots+q(b_k)$. This is equivalent to
+$a_1+\cdots+a_k - b_1-\cdots-b_k$ being in $X$. For any nonzero $y\in \FF_p^N$, we have
+$$\pr\{y\in X\} = {p^{N-n}-1\over p^N-1} < {1\over p^n},$$
+and since $|kA-kA|\le C|A|$,
+$$\pr\biggl\{\bigcup_{y\in (kA-kA)\setminus\{0\}} \{y\in X\}\biggr\} \le \sum_{y\in (kA-kA)\setminus 0}
+\pr\{y\in X\} < {C|A|\over p^n},$$
+the probability that $q$ is a $k$-isomorphism is nonzero so long as $p^n\ge C|A|$. Taking the minimal such $n$,
+we have $p^{n-1} < C|A|$ and
+can conclude there is a subspace $X$ of dimension $n$ that contains a set $k$-isomorphic to $A$.\slug
+
+Next, we will prove an embedding lemma for subsets of $\ZZ$. In this setting the ``simpler'' group
+that we pass to is a cyclic group, but first we need a lemma that essentially says that passing
+to a cyclic group preserves the additive structure.
+
+\proclaim Lemma {\advthm}. Let $k$ and $n$ be positive integers and let $A\subseteq \ZZ$ be a set of
+diameter less than $n/k$; i.e., $\max A - \min A < n/k$. Then the map $\phi : A\to \ZZ_n$ that
+sends $a\mapsto a\bmod n$ is a Freiman isomorphism of order $k$.
+
+\proof The function $\phi$ is the restriction of a group homomorphism to $A$, so it is a Freiman
+homomorphism of every order. Now suppose that $\min A = r$ and $\max A = s$, so that $s-r < n/k$.
+Then if $a_1,\ldots,a_k,b_1,\ldots,b_k$ are such that $\phi(a_1)+\cdots+\phi(a_k) = \phi(b_1)+\cdots+\phi(b_k)$,
+then $a_1+\cdots+a_k -b_1-\cdots-b_k$ is at most $k(s-r) < n$ but also a multiple of $n$.
+Hence this difference is zero and $a_1 + \cdots + a_k = b_1+\cdots+b_k$.\slug
+
+As promised, here is the embedding lemma for subsets $A\subseteq \ZZ$. This time, we cannot simply
+say anything about the whole set $A$, but we can about a large subset of it.
+
+\parenproclaim Lemma {\advthm} (Ruzsa embedding lemma in $\ZZ$). Let $k\in \NN$ and $C\in \RR$.
+If $A\subseteq \ZZ$ with $|kA-kA|\le C|A|$, then there exists $A'\subseteq A$ with $|A'|\ge |A|/k$
+such that $A'$ is $k$-isomorphic to a subset of $\ZZ/N\ZZ$, where $N$ is a prime between
+$2C|A|$ and $4C|A|$.\slug
+
+\proof It is easily checked that translation is a Freiman isomorphism of every order, so we may assume
+that $A\subseteq \NN_0$. Let $p$ be a prime bigger than $k\max A$ and consider the
+sequence of functions
+$$\ZZ \buildrel{q_1}\over\longrightarrow \ZZ_p \buildrel{\mu_r}\over\longrightarrow \ZZ_p
+\buildrel\iota\over\longrightarrow \ZZ \buildrel{q_2}\over\longrightarrow \ZZ_N,$$
+where $q_1$ is reduction modulo $p$, $\mu_r$ is multiplication by a random nonzero element $r\in \ZZ_p$,
+$\iota$ takes an element of $\ZZ_p$ to its representative in $[0,p)$, and $q_2$ is reduction mod $N$.
+The only map here that is not a group homomorphism is $\iota$, so to show that the composition
+$\phi = q_2\circ \iota\circ \mu_r\circ q_1$ restricted to $A$ is a $k$-homomorphism, it suffices to worry
+about $\iota$. Split the interval $\{0,1,\ldots,p-1\}$ into $k$ subintervals $J_1,\ldots,J_k$,
+each of diameter less than $p/k$ and let $I_j = \iota^{-1}(J_j)$ for each $1\le j\le k$. By the previous
+lemma, the map $\iota^{-1}$ restricted to any $J_j$ is a $k$-isomorphism, so $\iota$ restricted
+to $I_j$ is a $k$-isomorphism as well. Now let
+$$A_{j,r} = \bigl\{a\in A : \mu_r\bigl(q_1(a)\bigr) \in I_j\bigr\}$$
+and note that $\mu_r\bigl(q_1(a)\bigr) = ra \bmod p$. Thus the composition $\phi$ is a $k$-homomorph\-ism
+when restricted to any $A_{j,r}$.
+
+We shall now show that with positive probability, the restriction of $\phi$ to every $A_{j,r}$ is
+a $k$-isomorphism. For fixed $r$, the restriction to $A_{j,r}$ is not a $k$-isomorphism
+if there exist $j$ and $a_1,\ldots,a_k,b_1,\ldots,b_k\in A_{j,r}$ such that
+$a_1+\cdots+a_k \ne b_1+\cdots+b_k$ but $\phi(a_1)+\cdots+\phi(a_k) = \phi(b_1)+\cdots+\phi(b_k)$.
+
+\advsect Rudiments of discrete Fourier analysis
+
+Let $Z$ be a finite abelian group. A {\it character} on $Z$ is a homomorphism from
+$Z$ to the multiplicative group $\C\setminus\{0\}$. If $\chi$ is such a homomorphism, then
+$\bigl|\chi(x)\bigr| = 1$ for every $x\in Z$, so we can actually regard $\chi$ as being
+a function from $Z$ to the unit circle $\TT = \{z\in \C : |z| = 1\}$. The pointwise product
+of two characters gives another character, and the function $\chi_0$ that sends every $x\in Z$
+to $1$ has the property that if $\chi$ is any character, then $\chi\chi_0 = \chi = \chi_0\chi$.
+Lastly, we note that multiplication is commutative and
+for any character $\chi$, the product of $\chi$ with $\bar\chi$
+gives $\chi_0$, so the set of characters on $Z$ is an abelian group. This is called the
+{\it dual group} (or sometimes the {\it Pontryagin dual}) of $Z$ and is denoted $\hat Z$.
+
+We define an inner product on the space $\CC^Z$ of functions from $Z$ to $\CC$ by setting
+$$\langle f,g\rangle = \ex_x f(x) \bar{g(x)},$$
+where $\ex_{x\in Z} F(x) = |Z|^{-1} \sum_{x\in Z} F(x)$.
+We can also make $\hat Z$ into an inner product space by letting
+$$\langle \hat f, \hat g\rangle = \sum_{\chi\in \hat Z} \hat f(\chi)\bar{\hat g(\chi)};$$
+note that this time we do not normalise by dividing by $|Z|$.
+Two functions $f$ and $g$ in an inner product space are said to be {\it orthogonal} if $\langle f,g\rangle = 0$.
+The first lemma we'll prove concerns certain orthogonality relations.
+
+\parenproclaim Lemma {\advthm} (Orthogonality relations). Let $Z$ be a finite abelian group.
+\medskip
+\item{a)} If $\chi_1$ and $\chi_2$ are characters on $Z$, then
+$$\langle \chi_1,\chi_2 \rangle = \ex_{x\in Z} \chi_1(x)\bar{\chi_2(x)}
+  = \cases{ 1, & if $\chi_1 = \chi_2$;\cr 0, & if $\chi_1 \ne\chi_2$.}.$$
+\smallskip
+\item{b)} For $x,y\in Z$, we have
+$$\sum_{\chi\in \hat Z} \chi(x)\bar{\chi(y)}
+  = \cases{ |\hat Z|, & if $x=y$;\cr 0, & if $x\ne y$,}$$
+\medskip
+
+\proof Let $\chi_0$ denote the trivial character. We have
+$$\ex_{x\in Z} \chi_0(x) = \ex_{x\in Z} 1 = 1.$$
+On the other hand, let $\chi$ be a nontrivial character and let $u\in Z$ be such that $\chi(u)\ne 1$. Then from
+$$\ex_{x\in Z} \chi(x) = \ex_{x\in Z} \chi(u+x) = \ex_{x\in Z}\chi(u)\chi(x) = \chi(u)\ex_{x\in Z}\chi(x),$$
+it follows that $\ex_{x\in Z}\chi(x) = 0$. Now consider $\chi_1\bar{\chi_2}$. If $\chi_1 = \chi_2$, then
+this is the trivial character and from our first observation, $\langle \chi_1,\chi_2\rangle = 0$. Otherwise,
+we are in the second case and the inner product is zero. This proves part (a).
+
+Part (b) is proven similarly. Note that $\chi(x)\bar{\chi(y)} = \chi(x-y)$. If $x=y$, then we have
+$$\sum_{\chi\in\hat Z} \chi(x-y) = \sum_{\chi\in\hat Z} \chi(0) = |\hat Z|.$$
+If $x\ne y$, then there is some $\psi\in \hat Z$ such that $\psi(x-y)\ne 1$, and then writing
+$$\sum_{\chi\in \hat Z} \chi(x-y) = \sum_{\chi\in\hat Z} \psi(x-y)\chi(x-y)
+= \psi(x-y)\sum_{\chi\in\hat Z} \chi(x-y),$$
+we see that $\sum_{\chi\in\hat Z} \chi(x-y)$ must be zero.\slug
+
+Since the space of functions from $Z\to \CC$ has dimension $|Z|$, there are at most $|Z|$ characters.
+Every finite abelian group can be written as a direct product of cyclic groups, and we shall use this fact
+to show that there are exactly $|Z|$ characters; i.e., $|\hat Z| = |Z|$. For brevity, let $\ZZ_n$ stand for $\ZZ/n\ZZ$ for all $n\in\NN$,
+and for $\alpha\in \RR$, let $e(\alpha) = e^{2\pi i\alpha}$.
+
+\proclaim Lemma \advthm.
+The set of characters on a finite abelian group $Z$ spans the space of functions from $Z$ to $\CC$.
+
+\proof Write $Z \cong \ZZ_{n_1} \times \ZZ_{n_2}\times \cdots\times \ZZ_{n_r}$. For every
+$u = (u_1,\ldots, u_r)\in Z$, the function $\chi_u : Z\to \CC$ that maps
+$$(x_1,\ldots, x_r) \mapsto \prod_{i=1}^r e\biggl( {u_ix_i\over n_i}\biggr)$$
+is a character (this is easy to show, since $e(x_i + x_i') = e(x_i)e(x_i')$). If $u\ne u'$,
+then $\chi_u\ne\chi_{u'}$ and $\langle \chi_u,\chi_{u'}\rangle = 0$ by the previous lemma. Hence
+the set $\{\chi_u : u\in Z\}$ comprises $|Z|$ linearly independent elements in a space of dimension $|Z|$,
+which must be spanning.\slug
+
+Note that the map $u\mapsto \chi_u$ gives an isomorphism from $Z$ to $\hat Z$.
+The two main examples we shall consider are when $Z = \ZZ_n$ and when $Z = \FF_p^n$. In the first
+case, $\chi_u$ maps $x\mapsto e(ux/N)$ and in the second case $\chi_u$ maps $x\mapsto e(u\cdot x/p)$.
+(Recall that if $u = (u_1,\ldots, u_n)$ and $x = (x_1,\ldots, x_n)$ then the dot product $u\cdot x$
+is the sum $\sum_{i=1}^n u_ix_i$.)
+
+For a finite set $X$, we shall denote by $L_p(X)$ the normed vector space of all functions $f:X\to \CC$
+under the norm
+$$\norm{f}_p = \bigl( \ex_{x\in X} \bigl| f(x)\bigr|^p \bigr)^{1/p}.$$
+The notation $l_p(X)$ denotes the same set, but with the norm
+$$\norm{f}_p = \Bigl( \sum_{x\in X} \bigl| f(x)\bigr|^p \Bigr)^{1/p}$$
+instead. Note that $\norm{f}_2^2 = \langle f,f\rangle$ and $\norm{f}_\infty = \max_{x\in X} \bigl|f(x)\bigr|$.
+
+\medskip\boldlabel The Fourier transform.
+If $f:Z\to \CC$, the {\it Fourier transform} of $f$ is the function $\hat f : \hat Z\to\CC$ given by
+$$\hat f(\chi) = \langle f,\chi\rangle = \ex_{x\in Z} f(x) \bar{\chi(x)}.$$
+We shall now state and prove an identity which is extremely useful in Fourier analysis.
+
+\parenproclaim Lemma {\advthm} (Parseval's identity). Let $Z$ be a finite abelian group
+and let $f$ and $g$ be functions from $Z$ to $\CC$.
+If $\hat f$ and $\hat g$ are the Fourier transforms of $f$ and $g$ respectively, then
+$\langle f,g\rangle = \langle \hat f, \hat g\rangle$.
+
+\proof First, we expand all the definitions and rearrange sums to obtain
+$$\eqalign{
+\langle \hat f, \hat g\rangle &= \sum_{\chi\in \hat Z} \hat f(\chi)\bar{\hat g(\chi)} \cr
+&=  \sum_{\chi\in \hat Z} \ex_{x\in Z} f(x)\bar{\chi(x)} \bar{\ex_{y\in Z} g(y)\bar{\chi(y)}} \cr
+&=   \ex_{x\in Z} f(x) \bar{\ex_{y\in Z} \bar{g(y)} \sum_{\chi\in \hat Z}\chi(x)\bar{\chi(y)}}.\cr
+}$$
+By the second orthogonality relation and the fact that $|\hat Z| = |Z|$, the inner sum equals $|Z|$ when
+$y = x$ and $0$ otherwise. Thus for any given $x$, we have
+$$\ex_{y\in Z} \bar{g(y)} \sum_{\chi\in \hat Z}\chi(x)\bar{\chi(y)} = \bar{g(x)},$$
+which is exactly what we need for the whole thing to equal $\langle f,g\rangle$.\slug
+
+We also have the following inversion formula that recovers the original function $f$ from $\hat f$.
+
+\parenproclaim Lemma {\advthm} (Fourier inversion formula). Let $Z$ be a finite abelian group and
+let $f:Z\to \CC$. We have
+$$f(x) = \sum_{\chi\in \hat Z} \hat f(\chi)\chi(x).$$
+
+\proof We expand
+$$\sum_{\chi\in \hat Z} \hat f(\chi)\chi(x) = \sum_{\chi\in \hat Z} \ex_{y\in Z} f(y) \bar{\chi(y)} \chi(x)
+= \ex_{y\in Z} f(y) \sum_{\chi\in \hat Z} \chi(x)\bar{\chi(y)},$$
+and we noted in the proof of Parseval's theorem that the right-hand side is exactly $f(x)$.\slug
+
+The inversion formula tells us that two functions from $Z\to \CC$ are equal if and only if their Fourier
+transforms are equal. For the next lemma, which concerns dilates of a function $f: Z\to \CC$, we will
+establish some notation. If $x\in Z$, we define $nx$ recursively for all integers $n\ge 0$ by $0x = 0$
+and $nx = x + (n-1)x$. We then set $nz = - (-n)x$ for all negative integers. Since the group operation
+on characters is multiplication, we will not write $n\chi$ but instead $\chi^n$ for $\chi$ multiplied
+with itself $n$ times.
+
+\parenproclaim Lemma {\advthm} (Dilation rule). Let $Z$ be a finite abelian group and let $a\in \ZZ$
+be an integer that is coprime to $|Z|$. Denote the multiplicative inverse of $a$ modulo $|Z|$ by $a^{-1}$.
+Letting $f_a : Z\to \CC$ be the function given by $f_a(x) = f(a^{-1} x)$, we have
+$\hat{f_a}(\chi) = \hat f(\chi^a)$.
+
+\proof We have
+$$\hat{f_a}(\chi) = \ex_{x\in Z} f_a(x) \bar{\chi(x)} = \ex_{x\in Z} f(a^{-1} x)\bar{\chi(x)}.$$
+Since $x\mapsto ax$ is a bijection from $Z$ to itself, we can replace $x$ formally by $ax$ in the above
+to get
+$$\hat{f_a}(\chi) = \ex_{x\in Z} f(x)\bar{\chi(ax)} = \ex_{x\in Z} f(x) \bar{\chi(ax)}^a
+= \hat f(\chi^a).\noskipslug$$
+
+\medskip\boldlabel Convolutions.
+For functions $f$ and $g$ from a finite abelian group $Z$ to $\CC$, the {\it convolution} $f*g$ is
+defined by
+$$ (f*g)(x) = \ex_{y+z = x} f(y)g(z).$$
+If instead $\hat f$ and $\hat g$ are functions from $\hat Z$ to $\CC$, then
+$$ (\hat f * \hat g)(\chi) = \sum_{\chi_1\chi_2 = \chi} \hat f(\chi_1)\hat g(\chi_2).$$
+
+\parenproclaim Lemma {\advthm} (Convolution law). Let $Z$ is a finite abelian group and $f,g : \Z\to \CC$.
+For all $\chi\in \hat Z$, we have $\hat{f*g} (\chi) = \hat f(\chi)\hat g(\chi)$.
+
+\proof We start by expanding
+$$\hat{f*g}(\chi) = \ex_{x\in Z} (f*g)(x) \bar{\chi(x)} = \ex_{x\in Z} \ex_{y+z=x} f(y)g(z)\bar{\chi(y)\chi(z)}.$$
+But note that $x$ does not appear in the summand anymore, meaning that we can simply rewrite this as
+an expectation
+over {\it all} $y$ and $z$ (their sum will equal $x$ for some $x\in Z$). Thus we can conclude that
+$$\hat{f*g}(\chi) = \ex_{y\in Z}\ex_{z\in Z} f(y)g(z)\bar{\chi(y)\chi(z)} = \hat f(\chi)\hat g(\chi),$$
+which is what we wanted to show.\slug
+
+If $A$ is a subset of a finite abelian group $Z$, we associate to $A$ the {\it characteristic function}
+$\one_A : Z\to \CC$ given by
+$$\one_A(x) = \cases{ 1, & if $x\in A$;\cr 0, & otherwise.}$$
+When it will not cause confusion, we will abuse notation and write $A(x)$ instead of $\one_A(x)$.
+With the definitions and results stated above, we are now in a position to translate properties of $A$ to
+Fourier-analytic statements about the function $\one_A$. First off, note that
+$$\bignorm{\hat{\one_A}}_2^2 = \norm{\one_A}_2^2 = \ex_{x\in Z} A(x)^2 = \ex_{x\in Z} A(x)
+= {|A|\over |Z|}.$$
+If $|A|/|Z| = \delta$, then we will say that $A$ has {\it density} $\delta$. Another way of expressing $\delta$
+in terms of $\one_A$ is
+$$\hat{\one_A}(\chi_0) = \ex_{x\in Z} A(x)\chi_0(x) = \ex_{x\in Z} A(x) = \delta,$$
+where $\chi_0$ is the trivial character.
+
+The fact that $\norm{\one_A}_2^2 = \delta$ means that if we sample $x$ and $y$ from $Z$ and
+condition that $x=y$, the probability that $x$ (or $y$) is in $A$ is $\delta$. The reason for stating this
+obvious fact in such a stilted fashion is that it generalises by way of the convolution operation we defined
+earlier; that is, what if we are interested in the probability that a $4$-tuple $(x,y,z,w)$ satisfying $x+y=z+w$
+is a member of $A^4$? Well, the convolution law gives
+$$\eqalign{
+\ex_{x+y=z+w} A(x)A(y)A(z)A(w) &= \ex_{u\in Z} \ex_{x+y=u}\ex_{z+w=u} A(x)A(y)A(z)A(w) \cr
+&= \ex_{u\in Z} (\one_A*\one_A)(u)^2 \cr
+&= \norm{\one_A*\one_A}_2^2 \cr
+&= \bignorm{\hat{\one_A*\one_A}}_2^2 \cr
+&= \bignorm{\bigl(\hat{\one_A}\bigr)^2}_2^2 \cr
+&= \sum_{\chi\in \hat Z} \bigl| \hat{\one_A}(\chi)\bigr|^4 \cr
+&= \norm{\one_A}_4^4, \cr
+}$$
+and more generally, the probability that a tuple $(a_1,\ldots,a_k, b_1,\ldots,b_k)\in Z^{2k}$
+with $a_1+\cdots+a_k=b_1+\cdots+b_k$ is a member of $A^{2k}$ is $\norm{\one_A}_{2k}^{2k}$. Recall that
+the number of $(x,y,z,w)\in A^4$ with $x+y = z+w$
+is the additive energy $E(A)$ of $A$; we just showed above that
+$E(A) = |Z|^3 \norm{\one_A}_4^4$.
+
+\advsect Bohr sets and Bogolyubov's lemma
+
+Let $Z$ be a finite abelian group, let $\chi_1, \ldots, \chi_k$ be characters on $Z$, and let
+$\delta>0$. The {\it Bohr set} $B(\chi_1,\ldots,\chi_k;\delta)$ is the set
+$$\bigl\{ x\in Z : \chi_i(x)\in e\bigl([-\delta,\delta]\bigr)\ \hbox{for all}\ 1\le i\le k\bigr\}.$$
+(As before, we write $e(\alpha)$ for $e^{2\pi i\alpha}$.) We say that such a Bohr set has {\it dimension} $k$
+and {\it width} $\delta$.
+
+If $Z= \FF_p^n$, we can write $\chi_i = \chi_{u_i}$ where $\chi_{u_i}(x) = e(u_i\cdot x/p)$. If $\delta<1/p$,
+then $\chi_{u_i}(x)\in e\bigl([-\delta,\delta]\bigr)$ if and only if
+$(u_i\cdot x) / p \bmod 1\in [-\delta,\delta]$. But $u_i\cdot x$ is an integer, so this is true if and only
+if $u_i\cdot x = 0$, so consequently
+$$B(\chi_1,\ldots,\chi_k;\delta) = \{ x\in \FF_p^n : u_i\cdot x = 0\ \hbox{for all}\ 1\le i\le k\},$$
+which is a subspace cut out by $k$ linear conditions, i.e., of codimension at most $k$.
+
+\parenproclaim Lemma {\advthm} (Bogolyubov). Let $Z$ be a finite abelian group. Let $A\subseteq Z$ be a
+subset of density $\alpha$. Then $2A-2A$ contains a Bohr set of dimension at most $1/\alpha^2$ and width
+$1/4$.
+
+\proof For $x\in Z$, let
+$$\eqalign{
+f(x) &= \bigl( \one_A * \one_A * (\mone_A) * (\mone_A)\bigr)(x) \cr
+&= \ex_{p+q-r-s=x} \one_A(p)\one_A(q)\one_A(r)\one_A(s).
+}$$
+Then $x\in 2A-2A$ if and only if $f(x)\ne 0$. We want to find a Bohr set on which $f$ does not vanish.
+
+Note first that for any character $\chi$,
+$$\hat{\mone_A}(\chi) = \ex_x \one_A(-x)\bar{\chi(x)} = \ex_x \one_A(x)\bar{\chi(-x)} = \ex_x\one_A(x)\chi(x)
+=\bar{\hat{\one_A}(\chi)}.$$
+(The last identity relies on the fact that $\one_A(x)$ is real.) This implies that
+$\hat{\one_A}(\hat{\mone_A}) = |\one_A|^2$. Now we apply the Fourier inversion
+formula and the convolution law to expand
+$$\eqalign{
+f(x) &= \sum_\chi \hat{\one_A*\one_A*(\mone_A)*(\mone_A)}(\chi)(\chi)(x) \cr
+&= \sum_\chi \hat{\one_A}(\chi)^2 \hat{\mone_A}(\chi)^2 \chi(x) \cr
+&= \sum_\chi \bigl| \hat{\one_A}(\chi) \bigr|^4 \chi(x). \cr
+}$$
+Let
+$$K = \bigl\{ \chi\in \hat Z : \bigl| \hat{\one_A}(\chi) \bigr| \ge \alpha^{3/2}\bigr\}$$
+and let $B$ be the Bohr set $B(K;1/4)$. Then the expression above for $f(x)$ can be split into
+$$f(x) =
+\bigl| \hat{\one_A}(\chi_0) \bigr|^4
++ \sum_{\chi\in K} \bigl| \hat{\one_A}(\chi) \bigr|^4 \chi(x)
++ \sum_{\chi\notin K\cup \{\chi_0\}} \bigl| \hat{\one_A}(\chi) \bigr|^4 \chi(x).$$
+We shall assume that $x\in B$ and deal with each of the three terms separately.
+
+The first term is easy; since $A$ has density $\alpha$, $\hat{\one_A}(\chi_0) = \alpha$, and thus the first
+time is $\alpha^4$. For the second term, note that if $\chi\in K$ and $x\in B$, then
+$\chi(x)\in e\bigl([-1/4, 1/4]\bigr)$. This means that $\chi(x)$ has argument between $-\pi/2$ and $\pi/2$,
+and {\it a fortiori} has nonnegative real part. Now, if $\chi\notin K$ and $\chi\ne \chi_0$,
+then $\bigl|\hat{\one_A}\bigr| < \alpha^{3/2}$, so we take the absolute value of the third term
+and apply the triangle inequality and Parseval's identity to obtain
+$$\Bigl|\sum_{\chi\notin K\cup \{\chi_0\}} \bigl| \hat{\one_A}(\chi) \bigr|^4 \chi(x)\Bigr|
+\le \sum_{\chi\notin K\cup\{\chi_0\}} \bigl|\hat{\one_A}(\chi)\bigr|^4
+< \sum_{\chi\in \hat Z} \alpha^3 \bigl| \hat{\one_A}(\chi)\bigr|^2
+= \alpha^3\langle \hat{\one_A},\hat{\one_A}\rangle.$$
+But by Parseval's identity, the right-hand side equals $\alpha^3 \langle \one_A,\one_A\rangle = \alpha^4$,
+so we find that the real part of the third term is more than $-\alpha^4$. This means that $\Re f(x) > 0$,
+so $f(x)\ne 0$ for all $x\in B$; that is, $B\subseteq 2A-2A$.
+
+It remains to give an upper bound on the size of $K$. We have
+$$\alpha = \sum_{\chi\in \hat Z} \bigl| \one_A(\chi)\bigr|^2 \ge
+\sum_{\chi\in K} \bigl|\hat{\one_A(\chi)}\bigr|^2 \ge |K|\alpha^3,$$
+meaning that $|K|\le 1/\alpha^2$.\slug
+
+When $A$ is a subset of density $\alpha$ in $Z = \FF_p^n$, Bogolyubov's lemma tells us that $2A-2A$ contains
+a subspace of codimension at most $1/\alpha^2$.
+
+\advsect Freiman's theorem in vector spaces over fields of prime order
+
+Let $Z$ be an additive group and let $A$ be a finite subset of $Z$. It is possible that $|A+A| = |A|$,
+but this happens if and only if $A$ is a coset of a subgroup of $Z$ (which means that $Z$ must be finite).
+If $A$ is a finite subset of integers, then without loss of generality we can shift $A$ so that $\min A = 0$.
+if $A$ only contains $0$ then $|A+A|$ is $1 = 2|A|-1$, and if $|A| > 1$, then let $m = \max A$ and
+note that $A+A$ contains $A$ and $m+A$, and $A\cap (m+A) = \{m\}$, so in this case we also have $|A+A|\ge 2|A|-1$.
+
+It is not hard to see that if $A$ is an arithmetic progression
+in the integers, then $A+A$ is exactly $2|A|-1$,
+but for instance $A = \{1,\ldots,n\}\subseteq \ZZ$ is not contained in any nontrivial subgroup of $\ZZ$ and
+it also has $|A+A| = 2|A|-1$.
+So next we might amend our conjecture to say that if $|A+A|$ is small, then $A$ is a large subset of an arithmetic
+progression. But this is also false. Consider the set
+$$\{0,1,2,\quad 10,11,12,\quad 20,21,22,\quad 30,31,32\}.$$
+In some sense this is a ``progression of progressions,'' or a $2$-dimensional arithmetic progression. Such
+a set is the projection of some rectangle in $\ZZ^2$, and from this observation it is not hard to see
+that $|A+A|\le 4|A|$. If we increase $d$, we can still say that $|A+A|\le 2^d|A|$.
+
+Once we add these $d$-dimensional arithmetic progressions into consideration, it turns out that we can have
+an inverse statement. Concretely, if $|A+A|\le C|A|$, then there exists a $d$-dimensional arithmetic
+progression $P$ such that $|P|\le K|A|$ and $A\subseteq P$, where $d$ and $K$ depend only on $C$ (otherwise
+we could simply embed $A$ into $[\min A, \max A]$).
+
+This statement is called Freiman's theorem, as it was first proved by Freiman over the integers.
+In these notes we will prove an analogue of it for subsets of $\FF_p^N$, in which ``$d$-dimensional arithmetic
+progression'' is replaced by ``subspace''. First we need a lemma.
+
+
+\parenproclaim Lemma {\advthm} (Ruzsa covering lemma). Let $Z$ be an abelian group and let $A$ and
+$B$ be finite subsets of $Z$. Then there is a set $K\subseteq A$ of size at most $|A+B|/|B|$ such that
+$A\subseteq K+B-B$.
+
+\proof Let $K = \{a_1,\ldots,a_k\}$ be a maximal subset of $A$ with the property that the sets $a_i+B$
+are disjoint. For all $a\in A$ there is $i$ such that $(a+B) \cap (a_i+B) \ne \emptyset$, otherwise we
+could add $a$ to $K$ and contradict maximality. Equivalently, we can find $b$ and $b'$ such that
+$a+b = a_i + b'$ so $a\in a_i + B - B$. Hence $A\subseteq K+B-B$. Lastly, $|K|\cdot |B| = |K+B| \le |A+B|$.\slug
+
+Next, we prove two simple lemmas about Freiman isomorphisms, the second concerning
+how they behave on subspaces of $\FF_p^n$.
+
+\edef\leminducedfreiman{\the\thmcount}
+\proclaim Lemma {\advthm}. A Freiman isomorphism of order $k(r+s)$ from $A$ to $B$ induces a Freiman
+isomorphism of order $k$ from $rA-sA$ to $rB-sB$.
+
+\proof This proof is conceptually very easy but notationally a total nightmare.
+Let $\phi$ be a $k(r+s)$ isomorphism from $A$ to $B$. Then
+$$x_1+\cdots x_{k(r+s)} = y_1+\cdots+y_{k(r+s)}$$
+if and only if
+$$\phi(x_1)+\cdots \phi(x_{k(r+s)}) = \phi(y_1)+\cdots+\phi(y_{k(r+s)})$$
+Now let $g_1,\ldots,g_k, h_1,\ldots,h_k$ be $2k$ elements in $rA-sA$. Then the expression
+$$g_1+\cdots g_k = h_1+\cdots+h_k$$
+has a sum of $kr$ elements of $A$ and $ks$ elements of $-A$ on each side. We can subtract
+off the elements of $-A$ on each side to get $k(r+s)$ elements of $A$ on either side, and the equality
+holds if and only if it holds with $\phi$ applied to every term. So letting
+$$g_i = g'_{i,1}+\cdots+g'_{i,r}-g''_{i,1}-\cdots-g''_{i,s}$$
+and
+$$h_i = h'_{i,1}+\cdots+h'_{i,r}-h''_{i,1}-\cdots-h''_{i,s}$$
+for all $i$, we find that $g_1+\cdots g_k = h_1+\cdots+h_k$ holds if and only if
+$$\eqalign{
+\phi(g'_{1,1})+\cdots+&\phi(g'_{k,r}) + \phi(h''_{1,1})+\cdots+\phi(h''_{k,s}) \cr
+&= \phi(h'_{1,1})+\cdots+\phi(h'_{k,r}) + \phi(g''_{1,1})+\cdots+\phi(g''_{k,s}).
+}$$
+Subtracting all the double-prime terms from both sides yields
+$$\eqalign{
+\phi(g'_{1,1})+\cdots+&\phi(g'_{k,r}) - \phi(g''_{1,1})-\cdots-\phi(g''_{k,s}) \cr
+&= \phi(h'_{1,1})+\cdots+\phi(h'_{k,r})  - \phi(h''_{1,1})-\cdots-\phi(h''_{k,s}),
+}$$
+and letting
+$$\psi(g_i) = \phi(g'_{i,1}) + \cdots + \phi(g'_{i,r}) - \phi(g''_{i,1}) -\cdots-\phi(g''_{i,s})$$
+and
+$$\psi(h_i) = \phi(h'_{i,1}) + \cdots + \phi(h'_{i,r}) - \phi(h''_{i,1}) -\cdots-\phi(h''_{i,s})$$
+for all $i$, we see that $g_1+\cdots g_k = h_1+\cdots+h_k$ holds if and only if
+$$\psi(g_1)+\cdots \psi(g_k) = \psi(h_1)+\cdots+\psi(h_k).$$
+It is invertible, since we can just apply $\phi^{-1}$ termwise to an element of $rB-sB$, so
+this is the $k$-isomorphism we need between $rA-sA$ and $rB-sB$.\slug
+
+\edef\lemaffinefreiman{\the\thmcount}
+\proclaim Lemma {\advthm}. Let $X$ be a linear subspace of $\FF_p^n$ and let $\phi$ be a $2$-isomorphism
+from $X$ to a set $A\subseteq \FF_p^n$. Then $A$ is an affine subspace of $\FF_p^n$ of dimension $\dim X$.
+
+\proof We shall show that $Y = A - \phi(0)$ is a linear subspace of $\FF_p^n$. Clearly it contains $0$,
+since $A$ contains $\phi(0)$. Now let $y_1,y_2\in Y$ so that $y_1 + \phi(0)$ and $y_2+\phi(0)$ are both in $A$.
+Let $x_1 = \phi^{-1}\bigl(y_1+\phi(0)\bigr)$, $x_2 = \phi^{-1}\bigl(y_1+\phi(0)\bigr)$, and let $x$ denote
+their sum in $X$. Then since $x_1 + x_2 = x+0$, we have
+$$y_1 + \phi(0) + y_2 + \phi(0) = \phi(x) + \phi(0).$$
+Subtracting $\phi(0)$ from both sides, we find that $y_1 + y_2 + \phi(0) = \phi(x)$, meaning
+that $y_1 + y_2 \in A - \phi(0) = Y$. This proves that $Y$ is closed under finite sums, and since scalar
+multiplication over a finite field can always be re\"expressed as a finite sum, we find that
+$A$ is an affine subspace of $\FF_p^n$ in bijection with $X$, that is, of dimension $\dim X$.\slug
+
+We are now able to prove Freiman's theorem for $\FF_p^n$, whose proof amounts to little more than
+a concatenation of several previous results.
+
+\parenproclaim Theorem {\advthm} (Freiman's theorem in $\FF_p^n$). Let $A\subseteq \FF_p^n$ and suppose
+that $|A+A|\le C|A|$. Then there is a subspace $X$ of $\FF_p^n$ such that $A\subseteq X$ and $|X|\le C'|A|$,
+where $C'$ depends only on $C$ and $p$.
+
+\proof By Pl\"unnecke's theorem, $|8A-8A| \le C^{16} |A|$, hence by Ruzsa's embedding lemma, $A$
+is $8$-isomorphic to a subset $A_1\subseteq \FF_p^m$ where $p^m \le pC^{16}|A|$. By Bogolyubov's lemma
+with $\alpha = p^{-1}C^{-16}$, $2A_1 - 2A_1$ contains a Bohr set $B(K;1/4)$ of dimension at most
+$p^2C^{32}$. But letting $\delta < 1/(2p) \le 1/4$, and $X = B(K;\delta)$, we have $X\subseteq B(K;1/4)$
+and $X$ is a linear subspace of $\FF_p^m$ of codimension at most $p^2C^{32}$.
+
+Now since $A$ is $8$-isomorphic to $A_1$, we can apply Lemma~{\leminducedfreiman} to deduce that
+$2A-2A$ is $2$-isomorphic to $2A_1 - 2A_1$. It follows that
+$2A-2A$ contains a set $Y$ that is $2$-isomorphic to the linear subspace $X$. By Lemma~{\lemaffinefreiman},
+this set $Y$ is an affine subspace, of dimension at least $m-p^2C^{32}$, and thus of cardinality
+at least $p^{m-p^2C^{32}} \ge p^{p^2C^{32}}|A|$ (here we used the fact that $A_1\subseteq \FF_p^m$ and
+$A_1$ is Freiman isomorphic to $A$).
+
+Ruzsa's covering lemma tells us that there exists $L$ of size at most $|A+Y|/|Y|$ such that $A\subseteq L+Y-Y$.
+But since $Y$ is an affine subspace, $Y-Y$ is a linear subspace; setting $V = Y-Y$, we have
+$$|V| = |Y| \le |2A-2A| \le C^4|A|,$$
+which follows from another application of Pl\"unnecke's theorem.
+Then by possibly adding $|L|$ basis vectors, $L+V$ is contained in a linear subspace of size at most $p^{|L|} |V|
+\le p^{|L|} C^4|A|$.
+On the other hand, $L$ has size at most
+$${|A+2A-2A|\over |V|} \le {C^5|A| \over p^{-p^2C^{32}} |A|} = C^5p^{p^2C^{32}},$$
+where yet again we have used Pl\"unnecke's theorem.
+Hence we conclude that $A$ is contained in a linear subspace of size at most
+$$ p^{C^5 p^{p^2C^{32}}} C^4|A|.\noskipslug$$
+
+\advsect Roth's theorem
+
+In the previous section we showed that any set $A$ with $A+A$ small
+must be a dense subset of a structured set. We didn't prove this over $\ZZ$, but we saw briefly that
+the notion of ``structured set'' in that case was a $d$-dimensional arithmetic progression. Now we switch
+gears and try to find arithmetic progressions in subsets of $\ZZ$. The first major theorem in this vein was
+proved by B.~L.~van der Waerden in 1927.
+
+\parenproclaim Theorem W (van der Waerden, {\rm 1927}). For all $k$ and $r$, there is $n$ such
+that if we partition $[n]$ into disjoint sets $C_1\cup \cdots \cup C_r$ then some $C_i$ contains an
+arithmetic progression of length $k$.\slug
+
+A stronger statement is given by the celebrated 1975 theorem of E.~Szemer\'edi.
+
+\parenproclaim Theorem S (Szemer\'edi, {\rm 1975}). For every $\delta>0$ and $k\in \NN$ there
+exists $n$ such that if $A\subseteq [n]$ and $|A|\ge \delta n$, then $A$ contains an arithmetic progression
+of length $k$.\slug
+
+By setting $\delta = 1/r$ and invoking the pigeonhole principle, we see that
+Szemer\'edi's theorem implies van der Waerden's theorem. We will not prove either of these statements in
+these notes. The first has a relatively elementary proof, but not one that is very additive-combinatorial
+in nature, while the second is far too complex to prove in full generality here. We will, however,
+prove Szemer\'edi's theorem in the case $k=3$. This special case is called Roth's theorem as it was
+proved by K.~Roth in 1953.
+Before we get there we first establish three lemmas. In their proofs we will write, e.g., $A$ instead
+of $\one_A$, and identify
+$r$ with its corresponding element $\chi_r\in \hat{\ZZ_N}$, writing $\hat f(r)$ instead of $\hat f(\chi_r)$.
+
+\edef\lemABC{\the\thmcount}
+\proclaim Lemma {\advthm}. Let $N$ be odd and let $A$, $B$, and $C$ be subsets of $\ZZ_N$ with densities
+$\alpha$, $\beta$, and $\gamma$ respectively. Suppose that $N > 2/(\alpha\beta\gamma)$. Then either
+there exists $x$ and $d\ne 0$ such that $(x,x+d,x+2d)\in A\times B\times C$, or there exists $r\ne 0$
+such that $|\hat A(r)| \ge \alpha \beta^{1/2} \gamma^{1/2} / 2$.
+
+\proof Consider the quantity
+$$\eqalign{
+\ex_{x,d} A(x)B(x+d)C(x+2d) &= \ex_{x+z=2y} A(x)C(z)B(y) \cr
+&= \ex_u \bigl( \ex_{x+z=u} A(x)C(z)\bigr) B(u/2).
+}$$
+Using the notation $f_a(x) = f(x/a)$ for a dilation, we see that this expectation is actually the
+inner product $\langle A *C, B_2\rangle$, which by Parseval's identity is equal to
+$\langle \hat{A*C}, \hat{B_2}\rangle$.
+Recall that the characters of $\ZZ_N$ are given by $\chi_a(x) = e(ax/N)$. Applying the dilation rule gives
+$$ \hat{B_2}(r) = \hat{B_2}(\chi_r) = \hat B({\chi_r}^2) = \hat B(\chi_{2r})=\hat B(2r)=(\hat B)_{2^{-1}}(r)$$
+where $2^{-1}$ denotes the inverse of $2$ modulo $N$.
+This, combined with the convolution law, gives
+$\langle \hat{A*C}, \hat{B_2}\rangle = \bigl\langle \hat A\hat C, (\hat B)_{2^{-1}}\bigr\rangle$.
+But since $B$ is real-valued,
+$$\hat B(-r) = \ex_x B(x)\bar{\chi_{-r}(x)} = \ex_x B(x)\chi_r(x) = \bar{\ex_x B(x)\bar{\chi_r(x)}}
+= \bar{\hat B(r)},$$
+so putting everything together yields
+$$\eqalign{
+\ex_{x,d} A(x)B(x+d)C(x+2d) &= \bigl\langle \hat A\hat C, (\hat B)_{2^{-1}}\bigr\rangle \cr
+&= \sum_r \hat A(r)\hat C(r) \bar{\hat B(2r)} \cr
+&= \sum_r \hat A(r)\hat C(r) \hat B(-2r) \cr
+&= \alpha\beta\gamma + \sum_{r\ne 0} \hat A(r) \hat C(r) \hat B(-2r). \cr
+}$$
+Note that by the triangle and Cauchy--Schwarz inequalities,
+$$\eqalign{
+\Bigl|\sum_{r\ne 0} \hat A(r) \hat C(r) \hat B(-2r)\Bigr|
+&\le \max_{r\ne 0} \bigl|\hat A(r)\bigr| \sum_{r\in \ZZ_N} \bigl|\hat B(-2r)\bigr|\cdot\bigl|\hat C(r)\bigr| \cr
+&\le \max_{r\ne 0} \bigl|\hat A(r)\bigr|
+\Bigl(\sum_{r\in \ZZ_N} \bigl|\hat B(-2r)\bigr|^2\Bigr)^{1/2}
+\Bigl(\sum_{r\in \ZZ_N} \bigl|\hat C(r)\bigr|^2\Bigr)^{1/2} \cr
+&= \bignorm{\hat B}_2 \bignorm{\hat C}_2 \max_{r\ne 0} \bigl| \hat A(r)\bigr| \cr
+&= \beta^{1/2} \gamma^{1/2} \max_{r\ne 0} \bigl| \hat A(r)\bigr|.\cr
+}$$
+(We used the fact that $N$ is odd in the third line above.) So
+$$
+\ex_{x,d} A(x)B(x+d)C(x+2d) \ge \alpha\beta\gamma
+-\beta^{1/2} \gamma^{1/2} \max_{r\ne 0} \bigl| \hat A(r)\bigr|,$$
+meaning that if $\max_{r\ge 0} \bigl| \hat A(r)\bigr| < \alpha \beta^{1/2}\gamma^{1/2} / 2$, then
+$\ex_{x,d} A(x)B(x+d)C(x+2d) > \alpha\beta\gamma/2$. The further assumption that $\alpha\beta\gamma/2 > 1/N$
+allows us to conclude that there is some $x$ for which $\ex_{d} A(x)B(x+d)C(x+2d) > 1$, and thus some
+$d\ge 0$ such that $(x,x+d,x+2d)\in A\times B\times C$.\slug
+
+In the next lemma, we define the {\it diameter} of $X\subseteq \CC$ to be the quantity
+$\sup_{z_1,z_2\in X} |z_1-z_2|$.
+
+\proclaim Lemma {\advthm}. For every $\theta\in \RR$, $n\in \NN$, and $\eps > 0$, the
+set $[n]$ can be partitioned
+into disjoint arithmetic progressions $P_1, \ldots, P_m$, each of size at least $\sqrt{\eps n/(32 \pi)}$,
+such that the diameter of $e(\theta P_i)\le \eps$ for all $1\le i\le m$.
+
+\proof Let $t$ be a positive integer to be chosen later. Dividing the unit circle into $t$ segments of
+length $2\pi/t$, by the pigeonhole principle there must be some segment that contains more than one of
+the $t+1$ points $e(0), e(\theta), \ldots, e(t\theta)$. Thus there are $u$ and $v$ with $0\le u<v\le r$ such that
+$\bigl|e(u\theta) - e(v\theta)\bigr|\le 2\pi/t$. Let $d = v-u$. By multiplying both $e(u\theta)$ and
+$e(v\theta)$ by $e(-u\theta)$, we find that $\bigl|1-e(d\theta)\bigr| \le 2\pi/t$ as well. Then by telescoping and
+applying the triangle inequality, we may expand
+$$\bigl|1-e(sd\theta)\bigl| \le \sum_{k=1}^s \bigl|e\bigl((k-1)d\theta-e(kd\theta)\bigr|.$$
+But by applying rotations as above, each term in the sum is equal to $\bigl|1-e(d\theta)\bigr|$,
+implying that $\bigl|1-e(sd\theta)\bigl| \le 2\pi s/t$.
+
+The reason this is important is that
+whenever $P$ is any arithmetic progression with common difference $d$, any $x,y\in P$ will
+have $\bigl|e(x\theta) - e(y\theta)\bigr| = \bigl|1-e(sd\theta)\bigr|$ for some $s$ that is at most
+the length of $P$. Hence if $P$ is an arithmetic progression with common difference $d$ and length
+at most $\eps t/(2\pi)$, then the diameter of $e(\theta P)$ will be at most $\eps$.
+
+Take $[n]$ and partition it into residue classes modulo $d$. Within each residue class, we would like
+to further group the elements into ``intervals'' of size roughly $\eps t/(2\pi)$. First we need to make
+sure that the residue classes are large enough. If a residue class has size at least $\eps t/(2\pi)$,
+then it can be subdivided into intervals of size between $\eps t/(4\pi)$ and $\eps t/(2\pi)$.
+To ensure this, we note that the residue classes have size $\lfloor n/d\rfloor \ge \lfloor n/t\rfloor$,
+so we shall set $t \le \sqrt{2\pi n / \eps}$. With this choice we find that each $P_i$ has size
+$$\biggl\lfloor {\eps t\over 4\pi}\biggr\rfloor \le  \Biggl\lfloor {\eps\over 4\pi} \sqrt{2\pi n\over \eps}
+\Biggr\rfloor = \Biggl\lfloor \sqrt{\eps n\over 8\pi} \Biggr\rfloor \le \sqrt{\eps n\over 32\pi}.\noskipslug$$
+
+We use this lemma immediately to prove another one, which is key for the density-increment argument
+of Roth's proof.
+
+\edef\lemdensityincrement{\the\thmcount}
+\proclaim Lemma {\advthm}. Let $A\subseteq \ZZ_N$ be a set of density $\delta$, let $\eta>0$ and suppose
+there exists $r$ such that $\bigl| \hat A(r)\bigr| \ge \eta$. Then there is a progression $P$ of length
+at least $\sqrt{\eta N/(64\pi)}$ such that $|A\cap P| \ge (\delta + \eta/4)|P|$.
+
+\proof Define $f(x) = A(x)-\delta$. Then $\sum_{x\in \ZZ_n} f(x) = 0$ and
+$$ \hat f(\chi) = \ex_x (A(x) - \delta)\bar{\chi(x)} = \ex_x A(x)\bar{\chi(x)} - \delta \ex_x \bar{\chi(x)} $$
+If $\chi = \chi_0$ then this whole expression equals $0$; otherwise the second expectation disappears and
+$\hat f(\chi)$ just equals $\hat A(\chi)$. Let $r$ be such that $\bigl| \hat f(r)\bigr| = \bigl| \hat A(r)\bigr|
+\ge \eta$. Then
+$$ \eta N \le N\bigl| \hat f(r)\bigr| = N \Bigl| \sum_{x\in \ZZ_N} f(x) e(-rx/N)\Bigr|.$$
+By the previous lemma with $\theta = -r/N$ and $\eps = \eta/2$,
+we can partition $[N]$ into progressions $P_1,\ldots,P_m$, each of size at least $\sqrt{\eta n / (64\pi)}$
+such that every set $e(-rP_i/N)$ has diameter at most $\eta/2$. Thus by the triangle inequality,
+$$\eta N \le \sum_{i=1}^m \Bigl| \sum_{x\in P_i} f(x) e(-rx/N) \Bigr|.$$
+For each $i$, pick some element $x_i\in P_i$. Then
+$$\eqalign{
+\eta N &\le \sum_{i=1}^m \Bigl| \sum_{x\in P_i} f(x) e(-rx_i/N) \Bigr|
+  +\sum_{i=1}^m \Bigl| \sum_{x\in P_i} f(x) \bigl(e(-rx/N) - e(-rx_i/N) \bigr)\Bigr| \cr
+&\le \sum_{i=1}^m \bigl|e(-rx_i/N)\bigr|\cdot\Bigl| \sum_{x\in P_i} f(x) \Bigr| + {\eta N\over 2},
+}$$
+whence
+$$ \sum_{i=1}^m \Bigl| \sum_{x\in P_i} f(x) \Bigr| \ge {\eta N\over 2} = {\eta\over 2} \sum_{i=1}^m |P_i|.$$
+But $\sum_{i=1}^m \sum_{x\in P_i} f(x) = 0$, so we may add these terms into the sum to obtain
+$$ \sum_{i=1}^m \biggl(\sum_{x\in P_i} f(x) + \Bigl| \sum_{x\in P_i} f(x) \Bigr|\biggr)
+\sum_{i=1}^m {\eta\over 2}|P_i|,$$
+and deduce that there must be some $i$ such that
+$$ \sum_{x\in P_i} f(x) + \Bigl| \sum_{x\in P_i} f(x) \Bigr| \ge {\eta\over 2} |P_i|.$$
+For this $i$ we have
+$$|A\cap P_i| - \delta|P_i| =
+\sum_{x\in P_i} A(x) - \delta|P_i| = \sum_{x\in P_i} f(x) \ge {\eta\over 4}|P_i|,$$
+which implies that $|A\cap P_i| \ge (\delta + \eta/4)|P_i|$.\slug
+
+We are now equipped to prove Roth's theorem.
+
+\parenproclaim Theorem {\advthm} (Roth, {\rm 1953}). For every $\delta>0$ there exists
+$N\le \bigl\lceil\exp\bigl(\exp(300/\delta)\bigr)\bigr\rceil$ such that
+every $A\subseteq [N]$ with $|A|\ge \delta N$ contains an arithmetic progression of length $3$.
+
+\proof Let $N$ be an integer to be specified later. Let $A_0$ be a subset of $N$ of density
+$\delta = \delta$If $N$ is even, we can express $N = L_0+M_0$
+where both $L_0$ and $M_0$ are odd integers at least $N/4$. Either
+$$\bigl|A_0 \cap [L_0]\bigr| \ge \delta |L_0|\ \hbox{or}
+\ \bigl|A_0\cap [L_0+1, N]\bigr| \ge \delta M_0$$
+In the first case let $N_0 = L_0$ and set $A = A_0\cap [L_0]$, and in the second case set $N_0=M_0$
+and set $A = \bigl(A_0\cap [L_0+1,N]\bigr) - \{L_0\}$.
+
+Now we reach another crossroads. If $\bigl| A\cap (N_0/3, 2N_0/3]\bigr| < \delta N_0/5$, then one of
+$\bigl| A\cap [1,N_0/3]\bigr|$ or $\bigl| A\cap (2N_0/3,N_0]\bigr|$ must be greater than $2\delta N_0 / 5$.
+Either way, we get a progression $P$ of length roughly $N_0/3$ such that $|A\cap P| \ge \delta_1|P|$,
+where $\delta_1$ is roughly $6\delta/5$. Thus we may iterate the argument with $A = A\cap P$, $N$
+roughly equal to $N_0/3$, and $\delta = \delta_1$. Here we can be very sloppy with bounds and say that
+the new choice of $N$ is at least $N/24$, and the new choice of $\delta$ is at least $11\delta/10$.
+
+It is the case $\bigl| A\cap (N_0/3, 2N_0/3]\bigr| \ge \delta N_0/5$ in which we must use the lemmas
+above. Let $B = C = A\cap [N_0/3, 2N_0/3)$. This choice for $B$ and $C$ ensures that if $d\ne 0$ and
+$(x,x+d,x+2d)\in A\times B\times C$ where $A$, $B$, and $C$ are regarded as subsets of $\ZZ_{N_0}$, then
+$x,x+d,x+2d$ is still an arithmetic progression in $\ZZ$. This is clear because if
+$y,z\in [N_0/3,2N_0/3)\subseteq \ZZ$ and $d$ is the common difference $y-z$, then $|d| < N_0/3$, which
+ensures that $x\in [N_0]$.
+
+So if $A\times B\times C$ contains a triple $(x,x+d,x+2d)$ with $d\ne 0$, then we have an arithmetic
+progression of length $3$ in $[N_0]$ (and thus in $[N]$), so we are done. If not,
+let $\alpha$, $\beta$, and $\gamma$ be the densities of $A$, $B$, and $C$ respectively.
+$\alpha \ge \delta$ and $\beta,\gamma\ge \delta/5$. By Lemma~{\lemABC}, so long as
+$N_0 > 50/\delta^3 \ge 2/(\alpha\beta\gamma)$, there is some $r\ne 0$ such that
+$\hat A(r) \ge \alpha\sqrt{\beta\gamma} \ge \delta^2/10$. By Lemma~{\lemdensityincrement} with
+$\eta = \delta^2/10$, there is a progression $P$ in $A$ of size at least $\delta \sqrt{N_0/(640\pi)}$
+such that $|A\cap P| \ge (\delta + \delta^2/40)|P|$.
+
+By scaling and translating, we obtain a subset of $\bigl[|P|\bigr]$ of size at least $(\delta+\delta^2/40)|P|$,
+so we can repeat the argument with $A$ set to $A = A\cap P$ and $N$ set to $|P|$. It is clear that
+we cannot iterate forever, since $\delta \le 1$, so we will eventually find an arithmetic progression
+of length $3$. It remains to calculate how many iterations it takes for this to happen, which in turn tells
+us an upper bound for $N$.
+
+Well, as long as $\delta \le 4/21$, we have $\delta + \delta^2/40 \le 11\delta/10$, so the
+second case has the smaller density increment. In this case, note that if we iterate $40/\delta$ times,
+then the density at least doubles. Then to double it again we need to iterate $40/(2\delta) = 20/\delta$
+times, and so on. By repeating this argument, we only need to iterate at most
+$$ {40\over\delta} \biggl(1 + {1\over 2} + {1\over 4} + \cdots \biggr) = {80\over \delta}$$
+times and we will eventually have to find an arithmetic progression of length $3$, otherwise $\delta$ would
+become greater than $1$. We can even be extra pedantic here and say that this only gets us to $\delta >4/21$,
+and then $20$ more iterations is sufficient to get to $\delta > 1$. (This is because $\log_{11/10}(21/4) < 20$).
+
+In the argument we required $N_0 > 50/\delta^3$, which means that $N$ must always be greater than
+$200/\delta^3$. To further simplify our calculations, we note that
+$$\delta \sqrt{N_0\over 640\pi } \ge {\delta\sqrt N\over 100} \ge N^{1/3}$$
+as long as $N\ge (100/\delta)^6$. Requiring this condition ensures that in any iteration, the next
+value of $N$ is at least $N^{1/3}$. So to eventually find a $3$-term arithmetic
+progression, we need to start with an $N$ such that $N^{3^{-80/\delta+20}} \ge (100/\delta)^6$.
+Taking the logarithm of both sides, we get
+$$ 3^{-80/\delta+20} \log N \ge 6\log(100/\delta),$$
+and then taking another logarithm yields
+$$ \log\log N \ge \biggl({80\over\delta} + 20\biggr)\log 3 +\log 6 + \log\log(100/\delta),$$
+We'll be lazy here and set $\log\log N\ge 300/\delta$ as
+a sufficient condition, which is the bound claimed in the theorem statement.\slug
+
+We can flip the roles of $\delta$ and $N$ to arrive at the following statement,
+equivalent to what we just proved: {\sl Any subset of $[N]$
+of size at least $300/\log\log N$ contains a nontrivial arithmetic progression of length $3$.}
+
+\advsect The Furstenberg--S\'ark\"ozy theorem
+
+In this section, we'll prove a bound on the size of {\it square-difference-free sets}. These are sets
+$A\subseteq \NN$ such that $A-A$ does not contain any of the squares $\{1,4,9,16,\ldots\}$.
+The proof, which is due to B.~Green, T.~Tao, and T.~Ziegler,
+makes use of a density increment argument similar to the one used in the proof of
+Roth's theorem, but does not use any Fourier analysis. We begin with the following lemma, which allows
+us to increment the density of a set containing a square in its difference set.
+
+\proclaim Lemma~\advthm.
+Suppose that there is $N\in \NN$ and $A\subseteq [N]$ of density $\delta = |A|/N$ such that
+$A-A$ does not contain any positive square numbers. Then there exists an arithmetic progression
+$P$ of length $\lfloor N^{1/3}\rfloor$
+such that $|A\cap P| \ge (\delta + c\delta^3)|P|$, where $c$ does not depend on $\delta$ or $N$.
+
+The exponents $1/3$ and $1/100$ in this statement are not really important, and the proof
+may be modified to replace these with other small constants if desired.
+
+\proof By hypothesis, for any $n\in [N]$ we have
+$$ \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]} \one_A(n) \one_A\bigl( n+(r+h)^2\bigr) = 0.$$
+Now for $n\in [N]$, note that $n+(r+h)^2$ is in $[N]$ for all
+$n\le N-(N^{1/3}-N^{1/100})^2 = N-O(N^{2/3})$. This means that
+$$ \ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}
+\one_{[N]}\bigl( n+(r+h)^2\bigr) = 1 - O(N^{-1/3}).$$
+By further requiring that $n\in A$ inside the expectation, we have
+$$ \ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}
+\one_A(n)\one_{[N]}\bigl( n+(r+h)^2\bigr) = \delta - O(N^{-1/3}),$$
+since the proportion of $n\in [N]$ that are also in $A$ is $\delta$.
+Lastly, by a simple change of variables we have
+$$\eqalign{
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} &\ex_{h\in [N^{1/100}]} \one_A\bigl(n+(r+h)^2\bigr) \cr
+&=\ex_{m\in A} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]} \one_{[N]}\bigl(m-(r+h)^2\bigr) \cr
+&= \delta - O(N^{-1/3}). \cr
+}$$
+Set $f = \one_A - \delta\one_{[N]}$. From the above computations we deduce that
+$$\eqalign{
+\ex_{n\in [N]} &\ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}
+f(n) f\bigl( n+(r+h)^2\bigr) \cr
+&=
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \ex_{h\in [N^{1/100}]}\cr
+&\qquad\qquad\Bigl(\one_A(n)\one_A\bigl(n+(r+h)^2\bigr)
+-\delta\one_A(n)\one_{[N]}\bigl(n+(r+h)^2\bigr) \cr
+&\qquad\qquad\qquad\qquad\qquad- \delta\one_A\bigl(n+(r+h)^2\bigr)
++ \delta^2\one\bigl(n+(r+h)^2\bigr)\Bigr) \cr
+&= 0 - \delta^2 - \delta^2 +\delta^2 + O(N^{-1/3}) \cr
+&= -\delta^2 + O(N^{-1/3}) .\cr
+}$$
+The triangle inequality then gives
+$$ \ex_{n\in [N]} \bigl| f(n)\bigr| \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in [N^{1/100}]} f\bigl( n+(r+h)^2\bigr)
+\Bigr| \ge \delta^2-O(N^{-1/3}) \gg \delta^2,$$
+where here and in the rest of the proof, the Vinogradov notation hides an absolute constant that works
+for all $N\in \NN$. We also have
+$$\eqalign{
+\ex_{n\in [N]} \bigl| f(n)\bigr| ^2
+&= \ex_{n\in [N]} \Bigl(\one_A(n) - 2\delta \one_A(n)\one_{[N]}(n) + \delta^2 \one_{[N]}(n)\Bigr)\cr
+&= \delta-\delta^2, \cr
+}$$
+so by the Cauchy--Schwarz inequality,
+$$\eqalign{
+\delta^4-O(N^{1/3}) &\le
+\biggl(\ex_{n\in [N]} \bigl| f(n)\bigr| \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in [N^{1/100}]} f\bigl( n+(r+h)^2\bigr)
+\Bigr|\biggr)^2 \cr
+&\le \ex_{n\in [N]} \bigl| f(n) \bigr|^2
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in N^{1/100}} f\bigl(n+(r+h)^2\bigr)\Bigr|^2\cr
+&= (\delta-\delta^2)
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in N^{1/100}} f\bigl(n+(r+h)^2\bigr)\Bigr|^2,\cr
+}$$
+and therefore
+$$
+\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} \Bigl| \ex_{h\in N^{1/100}} f\bigl(n+(r+h)^2\bigr)\Bigr|^2
+\gg {\delta^4\over \delta-\delta^2} \ge \delta^3.$$
+We can rewrite this as
+$$
+\ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
+f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \gg \delta^3.
+$$
+Replacing $n$ by $n-(r+h)^2$ in the innermost expectation introduces an error term of at most $O(N^{-1/3})$
+and deleting the diagonal case $h=h'$ introduces an error term of at most $O(N^{-1/100})$,
+so we have
+$$\eqalign{
+\ex_{h,h'\in N^{1/100}}&\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
+f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \cr
+&\le
+\ex_{h,h'\in N^{1/100}}\Bigl|\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
+f\bigl(n+(r+h)^2\bigr) f\bigl(n+(r+h')^2\bigr) \Bigr|\cr
+&\le
+\ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}  \cr
+&\qquad\qquad f(n) f\bigl(n-(r+h)^2+(r+h')^2\bigr) + O(N^{-1/3})\cr
+&= \ex_{h,h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}  \cr
+&\qquad\qquad f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) + O(N^{-1/3})\cr
+&= \ex_{h\ne h'\in N^{1/100}}\ex_{n\in [N]}\ex_{r\in [N^{1/3}]} \cr
+&\qquad\qquad f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) + O(N^{-1/100}),\cr
+}$$
+whence
+$$\ex_{h\ne h'\in N^{1/100}}\Bigl|\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
+f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr) \Bigr| \gg \delta^3 $$
+by the triangle inequality. From this we see that
+there are distinct $h$ and $h'$ in $[N^{1/100}]$ with
+$$\Bigl|\ex_{n\in [N]}\ex_{r\in [N^{1/3}]}
+f(n) f\bigl(n- (h'-h)(2r+h'-h)\bigr)\Bigr| \gg \delta^3$$
+Here another application of the triangle inequality and the fact that $\bigl|f(n)\bigr| \le 1$ together
+give
+$$\ex_{n\in [N]} \Bigl|\ex_{r\in [N^{1/3}]}
+f\bigl(n- (h'-h)(2r+h'-h)\bigr)\Bigr|\gg \delta^3.$$
+Now we will perform another shift on $n$, this time by $(h'-h)(h'+h) = O(N^{1/50})$. In the expectation
+over $n$, this produces an error term of at most $O(N^{-49/50})$, which we can hide behind the Vinogradov notation
+as well. Letting $d = 2(h'-h)$, we have
+$$\eqalign{
+\ex_{n\in [N]} \Bigl| &\ex_{r\in [N^{1/3}]} f(n+dr)\Bigr| \cr
+&= \ex_{n\in [N]} \Bigl| \ex_{r\in [N^{1/3}]} f\bigl(n+2(h'-h)r\bigr)\Bigr| \cr
+&\ge \ex_{n\in [N]} \Bigl| \ex_{r\in [N^{1/3}]} f\bigl(n+(h'-h)(2r+h+h')\bigr)\Bigr| - O(N^{-49/50}) \cr
+&\gg \delta^3 \cr
+}$$
+But recall that we have
+$$\sum_{n\in [N]} f(n) = 0,$$
+so since $d \le 2N^{1/100}$ and $r\le N^{1/3}$, we have
+$$\sum_{n\in [N]} f(n+dr) = O(N^{1/3+ 1/100})$$
+for all $r\in [N^{1/3}]$, and hence
+$$\ex_{n\in [N]} \ex_{r\in [N^{1/3}]} f(n+dr) = O(N^{-2/3+ 1/100}).$$
+Then since $\bigl(x+|x|\bigr)/2 = \max(x,0)$ for all $x\in \RR$, we have
+$$ \eqalign{
+\ex_{n\in [N]} \max\Bigl( \ex_{r\in [N^{1/3}]} &f(n+dr), 0\Bigr) \cr
+&\gg {\delta^3 + O(N^{-2/3+1/100})\over 2} \cr
+&\gg \delta^3.\cr
+}$$
+By artificially zeroing out all terms corresponding to the largest $2N^{1/3+1/100}$ elements of the interval $[N]$,
+we introduce an error
+term of $N^{-2/3+1/100}$, which disappears behind the asymptotic notation.
+Then by the pigeonhole principle we may find $n\in [N-2N^{1/3+1/100}]$ such that
+$$\ex_{r\in [N^{1/3}]} f(n+dr) \gg \delta^3.$$
+Let $P\subseteq [N]$ be the arithmetic progression $\bigl\{n + dr : r\in [N^{1/3}]\bigr\}$ and let
+$c$ be the absolute constant implied by the Vinogradov notation. We have
+$$\ex_{x\in P} f(x) \ge c\delta ^3,$$
+and can unravel the definition of $f$ to obtain
+$${|A\cap P|\over |P|} \ge \delta + c\delta^3,$$
+which is what we wanted.\slug
+
+Recall that at this analogous point in the proof of Roth's theorem, we were able to shift and
+rescale our progression to become an interval, and then iterate the argument until the density
+increased above $1$. Unfortunately,
+now we can't simply scale the progression $P$ to transform it into a {\it bona fide} interval, since then
+square differences between elements in $A$ may no longer be square and vice versa. For
+this reason, we will need another lemma.
+
+\edef\lemfurstenbergsarkozy{\the\thmcount}
+\proclaim Lemma~\advthm.
+Suppose that there is $N\in \NN$ and a square-difference-free
+subset $A\subseteq [N]$ of density $\delta = |A|/N$. Then there is a square-difference-free
+subset $A'\subseteq [N^{1/4}]$
+of size $|A'| \ge (\delta + c'\delta^3) N^{1/4}$, where $c$ is an absolute constant.
+
+\proof By the previous lemma, there is a progression $P\subseteq [N]$ of length $\lfloor N^{1/3}\rfloor$
+such that $|A\cap P|/|P| \ge \delta + c\delta^3$ for an absolute
+constant $c$. We can partition this progression into subprogressions of length $\lfloor N^{1/4}\rfloor$
+and step size $d^2$, with a little bit left over at the end that is of size $O(N^{1/4})$. The density
+of $A$ on the union of the progressions is at least $\delta + c\delta^3 - O(N^{-1/12})$,
+which is at least $\delta + c'\delta^3$ for some new absolute constant $c'$. By the pigeonhole principle,
+$A$ has density at least $\delta + c'\delta^3$ on one of the subprogressions, call it
+$$P' = \bigl\{ n' + d^2r' : r'\in [N^{1/4}]\bigr\}.$$
+Now consider the set $A' = \bigl\{ r'\in [N^{1/4}] : n' + d^2 r'\in A\bigr\}$. We claim that
+$A'$ does not contain two elements that differ by a square. For if $A'$ did contain an integer $m$ and $m+s^2$
+for some $s\ne 0$, then we would have $n' + d^2m$ and $m'+d^2(m+s^2)$ in
+$A$, but these two elements differ by $(ds)^2$, and we know that $A$ does not contain two elements
+that differ by a square. This completes the proof.\slug
+
+We are now ready to state and prove a version of the Furstenberg--S\'ark\"ozy theorem.
+
+\parenproclaim Theorem~{\advthm} (Furstenberg, {\rm 1977;} S\'ark\"ozy, {\rm 1978}).
+There is an absolute constant $C$ such that the following holds.
+For all $\delta > 0$ there exists $N \le \bigl\lceil \exp\bigl(\exp(C/\delta^2)\bigr)\bigr\rceil$ such that
+any subset $A\subseteq [N]$
+with $|A|\ge \delta N$ contains two elements whose difference is a positive square integer.
+
+\proof If the theorem does not hold, then there is a square-difference-free subset $A\subseteq [N]$ of density
+at least $\delta$. Then we can repeatedly apply Lemma~{\lemfurstenbergsarkozy}, at each iteration replacing
+$\delta$ by $\delta + c'\delta^3$, where $c'$ is an absolute constant, and replacing $N$ by
+$\lfloor N^{1/4}\rfloor$.
+After $1/(c\delta^2)$ iterations of the increment $\delta\mapsto \delta + c\delta^3$,
+the density at least doubles. Then to double it again we need to iterate $1/\bigl((c(2\delta)^2\bigr)
+= 1/(4c\delta^2)$ times, and so on. In general, after iterating at most
+$$ {1\over c\delta^2} \biggl( 1 + {1\over 4} + {1\over 16} + \cdots\biggr)
+= {4\over 3c\delta^2}$$
+times, the density of the set $A$ will exceed $1$, a contradiction.
+
+To avoid any messiness arising from $N$ eventually equalling $1$, we will insist that in the final
+round of the iteration,
+$N\ge 100$. This means that in the very first step we must have $N^{4^{-4/(3c\delta^2)}} \ge 100$.
+Taking the logarithm of both sides, we need
+$$ 4^{-4/(3c\delta^2)} \log N \ge \log 100,$$
+and then taking the logarithm again makes this equivalent to
+$$\log\log N \ge {4\over 3c'\delta^2} \log 4 + \log\log 100.$$
+There is an absolute constant $C$ such that the condition $\log\log N \ge C/\delta^2$ implies the one above,
+so we see that a sufficient condition on $N$ for this whole argument to work is
+$$ N \ge \exp\bigl(\exp(C/\delta^2)\bigr).\noskipslug$$
+
+What we just proved can equivalently be stated as follows: {\sl There exists a constant $C'$
+such that for all $N$, any subset of $[N]$ with density at least $C'/\sqrt{\log\log N}$ contains
+two elements that differ by a nonzero square.}
+
+\section References
+
+
+
+\parskip=0pt
+\hyphenpenalty=-1000 \pretolerance=-1 \tolerance=1000
+\doublehyphendemerits=-100000 \finalhyphendemerits=-100000
+\frenchspacing
+\def\bref#1{[#1]}
+\def\beginref{\noindent}
+\def\endref{\medskip}
+\vskip\parskip
+
+\beginref
+Antal Balog
+and Endre Szemer\'edi,
+``A statistical theorem of set addition,''
+{\sl Combinatorica}\/
+{\bf 14}
+(1994),
+263--268.
+\endref
+\beginref
+William Timothy Gowers,
+``A new proof of Szemer\'edi's theorem for arithmetic progressions of length four,''
+{\sl Geometric and Functional Analysis}\/
+{\bf 8}
+(1998),
+529--551.
+\endref
+\beginref
+Askold Khovanskii,
+``Newton polyhedron, Hilbert polynomial, and sums of finite sets,''
+{\sl Functional Analysis and its Applications}\/
+{\bf 26}
+(1992),
+276--281.
+\endref
+\beginref
+Melvyn Bernard Nathanson
+and Imre Zolt\'an Ruzsa,
+``Polynomial growth of sumsets in abelian semigroups,''
+{\sl Journal de Th\'eorie des Nombres de Bordeaux}\/
+{\bf 14}
+(2002),
+553--560.
+\endref
+\beginref
+Giorgis Petridis,
+``New proofs of Pl\"unnecke-type estimates for product sets in groups.,''
+{\sl Combinatorica}\/
+{\bf 32}
+(2012),
+721--733.
+\endref
+\beginref
+Helmut Pl\"unnecke,
+{\sl Eigenschaften und Absch\"atzungen von Wirkungsfunktionen}
+(Bonn:
+Berichte der Gesellschaft f\"ur Mathematik und Datenverarbeitung,
+1969).
+\endref
+\beginref
+Klaus Friedrich Roth,
+``On certain sets of integers,''
+{\sl Journal of the London Mathematical Society}\/
+{\bf 28}
+(1953),
+104--109.
+\endref
+\beginref
+Imre Zolt\'an Ruzsa,
+``An application of graph theory to additive number theory,''
+{\sl Scientia, Series A}\/
+{\bf 3}
+(1989),
+97--109.
+\endref
+\beginref
+Imre Zolt\'an Ruzsa, ``Sums of finite sets,'' {\sl Number Theory: New York Seminar 1991--1995} (1996).
+\endref
+\beginref
+Endre Szemer\'edi,
+``On sets of integers containing no $k$ elements in arithmetic progression,''
+{\sl Acta Arithmetica}\/
+{\bf 27}
+(1975),
+199--245.
+\endref
+\beginref
+Terence Tao
+and Van Ha Vu,
+{\sl Additive Combinatorics}
+(Cambridge:
+Cambridge University Press,
+2006).
+\endref
+\beginref
+Bartel Leendert van~der~Waerden,
+``Beweis einer Baudetschen Vermutung,''
+{\sl Nieuw Archief voor Wiskunde}\/
+{\bf 15}
+(1927),
+212--216.
+\endref
+\beginref
+\goodbreak\bye
