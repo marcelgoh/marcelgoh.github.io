@@ -11,7 +11,7 @@
 \def\To{\Rightarrow}
 \def\Gets{\Leftarrow}
 \font\titlefont=cmbx12 at 14 pt
-\def\cont#1#2{#1\hskip-2pt\leaders\hbox to 8pt{\hss.\hss}\hfil\hbox to 1em{\hss#2}}
+\def\cont#1#2{#1\hskip-2pt\leaders\hbox to 8pt{\hss.\hss}\hfil\hbox to 2em{\hss#2}}
 \def\divides{\mid}
 \def\percent{\mathrel{\%}}
 \def\norm#1{|\!|#1|\!|}
@@ -4524,15 +4524,14 @@ Let $(a_n) = a_0, a_1, a_2, \ldots$ be a sequence of real numbers (in all
 the examples we consider, they will be integers). A {\it recurrence relation}
 for the sequence is a formula for $a_n$ in terms of some of the $a_m$ with $m<n$.
 For instance, the {\it Fibonacci sequence} is the sequence $F_n$ defined by $F_0 = 0$,
-$F_1 = 1$, and $F_n = F_{n-1} + F_{n-2}$ for $n\ge 1$. The first few terms of $F_n$ are
+$F_1 = 1$, and $F_n = F_{n-1} + F_{n-2}$ for $n\ge 2$. The first few terms of $F_n$ are
 $$ 0 , 1, 1, 2, 3, 5, 8, 13, 21, \ldots.$$
 The sequence is named for the Italian mathematician Fibonacci, who in his 1202 book {\sl Liber Abaci}
-uses these numbers to describe the growth of a population of rabbits under certain idealised
+used these numbers to describe the growth of a population of rabbits under certain idealised
 conditions. The sequence was known to Indian linguists many centuries earlier, as it pertains
 to the number of different ways to arrange long and short Sanskrit syllables into lines of poetry.
-\bye
 
-\medskip\boldlabel Finding recurrence relations.
+\medskip\boldlabel\datestamp{28}{xi} Finding recurrence relations.
 First we show an example of how to find a recurrence relation for a given sequence.
 For $n\ge 1$, let $C_n$ be the number of binary strings of length $n$ not containing $00$.
 We have $C_1 = 2$ ($0$ and $1$ are both fine) and $C_2 = 3$ ($01$, $10$, and $11$ are all fine,
@@ -4597,7 +4596,7 @@ A {\it general solution} is a formula describing all possible solutions using so
 If we specify values for the first few terms $a_0, a_1, a_2,\ldots$, these are called
 {\it initial conditions} for the recurrence.
 
-\medskip\boldlabel\datestamp{26}{} Non-homogeneous recurrences of degree 1.
+\medskip\boldlabel Non-homogeneous recurrences of degree 1.
 So far, the only recurrences we know how to solve are
 linear homogeneous recurrences of degree $1$.
 As a step up in difficulty, let us now consider non-homogeneous recurrences of degree $1$.
@@ -4709,7 +4708,9 @@ and $(h_n)$ is a solution to the associated homogeneous recurrence, i.e.,
 $$h_n = f_1(n) a_{n-1} + f_2(n)a_{n-2} + \cdots + f_k(n) a_{n-k}$$
 for all $n\ge 1$, then the general solution for $(a_n)$ is given by $a_n = h_n + p_n$.\slug
 
-\medskip\boldlabel Recurrences with constant coefficients.
+\bye
+
+\medskip\boldlabel\datestamp{26}{} Recurrences with constant coefficients.
 We now turn to the case where the $f_i$ are all constant functions. This means
 there are constants $c_1, c_2, \ldots, c_k$ such that $f_1(n) = c_1$ for all $n$,
 $f_2(n) = c_2$ for all $n$, and so on.
@@ -4849,5 +4850,12 @@ If the characteristic polynomial of this recurrence has $k$ roots
 $r_1,r_2,\ldots, r_k$ that are pairwise distinct, then
 the general solution of the recurrence is
 $$a_n = \alpha_1 {r_1}^n + \alpha_2 {r_2}^n + \cdots + \alpha_k {r_k}^n.\noskipslug$$
+
+%\midinsert
+%$$\epsfbox{bijection.ps}$$
+%\vskip5pt
+%\caption{A planted plane tree with root label $5$ and its corresponding walk in $T_4$.}
+%\endinsert
+%\goodbreak
 
 \bye

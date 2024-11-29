@@ -1,0 +1,226 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 290 90
+%%HiResBoundingBox: 0 0 290 90
+
+% Constants
+/cm {28.35 mul} def
+/u {0.4 cm mul} def     % One unit
+/w {0.4 cm mul} def
+/xoff {0.1 cm add} def   % Offset the letters
+/yoff {0.1 cm add} def
+
+/nine {/CMMI10 findfont 9 scalefont setfont} def
+/ninetext {/CMR10 findfont 9 scalefont setfont} def
+/sixtext {/CMR8 findfont 6 scalefont setfont} def
+/symnine {/CMSY10 findfont 9 scalefont setfont} def
+
+0.5 setlinewidth
+
+% k n deg:  get degrees of k/n of the way around unit circle
+/deg {
+    /n exch def
+    /k exch def
+    360 k mul n div
+} def
+
+/arrowhead {  % x y size theta
+    /theta exch def
+    /s exch def
+    /y exch def
+    /x exch def
+    /h s 2 div def
+    gsave
+        x y translate
+        theta rotate
+        newpath
+            0 0 moveto
+            h 0 s h s s rcurveto
+            s neg s neg rmoveto
+            h 0 s h neg s s neg rcurveto
+        stroke
+    grestore
+} def
+
+/dot {
+    2 0 360 arc closepath fill
+} def
+
+/s 20 string def
+/label {
+    /n exch def
+    ninetext n s cvs show
+} def
+
+gsave
+0 u 0.2 w translate
+% PPT
+0 u 0 w dot
+0 u 2 w dot
+0 u 4 w dot
+2 u 4 w dot
+4 u 4 w dot
+1 u 6 w dot
+4 u 6 w dot
+7 u 6 w dot
+4 u 8 w dot
+newpath
+0 u 0 w moveto
+0 u 2 w lineto
+0 u 4 w lineto
+1 u 6 w lineto
+4 u 8 w lineto
+7 u 6 w lineto
+4 u 4 w moveto
+4 u 6 w lineto
+4 u 8 w lineto
+2 u 4 w moveto
+1 u 6 w lineto
+stroke
+newpath
+0.4 u -0.2 w moveto (1) label
+0.4 u 1.8 w moveto (2) label
+0.4 u 3.8 w moveto (3) label
+1.4 u 5.6 w moveto (4) label
+2.4 u 3.8 w moveto (2) label
+4.4 u 3.8 w moveto (1) label
+4.4 u 5.8 w moveto (3) label
+7.4 u 5.8 w moveto (1) label
+4.4 u 8 w moveto (5) label
+stroke
+grestore
+
+% T4
+gsave
+12 u 0.2 w translate
+0 u 0 w dot
+0 u 2 w dot
+2 u 2 w dot
+3 u 2 w dot
+7 u 2 w dot
+1 u 4 w dot
+3 u 4 w dot
+5 u 4 w dot
+7 u 4 w dot
+9 u 4 w dot
+11 u 4 w dot
+3 u 6 w dot
+8 u 6 w dot
+11 u 6 w dot
+13 u 6 w dot
+8 u 8 w dot
+newpath
+0 u 0 w moveto
+0 u 2 w lineto
+1 u 4 w lineto
+3 u 6 w lineto
+8 u 8 w lineto
+13 u 6 w lineto
+2 u 2 w moveto
+1 u 4 w lineto
+3 u 2 w moveto
+3 u 4 w lineto
+3 u 6 w lineto
+5 u 4 w lineto
+7 u 2 w moveto
+7 u 4 w lineto
+8 u 6 w lineto
+9 u 4 w lineto
+8 u 6 w moveto
+8 u 8 w lineto
+11 u 6 w lineto
+11 u 4 w lineto
+stroke
+
+0.5 setgray
+
+newpath
+7.6 u 8.2 w moveto
+3.1 u 6.4 w lineto
+stroke
+3.1 u 6.4 w 2.5 2 5 atan arrowhead
+newpath
+3.5 u 5.8 w moveto
+7.5 u 7.4 w lineto
+stroke
+7.5 u 7.4 w 2.5 2 5 atan 180 add arrowhead
+
+newpath
+2.5 u 6.0 w moveto
+1.0 u 4.5 w lineto
+stroke
+1.0 u 4.5 w 2.5 45 arrowhead
+newpath
+1.5 u 4 w moveto
+2.4 u 4.9 w lineto
+stroke
+2.4 u 4.9 w 2.5 225 arrowhead
+
+newpath
+0.6 u 3.9 w moveto
+-0.1 u 2.5 w lineto
+stroke
+-0.1 u 2.5 w 2.5 2 1 atan arrowhead
+newpath
+0.5 u 2.2 w moveto
+1.1 u 3.4 w lineto
+stroke
+1.1 u 3.4 w 2.5 2 1 atan 180 add arrowhead
+
+newpath
+-0.3 u 1.7 w moveto
+-0.3 u 0.3 w lineto
+stroke
+-0.3 u 0.3 w 2.5 90 arrowhead
+newpath
+0.3 u 0.3 w moveto
+0.3 u 1.7 w lineto
+stroke
+0.3 u 1.7 w 2.5 270 arrowhead
+
+newpath
+2.7 u 5.3 w moveto
+2.7 u 4.3 w lineto
+stroke
+2.7 u 4.3 w 2.5 90 arrowhead
+newpath
+3.3 u 4.3 w moveto
+3.3 u 5.5 w lineto
+stroke
+3.3 u 5.5 w 2.5 270 arrowhead
+
+newpath
+7.7 u 7.6 w moveto
+7.7 u 6.3 w lineto
+stroke
+7.7 u 6.3 w 2.5 90 arrowhead
+newpath
+8.3 u 6.3 w moveto
+8.3 u 7.5 w lineto
+stroke
+8.3 u 7.5 w 2.5 270 arrowhead
+
+newpath
+8 u 5.2 w moveto
+8.5 u 4.2 w lineto
+stroke
+8.5 u 4.2 w 2.5 2 -1 atan arrowhead
+newpath
+9.1 u 4.5 w moveto
+8.5 u 5.7 w lineto
+stroke
+8.5 u 5.7 w 2.5 2 -1 atan 180 add arrowhead
+
+newpath
+10.5 u 6.6 w moveto
+12.5 u 5.8 w lineto
+stroke
+12.5 u 5.8 w 2.5 2 -5 atan arrowhead
+newpath
+12.9 u 6.4 w moveto
+8.4 u 8.2 w lineto
+stroke
+8.4 u 8.2 w 2.5 2 -5 atan 180 add arrowhead
+
+grestore
+
+showpage
