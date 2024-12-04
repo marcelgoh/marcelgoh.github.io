@@ -4708,9 +4708,7 @@ and $(h_n)$ is a solution to the associated homogeneous recurrence, i.e.,
 $$h_n = f_1(n) a_{n-1} + f_2(n)a_{n-2} + \cdots + f_k(n) a_{n-k}$$
 for all $n\ge 1$, then the general solution for $(a_n)$ is given by $a_n = h_n + p_n$.\slug
 
-\bye
-
-\medskip\boldlabel\datestamp{26}{} Recurrences with constant coefficients.
+\medskip\boldlabel\datestamp{03}{xii} Recurrences with constant coefficients.
 We now turn to the case where the $f_i$ are all constant functions. This means
 there are constants $c_1, c_2, \ldots, c_k$ such that $f_1(n) = c_1$ for all $n$,
 $f_2(n) = c_2$ for all $n$, and so on.
@@ -4736,8 +4734,7 @@ $$a_n = c_1 a_{n-1} + c_2 a_{n-2}.$$
 If the characteristic polynomial of this recurrence has two distinct roots $r_1$ and $r_2$, then
 the general solution of the recurrence is
 $$a_n = \alpha_1 {r_1}^n + \alpha_2 {r_2}^n.$$
-Supposing we know the initial conditions $a_0$ and $a_1$, we can solve for
-$\alpha_1$ and $\alpha_2$ via the identities
+Supposing we know the initial conditions $a_0$ and $a_1$, we have the identities
 $$\alpha_1 = {a_0 r_2 - a_1\over r_2 - r_1}
 \qquad\hbox{and}\qquad
 \alpha_2 = {a_1 - a_0 r_1\over r_2-r_1}.$$
@@ -4831,17 +4828,7 @@ $$\lim_{n\to \infty} {F_{n+1}\over F_n} = {1+\sqrt 5\over 2}.$$
 Incidentally, it is not just the first few decimal places in the approximations of $r_1$ and $r_2$
 that match. As an exercise, prove that $r_2 = 1/r_1 = 1-r_1$.
 
-The case where the characteristic polynomial has a repeated root is not covered by
-Theorem~{\thmdegtwodistinct}. Instead, we have the following theorem, which we will
-not have time to prove in this course (though the proof is by no means difficult).
-
-\proclaim Theorem \advthm. Consider the recurrence given by
-$$a_n = c_1 a_{n-1} + c_2 a_{n-2}.$$
-If the characteristic polynomial of this recurrence has a repeated root $r$,
-then the general solution of the recurrence is
-$$a_n = \alpha_1 r^n + \alpha_2 nr^n.\noskipslug$$
-
-Theorem~{\thmdegtwodistinct} can also be generalised to higher degrees $k$. Its proof is
+Theorem~{\thmdegtwodistinct} can be generalised to higher degrees $k$. Its proof is
 morally the same as the one we gave for the case $k=2$.
 
 \proclaim Theorem \advthm. Let $k\ge 2$ be an integer and consider the recurrence given by
@@ -4850,6 +4837,72 @@ If the characteristic polynomial of this recurrence has $k$ roots
 $r_1,r_2,\ldots, r_k$ that are pairwise distinct, then
 the general solution of the recurrence is
 $$a_n = \alpha_1 {r_1}^n + \alpha_2 {r_2}^n + \cdots + \alpha_k {r_k}^n.\noskipslug$$
+
+Returning to the setting $k=2$,
+the case where the characteristic polynomial has a repeated root is not covered by
+Theorem~{\thmdegtwodistinct}. Instead, we have the following theorem.
+
+\edef\thmdegtworepeated{\the\thmcount}
+\proclaim Theorem \advthm. Consider the homogeneous recurrence
+$$a_n = c_1 a_{n-1} + c_2 a_{n-2}.$$
+If the characteristic polynomial of this recurrence has a repeated root $r$,
+then the general solution of the recurrence is
+$$a_n = \alpha_1 r^n + \alpha_2 nr^n.$$
+Supposing we know the initial conditions $a_0$ and $a_1$, we have the identities
+$$ \alpha_1 = a_0\qquad\hbox{and}\qquad \alpha_2 = {a_1 - a_0 r\over r}.$$
+
+\proof By the same logic as in the proof of Theorem~{\thmdegtwodistinct}, we know that
+$r^n$ is a solution to the recurrence. We show that $b_n = nr^n$ is also a solution.
+Since $r$ is a repeated root to the characteristic polynomial $x^2 - c_1x - c_2$, we have
+$$x^2 - c_1 x - c_2 = (x-r)^2 = x^2 - 2rx + r^2,$$
+so by comparing coefficients we conclude that $c_1 = 2r$ and $c_2 = -r^2$.
+Now by expanding
+$$\eqalign{
+c_1 b_{n-1} + c_2 b_{n-2} &= c_2(n-1)r^{n-1} + c_2 (n-2) r^{n-2} \cr
+&= r^{n-2} \bigl( c_1 (n-1) r + c_2(n-2)\bigr) \cr
+&= r^{n-2} (c_1 n r - c_1 r + c_2 n - 2c_2 ) \cr
+&= r^{n-2} (2r^2 n - 2r^2 -r^2 n + 2r^2 ) \cr
+&= nr^n \cr
+&= b_n \cr
+}$$
+we see that $b_n = nr^n$ satisfies the recurrence as well. By similar reasoning
+as in the proof of Theorem~{\thmdegtwodistinct}, any linear combination of the two solutions
+$(r^n)$ and $(nr^n)$ is also a solution.
+
+Now we prove the further claim. Suppose we know $a_0$ and $a_1$. Then
+$$a_0 = \alpha_1 r^0 + \alpha_2 0r^0 = \alpha_1,$$
+and
+$$ a_1 = \alpha_1 r^1 + \alpha_2 r^1 = a_0 r + \alpha_2 r,$$
+and hence
+$$ \alpha_1 = a_0\qquad\hbox{and}\qquad \alpha_2 = {a_1 - a_0 r\over r}.\noskipslug$$
+
+Let's illustrate this theorem with a final example. We solve the recurrence
+$$a_n = 4 a_{n-1} - 4 a_{n-2} + n,$$
+with the initial conditions $a_0 = 1$ and $a_1 = 3$.
+First we solve the homogeneous recurrence
+$$ h_n = 4h_{n-1} + 4 h_{n-2}.$$
+The characteristic polynomial is $x^2 - 4x + 4 = (x-2)^2$, so by the above theorem,
+$$h_n = \alpha_1 2^n + \alpha_2 n 2^n.$$
+Now we need a particular solution $p_n$. We have $g(n) = n$, which is a linear function
+in $n$, so we guess that $p_n = cn+d$ for some real numbers $c$ and $d$. Then
+from the identity $p_n = 4p_{n-1} - 4p_{n-2} + n$, we have
+$$\eqalign{
+cn+d &=  4\bigl( c(n-1) + d\bigr) - 4 \bigl( c(n-2)+d\bigr) + n \cr
+0 &= -cn - d + 4cn - 4c + 4d - 4cn + 8c - 4d + n \cr
+0 &= (1-c) n + (4c-d).
+}$$
+So $1-c = 0$ and $4c-d = 0$, whence $c = 1$ and $d=4$. So $p_n = n+4$.
+This gives us the general solution
+$$ a_n = \alpha_1 2^n + \alpha_2 n 2^n + n + 4.$$
+We cannot use Theorem~{\thmdegtworepeated} to get $\alpha_1$ and $\alpha_2$, since
+that theorem concerned homogeneous recurrences. Instead we directly compute
+$$ 1 = a_0 = \alpha_1 2^0 + \beta\cdot 0 + 0 + 4 = \alpha_1 + 4,$$
+and derive $\alpha_1 = -3$, then find that
+$$3 = a_1 = \alpha_1 2 + \alpha_1 \cdot 2 + 1 + 4
+= -6 + 2\alpha_2 + 4.$$
+Hence $4=2\alpha_2$ and $\alpha_2 = 2$, which gives us a final solution of
+$$a_n = 3\cdot 2^n + 2n\cdot 2^n + n + 4$$
+to our recurrence.
 
 %\midinsert
 %$$\epsfbox{bijection.ps}$$
