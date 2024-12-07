@@ -617,8 +617,10 @@ $$ (f*g)(x) = \ex_{y+z = x} f(y)g(z).$$
 If instead $\hat f$ and $\hat g$ are functions from $\hat Z$ to $\CC$, then
 $$ (\hat f * \hat g)(\chi) = \sum_{\chi_1\chi_2 = \chi} \hat f(\chi_1)\hat g(\chi_2).$$
 
-\parenproclaim Lemma {\advthm} (Convolution law). Let $Z$ is a finite abelian group and $f,g : \Z\to \CC$.
-For all $\chi\in \hat Z$, we have $\hat{f*g} (\chi) = \hat f(\chi)\hat g(\chi)$.
+\parenproclaim Lemma {\advthm} (Convolution laws). Let $Z$ be a finite abelian group
+and $f,g : Z \to \CC$.
+For all $\chi\in \hat Z$, we have $\hat{f*g} (\chi) = \hat f(\chi)\hat g(\chi)$,
+and $\hat{fg}(\chi) = (\hat f * \hat g)(\chi)$.
 
 \proof We start by expanding
 $$\hat{f*g}(\chi) = \ex_{x\in Z} (f*g)(x) \bar{\chi(x)} = \ex_{x\in Z} \ex_{y+z=x} f(y)g(z)\bar{\chi(y)\chi(z)}.$$
@@ -626,6 +628,20 @@ But note that $x$ does not appear in the summand anymore, meaning that we can si
 an expectation
 over {\it all} $y$ and $z$ (their sum will equal $x$ for some $x\in Z$). Thus we can conclude that
 $$\hat{f*g}(\chi) = \ex_{y\in Z}\ex_{z\in Z} f(y)g(z)\bar{\chi(y)\chi(z)} = \hat f(\chi)\hat g(\chi),$$
+which is what we wanted to show.
+
+To prove the other convolution law, we instead expand
+$$\eqalign{
+(\hat f * \hat g)(\chi) &= \sum_{\psi \in \hat G} \hat f(\psi) g(\chi\psi^{-1})  \cr
+&= \sum_{\psi\in \hat G} \ex_{x\in G}f(x)\bar{\psi(x)}\ex_{y\in G} g(x+y) \bar{\chi(x+y)\psi^{-1}(x+y)} \cr
+&= \ex_{x\in G} f(x) \ex_{y\in G} g(x+y) \bar{\chi(x+y)} \sum_{\psi\in \hat G} \bar{\psi^{-1}(y)}.\cr
+}$$
+The innermost sum equals $|\hat Z|$ when $y=0$ and is $0$ otherwise. Hence
+$$\eqalign{
+(\hat f * \hat g)(\chi) &= \ex_{x\in G} f(x) \ex_{y\in G} g(x+y) \bar{\chi(x+y)} \one_{[y=0]} |\hat Z| \cr
+&= \ex_{x\in G} f(x) g(x) \bar{\chi(x)} \cr
+&= \hat{fg}(\chi), \cr
+}$$
 which is what we wanted to show.\slug
 
 If $A$ is a subset of a finite abelian group $Z$, we associate to $A$ the {\it characteristic function}
