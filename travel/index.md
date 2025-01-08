@@ -3,7 +3,7 @@ layout: page
 title: Travel
 ---
 
-I have been to forty-two countries:
+I have been to forty-five countries:
 Australia,
 Austria,
 Belgium,
@@ -23,6 +23,7 @@ France,
 Germany,
 Hungary,
 Indonesia,
+Ireland,
 Italy,
 Japan,
 Malaysia,
@@ -32,11 +33,13 @@ Montenegro,
 Morocco,
 Netherlands,
 Poland,
+Portugal,
 Russia,
 Rwanda,
 Singapore,
 Slovakia,
 South Korea,
+Spain,
 Sweden,
 Switzerland,
 Tanzania,

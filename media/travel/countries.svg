@@ -144,7 +144,7 @@
 /* GREEN */
 .au, .at, .be, .bn, .bg, .kh, .ca, .cn, .hr, .cu, .cz, .dk, .ec, .ee, .fi, .fr,
 .de, .hu, .id, .it, .jp, .my, .mx, .me, .ma, .nl, .pl, .ru, .rw, .sk, .kr, .se,
-.ch, .th, .tr, .tz, .gb, .us, .vn
+.ch, .th, .tr, .tz, .gb, .us, .vn, .pt, .es, .ie
  {
 	fill: #4e9a06;
  }

@@ -249,4 +249,12 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Disappearance of Rituals_ (2019), Byung-Chul Han
 1. _Rue Deschambault_ (1955), Gabrielle Roy [French]
 1. _Running in the Family_ (1982), Michael Ondaatje
+1. _As For Me and My House_ (1941), Sinclair Ross
+1. _The Castle of Otranto_ (1764), Horace Walpole
+1. _The Royal Game and Other Stories_ (1941), Stefan Zweig
+1. _Klara and the Sun_ (2021), Kazuo Ishiguro
+
+### 2025
+
+1. _The Dangerous Summer_ (1960), Ernest Hemingway
 
