@@ -31,6 +31,7 @@ __E1.__ [On the probability that two integers are relatively prime]({{ site.base
 
 ### Friends
 
++ &#78202; [Dorsa Afshin](https://commecidorsa.com/)
 + &#78241; [Caelan Atamanchuk](http://caelanatamanchuk.com)
 + &#78553; [Anna Brandenberger](https://abrandenberger.github.io/)
 + &#77848; [Luc Devroye](http://luc.devroye.org/)
