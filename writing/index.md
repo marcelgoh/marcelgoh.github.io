@@ -15,8 +15,9 @@ how to buy an issue or submit your own work!
 
 Publications marked with an asterisk are nonfiction.
 
-__*F4.__ "Lanterns," Winner of the 2024 Constance Rooke Creative Nonfiction Prize.
-To appear in _The Malahat Review_.  
+__*F4.__ "Lanterns,"
+_[The Malahat Review](https://www.malahatreview.ca/)_ __229__ (2025), 7--13. Winner of
+the 2024 Constance Rooke Creative Nonfiction Prize.
 __F3.__ "Senang Diri," _[Existere](https://existere.info.yorku.ca/)_ __42__.2 (2023), 17--25.  
 __F2.__ ["The Vigil,"](https://ricepapermagazine.ca/2023/05/the-vigil-by-marcel-goh/)
 [_Ricepaper Magazine_](https://ricepapermagazine.ca/) (2023), online. Reprinted

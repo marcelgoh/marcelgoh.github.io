@@ -7,6 +7,9 @@ mathjax: false
 excerpt_separator:  <!--more-->
 ---
 
+__Update.__ I was interviewed by Joyce Chung about this piece. You can read the interview
+[here](https://www.malahatreview.ca/interviews/goh_interview.html).
+
 I wrote a story back in July that I realised, upon reading it back, was entirely non-fictional
 (modulo the exact words used in dialogue). A lot of the things I write are semi-autobiographical
 anyway, so I was intending to pass it off as just another (fictional) short story. Then a couple of

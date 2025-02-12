@@ -2,7 +2,7 @@
 \input mathmac
 
 \def\eps{\epsilon}
-\def\FF{{\bf F}}
+\def\FF{\hbox{\bf F}}
 \def\bar#1{\overline{#1}}
 \def\hat#1{\widehat{#1}}
 \def\norm#1{|\!|#1|\!|}
@@ -14,7 +14,7 @@
 \def\Etaseven{\op{\sevenbf H}}
 \def\II{\op{\bf I}}
 \def\dd{\op{\bf d}}
-\def\ee{\op{\bf e}}
+\def\AA{\op{\bf A}}
 \def\P{{\cal P}}
 \def\given{\mathbin{|}}
 \def\argmax{\limitop{\rm arg$\,$max}}
@@ -197,7 +197,7 @@ $$\Eta\{X\} = \Eta\{X,Y\} = \Eta\{Y\} + \Eta\{X\given Y\}$$
 by invariance and additivity.\slug
 
 We are now done if we can show that entropy is nonnegative.
-This is a corollary of the following lemma. The following proof is a modification of
+This is a corollary of the following lemma, whose proof is a modification of
 one due to S.~Eberhard.
 
 \edef\propmaxprob{\the\sectcount.\the\thmcount}
@@ -333,9 +333,9 @@ $$\Eta\{X\} + \Eta\{Y\} \le \Eta\{Z\} + \Eta\{W\}.$$
 \proof The hypotheses give the three inequalities
 $$\Eta\{X\} \le \Eta\{Z,W\}, \quad \Eta\{Y\}\le \Eta\{Z\},\quad\hbox{and}\quad \Eta\{Y\}\le \Eta\{W\}.$$
 From this we see that
-$$2\Eta\{X\} + 2\Eta\{Y\} \le 2\Eta\{Z,W\} + \Eta\{Z\} + \Eta\{Y\}.$$
+$$2\Eta\{X\} + 2\Eta\{Y\} \le 2\Eta\{Z,W\} + \Eta\{Z\} + \Eta\{W\}.$$
 But then since conditioning does not increase entropy, we have
-$$2\Eta\{X\} + 2\Eta\{Y\} \le 2\Eta\{Z\} + 2\Eta\{Y\},$$
+$$2\Eta\{X\} + 2\Eta\{Y\} \le 2\Eta\{Z\} + 2\Eta\{W\},$$
 whence dividing both sides by $2$ completes the proof.\slug
 
 The submodularity inequality is often stated in terms of a triple of random variables in terms of
@@ -738,12 +738,12 @@ in the same
 abelian group. Let $(X_1, Y_1)$ and $(X_2, Y_2)$ be conditionally independent trials of $(X,Y)$ relative to
 $X+Y$. These  $X_1 + Y_1 = X_2 + Y_2 = A+B$.
 The {\it entropic additive energy} between $X$ and $Y$ is
-$$ \ee\{X,Y\} = \Eta\{X_1, Y_1, X_2, Y_2\}.$$
+$$ \AA\{X,Y\} = \Eta\{X_1, Y_1, X_2, Y_2\}.$$
 This definition makes clear the analogy between this value and the additive energy of sets, but
 by conditional independence and the fact that $(X_1, Y_1, X_2, Y_2)$ determines $X_1+Y_1 = X+Y$,
 we can rewrite
 $$\eqalign{
-\ee\{X,Y\} &= \Eta\{X_1, Y_1, X_2, Y_2, X+Y\} \cr
+\AA\{X,Y\} &= \Eta\{X_1, Y_1, X_2, Y_2, X+Y\} \cr
 &= 2\Eta\{X,Y,X+Y\} - \Eta\{X+Y\} \cr
 &= 2\Eta\{X,Y\} - \Eta\{X+Y\},\cr
 }$$
@@ -770,7 +770,7 @@ question are not too dependent.
 \proclaim Proposition \advthm. Let $X$ and $Y$ be discrete random variables taking values in the
 same abelian group. If
 \global\edef\eqenergybound{\the\eqcount}
-$$\ee\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2}\Eta\{Y\} - \log K,\adveq$$
+$$\AA\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2}\Eta\{Y\} - \log K,\adveq$$
 for some constant $K$, then
 \global\edef\eqsumbound{\the\eqcount}
 $$\Eta\{ X+Y\} \le {1\over 2} \Eta\{X\} + {1\over 2} \Eta\{Y\} + \log K.\adveq$$
@@ -779,7 +779,7 @@ $\Eta\{X,Y\} \ge \Eta\{X\} + \Eta\{Y\} - C$,
 then~{\rm \refeq{\eqsumbound}} implies~{\rm \refeq{\eqenergybound}} with a worse constant, namely,
 we may only conclude
 \global\edef\eqworsebound{\the\eqcount}
-$$\ee\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2}\Eta\{Y\} - \log K - 2C.\adveq$$
+$$\AA\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2}\Eta\{Y\} - \log K - 2C.\adveq$$
 In particular, if $X$ and $Y$ are independent, then we can recover~{\rm \refeq{\eqenergybound}}
 from~{\rm \refeq{\eqsumbound}}.
 
@@ -793,7 +793,7 @@ $$\eqalign{
 }$$
 On the other hand, assuming this upper bound on $\Eta\{X+Y\}$, we have
 $$\eqalign{
-\ee\{X,Y\} &= 2\Eta\{X,Y\} - \Eta\{X+Y\}  \cr
+\AA\{X,Y\} &= 2\Eta\{X,Y\} - \Eta\{X+Y\}  \cr
 &\ge 2\Eta\{X,Y\} - {1\over 2} \Eta\{X\} - {1\over 2} \Eta\{Y\} - \log K ,\cr
 }$$
 and if $2\Eta\{X,Y\} \ge 2 \Eta\{X\} + 2\Eta\{Y\} - 2C$, then~\refeq{\eqworsebound} follows
@@ -820,7 +820,7 @@ stipulating that $|H| \ge K |A|\cdot |B|$, so that the resulting $X$ and $Y$ are
 
 Simply put, in the entropic setting the bound~\refeq{\eqenergybound} is
 stronger than~\refeq{\eqsumbound} because the entropy $\Eta\{X,Y\}$ of the joint distribution appears in
-the formula for $\ee\{X,Y\}$, whereas~\refeq{\eqsumbound} says nothing whatsoever about this joint distribution.
+the formula for $\AA\{X,Y\}$, whereas~\refeq{\eqsumbound} says nothing whatsoever about this joint distribution.
 
 The converse to Proposition~{\propinversebalog} does not hold in general; that is, large additive energy
 does not necessarily imply a small sumset. However, there does exist a partial converse,
@@ -859,7 +859,7 @@ Let $X$ and $Y$ be discrete random variables taking values in the same abelian
 group. Let $(X_1, Y_1)$ and $(X_2,Y_2)$ be conditionally
 independent trials of $(X,Y)$ relative to $X+Y$. Then we have
 $$\max\bigl(\Eta\{X_1- X_2\}, \Eta\{X_1-Y_2\}\bigr) \le \Eta\{X+Y\} + 2\II\{X:Y\}.$$
-The right-hand side of this expression can also be written $2\Eta\{X\} + 2\Eta\{Y\} - \ee\{X,Y\}$.
+The right-hand side of this expression can also be written $2\Eta\{X\} + 2\Eta\{Y\} - \AA\{X,Y\}$.
 
 \proof First we perform the proof for $X_1 - Y_2$.
 Submodularity gives us
@@ -883,7 +883,7 @@ The same holds with $Y_2$ replaced by $X_2$.\slug
 \parenproclaim Theorem {\advthm} (Entropic Balog--Szemer\'edi--Gowers theorem).
 Let $X$ and $Y$ be discrete random variables taking values in the same abelian group, and
 suppose that
-$$\ee\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2} \Eta\{Y\} + \log K$$
+$$\AA\{X,Y\} \ge {3\over 2} \Eta\{X\} + {3\over 2} \Eta\{Y\} + \log K$$
 for some constant $K$.
 Then letting $(X_1, Y_1)$ and $(X_2,Y_2)$ be conditionally
 independent trials of $(X,Y)$ relative to $X+Y$, we have
@@ -898,11 +898,11 @@ $$\Eta\{ X_1 + Y_2 \given X+Y\} \le {1\over 2}\Eta\{X\} + {1\over 2} \Eta\{Y\} +
 $$\eqalign{
 \Eta\{X_1\given X + Y\} &= \Eta\{X_1, X_1+Y_1\} - \Eta\{X+Y\} \cr
 &= \Eta\{X,Y\} - \Eta\{X+Y\} \cr
-&= \ee\{X,Y\} - \Eta\{X,Y\} \cr
+&= \AA\{X,Y\} - \Eta\{X,Y\} \cr
 &\ge {3\over 2} \Eta\{X\} + {3\over 2} \Eta\{Y\} - \log K - \Eta\{X,Y\} \cr
 &\ge {1\over 2} \Eta\{X\} + {1\over 2}\Eta\{Y\} -\log K.\cr
 }$$
-where in the fourth line we used the hypothesis on $\ee\{X,Y\}$, and in the last line we observed
+where in the fourth line we used the hypothesis on $\AA\{X,Y\}$, and in the last line we observed
 that $\Eta\{X\} + \Eta\{Y\} - \Eta\{X,Y\} \ge 0$. The bound
 $$\Eta\{Y_2, X+Y\} \ge {1\over 2} \Eta\{X\} + {1\over 2}\Eta\{Y\} -\log K$$
 is shown in the exact same way; only the first step differs.
@@ -944,8 +944,8 @@ $$\eqalign{
 so that
 $$\Eta\{ X_1 + Y_2\given X+Y\} \le \Eta\{X_1 - X_2\given X+Y\} - 2\Eta\{X+Y\}\le \Eta\{X_1 - X_2\}.$$
 The previous lemma then gives
-$$\Eta\{ X_1 + Y_2\given X+Y\} \le 2\Eta\{X\} + 2\Eta\{Y\} - \ee\{X,Y\},$$
-and from our lower bound on $\ee\{X,Y\}$, we conclude that
+$$\Eta\{ X_1 + Y_2\given X+Y\} \le 2\Eta\{X\} + 2\Eta\{Y\} - \AA\{X,Y\},$$
+and from our lower bound on $\AA\{X,Y\}$, we conclude that
 $$\Eta\{ X_1 + Y_2\given X+Y\} \le {1\over 2} \Eta\{X\} + {1\over 2} \Eta\{Y\} + \log K,$$
 which is what we wanted to show.\slug
 
@@ -1780,6 +1780,67 @@ $$\eta-\Bigl(1+{\eta\over 3}\Bigr){1-5\eta\over 1-\eta} = -{11\over 27} \le 0$$
 and $2\eta k - I_1\ge 0$ by Lemma~{\lemionebound}, hence one concludes that
 $$ k \le (8\eta + \eta^2)k = {73\over 81}k,$$
 which is nonsense unless $k=0$.\slug
+
+\advsect Sum-product phenomena
+
+We prove the following lemma.
+
+\proclaim Lemma \advthm.
+Let $X$ and $Y$ be random variables taking values in $\FF_p^*$ for some prime $p$.
+There exists $u\in \FF_p^*$ such that
+$$\Eta\{X,uY\} \ge {\Eta\{X,Y\}\over 2^{\Etaseven\{X,Y\}}} - 1,$$
+
+\proof Let $U$ be a random variable uniform on $\FF_p^*$ and independent of both $X$ and $Y$.
+Independence gives us the identity $\Eta\{X+UY\} = \Eta\{U\} = \log(p-1)$.
+We let $(X_1, Y_1)$, $(X_2,Y_2)$, and $U$ be conditionally independent trials
+of $(X,Y)$, $(X,Y)$, and $U$ respectively, relative to $X+UY$.
+Put
+$$H = \Eta\{X_1, Y_1, X_2, Y_2, U\}.$$
+Let $W = 1$ if $X_1 = X_2$ and $W=0$ otherwise. Then since $X_1 + UY_1 = X+UY$, we have
+$$\eqalign{
+H &= \Eta\{X_1, Y_1, X_2, Y_2, W, X+UY\} \cr
+&= \Eta\{U\} + \Eta\{W\} + \Eta\{X_1, Y_1, X_2, Y_2 \given W, X+UY\}.\cr
+}$$
+If $X_1 = X_2$, then $Y_1 = Y_2$, so by conditional independence,
+$$\eqalign{
+H &= \Eta\{U\} + \Eta\{W\} +  \pr\{X_1 = X_2\given X+UY\} \Eta\{X_1, Y_1 \given X+UY\} \cr
+&\qquad+ \pr\{X_1 \ne X_2 \given X+UY\} \Eta\{X_1,Y_1, X_2,Y_2\given X+UY\}.\cr
+&= \Eta\{U\} + \Eta\{W\} + \pr\{X_1 = X_2\}\bigl( \Eta\{X,Y\given X+UY\}\bigr) \cr
+&\qquad
++\pr\{X_1 \ne X_2\given X+UY\}\bigl( 2\Eta\{X,Y\given X+UY\} \bigr) \cr
+&= \Eta\{U\} + \Eta\{W\} + \Eta\{X,Y\given X+UY\}\cr
+&\qquad+\pr\{X_1 \ne X_2\given X+UY\}\Eta\{X,Y \given X+UY\} \cr
+}$$
+But
+$$\Eta\{X,Y\given X+UY\} = \Eta\{X,Y, X+UY\} - \Eta\{X+UY\} = \Eta\{X,Y\}$$
+by independence of $(X,Y)$ and $U$, so
+$$H =\bigl(1+\pr\{X_1\ne X_2\given X+UY\}\}\bigr) \Eta\{X,Y\} + \Eta\{U\} + \Eta\{W\}.$$
+
+On the other hand, by invertibility of each $u\in \FF_p^*$, we have
+$$\eqalign{
+H - \Eta\{U\} &= \Eta\{X_1, Y_1, X_2, Y_2\given U\} \cr
+&= {1\over p-1} \sum_{u\in \FF_p^*} \Eta\{X_1, Y_1, X_2, Y_2\given U=u\} \cr
+&= {1\over p-1} \sum_{u\in \FF_p^*} \Eta\{X_1, uY_1, X_2, uY_2\} \cr
+&= {1\over p-1} \sum_{u\in \FF_p^*} \AA\{X, uY\}.\cr
+}$$
+Consequently there exists $u\in \FF_p^*$ such that
+$$\eqalign{
+\AA\{X,uY\} &\le H-\Eta\{U\} \cr
+&= \bigl(1+\pr\{X_1\ne X_2\given X+UY\}\bigr) \Eta\{X,Y\} + \Eta\{W\} \cr
+&\le \bigl(1+\pr\{X_1\ne X_2\given X+UY\}\bigr) \Eta\{X,Y\} + 1, \cr
+}$$
+and for this choice of $u$ we have
+$$\Eta\{X+uY\} \ge \pr\{X_1 = X_2\given X+UY\} \Eta\{X,Y\} - 1.$$
+But
+$$\pr\{X_1 = X_2\given X+UY\} = \pr\bigl\{ (X_1,Y_1) = (X_2, Y_2) \given X+UY\bigr\},$$
+and by [TODO: add lemma], we have
+$$\eqalign{
+\pr\{ (X_1,Y_1) = (X_2, Y_2) \given X+UY\} &\ge 2^{-\Etaseven\{X, Y \given X+UY\}} \cr
+&= 2^{-\Etaseven\{X, Y\}},\cr
+}$$
+which immediately yields the desired inequality.\slug
+
+
 
 \section References
 
