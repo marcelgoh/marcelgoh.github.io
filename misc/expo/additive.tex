@@ -53,7 +53,7 @@ argument from a 2012 paper by G.~Petridis. It hinges on the following lemma. In 
 rest of these notes), we will write $A+x$ instead of $A+\{x\}$ for convenience.
 
 \edef\lempetridis{\the\thmcount}
-\parenproclaim Lemma {\advthm} (Petridis, {\rm 2012}). Let $A$ and $B$ be subsets of an abelian
+\parenproclaim Lemma {\advthm} (Petridis, {\rm 2012}). Let $A_0$ and $B$ be subsets of an abelian
 group and let $K_0$ be such that $|A_0+B| = K_0|A_0|$. Then there exist $A\subseteq A_0$ and
 $K\le K_0$ such that $|A+B+C| \le K|A+C|$ for every finite subset $C$ of the group.
 
@@ -69,7 +69,7 @@ Also, any element of $A'+B+x$ is an element of $A+B+C$, since $a'+x\in A+C$ for 
 Applying the induction hypothesis now gives
 $$\eqalign{
 \bigl| A + B + (C\cup \{x\}) \bigr| &\le |A+B+C| + |A+B+x| - |A'+B+x| \cr
-&\le K|A+B| + K|A| = K|A'| \cr
+&\le K|A+B| + K|A| - K|A'| \cr
 &= K\bigl| A+(C\cup \{x\})\bigr|,
 }$$
 which completes the proof.\slug

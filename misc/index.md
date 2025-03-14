@@ -34,6 +34,7 @@ __E1.__ [On the probability that two integers are relatively prime]({{ site.base
 + &#78202; [Dorsa Afshin](https://commecidorsa.com/)
 + &#78241; [Caelan Atamanchuk](http://caelanatamanchuk.com)
 + &#78553; [Anna Brandenberger](https://abrandenberger.github.io/)
++ &#78203; [Ben Cheung](https://sites.google.com/view/ben-tsun-ming-cheung/)
 + &#77848; [Luc Devroye](http://luc.devroye.org/)
 + &#77952; [Shereen Elaidi](https://shereenelaidi.github.io/)
 + &#77868; [Lisa Elnagar](https://lisaelnagar.com/)

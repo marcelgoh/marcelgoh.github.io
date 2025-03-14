@@ -257,4 +257,11 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 ### 2025
 
 1. _The Dangerous Summer_ (1960), Ernest Hemingway
-
+1. _Lapvona_ (2022), Ottessa Moshfegh
+1. _The View from Castle Rock_ (2006), Alice Munro
+1. _Dracula_ (1897), Bram Stoker
+1. _Motherhood_ (2019), Sheila Heti
+1. _Zero: The Biography of a Dangerous Idea_ (2000), Charles Seife
+1. _Peter Camenzind_ (1904), Hermann Hesse
+1. _The Art of Charlie Chan Hock Chye_ (2015), Sonny Liew
+1. _Who Was Changed and Who Was Dead_ (1954), Barbara Comyns

@@ -330,21 +330,16 @@ Suppose $X$, $Y$, $Z$, and $W$ are random variables such that $(Z,W)$ determines
 $X$, $Z$ determines $Y$, and $W$ also determines $Y$. Then
 $$\Eta\{X\} + \Eta\{Y\} \le \Eta\{Z\} + \Eta\{W\}.$$
 
-\proof The hypotheses give the three inequalities
-$$\Eta\{X\} \le \Eta\{Z,W\}, \quad \Eta\{Y\}\le \Eta\{Z\},\quad\hbox{and}\quad \Eta\{Y\}\le \Eta\{W\}.$$
-From this we see that
-$$2\Eta\{X\} + 2\Eta\{Y\} \le 2\Eta\{Z,W\} + \Eta\{Z\} + \Eta\{W\}.$$
-But then since conditioning does not increase entropy, we have
-$$2\Eta\{X\} + 2\Eta\{Y\} \le 2\Eta\{Z\} + 2\Eta\{W\},$$
-whence dividing both sides by $2$ completes the proof.\slug
-
-The submodularity inequality is often stated in terms of a triple of random variables in terms of
-the {\it conditional mutual information}, which is defined by
-$$\eqalign{
-\II\{ X : Y \given Z\} &= \sum_{z\in C} \pr\{Z = z\} \II\bigl\{ (X\given Z = z) : (Y\given Z = z)\bigr\} \cr
-&= \Eta\{X\given Z\} - \Eta\{X\given Y, Z\} \cr
-&= \Eta\{Y\given Z\} - \Eta\{Y\given X, Z\}.\cr
-}$$
+\proof Since $(Z,W)$ determines $X$, for each possible value $y$ that $Y$ takes,
+$(Z,W\given Y= y)$ determines $(X\given Y=y)$. Summing over the support of $Y$ and
+applying Corollary~{\cordetermines} gives us
+$$ \Eta\{X\given Y\} \le \Eta\{Z,W \given Y\} \le \Eta\{Z\given Y\} + \Eta\{W\given Y\}.$$
+Expanding the conditional entropies and rearranging yields
+$$\Eta\{X,Y\} + \Eta\{Y\} \le \Eta\{Z,Y\} + \Eta\{W,Y\}.$$
+But $Z$ and $W$ each determine $Y$, so $\Eta\{Z,Y\} = \Eta\{Z\}$ and
+$\Eta\{W,Y\} = \Eta\{W\}$. Hence
+$$\Eta\{X\} + \Eta\{Y\} \le \Eta\{X,Y\} + \Eta\{Y\} \le \Eta\{Z\} + \Eta\{W\},$$
+as desired.\slug
 
 \proclaim Proposition \advthm. Let $X$, $Y$, and $Z$ be discrete random variables. Then
 $$\Eta\{X,Y,Z\} + \Eta\{Z\} \le \Eta\{X,Z\} + \Eta\{Y,Z\},$$
@@ -453,28 +448,12 @@ for $X'$, $Y'$, and $Z'$ independent and distributed as $X$, $Y$, and $Z$, respe
 entropic Ruzsa distance and cancelling some terms. So without loss of generality, we may assume that
 that $X$, $Y$, and $Z$ are independent and just prove the second statement.
 
-By submodularity, we have $\II\bigl\{ (X-Y : Z) \given X-Z\bigr\} \ge 0$, so
-\edef\eqfirstsubmodularity{\the\eqcount}
-$$\eqalign{
-0 &\le \II\bigl\{ (X-Y : Z) \given X-Z\bigr\} \cr
-&\le \Eta\{X-Y \given X-Z\} + \Eta\{ Z\given X-Z\} - \Eta\{ X-Y, Z \given X-Z\} \cr
-&\le \Eta\{X-Y, X-Z\} + \Eta\{ Z, X-Z\} - \Eta\{ X-Y, Z, X-Z\} - \Eta\{X-Z\}.\cr
-}\adveq$$
-Now, since the values $(x-y,x-z)$ taken by $(X-Y,X-Z)$ are in bijection with values
-$(x-z,y-z)$ taken by $(X-Z, Y-Z)$ via the map $(v,w) \mapsto (w, w-v)$,
-by the invariance axiom we have
-$$\Eta\{X-Y, X-Z\} = \Eta\{X-Z, Y-Z\} \le \Eta\{X-Z\} + \Eta\{Y-Z\}.$$
-Similar invocations of the invariance axiom give
-$$\Eta\{Z, X-Z\} = \Eta\{X,Z\}$$
-and
-$$\Eta\{X-Y, Z, X-Z\} = \Eta\{X,Y,Z\} = \Eta\{X,Z\} + \Eta\{Y\},$$
-where in the latter statement the second equality follows from the fact that $(X,Y)$ and $Z$ are
-independent.
-Substituting these three inequalities into~\refeq{\eqfirstsubmodularity}, we have
-$$0\le \Eta\{X-Y\} + \Eta\{Y-Z\} +\Eta\{X,Z\} -\Eta\{X,Z\} + \Eta\{Y\} - \Eta\{X-Z\},$$
-whence
-$$ \Eta\{X-Z\} \le \Eta\{X-Y\} + \Eta\{Y-Z\} + \Eta\{Y\},$$
-which completes the proof.\slug
+By submodularity, we have
+$$\Eta\{X,Y,Z\} + \Eta\{X-Z\} \le \Eta\{X-Y, Y-Z\} + H\{Z, X-Z\}.$$
+But $\Eta\{Z, X-Z\} = \Eta\{X,Z\}$, and
+$\Eta\{X,Y,Z\} = \Eta\{X,Z\} + \Eta\{Y\}$ by independence, so
+$$ \Eta\{X-Z\} + \Eta\{Y\} \le \Eta\{X-Y\} + \Eta\{Y-Z\}$$
+and the result follows.\slug
 
 We also define a conditional version of the entropic Ruzsa distance. If $X$ and $Y$ are $G$-valued
 random variables with finite support and $Z$ and $W$ are any random variables with finite supports
@@ -1783,63 +1762,71 @@ which is nonsense unless $k=0$.\slug
 
 \advsect Sum-product phenomena
 
-We prove the following lemma.
+In this section, we prove an entropy variant of the Katz--Tao lemma~\ref{katztao}, which states
+that if $R$ is a commutative ring, $R^*$ the set of elements in $R$ that are not zero divisors,
+and $A\subseteq R^*$ has $|A+A|\le K|A|$ and $|A\cdot A|\le K|A|$, then there is a large subset
+$A'$ of $A$ such that $|A'\cdot A' - A'\cdot A'| \le CK^C|A'|$, where $C$ is an absolute constant.
 
-\proclaim Lemma \advthm.
-Let $X$ and $Y$ be random variables taking values in $\FF_p^*$ for some prime $p$.
-There exists $u\in \FF_p^*$ such that
-$$\Eta\{X,uY\} \ge {\Eta\{X,Y\}\over 2^{\Etaseven\{X,Y\}}} - 1,$$
+Crucial to the argumentation in this section is
+the cancellative property of elements that are not zero divisors (if $xy = xz$ then $x(y-z) = 0$,
+so for all $x\in R$ that is not a zero divisor, the function $y\mapsto xy$ is injective).
+We require a special case of a rather technical lemma due to A.~M\'ath\'e and W.~L.~O'Regan.
+We furnish a slightly simpler proof.
 
-\proof Let $U$ be a random variable uniform on $\FF_p^*$ and independent of both $X$ and $Y$.
-Independence gives us the identity $\Eta\{X+UY\} = \Eta\{U\} = \log(p-1)$.
-We let $(X_1, Y_1)$, $(X_2,Y_2)$, and $U$ be conditionally independent trials
-of $(X,Y)$, $(X,Y)$, and $U$ respectively, relative to $X+UY$.
-Put
-$$H = \Eta\{X_1, Y_1, X_2, Y_2, U\}.$$
-Let $W = 1$ if $X_1 = X_2$ and $W=0$ otherwise. Then since $X_1 + UY_1 = X+UY$, we have
+\proclaim Lemma \advthm. Let $X$, $Y$, $Z$, and $W$ be random variables taking values in $R^*$ for some
+commutative ring $R$. Then
 $$\eqalign{
-H &= \Eta\{X_1, Y_1, X_2, Y_2, W, X+UY\} \cr
-&= \Eta\{U\} + \Eta\{W\} + \Eta\{X_1, Y_1, X_2, Y_2 \given W, X+UY\}.\cr
+\Eta\{XY + Z&W\} + \Eta\{X\} + \Eta\{Y\} + 2\Eta\{Z\} + 2\Eta\{W\} \cr
+&\le \Eta\{X+Y\} + \Eta\{Z-W\} + \Eta\{XZ\} + 2\Eta\{YZ\} + 2\Eta\{ZW\}.\cr
 }$$
-If $X_1 = X_2$, then $Y_1 = Y_2$, so by conditional independence,
-$$\eqalign{
-H &= \Eta\{U\} + \Eta\{W\} +  \pr\{X_1 = X_2\given X+UY\} \Eta\{X_1, Y_1 \given X+UY\} \cr
-&\qquad+ \pr\{X_1 \ne X_2 \given X+UY\} \Eta\{X_1,Y_1, X_2,Y_2\given X+UY\}.\cr
-&= \Eta\{U\} + \Eta\{W\} + \pr\{X_1 = X_2\}\bigl( \Eta\{X,Y\given X+UY\}\bigr) \cr
-&\qquad
-+\pr\{X_1 \ne X_2\given X+UY\}\bigl( 2\Eta\{X,Y\given X+UY\} \bigr) \cr
-&= \Eta\{U\} + \Eta\{W\} + \Eta\{X,Y\given X+UY\}\cr
-&\qquad+\pr\{X_1 \ne X_2\given X+UY\}\Eta\{X,Y \given X+UY\} \cr
-}$$
-But
-$$\Eta\{X,Y\given X+UY\} = \Eta\{X,Y, X+UY\} - \Eta\{X+UY\} = \Eta\{X,Y\}$$
-by independence of $(X,Y)$ and $U$, so
-$$H =\bigl(1+\pr\{X_1\ne X_2\given X+UY\}\}\bigr) \Eta\{X,Y\} + \Eta\{U\} + \Eta\{W\}.$$
 
-On the other hand, by invertibility of each $u\in \FF_p^*$, we have
+\proof Let $S = \bigl( XY, ZW, (X+Z)Y, Z(Y-W)\bigr)$ for short. The tuples $(S,Y)$ and
+$(X,Y,Z,W)$ determine each other, so $\Eta\{S,Y\} = \Eta\{X,Y,Z,W\}$. By submodularity,
+$$\Eta\{S,Y\} + \Eta\{XY\} \le \Eta\{S\} + \Eta\{X,Y\},$$
+so
+\edef\eqfirstsub{\the\eqcount}
 $$\eqalign{
-H - \Eta\{U\} &= \Eta\{X_1, Y_1, X_2, Y_2\given U\} \cr
-&= {1\over p-1} \sum_{u\in \FF_p^*} \Eta\{X_1, Y_1, X_2, Y_2\given U=u\} \cr
-&= {1\over p-1} \sum_{u\in \FF_p^*} \Eta\{X_1, uY_1, X_2, uY_2\} \cr
-&= {1\over p-1} \sum_{u\in \FF_p^*} \AA\{X, uY\}.\cr
-}$$
-Consequently there exists $u\in \FF_p^*$ such that
+\Eta\{S\} &\ge \Eta\{X,Y,Z,W\} + \Eta\{XY\} - \Eta\{X,Y\} \cr
+&= \Eta\{Z,W\} + \Eta\{XY\}, \cr
+}\adveq$$
+by independence.
+Another application of submodularity yields
+$$\Eta\{XY+ZW\} + \Eta\{S\} \le \Eta\{XY, ZW\} + \Eta\bigl\{ (X+Z)Y, Z(Y-W)\bigr\},$$
+since $(X+Z)Y + Z(Y-W) = XY+ZW$. Substituting in~\refeq{\eqfirstsub}, we get
+\edef\eqsecondsub{\the\eqcount}
+$$\Eta\{XY+ZW\} + \Eta\{Z,W\} \le \Eta\{ZW\} + \Eta\bigl\{ (X+Z)Y\bigr\} + \Eta\bigl\{Z(Y-W)\bigr\},\adveq$$
+where we have cancelled a $\Eta\{XY\}$ term from both sides.
+Lastly, note that
 $$\eqalign{
-\AA\{X,uY\} &\le H-\Eta\{U\} \cr
-&= \bigl(1+\pr\{X_1\ne X_2\given X+UY\}\bigr) \Eta\{X,Y\} + \Eta\{W\} \cr
-&\le \bigl(1+\pr\{X_1\ne X_2\given X+UY\}\bigr) \Eta\{X,Y\} + 1, \cr
+\Eta\bigl\{ (X+Z)Y\bigr\} &\le \Eta\{XZ, YZ\} + \Eta\{X+Z,Y\} - \Eta\{X,Y,Z\} \cr
+&\le \Eta\{XZ\} + \Eta\{YZ\} + \Eta\{X+Z\} - \Eta\{X\} - \Eta\{Z\} \cr
 }$$
-and for this choice of $u$ we have
-$$\Eta\{X+uY\} \ge \pr\{X_1 = X_2\given X+UY\} \Eta\{X,Y\} - 1.$$
-But
-$$\pr\{X_1 = X_2\given X+UY\} = \pr\bigl\{ (X_1,Y_1) = (X_2, Y_2) \given X+UY\bigr\},$$
-and by [TODO: add lemma], we have
+by submodularity, and likewise
 $$\eqalign{
-\pr\{ (X_1,Y_1) = (X_2, Y_2) \given X+UY\} &\ge 2^{-\Etaseven\{X, Y \given X+UY\}} \cr
-&= 2^{-\Etaseven\{X, Y\}},\cr
+\Eta\bigl\{ Z(Y-W)\bigr\} &\le \Eta\{YZ, ZW\} + \Eta\{Z,Y-W\} - \Eta\{Y,Z,W\} \cr
+&\le \Eta\{YZ\} + \Eta\{ZW\} + \Eta\{Y-W\} - \Eta\{Y\} - \Eta\{W\}.\cr
 }$$
-which immediately yields the desired inequality.\slug
+Substituting both of these inequalities into~\refeq{\eqsecondsub}, gives exactly
+the desired inequality.\slug
 
+\parenproclaim Lemma {\advthm} (Entropic Katz--Tao lemma).
+Let $X$ be a random variable taking values in $F^*$ for some field $F$, and let
+$X_1$, $X_2$, $X_3$, and $X_4$ be independent copies of $X$. If
+$$\max\bigl(\Eta\{X_1+X_2\}, \Eta\{X_1X_2\}\bigr) \le \Eta\{X\} + \log K .$$
+for some constant $K$, then
+$$\Eta\{X_1 X_2 + X_3X_4\} \le \Eta\{X\} + 8\log K.\adveq$$
+
+\proof The previous lemma with $X\gets X_1$, $Y\gets X_2$, $Z\gets X_3$ and $W\gets X_4$
+gives
+$$\Eta\{X_1X_2+X_3X_4\} \le \Eta\{X_1+X_2\} + \Eta\{X_1-X_2\} + 5\Eta\{X_1X_2\} - 6\Eta\{X\},$$
+after applying the fact that the $X_i$ are identically distributed.
+By the Ruzsa triangle inequality, we have
+$$\Eta\{X_1 - X_2\} \le \Eta\{X_1 + X_3\} + \Eta\{X_2 + X_3\} - \Eta\{X_3\},$$
+so
+$$\Eta\{X_1X_2+X_3X_4\} \le 3\Eta\{X_1+X_2\} + 5\Eta\{X_1X_2\} - 7\Eta\{X\}.$$
+Finally, we use the hypothesis
+$\max\bigl(\Eta\{X_1+X_2\}, \Eta\{X_1X_2\}\bigr) \le \Eta\{X\} + \log K$ to arrive
+at the required bound.\slug
 
 
 \section References
