@@ -138,12 +138,18 @@ uniform on $B$.
 If $A = B$, then it is clear that $\Eta\{X\} = \Eta\{Y\}$, since $X$ and $Y$
 are the same random variable.
 
-On the other hand, say $|A| = m$ and $|B| = n$ with $m<n$. If $m=1$, then by the previous proposition
-we have $\Eta\{X\} = 0$, and by normalisation and invariance, $\Eta\{Y\} = 1$.
-When $m\ge 2$, pick $k$ such that $m^k \le n^{k-1}$, so that $|A^k| \le |B^{k-1}|$.
-Then by Corollary~{\corxn} and the inequality we showed in the first paragraph of this proof, we have
-$$n\Eta\{X\} = \Eta\{X^n\} \le \Eta\{X^{n-1}\} = (n-1)\Eta\{Y\},$$
+On the other hand, say $|A| = m$ and $|B| = n$ with $m<n$. We want to conclude the
+strict inequality $\Eta\{X\} < \Eta\{Y\}$.
+Pick $k$ such that $m^k \le n^{k-1}$, so that $A^k$ can be embedded (as a set) into $B^{k-1}$.
+By invariance we can view $X^k$ as a random variable that is uniform on a subset of $B^{k-1}$.
+so by the inequality we showed in the first paragraph of this proof, as well as Corollary~{\corxn},
+we have
+$$n\Eta\{X\} = \Eta\{X^n\} \le \Eta\{Y^{n-1}\} = (n-1)\Eta\{Y\},$$
 whence $\Eta\{X\} < \Eta\{Y\}$.\slug
+
+The argument in the last paragraph of the previous proof is an instance of the ``tensor power trick,''
+in which one amplifies a known inequality by applying it to suitably high powers of the objects
+involved.
 
 The thread connecting entropy and additive combinatorics is rather a precarious one.
 As noted by I.~Ruzsa~\ref{ruzsa2008}, there are scenarios in which combinatorial inequalities and
@@ -297,7 +303,8 @@ First we consider the case that $X$ is uniform on $A$ (so $A$ is finite). Then b
 of conditional entropy,
 $$\Eta\{X\given Y\} = \sum_{b\in B} \pr\{Y = b\} \Eta\{X \given Y= b\}.$$
 But for each $b$, the random variable $(X\given Y = b)$ takes values in $A$, so its entropy is
-bounded above by $\Eta\{X\}$ by the maximisation axiom. Hence $\Eta\{X\given Y\} \le \Eta\{X\}$.
+bounded above by $\Eta\{X\}$ by the maximisation axiom. Hence $\Eta\{X\given Y\} \le \Eta\{X\}$,
+which is equivalent to $\Eta\{Y\given X\} \le \Eta\{Y\}$.
 
 Next, suppose that $A$ and $B$ are both finite and suppose further that $\pr\{Y = b\}$
 is rational for all $b$. Then there is an integer $n$ and integers $\{m_b\}_{b\in B}$

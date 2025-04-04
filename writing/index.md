@@ -21,7 +21,7 @@ the 2024 Constance Rooke Creative Nonfiction Prize.
 __F3.__ "Senang Diri," _[Existere](https://existere.info.yorku.ca/)_ __42__.2 (2023), 17--25.  
 __F2.__ ["The Vigil,"](https://ricepapermagazine.ca/2023/05/the-vigil-by-marcel-goh/)
 [_Ricepaper Magazine_](https://ricepapermagazine.ca/) (2023), online. Reprinted
-in _[Best Canadian Stories 2025](https://www.biblioasis.com/shop/fiction/short-fiction/best-canadian-stories-2025/)_ (Windsor, Ont.: Biblioasis, 2024), 244--253.  
+in _[Best Canadian Stories 2025](https://www.biblioasis.com/shop/fiction/short-fiction/best-canadian-stories-2025/)_ (Windsor, Ont.: Biblioasis, 2024), 244--253. Reprinted in _Infusion_ (Toronto, Ont.: Dark Helix Press, 2025), 37--47.  
 __F1.__ "Mountain Pass," _[Prairie Journal of Canadian Literature](https://prairiejournal.org/index.html)_ __79__ (2023), 48--55.
 
 ### Other

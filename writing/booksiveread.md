@@ -265,3 +265,5 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Peter Camenzind_ (1904), Hermann Hesse
 1. _The Art of Charlie Chan Hock Chye_ (2015), Sonny Liew
 1. _Who Was Changed and Who Was Dead_ (1954), Barbara Comyns
+1. _A Jest of God_ (1966), Margaret Laurence
+
