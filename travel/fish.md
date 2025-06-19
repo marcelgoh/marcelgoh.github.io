@@ -6,11 +6,14 @@ title: Fish I've caught
 North America, freshwater:
 
 + Ausable River, N.Y. (northern pike, pumpkinseed, yellow perch, rock bass)
++ Berry Head Pond, Nfld. (brook trout)
+![brookie]({{ site.baseurl }}/media/fish/brookie.jpg)
 + Great Slave Lake, N.W.T. (northern pike)
 ![greatslavelake]({{ site.baseurl }}/media/fish/greatslavelake.jpg)
 + Kakisa River, N.W.T. (northern pike)
 + Lac des Seize Îles, Que. (pumpkinseed, rock bass, smallmouth bass)
 + Lac Garry, Que. (many small fish of the same species, couldn't identify)
++ Lac Jean-Péré, Que. (fallfish, yellow perch)
 + Lac Sans Bout, Que. (rainbow trout)
 + Lac Vingt Sous, Que. (yellow perch)
 + Red River, Man. (black bullhead)

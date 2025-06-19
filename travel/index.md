@@ -64,16 +64,18 @@ know how to highlight {France, Morocco, Russia} without
 highlighting {French Guiana, Western Sahara, Crimea}, please email me. __Update:__ the reverend
 [Jacob Reznikov](https://axiomofchoice.dev/) helped me fix this.)
 
-Closer to home, I've been to every province and territory except Newfoundland/Labrador and Nunavut.
+Closer to home, I've been to every province and every territory except Nunavut.
 
 ### Past events
 
 + From 3 to 7 June 2024, I attended a
 [conference celebrating the 80th birthday of Richard Stanley](https://www.math.harvard.edu/event/math-conference-honoring-richard-p-stanley/),
-held at Harvard University. Here is a [photo]({{ site.baseurl }}/travel/harvard-2024.html) taken at the event.
+held at Harvard University.
+Here is a [photo]({{ site.baseurl }}/travel/harvard-2024.html) taken at the event.
 + From 11 to 22 July 2022, I was a teaching assistant for a summer school on
 [Random Structures and Combinatorial Statistics](https://lakecomoschool.org/past-schools/)
 at the Lake Como School of Advanced Studies.
+Here is a [photo]({{ site.baseurl }}/travel/como-2022.html).
 
 ### Fun
 

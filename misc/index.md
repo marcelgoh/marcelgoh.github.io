@@ -31,18 +31,16 @@ __E1.__ [On the probability that two integers are relatively prime]({{ site.base
 
 ### Friends
 
-+ &#78202; [Dorsa Afshin](https://commecidorsa.com/)
 + &#78241; [Caelan Atamanchuk](http://caelanatamanchuk.com)
 + &#78553; [Anna Brandenberger](https://abrandenberger.github.io/)
 + &#78203; [Ben Cheung](https://sites.google.com/view/ben-tsun-ming-cheung/)
++ &#78215; [Tasmin Chu](https://publish.obsidian.md/tasmin-chu/Tasmin+Chu)
 + &#77848; [Luc Devroye](http://luc.devroye.org/)
 + &#77952; [Shereen Elaidi](https://shereenelaidi.github.io/)
-+ &#77868; [Lisa Elnagar](https://lisaelnagar.com/)
 + &#78216; [Stephen Fay](https://stephenfay.xyz)
 + &#78085; [Danny Gedig](https://dgedig.webflow.io/)
 + &#78064; [Cheyenne Goh](https://cheyennegoh.github.io/)
 + &#78190; [Stefan Grosser](https://blog.catalangrenade.com/p/about.html)
-+ &#78704; [Amanda Gu](https://amandagu.github.io/)
 + &#78818; [Adam Hamdan](http://adamhamdan.ca/)
 + &#77874; [Jad Hamdan](https://jadhamdan.github.io/)
 + &#77945; [Hazem Hassan](https://www.math.mcgill.ca/hazem.hassan/)
@@ -52,7 +50,6 @@ __E1.__ [On the probability that two integers are relatively prime]({{ site.base
 + &#77862; [Michelle Lin](https://mchll-ln.github.io/)
 + &#78048; [Diego Lopez](https://diegolopez.me)
 + &#78106; [Jessie Meanwell](https://sites.jessiemeanwell.com/)
-+ &#78179; [Bronwyn Neufeld](https://www.bneufeld.com/)
 + &#77844; [Khoi Nguyen](https://dkhoi148.repl.co)
 + &#78328; [Matej Pederson](https://xjetam.github.io)
 + &#77839; [Denali Relles](https://denali-relles.github.io)

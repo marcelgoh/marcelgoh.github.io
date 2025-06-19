@@ -77,6 +77,7 @@ which completes the proof.\slug
 This lemma has an immediate corollary that already has some resemblance to the version of Pl\"unnecke's
 theorem that we eventually want to prove.
 
+\edef\corpetridis{\the\thmcount}
 \proclaim Corollary {\advthm}. If $|A_0 + B|\le K_0|A_0|$, then there is $A\subseteq A_0$ nonempty
 and $K\le K_0$ such that $|A+rB| \le K^r |A|$ for all nonnegative integers $r$.
 
@@ -99,10 +100,10 @@ Define $\phi : U\times (V-W) \to (U-V)\times (U-W)$ by $\phi(u,x) = \bigl(u-v(x)
 If $\bigl(u_1 - v(x_1), u_1 - w(x_2)\bigr) = \bigl(u_2 - v(x_2), u_2 - w(x_2)\bigr)$, then
 subtracting the second coordinate of each pair from the first, we find that
 $$x_1 = v(x_1) - w(x_1) = v(x_2) - w(x_2) = x_2,$$
-and this also implies that $u_1 = u_2$. So $\phi$ gives an injection from $U\times (V-1)$
+and this also implies that $u_1 = u_2$. So $\phi$ gives an injection from $U\times (V-W)$
 to $(U-V)\times (U-W)$.\slug
 
-If we define $d(U,V) = |U-V| / \bigl(|U|^{1/2}|V|^{1/2}\bigr)$, then this lemma states
+If we define $d(U,V) = |U-V| / \bigl(|U|^{1/2}|V|^{1/2}\bigr)$, then this lemma states:q
 that $d(U,W) \le d(V,U)d(U,W)$. Taking logarithms gives a genuine additive triangle inequality,
 but the space of finite subsets of an abelian group does not form a metric space, since
 $|U-U|/|U|$ does not equal $1$ in general. In any case, we are now able to prove Ruzsa's
@@ -116,6 +117,53 @@ everything, so $|{-A}-rB| \le K^r|A|$ and $|{-A}-sB|\le K^r|A|$. Now an applicat
 inequality with $U = -A$, $V = rB$ and $W = sB$ yields
 $$|A|\cdot|rB-sB| = |{-A}|\cdot|rB-sB| \le |{-A}-rB|\cdot|{-A}-sB| \le K^{r+s}|A|^2,$$
 and dividing both sides by $|A|$ proves the theorem.\slug
+
+\medskip\boldlabel Sumsets with distinct summands.
+The Pl\"unnecke--Ruzsa inequality can be generalised from iterated sumsets of one fixed set $B$
+to apply to sumsets $B_1 + \ldots + B_m$ of different sets. We start with a lemma.
+
+\proclaim Lemma \advthm. Let $G$ be an abelian group and let $A, B_1,\ldots, B_m$
+be subsets of $G$ such that for all $1\le i\le m$, $|A+B_i|\le K_i|A|$ for some integer constants
+$K_1,\ldots, K_m$. Then there is a subset $A'\subseteq A$ such that
+$$|A' + B_1 + \cdots + B_m| \le m^m K_1\cdots K_m |A'|.$$
+
+\proof
+Let $e_1,\ldots,e_m$ denote
+the standard basis of $\ZZ^m$, set $N_i = K_1\cdots K_m / K_i$ for all $1\le i \le m$,
+and let $B_i' = B_i \times \{e_i, 2e_i, \ldots, N_ie_i\} \subseteq G\times \ZZ^m$ for all
+$1\le i\le m$. By abuse of notation, consider $A = A\times \{0\}$ to be a subset of $G\times \ZZ^m$
+as well, and let $B = \bigcup_{i=1}^m B_i'$. Then
+$$|A+B| \le \sum_{i=1}^m |A+B_i'| = \sum_{i=1}^m N_i|A+B_i| \le |A|\sum_{i=1}^m N_i K_i.$$
+By Corollary~{\corpetridis} there exists $A'\subseteq A$ such that
+$$ |A'+ m B| \le \biggl( \sum_{i=1}^m N_i K_i \biggr)^m |A'|,$$
+so we have
+$$\eqalign{
+(K_1\cdots K_m)^{m-1} |A' + B_1 + \cdots + B_m| &= N_1\cdots N_k |A' + B_1 + \cdots + B_m| \cr
+&= |A'+B_1' + \cdots + B_m'| \cr
+&\le |A' + mB| \cr
+&\le \biggl( \sum_{i=1}^m N_i K_i\biggr)^m |A'| \cr
+&\le (m K_1 \cdots K_m )^m |A'|. \cr
+}$$
+Cancelling out a factor of $(K_1\cdots K_m)^{m-1}$ from both sides proves the result.\slug
+
+If we just want to bound the size of $|B_1+\cdots + B_m|$, we can remove the factor
+of $m^m$ on the right-hand side by employing a variant of the ``tensor power trick.''
+
+\proclaim Theorem \advthm. Let $A, B_1, \ldots, B_m$ be subsets of an abelian group $G$ such that
+$|A+B_i| \le K_i|A|$ for some integer constants $K_1,\ldots,K_m$. Then
+$$|B_1 + \cdots + B_m| \le K_1 \cdots K_m |A|.$$
+
+\proof Let $d$ be a positive integer. We have
+$$|A^d + B_i^d| = |A+B_i|^d \le \bigl(K_i |A|\bigr)^d = K_i^d |A^d|$$
+for all $1\le i\le m$, so by the previous lemma, there is a subset $A'$ of $A^d$ such that
+$$|A' + B_1^d + \cdots + B_m^d| \le m^m (K_1\cdots K_m)^d |A'|
+\le m^m (K_1\cdots K_m)^d |A|^d.$$
+But this implies that
+$$|B_1+\cdots + B_m|^d \le |A' + B_1^d + \cdots + B_m^d| \le m^m (K_1\cdots K_m)^d |A|^d.$$
+Taking $d$th roots yields
+$$|B_1 + \cdots +B_m| \le m^{m/d} K_1 \cdots K_m |A|,$$
+and this holds for all $d$, so by taking $d$ to infinity we can make $m^{m/d}$ as close to $1$ as
+we like.\slug
 
 \advsect Khovanskii's theorem
 

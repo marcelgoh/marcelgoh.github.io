@@ -266,4 +266,11 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Art of Charlie Chan Hock Chye_ (2015), Sonny Liew
 1. _Who Was Changed and Who Was Dead_ (1954), Barbara Comyns
 1. _A Jest of God_ (1966), Margaret Laurence
+1. _They Shall Inherit the Earth_ (1935), Morley Callaghan
+1. _Eileen_ (2015), Ottessa Moshfegh
+1. _Who Do You Think You Are?_ (1978), Alice Munro
+1. _The Warden_ (1855), Anthony Trollope
+1. _L'Été_ (1954), Albert Camus [French]
+1. _L'Élégance du hérisson_ (2006), Muriel Barbery
+1. _Bliss Montage_ (2022), Ling Ma
 
