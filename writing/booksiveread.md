@@ -273,4 +273,5 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _L'Été_ (1954), Albert Camus [French]
 1. _L'Élégance du hérisson_ (2006), Muriel Barbery
 1. _Bliss Montage_ (2022), Ling Ma
+1. _Adam Bede_ (1859), George Eliot
 
