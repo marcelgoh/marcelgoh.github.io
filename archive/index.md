@@ -5,7 +5,7 @@ title: Blog Archive
 
 
 ### 2025
-- (22.07.2024) [Blocky matrices and idempotent Schur multipliers]({{ site.baseurl }}/2025/07/22/blocky-schur.html)
+- (22.07.2025) [Blocky matrices and idempotent Schur multipliers]({{ site.baseurl }}/2025/07/22/blocky-schur.html)
 
 ### 2024
 - (16.10.2024) [Constance Rooke CNF Prize]({{ site.baseurl }}/2024/10/16/constance-rooke.html)

@@ -195,11 +195,11 @@ what Balla, Hambardzumyan, and Tomon showed in a very recent preprint.
 
 __Theorem B__ (_Balla--Hambardzumyan--Tomon,_ 2025). _Suppose that $A$ is an $m\times n$ boolean
 matrix with $$\Vert A\Vert_{\gamma_2} \le \gamma$$. There is a monochromatic rectangle $S\times T$
-in $A$, where $S\subseteq [m]$ and $T\subseteq[n]$ satisfy
+in $A$, where $S\subseteq [m]$ and $T\subseteq[n]$ satisfy_
 
 $${|S|\times |T|\over mn} \ge 2^{-O(\gamma^2)}.$$
 
-Specifically, if more than half of $A$'s entries are $1$, then $S\times T$ is a rectangle of $1$s,
+_Specifically, if more than half of $A$'s entries are $1$, then $S\times T$ is a rectangle of $1$s,
 and otherwise it is a rectangle of $0$s._
 
 The density of $A$ determines whether this theorem furnishes a rectangle of $0$s or a rectangle of $1$s.
