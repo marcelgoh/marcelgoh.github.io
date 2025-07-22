@@ -8,10 +8,10 @@ excerpt_separator:  <!--more-->
 ---
 
 My supervisor [Hamed Hatami](https://www.cs.mcgill.ca/~hatami/) and I have just uploaded to the arXiv
-two new papers: "[Block complexity and idempotent Schur multipliers](https://arxiv.org/pdf/2506.21752)" and
+two new preprints: "[Block complexity and idempotent Schur multipliers](https://arxiv.org/pdf/2506.21752)" and
 "[Block structure in Boolean matrices with bounded factorization norm](https://arxiv.org/abs/2507.00872)".
 These papers are strongly related, and this blog post I'll introduce their common background before discussing
-what we managed to prove in our papers.
+what have recently we managed to prove.
 
 <!--more-->
 
@@ -59,7 +59,7 @@ $E$ can be (finitely) expressed in terms of open cosets using the intersection, 
 
 We now discuss a 2008 theorem of Green and Sanders. A good starting point is to think about what Cohen's
 theorem means for finite groups. It is easy to see that, while obviously still true, Cohen's theorem
-offers no content here, since now $\Gamma$ is finite and any subset $E$ of it can obviously be expressed
+offers no content here, since now $\Gamma$ is finite and any subset $E$ in it can obviously be expressed
 as a finite union of cosets of $\{0\}$. So instead of characterising subsets that can be finitely expressed
 in terms of cosets, we should perhaps try to characterise subsets that can be thus expressed with
 a _small number_ of terms.
@@ -70,7 +70,7 @@ as a boolean function $f : G\to \{0,1\}$. Then it makes sense to define the _Fou
 
 $$\Vert f\Vert_A = \sum_{\gamma\in \Gamma} |\hat f(\gamma)|$$
 
-of $f$. Since $\Vert fg\Vert_A\le \Vert f\Vert_A \circ \Vert g\Vert_A$, the set of boolean functions is
+of $f$. Since $\Vert fg\Vert_A\le \Vert f\Vert_A \cdot \Vert g\Vert_A$, the set of boolean functions is
 a Banach algebra under addition and pointwise product.
 It was shown by Kawada and Itô in 1940 that $\Vert f\Vert_A \le 1$ if and only if $f$ is
 the indicator function of a coset. So we see that (subsets corresponding to)
@@ -99,10 +99,11 @@ space of bounded linear operators, equipped with the operator norm
 $$\Vert A\Vert_{\rm op} = \sup_{y\ne 0} {\Vert Ay\Vert_2 \over \Vert y\Vert_2}.$$
 
 Every operator $A\in B(l_2)$ is uniquely identified by its associated matrix
-$(a_{i,j})_{i,j\in {\bf N}}$, where $a_{i,j} = \langle Ae_i, e_j\rangle$ for the standard
-orthonormal basis $\{e_i\}_{i\in {\bf N}}$ of $l_2$.
-Each matrix ${\bf N}\times {\bf N}\to {\bf C}$ gives rise to a linear transformation on the space
-of all matrices $A : {\bf N}\times {\bf N} \to {\bf C}$ by mapping $A \mapsto M\circ A$, where
+$$(a_{i,j})_{i,j\in {\bf N}}$$
+, where $$a_{i,j} = \langle Ae_i, e_j\rangle$$ for the standard
+orthonormal basis $$\{e_i\}_{i\in {\bf N}}$$ of $l_2$.
+Each matrix $${\bf N}\times {\bf N}\to {\bf C}$$ gives rise to a linear transformation on the space
+of all matrices $$A : {\bf N}\times {\bf N} \to {\bf C}$$ by mapping $A \mapsto M\circ A$, where
 $\circ$ denotes the entrywise (Schur) product. The matrix $M$ is called a _Schur multiplier_
 if $M\circ A\in B(l_2)$ for every $A\in B(l_2)$. Equivalently, $M$ is a Schur multiplier
 if its _Schur multiplier norm_, defined by
@@ -116,7 +117,7 @@ An element of an algebra is said to be _idempotent_ if $a^2 = a$. Any matrix sat
 $M\circ M = M$ must be boolean, but not all infinite boolean matrices are Schur multipliers.
 The boolean matrix $M$ corresponds to the operation that maps a matrix $A$ to a new matrix
 that agrees with $A$ everywhere $M$ equals $1$, and is $0$ everywhere $M$ is $0$.
-The natural question that our papers study is: _What are the idempotent elements of the Schur
+This is the natural question that our papers investigate: _What are the idempotent elements of the Schur
 multiplier algebra?_
 
 ### Contractive idempotents and block complexity
@@ -124,8 +125,8 @@ multiplier algebra?_
 As we did before with the Fourier algebra norm,
 we now characterise the _contractive_ idempotent elements, that is, those
 with Schur multiplier norm at most $1$. We call a boolean matrix $B$ _blocky_ if there exist families
-$\{S_i\}_{i\in {\bf N}}$ and $\{T_i\}_{i\in {\bf N}}$ of pairwise disjoint subsets of ${\bf N}$ such that
-the support of $B$ is exactly $\bigcup_{i\in {\bf N}} S_i\times T_i$. Simple examples of blocky
+$$\{S_i\}_{i\in {\bf N}}$$ and $$\{T_i\}_{i\in {\bf N}}$$ of pairwise disjoint subsets of ${\bf N}$ such that
+the support of $B$ is exactly $$\bigcup_{i\in {\bf N}} S_i\times T_i$$. Simple examples of blocky
 matrices are the zero matrix, $m\times n$ all-ones matrices, and $n\times n$ identity matrices.
 The following proposition of Livshits shows that set of contractive idempotent Schur multipliers
 is exactly the set of blocky matrices.
@@ -142,9 +143,11 @@ shows that a positive resolution to this problem, while only being meaningful fo
 is equivalent to the following conjecture for finite matrices.
 
 __Conjecture H__ (_Hambardzumyan--Hatami--Hatami,_ 2023). _Suppose that $A$ is a finite boolean matrix
-with $\Vert A\Vert_{\rm m} \le \gamma$. Then we may express $A$ as the signed sum
+with $\Vert A\Vert_{\rm m} \le \gamma$. Then we may express $A$ as the signed sum_
+
 $$A = \sum_{i=1}^L \pm B_i,$$
-where the $B_i$ are blocky matrices and $L$ depends only on $\gamma$._
+
+_where the $B_i$ are blocky matrices and $L$ depends only on $\gamma$._
 
 Given a finite group and
 a boolean function, define the matrix $M_f : G\times G\to {\bf C}$ by setting
@@ -164,7 +167,8 @@ Schur multiplier norm has block complexity at most polylogarithmic in its dimens
 
 __Theorem P__ (_G.--Hatami_, 2025). Let $A$ be an $m\times n$ integer matrix with
 $\Vert A\Vert_{\rm m}\le \gamma$. Denoting $k= \min\{m,n\}$, the block complexity of $A$ satisfies
-$$\block(A) \le 2^{O(\gamma^7) \log(k)^2.$$
+
+$${\rm block}(A) \le 2^{O(\gamma^7) \log(k)^2.$$
 
 Our proof of this result bears some resemblance to Green and Sanders' proof for boolean functions.
 One important similarity is that its induction step partitions the matrix and takes averages within
@@ -192,7 +196,9 @@ what Balla, Hambardzumyan, and Tomon showed in a very recent preprint.
 __Theorem B__ (_Balla--Hambardzumyan--Tomon,_ 2025). _Suppose that $A$ is an $m\times n$ boolean
 matrix with $\Vert A\Vert_{\gamma_2} \le \gamma$. There is a monochromatic rectangle $S\times T$
 in $A$, where $S\subseteq [m]$ and $T\subseteq[n]$ satisfy
+
 $${|S|\times |T|\over mn} \ge 2^{-O(\gamma^2)}.$$
+
 Specifically, if more than half of $A$'s entries are $1$, then $S\times T$ is a rectangle of $1$s,
 and otherwise it is a rectangle of $0$s._
 
@@ -200,17 +206,17 @@ The density of $A$ determines whether this theorem furnishes a rectangle of $0$s
 Thus, given a sparse blocky matrix such as the identity matrix, the theorem simply identifies a large
 $0$-rectangle and we gain little information regarding a purported blocky decomposition of $A$.
 The main theorem of our second preprint, whose proof relies on Theorem&nbsp;B above, shows that
-in any boolean matrix of bounded $\gamma_2$ norm, one can pick out a constant fraction of the $1$-entries
+in any boolean matrix of bounded $$\gamma_2$$ norm, one can pick out a constant fraction of the $1$-entries
 to form a blocky matrix.
 
 __Theorem S__ (_G.--Hatami_, 2025). Let $A$ be an $m\times n$ boolean matrix $A$ with
-$\Vert A\Vert_{\gamma_2}\le \gamma$ in which the number of $1$-entries is $F$. There exists an $m\times n$
+$$\Vert A\Vert_{\gamma_2}\le \gamma$$ in which the number of $1$-entries is $F$. There exists an $m\times n$
 blocky matrix $B$ containing at least $F/2^{2^{O(\gamma)}}$ entries, such that, for all $(i,j)\in [m]\times[n]$,,
 $B(i,j) = 1$ only if $A(i,j) = 1$.
 
 To compare our theorem to Theorem&nbsp;B, it is perhaps illuminating to narrow our focus to the case
-where $A(x,y) = f(x-y)$ for some boolean function $f:{\bf Z}_2^n \to \{0,1\}$, where
-$\Vert A\Vert_{\gamma_2} = \Vert f\Vert_A \le \gamma$. (This is the abelian case of the construction above,
+where $$A(x,y) = f(x-y)$$ for some boolean function $$f:{\bf Z}_2^n \to \{0,1\}$$, where
+$$\Vert A\Vert_{\gamma_2} = \Vert f\Vert_A \le \gamma$$. (This is the abelian case of the construction above,
 with $A = M_f$.) In this setting, a 2017 theorem of Shpilka, Tal, and Volk states that there must exist
 some affine subspace $V \subseteq {\bf Z}_2^n$ of codimension at most $\gamma^2$ such that $f$ is constant
 on $V$. One can view Theorem&nbsp;B as an analogue of this theorem, as it guarantees the existence of

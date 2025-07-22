@@ -274,4 +274,6 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _L'Élégance du hérisson_ (2006), Muriel Barbery
 1. _Bliss Montage_ (2022), Ling Ma
 1. _Adam Bede_ (1859), George Eliot
+1. _East of Eden_ (1952), John Steinbeck
+1. _Intermezzo_ (2024), Sally Rooney
 
