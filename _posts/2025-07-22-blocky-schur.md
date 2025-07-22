@@ -60,13 +60,13 @@ $E$ can be (finitely) expressed in terms of open cosets using the intersection, 
 We now discuss a 2008 theorem of Green and Sanders. A good starting point is to think about what Cohen's
 theorem means for finite groups. It is easy to see that, while obviously still true, Cohen's theorem
 offers no content here, since now $\Gamma$ is finite and any subset $E$ in it can obviously be expressed
-as a finite union of cosets of $\{0\}$. So instead of characterising subsets that can be finitely expressed
+as a finite union of cosets of $$\{0\}$$. So instead of characterising subsets that can be finitely expressed
 in terms of cosets, we should perhaps try to characterise subsets that can be thus expressed with
 a _small number_ of terms.
 
 Before, we were working with subsets of $\Gamma$, but in the finite case,
 subsets of $\Gamma$ can really be interpreted as subsets of $G$, and we can regard any subset of $G$
-as a boolean function $f : G\to \{0,1\}$. Then it makes sense to define the _Fourier algebra norm_
+as a boolean function $$f : G\to \{0,1\}$$. Then it makes sense to define the _Fourier algebra norm_
 
 $$\Vert f\Vert_A = \sum_{\gamma\in \Gamma} |\hat f(\gamma)|$$
 
@@ -78,7 +78,7 @@ functions with algebra norm at most $1$ are exactly cosets of $G$. The Green--Sa
 extends this to functions with $\Vert f\Vert_A \le M$ for $M\ge 1$.
 
 __Theorem G__ (_Green--Sanders,_ 2008). _Let $G$ be a finite abelian group and let
-$f : G\to \{0,1\}$ be a boolean function with $\Vert f\Vert_A \le M$. Then $f$ can be expressed
+$$f : G\to \{0,1\}$$ be a boolean function with $\Vert f\Vert_A \le M$. Then $f$ can be expressed
 as the signed sum
 
 $$f = \sum_{i=1}^L \pm{\bf 1}_{E_i},$$
@@ -108,7 +108,7 @@ $\circ$ denotes the entrywise (Schur) product. The matrix $M$ is called a _Schur
 if $M\circ A\in B(l_2)$ for every $A\in B(l_2)$. Equivalently, $M$ is a Schur multiplier
 if its _Schur multiplier norm_, defined by
 
-$$\Vert A\Vert_{\rm m} = \sup_{y\ne 0} {\Vert Ay\Vert_{\rm op} \over \Vert y\Vert_{\rm op}},$
+$$\Vert A\Vert_{\rm m} = \sup_{y\ne 0} {\Vert Ay\Vert_{\rm op} \over \Vert y\Vert_{\rm op}},$$
 
 is finite. The set of Schur multipliers is closed under addition and Schur product, and thus forms a
 Banach algebra.
@@ -166,9 +166,9 @@ In the first of our new preprints, Hamed and I proved that the any boolean matri
 Schur multiplier norm has block complexity at most polylogarithmic in its dimension.
 
 __Theorem P__ (_G.--Hatami_, 2025). Let $A$ be an $m\times n$ integer matrix with
-$\Vert A\Vert_{\rm m}\le \gamma$. Denoting $k= \min\{m,n\}$, the block complexity of $A$ satisfies
+$\Vert A\Vert_{\rm m}\le \gamma$. Denoting $$k= \min\{m,n\}$$, the block complexity of $A$ satisfies
 
-$${\rm block}(A) \le 2^{O(\gamma^7) \log(k)^2.$$
+$${\rm block}(A) \le 2^{O(\gamma^7)} \log(k)^2.$$
 
 Our proof of this result bears some resemblance to Green and Sanders' proof for boolean functions.
 One important similarity is that its induction step partitions the matrix and takes averages within
@@ -194,7 +194,7 @@ of $0$s. In other words, there should be a large _monochromatic rectangle_ in $A
 what Balla, Hambardzumyan, and Tomon showed in a very recent preprint.
 
 __Theorem B__ (_Balla--Hambardzumyan--Tomon,_ 2025). _Suppose that $A$ is an $m\times n$ boolean
-matrix with $\Vert A\Vert_{\gamma_2} \le \gamma$. There is a monochromatic rectangle $S\times T$
+matrix with $$\Vert A\Vert_{\gamma_2} \le \gamma$$. There is a monochromatic rectangle $S\times T$
 in $A$, where $S\subseteq [m]$ and $T\subseteq[n]$ satisfy
 
 $${|S|\times |T|\over mn} \ge 2^{-O(\gamma^2)}.$$
@@ -211,7 +211,7 @@ to form a blocky matrix.
 
 __Theorem S__ (_G.--Hatami_, 2025). Let $A$ be an $m\times n$ boolean matrix $A$ with
 $$\Vert A\Vert_{\gamma_2}\le \gamma$$ in which the number of $1$-entries is $F$. There exists an $m\times n$
-blocky matrix $B$ containing at least $F/2^{2^{O(\gamma)}}$ entries, such that, for all $(i,j)\in [m]\times[n]$,,
+blocky matrix $B$ containing at least $F/2^{2^{O(\gamma)}}$ entries, such that, for all $(i,j)\in [m]\times[n]$,
 $B(i,j) = 1$ only if $A(i,j) = 1$.
 
 To compare our theorem to Theorem&nbsp;B, it is perhaps illuminating to narrow our focus to the case
