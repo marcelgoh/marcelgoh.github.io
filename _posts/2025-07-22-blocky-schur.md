@@ -34,7 +34,8 @@ $$H = \{ x\in G : \gamma(x) = 1\ \hbox{for all}\ \gamma\in \Lambda\}$$
 
 of $\Lambda$. It can be shown that $H$ must be compact (since $\Lambda$ is open), and we can normalise
 the Haar measure $m_H$ on $H$ so that $m_H(H) = 1$, which yields a measure on $G$ as well. By orthogonality,
-we have $m_H(\gamma) = 1$ for all $\gamma\in \Lambda$ and $m_H(\gamma) = 0$ for all $\gamma\notin \Lambda$,
+we have $\widehat{m_H}(\gamma) = 1$ for all $\gamma\in \Lambda$ and
+$\widehat{m_H}(\gamma) = 0$ for all $\gamma\notin \Lambda$,
 so $S(m_H) = \Lambda$.
 Likewise, if $E = \Lambda + \gamma_0$, then $E = S(\mu)$ for the measure $\mu$ on $G$ with
 $d\mu(x) = \gamma_0(x)\;dm_H$. We have shown that every open coset of $G$ is equal to $S(\mu)$
