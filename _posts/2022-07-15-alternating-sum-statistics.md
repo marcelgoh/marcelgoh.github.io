@@ -70,7 +70,7 @@ for all $n\ge 2$, the following three conditions are satisfied (condition 2 does
 1 and 3 do):
 
 1. $[n]\notin {\cal F}_n$.
-2. {\cal F} is _downward closed_; that is, for every $S\in {\cal F}$, every subset $T$ of $S$ is also in
+2. ${\cal F}$ is _downward closed_; that is, for every $S\in {\cal F}$, every subset $T$ of $S$ is also in
 ${\cal F}$.
 3. The set $$M_n\subseteq {\cal F}_n$$ of maximal elements can be partitioned into $m$ disjoint nonempty
 classes $M_n = C_1 \sqcup \cdots\sqcup C_m$ such that for all $i$, the intersection $\bigcap_{S\in C_i} S$
