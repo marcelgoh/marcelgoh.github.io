@@ -80,13 +80,13 @@ extends this to functions with $\Vert f\Vert_A \le M$ for $M\ge 1$.
 
 __Theorem G__ (_Green--Sanders,_ 2008). _Let $G$ be a finite abelian group and let
 $$f : G\to \{0,1\}$$ be a boolean function with $\Vert f\Vert_A \le M$. Then $f$ can be expressed
-as the signed sum
+as the signed sum_
 
 $$f = \sum_{i=1}^L \pm{\bf 1}_{E_i},$$
 
-where the $E_i$ are cosets of $G$ and $L$ depends only on $M$._
+_where the $E_i$ are cosets of $G$ and $L$ depends only on $M$._
 
-In other words, the Theorem&nbsp;G tells us that in some quantitative sense, the subsets of
+In other words, Theorem&nbsp;G tells us that in some quantitative sense, the subsets of
 $G$ that can be expressed in terms of a small number of cosets are those with small Fourier algebra norm.
 
 ### Schur multipliers
@@ -132,9 +132,8 @@ matrices are the zero matrix, $m\times n$ all-ones matrices, and $n\times n$ ide
 The following proposition of Livshits shows that set of contractive idempotent Schur multipliers
 is exactly the set of blocky matrices.
 
-__Proposition L__ (_Livshits_, 1995). _A boolean matrix satisfies $\Vert A\Vert_{\rm m} \le 1$
-if and only if it is a blocky matrix. (More precisely,
-a _nonzero_ boolean matrix satisfies $\Vert A\Vert_{\rm m} = 1$ if and only if it is blocky.)_
+__Proposition L__ (_Livshits_, 1995). _A nonzero
+boolean matrix satisfies $$\Vert A\Vert_{\rm m} = 1$$ if and only if it is blocky.)_
 
 In the same way that Cohen's idempotent theorem shows that any idempotent element of the Fourier
 algebra can be written as a finite sum of contractive idempotents, it is an open problem, dating
@@ -144,7 +143,7 @@ shows that a positive resolution to this problem, while only being meaningful fo
 is equivalent to the following conjecture for finite matrices.
 
 __Conjecture H__ (_Hambardzumyan--Hatami--Hatami,_ 2023). _Suppose that $A$ is a finite boolean matrix
-with $\Vert A\Vert_{\rm m} \le \gamma$. Then we may express $A$ as the signed sum_
+with $$\Vert A\Vert_{\rm m} \le \gamma$$. Then we may express $A$ as the signed sum_
 
 $$A = \sum_{i=1}^L \pm B_i,$$
 
