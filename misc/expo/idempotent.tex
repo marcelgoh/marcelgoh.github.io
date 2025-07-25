@@ -1,0 +1,57 @@
+\input fontmac
+\input mathmac
+
+\def\eps{\epsilon}
+\def\FF{\hbox{\bf F}}
+\def\bar#1{\overline{#1}}
+\def\hat#1{\widehat{#1}}
+\def\norm#1{|\!|#1|\!|}
+\def\bignorm#1{\big|\!\big|#1\big|\!\big|}
+\def\Norm#1{\Big|\!\Big|#1\Big|\!\Big|}
+\def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
+\def\argmax{\limitop{\rm arg$\,$max}}
+\def\dTV{d_{\rm TV}}
+
+\def\advthm{\the\sectcount.\the\thmcount\global\advance \thmcount by 1}
+\def\advsect{\global\advance\sectcount by 1\section\the\sectcount\global\thmcount=1. }
+\sectcount=0
+
+\widemargins
+\bookheader{IDEMPOTENT THEOREMS AND MATRICES}{MARCEL K. GOH}
+
+\maketitle{Idempotent theorems and matrices}{}{Marcel K. Goh}{\sl Department of Mathematics and Statistics,
+McGill University}
+
+\floattext4.5 \ninebf Abstract.
+\ninepoint These expository notes move at a leisurely pace though background material needed to
+appreciate the Cohen idempotent theorem and its quantitative version, due to Green and Sanders.
+We introduce Schur multipliers and investigate a conjectured analogue in this setting.
+
+\bigskip
+
+\advsect The structure of locally compact abelian groups
+
+{\sc A topological abelian group} is a Hausdorff space that is also an abelian group, such that
+the map from $G\times G$ to $G$ sending $(x,y) \mapsto x-y$ is continuous (where the topology
+on $G\times G$ is the product topology).
+If, in addition, every point in $G$ is contained in some compact neighbourhood of $G$, then
+$G$ is said to be a {\it locally compact abelian} group.
+
+The following proposition shows that by passing to closures, we can always assume subgroups to be closed.
+
+\proclaim Proposition \advthm. Let $G$ be a locally compact abelian group and $H$ a subgroup of $G$.
+Then the closure $\bar H$ of $H$ is also a subgroup of $G$.
+
+\proof Let $x,y\in \bar H$ and suppose, for a contradiction, that $xy\notin \bar H$. :
+
+A topological space is called {\it discrete} if for every point $p$ in it, the singleton set $\{p\}$
+is open.
+
+Let $G$ be a locally compact abelian group.
+The set of all measures $\mu$ on $G$ forms a topological semigroup under the convolution operation
+$$\mu * \nu = \int_G 
+
+\section References
+
+\bye
+

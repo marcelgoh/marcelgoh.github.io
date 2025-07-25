@@ -9,9 +9,9 @@ excerpt_separator:  <!--more-->
 
 My supervisor [Hamed Hatami](https://www.cs.mcgill.ca/~hatami/) and I have just uploaded to the arXiv
 two new preprints: "[Block complexity and idempotent Schur multipliers](https://arxiv.org/pdf/2506.21752)" and
-"[Block structure in Boolean matrices with bounded factorization norm](https://arxiv.org/abs/2507.00872)".
+"[Block structure in boolean matrices with bounded factorization norm](https://arxiv.org/abs/2507.00872)".
 These papers are strongly related, and this blog post I'll introduce their common background before discussing
-what have recently we managed to prove.
+what have recently managed to prove.
 
 <!--more-->
 
@@ -197,7 +197,7 @@ __Theorem B__ (_Balla--Hambardzumyan--Tomon,_ 2025). _Suppose that $A$ is an $m\
 matrix with $$\Vert A\Vert_{\gamma_2} \le \gamma$$. There is a monochromatic rectangle $S\times T$
 in $A$, where $S\subseteq [m]$ and $T\subseteq[n]$ satisfy_
 
-$${|S|\times |T|\over mn} \ge 2^{-O(\gamma^2)}.$$
+$${|S|\cdot |T|\over mn} \ge 2^{-O(\gamma^2)}.$$
 
 _Specifically, if more than half of $A$'s entries are $1$, then $S\times T$ is a rectangle of $1$s,
 and otherwise it is a rectangle of $0$s._
