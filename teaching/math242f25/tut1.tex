@@ -1,0 +1,111 @@
+\input fontmac
+\input mathmac
+
+\def\To{\Rightarrow}
+
+\maketitle{Math 242 Tutorial 1}{prepared by}{Marcel Goh}{11 September 2025}
+
+\bigskip
+
+\proclaim Problem 1. Let $p$ and $q$ be statements. Show that $p\To q$ is equivalent to $\neg q \To \neg p$.
+
+\proof We have
+$$\eqalign{
+p\To q &\equiv \neg p \vee q \cr
+&\equiv q \vee \neg p \cr
+&\equiv \neg (\neg q) \vee \neg p \cr
+&\equiv \neg q \To \neg p \noskipslug\cr
+}$$
+
+\proclaim Problem 2. Let $n$ be a positive integer. Show that if $n$ is not a perfect square, then $\sqrt n$
+is irrational.
+
+\proof By contrapositive. Suppose $\sqrt n$ is rational. Then there exist $a,b\in \ZZ$ (with $b\ne 0$)
+such that $\sqrt n = a/b$. Without loss of generality, we can assume that $\gcd(a,b) = 1$. We see that
+$n = a^2/b^2$, but since $n$ is an integer, and $a^2$ and $b^2$ have no common factors, we must have
+$b^2 = 1$. This forces $n=a^2$, which shows that $n$ is a perfect square.\slug
+
+\proclaim Problem 3. Prove the identity
+$$\sum_{k=1}^n k^3 = \biggl({n(n+1)\over 2}\biggr)^2$$
+for all integers $n\ge 1$.
+
+\proof By induction on $n$. For the base case $n=1$, we have
+$$\sum_{k=1}^1 k^3 = 1^3 = 1^2 = \biggl( {1\cdot 2\over 2}\biggr)^2 = 
+\biggl( {1\cdot (1+1)\over 2}\biggr)^2.$$
+Now suppose the statement holds for some $n$. For $n+1$ we have
+$$\eqalign{
+\sum_{k=1}^{n+1} k^3 &= (n+1)^3 + \sum_{k=1}^n k^3 \cr
+&= (n+1)^3 + \biggl({n(n+1)\over 2}\biggr)^2 \cr
+&= {4(n+1)(n+1)^2 + n^2 (n+1)^2\over 4} \cr
+&= {(n^2 + 4n + 4)^2(n+1)^2 \over 4} \cr
+&= \biggl({(n+1)\bigl((n+1)+1\bigr)\over 2}\biggr)^2,\cr
+}$$
+where in the second line, we used the induction hypothesis.\slug
+
+% \proclaim Problem 4. Prove the Cauchy--Schwarz inequality, the statement that for all
+% $u_1,\ldots,u_n, v_1,\ldots,v_n\in \RR$,
+% $$\biggl(\sum_{i=1}^n u_i v_i\biggr)^2
+% \le \biggl( \sum_{i=1}^n {u_i}^2\biggr) \biggl( \sum_{i=1}^n {v_i}^2\biggr).$$
+% [{\it Hint:} Recall from your high school days that
+% for a quadratic polynomial $ax^2 + bx + c$, the {\it discriminant} is
+% defined to be the quantity $b^2 - 4ac$. (It appears under the square-root sign
+% in the quadratic formula.) If it is negative, the polynomial has no real roots,
+% if it is positive, the polynomial has two real roots, and if it is zero, the polynomial
+% has one real root.]
+% 
+% \proof If $u_i = 0$ for all $1\le i\le n$, then both sides are $0$ and the inequality
+% is trivially true. So suppose that at least one of the $u_i$ is nonzero. Then
+% $$p(x) = (u_1 x + n_1)^2 + (u_2 x + v_2)^2 + \cdots + (u_n x+v_n)^2$$
+% is a quadratic polynomial in the variable $x$. Rewriting $p(x)$ in summation notation,
+% we have
+% $$\eqalign{
+% p(x) &= \sum_{i=1}^n (u_ix + v_i)^2\cr
+% &= \sum_{i=1}^n \bigl( u_i^2 x^2 + 2u_i v_i + v_i^2\bigr)\cr
+%  &= \biggl(\sum_{i=1}^n u_i^2 \biggr) x^2 +
+% 2\biggl(\sum_{i=1}^n u_i v_i\biggr) x + \biggl( \sum_{i=1}^n {v_i}^2\biggr).\cr
+% }$$
+% Since it is defined as a sum of squares, $p(x)\ge 0$ for all $x\in \RR$, so it has
+% at most one real root.
+% This means its discriminant is nonpositive; in other words,
+% $$4\biggl(\sum_{i=1}^n u_i v_i\biggr)^2
+% - 4\biggl( \sum_{i=1}^n {u_i}^2\biggr) \biggl( \sum_{i=1}^n {v_i}^2\biggr) \le 0.$$
+% Dividing through by $4$ and then rearranging gives exactly the inequality we sought.\slug
+
+\proclaim Problem 4. Suppose that a local McDonalds branch sells Chicken McNuggets in meals of $4$
+or $9$. Prove that for all $n\ge 36$, it is possible to buy exactly $n$ Chicken McNuggets.
+
+\proof Formulated precisely in mathematical language, what we are trying to show is that for every
+integer $n\ge 36$, there exist nonnegative integers $a$ and $b$ such that $n=9a + 4b$.
+We perform a proof by strong induction. Note first that
+$$ 36 = 9\cdot 4 + 4\cdot 0, \qquad 37 = 9\cdot 1 + 4\cdot 7, \qquad
+38 = 9\cdot 2 + 4\cdot 5,$$
+and
+$$39 = 9\cdot 3 + 4\cdot 3.$$
+Now let $n\ge 40$ and assume that the statement holds for all integers in the range $[36, n]$.
+In particular, it holds for $n-4$. So there exist nonnegative integers $a$ and $b$ such that
+$n-4 = 9a + 4b$, and we see that $n = 9a + 4(b+1)$.\slug
+
+\proclaim Problem 5. Show that there exist irrational numbers $a$ and $b$ such that $a^b$ is rational.
+
+\proof Consider the number $(\sqrt 2)^{\sqrt 2}$. It is either rational or irrational.
+
+If it is rational, then we can set $a = b = \sqrt 2$, which we already showed to be irrational in class,
+and $a^b$ is rational by the assumption in this case.
+
+If it is irrational, then we can set $a =(\sqrt 2)^{\sqrt 2}$ and $b=\sqrt 2$. We compute
+$$a^b = \bigl((\sqrt 2)^{\sqrt 2}\bigr)^{\sqrt 2} = (\sqrt 2)^{\sqrt 2 \cdot \sqrt 2}
+= (\sqrt 2)^2 = 2,$$
+which is rational.\slug
+
+% \proclaim Problem 7. Let $n\ge 1$ be an integer.
+% Prove that the number of subsets of $\{1,2,\ldots,n\}$ is $2^n$.
+% 
+% \proof By induction. The number of subsets of $\{1\}$ is $2 = 2^1$, since the two subsets are $\emptyset$
+% and $\{1\}$. Now assume the statement is true for $n$, and note that every subset $A$ of $\{1,2,\ldots,n,n+1\}$
+% either contains $n+1$ or it doesn't. If $A$ doesn't contain $n+1$, then $A\subseteq \{1,2,\ldots,n\}$,
+% and there are $2^n$ possibilities for $A$, by the induction hypothesis. If $A$ does contain $n+1$,
+% then $A = B\cup\{n+1\}$ for some $B\subseteq \{1,2,\ldots,n\}$, and again there are $2^n$ possibilities
+% for $A$ in this case. We conclude that
+% there are $2\cdot 2^n = 2^{n+1}$ subsets of $\{1,2,\ldots,n+1\}$ in total.\slug
+
+\bye

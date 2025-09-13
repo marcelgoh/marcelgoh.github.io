@@ -276,4 +276,14 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Adam Bede_ (1859), George Eliot
 1. _East of Eden_ (1952), John Steinbeck
 1. _Intermezzo_ (2024), Sally Rooney
+1. _A Bird in the House_ (1970), Margaret Laurence
+1. _Orsinian Tales_ (1976), Ursula K. Le Guin
+1. _Norwegian Wood_ (1987), Haruki Murakami
+1. _The Edible Woman_ (1969), Margaret Atwood
+1. _Three Plays_ (1967), Goh Poh Seng
+1. _Tess of the D'Urbervilles_ (1892), Thomas Hardy
+1. _Fichte: The Self and the Calling of Philosophy, 1762--1799_ (2001), Anthony J. La Vopa
+1. _Stray Dogs_ (2022), Rawi Hage
+
+
 

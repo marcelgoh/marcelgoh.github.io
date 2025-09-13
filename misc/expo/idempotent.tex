@@ -11,6 +11,7 @@
 \def\normm#1{\bigg|\!\bigg|#1\bigg|\!\bigg|}
 \def\argmax{\limitop{\rm arg$\,$max}}
 \def\dTV{d_{\rm TV}}
+\def\d{\;d}
 
 \def\advthm{\the\sectcount.\the\thmcount\global\advance \thmcount by 1}
 \def\advsect{\global\advance\sectcount by 1\section\the\sectcount\global\thmcount=1. }
@@ -29,12 +30,108 @@ We introduce Schur multipliers and investigate a conjectured analogue in this se
 
 \bigskip
 
+\advsect Topological preliminaries
+
+A {\it topology} on a set $S$ is a collection of subsets of $S$ that contains the empty set and
+is closed under the formation of unions and finite intersections. If $S$ has a topology defined on it,
+then $S$ is said to be a {\it topological space}, and the members of its topology are called
+{\it open sets}. The complements of open sets are called {\it closed sets}.
+
+\edef\propopencriterion{\the\thmcount}
+\proclaim Proposition \advthm. A set $A$ is open if and only if for every $x\in A$, there is an open
+set $U_x$ with $x\in U_x$ and $U_x\subseteq A$.
+
+\proof If $A$ is open, then for any $x\in A$ we can simply take $U = A$. Conversely, if for every
+point $x\in A$ there is some open $U_x\subseteq A$ with $x\in U_x$, then $A = \bigcup_{x\in A} U_x$,
+so $A$ is open, being a union of open sets.\slug
+
+The largest
+open set contained in a set $A$ is the {\it interior} of $A$, and the smallest closed set containing
+$A$ is its {\it closure}, denoted $\bar A$. If $A\bar A$ is the whole set $S$, then we say $A$ is
+{\it dense} in $S$, and if some countable set is dense in $S$, then $S$ is a {\it separable} space.
+
+A set $A$ is said to be a {\it neighbourhood} of a point $p$ if $p$ belongs to the interior of $A$.
+The space $S$ is called {\it Hausdorff} if for all points $x,y\in S$ with $x\ne y$, there is some
+open neighbourhood $U$ of $X$ and open neighbourhood $V$ of $y$ such that $U\cap V=\emptyset$.
+A set $A$ is {\it compact} if every open cover of $A$ has a finite subcover. If every point of $S$
+has some compact neighbourhood, then $S$ is called {\it locally compact}.
+
+If the singleton set $\{p\}$ is open, then $p$ is called an {\it isolated point} of $S$, and if
+$p$ is isolated for all points $p\in S$, then $S$ is a {\it discrete space}.
+
+\medskip\boldlabel Limit points of nets.
+A relation $\preceq$ on a set $I$ is a {\it preorder} if it is reflexive and transitive.
+A set $I$ is said to be {\it directed} if there exists a preorder $\preceq$ on it such that
+any two elements have an upper bound; that is,
+for all $i,j\in I$, there exists $k\in I$ such that $i\preceq k$ and $j\preceq k$.
+
+Let $I$ be a directed set and $S$ any set. A function $f:I\to S$ is called
+a {\it net}. We usually index the elements of the net by elements of $I$; writing $x_i = f(i)$ for all
+$i\in I$, the net $f$ can be expressed as $(x_i)_{i\in I}$. When $I = \NN$ under the usual ordering
+$\le$, we recover the usual definition of a {\it sequence} of points in $S$.
+We say that $(x_i)_{i\in I}$ is {\it eventually} in $A$ if there exists some $j\in I$ such that for all
+$i \succeq j$, $x_i\in A$. A point $x\in S$ is called a {\it limit point} of $(x_i)_{i\in I}$ if
+for every open neighbourhood $U$ of $x$, the net $(x_i)_{i\in I}$ is eventually in $U$. In this
+case we write $x_i\to x$.
+
+\proclaim Proposition \advthm. If $S$ is a Hausdorff space, then every net $(x_i)_{i\in I}$ valued
+in $S$ has at most one limit point.
+
+\proof Let $S$ be a topological space and suppose there is a net $(x_i)_{i\in I}$ with two distinct
+limit points $x$ and $y$. Let $U$ be an open neighbourhood of $x$ and $V$ an open neighbourhood of $Y$.
+By definition of limit point, there is some $i\in I$ such that $x_k \in U$ for all $k\succeq i$,
+and similarly there is some $j\in I$ such that $x_i\in V$ for all $k\succeq j$. But since $I$
+is a directed set, there must exist some $k\in I$ with $k\succeq i$ and $k\succeq j$, and we find
+that $x_k\in U\cap V$. Since $U$ and $V$ were arbitrary, we conclude that $S$ is not Hausdorff.\slug
+
+In light of the proposition, so long as the ambient space is Hausdorff it makes sense to write
+$\lim_{i\in I} x_i = x$ whenever the limit point of $(x_i)_{i\in I}$ is $x$. We may also choose
+to write $x_i \to x$.
+
+We now introduce a common choice of directed set that features in some of the proofs below.
+
+\edef\propnbhdnet{\the\thmcount}
+\proclaim Proposition \advthm.
+Let $x$ be a point in a topological space $S$ and let $N(x)$ be the set of all open neighbourhoods
+of $x$. Define an order on $N(x)$ by declaring $U\preceq V$ if and only if $U\supset V$. Then the order
+$\preceq$ is directed, and $x$ is a limit point of any
+net $(x_U)_{U\in N(x)}$ satisfying $x_U\in U$ for all $U\in N(x)$.
+
+\proof The set $N(x)$ is clearly directed, since for every $U,V\in N(x)$,
+$U \supset U\cap V$ and $V\supset U\cap V$. Now let $(x_U)_{U\in N(x)}$ be any net with
+$x_U\in U$ for all $U\in N(x)$. Pick any open set $V$ containing $x$. This set $V$ is a member of
+$N(x)$, and for any $U\in N(x)$ with $U\succeq V$, we must have $x_U\in U \subseteq V$.\slug
+
+One can characterise closed sets in terms of limit points of nets.
+
+\proclaim Proposition \advthm. A set $A$ is closed if and only if whenever a
+net with $(x_i)_{i\in I}$ satisfying $x_i\in A$ for all $i\in I$ possesses a limit point $x$,
+we must have $x\in A$.
+
+\proof Suppose that $A$ is closed and let $(x_i)_{i\in I}$ be a net with limit point $x$
+and $x_i\in A$ for all $i\in I$. For a contradiction, suppose that $x\notin A$. Then $x \in A^c$,
+which is open. By the definition of limit point, there exists $j$ such that $x_i\in A^c$ for all
+$j\succeq i$. This contradicts the assumption that $x$ is a limit point of $(x_i)_{i\in I}$.
+
+Now we assume the second condition and prove that $A^c$ is open.
+Let $N(x)$ be the set of all open neighbourhoods of $x$.
+Towards a contradiction, assume
+that there is some $x\in A^c$ such that for all $U\in N(x)$, we have $U\cap A \ne \emptyset$.
+So for all $U\in N(x)$, we may pick $x_U\in U\cap A$, and the net $(x_U)_{U\in N(x)}$
+has $x$ as its limit point, by Proposition~{\propnbhdnet}. But $x_U\in A$ for all $U\in N(x)$,
+so by our assumption, we must have $x\in A$. This contradiction shows that
+any $x\in A^c$ must have some open neighbourhood $U$ that is contained in $A^c$. Hence by
+Proposition~{\propopencriterion}, $A$ is closed.\slug
+
+
+
 \advsect The structure of locally compact abelian groups
 
-{\sc A topological abelian group} is a Hausdorff space that is also an abelian group, such that
-the map from $G\times G$ to $G$ sending $(x,y) \mapsto x-y$ is continuous (where the topology
-on $G\times G$ is the product topology).
-If, in addition, every point in $G$ is contained in some compact neighbourhood of $G$, then
+A topological abelian group is an abelian group $G$ endowed with the topology of a Hausdorff
+space, such that
+the map from $G\times G$ to $G$ sending $(x,y) \mapsto x-y$ is continuous. (The topology
+on $G\times G$ is taken to be the product topology).
+If, in addition, $G$ is also locally compact, then
 $G$ is said to be a {\it locally compact abelian} group.
 
 The following proposition shows that by passing to closures, we can always assume subgroups to be closed.
@@ -42,14 +139,18 @@ The following proposition shows that by passing to closures, we can always assum
 \proclaim Proposition \advthm. Let $G$ be a locally compact abelian group and $H$ a subgroup of $G$.
 Then the closure $\bar H$ of $H$ is also a subgroup of $G$.
 
-\proof Let $x,y\in \bar H$ and suppose, for a contradiction, that $xy\notin \bar H$. :
-
-A topological space is called {\it discrete} if for every point $p$ in it, the singleton set $\{p\}$
-is open.
+\proof Let $x,y\in \bar H$ and let $Z$ be any neighbourhood of $x-y$. Since multiplication
+is continuous (and by the definition of the product topology), there is an open neighbourhood
+$X$ of $x$ and $Y$ of $y$ such that $X-Y\subseteq Z$. By the definition of closure,
+there are points $a\in X\cap H$ and $b\in Y\cap H$. The point $a-b$ is in $H$ because $H$ is a subgroup,
+and thus $a-b\in Z\cap H$.\slug
 
 Let $G$ be a locally compact abelian group.
 The set of all measures $\mu$ on $G$ forms a topological semigroup under the convolution operation
-$$\mu * \nu = \int_G 
+$$\mu * \nu(A)  = \int_G \chi_A(x+y) \d \mu(x) \d\nu(x),$$
+where $\chi_A$ denotes the characteristic function of $A$.
+
+
 
 \section References
 
