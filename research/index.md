@@ -15,7 +15,7 @@ My research interests include:
 Research articles published in peer-reviewed journals, in reverse order of acceptance (and not necessarily
 appearance).
 
-__P8.__ (with Tsun-Ming Cheung and Luc Devroye) A note on plane trees with decreasing labels. _Online Journal of Analytic Combinatorics_ __20__ (2025), \#2, 9&nbsp;pp. [[arXiv](https://arxiv.org/abs/2502.14596)]  
+__P8.__ (with Tsun-Ming Cheung and Luc Devroye) [A note on plane trees with decreasing labels](https://combinatorialpress.com/ojac-articles/issue-20-2025/a-note-on-plane-trees-with-decreasing-labels/). _Online Journal of Analytic Combinatorics_ __20__ (2025), \#2, 9&nbsp;pp. [[arXiv](https://arxiv.org/abs/2502.14596)]  
 __P7.__ An uncertainty principle for Möbius inversion on posets. To appear in _Contributions to Discrete Mathematics_. [[arXiv](https://arxiv.org/abs/2302.02466)]  
 __P6.__ (with Jonah Saks) [On the homology of several number-theoretic set families](https://ecajournal.kms-ks.org/Volume2024/ECA2024_S2A12.pdf). _Enumerative Combinatorics and Applications_ __4__,2 (2024), \#S2R12, 11&nbsp;pp. [[arXiv](https://arxiv.org/abs/2206.12535)]  
 __P5.__ (with Jad Hamdan and Jonah Saks) [The lattice of arithmetic progressions](https://ajc.maths.uq.edu.au/pdf/84/ajc_v84_p357.pdf). _Australasian Journal of Combinatorics_ __84__,3 (2022), 357--374.
