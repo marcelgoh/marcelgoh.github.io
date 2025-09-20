@@ -1,0 +1,133 @@
+\input fontmac
+\input mathmac
+
+\def\To{\Rightarrow}
+
+\maketitle{Math 242 Tutorial 2}{prepared by}{Marcel Goh}{18 September 2025}
+
+\bigskip
+
+\proclaim Problem \advthm. Let $f:D\to E$ be a function and let $B\subseteq E$. Prove that
+\medskip
+\item{a)} $f\bigl( f^{-1}(B)\bigr) \subseteq B$; and that
+\smallskip
+\item{b)} if $f$ is surjective, then $f\bigl( f^{-1}(B)\bigr) = B$.
+\medskip
+
+\proof Let $y\in f\bigl( f^{-1}(B)\bigr)$. There is some $x\in f^{-1}(B)$ such that $f(x) = y$.
+Since $x\in f^{-1}(B)$, we must have $f(x)\in B$. But we have $y = f(x)$, so in fact
+$y\in B$. This settles part (a).
+
+For part (b), assume that $f$ is surjective.
+In view of part (a) we only have to prove that $B\subseteq f\bigl( f^{-1}(B)\bigr)$. Let $y\in B$;
+since $f$ is surjective, there is some $x\in D$ such that $f(x) = y$. This $x$, then, is a member
+of $f^{-1}(B)$ (being an element that is mapped to $y$, which we assumed to be in $B$). But then
+we see that $y\in f\bigl(f^{-1}(B)\bigr)$, since $y = f(x)$.\slug
+
+\proclaim Problem \advthm. Find the supremum and infimum of each of the following subsets of $\RR$ (and
+prove that each is a supremum/infinum).
+\medskip
+\item{a)} $A = \bigl\{ 1/2^n : n\in \NN\bigr\}$.
+\smallskip
+\item{b)} $B = \bigl\{ (-1)^n + 1/n : n\in \NN \bigr\}$.
+\medskip
+
+\proof For part (a), note that if $m > n$, then $1/2^m < 1/2^n$, so the greatest element of $A$,
+namely $1/2$, is also its supremum. The infimum, on the other hand, is $0$, which we now prove.
+First we note that $0\le 1/2^n$ for all $n\in \NN$. Then, let any $\eps > 0$ be given. We need
+to find some $n$ such that $1/2^n < \eps$. But this can be done, but the Archimedean property of
+$\RR$. Let $n$ be a natural number such that $n > \log_2(1/\eps)$. Then
+$${1\over 2^n} < {1\over 2^{\log_2(1/\eps)}} = {1\over 1/\eps} = \eps,$$
+and we are done.
+
+For part (b), it helps to write out some elements of $B$ for small $n\in \NN$. We have
+$$-1 + 1/1 = 0,\qquad 1 + 1/2 = 3/2,\qquad -1 + 1/3 = -2/3, \qquad 1 + 1/4 = 5/4,\qquad
+-1 + 1/5 = -4/5,$$
+and so on. We see that each even $n$ gives an element of $B$ that is larger than $1$, but
+as $n$ gets larger, these elements will get closer and closer to $1$. For odd $n$,
+we get an element in the interval $(-1, 0]$, but again, as $n$ gets larger, the $1/n$ term
+gets smaller so it these elements get closer and closer to $-1$. We claim, then, that $\sup B=3/2$,
+and $\inf B = -1$.
+
+First we prove the claim about the supremum. For all odd $n$,
+the number $(-1)^n + 1/n$ equals $-1 + 1/n$, which is nonpositive, so $3/2 > (-1)^n + 1/n$. For all
+even $n$, we have $(-1)^n + 1/n = 1+1/n$, which is at most $3/2$. So $3/2$ is an upper bound for the set,
+The element $3/2$ is in the set, so no number that is smaller than $3/2$ can be an upper bound on $B$.
+Now we prove the claim about the infimum. It is easy to check that $-1$ is a lower bound on $B$, since
+all even $n$ give a positive number, and all odd $n$ give $-1+1/n \ge -1$. We just have to show
+now that it is the {\it greatest} lower bound. Let $\eps > 0$. We need to find some odd $n$
+such that $-1 + 1/n < -1 + \eps$. To this end, we use the Archimedean property of $\RR$ again,
+picking some $n$ such that $n > 1/\eps$. Without loss of generality, we can choose $n$ odd (since
+if $n$ is even, then $n+1$ is odd and is also greater than $1/\eps$). Then we see that
+$$-1 + {1\over n} < -1 + {1\over 1/\eps} = -1+\eps,$$
+and we are done.\slug
+
+\proclaim Problem \advthm. Prove that for all $x\in \RR$,
+\medskip
+\item{a)} $|x| = |-x|$;
+\smallskip
+\item{b)} $|x| = \sqrt{x^2}$;
+\smallskip
+\item{c)} $-|x| \le x \le |x|$;
+\medskip
+\noindent and for all $x,y\in \RR$,
+\medskip
+\item{d)} $|xy| = |x|\cdot |y|$.
+\medskip
+
+\proof If $x$ is nonnegative, then $-x$ is nonpositive, so $|x| = x = |-x|$.
+If $x$ is negative, then $-x$ is positive, so $|x| = -x = |-x|$. Either way, $|x| = |-x|$,
+and part (a) is done.
+
+For any real number $a$, the square root $\sqrt a$ is defined to be the unique nonnegative real number
+$b$ with $b^2 = a$. Note that $|x|^2 = x^2$; this is because if $x$ is nonnegative, then $|x| = x$
+and the identity is clear, and if $x$ is negative, then $|x| = -x$ and we have $|x|^2 = (-x)^2
+= (-1)^2 x^2 = x^2$. But $|x|$ is nonnegative by construction, and satisfies $|x|^2 = x^2$,
+so we conclude that $|x| = \sqrt{x^2}$.
+
+For part (c), note that if $x$ is negative, then $|x| = -x$, so $-|x|\le x < -x = |x|$, and if
+$x$ is nonnegative, then $|x| = x$, so $-|x| = -x \le x = |x|$.
+
+Equipped with the identity from part (b), we have
+$$|xy| = \sqrt{(xy)^2} = \sqrt{x^2\cdot y^2} = \sqrt{x^2}\sqrt{y^2} = |x|\cdot |y|,$$
+since multiplication of real numbers is commutative. This proves part (d).\slug
+
+\proclaim Problem \advthm. Prove the {\it reverse triangle inequality}
+$$ |x-y| \ge \bigl| |x|-|y|\bigr|,$$
+which holds for all $x,y\in \RR$.
+
+\proof Note first that
+$$(x-y)^2 = x^2 - 2xy + y^2.$$
+The terms $x^2$ and $y^2$ are both nonnegative, but the middle term, $-2xy$, could be positive or negative,
+depending on the relative signs of $x$ and $y$. If we change this term to $-2|x|\cdot |y|$, then
+the term must be negative, and the whole right-hand side either stays the same or goes down; in other words,
+$$(x-y)^2 \ge x^2 - 2|x|\cdot |y| + y^2.$$
+But by part (c) of the previous problem, we see that
+$$(x-y)^2 \ge |x|^2 - 2|x|\cdot |y| + |y|^2 = \bigl( |x|- |y|\bigr)^2.$$
+Taking square roots of both sides (and applying part (c) of the previous problem once again), we have
+$$|x-y| \ge \bigl| |x| - |y| \bigr|,$$
+which is what we wanted.\slug
+
+Here's another proof using the ordinary triangle inequality that was proved in class.
+
+\medskip\noindent{\it Alternative proof.}\enspace We add the ``clever'' zero $-y+y$ to $x$, obtaining
+$$|x| = \bigl| (x-y) + y\bigr| \le |x-y| + |y|$$
+from the triangle inequality. This rearranges to $|x-y| \ge |x|-|y|$. Likewise, we have the similar bound
+$$|y| = \bigl| (y-x) + x\bigr| \le |y-x| + |x| = |x-y| + |x|,$$
+where after the triangle inequality we used the identity from part (a) of the previous question.
+This rearranges to $|x-y| \ge |y|-|x|$, so we have shown that $|x-y| \ge \bigl| |x|-|y|\bigr|$.\slug
+
+\proclaim Problem \advthm. Let $a,b\in \RR$. Show that $a=b$ if and only if for all $\eps>0$, we have
+$|a-b|\le \eps$.
+
+\proof The ``only if'' direction is easy. Assume that $a=b$ and let $\eps > 0$ be arbitrary. We have
+$$|a-b| = |a-a| = 0 \le \eps.$$
+Now we show the ``if'' direction, by contrapositive. (We must show that $a\ne b$ implies
+the existence of some $\eps > 0$ such that $|a-b| > \eps$.) Suppose that $a\ne b$, so that $a-b\ne 0$.
+This means that $|a-b| > 0$, so we can set $\eps = |a-b| / 2$, which is also positive. Then we have
+$$|a-b| > {|a-b|\over 2} = \eps,$$
+which settles the proof.\slug
+
+
+
+\bye

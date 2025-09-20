@@ -284,6 +284,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Tess of the D'Urbervilles_ (1892), Thomas Hardy
 1. _Fichte: The Self and the Calling of Philosophy, 1762--1799_ (2001), Anthony J. La Vopa
 1. _Stray Dogs_ (2022), Rawi Hage
-
+1. _Green Hills of Africa_ (1935), Ernest Hemingway
+1. _Proto_ (2025), Laura Spinney
 
 

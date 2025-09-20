@@ -10,7 +10,7 @@ I am a Ph.D. student in Mathematics at McGill University, supervised by
 I got my M.Sc. and B.Sc. from McGill as well. My master's thesis,
 supervised by [Luc Devroye](http://luc.devroye.org/), was on Galton--Watson trees.
 My B.Sc. was in the Joint Honours Mathematics and Computer Science program,
-with a minor in Linguistics. In 2019, I also did an exchange semester at Charles University in Prague.
+with a minor in Linguistics. In 2019, I did an exchange semester at Charles University in Prague.
 
 I am one of the founding editors of [Ahoy Literary Magazine](https://ahoyliterary.github.io/). If you write
 poetry or prose we would be honoured if you submitted it to us! You could also follow our

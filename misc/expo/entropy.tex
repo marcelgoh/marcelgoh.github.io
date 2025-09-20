@@ -22,6 +22,12 @@
 \def\advthm{\the\sectcount.\the\thmcount\global\advance \thmcount by 1}
 \def\advsect{\global\advance\sectcount by 1\section\the\sectcount\global\thmcount=1. }
 \sectcount=0
+\font\ninessbx=cmssbx10 at 9pt
+\def\cont#1#2{#1\hskip-2pt\leaders\hbox to 8pt{\hss.\hss}\hfil\hbox to 2em{\hss#2}}
+\def\contline#1#2#3{{\ninepoint\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt
+#1.\kern .5em #2}{#3}}}}
+\def\contheader#1#2#3{{\ninepoint\hbox to\hsize {\relax \unhcopy \strutbox \cont {{\ninessbx
+#1.\kern .5em #2}}{#3}}}}
 
 \widemargins
 \bookheader{ENTROPY AND ADDITIVE COMBINATORICS}{MARCEL K. GOH}
@@ -38,7 +44,35 @@ conjecture by W.~T.~Gowers, B.~Green, F.~Manners, and T.~Tao. Effort has been pu
 document as self-contained as possible, and extra proof details have been supplied in the hope
 that these notes may be accessible to the average graduate student or enterprising undergraduate.
 
-\bigskip
+\vskip36pt
+
+\noindent{\ninessbx I. Preliminaries}
+\smallskip
+\contline{1}{The Khintchine--Shannon axioms}{1}
+\smallskip
+\contline{2}{Group-valued random variables}{8}
+\smallskip
+\contline{3}{The Pl\"unnecke--Ruzsa inequality}{13}
+\smallskip
+\contline{4}{The Balog--Szemer\'edi--Gowers theorem}{17}
+\medskip
+\noindent{\ninessbx II. The polynomial Freiman--Ruzsa theorem}
+\smallskip
+\contline{5}{The Freiman--Ruzsa theorem}{22}
+\smallskip
+\contline{6}{A compactness argument}{26}
+\smallskip
+\contline{7}{Entropy distance under homomorphisms}{30}
+\smallskip
+\contline{8}{Sums and fibres}{32}
+\smallskip
+\contline{9}{Endgame}{37}
+\medskip
+\noindent{\ninessbx III. Sum-product phenomena}
+\smallskip
+\contline{10}{The Katz--Tao lemma}{42}
+
+\vskip36pt
 
 \advsect The Khintchine--Shannon axioms
 
