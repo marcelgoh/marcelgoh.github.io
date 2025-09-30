@@ -1,0 +1,134 @@
+\input fontmac
+\input mathmac
+
+\def\To{\Rightarrow}
+
+\maketitle{Math 242 Tutorial 3}{prepared by}{Marcel Goh}{25 September 2025}
+
+\bigskip
+
+\proclaim Problem 1. Show that the supremum and infimum of a set are both unique.
+
+\noindent[Only after we prove this statement does it makes sense to say, e.g.,
+{\it the} supremum of a set, rather than just {\it a} supremum. Hence in the proof we can only refer
+to something as being {\it a} supremum.]
+
+\proof We present the proof for suprema. The proof for infima is the same, {\it mutatis mutandis}
+(do it as an exercise).
+
+Let $S\subseteq \RR$ be a set and let $s$ and $s'$ both be suprema of $S$.
+We want to show that $s = s'$.
+Suppose, for a contradiction, that $s\ne s'$. Without loss of generality, assume that
+$s<s'$ (by switching the roles of $s$ and $s'$ if necessary).
+Since $s'$ is a supremum of $S$, for all $y < s'$ there exists some $x\in S$ such that
+$x > y$. Well since $s<s'$ we can apply this with $y=s$ to find some
+$x\in S$ with $x > s$. This means that $s$ is not an upper bound of the set $S$,
+contradicting our assumption that $s$ was a supremum of $S$. We conclude that $s = s'$.\slug
+
+\proclaim Problem 2. Let $S$ be a nonempty subset of $\RR$ that is bounded from below.
+Prove that a real number $t$ is the infimum of $S$ if and only if
+\medskip
+\item{i)} $t$ is a lower bound of $S$; and
+\smallskip
+\item{ii)} for all $\eps > 0$, the number $t + \eps$ is {\it not} a lower bound of $S$.
+\medskip
+
+\noindent[An analogue of this statement holds for suprema as well (see Question 1, part (a), on Assignment 3).
+The proof is the same, so we'll just do the infimum version. You should be able to do the other
+statement as an easy exercise by making suitable modifications in this proof.]
+
+\proof First suppose that $t$ is the infimum of $S$. Then it is a lower bound of $S$, so (i) is
+immediately satisfied. To show part (ii), let $\eps > 0$ be given. The number $t' = t+\eps$
+satisfies $t' > t$, so since $t$ is the greatest lower bound of $S$,
+we see that $t+\eps = t'$ is not a lower bound of $S$.
+
+Now suppose that $t$ satisfies conditions (i) and (ii) above. We need to show that it is the
+greatest lower bound of $S$. It is certainly a lower bound, by condition (i). To show that it is
+the greatest lower bound, let $t'\in \RR$ be a number with $t' > t$. We can let $\eps = t'-t > 0$, so
+that $t' = t + \eps$. Then condition (ii) tells us $t' = t+ \eps$ that $t'$ is not a lower bound
+of $S$. Hence $t$ is the infimum of $S$.\slug
+
+\proclaim Problem 3. Let $S = \bigl\{ 1 - 1/n^2 : n\in \NN\bigr\}$. Prove that $\sup S = 1$
+and $\inf S = 0$.
+
+\proof For $n = 1$ we have $1 - 1/n^2 = 1-1 = 0$. So $0\in S$. On the other hand, $0$
+is also a lower bound of $S$, since
+$$ 1 - {1\over n^2} \ge 1-{1\over 1^2} = 0 $$
+for all $n\in \NN$. This shows that $0=\min S$ and hence $0 = \inf S$.
+
+To show that $\sup S = 1$, we need to show that $1$ is an upper bound of $S$ and that $1-\eps$
+is not an upper bound of $S$ for any $\eps > 0$. (This is in light of the supremum version
+of the previous problem, or Question 1, part (a) of Assignment 3.) To see that $1$ is an upper bound,
+note that for any $n\in \NN$, $1/n^2 > 0$, so $1-1/n^2 < 1$. For the second part, let $\eps > 0$ be
+given and pick $n>1/\sqrt\eps$. Then
+$$ 1- {1\over n^2} > 1 - {1\over 1/(\sqrt\eps)^2} = 1-{1\over 1/\eps} = 1-\eps,$$
+so $1-\eps$ is not an upper bound of $S$. Since $\eps$ was arbitrary, we are done.\slug
+
+\proclaim Problem 4. For any nonempty set $A\subseteq \RR$ define the {\it reflection}
+$$ -A = \{ - a : a\in A \}.$$
+Prove the following.
+\medskip
+\item{a)} The number $u$ is an upper bound of $A$ if and only if $-u$ is a lower bound of $-A$.
+\smallskip
+\item{b)} The set $A$ is bounded from above if and only if $-A$ is bounded from below.
+\smallskip
+\item{c)} If $A$ has a supremum, then $\inf(-A) = -\sup A$.
+\smallskip
+\item{d)} Any nonempty set $B\subseteq \RR$ that is bounded from below has an infimum.
+\medskip
+
+\proof Let $u$ be an upper bound of $A$. This means that $a\le u$ for all $a\in A$. But then
+we have $-a \ge -u$ for all $a\in A$, and we see that $-u$ is a lower bound of $-A$. Conversely,
+assume that $-u$ is a lower bound of $-A$. Then $-a \ge -u$ for all $a\in A$, so $a\le u$
+for all $a\in A$, which implies that $u$ is an upper bound of $A$. [You could also just have
+noticed straightaway that each of these implications is an equivalence, and proved the ``if and only if''
+all at once.]
+
+By definition, $A$ is bounded from above if and only if there is some $u\in \RR$
+that is an upper bound of $A$. But by part (a),
+this is true if and only if there is some $u\in \RR$ such that $-u$ is a lower bound of $-A$,
+and this is the definition of $-A$ being bounded from below.
+
+Now we prove part (c). To do so, we must show that $-\sup A$ is a lower bound of $-A$ and that
+$-\sup A + \eps$ is not a lower bound of $-A$ for any $\eps > 0$. Well, $\sup A$ is an upper bound
+of $A$, so by part (a), $-\sup A$ is a lower bound of $-A$. That settles one of the requirements. For
+the other one, let $\eps > 0$ be given. Since $\sup A$ is the least upper bound of $A$,
+$\sup A - \eps$ is not an upper bound of $A$; that is, there is some $a\in A$ with $a > \sup A - \eps$.
+But this implies that $-a < -\sup A + \eps$, so $-\sup A + \eps$ is not a lower bound of $-A$.
+Hence $-\sup A$ is the infimum of $-A$.
+
+Let $B$ be nonempty and bounded from below. Let $A = -B$, so that $A$ is also nonempty
+and $-A = B$. By part (b), $A$ is bounded from
+above, so the least-upper-bound property of $\RR$ implies that $A$ has a supremum. Now by part (c),
+$\inf B = \inf(-A) = -\sup A$, and {\it a fortiori} $\inf B$ exists.\slug
+
+\proclaim Problem 5. Prove the Cauchy--Schwarz inequality, the statement that for all
+$u_1,\ldots,u_n, v_1,\ldots,v_n\in \RR$,
+$$\biggl(\sum_{i=1}^n u_i v_i\biggr)^2
+\le \biggl( \sum_{i=1}^n {u_i}^2\biggr) \biggl( \sum_{i=1}^n {v_i}^2\biggr).$$
+[{\it Hint:} Recall from your high school days that
+for a quadratic polynomial $ax^2 + bx + c$, the {\it discriminant} is
+defined to be the quantity $b^2 - 4ac$. (It appears under the square-root sign
+in the quadratic formula.) If it is negative, the polynomial has no real roots,
+if it is positive, the polynomial has two real roots, and if it is zero, the polynomial
+has one real root.]
+
+\proof If $u_i = 0$ for all $1\le i\le n$, then both sides are $0$ and the inequality
+is trivially true. So suppose that at least one of the $u_i$ is nonzero. Then
+$$p(x) = (u_1 x + v_1)^2 + (u_2 x + v_2)^2 + \cdots + (u_n x+v_n)^2$$
+is a quadratic polynomial in the variable $x$. Rewriting $p(x)$ in summation notation,
+we have
+$$\eqalign{
+p(x) &= \sum_{i=1}^n (u_ix + v_i)^2\cr
+&= \sum_{i=1}^n \bigl( u_i^2 x^2 + 2u_i v_i + v_i^2\bigr)\cr
+ &= \biggl(\sum_{i=1}^n u_i^2 \biggr) x^2 +
+2\biggl(\sum_{i=1}^n u_i v_i\biggr) x + \biggl( \sum_{i=1}^n {v_i}^2\biggr).\cr
+}$$
+Since it is defined as a sum of squares, $p(x)\ge 0$ for all $x\in \RR$, so it has
+at most one real root.
+This means its discriminant is nonpositive; in other words,
+$$4\biggl(\sum_{i=1}^n u_i v_i\biggr)^2
+- 4\biggl( \sum_{i=1}^n {u_i}^2\biggr) \biggl( \sum_{i=1}^n {v_i}^2\biggr) \le 0.$$
+Dividing through by $4$ and then rearranging gives exactly the inequality we sought.\slug
+
+\bye
