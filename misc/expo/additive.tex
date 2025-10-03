@@ -23,10 +23,33 @@ I am compiling this set of expository notes primarily to solidify these fundamen
 additive combinatorics in
 my own mind. Sources that are far more comprehensive exist on the web, so I'm not sure
 how useful this will be to anyone else. Currently, the bulk of these notes come from
-a series of YouTube lectures of Timothy Gowers (given in early 2022), though I intend
-in future to add more relevant topics as I learn about them.
-
-\bigskip
+a series of YouTube lectures of Timothy Gowers (given in early 2022), though I'm slowly adding more
+relevant topics as I learn about them.
+\vskip36pt
+\noindent{\ninessbx I. Sumsets and the structure of small doubling}
+\smallskip
+\contline{1}{Pl\"unnecke's theorem}{1}
+\smallskip
+\contline{2}{The Balog--Szemer\'edi--Gowers theorem}{5}
+\smallskip
+\contline{3}{Freiman homomorphisms and Ruzsa embedding lemmas}{9}
+\smallskip
+\contline{4}{Rudiments of discrete Fourier analysis}{12}
+\smallskip
+\contline{5}{Bohr sets and Bogolyubov's lemma}{17}
+\smallskip
+\contline{6}{Freiman's theorem in vector spaces over fields of prime order}{19}
+\medskip
+\noindent{\ninessbx II. Arithmetic progressions}
+\smallskip
+\contline{7}{Roth's theorem}{22}
+\medskip
+\noindent{\ninessbx III. Miscellaneous theorems}
+\smallskip
+\contline{8}{Khovanskii's theorem}{27}
+\smallskip
+\contline{9}{The Furstenberg--S\'ark\"ozy theorem}{29}
+\vskip36pt
 
 \advsect Pl\"unnecke's theorem
 
@@ -164,93 +187,6 @@ Taking $d$th roots yields
 $$|B_1 + \cdots +B_m| \le m^{m/d} K_1 \cdots K_m |A|,$$
 and this holds for all $d$, so by taking $d$ to infinity we can make $m^{m/d}$ as close to $1$ as
 we like.\slug
-
-\advsect Khovanskii's theorem
-
-The goal of this section is to prove the following wonderful theorem of A.~Khovanskii.
-
-\edef\thmkhovanskii{\the\thmcount}
-\parenproclaim Theorem {\advthm} (Khovanskii, {\rm 1992}). Let $A$ be a finite
-subset of an abelian group and let $f_A(n) = |nA|$ for each $n\in \NN$. Then there exists
-$n_A$ and a polynomial $p_A$ such that $f_A(n) = p_A(n)$ for all $n\ge n_A$.
-
-Consider the example when $A = \{0,1,b-1,b\} \subseteq \ZZ$. Then letting $[a,b] = \{x\in \ZZ : a\le x\le b\}$,
-we have
-$$nA = [0, n] \cup [b-1,\ldots, b+n-1] \cup [2b-2, 2b+n-2] \cup\cdots\cup [n(b-1),nb].$$
-This has size $(n+1)^2$ as long as $n< b-1$, but when $n\ge b-1$, $nA$ is simply the set
-of integers in the range $[0,bn]$, which has size $bn+1$.
-
-We shall present a combinatorial proof of Khovanskii's theorem,
-given by M.~B.~Nathanson and I.~Z.~Ruzsa in 2002.
-Let $A = \{a_1,\ldots, a_r\}$ and
-for $x = (x_1,\ldots, x_r)\in {\NN_0}^r$, write
-$$\sigma(x) = \sum_{i=1}^r x_i\qquad\hbox{and}\qquad
-\alpha(x) = \sum_{i=1}^r a_ix_i.$$
-Then
-$$nA = \{ \alpha(x) : x\in {\NN_0}^r,\, \sigma(x) = n\}.$$
-Let $\prec$ be the lexicographic order on ${\NN_0}^r$; that is, $(x_1,\ldots,x_r)\prec (y_1,\ldots,y_r)$
-if there is some $i\in [r]$ such that $x_i<y_i$ and $x_j = y_j$ for all $1\le j<i$.
-Say that $x$ is {\it useless} if there is $x'\prec x$ such that $\sigma(x') = \sigma(x)$ and
-$\alpha(x') = \alpha(x)$; otherwise, say that $x$ is {\it useful}. It is easy to see that
-$|nA|$ is exactly the number of useful $x$ with $\sigma(x) = n$. Now let $\le$ denote
-the usual partial order on ${\NN_0}^r$, where $(x_1,\ldots,x_r)\le (y_1,\ldots,y_r)$
-if $x_i\le y_i$ for all $1\le i\le r$.
-
-\proclaim Lemma {\advthm}. If $x\le y$ and $x$ is useless, then $y$ is useless.
-
-\proof Since $x$ is useless, we can find $x'\prec x$ with $\sigma(x') = \sigma(x)$ and $\alpha(x') = \alpha(x)$.
-Let $y' = y+x'-x$. Since $x\le y$, $y-x$ is in ${\NN_0}^r$ and therefore so is $y'$. Then since
-$x_i' < x_i$ for the first $i$ at which the two tuples differ, the first coordinate at which $y'$ and
-$y$ differ is also $i$ and we have $y_i'<y_i$. Hence $y'\prec y$. Lastly,
-$$\sigma(y') = \sigma(y+x'-x) = \sigma(y) + \sigma(x') - \sigma(x) = \sigma(y)$$
-and the same is true with $\sigma$ replaced by $\alpha$, so $y$ is useless.\slug
-
-For each useless $x$ we can find a useless $x'$, minimal in the $\le$ order, such that $x'\le x$.
-This lemma gives a converse; it says that if $x'$ is a minimal useless element and $x'\le x$, then
-$x$ is also useless.
-
-\edef\lemminimalfinite{\the\thmcount}
-\proclaim Lemma {\advthm}. For any nonempty $U\subseteq {\NN_0}^r$, the set of minimal elements of
-$U$ (with respect to the $\le$ order) is finite.
-
-\proof We perform induction on $r$. If $r=1$, then it is clear that $U$ has exactly one minimal element.
-Now let $r>1$ and let $u$ be a minimal element of $u$. Then for every $v\in U$ with $u\not\le v$,
-there exists some $i$ and $t< u_i$ such that $v_i = t$. Let
-$$V(i,t) = \{v\in U : v_i = t\}$$
-for all $1\le i\le r$ and $0\le t<u_i$. Each set $V(i,t)$ is order-isomorphic to a subset of ${\NN_0}^{r-1}$,
-so by induction it has finitely many minimal elements. The number of $V(i,t)$ is $r\prod_{i=1}^r u_i$,
-and every minimal element of $u$ is either $u$ or a minimal element of some $V(i,t)$, so there are
-finitely many minimal elements in $U$.\slug
-
-We will need just one more lemma before we are able to prove Khovanskii's theorem. It shows that
-for any fixed $r$-tuple $x'$, the number of $x$ with $x'\le x$ and $\sigma(x) = n$
-is given by a polynomial in the variable $n$, with coefficients depending on $x'$ and $r$.
-
-\proclaim Lemma {\advthm}. Let $x'\in {\NN_0}^r$ and for $n\ge \sigma(x')$, let
-$$C(x', n) = \{n\in {\NN_0}^r : \sigma(x) = n,\,x'\le x\}.$$
-Then
-$$\bigl| C(x',n)\bigr| = {n-\sigma(x') + r-1 \choose r-1}.$$
-
-\proof Given $x\in C(x',n)$, map it to $x-x'$. This is a bijection from $C(x',n)$ to $C(0, n-\sigma(x')$.
-Now let $m = n-\sigma(x')$. The map $(x_1,\ldots,x_r) \mapsto (x_1,+1,\ldots, x_r+1)$ is a bijection
-from $C(0,m)$ to the set of $y\in \NN^r$ such that $y_1+\cdots+y_r = m+r$. Now the map
-$$(y_1,\ldots,y_r) \mapsto \{y_1, y_1+y_2, \ldots, y_1+\cdots+y_r\}$$
-is a bijection from the previous set to the set of subsets of $[m+r]$ that contain $m+r$. (It is
-inverted by the map $\{a_1, \ldots, a_r\} \mapsto (a_1, a_2-a_1, \ldots, a_r-a_{r-1})$.) But this final
-set has size ${m+r-1\choose r-1}$, so we are done.\slug
-
-Without further ado, let us now prove Khovanskii's theorem.
-
-\medskip\noindent {\it Proof of Theorem~{\thmkhovanskii}.}\enspace Let $U$ be the set of all
-useless $r$-tuples. By Lemma~{\lemminimalfinite}, the set $X\subseteq U$ of all minimal useless
-$r$-tuples is finite. Recall that $|nA|$ is the number of useful $x$ such that $\sigma(x) = n$,
-so using the notation of the previous lemma, we have
-$$|nA| = \bigl| C(0,n)\bigr| - \Bigl| \bigcup_{x'\in X} C(x',n)\Bigr|
-=\bigl| C(0,n)\bigr| - \sum_{Y\subseteq X} (-1)^{|Y|} \Bigl| \bigcap_{x'\in Y} C(x',n)\Bigr| $$
-But for any $Y\subseteq X$, $\bigcap_{x'\in Y} C(x',n) = C(x_Y, n)$, where $x_Y$ has for its
-$i$th coordinate the integer $\max_{y\in Y} y_i$. Hence every term in the inclusion-exclusion
-formula depends polynomially on $n$ once
-$$n\ge \sum_{1\le i\le r} \max_{x\in X} x_i.\noskipslug$$
 
 \advsect The Balog--Szemer\'edi--Gowers theorem
 
@@ -818,6 +754,9 @@ progression $P$ such that $|P|\le K|A|$ and $A\subseteq P$, where $d$ and $K$ de
 we could simply embed $A$ into $[\min A, \max A]$).
 
 This statement is called Freiman's theorem, as it was first proved by Freiman over the integers.
+A set $A$ for which the ratio
+$|A+A|/|A|$ is small is said to have {\it small doubling}, so Freiman's theorem imposes structure on sets
+with small doubling.
 In these notes we will prove an analogue of it for subsets of $\FF_p^N$, in which ``$d$-dimensional arithmetic
 progression'' is replaced by ``subspace''. First we need a lemma.
 
@@ -1128,7 +1067,94 @@ a sufficient condition, which is the bound claimed in the theorem statement.\slu
 
 We can flip the roles of $\delta$ and $N$ to arrive at the following statement,
 equivalent to what we just proved: {\sl Any subset of $[N]$
-of size at least $300/\log\log N$ contains a nontrivial arithmetic progression of length $3$.}
+of size at least $300N/\log\log N$ contains a nontrivial arithmetic progression of length $3$.}
+
+\advsect Khovanskii's theorem
+
+The goal of this section is to prove the following wonderful theorem of A.~Khovanskii.
+
+\edef\thmkhovanskii{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Khovanskii, {\rm 1992}). Let $A$ be a finite
+subset of an abelian group and let $f_A(n) = |nA|$ for each $n\in \NN$. Then there exists
+$n_A$ and a polynomial $p_A$ such that $f_A(n) = p_A(n)$ for all $n\ge n_A$.
+
+Consider the example when $A = \{0,1,b-1,b\} \subseteq \ZZ$. Then letting $[a,b] = \{x\in \ZZ : a\le x\le b\}$,
+we have
+$$nA = [0, n] \cup [b-1,\ldots, b+n-1] \cup [2b-2, 2b+n-2] \cup\cdots\cup [n(b-1),nb].$$
+This has size $(n+1)^2$ as long as $n< b-1$, but when $n\ge b-1$, $nA$ is simply the set
+of integers in the range $[0,bn]$, which has size $bn+1$.
+
+We shall present a combinatorial proof of Khovanskii's theorem,
+given by M.~B.~Nathanson and I.~Z.~Ruzsa in 2002.
+Let $A = \{a_1,\ldots, a_r\}$ and
+for $x = (x_1,\ldots, x_r)\in {\NN_0}^r$, write
+$$\sigma(x) = \sum_{i=1}^r x_i\qquad\hbox{and}\qquad
+\alpha(x) = \sum_{i=1}^r a_ix_i.$$
+Then
+$$nA = \{ \alpha(x) : x\in {\NN_0}^r,\, \sigma(x) = n\}.$$
+Let $\prec$ be the lexicographic order on ${\NN_0}^r$; that is, $(x_1,\ldots,x_r)\prec (y_1,\ldots,y_r)$
+if there is some $i\in [r]$ such that $x_i<y_i$ and $x_j = y_j$ for all $1\le j<i$.
+Say that $x$ is {\it useless} if there is $x'\prec x$ such that $\sigma(x') = \sigma(x)$ and
+$\alpha(x') = \alpha(x)$; otherwise, say that $x$ is {\it useful}. It is easy to see that
+$|nA|$ is exactly the number of useful $x$ with $\sigma(x) = n$. Now let $\le$ denote
+the usual partial order on ${\NN_0}^r$, where $(x_1,\ldots,x_r)\le (y_1,\ldots,y_r)$
+if $x_i\le y_i$ for all $1\le i\le r$.
+
+\proclaim Lemma {\advthm}. If $x\le y$ and $x$ is useless, then $y$ is useless.
+
+\proof Since $x$ is useless, we can find $x'\prec x$ with $\sigma(x') = \sigma(x)$ and $\alpha(x') = \alpha(x)$.
+Let $y' = y+x'-x$. Since $x\le y$, $y-x$ is in ${\NN_0}^r$ and therefore so is $y'$. Then since
+$x_i' < x_i$ for the first $i$ at which the two tuples differ, the first coordinate at which $y'$ and
+$y$ differ is also $i$ and we have $y_i'<y_i$. Hence $y'\prec y$. Lastly,
+$$\sigma(y') = \sigma(y+x'-x) = \sigma(y) + \sigma(x') - \sigma(x) = \sigma(y)$$
+and the same is true with $\sigma$ replaced by $\alpha$, so $y$ is useless.\slug
+
+For each useless $x$ we can find a useless $x'$, minimal in the $\le$ order, such that $x'\le x$.
+This lemma gives a converse; it says that if $x'$ is a minimal useless element and $x'\le x$, then
+$x$ is also useless.
+
+\edef\lemminimalfinite{\the\thmcount}
+\proclaim Lemma {\advthm}. For any nonempty $U\subseteq {\NN_0}^r$, the set of minimal elements of
+$U$ (with respect to the $\le$ order) is finite.
+
+\proof We perform induction on $r$. If $r=1$, then it is clear that $U$ has exactly one minimal element.
+Now let $r>1$ and let $u$ be a minimal element of $u$. Then for every $v\in U$ with $u\not\le v$,
+there exists some $i$ and $t< u_i$ such that $v_i = t$. Let
+$$V(i,t) = \{v\in U : v_i = t\}$$
+for all $1\le i\le r$ and $0\le t<u_i$. Each set $V(i,t)$ is order-isomorphic to a subset of ${\NN_0}^{r-1}$,
+so by induction it has finitely many minimal elements. The number of $V(i,t)$ is $r\prod_{i=1}^r u_i$,
+and every minimal element of $u$ is either $u$ or a minimal element of some $V(i,t)$, so there are
+finitely many minimal elements in $U$.\slug
+
+We will need just one more lemma before we are able to prove Khovanskii's theorem. It shows that
+for any fixed $r$-tuple $x'$, the number of $x$ with $x'\le x$ and $\sigma(x) = n$
+is given by a polynomial in the variable $n$, with coefficients depending on $x'$ and $r$.
+
+\proclaim Lemma {\advthm}. Let $x'\in {\NN_0}^r$ and for $n\ge \sigma(x')$, let
+$$C(x', n) = \{n\in {\NN_0}^r : \sigma(x) = n,\,x'\le x\}.$$
+Then
+$$\bigl| C(x',n)\bigr| = {n-\sigma(x') + r-1 \choose r-1}.$$
+
+\proof Given $x\in C(x',n)$, map it to $x-x'$. This is a bijection from $C(x',n)$ to $C(0, n-\sigma(x')$.
+Now let $m = n-\sigma(x')$. The map $(x_1,\ldots,x_r) \mapsto (x_1,+1,\ldots, x_r+1)$ is a bijection
+from $C(0,m)$ to the set of $y\in \NN^r$ such that $y_1+\cdots+y_r = m+r$. Now the map
+$$(y_1,\ldots,y_r) \mapsto \{y_1, y_1+y_2, \ldots, y_1+\cdots+y_r\}$$
+is a bijection from the previous set to the set of subsets of $[m+r]$ that contain $m+r$. (It is
+inverted by the map $\{a_1, \ldots, a_r\} \mapsto (a_1, a_2-a_1, \ldots, a_r-a_{r-1})$.) But this final
+set has size ${m+r-1\choose r-1}$, so we are done.\slug
+
+Without further ado, let us now prove Khovanskii's theorem.
+
+\medskip\noindent {\it Proof of Theorem~{\thmkhovanskii}.}\enspace Let $U$ be the set of all
+useless $r$-tuples. By Lemma~{\lemminimalfinite}, the set $X\subseteq U$ of all minimal useless
+$r$-tuples is finite. Recall that $|nA|$ is the number of useful $x$ such that $\sigma(x) = n$,
+so using the notation of the previous lemma, we have
+$$|nA| = \bigl| C(0,n)\bigr| - \Bigl| \bigcup_{x'\in X} C(x',n)\Bigr|
+=\bigl| C(0,n)\bigr| - \sum_{Y\subseteq X} (-1)^{|Y|} \Bigl| \bigcap_{x'\in Y} C(x',n)\Bigr| $$
+But for any $Y\subseteq X$, $\bigcap_{x'\in Y} C(x',n) = C(x_Y, n)$, where $x_Y$ has for its
+$i$th coordinate the integer $\max_{y\in Y} y_i$. Hence every term in the inclusion-exclusion
+formula depends polynomially on $n$ once
+$$n\ge \sum_{1\le i\le r} \max_{x\in X} x_i.\noskipslug$$
 
 \advsect The Furstenberg--S\'ark\"ozy theorem
 

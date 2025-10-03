@@ -1,0 +1,141 @@
+\input fontmac
+\input mathmac
+
+\def\To{\Rightarrow}
+
+\maketitle{Math 242 Tutorial 4}{prepared by}{Marcel Goh}{2 October 2025}
+
+
+\bigskip
+
+\proclaim Problem 1. For any sets $A, B\subseteq \RR$, we define the {\it difference set}
+to be the set
+$$A - B = \{ a- b : a\in A, b\in B\}.$$
+Prove that for all sets $U,V,W\subseteq \RR$, we have the inequality
+$$|U-W| \le {|U-V| \cdot |V-W|\over |V|}.$$
+
+This
+is a very fundamental inequality in the field of additive combinatorics. It is called the
+{\it Ruzsa triangle inequality}, for its superficial resemblance to the ordinary triangle inequality.
+(When you learn about metric spaces, you'll learn that the resemblance is actually more
+than superficial.)
+
+\proof What we have to show can be rearranged to
+$$ |U-W| \cdot |V| \le |U-V|\cdot |V-W|.$$
+We are done then, if we can furnish an injective function from $(U-W)\times V$
+to $(U-V)\times (V-W)$.
+
+First we need to do some bookkeeping. For each $x\in U-W$, let
+$u(x)\in U$ and $w(x)\in W$ be such that $u(x) - w(x) = x$. (If there are multiple choices for
+this pair $\bigl( u(x), w(x)\bigr)$, just pick one.) Now we define a function.
+For $(x,v)\in (U-W)\times V$, we let
+$$f(x,v) = \bigl( u(x) - v, w(x) - v\bigr).$$
+By construction, the output of this function will be an element of $(U-V)\times(V-W)$, so we have
+$f : (U-W)\times V \to (U-V)\times (V-W)$.
+
+We now show that $f$ is injective. Suppose that $(x_1, v_1)\in (U-W)\times V$ and
+$(x_2, v_2)\in (U-W)\times V$ are such that $f(x_1,v_1) = f(x_2,v_2)$. Then
+we have
+$$\bigl( u(x_1) - v_1, w(x_1) - v_1 \bigr) = \bigr( u(x_2) - v_2, w(x_2) - v_2\bigr),$$
+so subtracting the second element of each pair from the first element, we have
+$$ u(x_1) - w(x_1) = u(x_2) - w(x_2).$$
+But by definition of the functions $u(x)$ and $w(x)$, we have $u(x_1) - w(x_1) = x_1$
+and $u(x_2) - w(x_2) = x_2$. So we have found that $x_1 = x_2$. Lastly, note that
+$$u(x_1) - v_1 = u(x_2) - v_2,$$
+so since we have found out that $x_1 = x_2$, we must also have $v_1 = v_2$.\slug
+
+Students of algebra will be delighted to realise that this proof did not use anything particular
+about $\RR$. The Ruzsa triangle inequality is valid in any group.
+
+\proclaim Problem 2. In class we took the least upper bound property as an axiom (the completeness axiom)
+and proved the nested intervals property as well as the Archimedean property.
+Assuming the nested intervals property and the Archimedean property as axioms, prove the
+least upper bound property.
+
+\proof Let $S\subseteq \RR$ be a nonempty set that is bounded from above. Let $a\in S$ and $b\in \RR$
+be an upper bound of $S$. We have $a\le b$, so we can let $a_1 = a$, $b_1 = b$, and call $I_1 = [a_1, b_1]$.
+Note that the length of this interval is $|I_1| = a_1 - b_1 = a-b$.
+
+We now define a sequence of nested intervals, starting with $I_1$. For $n\ge 1$, we assume that $a_n$
+and $b_n$ are already defined, and let $x_n$ be the midpoint $(b_n - a_n)/2$. There are two possibilities.
+\medskip
+\item{i)} If $x_n$ is an upper bound of $S$, then we let $a_{n+1} = a_n$ and $b_{n+1} = x_n$.
+\smallskip
+\item{ii)} If not, then let $a_{n+1} = x_n$ and $b_{n+1} = b_n$.
+\medskip
+Since $I_{n+1}$ is half the length of $I_n$ for all $n\in \NN$ and we had $|I_1| = a-b$, we have
+$|I_n| = (a-b)/2^{n-1}$. Next, since we only set $b_{n+1} = x_n$ if $x_n$ is an upper bound of $S$
+and otherwise we have $b_{n+1} = b_n$, we see that $b_n$ is an upper bound of $S$ for all $n\in \NN$.
+Lastly, note that $I_n$ always contains some element of $S$. This we show by induction. It is true for $n=1$,
+so for the induction step, suppose it's true for some $n\in \NN$. We want to show that $I_{n+1}$ contains
+some element of $S$. If $x_n$ is an upper bound of $S$, then $(x_n, b_n]$ does not contain any element
+of $S$, so $I_n = [a_n, x_n]$ must. If $x_n$ not an upper bound of $S$, then there must be some $y\in S$
+with $y>x$. But $b_n$ is an upper bound of $S$, so then in this case $I_n = [x_n, b_n]$ and $y$ is in
+this range.
+
+By the nested interval property, there is an element $s\in \bigcap_{n\in \NN} I_n$. The claim is that
+$s$ is the supremum of $S$. There are two things to show: that it is an upper bound of $S$, and that
+no smaller element can be an upper bound of $S$.
+
+Suppose, towards a contradiction, that there is some $y\in S$ with $y > s$. Let $\eps = y-s > 0$. By the
+Archimedean property, there is some $N\in \NN$ with $N > \log_2\bigl( (b-a)/\eps\bigr) + 1$. This can
+be rearranged to get
+$$\eps > {b-a \over 2^{N-1}}.$$
+Consider $I_N = [a_N , b_N]$, which has $b_N - a_N = (b-a) / 2^{N-1}$. Since $s\in I_N$, we have
+$s \ge a_N$, and
+$$ y = s+\eps \ge a_N + \eps > a_N + {b-a\over 2^{N-1}} = a_N + (b_N - a_N) = b_N.$$
+This contradicts the fact that $b_N$ is an upper bound of $S$. So we see that $s$ is an upper bound of $S$.
+
+Now let $t < s$. We must show that $t$ is not an upper bound of $S$.
+This time, set $\eps = s - t > 0$.
+By the Archimedean property again, we can pick $N\in \NN$ large enough so that
+$$\eps > {b-a \over 2^{N-1}} = b_N - a_N.$$
+Again we note that $s\in I_n = [a_N, b_N]$. Hence $s\le b_N$ and we have
+$$ t = s-\eps \le b_N - \eps < b_N - (b_N - a_N) = a_N.$$
+But since $I_N$ contains an element of $S$, there is some element of $S$ that is at least $a_N$, which
+implies that it is greater than $t$. We conclude that $t$ is not an upper bound of $S$, which
+settles the proof that $s = \sup S$.\slug
+
+\proclaim Problem 3. Show that the set $[0,1)$ is uncountable.
+
+\proof If we disallow infinite trailing sequences of $9$s, then every element $x\in [0,1)$ has a unique
+decimal representation as
+$$x = 0.d_1d_2d_3 \cdots,$$
+where, for all $n\in\NN$, $d_n$ is a digit from the set $\{0,1,\ldots,9\}$.
+
+Now we show that there is no surjective function $f : \NN\to [0,1)$. Let $f$ be any function
+from $f : \NN = [0,1)$. For all $n\in \NN$, let
+$$f(n) = 0.d_{n,1} d_{n,2} d_{n,3} \cdots,$$
+where we always use a representation of $f(n)$ that doesn't have an infinite trailing sequence of $9$s.
+The claim is that there is some $x\in [0,1)$ that differs from every $f(n)$ by at least one digit.
+
+Consider the diagonal sequence $d_{1,1}, d_{2,2}, d_{3,3}, \ldots$. For all $n$, define
+$$ c_n = \cases{d_{n,n} - 1,& if $d_{n,n} > 0$;\cr 1,& if $d_{n,n} = 0$.\cr}.$$
+Let $x$ be the element of $[0,1)$ with decimal expansion
+$$ x = 0.c_1 c_2 c_3 \cdots.$$
+Note that none of these digits are equal to $9$, so there is no infinite trailing sequence of $9$s
+in the decimal expansion of $x$. Furthermore, $f(n) \ne x$ for all $n\in \NN$, since $f(n)$ has
+the digit $d_{n,n}$ in the $n$th decimal place, whereas $x$ has the digit $c_n \ne d_{n,n}$. So
+$f$ is not surjective.
+
+We have proved that there is no surjection from $\NN$ to $[0,1)$, so {\it a fortiori} there is no bijection
+from $\NN$ to $[0,1)$. We conclude that $[0,1)$ is uncountable.\slug
+
+\proclaim Problem 4. Let $x$ be a real number. Prove that for every $\eps>0$
+there exist two rational numbers $q$ and $q'$ such that $q < x < q'$
+and $|q-q'|<\eps$.
+
+\proof We know from class that $\QQ$ is dense in $\RR$. We can apply this with
+$x-\eps/2$ and $x$ to get $q\in \QQ$ with
+$$ x - {\eps \over 2} < q < x.$$
+Then we can apply it with $x$ and $x + \eps/2$ to get $q'\in \QQ$ with
+$$ x< q' < x + {\eps \over 2}.$$
+By construction, we have $q < x < q'$, as desired. It remains to show that
+$ |q - q'| < \eps$. Well, we know that $q' < x+\eps/2$ and $q > x-\eps/2$.
+Negating the latter, we get $-q < -x + \eps/2$, and adding this to the former,
+we obtain
+$$|q-q'| = q' - q < {\eps\over 2} + {\eps \over 2} = \eps.$$
+So we are done.\slug
+
+
+\bye
