@@ -130,5 +130,3 @@ this definition, a little comment appears in italics.
 
 1. The Simpsons: Hit and Run (2003, Nintendo GameCube) [Started in 2024]
 
-</p>
-
