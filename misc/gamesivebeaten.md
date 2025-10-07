@@ -31,6 +31,7 @@ this definition, a little comment appears in italics.
 
 ### 2013
 
+1. Gone Home (2013, PC)
 1. Pokémon FireRed Version (2004, Game Boy Advance; remake of 1998, Game Boy)
 1. Pokémon Sapphire Version (2003, Game Boy Advance) [Beat Nuzlocke challenge in 2024]
 1. Pokémon White Version (2011, Nintendo DS)
