@@ -1,0 +1,111 @@
+\input fontmac
+\input mathmac
+
+\def\To{\Rightarrow}
+
+\maketitle{Math 242 Tutorial 5}{prepared by}{Marcel Goh}{9 October 2025}
+
+
+\bigskip
+
+\proclaim Problem \advthm. Prove that
+\medskip
+\item{a)} $1/a^n\to 0$ as $n\to \infty$, if $a>1$;
+\smallskip
+\item{b)} $a^n\to 0$ as $n\to \infty$, if $0<a<1$; and
+\smallskip
+\item{c)} $a^n \to 0$ as $n\to \infty$, if $-1<a<0$.
+\medskip
+
+\proof Let $b = a-1$, so that $b>0$. Now for $\eps > 0$ arbitrary, let $N > {1/(b\eps)}$.
+Then for all $n\ge N$,
+$$ \biggl| {1\over a^n} - 0\biggr| = {1\over a^n} = {1\over (1+b)^n}
+\le {1\over 1+nb} < {1\over nb} < {1\over Nb} < \eps$$
+by Bernoulli's inequality. This shows that $1/a^n\to 0$.
+
+For part (b), let $c = 1/a$. Then $c>1$ and $a^n = 1/c^n$. It follows from part (a) that
+$$\lim_{n\to\infty} a^n = \lim_{n\to\infty} {1\over c^n} = 0.$$
+
+For part (c), note that $0<|a|<1$, so we know that $|a|^n\to 0$ by part (b). But
+$$|a^n - 0| = \bigl| |a|^n - 0 \bigr|$$
+for all $n\in \NN$, so we see that $a^n\to 0$ as well.\slug
+
+\proclaim Problem \advthm. Prove that
+\medskip
+\item{a)} $2^n / n! \to 0$ as $n\to \infty$; and that
+\smallskip
+\item{b)} $n!/n^n \to 0$.
+\medskip
+
+\proof For part (a), note that $2/k \le 2/3$ for all $k\ge 3$. Hence
+$$ {2^n\over n!} = {2\over 1}\cdot {2\over 2}\cdot {2\over 3} \cdots {2\over n}
+\le {2\over 1}\cdot {2\over 2} \cdot \Bigl( {2\over 3}\Bigr)^{n-2}
+= 2\cdot \Bigl({3\over 2}\Bigr)^2 \Bigl( {2\over 3}\Bigr)^n
+= {9\over 2} \cdot \Bigl( {2\over 3}\Bigr)^n$$
+for all $n\ge 2$. We showed in class that $a^n \to 0$ as $n\to \infty$ whenever
+$a < 1$. We can apply this with $a = 2/3$ to see that
+$$\lim_{n\to \infty} {9\over 2} \cdot \Bigl( {2\over 3}\Bigr)^n = 0.$$
+In other words, for every $\eps > 0$ there exists $N\in \NN$ such that for all $n\ge N$,
+$${9\over 2} \cdot \Bigl( {2\over 3}\Bigr)^n < \eps.$$
+But then we see that
+$$0\le {2^n\over n!} \le {9\over 2} \cdot \Bigl( {2\over 3}\Bigr)^n < \eps,$$
+so
+$$\biggl| {2^n\over n!} - 0\biggr| <\eps$$
+for all $n\ge N$. Since $\eps > 0$ was arbitrary, we are done.
+
+For part (b), we expand
+$${n!\over n^n} = {1\over n}\cdot {2\over n} \cdots {n\over n} \le {1\over n}.$$
+Let $\eps > 0$ and pick $N > 1/\eps$. Then for all $n\ge N$, we have
+$$ \biggl| {n!\over n^n} - 0\biggr| = {n!\over n^n} \le {1\over n} < \eps,$$
+so we see that $n!/n^n \to 0$.\slug
+
+\proclaim Problem \advthm. Let $a>1$. Prove that $n/a^n\to 0$ as $n\to \infty$.
+
+\proof Let's start by seeing why we can't just do what we did for part (a) of Problem~1 above.
+Say we set $b = a-1$, so that $b>0$. Then for $n\in \NN$, we have
+$$ \biggl| {n\over a^n} - 0\biggr| = {n\over a^n} = {n\over (1+b)^n}
+\le {n\over 1+nb} < {n\over nb} = {1\over b}$$
+by Bernoulli's inequality, but now we're stuck, because $1/b > 0$.
+Note, however, that we were free to pick $b$ for the purposes
+of this proof, so we should try to set it to something that creates a larger power of $n$ in the
+denominator. This will cancel the $n$ in the numerator that is giving us problems.
+
+So let us set $b = \sqrt a - 1$. Since $\sqrt a > 1$ whenever $a > 1$, we still have $b>0$.
+For any $n\in \NN$, we have
+$$ a^n = \bigl((\sqrt a)^2\bigr)^n = (1+b)^{2n} = \bigl((1+b)^n\bigr)^2 \ge (1+nb)^2
+> n^2 b^2.$$
+Now let $\eps > 0$ be given and choose $N\in\NN$ with $N > 1/(\eps b^2)$. Then
+$$ \biggl| {n\over a^n} - 0\biggr| = {n\over a^n} < {n\over n^2 b^2} \le {1\over nb^2}
+\le {1\over Nb^2} <\eps$$
+for all $n\ge N$. Hence $n/a^n\to 0$.\slug
+
+\proclaim Problem \advthm. Let $x_n$ be a sequence that converges to some limit $x$. For each
+$n\in \NN$, let $a_n$ be the average
+$$a_n = {1\over n} \sum_{i=1}^n x_i.$$
+Show that $a_n$ converges to $x$ as well.
+
+\proof Note that
+$$\eqalign{
+|a_n - x| &= \biggl| {1\over n}\sum_{i=1}^n x_i  - x\biggr|
+= \biggl| {1\over n} \Bigl(\sum_{i=1}^n x_i - nx\Bigr)\biggr|
+= \biggl| {1\over n} \Bigl(\sum_{i=1}^n (x_i - x)\Bigr)\biggr|
+\le {1\over n}\sum_{i=1}^n |x_i - x|,
+}$$
+where in the last line we used the triangle inequality.
+
+Let $\eps > 0$ be given. Since $x_n$ converges to $x$, there exists $N_1 \in \NN$ such that
+for all $n\ge N_1$, $|x_n - x| <\eps/2$. This is how we will deal with the terms $|x_i - x|$ for
+$i\ge N_1$. But we cannot individually bound the terms $|x_i - x|$ when $i < N_1$. But the sum
+$$S = \sum_{i=1}^{N_1-1} |x_i - x|.$$
+is just a (possibly very large) finite number. Let $N_2 \in \NN$ be large enough to satisfy
+$N_2 \ge 2S/\eps$. Finally, let $N = \max\{N_1, N_2\}$. Then for any $n\ge N$ we see that
+$$\eqalign{
+|a_n - x| &\le {1\over n}\sum_{i=1}^{N_1 - 1} |x_i - x| + {1\over n} \sum_{i=N_1}^n |x_i - x| \cr
+&\le {S\over n} + {1\over n} \sum_{i=N_1}^n {\eps\over 2} \cr
+&\le {S\over N_2} + {n-N_1 + 1\over n}\cdot {\eps\over 2} \cr
+&\le {\eps \over 2} + {\eps\over 2} \cr
+&= \eps. \cr
+}$$
+This shows that $a_n \to x$ as $n\to\infty$.\slug
+
+\bye
