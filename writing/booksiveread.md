@@ -286,5 +286,7 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Stray Dogs_ (2022), Rawi Hage
 1. _Green Hills of Africa_ (1935), Ernest Hemingway
 1. _Proto_ (2025), Laura Spinney
+1. _The Odyssey_ (c. 8th century B.C.), Homer, translated by Emily Wilson
+1. _If the War Goes On_ (1946), Hermann Hesse
 
-
+I have a similar list for [video games]({{ site. baseurl }}/misc/gamesivebeaten.html) as well.
