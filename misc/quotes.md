@@ -47,3 +47,9 @@ These are some of my favourite quotes and blurbs about computer science, math, e
 >
 > &mdash; <cite>Gilles Deleuze</cite>
 
+> "J’ai compris à un certain moment qu’il ne fallait pas embarrasser
+> la vie de trop de poids, de trop de choses à faire, de ce qu’on
+> appelle une femme, des enfants, une maison de campagne, une
+> automobile."
+>
+> &mdash; <cite>Marcel Duchamp</cite>
