@@ -1,0 +1,139 @@
+\input fontmac
+\input mathmac
+
+\def\To{\Rightarrow}
+
+\maketitle{Math 242 Tutorial 7}{prepared by}{Marcel Goh}{30 October 2025}
+
+\bigskip
+
+\proclaim Problem \advthm. Let $x_1 > 2$ and $x_{n+1} = 1+\sqrt{x_n - 1}$ for all $n\in \NN$.
+\medskip
+\item{a)} Show that $(x_n)$ is decreasing and bounded from below.
+\smallskip
+\item{b)} Find the limit of $(x_n)$.
+\medskip
+
+\proof First we show that $x_n\ge 2$ for all $n\in\NN$. The case $n=1$ is
+given as a hypothesis. Moreover, if we assume that $x_n\ge 2$ for some $n\in \NN$, then $x_n-1 \ge 1$
+and $\sqrt{x_n-1}\ge \sqrt 1 = 1$ as well. Hence
+$$x_{n+1} = 1 + \sqrt{x_n - 1} \ge 1 + 1 = 2,$$
+and the result holds for all $n\in \NN$ by induction.
+
+Recall that $\sqrt u \le u$ for all $u\ge 1$ (this is immediate from the inequality $u\le u\cdot u$).
+Let $n\in \NN$. We showed in the previous paragraph that $x_n - 1 \ge 1$, so we have
+$\sqrt{x_n - 1} \le x_n - 1$. But then
+$$ x_{n+1} = 1+ \sqrt{x_n -1} \le x_n,$$
+so we see that the sequence $(x_n)$ is decreasing. We have settled part (a).
+
+For part (b), we claim that for all $n\ge \NN$,
+$$0\le x_n - 2 \le {x_1 - 2\over 2^{n-1}}.$$
+The first inequality was already shown in part (a). The second inequality we shall
+prove by induction on $n$. It clearly holds (with equality) for $n=1$. Then for $n\ge 1$,
+we have
+$$
+x_{n+1} - 2 = \sqrt{x_n -1} - 1 
+= {(x_n - 1) - 1\over (x_n-1)+1} 
+= {x_n - 2\over x_n}
+\le {x_n - 2\over 2}
+\le {x_1 - 2\over 2\cdot 2^{n-1}}
+= {x_1 - 2\over 2^n},
+$$
+where the first inequality we use is $x_n\ge 2$ and the second inequality is the induction hypothesis.
+Hence the claim holds for all $n\in \NN$.
+
+From here it's easy to show that $x_n \to 2$. Let $\eps > 0$ and let $N\in \NN$
+satisfy $N>\log_2\bigl((x_1 - 2)/\eps\bigr)$, which we can do
+by the Archimedean property. Then for all $n\ge N$,
+we have
+$$ |x_n - 2| \le {x_1 - 2\over 2^n} \le {x_1 - 2\over 2^{\log_2((x_1-2)/\eps)}}
+= {x_1 - 2\over (x_1 - 2)/\eps} = \eps,$$
+which is what we wanted to show.\slug
+
+Consider the sequence $y_n = x_n - 1$, so that we have $y_n > 1$ and $y_{n+1} = \sqrt{y_n}$ for all
+$n$. The exercise above showed that $\lim y_n = 1$, which explains why if you start with a number greater
+than $1$ in your calculator and then hit the square root button over and over, you end up getting closer
+and closer to $1$.
+
+\proclaim Problem \advthm. Determine the limits of the following sequences (the monotone convergence
+can be used to prove that each of these series converges, but we will gloss over this in this
+exercise).
+\medskip
+\item{a)} $\bigl((1+1/n)^{n+1}\bigr)$
+\smallskip
+\item{b)} $\bigl((1+1/(n+1))^n\bigr)$
+\smallskip
+\item{c)} $\bigl((1+1/n)^{2n}\bigr)$
+\smallskip
+\item{d)} $\bigl((1-1/n)^{n}\bigr)$
+\medskip
+
+\proof For part (a), note that
+$$ \lim_{n\to\infty} \biggl(1+{1\over n}\biggr)^{n+1}
+= \lim_{n\to\infty} \biggl(1+{1\over n}\biggr)^n \cdot \biggl(1+{1\over n}\biggr)
+= \lim_{n\to\infty} \biggl(1+{1\over n}\biggr)^n \cdot \lim_{n\to\infty} \biggl(1+{1\over n}\biggr)
+= e\cdot 1 = e,$$
+by the product law for limits. Likewise, for part (b) we have
+$$ \lim_{n\to\infty} \biggl(1+{1\over n+1}\biggr)^n
+= \lim_{n\to\infty} \biggl(1+{1\over n+1}\biggr)^{n+1} \bigg/ \biggl(1+{1\over n+1}\biggr)
+= \lim_{n\to\infty} \biggl(1+{1\over n+1}\biggr)^{n+1} \bigg/ \lim_{n\to\infty} \biggl(1+{1\over n+1}\biggr)
+= e.$$
+For part (c) we use the product law again to find that
+$$\lim_{n\to\infty} \biggl(1+{1\over n}\biggr)^{2n}
+= \lim_{n\to\infty} \biggl(1+{1\over n}\biggr)\cdot \biggl(1+{1\over n}\biggr)
+= \lim_{n\to\infty} \biggl(1+{1\over n}\biggr)\cdot \lim_{n\to\infty} \biggl(1+{1\over n}\biggr)
+= e\cdot e = e^2.$$
+Lastly, note that for all $n\in \NN$,
+$$\biggl(1-{1\over n}\biggr)^{-n} = \biggl({n-1\over n}\biggr)^{-n}
+= \biggl({n\over n-1}\biggr)^n = \biggl(1 + {1\over n-1}\biggr)^n.$$
+So
+$$\lim_{n\to\infty} \biggl(1-{1\over n}\biggr)^{-n}
+= \lim_{n\to\infty} \biggl(1 + {1\over n-1}\biggr)
+= \lim_{n\to\infty} \biggl(1 + {1\over n}\biggr)^{n+1} = e,$$
+by part (a). Then by the reciprocal law (proved last tutorial), we must have
+$$\lim_{n\to\infty} \biggl(1-{1\over n}\biggr)^{-n} = 1/e,$$
+settling part (d).\slug
+
+\proclaim Problem \advthm. Using the monotone convergence theorem (and without using the least
+upper bound property), prove the Archimedean property as well as the nested interval property.
+
+\proof First we prove the Archimedean property. Suppose, towards a contradiction, that there exists
+some $M\in \RR$ such that $n \le M$ for all $n\in \NN$. Consider $\NN$ as a sequence $(x_n)$, where
+$x_n = n$ for all $n\in \NN$. Then we have $x_{n+1} = 1+x_n$ for all $n\in \NN$, so $(x_n)$
+is monotone increasing, and $x_n$ is bounded above by $M$. By the monotone convergence theorem,
+$x_n$ converges to some limit, call it $L$. This $L$ satisfies
+$$L = \lim_{n\to\infty} x_{n+1} = \lim_{n\to\infty} (x_n + 1) = 1+ \lim_{n\to\infty} x_n = 1+L,$$
+so subtracting $L$ from both sides, we arrive at the nonsense statement $0=1$. We conclude that the
+Archimedean property is true.
+
+Now we prove the nested interval property. Let $I_n = [a_n, b_n]$ (where $a_n\le b_n$ for all $n\in \NN$)
+be a sequence of intervals with
+$$I_1\supseteq I_2 \supseteq I_3 \supseteq \cdots.$$
+Since $[a_n,b_n] \supseteq [a_{n+1}, b_{n+1}]$ for all $n\in \NN$, the sequence $(a_n)$ is monotone
+nondecreasing, and for all $n\in \NN$ one has $a_n\le b_n \le b_1$, so this sequence is also
+bounded from above. By the monotone convergence theorem, $(a_n)$ converges to a limit, call it $x$.
+
+First we show that $x\ge a_n$ for all $n\in \NN$. Suppose, for a contradiction, that there is
+some $k\in \NN$ such that $a_k > x$. Let $\eps = a_k - x> 0$, and by the definition of convergence
+there is some $N\in \NN$ such that for all $n\ge N$, $|a_n - x| < \eps$. But now, since $a_n$
+is monotone nondecreasing, choosing any $n\ge \max\{k+1,N\}$, we have
+$$\eps > |a_n - x| \ge a_n - x \ge a_k - x = \eps,$$
+which is a contradiction.
+
+Next we show that $x\le b_n$ for all $n\in \NN$. Suppose, for a contradiction, that there is
+some $k\in \NN$ such that $b_k < x$. Let $\eps = (x-b_k)/2$, and by the definition of convergence
+there is some $N\in \NN$ such that for all $n\ge N$, $|a_n - x| < \eps$. Now, letting
+$n\ge \max\{k, N\}$, we have
+$$a_n > x-\eps > x-2\eps = b_k \ge b_n,$$
+which contradicts our assumption that $a_n\le b_n$.
+
+We have shown that $x\in [a_n,b_n]$ for all $n\in \NN$, so
+$$x\in \bigcup_{n\in \NN} I_n,$$
+and our proof of the nested interval theorem is complete.\slug
+
+This, combined with Problem~2 of our tutorial on 2~October, shows that the monotone convergence
+theorem is logically equivalent to the least upper bound property. (And the nested interval
+property combined with the Archimedean property are together equivalent to either of these
+as well.)
+
+\bye

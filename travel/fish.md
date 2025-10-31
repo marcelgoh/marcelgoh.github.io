@@ -8,6 +8,7 @@ North America, freshwater:
 + Ausable River, N.Y. (northern pike, pumpkinseed, yellow perch, rock bass)
 + Berry Head Pond, Nfld. (brook trout)
 ![brookie]({{ site.baseurl }}/media/fish/brookie.jpg)
++ Chambly Canal, Que. (yellow perch)
 + Davis Lake, Ont. (smallmouth bass, rock bass)
 + Great Slave Lake, N.W.T. (northern pike)
 ![greatslavelake]({{ site.baseurl }}/media/fish/greatslavelake.jpg)
@@ -18,6 +19,7 @@ North America, freshwater:
 + Lac Odelin, Que. (northern pike)
 + Lac Sans Bout, Que. (creek chub)
 + Lac Vingt Sous, Que. (yellow perch)
++ Lachine Canal, Que. (yellow perch, pumpkinseed, round goby)
 + Red River, Man. (black bullhead)
 + Rivière du Diable, Que. (northern pike, fallfish)
 + Rivière des Prairies, Que. (shorthead redhorse, yellow perch)
@@ -25,7 +27,7 @@ North America, freshwater:
 + Rivière Matawin, Que. (fallfish, yellow perch)
 + Shannon Lake, B.C. (largemouth bass)
 + South Anna River, Va. (redbreast sunfish, fallfish)
-+ St. Lawrence River / Lachine Canal, Que. (yellow perch, pumpkinseed, round goby, tench)
++ St. Lawrence River, Que. (yellow perch, tench)
 
 Total number of species: 14
 
