@@ -1,0 +1,134 @@
+\input fontmac
+\input mathmac
+
+\def\To{\Rightarrow}
+
+\maketitle{Math 242 Tutorial 8}{prepared by}{Marcel Goh}{6 November 2025}
+
+\bigskip
+
+\proclaim Problem \advthm. Prove that the Bolzano--Weierstrass theorem implies the monotone
+convergence theorem (without using the least upper bound property or anything else we have
+shown to be equivalent to it).
+
+\proof Let $(x_n)$ be a monotone nondecreasing sequence that is bounded above; that is, there
+is $M\in \RR$ such that $x_n \le M$ for all $n\in \NN$. Then $x_n\in [x_1,M]$ for all
+$n\in \NN$ and by the Bolzano--Weierstrass theorem, there is a subsequence $(x_{n_k})$ of
+$(x_n)$ as well as some $x\in \RR$ such that $x_{n_k}\to x$ as $k\to\infty$.
+
+First we claim that $x_n \le x$ for all $n\in \NN$. If not, then there is some $r\in \NN$
+with $x_r > x$, and letting $\eps = x_r - x$, we see there must be some
+$K\in \NN$ such that $\bigl|x_{n_k} - x\bigr| \le \eps$ for all $k\ge K$. Now pick $k\ge K$
+large enough so that $r\le n_k$ (this we can do because $n_k$ is an infinite sequence).
+For this choice of $k$ we have
+$$\eqalign{
+x_r - x_{n_k} &= x_{n_r} - x - (x_{n_k} - x)
+= \eps - (x_{n_k} - x)
+\ge \eps - |x_{n_k} - x|
+> \eps - \eps 
+= 0,
+}$$
+which means that $x_r > x_{n_k}$, contradicting the monotonicity of $(x_n)$.
+
+Now we show that $(x_n)$ also converges to $x$.
+Let $\eps > 0$. Since the subsequence $(x_{n_k})$ converges to x, there is some $K\in \NN$ such that
+for all $k\ge K$,
+$$\bigl| x_{n_k} - x\bigr| < \eps.$$
+We choose $N = n_k$. Then for all $n\ge N$, we have
+$$ x - \eps < x_{n_k} = x_N \le x_n \le x,$$
+where $x_N \le x_n$ follows from monotonicity and the last inequality was
+proved in the previous paragraph.
+Hence in particular, $|x_n - x| < \eps$.\slug
+
+\proclaim Problem \advthm. Cauchy's criterion asserts that every Cauchy sequence converges to a limit.
+Assume only Cauchy's criterion and the Archimedean property, and prove the Bolzano--Weierstrass
+theorem. (Again, do not resort to the least upper bound property or anything else that we have
+shown is equivalent to it.)
+
+\proof Let $(x_n)$ be a sequence that is bounded; that is, there are $a,b\in \RR$ with $a\le b$
+such that
+$x_n\in [a, n]$ for all $n\in \NN$. We shall build a sequence $(x_{n_k})$ recursively.
+For the base case, let
+$a_1 = a$ and $b_1 = b$. The interval $[a_1, b_1]$ has infinitely many $x_n$ residing in it.
+Let $n_1$ be any integer with $x_{n_1}\in [a_1, b_1]$.
+
+Now for $k\ge 1$, assume that the interval $[a_k, b_k]$ has infinitely many $x_n$ in it. Let
+$c_k = (a_k + b_k)/2$ be the midpoint of this interval, and note that (at least) one of
+the two intervals $[a_k, c_k]$ and $[c_k, b_k]$ contain infinitely many elements of $(x_n)$.
+If it is the first, then let $a_{k+1} = a_k$ and $b_{k+1} = c_k$; otherwise,
+let $a_{k+1} = c_k$ and let $b_{k+1} = b_k$. Thus $[a_{k+1}, b_{k+1}]$ contains infinitely
+many members of $(x_n)$, and because of this, we can pick $n_{k+1} > n_k$ such that
+$x_{n_{k+1}}\in [a_{k+1}, b_{k+1}]$.
+
+It is easy to show by induction that $b_k - a_k \le (b-a)/2^{k-1}$ for all $k\in \NN$.
+From this, we can prove
+that the sequence $(x_{n_k})$ is Cauchy. Let $\eps > 0$ and pick $K > \log_2 \bigl( (b-a)/\eps\bigr) +1$
+by the Archimedean property. Then for any $i,j\ge K$, both $x_{n_i}$
+and $x_{n_j}$ are in the interval $[a_K, b_K]$, and consequently
+$$\bigl| x_{n_i} - x_{n_j}\bigr| \le b_K - a_K \le {b-a\over 2^{K-1}} < \eps,$$
+by our choice of $K$.
+
+But by Cauchy's criterion, every Cauchy sequence is convergent. Hence the subsequence
+$(x_{n_k})$ is convergent. This proves the Bolzano--Weierstrass theorem.\slug
+
+\medskip\boldlabel Divergence to $\mathbold\infty$
+or $\mathbold-\infty$. We now set up some definitions for the remainder of the tutorial.
+We shall say that a sequence $(x_n)$ {\it diverges to $\infty$} if for every
+$M\in \RR$ there exists some $N\in \NN$ such that $x_n > M$ for all $n\ge N$.
+We say that a sequence $(x_n)$ {\it diverges to $-\infty$} if for all $M\in \RR$ there exists
+some $N\in \NN$ such that $x_n < M$ for all $n\ge N$.A
+
+Note that ``diverging to $\infty$'' or ``diverging to $-\infty$'' is not the same as just
+``not converging to any $x\in \RR$''. For example, the sequence
+$$0,-1,1,0,-2,2,0,-3,3,\ldots$$
+does not converge to any $x\in \RR$, nor does it converge to either $-\infty$ or $\infty$. However,
+the following result about subsequences is true.
+
+\proclaim Problem \advthm.
+Show that for any sequence $(x_n)$ of real numbers, at least one of the following statements holds.
+\medskip
+\item{a)} There is a subsequence $(x_{n_k})$ of $(x_n)$ that diverges to $\infty$.
+\smallskip
+\item{b)} There is a subsequence $(x_{n_k})$ of $(x_n)$ that diverges to $-\infty$.
+\smallskip
+\item{c)} There is some $x\in \RR$ and a subsequence $(x_{n_i})$ of $(x_n)$ such that
+$(x_{n_i})$ converges to $x$ as $i\to\infty$.
+\medskip
+
+\proof Let $(x_n)$ be any sequence of real numbers.
+If (a) holds we are done. If (b) holds we are done. So we assume that (a) and (b)
+are both false, and our goal is to prove (c).
+
+Since (a) is false, the sequence $(x_n)$ does not diverge to $\infty$. Hence there exists
+$b \in \NN$ such that for all $N\in \NN$, there exists $n\ge N$ with $x_n \le b$.
+Let $n_1\ge 1$ such that $x_n\le b$, then let $n_2 > n_1$ such that $x_2\le b$, and so on.
+In this manner, we obtain a subsequence $(x_{n_k})$ that is bounded from above by $b$.
+
+Since (b) is false, the sequence $(x_{n_k})$ does not diverge to $-\infty$. So there
+is $a\in \NN$ such that for all $K\in \NN$ there is always some $k\ge K$ such that
+$x_{n_k} \ge a$. By logic similar to that in the previous paragraph, we see there is a subsequence
+$(x_{n_j})$ of $(x_{n_k})$ that is bounded from below by $a$, and hence contained in the
+interval $[a,b]$. (We have ``flattened'' out the notation here by simply redefining $n_j = n_{k_j}$.
+If we want to be extra precise
+with notation, we should have written $(x_{n_{k_j}})$,
+since this is a subsequence of $(x_{n_k})$, but this kind of pedantry only creates unreadable nonsense
+when we take subsequences of subsequences of subsequences, as in this proof.)
+
+We have found that there is a subsequence $(x_{n_j})$ of $(x_n)$ that is contained in the interval
+$[a,b]$. Hence by the Bolzano--Weierstrass theorem, there is a subsequence $(x_{n_i})$
+of $(x_{n_j})$ that converges to some limit $x\in \RR$. Of course, $(x_{n_i})$ is a subsequence
+of our original sequence $(x_n)$, so we are done.\slug
+
+This proof shows that $\RR\cup \{\infty, -\infty\}$ is a valid {\it compactification} of $\RR$.
+This terminology will make more sense once you learn more about topology.
+
+\proclaim Problem 4. Show that $(a^n)$ diverges to $\infty$ for any $a>1$.
+
+\proof Let $M\in \RR$ be given. If $M\le 1$, then since $a^n\ge a>1$ for all $n\in \NN$,
+we can simply pick $N=1$ and $a_n> M$ for all $n\ge N$. If $M>1$, then
+we can pick $N\in \NN$ satisfying $N>\log_a M > 0$, by using the Archimedean property.
+Then for all $n\ge N$, we have
+$$a^n \ge a^N > a^{\log_a M} = M.$$
+Since $M$ was arbitrary, we see that $(a^n)$ diverges to $\infty$.\slug
+
+\bye
