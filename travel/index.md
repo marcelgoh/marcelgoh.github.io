@@ -66,6 +66,11 @@ highlighting {French Guiana, Western Sahara, Crimea}, please email me. __Update:
 
 Closer to home, I've been to every province and every territory except Nunavut.
 
+### Future events
+
++ From 5 to 7 December 2025, I will be at the [2025 CMS Winter Meeting](https://winter25.cms.math.ca/),
+held in Toronto.
+
 ### Past events
 
 + From 3 to 7 June 2024, I attended a
