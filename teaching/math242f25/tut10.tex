@@ -1,0 +1,136 @@
+\input fontmac
+\input mathmac
+
+\def\To{\Rightarrow}
+
+\maketitle{Math 242 Tutorial 10}{prepared by}{Marcel Goh}{20 November 2025}
+
+\bigskip
+
+\proclaim Problem \advthm. Let $p\in \RR$ be a point contained in some interval $I$.
+Suppose that $f$ and $g$ are functions defined on $I\setminus\{p\}$ with
+$\lim_{x\to p} f(x) = L$ and $\lim_{x\to p} g(x) = M$ for some $L,M\in \RR$. Prove that
+\medskip
+\item{a)} $\lim_{x\to p} C\cdot f(x) = CL$ for all $C\in \RR$;
+\smallskip
+\item{b)} $\bigl( \lim_{x\to p} f(x) \bigr) \bigl(\lim_{x\to p} g(x)\bigr) = LM$; and
+\smallskip
+\item{c)} $\bigl( \lim_{x\to p} f(x) \bigr)\big/\bigl(\lim_{x\to p} g(x)\bigr) = L/M$,
+so long as $M\ne 0$ and $g(x)\ne 0$ for all $x\in I\setminus \{p\}$.
+
+\proof Let $x_n$ be a sequence in $I\setminus \{p\}$ that converges to $p$. Then
+$f(x_n)\to L$ as $n\to\infty$, and $g(x_n)\to M$ as $n\to \infty$.
+This whole question can now be solved using the laws that govern limits of sequences.
+
+For part (a), we use the fact that
+$$\lim_{n\to\infty} c\cdot f(x_n) = cL.$$
+For part (b), observe that
+$$\Bigl(\lim_{n\to\infty} f(x_n)\Bigr)\Bigl(\lim_{n\to\infty} g(x_n)\Bigr)
+= \lim_{n\to\infty} f(x_n) g(x_n) = LM.$$
+Lastly, for part (c) we have
+$$\lim_{n\to\infty} f(x_n)\Big/\lim_{n\to\infty} g(x_n)
+= \lim_{n\to\infty} {f(x_n) \over g(x_n)} = {L\over M}.$$
+
+All three parts now follow from the sequential definition of the limit, as well as
+the fact that $x_n$ was taken to be an arbitrary sequence.\slug
+
+\proclaim Problem \advthm. Let $f:\RR\to\RR$ be defined by
+$$f(x) = \cases{1,& {\rm if $x\in \QQ$;}\cr 0,& {\rm if $x\in \RR\setminus\QQ$.}}$$
+(This function is called the {\it Dirichlet function}.) Show that for any $c\in \RR$,
+the limit $\lim_{x\to c} f(x)$ does not exist.
+
+\proof Let $c\in \RR$ be given. By the density of $\QQ$ in $\RR$, for any $n\in \NN$
+there are infinitely many rational numbers in the ball $V_{1/n}(c)$. Hence there
+are also infinitely many rational numbers in the punctured ball $V^*_{1/n}(c)$. Hence
+we may construct a sequence $(r_n)$ in $\QQ\setminus\{c\}$ with $|r_n - c| < 1/n$
+for all $n\in \NN$. This sequence converges to $c$.
+
+But $\RR\setminus \QQ$ is also dense in $\RR$, so by the same logic as in the previous
+paragraph there is a sequence $(s_n)$ in $(\RR\setminus \QQ)\setminus\{c\}$ that converges
+to $c$. Now observe that $\lim_{n\to\infty} f(r_n) = 1$ and $\lim_{n\to\infty} f(s_n) = 0$,
+so $f(x)$ cannot have any limit at $x=c$.\slug
+
+\proclaim Problem \advthm. Let $f:\RR\to\RR$ be defined by
+$$f(x) = \cases{1/q,& {\rm if $x = p/q\in \QQ$ with $p\in \ZZ$, $q\in \NN$,
+and $\gcd(p,q) = 1$;}\cr
+0,& {\rm if $x\in \RR\setminus\QQ$.}}$$
+(This function is called {\it Thomae's function}, or the {\it modified Dirichlet function},
+or the {\it stars over Babylon}.)
+\medskip
+\item{a)} Show that $f$ is periodic with period $1$; that is, $f(x+n) = f(x)$ for all
+integers $n$ and all $x\in \RR$.
+\smallskip
+\item{b)} Show that for any $c\in \QQ$, we have $\lim_{x\to c} f(x)\ne f(c)$.
+\smallskip
+\item{c)} Show that for any $s\in \RR\setminus\QQ$ one has $\lim_{x\to s} f(x) = f(s)$.
+\medskip
+
+\proof
+Recall that the sum of an irrational number and a rational number is irrational,
+and that the quotient of an irrational number by a rational number is also irrational.
+
+Let $n\in \ZZ$ and $x\in \RR$. If $x$ is irrational, then $x+n$ is also irrational,
+and $f(x+n) = 0 = f(x)$. If $x$ is rational, we may express $x = p/q$ with $p\in \ZZ$,
+$q\in \NN$, and $\gcd(p,q) = 1$, so that $f(x) = 1/q$. Then
+$$ x+n = {p\over q} + n = {p+nq\over q}.$$
+If we can show that $\gcd(p+nq,q) = 1$, then $f(x+n) = q$ and we are done.
+Suppose that $d$ divides both $p$ and $q$; say, $p = rd$ and $q = sd$ for some integers
+$r$ and $s$. Then
+$$p + nq = rd + nsd = (r+ns)d,$$
+so $d$ divides $p+nq$ as well. On the other
+hand, if $d$ divides both $p+nq$ and $q$; say $p+nq = rd$ and $q = sd$ for some $r,s\in \ZZ$.
+Then
+$$p = (p+nq) - nq = rd - nsd = (r-ns)d,$$
+so $d$ divides $p$ as well. We have shown that
+the common divisors of $p$ and $q$ are exactly the common divisors of
+$p+nq$ and $q$. So $\gcd(p+nq,q) = \gcd(p,q) = 1$.
+
+Let $c\in \QQ$ be arbitrary and express $c = p/q$, where $p$ and $q$ are integers
+with $q> 0$ and $\gcd(p,q) = 1$. We have $f(c) = 1/q$ by the definition of $f$.
+The claim is that $\lim_{x\to c} f(x) \ne 1/q$.
+So we must show that there exists an $\eps$ such that
+for all $\delta > 0$, there exists $x\in \RR\setminus \{c\}$ with $|x-c| < \delta$
+and $\bigl| f(x) - 1/q \bigr| \ge \eps$.
+Fix any positive irrational number $\alpha$. We pick $\eps = 1/q$ and let
+$\delta > 0$ be arbitrary. Using the Archimedean property, choose $n\in \NN$ with
+$n>\alpha/\delta$ (so that $\alpha/n<\delta$), and set
+$$x = c + {\alpha\over n}.$$
+From the observation in the first paragraph of this proof,
+we see that $x$ is irrational, so $f(x) = 0$ and
+$\bigl| f(x) - 1/q\bigl| = 1/q \ge \eps$. On the other hand, we have
+$$|x-c| = \biggl| {\alpha\over n}\biggr| < \delta,$$
+so we conclude that the limit $\lim_{x\to c} f(x)$ does not exist.
+
+Now let $s$ be irrational, so that $f(s) = 0$. The claim
+is that $\lim_{x\to s} f(x)= 0$.
+Observe that $s = t+n$ for some integer $n$ and some $t\in (0,1)$,
+and if $\lim_{x\to t} f(x) = 0$ then
+$$\lim_{x\to s} f(x) = \lim_{x\to t} f(x+n) = \lim_{x\to t} f(x) = L$$
+as well.
+So to show that $\lim_{x\to s} f(x)= 0$,
+it suffices to show that $\lim_{x\to t} f(x)$.
+Let $\eps>0$ and pick $m\in \NN$ with $1/m <\eps$ using the Archimedean property.
+For each $i\in \{1,\ldots,m\}$, let $k_i$ be the integer with
+$$0 < {k_i\over i} < t < {k_i+1\over i}.$$
+For all $1\le i\le m$, let
+$d_i$ be the minimal distance between $s$ and either $k_i/i$ or $(k_i+1)/i$; that is,
+$$ d_i = \min\biggl\{ \biggl| t - {k_i\over i} \biggr|, \biggl| t - {k_i + 1\over i}\biggr|
+\biggr\}.$$
+Note that $d_i > 0$ for all $1\le i\le m$, so if we set
+$$\delta = \{d_1, \ldots, d_m\},$$
+then $\delta > 0$, and for all $1\le i\le m$, $|t - k_i/i|\ge \delta$ and
+$\bigl| t- (k_i + 1)/i\bigr| \ge \delta$. In other words, for all $1\le i\le m$,
+both of the rational
+numbers $k_i/i$ and $(k_i+1)/i$ are outside the ball $V_\delta(s)$. What this means
+is that any rational number in $V_\delta(t)$ must have a denominator
+greater than $m$. Hence for any $x\in \RR$ with $|x-t| < \delta$, either $x$ is
+irrational, in which case
+$$\bigl| f(x) - 0 \bigr| = |0-0| = 0 < \eps,$$
+or $x$ is rational, in which case $x$ can be written as $x = p/q$ with $p\in \ZZ$,
+$q > m$, and $\gcd(p,q) = 1$. In this second case,
+$$\bigl|f(x) - 0\bigr| = \biggl| {1\over q} - 0\biggr| = {1\over q} < {1\over m}
+\le \eps,$$
+and we have shown that $\lim_{x\to t} f(x) = 0$, as desired.\slug
+
+
+\bye

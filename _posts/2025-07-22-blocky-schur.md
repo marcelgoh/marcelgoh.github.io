@@ -23,7 +23,8 @@ from Chapter 3 of Rudin's 1962 book _Fourier Analysis on Groups_.
 
 Let $G$ be a locally compact abelian group. The set of all measures $\mu$ on $G$ forms a topological
 semigroup under convolution, and we shall say that a measure $\mu$ is _idempotent_ if $\mu * \mu = \mu$.
-By Parseval's identity, we have $\widehat\mu^2 = \widehat\mu$, so $\widehat\mu(a) = 1$ or $\widehat\mu(a) = 0$
+By Parseval's identity, we have $\widehat\mu^2 = \widehat\mu$, so $\widehat\mu(\gamma) = 1$
+or $\widehat\mu(\gamma) = 0$
 for all $\gamma$ in the dual group $\Gamma$ of $G$, and to $\mu$ we can identify the set
 
 $$S(\mu) = \{ \gamma\in \Gamma: \widehat\mu(\gamma) = 1\}.$$
