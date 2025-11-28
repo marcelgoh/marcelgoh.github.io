@@ -129,5 +129,6 @@ this definition, a little comment appears in italics.
 
 ### 2025
 
+1. Luigi's Mansion (2001, Nintendo GameCube)
 1. The Simpsons: Hit and Run (2003, Nintendo GameCube) [Started in 2024]
 
