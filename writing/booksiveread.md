@@ -288,5 +288,10 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _Proto_ (2025), Laura Spinney
 1. _The Odyssey_ (c. 8th century B.C.), Homer, translated by Emily Wilson
 1. _If the War Goes On_ (1946), Hermann Hesse
+1. _1Q84_ (2010), Haruki Murakami
+1. _Pick a Colour_ (2025), Souvankham Thammavongsa
+1. _The Progress of Love_ (1986), Alice Munro
+1. _A Hero of Our Time_ (1840), Mikhail Lermontov
+1. _Orlando_ (1928), Virginia Woolf
 
 I have a similar list for [video games]({{ site. baseurl }}/misc/gamesivebeaten.html) as well.

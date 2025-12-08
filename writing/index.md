@@ -15,6 +15,8 @@ how to buy an issue or submit your own work!
 
 Publications marked with an asterisk are nonfiction.
 
+__F5.__ ["Syazwani,"](https://ex-puritan.ca/syazwani)
+_[The Ex-Puritan](https://ex-puritan.ca/)_ __71__ (2025), online.  
 __*F4.__ "Lanterns,"
 _[The Malahat Review](https://www.malahatreview.ca/)_ __229__ (2025), 7--13. Winner of
 the 2024 Constance Rooke Creative Nonfiction Prize. Honourable Mention in the Personal Journalism category of Canada's National Magazine Awards.  
