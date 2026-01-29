@@ -66,6 +66,11 @@ highlighting {French Guiana, Western Sahara, Crimea}, please email me. __Update:
 
 Closer to home, I've been to every province and every territory except Nunavut.
 
+### Current events
+
++ From 12 January to 30 April 2026, I shall be a visiting student at the University of Cambridge,
+where I am being supervised by Timothy Gowers.
+
 ### Past events
 
 + From 5 to 8 December 2025, I was at the [2025 CMS Winter Meeting](https://winter25.cms.math.ca/),

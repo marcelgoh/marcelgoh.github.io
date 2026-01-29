@@ -56,9 +56,17 @@ relevant topics as I learn about them.
 Let $A$ and $B$ be finite subsets of an abelian group. We define the {\it sumset}
 $A+B = \{a+b : a\in A,\, b\in B\}$ as well as the {\it difference set}
 $A-B = \{a-b : a\in A,\, b\in B\}$. For a nonnegative integer $r$, the {\it $r$-fold iterated sumset}
-$rA$ is defined recursively by $0A = \{0\}$ and $rA = A+(r-1)A$. The goal of this first section
+$rA$ is defined recursively by $0A = \{0\}$ and $rA = A+(r-1)A$.
+
+Note that both $|A+B|$ and $|A-B|$ are trivially bounded above by $|A|\cdot |B|$, since the latter is
+the number of ways to choose an element $a$ from $A$ and an element $b$ from $B$.
+The trivial lower bound is $\min\bigl\{|A+B|,|A-B|\bigr\}\ge \max\bigl\{|A|, |B|\bigr\}$.
+Hence, a sumset $A+B$ can be thought of as large if its size is on the order of $|A|\cdot |B|$,
+and small if its size is on the order of $|A|$.
+
+The goal of this first section
 is to show that if the cardinality of
-a sumset $|A+B|$ is small compared to the size of the set $A$, then the difference
+a sumset $|A+B|$ is in this smaller regime, then the difference
 $rB-sB$ of two iterated sumsets must also be small relative to the size of $A$,
 in some sense. This result is called Pl\"unnecke's
 theorem as it follows from a statement given by H.~Pl\"unnecke in~1969, though this particular
@@ -1068,6 +1076,14 @@ a sufficient condition, which is the bound claimed in the theorem statement.\slu
 We can flip the roles of $\delta$ and $N$ to arrive at the following statement,
 equivalent to what we just proved: {\sl Any subset of $[N]$
 of size at least $300N/\log\log N$ contains a nontrivial arithmetic progression of length $3$.}
+
+\advsect Solymosi's sum-product bound
+
+[TODO: flesh out this section later.]
+
+The crux of Solymosi's argument lies in the following lemma.
+
+
 
 \advsect Khovanskii's theorem
 
