@@ -3,7 +3,7 @@ layout: page
 title: Fish I've caught
 ---
 
-North America, freshwater:
+__North America, freshwater:__
 
 + Ausable River, N.Y. (northern pike, pumpkinseed, yellow perch, rock bass)
 + Berry Head Pond, Nfld. (brook trout)
@@ -31,12 +31,16 @@ North America, freshwater:
 
 Total number of species: 14
 
-North America, saltwater:
+__North America, saltwater:__
 
 + Newport, R.I. (porgy)
 + Cayo Coco, Cuba (barracuda)
 
-Asia, freshwater:
+__Europe, freshwater:__
+
++ River Cam, England (european chub)
+
+__Asia, freshwater:__
 
 + Kallang River, Singapore (flowerhorn)
 ![flowerhorn]({{ site.baseurl }}/media/fish/kallang.jpg)
@@ -44,3 +48,4 @@ Asia, freshwater:
 I am pretty bad at taking pictures when fishing but I'll try to add more soon.
 
 Follow me on [iNaturalist](https://inaturalist.ca/people/marcelgoh)!
+

@@ -293,5 +293,14 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 1. _The Progress of Love_ (1986), Alice Munro
 1. _A Hero of Our Time_ (1840), Mikhail Lermontov
 1. _Orlando_ (1928), Virginia Woolf
+1. _This Is How You Lose the Time War_ (2019), Amal El-Mohtar and Max Gladstone
+1. _Little Snow Landscape_ (1933), Robert Walser
+1. _Remains of the Day_ (1989), Kazuo Ishiguro
+1. _Wild Geese_ (1925), Martha Ostenso
+1. _The Wayward Bus_ (1947), John Steinbeck
+
+### 2026
+
+1. _Life's Little Ironies_ (1894), Thomas Hardy
 
 I have a similar list for [video games]({{ site. baseurl }}/misc/gamesivebeaten.html) as well.
