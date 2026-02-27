@@ -38,11 +38,11 @@ __North America, saltwater:__
 
 __Europe, freshwater:__
 
-+ River Cam, England (european chub)
++ River Cam, England (common dace, common roach, european chub)
 
 __Asia, freshwater:__
 
-+ Kallang River, Singapore (flowerhorn)
++ Kallang River, Singapore (flowerhorn cichlid)
 ![flowerhorn]({{ site.baseurl }}/media/fish/kallang.jpg)
 
 I am pretty bad at taking pictures when fishing but I'll try to add more soon.
