@@ -39,11 +39,15 @@ __North America, saltwater:__
 __Europe, freshwater:__
 
 + River Cam, England (common dace, common roach, european chub)
+![roach]({{ site.baseurl }}/media/fish/roach.jpg)
 
 __Asia, freshwater:__
 
-+ Kallang River, Singapore (flowerhorn cichlid)
++ Kallang River, Singapore (cichlid, genus Vieja)
 ![flowerhorn]({{ site.baseurl }}/media/fish/kallang.jpg)
+I had thought this was a flowerhorn before some iNaturalist users corrected me, though they were unable to
+give a precise species. If you think you know what this fish is, chip in to the conversation
+[here](https://inaturalist.ca/observations/340507526)!
 
 I am pretty bad at taking pictures when fishing but I'll try to add more soon.
 
