@@ -38,15 +38,17 @@ __North America, saltwater:__
 
 __Europe, freshwater:__
 
-+ River Cam, England (common dace, common roach, european chub)
++ River Cam, England (common dace, common roach, common rudd, european chub)
 ![roach]({{ site.baseurl }}/media/fish/roach.jpg)
++ River Great Ouse, England (bleak, common roach, common rudd, european perch)
++ Vicar's Brook (Cambs.), England (common dace, european minnow)
 
 __Asia, freshwater:__
 
 + Kallang River, Singapore (cichlid, genus Vieja)
 ![flowerhorn]({{ site.baseurl }}/media/fish/kallang.jpg)
 I had thought this was a flowerhorn before some iNaturalist users corrected me, though they were unable to
-give a precise species. If you think you know what this fish is, chip in to the conversation
+identify its precise species. If you think you know what this fish is, chip in to the conversation
 [here](https://inaturalist.ca/observations/340507526)!
 
 I am pretty bad at taking pictures when fishing but I'll try to add more soon.
