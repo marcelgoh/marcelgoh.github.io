@@ -3,6 +3,9 @@ layout: page
 title: Fish I've caught
 ---
 
+I like catching fish and identifying them.
+Follow me on [iNaturalist](https://inaturalist.ca/people/marcelgoh)!
+
 __North America, freshwater:__
 
 + Ausable River, N.Y. (northern pike, pumpkinseed, yellow perch, rock bass)
@@ -29,19 +32,23 @@ __North America, freshwater:__
 + South Anna River, Va. (redbreast sunfish, fallfish)
 + St. Lawrence River, Que. (yellow perch, tench)
 
-Total number of species: 14
+Total number of species: 14  
+(In Canada: 13)
 
 __North America, saltwater:__
 
-+ Newport, R.I. (porgy)
++ Newport, R.I. (scup)
 + Cayo Coco, Cuba (barracuda)
 
 __Europe, freshwater:__
 
-+ River Cam, England (common dace, common roach, common rudd, european chub)
++ Hobson's Brook (Cambs.), England (threespine stickleback)
++ River Cam, England (bleak, common dace, common gudgeon, common roach, common rudd, european chub, european minnow)
 ![roach]({{ site.baseurl }}/media/fish/roach.jpg)
-+ River Great Ouse, England (bleak, common roach, common rudd, european perch)
++ River Great Ouse, England (bleak, common bream, common gudgeon, common roach, common rudd, european perch, silver bream)
 + Vicar's Brook (Cambs.), England (common dace, european minnow)
+
+Total number of species: 11
 
 __Asia, freshwater:__
 
@@ -50,8 +57,4 @@ __Asia, freshwater:__
 I had thought this was a flowerhorn before some iNaturalist users corrected me, though they were unable to
 identify its precise species. If you think you know what this fish is, chip in to the conversation
 [here](https://inaturalist.ca/observations/340507526)!
-
-I am pretty bad at taking pictures when fishing but I'll try to add more soon.
-
-Follow me on [iNaturalist](https://inaturalist.ca/people/marcelgoh)!
 

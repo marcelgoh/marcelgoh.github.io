@@ -137,4 +137,5 @@ this definition, a little comment appears in italics.
 
 1. Dredge (2023, PC)
 1. Shin Megami Tensei: Devil Survivor (2009, Nintendo DS) [Started in 2025]
+1. The Legend of Zelda: The Minish Cap (2004, Game Boy Advance)
 

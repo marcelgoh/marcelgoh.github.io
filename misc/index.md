@@ -33,6 +33,7 @@ __E1.__ [On the probability that two integers are relatively prime]({{ site.base
 
 + &#78241; [Caelan Atamanchuk](http://caelanatamanchuk.com)
 + &#78553; [Anna Brandenberger](https://abrandenberger.github.io/)
++ &#78243; [Marc-André Brochu](https://marcandrebrochu.github.io/)
 + &#78203; [Ben Cheung](https://sites.google.com/view/ben-tsun-ming-cheung/)
 + &#78215; [Tasmin Chu](https://publish.obsidian.md/tasmin-chu/Tasmin+Chu)
 + &#77848; [Luc Devroye](http://luc.devroye.org/)

@@ -302,5 +302,11 @@ Feel free to follow me on [Goodreads](https://www.goodreads.com/user/show/112436
 ### 2026
 
 1. _Life's Little Ironies_ (1894), Thomas Hardy
+1. _Barchester Towers_ (1857), Anthony Trollope
+1. _Someone Like You_ (1953), Roald Dahl
+1. _The Adventures of Sherlock Holmes_ (1892), Arthur Conan Doyle
+1. _The Angler's Companion_ (1958), Bernard Venables
+1. _The Party and Other Stories_ (1888--1896), Anton Chekhov
+
 
 I have a similar list for [video games]({{ site. baseurl }}/misc/gamesivebeaten.html) as well.
