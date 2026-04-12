@@ -42,13 +42,16 @@ __North America, saltwater:__
 
 __Europe, freshwater:__
 
++ Atkin's Water (Cambs.), England (common carp, common roach, common rudd)
 + Hobson's Brook (Cambs.), England (threespine stickleback)
++ Magpie Lake (Cambs.), England (common roach, common rudd, european perch)
 + River Cam, England (bleak, common dace, common gudgeon, common roach, common rudd, european chub, european minnow)
 ![roach]({{ site.baseurl }}/media/fish/roach.jpg)
++ River Granta, England (brown trout, common roach)
 + River Great Ouse, England (bleak, common bream, common gudgeon, common roach, common rudd, european perch, silver bream)
 + Vicar's Brook (Cambs.), England (common dace, european minnow)
 
-Total number of species: 11
+Total number of species: 13
 
 __Asia, freshwater:__
 
