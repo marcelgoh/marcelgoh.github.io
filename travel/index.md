@@ -89,6 +89,6 @@ Here is a [photo]({{ site.baseurl }}/travel/como-2022.html).
 + [Hitchhiking from Montréal to Edmonton]({{ site.baseurl }}/travel/hitchhiking.html)
 + [Cows under trees]({{ site.baseurl }}/travel/cows-under-trees.html)
 + [Yellow lights]({{ site.baseurl }}/travel/yellow-lights.html)
-+ [Fish]({{ site.baseurl }}/travel/fish.html)
++ [Places I've fished]({{ site.baseurl }}/travel/fish.html)
 + [My brother chasing chickens]({{ site.baseurl }}/travel/chickens.html)
 + [More photos]({{ site.baseurl }}/travel/photos.html)

@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Fish I've caught
+title: Places I've fished
 ---
 
-I like catching fish and identifying them.
+I like catching fish and identifying them. Here is my [life list]({{ site.baseurl }}/travel/lifelist.html).
 Follow me on [iNaturalist](https://inaturalist.ca/people/marcelgoh)!
 
 __North America, freshwater:__
@@ -38,7 +38,7 @@ Total number of species: 14
 __North America, saltwater:__
 
 + Newport, R.I. (scup)
-+ Cayo Coco, Cuba (barracuda)
++ Cayo Coco, Cuba (great barracuda)
 
 __Europe, freshwater:__
 

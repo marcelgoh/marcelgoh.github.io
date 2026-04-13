@@ -4,6 +4,11 @@ title: Yellow lights
 ---
 
 <figure class="figure">
+<img src="/media/travel/yellowlight/big_ben.jpg" class="center-image">
+<figcaption class="caption"><i>London, England, February 2026</i></figcaption>
+</figure>
+
+<figure class="figure">
 <img src="/media/travel/yellowlight/paris.jpg" class="center-image">
 <figcaption class="caption"><i>Paris, France, July 2022</i></figcaption>
 </figure>
