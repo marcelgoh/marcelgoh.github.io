@@ -33,6 +33,21 @@ div {
   margin-left: auto;
   margin-right: auto;
 }
+.valuable-flair{background-color:#eee;border:1px solid
+    #ccc;font-family:Arial,Liberation Sans,DejaVu
+Sans,sans-serif;font-size:14px;height:50px;padding:3px;width:200px;white-space:nowrap;overflow:hidden}.valuable-flair
+.gravatar{float:left}.valuable-flair .gravatar
+img{border:0;width:50px;-ms-interpolation-mode:bicubic}.valuable-flair
+.userInfo{text-align:right}.valuable-flair .userInfo
+.username{line-height:12px}.valuable-flair .userInfo .username
+img{border:0;padding-right:3px}.valuable-flair .userInfo .username
+a{font-weight:700;text-decoration:none}.valuable-flair
+.badge1{color:#fc0;font-size:120%;margin-left:3px}.valuable-flair
+.badge2{color:silver;font-size:120%;margin-left:3px}.valuable-flair
+.badge3{color:#C96;font-size:120%;margin-left:3px}.valuable-flair
+.speciescount{color:#444;font-size:120%;font-weight:700;margin-right:2px}.valuable-flair
+.badgecount{color:#808185;padding-left:1px}.valuable-flair
+.mod-flair{font-size:140%;font-weight:700;margin-left:3px}
 
 body {
     background-color: #fff3db;
@@ -46,30 +61,11 @@ th, td {
     padding: 2px;
 }
 </style>
+
 </head>
 
 <body>
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        processEscapes: true
-      }
-    });
-  </script>
-  <script
-    type="text/javascript"
-    charset="utf-8"
-    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-  >
-  </script>
-  <script
-    type="text/javascript"
-    charset="utf-8"
-    src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
-  >
-  </script>
 
 <a href="/travel/fish.html">Back</a>
 
@@ -90,6 +86,7 @@ Everything in the list was caught on rod and line (including micro species such 
 
 <h2>Freshwater</h2>
 
+<p>
 <table>
 <tr>
 <th>No.</th>
@@ -290,9 +287,11 @@ Everything in the list was caught on rod and line (including micro species such 
 
 
 </table>
+</p>
 
 <h2>Saltwater</h2>
 
+<p>
 <table>
 <tr>
 <th>No.</th>
@@ -316,6 +315,49 @@ Everything in the list was caught on rod and line (including micro species such 
 <td>Newport, R.I., U.S.A.</td>
 </tr>
 </table>
+</p>
 
+<!---
+<script>
+fetch('https://api.inaturalist.org/v2/users/marcelgoh?fields=species_count,observations_count,identifications_count,icon_url')
+    .then(response => response.json())
+    .then(response => {
+        document.getElementById("iNatSpecies").innerHTML = response.results[0].species_count;
+        document.getElementById("iNatObservations").innerHTML = response.results[0].observations_count;
+        document.getElementById("iNatIdentifications").innerHTML = response.results[0].identifications_count;
+        document.getElementById("iNatIconURL").innerHTML =
+            '<img class="inaticon" height=48 src="' + response.results[0].icon_url + '"/>';
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+    <div class="valuable-flair">
+    <div class="gravatar">
+    <div class="gravatar-wrapper-50"><img src="https://static.inaturalist.org/attachments/users/icons/9791355/f5ecedd3a7947fa4cce2768f3d5fd0d5-medium.png?1758547121" alt="marcelgoh&#39;s user avatar" width="50" height="50" class="bar-sm"></div>
+    </div>
+    <div class="userInfo">
+        <span class="username"><img src="http://inaturalist.org/favicon.ico" width="16"><a
+                href="https://www.inaturalist.ca/people/marcelgoh" dir="auto">marcelgoh</a></span>
+        <br />
+        <img src="https://www.inaturalist.ca/assets/favicon-2820897efd0b773a52e4e5a889eadc20db75035803eb864ae4a41d4cd7d52ab8.png"/>
+        <span id="iNatObservations"></span> &nbsp;
+        <img src="https://www.inaturalist.ca/assets/favicon-2820897efd0b773a52e4e5a889eadc20db75035803eb864ae4a41d4cd7d52ab8.png"/>
+        <span id="iNatSpecies"></span> &nbsp;
+        <img src="https://www.inaturalist.ca/assets/favicon-2820897efd0b773a52e4e5a889eadc20db75035803eb864ae4a41d4cd7d52ab8.png"/>
+        <span id="iNatIdentifications"></span>
+    </div>
+</body>
+</html>
+--->
+
+<hr>
+<a style="position:absolute; right:80px"
+    href="https://validator.w3.org/check?uri=referer"><img
+    src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01
+         Transitional" height="31" width="88"></a>
+<br>
+<div>
+   <h4>Copyright &copy; 2026 Marcel Goh</h4>
+</div>
+</body>
 </html>
 

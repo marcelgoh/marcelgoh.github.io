@@ -4,7 +4,6 @@ title: Places I've fished
 ---
 
 I like catching fish and identifying them. Here is my [life list]({{ site.baseurl }}/travel/lifelist.html).
-Follow me on [iNaturalist](https://inaturalist.ca/people/marcelgoh)!
 
 __North America, freshwater:__
 
@@ -60,4 +59,21 @@ __Asia, freshwater:__
 I had thought this was a flowerhorn before some iNaturalist users corrected me, though they were unable to
 identify its precise species. If you think you know what this fish is, chip in to the conversation
 [here](https://inaturalist.ca/observations/340507526)!
+
+__Recent catches:__
+
+<div
+  data-inat-widget
+  data-inat-source="marcelgoh"
+  data-inat-source-type="user"
+  data-inat-theme="light"
+  data-inat-layout="cards"
+  data-inat-limit="4"
+  data-inat-order-by="observed_on"
+  data-inat-quality="research,needs_id"
+  data-inat-show-grade="true"
+></div>
+<script src="https://glauberramos.github.io/inat/inat-widget.js"></script>
+
+Follow me on [iNaturalist](https://inaturalist.ca/people/marcelgoh)!
 
