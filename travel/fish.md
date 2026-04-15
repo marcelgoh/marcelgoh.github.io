@@ -62,18 +62,21 @@ identify its precise species. If you think you know what this fish is, chip in t
 
 __Recent catches:__
 
+This widget is powered by iNaturalist. Feel free to [follow me](https://inaturalist.ca/people/marcelgoh)
+there!
+
+<!-- iNaturalist Widget -->
 <div
   data-inat-widget
   data-inat-source="marcelgoh"
   data-inat-source-type="user"
-  data-inat-theme="light"
+  data-inat-theme="transparent-light"
   data-inat-layout="cards"
   data-inat-limit="4"
   data-inat-order-by="observed_on"
   data-inat-quality="research,needs_id"
-  data-inat-show-grade="true"
+  data-inat-radius="6"
 ></div>
 <script src="https://glauberramos.github.io/inat/inat-widget.js"></script>
 
-Follow me on [iNaturalist](https://inaturalist.ca/people/marcelgoh)!
 
