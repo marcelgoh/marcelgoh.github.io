@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Fun with Cayley tables &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Fun with Cayley tables</h1>
+<p class="date">16 October 2018</p>
+
+<div class="content">
+<p>It’s finally fall in Montréal and the semester is in full swing at
+McGill. Easily my favourite class this semester is <a
+href="https://www.mcgill.ca/study/2018-2019/courses/math-235">Algebra
+1</a>, which, so far, has been largely concerned with introductory group
+theory. The subject matter is fascinating because it teaches that the
+common-or-garden mathematical operations on numbers are just a couple of
+the many algebras that exist. Properties like associativity,
+commutativity, identity, and inverses don’t just apply to numbers but to
+a whole host of other mathematical objects as well, like symmetries and
+permutations. I wrote a Haskell program that analyzes group
+multiplication (Cayley) tables and in this post I wanted to go through
+some of the algorithms I used as well as outline some of the obstacles I
+faced.</p>
+<!--more-->
+<p>I first thought of making a tool to analyze Cayley tables while doing
+one of the homework assignments from the (free) textbook <a
+href="http://abstract.ups.edu">Abstract Algebra</a> by Tom Judson, which
+asks you to determine if a given Cayley table froms a group. The
+existence of inverses and the identity are easy to check just by
+looking, but associativity requires checking every triple of elements
+which is unfeasible to do by hand. (The question was actually meant to
+be solved in a cleverer manner than brute-force anyway, but that’s
+beside the point!) It took a couple of weeks and the assignment’s due
+date is long past due, but I finally finished the program.</p>
+<p>The source code is available <a
+href="https://github.com/marcelgoh/misc-programs/tree/master/haskell/Cayley">here</a>.
+Currently, it isn’t possible to compile an executable, but the program
+works great loaded into GHCi. ### Data structures I tried to keep my
+data representation simple, though when the program started getting
+bigger and the similarity between <code>[Element]</code> and
+<code>[[Element]]</code> started to get more confusing, I started to
+feel like I should have created more types to keep them distinct. In any
+case, here is how I represented group elements and the groups
+themselves:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Element</span> <span class="ot">=</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="op">|</span> <span class="dt">Char</span> <span class="dt">Char</span> <span class="op">|</span> <span class="dt">String</span> <span class="dt">String</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>         <span class="kw">deriving</span> (<span class="dt">Eq</span>, <span class="dt">Show</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Group</span> <span class="ot">=</span> <span class="dt">Group</span> [<span class="dt">Element</span>] [[<span class="dt">Element</span>]]</span></code></pre></div>
+<p>I defined a group as a set and a Cayley table, as opposed to a set
+and an operation, because it is difficult to describe operations between
+characters and strings in code. To define a numerical group in the more
+mathematical way, I put in a function that takes a set of integers and
+an operation (an anonymous function) and generates the group:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- creates a group given a set of integers and a binary operation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">groupFromOperation ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>) <span class="ot">-&gt;</span> <span class="dt">Group</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>groupFromOperation ints operation <span class="ot">=</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> set <span class="ot">=</span> <span class="fu">map</span> <span class="dt">Int</span> ints</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      table <span class="ot">=</span> <span class="fu">map</span> (\l <span class="ot">-&gt;</span> <span class="fu">map</span> <span class="dt">Int</span> l) <span class="op">$</span> <span class="fu">map</span> (\g <span class="ot">-&gt;</span> <span class="fu">map</span> (\x <span class="ot">-&gt;</span> operation g x) ints) ints</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">in</span> <span class="dt">Group</span> set table</span></code></pre></div>
+<p>So we can do something like this:</p>
+<pre><code>*Main&gt; tenGroup = groupFromOperation [x | x &lt;- [0..9], gcd x 10 == 1] (\x y -&gt; (x*y) `mod` 10)
+*Main&gt; printCayley tenGroup
+  * |   1   3   7   9
+----------------------
+  1 |   1   3   7   9
+  3 |   3   9   1   7
+  7 |   7   1   9   3
+  9 |   9   7   3   1</code></pre>
+<h3 id="printing-the-tables">Printing the tables</h3>
+<p>I’ve been working with Haskell for a couple months, but I still run
+into a lot of trouble whenever anything has to be printed to the screen.
+I ended up putting all the messy side-effecty code into a single
+<code>printCayley</code> function (It’s big and messy so I didn’t put it
+on this page, but do check it out in <code>Analyze.hs</code>. Working
+with the different possible underlying representations of an
+<code>Element</code> was a little bit challenging, but in the end the
+function prints out nice tables like this:</p>
+<pre><code>*Main&gt; printCayley quatGroup
+  * |   1  -1   i  -i   j  -j   k  -k
+--------------------------------------
+  1 |   1  -1   i  -i   j  -j   k  -k
+ -1 |  -1   1  -i   i  -j   j  -k   k
+  i |   i  -i  -1   1   k  -k  -j   j
+ -i |  -i   i   1  -1  -k   k   j  -j
+  j |   j  -j  -k   k  -1   1   i  -i
+ -j |  -j   j   k  -k   1  -1  -i   i
+  k |   k  -k   j  -j  -i   i  -1   1
+ -k |  -k   k  -j   j   i  -i   1  -1</code></pre>
+<p>Pretty neat, eh?</p>
+<h3 id="identity">Identity</h3>
+<p>To find the identity element, I simply checked if there was an
+element whose corresponding row and column matched the original ordering
+of the set exactly:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">getId ::</span> <span class="dt">Group</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Element</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>getId (<span class="dt">Group</span> set rows) <span class="ot">=</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> cols <span class="ot">=</span> getCols rows</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- checks if any element in set has the set itself as its row/col</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ot">      tryElem ::</span> [<span class="dt">Element</span>] <span class="ot">-&gt;</span> [[<span class="dt">Element</span>]] <span class="ot">-&gt;</span> [[<span class="dt">Element</span>]] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Element</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      tryElem setLeft rows cols <span class="ot">=</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> setLeft <span class="kw">of</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>          []   <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>          e<span class="op">:</span>es <span class="ot">-&gt;</span> <span class="kw">if</span> (((<span class="fu">head</span> rows) <span class="op">==</span> set) <span class="op">&amp;&amp;</span> (<span class="fu">head</span> cols) <span class="op">==</span> set)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">then</span> <span class="dt">Just</span> e</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">else</span> tryElem es (<span class="fu">tail</span> rows) (<span class="fu">tail</span> cols)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">in</span> tryElem set rows cols</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- checks if group has an identity element</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ot">hasId ::</span> <span class="dt">Group</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>hasId g <span class="ot">=</span> isJust <span class="op">$</span> getId g</span></code></pre></div>
+<p>If no identity was found, we don’t want anything returned, so I
+implemented a bunch of the functions with the <code>Maybe</code>, which
+was surprisingly easy to work with, even if it makes the outputs a
+little uglier. I hadn’t used it before but it was very similar to the
+<code>option</code> type I learned in Standard ML.</p>
+<h3 id="inverses">Inverses</h3>
+<p>To find inverses for each element, I found which element it
+multiplies with it on the right to give the identity, then checked that
+it also gives the identity when left-multiplied (because inverses are
+commutative).</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- given an Element and a Group, find the inverse of that Element in the Group</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ot">getInv ::</span> <span class="dt">Element</span> <span class="ot">-&gt;</span> <span class="dt">Group</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Element</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>getInv <span class="fu">elem</span> (<span class="dt">Group</span> set rows) <span class="ot">=</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> <span class="fu">group</span> <span class="ot">=</span> (<span class="dt">Group</span> set rows)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      identity <span class="ot">=</span> getId <span class="fu">group</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      rowOfElem <span class="ot">=</span> findRow <span class="fu">elem</span> <span class="fu">group</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- find the element that gives id in rowOfElem</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ot">      findInv ::</span> <span class="dt">Element</span> <span class="ot">-&gt;</span> [<span class="dt">Element</span>] <span class="ot">-&gt;</span> [<span class="dt">Element</span>] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Element</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      findInv <span class="fu">id</span> setLeft rowsLeft <span class="ot">=</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> rowsLeft <span class="kw">of</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>          []   <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>          e<span class="op">:</span>es <span class="ot">-&gt;</span> <span class="kw">if</span> e <span class="op">==</span> <span class="fu">id</span> <span class="kw">then</span> <span class="dt">Just</span> (<span class="fu">head</span> setLeft) <span class="kw">else</span> findInv <span class="fu">id</span> (<span class="fu">tail</span> setLeft) es</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">in</span> <span class="kw">case</span> (identity, rowOfElem) <span class="kw">of</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>       (<span class="dt">Just</span> <span class="fu">id</span>, <span class="dt">Just</span> elems) <span class="ot">-&gt;</span> <span class="kw">let</span> possibleInv <span class="ot">=</span> findInv <span class="fu">id</span> set elems</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                <span class="kw">in</span> <span class="kw">case</span> possibleInv <span class="kw">of</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                                                 <span class="co">-- check if (elem^{-1}*elem = id) as well</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                                     (<span class="dt">Just</span> p) <span class="ot">-&gt;</span> <span class="kw">if</span> dot p <span class="fu">elem</span> <span class="fu">group</span> <span class="op">==</span> identity</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                                                 <span class="kw">then</span> possibleInv</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                                                 <span class="kw">else</span> <span class="dt">Nothing</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                                     _        <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>       _                     <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span></code></pre></div>
+<p>Lots of pattern matching and <code>Just</code>s and
+<code>Nothing</code>s but overall a pretty straightforward procedure.
+Then I defined a function <code>hasInvs :: Group -&gt; Bool</code> that
+checks that every element in the group has an inverse.</p>
+<h3 id="associativity">Associativity</h3>
+<p>The associativity-checker makes use of <a
+href="https://en.wikipedia.org/wiki/Light%27s_associativity_test">Light’s
+associativity test</a> but without skipping any elements (it is hard to
+tell what is a proper generating subset algorithmically) so it is
+largely brute-force and runs in cubic time:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- checks associativity using Light&#39;s Associativity Test (runs with O(n^3))</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ot">associative ::</span> <span class="dt">Group</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>associative (<span class="dt">Group</span> set rows) <span class="ot">=</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> <span class="fu">group</span> <span class="ot">=</span> (<span class="dt">Group</span> set rows)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- create a table given a binary operation on the group&#39;s set</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ot">      makeTable ::</span> (<span class="dt">Element</span> <span class="ot">-&gt;</span> <span class="dt">Element</span> <span class="ot">-&gt;</span> <span class="dt">Element</span>) <span class="ot">-&gt;</span> [[<span class="dt">Element</span>]]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      makeTable op <span class="ot">=</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> construct acc elems <span class="ot">=</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>              <span class="kw">case</span> elems <span class="kw">of</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                []   <span class="ot">-&gt;</span> <span class="fu">reverse</span> acc</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                e<span class="op">:</span>es <span class="ot">-&gt;</span> construct ((<span class="fu">map</span> (\y <span class="ot">-&gt;</span> op e y) set) <span class="op">:</span> acc) es</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">in</span> construct [] set</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- define multiplication within the group</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="ot">      times ::</span> <span class="dt">Element</span> <span class="ot">-&gt;</span> <span class="dt">Element</span> <span class="ot">-&gt;</span> <span class="dt">Element</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      times g h <span class="ot">=</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        fromJust (dot g h <span class="fu">group</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- checks if an element is associative between every two other elements in the group</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ot">      sandwichElement ::</span> <span class="dt">Element</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>      sandwichElement a <span class="ot">=</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="co">-- define two new binary operations</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            star <span class="ot">=</span> makeTable (\x y <span class="ot">-&gt;</span> x <span class="ot">`times`</span> (a <span class="ot">`times`</span> y))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            circle <span class="ot">=</span> makeTable (\x y <span class="ot">-&gt;</span> (x <span class="ot">`times`</span> a) <span class="ot">`times`</span> y)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="kw">in</span> <span class="co">-- check if they still produce the same table</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>           equalGroup (<span class="dt">Group</span> set star) (<span class="dt">Group</span> set circle)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">in</span> <span class="kw">if</span> closed <span class="fu">group</span>  <span class="co">-- if group is not closed, it cannot possibly be associative</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>     <span class="kw">then</span> <span class="fu">foldr</span> (<span class="op">&amp;&amp;</span>) <span class="dt">True</span> (<span class="fu">map</span> sandwichElement set)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>     <span class="kw">else</span> <span class="dt">False</span></span></code></pre></div>
+<p>For each element <code>a</code> in the set, two new tables are
+constructed that correspond to <code>x(ay)</code> and
+<code>(xa)y</code>. If both these tables are still equal for every
+element in the set, then associativity holds for the original table. ###
+Combining everything All that’s left to do is to combine everything into
+an <code>isGroup</code> function! I also added a bonus
+<code>abelian</code> function that checks if a the operation is
+commutative on the set:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- checks if table represents a group by combining checks for closure, identity,</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- inverses, and associativity</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ot">isGroup ::</span> <span class="dt">Group</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>isGroup g <span class="ot">=</span> closed g <span class="op">&amp;&amp;</span> hasId g <span class="op">&amp;&amp;</span> hasInvs g <span class="op">&amp;&amp;</span> associative g</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- determines if given group is abelian</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ot">abelian ::</span> <span class="dt">Group</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>abelian (<span class="dt">Group</span> set rows) <span class="ot">=</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> cols <span class="ot">=</span> getCols rows</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">in</span> isGroup (<span class="dt">Group</span> set rows) <span class="op">&amp;&amp;</span> equalGroup (<span class="dt">Group</span> set rows) (<span class="dt">Group</span> set cols)</span></code></pre></div>
+<h3 id="whats-next">What’s next?</h3>
+<p>Like I said above, currently the <code>Main.hs</code> file is a dummy
+wrapper. Another day, I might create a main procedure that allows the
+program to be compiled into an executable. In any case, I hope you
+enjoyed reading the post and thinking about groups!</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Scanning syntactically significant spaces &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Scanning syntactically significant spaces</h1>
+<p class="date">14 April 2019</p>
+
+<div class="content">
+<p>Try saying the title five times fast! I’m on exchange this semester
+at Charles University in Prague and one of the classes I’m currently
+taking is an individual software project. In the class, we’re given the
+liberty to make any kind of software we want, provided we can find a
+supervisor willing to oversee the project. Currently, the area of
+computer science that interests me most is the design and theory of
+programming languages. so I decided to get my hands dirty with the
+practical side of that field by creating <a
+href="https://github.com/marcelgoh/opythn">OPythn</a>, a bytecode
+compiler and interpreter for a subset of Python. I selected OCaml as the
+implementation language because I like Haskell but thought it might be
+handy to be able to “break the rules” and write imperative code now and
+then. And I chose Python as the language to interpret because I’ve been
+trying to motivate myself to learn Python for a fair few months now.
+You’d be hard-pressed to find a better way to learn a language than to
+deconstruct it into bytecode! <!--more--></p>
+<h3 id="the-need-for-tools">The need for tools</h3>
+<p>Interpreting a language doesn’t happen all at once. In general, there
+are four main steps: lexing (scanning) the input into tokens; parsing
+the tokens to an abstract syntax tree; walking the abstract syntax tree
+to generate lower-level instructions; and finally executing these
+bytecode instructions one line at a time. About a month ago, I made a
+basic calculator program and in <a
+href="/2019/03/03/overengineering-calculator.html">the associated
+post</a> I went over a bit of this process as it related to reading and
+parsing mathematical expressions. The idea is the same when reading
+input from a programming language, except that there are dozens of
+significant characters and strings and hundreds of grammar rules to
+follow when parsing them into a tree that represents the semantics of
+the program. Early in the development of programming languages, this was
+done by hand — like I did with my calculator — and every language had
+its own specialised lexer and parser. As theoretical computer scientists
+studied languages and grammars more closely though, some of this
+research spilled into the industry in the form of tools that can spit
+out a lexer or parser, given a grammar specification.</p>
+<h3 id="unambiguous-grammars">Unambiguous grammars</h3>
+<p>The first lexer and parser generators, called <code>lex</code> and
+<code>yacc</code> respectively, were introduced in 1975 and they, along
+with similar tools, have been hugely popular in the compiler industry.
+We’re going to eventually focus on the lexer generator, but before that,
+I wanted to briefly go over what the parser generator expects.
+Programming languages usually have context-free grammars, which are
+equivalent to languages recognised by non-deterministic pushdown
+automata. This means that an automated process might have to backtrack a
+lot before finding a correct derivation. To work efficiently therefore,
+a parser generator requires a grammar to be in one of a few subclasses
+of languages that can be recognised deterministically. Python’s grammar
+is <span class="math inline">\(LL(1)\)</span>, meaning that can be
+parsed by a top-down parser performing leftmost derivation of a sentence
+using one token of lookahead. This is a pretty complex description, but
+in a nutshell it means that sometimes the grammar might force the
+automaton to make a choice, but if it can peek at the next token without
+reading it, the choice can always be resolved deterministically. These
+grammars are among the simplest to parse and many programming languages
+are <span class="math inline">\(LL(1)\)</span>.</p>
+<h3 id="a-little-snag">A little snag</h3>
+<p>The claim that Python’s grammar is <span
+class="math inline">\(LL(1)\)</span> relies heavily on how the code is
+tokenised. In most languages, whitespace is ignored. However, this is
+not the case in Python. Consider the following Python code.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>: i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>: <span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>:     <span class="bu">print</span>(i)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>:     j <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>:     <span class="cf">while</span> j <span class="op">&lt;</span> i:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>:         <span class="bu">print</span>(j)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>: <span class="bu">print</span>(<span class="st">&quot;done&quot;</span>)</span></code></pre></div>
+<p>If you’re familiar with how Python indentation indicates blocks,
+you’d know that after line 6, both while-loops are done, because line 7
+is at a lower indentation level than line 5, which opened the most
+recent while-loop, and it’s on the same indentation level as line 2,
+which opened the first while-loop. But imagine now that you’re a parser.
+At line 6, if you were ignoring whitespace, all you’d see is the
+<code>print("done")</code> on line 7, and it would be unclear whether
+the statement should belong in the first loop, the second one, or
+neither.</p>
+<p>We can fix this with the following rule for a while-loop:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode ocaml"><code class="sourceCode ocaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>while_loop = <span class="st">&quot;while&quot;</span> test <span class="ch">&#39;:&#39;</span> NEWLINE INDENT stmt+ DEDENT</span></code></pre></div>
+<p>It means that a while-loop is formed by this sequence of tokens/rules
+in order (<code>test</code> represents any expression that returns a
+boolean, while <code>stmt+</code> stands for one or more statements).
+Now we just need to worry about how to produce <code>INDENT</code> and
+<code>DEDENT</code> tokens from whitespace. We can’t interpret four
+whitespaces literally to mean an <code>INDENT</code>, because for one,
+different programmers use different amounts of spaces and tabs to indent
+their code. Also, we need to ignore whitespace if it keeps us on the
+same indentation level, like in lines 4 and 5 above.</p>
+<h3 id="the-simple-solution">The simple solution</h3>
+<p>The solution, implemented in the lexer, is to maintain two auxiliary
+data structures: a queue of tokens and stack of integers with a <span
+class="math inline">\(0\)</span> on top to start off. When the parser
+asks the lexer for a token by calling a function called, say,
+<code>read()</code>, the lexer first checks the queue to see if there
+are any tokens there. If so, it simply dequeues one and passes it to the
+parser. If not, it calls a function called <code>read_next()</code> to
+get the next sequence of characters from the buffer. This function is
+huge and there are plenty of rules for all sorts of patterns the lexer
+can encounter, but for the purposes of scanning indentation, we only
+worry about whitespace characters found at the beginning of a line.
+First we need to count the number of spaces there are. If this number is
+larger than the number at the top of the stack (which stores the current
+indentation level, we push the new value to the top of the indentation
+stack and return an <code>INDENT</code> to the parser. If the
+indentation level is equal, we can ignore the whitespace as no indenting
+or dedenting is required.</p>
+<p>The slightly more interesting case is when the number of spaces is
+less than the current indentation level. Then we need to pop all
+(strictly) larger values off the top of the stack and count how many
+there are. Now we check the stack to make sure the indentation matches
+the current number of spaces and raise an error if it does not. This
+catches improper indentation like in this example</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> j <span class="op">&lt;</span> i:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(j)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code></pre></div>
+<p>where <code>print(i)</code> can’t be matched to any preceding
+indentation level. Finally we enqueue all but one <code>DEDENT</code>
+for future calls of <code>read()</code> and return the last
+<code>DEDENT</code> to the parser. Here’s a full description:</p>
+<img class="fullwidth"src="/media/scanning-spaces/token-algorithm.png"
+alt="token-algorithm" />
+<p>and the original code we had would tokenise into</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode ocaml"><code class="sourceCode ocaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>: (ID <span class="st">&quot;i&quot;</span>) ASSIG (INT <span class="dv">0</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>: WHILE (ID <span class="st">&quot;i&quot;</span>) LT (INT <span class="dv">10</span>) COLON NEWLINE</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>: INDENT (ID <span class="st">&quot;print&quot;</span>) LPAREN (ID <span class="st">&quot;i&quot;</span>) RPAREN</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>: (ID <span class="st">&quot;j&quot;</span>) ASSIG (INT <span class="dv">0</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>: WHILE (ID <span class="st">&quot;j&quot;</span>) LT (ID <span class="st">&quot;i&quot;</span>) COLON NEWLINE</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>: INDENT (ID <span class="st">&quot;print&quot;</span>) LPAREN (ID <span class="st">&quot;j&quot;</span>) RPAREN</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>: DEDENT DEDENT (ID <span class="st">&quot;print&quot;</span>) LPAREN (STR <span class="st">&quot;done&quot;</span>) RPAREN</span></code></pre></div>
+<p>which can easily be handled by the parser.</p>
+<p>I hope this post gave you a little insight into how languages that
+use significant whitespace can be lexed to produce grammars that an
+<span class="math inline">\(LL(1)\)</span> or <span
+class="math inline">\(LR(1)\)</span> parser can deterministically read.
+I simplified the algorithm description here for presentation’s sake, but
+if you want to see the gory details in OCaml, you can check out the <a
+href="https://github.com/marcelgoh/opythn/blob/master/src/lexer.mll">lexer
+file</a> I wrote for OPythn. I know the article was a little on the dry
+side this time, so if you made it this far, here’s a reward: a little
+photo I took of the street outside my school in Prague!</p>
+<img class="fullwidth" src="/media/scanning-spaces/mala-strana.jpg" alt="mala-strana" />
+</div>
+
+</body>
+</html>

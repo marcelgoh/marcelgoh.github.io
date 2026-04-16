@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>The lattice of arithmetic progressions &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">The lattice of arithmetic progressions</h1>
+<p class="date">11 June 2021</p>
+
+<div class="content">
+<p><a href="https://jadhamdan.github.io/">Jad Hamdan</a> and I have
+uploaded our paper “<a href="https://arxiv.org/abs/2106.05949">The
+lattice of arithmetic progressions</a>” to the arXiv. In it we study the
+partially ordered set <span class="math inline">\(L_n\)</span> of all
+subsets of <span class="math display">\([n] = \{1,2,\ldots,n\}\)</span>
+that are arithmetic progressions, including the empty set and trivial
+progressions of length <span class="math inline">\(1\)</span> and <span
+class="math inline">\(2\)</span>. This poset is a lattice, but for <span
+class="math inline">\(n\geq 4\)</span>, it is not graded. We derive
+formulas and recurrences regarding the numbers <span
+class="math inline">\(p_{nk}\)</span> of arithmetic progressions in
+<span class="math inline">\([n]\)</span> of length <span
+class="math inline">\(k\)</span> as well as the number <span
+class="math inline">\(b_{nk}\)</span> of chains in <span
+class="math inline">\(L_n\)</span> of length <span
+class="math inline">\(k+2\)</span> that contain both <span
+class="math inline">\(\emptyset\)</span> and <span
+class="math inline">\([n]\)</span>. Let <span
+class="math inline">\(\mu_n\)</span> denote the Möbius function of the
+lattice; we give three short, independent proofs of the fact that for
+<span class="math inline">\(n\geq 2\)</span>, <span
+class="math inline">\(\mu_n(L_n) = \mu(n-1)\)</span>, where <span
+class="math inline">\(\mu\)</span> is the classical (number-theoretic)
+Möbius function. We finish off by computing the homology groups of the
+order complex <span class="math inline">\(\Delta_n\)</span> of <span
+class="math inline">\(L_n\)</span>.</p>
+<p><strong>Update.</strong> (<em>07 Sep 2021</em>) We have added a
+second version of the paper. Our good friend Jonah Saks has joined the
+cause, helping us to strengthen the topological results in the second
+half of the paper. In particular, we are now able to show that <span
+class="math inline">\(\Delta_n\)</span> has the homotopy type of a
+sphere or a point. <!--more--></p>
+<h3 id="construction-of-the-lattice">Construction of the lattice</h3>
+<p>An arithmetic progression is a set of the form <span
+class="math display">\[\big\{ a, a+r, a+2r, \ldots,
+a+(k-1)r\big\}\]</span> where <span class="math inline">\(a\in {\bf
+Z}\)</span> is the <em>base point</em>, <span class="math inline">\(r\in
+{\bf Z}\)</span> is the <em>step size</em>, and <span
+class="math inline">\(k\geq 0\)</span> is the <em>length</em>; when
+<span class="math inline">\(k=0\)</span> the only possibility is <span
+class="math inline">\(\emptyset\)</span>. Recall that a partially
+ordered set is a set <span class="math inline">\(X\)</span> with a
+binary relation <span class="math inline">\(\leq\)</span> on pairs of
+elements of <span class="math inline">\(X\)</span> that is reflexive,
+antisymmetric, and transitive (basically this means that it behaves like
+<span class="math inline">\(\leq\)</span> does on the common-or-garden
+number systems that we know). The poset <span
+class="math inline">\(L_n\)</span> is defined to be the set of
+progressions contained in <span class="math inline">\([n]\)</span>,
+under the order induced by the subset relation <span
+class="math inline">\(\subseteq\)</span>. Here are the Hasse diagrams of
+these posets for small <span class="math inline">\(n\)</span> (<span
+class="math inline">\(x&gt;y\)</span> if and only if <span
+class="math inline">\(x\)</span> is drawn with a larger vertical
+coordinate than <span class="math inline">\(y\)</span> and there is a
+path from <span class="math inline">\(x\)</span> to <span
+class="math inline">\(y\)</span> moving strictly down the diagram).</p>
+<img class="fullwidth" src="/media/lattice-arithmetic-progressions/hasse.png"
+alt="hasse" />
+<p>Recall that a <em>chain</em> (of length <span
+class="math inline">\(k\)</span>) in a poset is a set of elements <span
+class="math display">\[\{x_1, x_2, \ldots, x_{k+1}\}\]</span> with <span
+class="math inline">\(x_1 &lt; x_2 &lt; \cdots &lt; x_{k+1}\)</span>; a
+chain is <em>maximal</em> if it is not strictly contained in another
+one. Note that for <span class="math inline">\(n\geq 4\)</span>, the
+poset is not graded, because there are maximal chains of different
+length (find them in the picture above!). As is clear from the
+illustration, <span class="math inline">\(L_n\)</span> is a lattice.
+This means that for every <span class="math inline">\(x,y\in
+L_n\)</span> we can find a least upper bound <span
+class="math inline">\(x\vee y\)</span> and a greatest lower bound <span
+class="math inline">\(x\wedge y\)</span>.</p>
+<h3 id="the-möbius-function">The Möbius function</h3>
+<p>Fans of number theory will recognise the Möbius function as the
+function <span class="math display">\(\mu:{\bf N}\to \{-1,0,1\}\)</span>
+given by <span class="math inline">\(\mu(1) = 1\)</span> and, for <span
+class="math inline">\(n\geq 2\)</span>,</p>
+<p><span class="math display">\[\mu(n) = \begin{cases}
+(-1)^k, &amp; \hbox{if}\ n\ \text{is the product of}\ k\ \hbox{distinct
+primes;}\\
+0, &amp; \hbox{if}\ n\ \hbox{is divisible by a perfect square.}\\
+\end{cases}\]</span></p>
+<p>This turns out to be a special case of a Möbius function of a poset.
+For elements <span class="math inline">\(x,y\)</span> in a poset <span
+class="math inline">\(L\)</span> with <span class="math inline">\(x\leq
+y\)</span>, the <em>interval</em> <span
+class="math inline">\([x,y]\)</span> is the set <span
+class="math display">\[\{ z\in L : x \leq z \leq y\}\]</span> and a
+poset is said to be <em>locally finite</em> if every interval is finite.
+The <em>Möbius function</em> <span class="math inline">\(\mu_X\)</span>
+of a locally finite poset <span class="math inline">\(X\)</span> is the
+function from the set of intervals of <span
+class="math inline">\(X\)</span> to the complex field <span
+class="math inline">\({\bf C}\)</span> satisfying <span
+class="math inline">\(\mu_X([x,x]) = 1\)</span> for all <span
+class="math inline">\(x\in X\)</span> and</p>
+<p><span class="math display">\[\mu_X(x,y) = -\sum_{x\leq z&lt;y}
+\mu_X([x,z]).\]</span></p>
+<p>When <span class="math inline">\(X\)</span> is a lattice with minimum
+element <span class="math inline">\(\widehat 0\)</span> and maximum
+element <span class="math inline">\(\widehat 1\)</span>, we have <span
+class="math inline">\(X = [\widehat 0, \widehat 1]\)</span> and it makes
+sense to write <span class="math inline">\(\mu_X(X)\)</span>; we also
+abbreviate <span class="math inline">\(\mu_X([x,y])\)</span> by <span
+class="math inline">\(\mu_X(x,y)\)</span>. The classical Möbius function
+arises when we take <span class="math inline">\(X_n\)</span> to be the
+set of all positive divisors of a given integer <span
+class="math inline">\(n\)</span>, ordered by divisibility. Here we have
+<span class="math inline">\(\mu(n) = \mu_{X_n}(X_n)\)</span>.
+Equivalently, we can simply take <span class="math inline">\(X\)</span>
+to be the set of <em>all</em> positive integers, ordered by
+divisibility. This poset is locally finite, and we have <span
+class="math inline">\(\mu_X(x,y) = \mu(y/x)\)</span> for any interval
+<span class="math inline">\([x,y]\)</span> in the poset. Our paper
+centres around the fact that the Möbius function of our arithmetic
+progression lattice <span class="math inline">\(L_n\)</span> above is
+the same as the number-theoretic Möbius function.</p>
+<p><strong>Theorem 1.</strong> <em>For <span class="math inline">\(n\geq
+0\)</span>, let <span class="math display">\(\mu_n = \mu_{L_n}\)</span>
+be the Möbius function of the lattice of arithmetic progressions <span
+class="math inline">\(L_n\)</span>. We have <span
+class="math inline">\(\mu_0(L_0) = 1\)</span>, <span
+class="math inline">\(\mu_1(L_1) = -1\)</span>, and <span
+class="math inline">\(\mu_n(L_n) = \mu(n-1)\)</span> for <span
+class="math inline">\(n\geq 2\)</span>, where <span
+class="math inline">\(\mu\)</span> is the classical Möbius
+function.</em></p>
+<p>It turns out that this fact can be proved in many different ways,
+each revealing something a bit different about the lattice.</p>
+<h3 id="the-number-of-arithmetic-progressions">The number of arithmetic
+progressions</h3>
+<p>In a <a
+href="/2020/12/26/arithmetic-subsequences-permutation.html">previous
+paper</a> I worked on with Rosie Zhao, we used the fact that the number
+<span class="math inline">\(p_{nk}\)</span> of arithmetic progressions
+of size <span class="math inline">\(k\)</span> in <span
+class="math inline">\([n]\)</span> is given by</p>
+<p><span class="math display">\[p_{nk} = \sum_{r=1}^{\lfloor
+(n-1)/(k-1)\rfloor} (n-(k-1)r) =
+n \bigg\lfloor{n-1\over k-1}\bigg\rfloor - {k-1\over 2}
+\bigg(\bigg\lfloor {n-1\over k-1}\bigg\rfloor^2
++\bigg\lfloor{n-1\over k-1}\bigg\rfloor\bigg).\]</span></p>
+<p>(Actually, there was an extra factor of <span
+class="math inline">\(2\)</span> because back then it mattered whether
+the progression was in ascending or descending order.) For the
+asymptotic result of that paper, we only really needed the fact that
+<span class="math inline">\(p_{nk}\)</span> grew like <span
+class="math inline">\(n^2/k\)</span> (modulo a factor of two depending
+on if we consider progressions as sequences or as sets). To derive the
+Möbius function of <span class="math inline">\(L_n\)</span> though, we
+need to be a bit more exact. Here is a table of <span
+class="math inline">\(p_{nk}\)</span> for small values of <span
+class="math inline">\(n\)</span> and <span
+class="math inline">\(k\)</span>.</p>
+<img class="fullwidth" src="/media/lattice-arithmetic-progressions/pnk.png" alt="pnk" />
+<p>In our paper, we derive a formula for the bivariate generating
+function <span class="math inline">\(\sum_{k=0}^\infty \sum_{n=0}^\infty
+p_{nk}z^n q^k\)</span> and show that the number of elements in <span
+class="math inline">\(L_n\)</span> is</p>
+<p><span class="math display">\[|L_n| = 1 + n + \sum_{a=1}^{n-1}
+\sum_{r=1}^{n-1} \tau(r),\]</span></p>
+<p>where <span class="math inline">\(\tau(r) = \sum_{d\backslash r}
+1\)</span> is the number of divisors of <span
+class="math inline">\(r\)</span>. We then prove Theorem 1 by showing
+that <span class="math inline">\(\mu_n(L_n)\)</span> satisfies the
+recurrence</p>
+<p><span class="math display">\[M_n = -\sum_{k=0}^{n-1}
+\mu_k(L_k)p_{nk},\tag{$\ast$}\]</span></p>
+<p>and then showing that this recurrence is satisfied by the Möbius
+function. This is the most direct proof, stemming from the very
+definition of the Möbius function.</p>
+<h3 id="chains-and-the-order-complex">Chains and the order complex</h3>
+<p>Given a poset <span class="math inline">\(X\)</span>, one can define
+a simplicial complex <span class="math inline">\(\Delta\)</span> called
+the <em>order complex</em> of <span class="math inline">\(X\)</span>,
+whose vertices are the elements of <span
+class="math inline">\(X\)</span> and whose faces are chains in the
+poset. Then the reduced Euler characteristic <span
+class="math inline">\(\widetilde \chi (\Delta)\)</span> of <span
+class="math inline">\(\Delta\)</span> is the Möbius function of <span
+class="math inline">\(X\)</span> with maximum and minimum elements
+artificially adjoined. Because we already have a maximum and minimum in
+<span class="math inline">\(L_n\)</span>, to use this fact we will
+remove them to form a new poset <span
+class="math inline">\(L_n&#39;\)</span>. Letting <span
+class="math inline">\(\Delta_n\)</span> be the order complex of <span
+class="math inline">\(L_n&#39;\)</span>, we have <span
+class="math inline">\(\widetilde \chi(\Delta_n) = \mu_n(L_n)\)</span>.
+Let <span class="math inline">\(b_{nk}\)</span> be the number of chains
+in <span class="math inline">\(L_n\)</span> of length <span
+class="math inline">\(k\)</span>. Here is a table for small <span
+class="math inline">\(n\)</span> and <span
+class="math inline">\(k\)</span>.</p>
+<img class="fullwidth" src="/media/lattice-arithmetic-progressions/bnk.png" alt="bnk" />
+<p>We show that these quantities satisfy the recurrence</p>
+<p><span class="math display">\[ b_{nk} = \sum_{i=1}^{n-1} p_{ni}
+b_{i(k-1)}.\]</span></p>
+<p>Then the number of <span class="math inline">\(k\)</span>-dimensional
+faces of <span class="math inline">\(\Delta_n\)</span> is <span
+class="math inline">\(b_{n(k+2)}\)</span>, so that</p>
+<p><span class="math display">\[\mu_n(L_n) = \widetilde \chi(\Delta_n) =
+\sum_{k=1}^n (-1)^k b_{nk}.\]</span></p>
+<p>This can be worked out to give the recurrence <span
+class="math inline">\((\ast)\)</span>, giving an independent (but
+similar) proof of Theorem 1.</p>
+<h3 id="coatoms">Coatoms</h3>
+<p>We have derived <span class="math inline">\(\mu_n(L_n\)</span>, but
+do not yet have a general formula for <span
+class="math inline">\(\mu_n(x,y)\)</span> for an arbitrary interval
+<span class="math inline">\([x,y]\subseteq L_n\)</span>. To derive one,
+we study the set of coatoms. We say that <span
+class="math inline">\(y\)</span> <em>covers</em> <span
+class="math inline">\(x\)</span> in a poset if <span
+class="math inline">\(x &lt; y\)</span> and for any <span
+class="math inline">\(z\)</span> with <span class="math inline">\(x\leq
+z\leq y\)</span>, either <span class="math inline">\(z=x\)</span> or
+<span class="math inline">\(z=y\)</span>. A <em>coatom</em> in a lattice
+<span class="math inline">\(L\)</span> with maximum element <span
+class="math inline">\(\widehat 1\)</span> is an element covered by <span
+class="math inline">\(\widehat 1\)</span>.</p>
+<p><strong>Lemma 5.</strong> <em>Let <span
+class="math inline">\(A_n\subseteq L_n\)</span> be the set of coatoms.
+We have <span class="math display">\(A_1 = \{\emptyset\}\)</span>, <span
+class="math display">\(A_2 = \{1,2\}\)</span>, and <span
+class="math display">\(A_3 = \{12, 23, 23\}\)</span>. For <span
+class="math inline">\(n\geq 4\)</span>, we have <span
+class="math inline">\(A_n = B_n \cup C_n\)</span>, where <span
+class="math display">\(B_n = \{12\cdots (n-1),
+23\cdots n\}\)</span> and</em></p>
+<p><span class="math display">\[C_n = \begin{cases}
+\{1n\}, &amp; \hbox{if}\ n-1\ \hbox{is prime;} \\
+\{\{1, 1+p, 1+2p, \ldots, n\} : p\ \hbox{is a prime divisor of}\ n-1\},
+&amp; \hbox{otherwise.}
+\end{cases}\]</span></p>
+<p>After a rumble and a tumble, we give a general formula for <span
+class="math inline">\(\mu_n\)</span>.</p>
+<p><strong>Corollary 8.</strong> <em>Let <span
+class="math inline">\(P_1\)</span> and <span
+class="math inline">\(P_2\)</span> be arbitrary elements of <span
+class="math inline">\(L_n\)</span> and let <span
+class="math inline">\(C\)</span> be the set of elements covered by <span
+class="math inline">\(P_2\)</span>. We have</em></p>
+<p><span class="math display">\[\mu_n(P_1, P_2) = \begin{cases}
+(-1)^k, &amp; \hbox{if}\ P_1\ \hbox{is the meet of}\ k\ \hbox{elements
+of}\ C; \\
+0,&amp; \hbox{if}\ P_1\ \hbox{is not expressible as a meet of elements
+in}\ C. \\
+\end{cases}\]</span></p>
+<p>This allows us to give a proof that <span
+class="math inline">\(\mu_n(L_n) = \mu(n-1)\)</span> which is of a very
+different flavour than the previous two.</p>
+<h3 id="homology-of-the-order-complex">Homology of the order
+complex</h3>
+<p>The description of the coatoms of <span
+class="math inline">\(L_n\)</span> in fact allows us to compute
+something strictly stronger than the Möbius function of <span
+class="math inline">\(L_n\)</span>. It allows us to derive the homology
+groups of the order complex <span
+class="math inline">\(\Delta_n\)</span>.</p>
+<p><strong>Lemma 9.</strong> <em>For <span class="math inline">\(n\geq
+4\)</span>, let <span class="math inline">\(L_n\)</span> be the lattice
+of arithmetic progressions and let <span
+class="math inline">\(\Delta_n\)</span> be its order complex. Let <span
+class="math inline">\(\widetilde{H}_i(\Delta_n, {\bf Z})\)</span> be the
+<span class="math inline">\(i\)</span>th reduced homology group of <span
+class="math inline">\(\Delta_n\)</span>. If <span
+class="math inline">\(n-1\)</span> is squarefree and equal to the
+product of <span class="math inline">\(k\)</span> distinct primes,
+then</em></p>
+<p><span class="math display">\[\widetilde H_i(\Delta_n, {\bf Z}) =
+\begin{cases}
+{\bf Z}, \hbox{if}\ i=k; \\
+0, \hbox{otherwise.} \\
+\end{cases}\]</span></p>
+<p><em>If <span class="math inline">\(n-1\)</span> is not squarefree,
+then all the homology groups of <span
+class="math inline">\(\Delta_n\)</span> are trivial.</em></p>
+<p>Because the reduced Euler characteristic can be expressed as an
+alternating sum of ranks of reduced homology groups, this is a strictly
+stronger result than Theorem 1.</p>
+<h3 id="left-modularity-and-comodernism">Left-modularity and
+comodernism</h3>
+<p>An element <span class="math inline">\(m\)</span> in a lattice <span
+class="math inline">\(L\)</span> is <em>left-modular in <span
+class="math inline">\(L\)</span></em> if for all <span
+class="math inline">\(x&lt;y\in L\)</span>, <span
+class="math inline">\((x\vee m)\wedge y = x\vee(m\wedge y)\)</span>. The
+lattice <span class="math inline">\(L\)</span> is <em>comodernistic</em>
+if every interval <span class="math inline">\([x,y]\subseteq L\)</span>
+has a coatom which is left-modular in <span
+class="math inline">\([x,y]\)</span>. We spend a section of our paper
+proving the following theorem.</p>
+<p><strong>Theorem 11.</strong> <em>For all <span
+class="math inline">\(n\ge 0\)</span>, the lattice <span
+class="math inline">\(L_n\)</span> is comodernistic.</em></p>
+<p>The notion of comodernism was introduced by J. Schweig and R.
+Woodroofe [<em>Advances in Mathematics</em> <strong>313</strong> (2017),
+537–563].</p>
+<h3 id="el-labelability-homotopy-type-and-complements">EL-labelability,
+homotopy type, and complements</h3>
+<p>In the final section of our paper, we use previous lemmas to prove
+three further results.</p>
+<p><strong>EL-labelability.</strong> Given a lattice <span
+class="math inline">\(L\)</span>, we let <span
+class="math inline">\(E(L)\)</span> be the set of all <span
+class="math inline">\(x,y\in L\)</span> such that <span
+class="math inline">\(y\)</span> covers <span
+class="math inline">\(x\)</span> (these are the edges in the Hasse
+diagram). We say that a function <span class="math inline">\(\lambda :
+E(L)\to {\bf Z}\)</span> is an <em>ER-labeling</em> if for every
+interval <span class="math inline">\([x,y]\subseteq L\)</span>, there is
+a unique maximal chain <span class="math inline">\(x = x_0 &lt; x_1 &lt;
+\cdots &lt; x_s = y\)</span> with increasing labels, that is, with</p>
+<p><span class="math display">\[\lambda(x_0, x_1)&lt;\lambda(x_1, x_2)
+&lt;\cdots&lt; \lambda(x_{s-1}, x_s).\]</span></p>
+<p>We can define a lexicographic partial order <span
+class="math inline">\(\preceq\)</span> on the set <span
+class="math inline">\({\bf Z}\)</span> of finite sequences of integers
+by declaring <span class="math inline">\((a_1, \ldots, a_m)\preceq (b_1,
+\ldots, b_n)\)</span> if either <span class="math inline">\(a_i =
+b_i\)</span> for all <span class="math inline">\(1\le i\le m\)</span>
+and <span class="math inline">\(m\le n\)</span> or else <span
+class="math inline">\(a_i&lt;b_i\)</span> for the smallest <span
+class="math inline">\(i\)</span> with <span class="math inline">\(a_i
+\ne b_i\)</span>. The function <span
+class="math inline">\(\lambda\)</span> above defines a map <span
+class="math inline">\(\overline\lambda\)</span> from chains in <span
+class="math inline">\(L\)</span> to tuples of positive integers; namely,
+if <span class="math inline">\(c\)</span> is the chain formed by <span
+class="math inline">\(x_0&lt;x_1&lt;\cdots&lt;x_s\)</span>, then</p>
+<p><span class="math display">\[\overline\lambda(c) =
+\big(\lambda(x_0,x_1), \lambda(x_1, x_2), \ldots, \lambda(x_{s-1},
+x_s)\big).\]</span></p>
+<p>We define an <em>EL-labeling</em> to be an ER-labeling to be an
+ER-labeling with the further property that for all <span
+class="math inline">\([x,y]\)</span> the unique increasing maximal chain
+<span class="math inline">\(m\)</span> has <span
+class="math inline">\(\overline\lambda(m)\preceq
+\overline\lambda(m&#39;)\)</span> for all other maximal chains <span
+class="math inline">\(m&#39; \in [x,y]\)</span>. The fact that <span
+class="math inline">\(L_n\)</span> is comodernistic immediately implies
+that <span class="math inline">\(L_n\)</span> is EL-labelable, by a
+result of T. Li [<em>Journal of Combinatorial Theory, Series A</em>
+<strong>177</strong> (2021) 105334].</p>
+<p><strong>Homotopy type.</strong> A simplicial complex <span
+class="math inline">\(\Delta\)</span> is <em>nonpure shellable</em> if
+its maximal faces can be ordered <span class="math inline">\(C_1,C_2,
+\ldots, C_m\)</span> such that for all <span class="math inline">\(2\le
+k\le m\)</span>, the maximal faces in the complex <span
+class="math inline">\((\bigcup_{i=1}^{k-1} C_i) \cap C_k\)</span> all
+have dimension <span class="math inline">\(\dim C_k -1\)</span>. A
+nonpure shellable complex is homotopy equivalent to a wedge of spheres.
+EL-labelable posets are nonpure shellable, so <span
+class="math inline">\(\Delta_n\)</span> has the homotopy type of a wedge
+of spheres. Lemma 9 can then be applied to show the following
+theorem.</p>
+<p><strong>Theorem 12.</strong> <em>Let <span
+class="math inline">\(\Delta_n\)</span> be the order complex of the
+lattice <span class="math inline">\(L_n\)</span>. If <span
+class="math inline">\(n-1\)</span> is not squarefree, then <span
+class="math inline">\(\Delta_n\)</span> is contractible. Otherwise,
+<span class="math inline">\(\Delta_n\)</span> has the homotopy type of
+the sphere <span class="math inline">\(S^k\)</span>, where <span
+class="math inline">\(k\)</span> is the number of distinct primes
+dividing <span class="math inline">\(n-1\)</span>.</em></p>
+<p><strong>Complements.</strong> As a last miscellaneous theorem, we
+show that <span class="math inline">\(L_n\)</span> is complemented if
+and only if <span class="math inline">\(n-1\)</span> is squarefree.</p>
+</div>
+
+</body>
+</html>

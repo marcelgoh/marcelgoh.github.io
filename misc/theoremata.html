@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Theoremata &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Theoremata</h1>
+
+<div class="content">
+<p><strong>Theorema.</strong> Sint <span
+class="math inline">\(G\)</span> et <span
+class="math inline">\(H\)</span> greges, <span
+class="math inline">\(\phi : G \rightarrow H\)</span> morphismus gregum,
+et sit <span class="math inline">\(K = \text{ker}\ \phi\)</span>. Sit
+<span class="math inline">\(\psi : G \rightarrow G/K\)</span> morphismus
+canonicus. Tum existit isomorphismus unicus <span
+class="math inline">\(\eta : G/K \rightarrow \phi(G)\)</span> ut <span
+class="math inline">\(\phi = \eta\psi\)</span>.</p>
+<p><em>Demonstratio.</em> Scimus <span class="math inline">\(K\)</span>
+normalem in <span class="math inline">\(G\)</span> esse. Definimus <span
+class="math inline">\(\eta : G/K \rightarrow \phi(G)\)</span> ubi <span
+class="math inline">\(\eta(gK)=\phi(g)\)</span>, et demonstramus <span
+class="math inline">\(\eta\)</span> functio esse. Si <span
+class="math inline">\(g_1K = g_2K\)</span>, existit <span
+class="math inline">\(k\in K\)</span> ut <span
+class="math inline">\(g_1k = g_2\)</span>; ergo,</p>
+<p><span class="math display">\[\eta(g_1 K) = \phi(g_1) =
+\phi(g_1)\phi(k) = \phi(g_1k) = \phi(g_2) = \eta(g_2K).\]</span></p>
+<p>Tum <span class="math inline">\(\eta\)</span> selectione testis
+classis lateralis non dependet et congruentia <span
+class="math inline">\(\eta\)</span> unica est quod <span
+class="math inline">\(\phi = \eta\psi\)</span>. Nunc demonstramus <span
+class="math inline">\(\eta\)</span> morphismum esse:</p>
+<p><span class="math display">\[
+\begin{align*}
+    \eta(g_1Kg_2K) &amp;= \eta(g_1g_2K)\\
+    &amp;= \phi(g_1g_2)\\
+    &amp;= \phi(g_1)\phi(g_2)\\
+    &amp;= \eta(g_1K)\eta(g_2K).
+\end{align*}
+\]</span></p>
+<p>Functio <span class="math inline">\(\eta\)</span> superiectiva est.
+Volumus demonstrare <span class="math inline">\(\eta\)</span> iniectivam
+esse. Sint <span class="math inline">\(g_1K,g_2K\in G/K\)</span> ut
+<span class="math inline">\(\eta(g_1K)=\eta(g_2K)\)</span>. Tum <span
+class="math inline">\(\phi(g_1)=\phi(g_2)\)</span>. Itaque <span
+class="math inline">\(\phi(g_1^{-1}g_2) = e\)</span> et <span
+class="math inline">\(g_1^{-1}g_2\in \text{ker}\ \phi\)</span>; ergo,
+<span class="math inline">\(g_1^{-1}g_2K = K\)</span>, id est <span
+class="math inline">\(g_1K=g_2K\)</span>, et <span
+class="math inline">\(\eta\)</span> isomorphismus est. Q.E.D.</p>
+<p>Irrationalitas numeri <span
+class="math inline">\(\sqrt{2}\)</span></p>
+<p><strong>Theorema.</strong> Numerus <span
+class="math inline">\(\sqrt{2}\)</span> irrationalis est.</p>
+<p><em>Demonstratio.</em> Demonstramus rationalitam numeri <span
+class="math inline">\(\sqrt{2}\)</span> contradictionem implicare. Si
+<span class="math inline">\(\sqrt{2}\)</span> rationalis est, existunt
+numeri integri <span class="math inline">\(p\)</span> et <span
+class="math inline">\(q\)</span> ut <span class="math inline">\(\sqrt{2}
+= \frac{p}{q}\)</span>, ubi <span class="math inline">\(p\)</span> and
+<span class="math inline">\(q\)</span> factores primos aequales non
+habent. Tum <span class="math inline">\(2 = \frac{p^2}{q^2}\)</span> et
+<span class="math inline">\(p^2=2q^2\)</span>; ergo <span
+class="math inline">\(p\)</span> est numerus par, et existit numerus
+integer <span class="math inline">\(r\)</span> ut <span
+class="math inline">\(p=2r\)</span>. A prima aequatione sequitur <span
+class="math inline">\(2q^2 = (2r)^2 = 4r^2\)</span>, ergo <span
+class="math inline">\(q^2 = 2r^2\)</span> et <span
+class="math inline">\(q\)</span> est numerus par. Sed <span
+class="math inline">\(p\)</span> et <span
+class="math inline">\(q\)</span> factores primos aequales non habent.
+Q.E.A.</p>
+<p>Theorema parvum Fermatianum</p>
+<p><strong>Theorema.</strong> Sit <span class="math inline">\(a\)</span>
+numerus integer aliquis. Si <span class="math inline">\(p\)</span> est
+numerus primus, <span class="math inline">\(a^p \equiv a\ (\text{mod}\
+p)\)</span>.</p>
+<p><em>Demonstratio.</em> Primo, demonstramus copiam <span
+class="math inline">\(U(p)=\{1, 2, \ldots , p-1\}\)</span> cum
+operatione multiplicationis secundum modulum <span
+class="math inline">\(p\)</span> gregem esse. Clare, copia clausa est et
+<span class="math inline">\(1\)</span> eius elementum idemfactor est.
+Associativitas sequitur associativitam multiplicationis integrae. Pro
+omnia elementa in <span class="math inline">\(U(p)\)</span>, debemus
+invenire elementum inversum. Sit <span class="math inline">\(a\in
+U(p)\)</span>. Cum <span class="math inline">\(1 \leq a \leq
+p-1\)</span>, <span class="math inline">\(\text{gcd}(a, p) = 1\)</span>.
+Tum existunt numeri integri <span class="math inline">\(r\)</span> et
+<span class="math inline">\(s\)</span> ut <span class="math inline">\(1
+= ra + sp\)</span>. Secundum modulum <span
+class="math inline">\(p\)</span>, haec aequatio fit <span
+class="math inline">\(ra \equiv 1\ (\text{mod}\ p)\)</span> et <span
+class="math inline">\(r\)</span> elementum inversum <span
+class="math inline">\(a\)</span> in <span
+class="math inline">\(U(p)\)</span> est. Itaque <span
+class="math inline">\(U(p)\)</span> grex est, cum <span
+class="math inline">\(\lvert U(p)\rvert=p-1\)</span>.</p>
+<p>Nunc theorema demonstrare possumus. Sit <span
+class="math inline">\(a\)</span> numerus integer. Sine detrimento
+generalitatis, habere <span class="math inline">\(1 \leq a \leq
+p-1\)</span> possumus, ergo <span class="math inline">\(a\in
+U(p)\)</span>. Sit <span class="math inline">\(k\)</span> minimus
+integer satisfaciens <span class="math inline">\(a^k \equiv 1\
+(\text{mod}\ p)\)</span>, id est, <span class="math inline">\(k\)</span>
+est ordo <span class="math inline">\(a\)</span> in <span
+class="math inline">\(U(p)\)</span>. Per theorema Lagrangiae, <span
+class="math inline">\(k\)</span> dividit ordinem gregis, ergo est <span
+class="math inline">\(m\)</span> ut <span class="math inline">\(km =
+\lvert U(p)\rvert = p - 1\)</span>. Tum</p>
+<p><span class="math display">\[a^{p-1} \equiv a^{km} \equiv 1^m \equiv
+1\ (\text{mod}\ p).\]</span></p>
+<p>Multiplicare hanc aequationem cum <span
+class="math inline">\(p\)</span>, habemus <span
+class="math inline">\(a^p \equiv p\ (\text{mod}\ p)\)</span>. Q.E.D.</p>
+<p>Theorema Erdős-Szekeres</p>
+<p><strong>Theorema.</strong> Si <span class="math inline">\(S\)</span>
+est sequentia finita longitudine <span class="math inline">\(\geq
+(r-1)(s-1)+1\)</span>, erit subsequentia crescens longitudine <span
+class="math inline">\(r\)</span> vel subsequentia decrescens longitudine
+<span class="math inline">\(s\)</span>.</p>
+<p><em>Demonstratio.</em> Theorema demonstratur contrapositione.
+Assumimus omne sequentia crescens longitudinem <span
+class="math inline">\(\leq r-1\)</span> habere et omne sequentia
+decrescens longitudinem <span class="math inline">\(\leq s-1\)</span>
+habere. Omni <span class="math inline">\(x_i\in S\)</span> assignamus
+pittacium <span class="math inline">\((a_i, b_i)\)</span>, ubi <span
+class="math inline">\(a_i\)</span> designat longitudinem longissimae
+sequentiae <em>crescentis</em> qui terminatur <span
+class="math inline">\(x_i\)</span> et <span
+class="math inline">\(b_i\)</span> designat longitudinem longissimae
+sequentiae <em>decrescentis</em> qui terminatur <span
+class="math inline">\(x_i\)</span>.</p>
+<p>Affirmamus pittacia numerorum <span
+class="math inline">\(x_i\)</span> inter se differre. Sint <span
+class="math inline">\(i\)</span> et <span
+class="math inline">\(j\)</span> numeri differentes; sine detrimento
+generalitate, <span class="math inline">\(i &lt; j\)</span> habetur. Si
+<span class="math inline">\(x_i\leq x_j\)</span>, erit <span
+class="math inline">\(a_i &lt; a_j\)</span>, quia omnis sequentia
+crescens qui <span class="math inline">\(x_i\)</span> terminatur <span
+class="math inline">\(x_j\)</span> extendi potest. Similiter, si <span
+class="math inline">\(x_i\geq x_j\)</span>, erit <span
+class="math inline">\(b_j &gt; b_i\)</span>, quia omnis sequentia
+decrescens qui <span class="math inline">\(x_i\)</span> terminatur <span
+class="math inline">\(x_j\)</span> extendi potest.</p>
+<p>Cum <span class="math inline">\(a_i\leq r-1\)</span> et <span
+class="math inline">\(b_i\leq s-1\)</span> (omni <span
+class="math inline">\(i\)</span>), sunt <span class="math inline">\(\leq
+(r-1)(s-1)\)</span> pittacia. Tum sequentia <span
+class="math inline">\(S\)</span> longitudinem <span
+class="math inline">\(\leq (r-1)(s-1)\)</span> habet. Q.E.D.</p>
+</div>
+
+</body>
+</html>

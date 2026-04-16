@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>The error-proneness of binary search &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">The error-proneness of binary search</h1>
+<p class="blog-date">3 July 2018</p>
+
+<div class="content">
+<p>Yesterday I started the <a
+href="https://www.coursera.org/learn/algorithms-part1">Algorithms, Part
+I</a> course on Coursera, taught by Prof. Robert Sedgewick of Princeton
+University. In a lecture on algorithmic complexity he goes over the
+binary search algorithm and its advantages, while also warning the
+student that the algorithm is not necessarily trivial to implement. In
+the lecture slide, he claims that the first binary search was published
+in 1946, but the first bug-free one would not be published until 1962.
+Today I tried to implement the algorithm for the first time in MIT
+Scheme.<br />
+<!--more--></p>
+<p><strong>Update (21 May 2019):</strong> <em>I read through this post
+again and it really doesn’t make much sense. Logarithmic-time binary
+search on a linked list is impossible! I did this exercise again with
+proper arrays. See <a href="/2019/05/21/binary-search-remixed.html">this
+post</a>.</em></p>
+<p>A <a
+href="https://reprog.wordpress.com/2010/04/19/are-you-one-of-the-10-percent/">blog
+post</a> I found, written by Mike Taylor, talks about the
+error-proneness of binary search. In his post, which claims that 90% of
+programmers write faulty versions of binary search, he challenges the
+reader to implement the algorithm in the high-level language of his/her
+choice and to start testing only when sure of the program’s
+correctness.</p>
+<p>So I tried to write out the program on paper without looking up any
+implementations of the algorithm beforehand (besides the Java one I
+briefly saw in Prof. Sedgewick’s lecture earlier, which was iterative
+rather than recursive anyway). I did allow myself to have the Edwin
+Scheme interpreter open so I could check the syntax of certain primitive
+functions. After 44 minutes, this is what I came up with:</p>
+<p><a href="/media/binary-search/binary-search.pdf">View the handwritten
+version (PDF)</a></p>
+<p>Because no one should be subjected to reading my handwriting, I have
+transcribed it here:</p>
+
+<pre><code>
+; returns index of item in list
+(define (binary item list)
+  ; returns element of list at index n
+  (define (nth n list)
+    (if (= n 0) (car list) (nth (- n 1) (cdr list))))
+  ; returns sublist before index n
+  (define (before n list)
+    (if (= n 0) '() (cons (car list) 
+                          (before (- n 1) (cdr list)))))
+  ; returns sublist after index n
+  (define (after n list)
+    (if (= n 0) (cdr list) (after (- n 1) (cdr list))))
+  ; add is offset from start of original list
+  (define (search item list add)
+    (let ((mid (floor (/ (length list) 2))))
+      (cond ((null? list) false)
+            ((= item (nth mid list))
+             (+ add mid))
+            ((< item (nth mid list))
+             (search item (before mid list) add))
+            ((> item (nth mid list))
+             (search item (after mid list) (+ add mid 1))))))
+  (search item list 0))
+</code></pre>
+
+<p>I actually finished it in 37 minutes but decided to take some extra
+time to “test” it on paper before trying it on my computer, which was
+lucky because I found three typos! (write-os?) In any case, my code
+seemed to pass every test I gave it in the interpreter, returning the
+0-indexed location of <code>item</code> in <code>list</code> if it was
+present and false otherwise.</p>
+<p>But is it actually correct? In this <a
+href="https://stackoverflow.com/questions/504335/what-are-the-pitfalls-in-implementing-binary-search">StackOverflow
+thread about the pitfalls of implementing binary search</a>, the top
+answer enumerates some common errors programmers make (paraphrased in
+Scheme syntax):</p>
+<p><strong>1. It doesn’t run in O(log n) time.</strong> And here my
+implementation already fails. First of all, my procedures
+<code>nth</code>, <code>before</code>, and <code>after</code> all run in
+linear time, because I have to recurse through the list to find the spot
+to return. Furthermore, my <code>search</code> procedure passes the list
+as an argument every time it loops (linear time), upping my time
+complexity to linearithmic.<br />
+<strong>2. It fails when</strong> <code>(length list)</code>
+<strong>equals 0.</strong> Here my implementation works. Passing the
+empty list into my function simply returns false.<br />
+<strong>3. It gives a wrong answer.</strong> In the 15 minutes or so I
+spent testing my code, it seems to always return the correct index, so
+I’d like to say my code passes this test.<br />
+<strong>4. It causes an error if</strong> <code>item</code> <strong>is
+less than the smallest element of the list.</strong> Here my code
+passes. <code>(binary 1 '(3 4 5))</code> returns false, as
+expected.<br />
+<strong>5. It causes an error if ‘item’ is greater than the largest
+element of the list.</strong> Here again my code passes.
+<code>(binary 7 '(2 4 6))</code> returns false.</p>
+<p>Although my implementation of binary search ended up being a failure,
+I found this exercise to be a good lesson nonetheless. In my effort to
+write good functional code, I forgot the entire point of the algorithm
+and created a version that actually runs slower than simply iterating
+though the list!</p>
+</div>
+
+</body>
+</html>

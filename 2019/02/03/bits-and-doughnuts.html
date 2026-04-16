@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bits and doughnuts &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Bits and doughnuts</h1>
+<p class="date">3 February 2019</p>
+
+<div class="content">
+<p>Last weekend, I had the chance to participate in <a
+href="https://conuhacks.io">ConUHacks</a>, Concordia University’s annual
+hackathon. It was my second hackathon, the first having been <a
+href="https://marcelgoh.github.io/2018/11/14/coursetalk.html">HackPrinceton</a>
+back in November, and it was nice not to have to travel too far from
+home this time! I worked with a new team, and though it was my
+teammates’ first hackathon and our first time making a game, the whole
+weekend went extremely smoothly and I’m really proud of what we managed
+to create in just 24 hours! <!--more--></p>
+<h3 id="the-game">The game</h3>
+<figure>
+<img src="/media/bits-and-doughnuts/menu-screen.png"
+alt="menu-screen" />
+<figcaption aria-hidden="true">menu-screen</figcaption>
+</figure>
+<p>All four of us are math students (we even called ourselves <a
+href="https://github.com/conudihedral4">Dihedral4</a>), so we knew from
+the start that we wanted to create something math-related. We settled on
+implementing <a href="https://en.wikipedia.org/wiki/Nim">Nim</a>, a game
+that our calculus TA had shown some of us on the blackboard last
+semester. The board consists of a few rows of objects, which we
+represented as doughnuts, and every turn, a player may remove any number
+of doughnuts from any <strong>single</strong> row of the board. The goal
+of the game is to pick the last doughnut. (It can also be played as a
+misère game, in which the player to take the last doughnut loses. We
+added this as a separate mode.)</p>
+<figure>
+<img src="/media/bits-and-doughnuts/game-screen.png"
+alt="game-screen" />
+<figcaption aria-hidden="true">game-screen</figcaption>
+</figure>
+<h3 id="the-math">The math</h3>
+<p>Nim is a solved game and in most cases, provided both players play
+perfectly, the first player is guaranteed to win. To determine the best
+move each turn, we can calculate something called a
+<strong>nim-sum</strong> of a given board. Then the first player has a
+winning strategy if the nim-sum of the starting board is non-zero (in
+which case the second player would have a winning strategy). In each of
+the sixteen puzzles we included in our final game, the first player has
+the advantage. However, we also programmed the computer to play a
+perfect move every turn — if one exists. The result is that, playing
+against the computer, if you make a single mistake, the advantage goes
+to the computer and it’s no longer possible to win (harsh, I know). In
+human-vs.-human play, neither player is likely to spot the winning move
+every turn, especially on large boards, so gameplay is a little more
+interesting.</p>
+<p>So what is a nim-sum? Well interestingly, it actually has something
+to do with binary representations of numbers. The logical operation
+<code>^</code>, called exclusive-or or XOR, takes two bits and returns
+<code>0</code> if both of them match and <code>1</code> if they are
+different. (Eagle-eyed readers will remember that this is similar to how
+we defined addition in the <a
+href="https://marcelgoh.github.io/2018/12/03/subset-ring.html">ring of
+subsets</a>.) To illustrate this, lets calculate <code>9 ^ 5</code>:</p>
+<pre><code>   1 0 0 1      = 9
+ ^ 0 1 0 1      = 5
+-----------
+   1 1 0 0      = 12</code></pre>
+<p>This is indeed the right answer, as we can verify in a Python
+interpreter:</p>
+<pre><code>Python 3.7.2 (default, Dec 27 2018, 07:35:52)
+&gt;&gt;&gt; 9 ^ 5
+12</code></pre>
+<p>The nim-sum of a board is simply the XOR sum of the number of
+doughnuts in each row. So the starting board above has the following
+nim-sum:</p>
+<pre><code>   0 1 1      = 3
+   1 0 0      = 4
+ ^ 1 0 1      = 5
+---------
+   0 1 0      = 2</code></pre>
+<p>The trick is to end your turn with a nim-sum of <code>0</code> every
+turn. So here, a good opening move would be to remove two doughnuts from
+the top row, leaving:</p>
+<pre><code>   0 0 1      = 1
+   1 0 0      = 4
+ ^ 1 0 1      = 5
+---------
+   0 0 0      = 0</code></pre>
+<p>Eventually, when there is only one row left, ending your turn with a
+nim-sum of <code>0</code> means you’ve cleared the board and won. Some
+complexity arises in determing which row to subtract from in order to
+get a nim-sum of <code>0</code>, but ultimately the <a
+href="https://github.com/conudihedral4/nim/blob/master/robot.pde">algorithm</a>
+is pretty straightforward.</p>
+<h3 id="the-code">The code</h3>
+<p>We used the <a href="https://processing.org">Processing</a> language
+and platform to create our game, which ended up being a really good
+choice. The API was remarkably simple to understand and use right away,
+mainly comprising graphics functions. This meant that we had to come up
+with our own game objects and logic, but it was really refreshing not to
+have to wade through documentation, and because we created nearly all
+our own assets and wrote all the code from scratch, all of us came out
+with a really clear understanding of how our program works.</p>
+<p>If you want to try the game out, you can download it from our <a
+href="https://github.com/conudihedral4/nim">project page</a> and run it
+in Processing, or play the (much jankier) JavaScript port at <a
+href="https://conudihedral4.github.io/nim-js/">this link</a>.</p>
+</div>
+
+</body>
+</html>

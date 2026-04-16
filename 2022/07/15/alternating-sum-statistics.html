@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Alternating-sum statistics for certain sets of integers &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Alternating-sum statistics for certain sets of integers</h1>
+<p class="date">15 July 2022</p>
+
+<div class="content">
+<p><a href="https://jonahsaks.github.io/">Jonah Saks</a> and I have
+uploaded our paper “<a
+href="https://arxiv.org/abs/2206.12535">Alternating-sum statistics for
+certain sets of integers</a>” to the arXiv. We show that if <span
+class="math inline">\({\cal F}\)</span> is a set family in our class,
+then a certain alternating-sum statistic is constant. This constant
+equals <span class="math inline">\(-1\)</span> in the case where <span
+class="math inline">\({\cal F}\)</span> is the set of all finite
+primitive sets. Towards the end of the paper, we generalise the notion
+of primitive sets to <span class="math inline">\(s\)</span>-multiple
+sets and show that if <span class="math inline">\(s\ge 2\)</span>, then
+the alternating-sum statistic we study is not constant, but as <span
+class="math inline">\(n\)</span> increases it equals <span
+class="math inline">\((-1)^s {n-2\choose s-1}\)</span>. <!--more--></p>
+<h3 id="arithmetic-constraints-on-finite-sets">Arithmetic constraints on
+finite sets</h3>
+<p>As a starting point, consider the following definitions. A set <span
+class="math inline">\(S\)</span> of integers is said to be</p>
+<ol type="1">
+<li><em>primitive</em> if for any two distinct <span
+class="math inline">\(i,j\in S\)</span>, <span
+class="math inline">\(i\)</span> does not divide <span
+class="math inline">\(j\)</span>;</li>
+<li><em>pairwise coprime</em> if any two distinct <span
+class="math inline">\(i,j\in S\)</span> have <span
+class="math inline">\(\gcd(i,j) = 1\)</span>; and</li>
+<li><em>product-free</em> if for any <span class="math inline">\(i,j\in
+S\)</span> not necessarily distinct, <span
+class="math inline">\(ij\notin S\)</span>.</li>
+</ol>
+<p>We consider only finite sets in this post, and as a first
+observation, we note that taking <span class="math inline">\(S\)</span>
+to be any subset of the primes, we satisfy all three conditions. Let’s
+talk about primitive sets first. We will count the number of primitive
+subsets of <span class="math display">\([n] = \{1,2,\ldots,n\}\)</span>
+that have size exactly <span class="math inline">\(k\)</span>, for <span
+class="math inline">\(0\le k\le n\)</span>. Letting <span
+class="math inline">\(P_{n,k}\)</span> be the number of such sets, here
+is a table for small <span class="math inline">\(n\)</span>:</p>
+<p><img class="center-image" src="/media/alternating-sum-statistics/pnk.png"
+        alt="primitive-table" /></p>
+<p>For example, <span class="math display">\(P_{6,3} = 3\)</span>
+because there are three primitive subsets of <span
+class="math display">\(\{1,\ldots,6\}\)</span> that have size exactly
+<span class="math inline">\(3\)</span>, namely, <span
+class="math display">\(\{2,3,5\}\)</span>, <span
+class="math display">\(\{3,4,5\}\)</span>, and <span
+class="math display">\(\{4,5,6\}\)</span>. Taking the alternating sum of
+this whole row corresponding to <span
+class="math inline">\(n=6\)</span>, we have a value of <span
+class="math inline">\(1-6+7-3 = -1\)</span>, and if you stare at the
+table, you’ll notice that the alternating sum of each row (except the
+first one) equals <span class="math inline">\(-1\)</span>. Now look at
+the table for <span class="math inline">\(Q_{n,k}\)</span>, the number
+of pairwise coprime subsets of <span class="math inline">\([n]\)</span>
+of cardinality <span class="math inline">\(k\)</span>:</p>
+<p><img class="center-image" src="/media/alternating-sum-statistics/qnk.png"
+alt="primitive-table" /></p>
+<p>This time, the alternating sums equal <span
+class="math inline">\(0\)</span>. Lastly, letting <span
+class="math inline">\(R_{n,k}\)</span> be the number of product-free
+subsets of <span class="math inline">\([n]\)</span> of size <span
+class="math inline">\(k\)</span>, we see that the alternating sums are
+<span class="math inline">\(0\)</span> in this case as well:</p>
+<p><img class="center-image" src="/media/alternating-sum-statistics/rnk.png"
+alt="primitive-table" /></p>
+<p>The sequences <span class="math inline">\(P_{n,k}\)</span>, <span
+class="math inline">\(Q_{n,k}\)</span>, and <span
+class="math inline">\(R_{n,k}\)</span> are in the OEIS as <a
+href="https://oeis.org/A355145">A355145</a>, <a
+href="https://oeis.org/A355146">A355146</a>, and <a
+href="https://oeis.org/A355147">A355147</a>, respectively. Miscellaneous
+facts about these quantities were collected in the following proposition
+of our paper (this post follows the paper’s numbering).</p>
+<p><strong>Proposition 3.</strong> <em>For <span
+class="math inline">\(n\ge 2\)</span> we have</em></p>
+<ol type="1">
+<li><em><span class="math inline">\(P_{n,1} = Q_{n,1} = n\)</span> and
+<span class="math inline">\(R_{n,1} = n-1\)</span>;</em></li>
+<li><em><span class="math inline">\(P_{n,2} = \sum_{i=2}
+(i-d(i))\)</span>, where <span class="math inline">\(d(i)\)</span>
+counts the number of divisors of <span
+class="math inline">\(i\)</span>;</em></li>
+<li><em><span class="math inline">\(Q_{n,2} = \sum_{i=2}^n
+\varphi(i)\)</span>, where <span class="math inline">\(\varphi\)</span>
+is Euler’s totient function;</em></li>
+<li><em><span class="math inline">\(R_{n,2} = {n\choose 2} - n -\lceil
+\sqrt n\rceil + 2\)</span>; and</em></li>
+<li><em>for any <span class="math inline">\(p\)</span> prime and <span
+class="math inline">\(k\ge 3\)</span>, <span
+class="math inline">\(F(p,k) = F(p-1,k) + F(p-1, k-1)\)</span>, where
+<span class="math inline">\(F\)</span> can be any of <span
+class="math inline">\(P\)</span>, <span
+class="math inline">\(Q\)</span>, or <span
+class="math inline">\(R\)</span>.</em></li>
+</ol>
+<h3 id="partition-intersecting-families">Partition-intersecting
+families</h3>
+<p>To unify the three examples above, we now introduce the class of set
+families mentioned in the top of the post. Let <span
+class="math inline">\({\cal F}\)</span> be a family of finite sets of
+positive integers. Let <span class="math inline">\(F_{n,k}\)</span> be
+the number of elements of cardinality <span
+class="math inline">\(k\)</span> in <span class="math display">\({\cal
+F}_n = {\cal F}\cap 2^{[n]}\)</span>. We would like to study the
+alternating sum <span class="math inline">\(\sum_{k=0}^n (-1)^k
+F_{n,k}\)</span>. We will say that an element <span
+class="math inline">\(S\)</span> of <span class="math display">\({\cal
+F}_n\)</span> is <em>maximal</em> if for all <span
+class="math inline">\(x\in [n]\setminus S\)</span>, <span
+class="math display">\(S\cup \{x\}\notin {\cal F}_n\)</span>.</p>
+<p>Now for the actual definition. We say that a set family <span
+class="math display">\({\cal F}\)</span> is <em><span
+class="math display">\(m\)</span>-partition-intersecting</em> if for all
+<span class="math inline">\(n\ge 2\)</span>, the following three
+conditions are satisfied (condition 2 does not depend on <span
+class="math inline">\(n\)</span> but conditions 1 and 3 do):</p>
+<ol type="1">
+<li><span class="math inline">\([n]\notin {\cal F}_n\)</span>.</li>
+<li><span class="math inline">\({\cal F}\)</span> is <em>downward
+closed</em>; that is, for every <span class="math inline">\(S\in {\cal
+F}\)</span>, every subset <span class="math inline">\(T\)</span> of
+<span class="math inline">\(S\)</span> is also in <span
+class="math inline">\({\cal F}\)</span>.</li>
+<li>The set <span class="math display">\(M_n\subseteq {\cal
+F}_n\)</span> of maximal elements can be partitioned into <span
+class="math inline">\(m\)</span> disjoint nonempty classes <span
+class="math inline">\(M_n = C_1 \sqcup \cdots\sqcup C_m\)</span> such
+that for all <span class="math inline">\(i\)</span>, the intersection
+<span class="math inline">\(\bigcap_{S\in C_i} S\)</span> is nonempty,
+and for all <span class="math inline">\(i\ne j\)</span> and any <span
+class="math inline">\(S\in C_i\)</span> and <span
+class="math inline">\(T\in C_j\)</span>, <span
+class="math inline">\(S\cap T = \emptyset\)</span>.</li>
+</ol>
+<p>We are now able to state the main theorem.</p>
+<p><strong>Theorem 1.</strong> <em>Let <span
+class="math display">\({\cal F}\)</span> be <span
+class="math inline">\(m\)</span>-partition-intersecting and let <span
+class="math inline">\(n\ge 2\)</span>. For <span
+class="math inline">\(0\le k &lt; n\)</span>, let <span
+class="math display">\(F_{n,k}\)</span> be the number of <span
+class="math display">\(S\in {\cal F}_n = {\cal F}\cap 2^{[n]}\)</span>
+with <span class="math inline">\(|S|=k\)</span>. Then</em></p>
+<p><span class="math display">\[\sum_{k=0}^{n-1} (-1)^k F_{n,k} =
+1-m.\]</span></p>
+<p>The proof of this theorem uses some basic results from enumerative
+combinatorics, relating the Möbius function of a poset to the homology
+of a certain simplicial complex.</p>
+<p>From here, we just need to show that primitive sets, pairwise coprime
+sets, and product-free sets are all families that fit in our class:</p>
+<p><strong>Corollary 4.</strong> _For <span class="math inline">\(n\ge
+2\)</span>,</p>
+<ol type="1">
+<li><span class="math inline">\(\sum_{k=0}^n (-1)^k P_{n,k} =
+-1\)</span>;</li>
+<li><span class="math inline">\(\sum_{k=0}^n (-1)^k Q_{n,k} =
+0\)</span>; and</li>
+<li><span class="math inline">\(\sum_{k=0}^n (-1)^k R_{n,k} =
+0\)</span>.</li>
+</ol>
+<h3 id="a-generalisation-of-primitive-sets">A generalisation of
+primitive sets</h3>
+<p>A primitive set is a set that does not contain more than one multiple
+of any integer. We make this definition more general by forbidding sets
+with more than <span class="math inline">\(s\)</span> multiples of any
+given integer, and when <span class="math inline">\(s=1\)</span> we
+recover the definition of a primitive set. For <span
+class="math inline">\(s\ge 2\)</span>, the family of <span
+class="math inline">\(s\)</span>-multiple sets is not <span
+class="math inline">\(m\)</span>-partition-intersecting for any <span
+class="math inline">\(m\)</span>, but we still have the following
+theorem.</p>
+<p><strong>Theorem 5.</strong> <em>Let <span class="math inline">\(s\ge
+2\)</span> be an integer, let <span
+class="math inline">\(n&gt;s\)</span>, and let <span
+class="math display">\(P_{s,n,k}\)</span> denote the number of <span
+class="math inline">\(s\)</span>-multiple subsets of <span
+class="math inline">\([n]\)</span> with cardinality exactly <span
+class="math inline">\(k\)</span>. We have</em></p>
+<p><span class="math display">\[\sum_{k=0}^n (-1)^k P_{s,n,k} = (-1)^s
+{n-2\choose s-1}.\]</span></p>
+<p>The proof of this also goes through the homology groups of a certain
+simplicial complex, but this time the calculations involved are more
+technical.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A classic weather theorem &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">A classic weather theorem</h1>
+<p class="date">15 January 2019</p>
+
+<div class="content">
+<p>While on holiday with my family over the break, I thought about a
+classic application of the <a
+href="https://en.wikipedia.org/wiki/Borsuk–Ulam_theorem">Borsuk-Ulam
+theorem</a>: There are always two antipodal (exactly opposite) points on
+the globe with equal temperature. I recited this theorem and its proof
+to my parents and brother, whose first reaction was to exclaim: “You
+spend way too much time thinking about pointless math!” — a valid
+opinion. Then my dad, still not entirely convinced, asked me: “Okay
+well, where are these two points?”. Like most existence theorems, the
+Borsuk-Ulam theorem doesn’t help much in finding the actual points that
+it concerns, so I decided to write <a
+href="https://github.com/marcelgoh/misc-programs/tree/master/haskell/Borsuk-Ulam">a
+program</a> to find these antipodal points using data from the web.
+<!--more--> ### The theorem Before we get into the program, let’s get
+the theorem and proof out of the way. We need to assume that temperature
+varies continuously over the globe, i.e. if you walk from a point with
+temperature <span class="math inline">\(a\)</span> to another point with
+temperature <span class="math inline">\(b\)</span>, then you passed
+through all the temperatures between <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>. For the most part, this is a sensible
+thing to assume. Also, it’s worth it to note that the statement can be
+made stronger by either restricting the points to any <a
+href="https://en.wikipedia.org/wiki/Great_circle">great circle</a>
+(e.g. the equator) on the globe or by introducing barometric pressure
+alongside temperature (on the whole globe). Details can be found on the
+Wikipedia article I linked at the very top of the article, but in any
+case the following statement is enough for our purposes:</p>
+<p><strong>Theorem.</strong> At any moment in time, there is a point on
+the globe that has the exact same temperature as its antipode (the
+opposite point on the globe).</p>
+<p><em>Proof.</em> For every point <span
+class="math inline">\(p\)</span> on the planet, assign a number <span
+class="math inline">\(f(p)\)</span> by subtracting the temperature of
+its antipode from its own. So if <span class="math inline">\(p\)</span>
+is colder than the opposite point <span class="math inline">\(q\)</span>
+on the globe, then <span class="math inline">\(f(p)\)</span> will be
+negative and <span class="math inline">\(f(q)\)</span> will be positive.
+If <span class="math inline">\(p\)</span> is warmer than <span
+class="math inline">\(q\)</span>, the opposite will be true. And if
+<span class="math inline">\(p\)</span> has the exact same temperature as
+<span class="math inline">\(q\)</span>, then <span
+class="math inline">\(f(p)=0=f(q)\)</span>. Because temperature is
+continuous, this new function <span class="math inline">\(f\)</span>
+defined over the globe is also continuous.</p>
+<p>Now pick any point <span class="math inline">\(a\)</span> and call
+its antipode <span class="math inline">\(b\)</span>. If <span
+class="math inline">\(f(a)=0\)</span>, we’re done because then <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> have the same temperature. So assume
+it’s not zero and assume <span class="math inline">\(a\)</span> is
+colder than <span class="math inline">\(b\)</span> (rename the points if
+you have to). So <span class="math inline">\(f(a)\)</span> is negative
+and <span class="math inline">\(f(b)\)</span> is positive. Now draw a
+line on the globe from point <span class="math inline">\(a\)</span> to
+point <span class="math inline">\(b\)</span>. Because the line starts at
+a point with negative value of <span class="math inline">\(f\)</span>
+and ends at one with a positive value, there must be some point <span
+class="math inline">\(c\)</span> on this line such that <span
+class="math inline">\(f(c)=0\)</span>. This <span
+class="math inline">\(c\)</span> is the point we’re looking for, because
+<span class="math inline">\(f(c)\)</span> being zero means that it’s the
+same temperature as its antipode!<br />
+<span class="math display">\[\tag*{$\Box$}\]</span></p>
+<h3 id="the-code">The code</h3>
+<p>The <a
+href="https://github.com/marcelgoh/misc-programs/tree/master/haskell/Borsuk-Ulam">Haskell
+program</a> I wrote collects <a href="https://aviationweather.gov">data
+from roughly 4,700 weather stations</a> around the world and does a
+brute-force search for the two points that best match the criteria of
+the theorem. The file <code>Point.hs</code> defines a couple of simple
+data structures and the main loop and data-fetching procedures are
+defined in <code>Main.hs</code>. Here’s what it looks like in
+action:</p>
+<pre><code>****************************************
+Choose an option by entering a number:
+1) Update to current weather data
+2) Find antipodes in current weather data
+3) Import data from file
+4) Exit the program
+1
+Trying to find data from web...
+Data fetched successfully from server.
+****************************************
+Choose an option by entering a number:
+1) Update to current weather data
+2) Find antipodes in current weather data
+3) Import data from file
+4) Exit the program
+2
+Analysing data on file...
+At 15:15:00 GMT on 2019-01-15,
+18.35 S 70.32 W and 18.3 N 109.42 E are antipodal with 0.1399% error
+and both have temperature 23.0 degrees Celsius.</code></pre>
+<p>Because the Earth is humongous, 4,700 data stations can’t really get
+a great match, and I printed the error as a percentage partially to hide
+the fact that the error is pretty massive. The 0.1399% error we just got
+above, when multiplied by half the circumference of the Earth, is a
+substantial 28km! Of course, the program would do better with more data,
+but according to the <a href="https://public.wmo.int/en">World
+Meteorological Organization</a>, there are only about 10,000 weather
+stations, so even if we had access to all of them, we would likely still
+have an error of a couple kilometres.</p>
+<p>In any case, I hope you — and my dad — can be satisfied with the
+result we got. The important take-away here is that even though
+technological limitations prevent us from actually finding the antipodal
+points with the same temperature, the Borsuk-Ulam theorem (we actually
+only really used the 1-dimensional case, the <a
+href="https://en.wikipedia.org/wiki/Intermediate_value_theorem">intermediate
+value theorem</a>) assures us that they have to exist.</p>
+</div>
+
+</body>
+</html>

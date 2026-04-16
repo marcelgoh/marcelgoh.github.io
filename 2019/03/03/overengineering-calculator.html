@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Overengineering a calculator &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Overengineering a calculator</h1>
+<p class="date">3 March 2019</p>
+
+<div class="content">
+<p>Calculators were great fun as a kid. You could add one and one and
+then race a friend to one hundred pressing only the equals sign. There
+were long formulas with colourful mnemonic stories that ended in crude
+words (if you turned the calculator upside-down). For many, pocket
+calculators are the earliest introduction to the concept of
+“programming” a machine, in the sense that you can input a series of
+symbols representing values and operators to get an answer as output.
+And often, the order in which you have to type the operations into a
+calculator doesn’t exactly match the order in which they appear on the
+page. But higher-end calculators (as well as Google and Wolfram Alpha)
+can take a normal mathematical expression and apply the order of
+operations to provide the correct result. This article will go through
+how this process works and how it roughly approximates the way computers
+read and understand programming languages. <!--more--></p>
+<p><em>Note: when a word appears in <strong>bold</strong>, it has an
+entry in the glossary at the bottom of the page.</em></p>
+<h3 id="computers-like-postfix-notation">Computers like postfix
+notation</h3>
+<p>As we learned in grade school, evaluating the expression <span
+class="math inline">\(2 + (-3) * 4^2 / (7 - 5)\)</span>, from left to
+right will not produce the correct answer. Instead, we need to do the
+operations in <em>brackets</em> first, then the <em>exponents</em>, then
+<em>division and multiplication</em> in left-to-right order, then
+<em>addition</em> and <em>subtraction</em> in left-to-right order. (The
+acronym I learned is BEDMAS, though variations exist.) Applying these
+rules, we can represent the above expression as the following tree.</p>
+<img class="fullwidth" src="/media/overengineering-calculator/op-tree.jpg"
+alt="operator-tree" />
+<p>We just made it harder to read! But you can imagine how to the
+algorithmic mind of a calculator, this is very easy to interpret. It
+starts at the top and tries to add two numbers. But the second argument,
+<span class="math inline">\(\text{DIV}\)</span>, is not a number, so it
+has to do that operation first. Eventually it gets to the bottom of the
+tree where it finds numbers as leaves. For example, the
+<strong>binary</strong> operation <span
+class="math inline">\(\text{EXP}\)</span> sees two numbers, <span
+class="math inline">\(4\)</span> and <span
+class="math inline">\(2\)</span>. It performs <span
+class="math inline">\(\text{EXP}(4,2)\)</span> and feeds the result,
+<span class="math inline">\(16\)</span>, up to the next level.
+Similarly, the <strong>unary</strong> operation <span
+class="math inline">\(\text{NEG}\)</span> sees one number, which it
+negates and passes up to <span
+class="math inline">\(\text{MUL}\)</span>. One-by-one, the operations
+disappear and are replaced with numbers. Eventually we are left with a
+single number.</p>
+<p>Our usual <strong>infix</strong> notation is pretty different from
+this tree representation. Instead, computers like something called
+<strong>postfix</strong> notation, where the operator comes
+<em>after</em> its arguments. With postfix notation, brackets are
+unnecessary because each operator knows exactly how many numbers it
+needs. The above expression in postfix notation looks something
+like:</p>
+<pre><code>2 3 NEG 4 2 EXP MUL 7 5 SUB DIV ADD</code></pre>
+<p>Not only have the brackets disappeared, we now get a very clear idea
+of the order in which operations are performed. Whereas even in the tree
+representation, one might naïvely get the idea that addition happens
+first, here we clearly see that it happens last. Let’s see the steps a
+computer would take to evaluate this expression:</p>
+<pre><code>2 (3 NEG) 4 2 EXP MUL 7 5 SUB DIV ADD  ; NEG is unary
+2 -3 (4 2 EXP) MUL 7 5 SUB DIV ADD     ; EXP is binary
+2 (-3 16 MUL) 7 5 SUB DIV ADD
+2 -48 (7 5 SUB) DIV ADD
+2 (-48 2 DIV) ADD
+(2 -24 ADD)
+-22</code></pre>
+<p>This is what we would have done on paper, but in a sequence of steps
+that a computer can easily understand. This conversion from infix to
+postfix notation can be done using the shunting-yard algorithm, so
+called because it uses two <strong>stacks</strong> and the process of
+<strong>pushing</strong> and <strong>popping</strong> from these stacks
+resembles shunting cars at a railyard. You can read about the algorithm
+on <a
+href="https://en.wikipedia.org/wiki/Shunting-yard_algorithm">Wikipedia</a>,
+or see the <a
+href="https://github.com/marcelgoh/misc-programs/blob/master/ocaml/ocalc/src/parser.ml">version
+I wrote</a> as part of the calculator I made, which I’ll get into
+next.</p>
+<h3 id="an-overengineered-calculator">An overengineered calculator</h3>
+<p>I created <a
+href="https://github.com/marcelgoh/misc-programs/tree/master/ocaml/ocalc">OCalc</a>,
+an OCaml program that takes in a mathematical expression as input, and
+simulates a stack-based machine to calculate the answer. For example, we
+can enter our toy example into OCalc:</p>
+<pre><code>+----------------------------------------------+
+|         OCALC INTERACTIVE CALCULATOR         |
+|   Author: Marcel Goh (Release: 3 Mar &#39;19)    |
+|    Type &quot;:help&quot; for help or &quot;:q&quot; to quit.    |
++----------------------------------------------+
+]=&gt; 2 + (-3) * 4^2/(7 - 5)
+Instructions:
+    LOAD_INT    2
+    LOAD_INT    3
+    NEGATE
+    LOAD_INT    4
+    LOAD_INT    2
+    EXPONENT
+    MULTIPLY
+    LOAD_INT    7
+    LOAD_INT    5
+    SUBTRACT
+    DIVIDE
+    ADD
+Answer:
+    -22.000000</code></pre>
+<p>When you type a string into OCalc, all the program sees is a list of
+characters. First the program <strong>lexes</strong> the string into a
+list of tokens, ignoring whitespaces and other things that largely don’t
+matter. For instance, the string <code>"3*(5 + 4)"</code> becomes the
+following list of tokens:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode ocaml"><code class="sourceCode ocaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[(NUMBER <span class="st">&quot;3&quot;</span>), (OP <span class="st">&quot;*&quot;</span>), (LPAREN <span class="st">&quot;(&quot;</span>), (NUMBER <span class="st">&quot;5&quot;</span>), (OP <span class="st">&quot;+&quot;</span>), (NUMBER <span class="st">&quot;4&quot;</span>), (RPAREN <span class="st">&quot;)&quot;</span>)]</span></code></pre></div>
+<p>Next the list of tokens is <strong>parsed</strong> into an abstract
+syntax tree like the one we saw earlier. Then the tree can be analysed
+and <strong>compiled</strong> into a series of instructions that a
+machine can <strong>interpret</strong>. For larger grammars, this can be
+a very complicated process, but for our simple mathematical grammar, we
+can simply use the shunting-yard algorithm to eliminate brackets and get
+the other tokens in the correct order. These tokens are subsequently
+converted into instructions that our virtual machine can understand.
+Again, in a more complex grammar, this is a non-trivial procedure, but
+for us, each token directly translates to a single stack operation.
+After this step, our sequence of instructions looks like this:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode ocaml"><code class="sourceCode ocaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>[(LOAD_I <span class="dv">3</span>), (LOAD_I <span class="dv">5</span>), (LOAD_I <span class="dv">4</span>), ADD, MUL]</span></code></pre></div>
+<p>Whenever the machine sees a <code>LOAD</code> instruction with a
+value, it pushes the value onto its stack, stored in memory. Then
+whenever it sees an operation, it pops the correct number of arguments
+off the stack, performs the operation, the pushes the result back onto
+the stack. After the final instruction, provided the expression given
+was well-formed, there will be only one number left on the stack, which
+is the value the machine will return.</p>
+<h3 id="the-jump-to-programming-languages">The jump to programming
+languages</h3>
+<p>Our calculator might have seemed like a very long-winded way of
+telling a computer to do math — and it is! — but this process is exactly
+the way many programming languages are implemented. For example, take
+the following Python procedure that performs an important
+calculation:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> okay(your_age, their_age):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assumes you are older than they are</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> their_age <span class="op">&gt;</span> your_age<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">7</span>:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Okay.&quot;</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Ew, gross.&quot;</span>)</span></code></pre></div>
+<p>If you load the function into the Python interpreter and disassemble
+the function <code>okay</code> (i.e. get the machine instructions
+associated with the Python object), this is what you get:</p>
+<pre><code>&gt;&gt;&gt; import dis
+&gt;&gt;&gt; dis.dis(okay)
+  3           0 LOAD_FAST                1 (their_age)
+              2 LOAD_FAST                0 (your_age)
+              4 LOAD_CONST               1 (2)
+              6 BINARY_TRUE_DIVIDE
+              8 LOAD_CONST               2 (7)
+             10 BINARY_ADD
+             12 COMPARE_OP               4 (&gt;)
+             14 POP_JUMP_IF_FALSE       26
+
+  4          16 LOAD_GLOBAL              0 (print)
+             18 LOAD_CONST               3 (&#39;Okay.&#39;)
+             20 CALL_FUNCTION            1
+             22 POP_TOP
+             24 JUMP_FORWARD             8 (to 34)
+
+  6     &gt;&gt;   26 LOAD_GLOBAL              0 (print)
+             28 LOAD_CONST               4 (&#39;Ew, gross.&#39;)
+             30 CALL_FUNCTION            1
+             32 POP_TOP
+        &gt;&gt;   34 LOAD_CONST               0 (None)
+             36 RETURN_VALUE</code></pre>
+<p>These are the instructions that the Python interpreter executes
+whenever the <code>okay</code> function is called, and because the
+Python interpreter is usually implemented as a stack machine, the code
+looks very similar to what we had above with OCalc!</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>The calculator I created is a really slow and complicated way of
+getting a computer to do math, but I hope that it illustrates a little
+bit how human-readable instructions might be read, understood, and
+executed by a machine. In the near future, I plan to write my own
+version of the Python interpreter and hopefully the procedures used in
+implementing OCalc can be scaled and generalised to accomplish this.</p>
+<h3 id="glossary">Glossary</h3>
+<ul>
+<li><p>A <strong>binary</strong> operation takes two values as input.
+Most of the common-or-garden arithmetic operators are binary, such as
+<span class="math inline">\(+\)</span> and <span
+class="math inline">\(-\)</span>.</p></li>
+<li><p>A <strong>unary</strong> operation takes one value as input. An
+example is negation, as in <span
+class="math inline">\(-3\)</span>.</p></li>
+<li><p>In <strong>infix</strong> notation, a binary operator appears
+between its two arguments. <span class="math inline">\((4+5)\)</span> is
+in infix notation.</p></li>
+<li><p>In <strong>postfix</strong> or <strong>reverse Polish</strong>
+notation, an operator appears after its arguments. <span
+class="math inline">\((4\ 5\ +)\)</span> is in postfix notation. Note
+that the operator need not be binary. <span class="math inline">\((2\
+\text{SQRT})\)</span> is a unary operator in postfix notation. (Many
+calculators make you calculate square roots in this manner.)</p></li>
+<li><p>A <strong>stack</strong> is an abstract data structure in
+computer science that works like a stack of trays at a cafeteria. We
+<strong>push</strong> items onto the stack and <strong>pop</strong> them
+off. The last thing pushed onto the stack will be the first one popped,
+as in a real stack. (Everyone knows it’s dangerous to try to take things
+off the bottom of a stack.)</p></li>
+<li><p><strong>Lexing</strong> is the process by which a string is
+broken down into its atomic components, each with an assigned meaning,
+called tokens. For example, the English sentence “I eat apples.” can be
+lexed into the list of tokens: (Pn, “I”), (V, “eat”), (N,
+“apples”).</p></li>
+<li><p><strong>Parsing</strong> is the process by which the internal
+structure of a list of tokens is analysed according to a grammar. For
+example, we can apply these simplified grammar rules</p>
+<pre><code>  S: NP VP    (A sentence is a noun-phrase then a verb-phrase.)
+  NP: Pn | N  (A noun-phrase is either a pronoun or a noun.)
+  VP: V NP    (A verb-phrase is a verb followed by a noun-phrase.)</code></pre>
+<p>to parse the sentence “I eat apples.” into the following tree</p>
+<img width=768 src="/media/overengineering-calculator/apples.jpg"
+alt="i-eat-apples" />
+<p>and recognise that it is a valid sentence. A very powerful parser is
+working in your brain every time you hear and understand someone
+speak.</p></li>
+<li><p>A <strong>compiler</strong> is a program that takes code from a
+human-readable programming language (like Python or OCaml), and
+generates code that is easier for machines to read (like the list of
+instructions in our Python example).</p></li>
+<li><p>An <strong>interpreter</strong> is a program that reads source
+code and produces the behaviour specified by the code. For example,
+Python is interpreted by a virtual machine that reads the sequence of
+instructions (called bytecode) produced by the intermediary compiler and
+outputs to the terminal. Not all languages are interpreted. Some (like
+C) are compiled directly into instructions that are executed by the
+physical processor.</p></li>
+</ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Code &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Code</h1>
+
+<div class="content">
+<p>I was once a computer science undergraduate student and wrote a lot
+of code back then. I write less code as a math graduate student, but it
+still comes in handy now and then. Here are some programs I’ve written
+over the years.</p>
+<h2 id="literate-programs">Literate programs</h2>
+<p>These programs are written in <a
+href="http://www.literateprogramming.com/cweb_download.html">CWEB</a>,
+and are meant to be read! I have also included the C and PDF outputs so
+you don’t have to download a CWEB compiler to read them.</p>
+<ul>
+<li><a
+href="https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/literate/lll.w">LLL-ALGORITHM</a>.
+A program that performs lattice reduction via the famous LLL algorithm
+(<a href="/code/literate/lll.c">C</a>) (<a
+href="/code/literate/lll.pdf">PDF</a>).</li>
+<li><a
+href="https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/literate/lp-balls.w">LP-BALLS</a>.
+A program for experimenting with points in the unit ball of <span
+class="math inline">\(L^p\)</span>. (<a
+href="/code/literate/lp-balls.c">C</a>) (<a
+href="/code/literate/lp-balls.pdf">PDF</a>).</li>
+</ul>
+<h2 id="tex-macros">TeX macros</h2>
+<p>If you wish to compile my sources from TeX, you’ll need to download
+these macros and typeset using the Plain TeX engine. Feel free to use
+and modify them for your own purposes as well.</p>
+<ul>
+<li><a
+href="https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/fontmac.tex">fontmac.tex</a>
+(Fonts and document formatting)</li>
+<li><a
+href="https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/mathmac.tex">mathmac.tex</a>
+(Mathematical shortcuts)</li>
+<li><a
+href="https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/proofmac.tex">proofmac.tex</a>
+(Proof figures)</li>
+</ul>
+<p>If you use LaTeX and want your documents to kind of look like my
+Plain TeX documents, I have a LaTeX <code>.sty</code> <a
+href="https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/gohlatex.sty">file</a>
+that sort of approximates it. You can see a demo I prepared (<a
+href="https://raw.githubusercontent.com/marcelgoh/marcelgoh.github.io/master/code/tex-macros/gohlatex-demo.tex">LaTeX</a>/<a
+href="/code/tex-macros/gohlatex-demo.pdf">PDF</a>). I’m not going to
+keep this updated though, so if you like the style you should consider
+switching to Plain TeX. Terms and conditions apply. GohLaTeX should not
+be used to typeset machine learning documents.</p>
+<h2 id="exercise-solutions">Exercise solutions</h2>
+<p>Solutions to exercises in various computer science textbooks.</p>
+<ul>
+<li><a href="https://github.com/marcelgoh/sicp-exercises"><em>Structure
+and Interpretation of Computer Programs</em>, by H. Abelson and G.
+Sussman</a> (Scheme)</li>
+<li><a
+href="https://github.com/marcelgoh/misc-programs/tree/master/mix"><em>The
+Art of Computer Programming</em>, by D. E. Knuth</a> (MIX Assembly)</li>
+</ul>
+<h2 id="projects">Projects</h2>
+<h3 id="opythn"><a
+href="https://github.com/marcelgoh/opythn">OPythn</a></h3>
+<p>A compiler and bytecode interpreter for a sizeable subset of Python,
+written in OCaml (with the help of Ocamllex and Menhir for lexing and
+parsing). Created as an individual semester-long software project under
+the supervision of Adam Dingle at Charles University in Prague. Relevant
+blog posts: <a href="/2019/04/14/scanning-spaces.html">1</a>, <a
+href="/2019/06/30/generating-stack-machine-bytecode.html">2</a>.</p>
+<h3 id="alonzo"><a
+href="https://github.com/marcelgoh/alonzo">Alonzo</a></h3>
+<p>An interactive lambda-calculus interpreter that performs normal-order
+beta-reduction and includes support for variable bindings.</p>
+<h3 id="natural-language-parser"><a
+href="https://github.com/marcelgoh/nl-parser">Natural-Language
+Parser</a></h3>
+<p>A program that generates syntax trees for English sentences, written
+in Haskell. A blog post detailing the approach as well as the
+limitations of the program can be found <a
+href="https://marcelgoh.github.io/2018/08/12/naive-parser.html">here</a>.</p>
+<h3 id="miscellaneous-programs"><a
+href="https://github.com/marcelgoh/misc-programs">Miscellaneous
+Programs</a></h3>
+<p>A collection of small programs and scripts I wrote while learning new
+languages. Many are solutions to coding puzzles and challenges. Some of
+the most fleshed-out are: + <a
+href="https://github.com/marcelgoh/misc-programs/tree/master/ocaml/ocalc">A
+calculator, implemented as a stack-based virtual machine</a> (OCaml) +
+<a
+href="https://github.com/marcelgoh/misc-programs/tree/master/haskell/Borsuk-Ulam">A
+program that collects and analyses weather data</a> (Haskell) + <a
+href="https://github.com/marcelgoh/misc-programs/tree/master/c/data_structures">An
+implementation of some abstract data structures</a> (C) + <a
+href="https://github.com/marcelgoh/misc-programs/tree/master/haskell/Cayley">A
+tool for analysing/generating Cayley tables</a> (Haskell)</p>
+<h2 id="hackathons">Hackathons</h2>
+<h3 id="hackprague-2019"><a
+    href="https://github.com/mattonicorp/mattoni">HackPrague 2019</a></h3>
+<p>My teammate and I created Mattoni, a program that allows you to
+generate and interact with escape-time fractals. We used the SDL2
+graphics library and wrote the program in C. I wrote more about it <a
+     href="/2019/05/06/escape-time-fractals.html">here</a>. (May 2019)</p>
+<h3>
+    <a href="https://github.com/conudihedral4/nim">ConUHacks IV</a></h3>
+<p>My team
+implemented <a href="https://en.wikipedia.org/wiki/Nim">Nim</a>, a
+mathematical strategy game, using the <a
+href="https://processing.org">Processing</a> programming language and
+platform. I wrote more about it <a
+                                        href="/2019/02/03/bits-and-doughnuts.html">here</a>. (January 2019)</p>
+<h3>
+<a href="https://github.com/marcelgoh/hackprinceton-2018">HackPrinceton
+    Fall 2018</a></h3>
+<p>My team created CourseTalk, a discussion and collaboration
+platform for students. A blog post describing the process and
+functionality can be found <a
+href="/2018/11/14/coursetalk.html">here</a>. (November 2018)</p>
+<h2 id="school">School</h2>
+<p>These are my assignment solutions for certain classes. They were made
+public only after their respective course end dates.</p>
+<h3 id="comp-206-winter-2018"><a
+href="https://github.com/marcelgoh/comp-206-winter-2018">COMP 206 Winter
+2018</a></h3>
+<p>Assignments from <a
+href="https://www.mcgill.ca/study/2017-2018/courses/comp-206">COMP 206
+Introduction to Software Systems</a> at McGill University.</p>
+<h3 id="comp-321-fall-2019"><a
+href="https://github.com/marcelgoh/comp-321-fall-2019">COMP 321 Fall
+2019</a></h3>
+<p>Assignments from <a
+href="https://www.mcgill.ca/study/2019-2020/courses/comp-321">COMP 321
+Programming Challenges</a> at McGill University.</p>
+</div>
+
+</body>
+</html>

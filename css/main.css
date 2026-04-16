@@ -1,0 +1,189 @@
+/* Main CSS file for Marcel Goh's website. Written by Marcel Goh 15.IV.2026 */
+
+/* Colours:
+ * red: #ff005f;
+ * green: #a6e22e;
+ * teal: #039699;
+ * purple: #a22eea;
+ * orange: #fd9720;
+ * beige: #fff3db;
+ * dark-grey: #313131;
+ */
+
+@font-face {
+    font-family: AdobeCaslonPro;
+    src: url(https://ahoyliterary.github.io/fonts/AdobeCaslonPro.woff);
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat.woff);
+}
+
+
+hr {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+a:link {
+      text-decoration: none;
+      color: #039699;
+}
+a:visited {
+      text-decoration: none;
+      color: #039699;
+}
+a:hover {
+      color: #a22eea;
+}
+a:active {
+      color: #039699;
+      text-decoration: none;
+}
+body {
+    padding: 36px;
+    margin-left: auto;
+    margin-right: auto;
+    width:  1100px;
+    background-color: #fff3db;
+    line-height: 1.5;
+}
+h1 {
+    font-family: AdobeCaslonPro, Georgia, serif;
+    font-size: 36px;
+    font-weight: bold;
+}
+h2 {
+    font-family: AdobeCaslonPro, Georgia, serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+h3 {
+    font-family: AdobeCaslonPro, Georgia, serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+h4 {
+    font-family: AdobeCaslonPro, Georgia, serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+p {
+    font-family: AdobeCaslonPro, Georgia, serif;
+    font-size: 18px;
+}
+code {
+    font-size: 14px;
+}
+li {
+    font-family: AdobeCaslonPro, Georgia, serif;
+    font-size: 18px;
+}
+.date p {
+    font-style: italic;
+}
+.content {
+    margin-right:300px;
+}
+.fullwidth {
+    width: 800px;
+}
+.center p h1 {
+    text-align: center;
+}
+.center h1 {
+    text-align: center;
+}
+
+.center-image {
+    margin: 0 auto;
+    display: block;
+}
+
+.caption {
+    text-align: center;
+}
+
+.figure {
+    text-align: center;
+}
+
+/* NavBlox style declarations */
+#bloxNav {
+    float: right;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    padding: 21px;
+    background-color: #ff005f;
+    flex-flow: column;
+    justify-content: flex-start;
+    max-width: max-content;
+    gap: 21px;
+    font-family: AdobeCaslonPro;
+    font-size: 18px;
+    width: 140px;
+}
+
+#bloxNav,
+#bloxNav a,
+#bloxNav a:visited {
+    color: #00364a;
+}
+
+#bloxNav a {
+    text-decoration: none;
+}
+
+.bloxBlock {
+    background-color: #fff3db;
+    padding: 11px 15px;
+    border: 4px double #039699;
+    border-radius: 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row;
+    gap: 3px;
+    width: 108px;
+}
+
+.bloxBlock img,
+.bloxBlock span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.bloxBlock img {
+    width: 38px;
+    image-rendering: pixelated;
+}
+
+.bloxBlock span {
+    display: inline-block;
+}
+
+.wiggle:hover {
+    animation: wiggle 0.33s linear infinite;
+}
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

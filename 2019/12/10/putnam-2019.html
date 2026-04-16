@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Putnam 2019 &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Putnam 2019</h1>
+<p class="date">10 December 2019</p>
+
+<div class="content">
+<p>This past weekend, I participated in the <a
+href="https://www.maa.org/math-competitions/putnam-competition">William
+Lowell Putnam Mathematical Competition</a> with a couple of my friends.
+It was my first time competing in any sort of math competition and I
+hadn’t prepared much beforehand (I did have a peek at some problems from
+previous years the day before, but I didn’t manage to solve any). On the
+day itself, I ended up submitting three out of the twelve questions,
+though I wouldn’t be surprised if I still got a score of 0/120, given
+how tough the grading is supposed to be. I thought it’d be a good idea
+to record my incomplete solutions (and what they were missing) so that
+when the marks come out in a couple months I’ll be able to refer to what
+I actually did. <!--more--></p>
+<p><strong>Update (18 February 2020):</strong> Results were released
+today! I got a score of 10/120, with 3 points for question A1 and 7
+points for question B1.</p>
+<h3 id="what-is-the-putnam">What is the Putnam?</h3>
+<p>The Putnam, first held in 1938, is an annual mathematical competition
+open to undergraduate students across universities in North America.
+While the exam is taken individually, universities are ranked according
+to the scores of their three highest-scoring participants. The exam
+itself consists of two sessions of three hours each, with a lunch break
+in between. Questions in the first half are numbered A1 to A6, roughly
+in increasing order of difficulty. Likewise, questions in the second
+half are numbered B1 to B6.</p>
+<p>The exam is well known for being really difficult, and the median
+score is <a
+href="https://artofproblemsolving.com/community/c7t310571f7h1595446_putnam_2017_results">0
+or 1 most years</a>. While the problems don’t usually require much
+concrete background beyond first-year linear algebra and calculus, the
+proofs require a lot of creativity and very little partial credit is
+given. The correct answer alone is worth 0 points and getting even 1 or
+2 points out of 10 on a question demands that one sketch out a large
+part of the proof.</p>
+<h3 id="the-questions-i-did">The questions I did</h3>
+<p>I managed to get the correct answer (though definitely not a complete
+proof) on both problems A1 and B1 and I submitted my work on problem B5
+even though I was nowhere close to a full answer. I have included my
+partial solutions; the full answers can be found <a
+href="https://kskedlaya.org/putnam-archive/">here</a>.</p>
+<p><strong>A1.</strong> <em>Determine all possible values of the
+expression</em></p>
+<p><span class="math display">\[A^3 + B^3 + C^3 - 3ABC\]</span></p>
+<p><em>where <span class="math inline">\(A\)</span>, <span
+class="math inline">\(B\)</span>, and <span
+class="math inline">\(C\)</span> are nonnegative integers.</em></p>
+<p><em>What I did.</em> I spent the entirety of the first three-hour
+session on this problem. For convenience, let</p>
+<p><span class="math display">\[f(A,B,C) = A^3 + B^3 + C^3 -
+3ABC.\]</span></p>
+<p>(I wish I’d done this on the actual exam!) On scratch paper, I wrote
+out tables of the values of the expression for small <span
+class="math inline">\(A,B,C\)</span> and noticed the following two
+patterns:</p>
+<p><span class="math display">\[f(0,0,1) = 1,\quad f(1,1,2) = 4,\quad
+f(2,2,3) = 7,\ldots\]</span></p>
+<p><span class="math display">\[f(0,1,1) = 2,\quad f(1,2,2) = 5,\quad
+f(2,3,3) = 8,\ldots\]</span></p>
+<p>This pattern would generate all the numbers of the form <span
+class="math inline">\(3k + 1\)</span> and <span class="math inline">\(3k
++ 2\)</span> for <span class="math inline">\(k = 0,1,2\ldots\)</span>. I
+knew this couldn’t be it, since I also occasionally got numbers that
+were divisible by 3, the smallest positive one being <span
+class="math inline">\(9 = f(0,1,2)\)</span>. I then noticed that</p>
+<p><span class="math display">\[f(0,1,2) = 9,\quad f(1,2,3) = 18,\quad
+f(2,3,4) = 27,\ldots\]</span></p>
+<p>So I wrote down my claim: The values are of the form</p>
+<p><span class="math display">\[3k + 1,\quad 3k + 2,\quad
+9k,\]</span></p>
+<p>for <span class="math inline">\(k = 0,1,2\ldots\)</span>. I only
+ended up being able to prove that values of this form were expressible,
+but I didn’t prove that these were the only ones. I did a clumsy proof
+by induction. First I showed that</p>
+<p><span class="math display">\[f(A+1, B+1, C+1) = f(A,B,C) + 3(A^2 +
+B^2 + C^2 - AB - AC - BC).\]</span></p>
+<p>Then for the case where <span class="math inline">\(A = B\)</span>
+and <span class="math inline">\(C = A+1\)</span>, incrementing each of
+<span class="math inline">\(A, B, C\)</span> by one increases the value
+of the whole expression by <span class="math inline">\(3\)</span>. This
+shows that <span class="math inline">\(1,4,7,\ldots\)</span> are
+expressible. In the case where <span class="math inline">\(A =
+B\)</span> and <span class="math inline">\(C = A-1\)</span> (with base
+case <span class="math inline">\(A = 1\)</span>), incrementing each of
+<span class="math inline">\(A,B,C\)</span> also increases the value of
+the whole expression by <span class="math inline">\(3\)</span>. This
+shows that <span class="math inline">\(2,5,8,\ldots\)</span> are
+expressible. Lastly, when <span class="math inline">\(B = A + 1\)</span>
+and <span class="math inline">\(C = A+2\)</span>, the expression
+increases by <span class="math inline">\(9\)</span>, showing that <span
+class="math inline">\(9,18,27,\ldots\)</span> are expressible. <span
+class="math inline">\(0 = f(1,1,1)\)</span> is a special case and my
+solution ended here.</p>
+<p><em>What I was missing.</em> I was missing a formal proof that <span
+class="math inline">\(f(A,B,C)\)</span> takes on only nonnegative
+values, as well as a proof that no numbers of the form <span
+class="math inline">\(9k + 3\)</span> and <span
+class="math inline">\(9k+6\)</span> are expressible. I hope that what I
+did include is enough to get a couple points.</p>
+<p><strong>B1.</strong> <em>Denote by <span
+class="math inline">\(\mathbb{Z}^2\)</span> the set of all points <span
+class="math inline">\((x,y)\)</span> in the plane with integer
+coordinates. For each integer <span class="math inline">\(n\geq
+0\)</span>, let <span class="math inline">\(P_n\)</span> be the subset
+of <span class="math inline">\(\mathbb{Z}^2\)</span> consisting of the
+point <span class="math inline">\((0,0)\)</span> together with all
+points <span class="math inline">\((x,y)\)</span> such that <span
+class="math inline">\(x^2 + y^2 = 2^k\)</span> for some integer <span
+class="math inline">\(k\leq n\)</span>. Determine, as a function of
+<span class="math inline">\(n\)</span>, the number of four-point subsets
+of <span class="math inline">\(P_n\)</span> whose elements are the
+vertices of a square.</em></p>
+<p><em>What I did.</em> I found the pattern pretty quickly by sketching
+out <span class="math inline">\(P_n\)</span> for a couple values of
+<span class="math inline">\(n\)</span>. (<a
+href="https://artofproblemsolving.com/community/c7t441f7h1966348_2019_putnam_b1">This
+forum thread</a> includes a nice visualisation of the problem.) I
+defined the set</p>
+<p><span class="math display">\[S_k = \{(x,y) \in \mathbb{Z}^2 : x^2 +
+y^2 = 2^k\}\]</span></p>
+<p>and showed (with some handwaving) that <span
+class="math inline">\(S_k\)</span> only contains four points for all
+<span class="math inline">\(k\geq 0\)</span>. I then let <span
+class="math inline">\(f(n)\)</span> denote the number of squares in
+<span class="math inline">\(P_n\)</span> and claimed that <span
+class="math inline">\(f(n) = 5n + 1\)</span>. When <span
+class="math inline">\(n = 0\)</span>, the only square is formed by the
+points <span class="math inline">\((1,0), (0,1), (-1, 0), (0,
+-1)\)</span>. Since</p>
+<p><span class="math display">\[P_0 = \{(0,0)\} \cup S_0
+\quad\text{and}\quad P_{k+1} = P_k \cup S_{k+1},\]</span></p>
+<p>on the induction step we need only consider squares that use a new
+point (another square would already have been counted). I showed —
+again, with some handwaving — that exactly 5 squares are added each
+time: diagonal ones when <span class="math inline">\(k\)</span> is even
+and regular ones when <span class="math inline">\(k\)</span> is odd.</p>
+<p><em>What I was missing.</em> I was missing a lot of rigour for this
+question, even though I believe my results were all correct as written.
+I would not be surprised if I got 0 for this question, though of course
+I’m hoping I got a point or two!</p>
+<p><strong>B5.</strong> <i>Let <span class="math inline">\(F_m\)</span>
+be the <span class="math inline">\(m\)</span>th Fibonacci number,
+defined by <span class="math inline">\(F_1 = F_2 = 1\)</span> and <span
+class="math inline">\(F_m = F_{m-1} + F_{m-2}\)</span> for all <span
+class="math inline">\(m\geq 3\)</span>. Let <span
+class="math inline">\(p(x)\)</span> be the polynomial of degree <span
+class="math inline">\(1008\)</span> such that <span
+class="math inline">\(p(2n+1) = F_{2n+1}\)</span> for all <span
+class="math inline">\(n = 0,1,2,\ldots,1008\)</span>. Find integers
+<span class="math inline">\(j\)</span> and <span
+class="math inline">\(k\)</span> such that <span
+class="math inline">\(p(2019) = F_j - F_k\)</span>.</i></p>
+<p><em>What I did.</em> I defined the polynomial <span
+class="math inline">\(p_k(x)\)</span> to be the polynomial of degree
+<span class="math inline">\(k\)</span> such that <span
+class="math inline">\(p(2n+1) = F_{2n+1}\)</span> for all <span
+class="math inline">\(n= 0,1,2,\ldots,k\)</span>. Then <span
+class="math inline">\(p(x) = p_{1008}(x)\)</span>. I found that</p>
+<p><span class="math display">\[p_0(x) = 1,\quad p_1(x) = \frac{1}{2}x +
+\frac{1}{2},\quad p_2(x) = \frac{1}{4}x^2 - \frac{1}{2}x +
+\frac{5}{4}.\]</span></p>
+<p>I thought that since <span class="math inline">\(p(2019) =
+p_{1008}(2\cdot 1008 + 3)\)</span>, I’d be able to spot a pattern by
+finding the values of <span class="math inline">\(p_k(2k+3)\)</span>. I
+found that</p>
+<p><span class="math display">\[p_0(3) = 1,\quad p_1(5) = 3,\quad p_2(7)
+= 9,\]</span></p>
+<p>but then I was stuck because I couldn’t find Fibonacci numbers whose
+difference is 9. [This was a crucial mistake, because <span
+class="math inline">\(\frac{49}{4} - \frac{7}{2} + \frac{5}{4}\)</span>
+is actually 10.]</p>
+<p><em>What I was missing.</em> This was actually a good first step
+towards a correct solution, but because of my computational mistake I
+didn’t see the pattern, namely that</p>
+<p><span class="math display">\[p_k(2k+3) = F_{2k+3} -
+F_{k+2}.\]</span></p>
+<p>In any case, I’m not sure I would have been able to construct the
+proof.</p>
+<h3 id="remarks">Remarks</h3>
+<p>I had a really great time doing the Putnam and I definitely plan to
+take it again next year. Because one is no longer eligible to take the
+exam after obtaining a bachelor’s degree, it’ll probably be my last
+chance to take the test and I’ll spend more time preparing for it than I
+did this year.</p>
+</div>
+
+</body>
+</html>

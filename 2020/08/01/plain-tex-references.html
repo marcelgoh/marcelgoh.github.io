@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Plain TeX references with AWK and sed &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Plain TeX references with AWK and sed</h1>
+<p class="date">1 August 2020</p>
+
+<div class="content">
+<p>Using Plain TeX in the 21st century isn’t as big a pain as it might
+seem. The main difference between using TeX and LaTeX is that when you
+need a new feature in LaTeX, there is almost certainly a package out
+there that does it, while with TeX, you have to be prepared to write
+your own solution. I’ve written my <a href="/misc/">own macros</a> for
+most of the things I need to do on a daily basis, and the <a
+href="https://www-cs-faculty.stanford.edu/~knuth/abcde.html#texbk">TeXbook</a>
+contains approaches to most problems, but something that I never figured
+out how to do was format reference lists automatically. Recently,
+Prof. Luc Devroye showed me how he formats his references: entirely
+using UNIX scripts! I expanded his script to handle automatic numbering
+of references, and I thought I’d write a little post explaining how it
+works. <!--more--></p>
+<h3 id="plain-tex-and-references">Plain TeX and references</h3>
+<p>I use Plain TeX for all of my homework assignments, notes, and
+papers. I usually tell people that I switched from LaTeX, but when I
+started using TeX about a year ago, I’d actually only used LaTeX for a
+dozen or so homework assignments, and all that amounted to was inputting
+words and math into some templates that I found on the web. I stopped
+using LaTeX after a frustrating experience trying to format a software
+report I was trying to create. I happened to be reading <em>The Art of
+Computer Programming</em> at this time (which are done in TeX), so I was
+inspired to learn how to typeset my own formats from the ground up in
+pure TeX.</p>
+<p>Learning TeX was a pretty smooth process. I learned the basics while
+typesetting notes for classes (e.g. <a
+href="/misc/study-notes/ndmi011notes.pdf">this one</a>) and as time went
+on, I started to add more and more complicated macros to my collection.
+I wrote a bunch of macros for the proof figures in my <a
+href="/research/typechecking-proof-scripts.pdf">Honours project
+report</a>, which was challenging at the time. (Incidentally, the final
+report is actually in LaTeX, because my supervisor wanted to use some of
+my figures in a paper of hers.) TeX provides a smart way of doing mostly
+everything, except for references. There doesn’t seem to be a good
+TeX-only way to get your references alphabetised, numbered, and then for
+those numbers to be inserted into the correct places in the
+document.</p>
+<p>For a recent <a href="https://arxiv.org/pdf/2007.05681.pdf">paper</a>
+I coauthored with Anna Brandenberger and Luc Devroye, we used <a
+href="http://www.bibtex.org">BibTeX</a>, a program designed by Oren
+Patashnik for use with LaTeX but which works with Plain TeX as well. It
+did the job just fine, but was annoying to get working with Overleaf (in
+particular, only one citation style seemed to be compatible) and was
+hard to customise. Trudging through the documentation for the different
+settings you can enable reminded me why I stopped using LaTeX in the
+first place. Spending hours trying to bend a monolithic program to my
+will is far less rewarding to me than using that time to write a small
+solution that I understand and that does what I want.</p>
+<h3 id="enter-awk-and-sed">Enter AWK and sed</h3>
+<p>After hearing about the woes that Anna and I encountered trying to
+get BibTeX to work properly, Luc Devroye sent me a script he has used
+since the ’90s. He formats his references in a format like this:</p>
+<pre><code>%A Heinz Pr\&quot;ufer
+%T Neuer Beweis eines Satzes \&quot;uber Permutationen
+%J Archiv der Mathematik und Physik
+%D 1918
+%V 27
+%P 142-144
+
+%A George P\&#39;olya
+%J American Mathematical Monthly
+%T On picture-writing
+%D 1956
+%V 63
+%P 689-697
+
+%A Philippe Flajolet
+%A Robert Sedgewick
+%T Analytic Combinatorics
+%I Cambridge University Press
+%C New York
+%D 2009</code></pre>
+<p>He first has a script called <code>sortnamebibA</code> that sorts the
+paragraphs by the last name of the first listed author (so the order of
+the blocks above would become Flajolet, Pólya, then Prüfer), then
+another script called <code>bb</code> that puts all the parts of a
+single entry in order. This is done by giving each line a numeric value
+and then piping to <code>sort</code>. The intermediate file right before
+this pipe looks like this:</p>
+<pre><code>253 1 %A Philippe Flajolet
+254 2 %A Robert Sedgewick
+275 0 %T Analytic Combinatorics
+396 0 %I Cambridge University Press
+417 0 %C New York
+438 0 %D 2009
+508 0 %K 2 0
+509 0
+510 1 %A George P\&#39;olya
+551 0 %J American Mathematical Monthly
+532 0 %T On picture-writing
+693 0 %D 1956
+574 0 %V 63
+595 0 %P 689-697
+765 0 %K 1 1
+766 0
+767 1 %A Heinz Pr\&quot;ufer
+788 0 %T Neuer Beweis eines Satzes \&quot;uber Permutationen
+809 0 %J Archiv der Mathematik und Physik
+950 0 %D 1918
+831 0 %V 27
+852 0 %P 142-144
+1022 0 %K 1 1</code></pre>
+<p>For example, the <code>%D 1956</code> in Pólya’s entry has a value of
+693, so it will appear after the volume and page numbers. Note that
+<code>%K</code> lines have been added as well. We’ll talk about this
+later. After the numbers have been stripped and the <code>%</code>
+characters have been converted to the correct formatting, the result is
+appended to a <code>.tex</code> file. The TeX code looks like this:</p>
+<pre><code>\beginref Philippe Flajolet
+and Robert Sedgewick,
+{\sl Analytic Combinatorics},
+Cambridge University Press,
+New York,
+2009.
+\endref
+\beginref George P\&#39;olya,
+``On picture-writing,&#39;&#39;
+{\sl American Mathematical Monthly},
+vol.~63,
+pp.~689--697,
+1956.
+\endref
+\beginref Heinz Pr\&quot;ufer,
+``Neuer Beweis eines Satzes \&quot;uber Permutationen,&#39;&#39;
+{\sl Archiv der Mathematik und Physik},
+vol.~27,
+pp.~142--144,
+1918.
+\endref</code></pre>
+<p>(The <code>\beginref</code> and <code>\endref</code> macros that
+control the spacing are also inserted into the TeX source.) The typeset
+result is</p>
+<img class="fullwidth" src="/media/plain-tex-references/luc-refs.png" alt="luc-refs" />
+<p>Pretty neat, eh!</p>
+<h3 id="stylistic-changes">Stylistic changes</h3>
+<p><em>Note.</em> <a
+href="/media/plain-tex-references/source.txt">Here</a> is the code that
+I’ll be referring to for the rest of the article.</p>
+<p>After messing around with Luc’s code a bit, I was able to make my own
+stylistic changes. You’ll notice that Luc’s code is able to detect if
+the entry is a book or an article and put the title in slanted font or
+quotes accordingly. I wanted to shift some other things around as well,
+so I introduced a <code>%Y</code> tag that is used for the year of a
+book.</p>
+<p>Earlier, we saw the temporary <code>%K</code> tag that Luc’s code
+inserts. He uses it to count authors as well as to flag if the title
+should be slanted. I expanded on this idea to add two more flags: one to
+check if the city of publication is supplied, and one more to check if
+page numbers are supplied. My <code>.ref</code> file now looks like:</p>
+<pre><code>%Q prufer1918
+%A Heinz Pr\&quot;ufer
+%T Neuer Beweis eines Satzes \&quot;uber Permutationen
+%J Archiv der Mathematik und Physik
+%D 1918
+%V 27
+%P 142-144
+
+%Q polya1956
+%A George P\&#39;olya
+%J American Mathematical Monthly
+%T On picture-writing
+%D 1956
+%V 63
+%P 689-697
+
+%Q ac
+%A Philippe Flajolet
+%A Robert Sedgewick
+%T Analytic Combinatorics
+%I Cambridge University Press
+%C New York
+%Y 2009
+
+END</code></pre>
+<p>The <code>%Q</code> tag is for numbering references, and I also added
+a <code>%O</code> tag to the script that goes after everything else and
+doesn’t format its input at all. This could be used to add extra
+comments after an entry, and if I really can’t figure out how to do
+something with the script, I can always bail out by putting
+<code>%O</code> directly after the author and then just using normal
+TeX. The <code>END</code> is not really needed (it gets stripped out by
+the script anyway), but it reminds me to put an extra newline after the
+last entry. My formatted output looks like this:</p>
+<img class="fullwidth" src="/media/plain-tex-references/my-refs.png" alt="my-refs" />
+<p>The flags I introduced in the temporary <code>%K</code> line ensure
+that if the city ‘New York’ were not specified, then the colon would
+also disappear. Also, if the page numbers were not specified in the
+second entry, then the period would go after (1956). My <code>%Q</code>
+tags are sorted to the front of the entry and are replaced with an
+<code>\item</code> macro; a separate script, which I’ll talk about next,
+is in charge of replacing the <code>%Q</code> tags with their
+appropriate numbers.</p>
+<h3 id="numbering-references">Numbering references</h3>
+<p>Now we get to the juicy bit. I would like my script to</p>
+<ol type="1">
+<li><p>only include references that are actually cited in the
+text;</p></li>
+<li><p>number the references according to their order in the
+bibliography; and</p></li>
+<li><p>replace the citation tags with numbers accordingly.</p></li>
+</ol>
+<p>In the attached <a
+href="/media/plain-tex-references/source.txt">source code</a>, this is
+done by the <code>numberrefs</code> program. Suppose we have the
+references stored in <code>file.ref</code> and the corresponding TeX
+file is <code>file.tex</code>.</p>
+<p>First, we surround each block in <code>file.ref</code> with
+<code>ENTRY</code> and <code>YRTNE</code>. We also number the blocks in
+this step. So the second block would look like</p>
+<pre><code>ENTRY 2
+%A ...
+%Q ...
+...
+YRTNE</code></pre>
+<p>Then we go through the file again looking for <code>%Q</code> tags.
+If in block <span class="math inline">\(n\)</span>, we find that the
+<code>%Q</code> tag is <code>string</code>, then we search
+<code>file.ref</code> for the substring <code>ref{string}</code>. If it
+is found, we replace <code>ENTRY n</code> with <code>FOUNDENTRY n</code>
+with a <code>sed</code> command. After this loop terminates, we delete
+all lines in <code>file.ref</code> <em>except</em> those that are
+between <code>FOUNDENTRY</code> and <code>YRTNE</code> (not inclusive).
+The result is a bibliography containing only entries that are actually
+cited.</p>
+<p>Items 2 and 3 are done together in one pass. We go through the file
+again, keeping a loop counter that tells us what block we are at.
+Suppose we find <code>%Q string</code> in the third block. We can
+replace <code>string</code> by 3, so we have <code>%Q 3</code> in
+<code>file.ref</code>. Then we replace all instances of
+<code>\ref{string}</code> in <code>file.tex</code> with
+<code>\ref{3}</code>. At this point, the <code>.ref</code> file can
+safely be sent to the <code>bb</code> program.</p>
+<h3 id="a-small-example">A small example</h3>
+<p>Note that we can define <code>\ref</code> to whatever we want, but it
+must be defined, or else TeX will complain at compile-time. In my macros
+file <code>fontmac.tex</code>, I have</p>
+<pre><code>\def\ref#1{[#1]}</code></pre>
+<p>The programs <code>numberrefs</code> and <code>bb</code> can be
+called one after another to get the job done, but this gets tiresome, so
+I have a little program called <code>pdf</code> that calls both
+<code>numberrefs</code> and <code>bb</code> and then compiles TeX to
+PDF. As a demonstration, in the file <code>test.tex</code> I have</p>
+<pre><code>\input fontmac
+\classicmode
+
+\centerline{\twelvebf A SMALL EXAMPLE}
+
+\bigskip
+
+A correspondence between $(n-2)$-tuples and labelled free trees was shown by Pr\&quot;ufer \ref{prufer1918}.
+George P\&#39;olya gave an introduction to some applications of generating functions in \ref{polya1956}.
+The symbolic method for counting objects in a combinatorial class is detailed in \ref{ac}.
+
+\section References
+
+\bye</code></pre>
+<p>Calling <code>pdf -r -n test</code> produces</p>
+<img class="fullwidth" src="/media/plain-tex-references/example-num.png"
+alt="example-num" />
+<p>Removing the <code>-n</code> flag prevents the call to
+<code>numberrefs</code></p>
+<img class="fullwidth" src="/media/plain-tex-references/example-nonum.png"
+alt="example-nonum" />
+<p>but in this case the <code>\ref{}</code> tags should be replaced with
+something more natural, e.g., ‘shown by Prüfer (1918)’ and ‘in Pólya
+(1956).’ Removing both flags and calling <code>pdf test</code> does not
+insert references at all:</p>
+<img class="fullwidth" src="/media/plain-tex-references/example-norefs.png"
+alt="example-norefs" />
+<p>(But then of course, we should remove the
+<code>\section{References}</code> as well as all the inline
+<code>\ref{}</code> tags.)</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>The script I detailed is much simpler than a big program with lots of
+features like BibTeX. In addition, if we switched to a higher-level
+scripting language like Perl or Python, we could probably accomplish
+more. But I like the idea of simple programs that each do a single job,
+so I’ll be using this little script to format my reference lists for the
+forseeable future. I also had a lot of fun learning AWK and
+<code>sed</code>, which I’d never used extensively before.</p>
+</div>
+
+</body>
+</html>

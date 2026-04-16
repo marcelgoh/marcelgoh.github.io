@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>The combinatorial Nullstellensatz &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">The combinatorial Nullstellensatz</h1>
+<p class="date">7 March 2021</p>
+
+<div class="content">
+<p>I haven’t done a proper math blog post for awhile, and I’ve been
+meaning to learn more about the polynomial method, so I thought I’d sit
+down and get to grips with the “combinatorial Nullstellensatz” (see Alon
+(1999)). This was prompted when I realised that there were a couple of
+exercises in of Knuth’s books (namely Volume 2 and Volume 4, Fascicle 5)
+that concern the Nullstellensatz. (I’m working off a preliminary draft
+of <em>Mathematical Preliminaries Redux</em> (MPR), which was posted to
+Knuth’s website before the book came out; it is no longer there because
+the book is now out! I do not know if the exercises (and numbering) in
+my draft correspond to the exercises in the actual book.) I must confess
+to having seen the proof of the Nullstellensatz before in Tao and Vu’s
+<em>Additive Combinatorics</em> which I read (read: skimmed) about three
+months ago, but I have forgotten it and so this post will see me trying
+to reconstruct it, with some hints from Knuth. <!--more--></p>
+<p><strong>Update.</strong> I have also made <a
+href="https://youtu.be/XktcBXhzB28">a video</a> on this topic. It
+follows the outline of this blog post pretty closely, but might be more
+enjoyable for people who prefer listening over reading.</p>
+<h3 id="proof-of-the-theorem">Proof of the theorem</h3>
+<p>Here is the statement we’re trying to prove (exercise 114 of
+MPR):</p>
+<p><strong>Theorem</strong> (The combinatorial Nullstellensatz). <em>Let
+<span class="math inline">\(k\)</span> be a field and let <span
+class="math inline">\(f\in k[x_1,\ldots,x_n]\)</span> be a polynomial
+such that the coefficient of <span class="math inline">\(x_1^{d_1}\cdots
+x_n^{d_n}\)</span> is nonzero and each term has degree at most <span
+class="math inline">\(d_1+\cdots +d_n\)</span>. If <span
+class="math inline">\(S_1, \ldots, S_n\)</span> are subsets of <span
+class="math inline">\(k\)</span> with <span
+class="math inline">\(|S_j|&gt;d_j\)</span> for every <span
+class="math inline">\(1\leq j\leq n\)</span> and we pick <span
+class="math inline">\(X_1,\ldots,X_n\)</span> uniformly (and
+independently) at random respectively from <span
+class="math inline">\(S_1,\ldots,S_n\)</span>, then</em></p>
+<p><span class="math display">\[{\bf P}\big\{ f(X_1,\ldots,X_n)
+\neq0\big\}
+\geq {(|S_1|-d_1) + \cdots + (|S_n|-d_n) -
+n+1\over|S_1|\cdots|S_n|}.\]</span></p>
+<p>This probability is nonzero by our assumption on the sizes of the
+<span class="math inline">\(S_j\)</span> and indeed, most applications
+of the Nullstellensatz simply use the existence of a single non-root of
+<span class="math inline">\(f\)</span> in <span
+class="math inline">\(S_1\times\cdots\times S_n\)</span>. As a hint,
+Knuth says to consult exercise 4.6.1.-16, which is found in Volume 2.
+Reformulated in probabilistic notation to match the notation used in the
+statement of the Nullstellensatz above, here is its statement and
+proof:</p>
+<p><strong>Lemma.</strong> <em>Let <span
+class="math inline">\(k\)</span> be a field and fix a nonzero
+multivariate polynomial <span class="math inline">\(f\in k[x_1,\ldots
+x_n]\)</span>. Suppose that the degree of <span
+class="math inline">\(f\)</span> in the variable <span
+class="math inline">\(x_j\)</span> is at most <span
+class="math inline">\(d_j\)</span> and let <span
+class="math inline">\(S_1,\ldots,S_n\)</span> be subsets of <span
+class="math inline">\(k\)</span> with <span
+class="math inline">\(|S_j|\geq d_j\)</span> for all <span
+class="math inline">\(j\)</span>. Then if we sample <span
+class="math inline">\(X_j\)</span> uniformly (and independently) at
+random from each <span class="math inline">\(S_j\)</span>,</em></p>
+<p><span class="math display">\[{\bf P}\big\{ f(X_1, \ldots, X_n) \neq
+0\big\} \geq {\prod_{j=1}^n (|S_j| - d_j)\over
+|S_1|\cdots|S_n|}.\]</span></p>
+<p><em>Proof.</em> We induce on <span class="math inline">\(n\)</span>.
+When <span class="math inline">\(n = 1\)</span>, a polynomial of degree
+<span class="math inline">\(d_1\)</span> can have at most <span
+class="math inline">\(d_1\)</span> roots, so there are at least <span
+class="math inline">\(|S_1| - d_1\)</span> non-roots in the set <span
+class="math inline">\(S_1\)</span>. Thus the probability of choosing a
+non-root is at least <span class="math inline">\((|S_1| -
+d_1)/|S_1|\)</span>. Now let <span class="math inline">\(n&gt;1\)</span>
+and suppose the lemma holds for <span
+class="math inline">\(n-1\)</span>. Sample <span
+class="math inline">\(X_1, \ldots, X_{n-1}\)</span> and note that if we
+let <span class="math inline">\(g(x) = f(X_1,\ldots,X_{n-1},x)\)</span>,
+then there exist polynomials <span
+class="math inline">\(f_0,\ldots,f_{d_n}\in
+k[x_1,\ldots,x_{n-1}]\)</span> such that</p>
+<p><span class="math display">\[g(x) = f_0(X_1,\ldots,X_{n-1}) + x
+f_1(X_1,\ldots,X_{n-1}) + \cdots + {x}^{d^n}
+f_{d_n}(X_1,\ldots,X_{n-1}),\]</span></p>
+<p>with some <span class="math inline">\(i\)</span> such that <span
+class="math inline">\(f_i\)</span> not identically zero. By the
+induction hypothesis, we have</p>
+<p><span class="math display">\[{\bf P}\big\{ f_i(X_1, \ldots, X_{n-1})
+\neq 0\big\}\geq{\prod_{j=1}^{n-1}
+(|S_j|-d_j)\over|S_1|\cdots|S_{n-1}|},\]</span></p>
+<p>meaning that <span class="math inline">\(g(x)\)</span> is a nonzero
+univariate polynomial with degree at most <span
+class="math inline">\(d_n\)</span>. Thus it has at most <span
+class="math inline">\(d_n\)</span> roots and sampling <span
+class="math inline">\(X_n\)</span> uniformly from <span
+class="math inline">\(S_n\)</span>, we conclude that</p>
+<p><span class="math display">\[{\bf P}\big\{g(x_n)\neq 0\big\} \geq
+{\bf P}\big\{ f_i(X_1, \ldots, X_{n-1})\big\} {|S_n| - d_n\over |S_n|}
+\geq {\prod_{j=1}^n (|S_j| - d_j)\over |S_1|\cdots|S_n|}.\]</span></p>
+<p>This completes the induction and proves the lemma.  ∎</p>
+<p>The lemma above is a variant of the <a
+href="https://en.wikipedia.org/wiki/Schwartz–Zippel_lemma">Schwartz-Zippel
+lemma</a>. (Knuth cites DeMillo and Lipton, and indeed, Wikipedia says
+that this lemma was independently discovered around the same time by
+Schwartz, Zippel, and DeMillo-Lipton; I have included all three
+references at the bottom of the post.) It quantifies the intuitive fact
+that with <span class="math inline">\(f\)</span> fixed, as the sizes of
+the <span class="math inline">\(S_j\)</span> increase, the probability
+of finding a root of <span class="math inline">\(f\)</span> when picking
+vectors uniformly at random from <span class="math inline">\(\prod_j
+S_j\)</span> goes to 0. With this lemma in hand, we can now prove the
+Nullstellensatz.</p>
+<p><em>Proof of the Nullstellensatz assuming the lemma.</em> The main
+trouble is that the degree of <span class="math inline">\(f\)</span> in
+the variable <span class="math inline">\(x_j\)</span> is not <span
+class="math inline">\(\leq d_j\)</span>; it is only guaranteed to be
+<span class="math inline">\(\leq d_1 + \cdots + d_n\)</span>. However,
+note that the polynomial <span class="math inline">\(f_j(x) =
+\prod_{s\in S_j} (x-s)\)</span>, is of degree <span
+class="math inline">\(|S_j|\)</span> and is zero on all <span
+class="math inline">\(s\in S_j\)</span>. So modifying <span
+class="math inline">\(f\)</span> by replacing <span
+class="math inline">\({x_j}^{|S_j|}\)</span> by <span
+class="math inline">\({x_j}^{|S_j|} - f_j(x_j)\)</span> everywhere does
+not change its value on the set <span
+class="math inline">\(S_j\)</span>. After doing this for all <span
+class="math inline">\(j\)</span>, the value of <span
+class="math inline">\(f\)</span> on <span
+class="math inline">\(S_1\times\cdots\times S_n\)</span> has not
+changed, but the degree of <span class="math inline">\(f\)</span> in
+each variable <span class="math inline">\(j\)</span> is at most <span
+class="math inline">\(|S_j| - 1\)</span>. Applying the lemma gives</p>
+<p><span class="math display">\[{\bf P}\big\{ f(X_1, \ldots, X_n)
+\neq0\big\} \geq {\prod_{j=1}^n (|S_j| - |S_j|+1)\over |S_1|\cdots|S_n|}
+= {1\over|S_1|\cdots|S_n|}\]</span></p>
+<p>and proves the theorem in the case that <span
+class="math inline">\(|S_j|= d_j+1\)</span> for all <span
+class="math inline">\(j\)</span>. (It also proves existence of a
+non-root in the general case.)</p>
+<p>We need to increase this probability to match the theorem statement
+in the general case, where <span class="math inline">\(|S_j| &gt;
+d_j+1\)</span> for at least some <span class="math inline">\(j\)</span>.
+From what we have already shown, we know that taking subsets <span
+class="math inline">\(S_j&#39;\subseteq S_j\)</span> of size <span
+class="math inline">\(|S_j| = d_j+1\)</span> for all <span
+class="math inline">\(j\)</span>, there is a non-root of <span
+class="math inline">\(f\)</span> in <span
+class="math inline">\(S_1&#39;\times\cdots\times S_n&#39;\)</span>. We
+construct a set <span class="math inline">\(A\)</span> of non-roots as
+follows. Pick any <span class="math inline">\(S_1&#39;\times\cdots\times
+S_n&#39;\)</span> with <span class="math inline">\(|S_j&#39;| =
+d_j+1\)</span> for every <span class="math inline">\(j\)</span>. There
+is a non-root of <span class="math inline">\(f\)</span> in <span
+class="math inline">\(S_1&#39;\times\cdots\times S_n&#39;\)</span>, call
+it <span class="math inline">\((a_1,\ldots,a_n)\)</span>, so we add this
+non-root to <span class="math inline">\(A\)</span> and then replace
+<span class="math inline">\(a_1\)</span> with a new element of <span
+class="math inline">\(S_1\setminus S_1&#39;\)</span>. We can do this
+this <span class="math inline">\(|S_1| - d_1 - 1\)</span> times for the
+first coordinate, and, in general, <span class="math inline">\(|S_j|-d_j
+- 1\)</span> times for the <span class="math inline">\(j\)</span>th
+coordinate. After running out of new elements, we have placed <span
+class="math inline">\((|S_1| - d_1) + \cdots + (|S_n| - d_n)-n\)</span>
+distinct non-roots in <span class="math inline">\(S_1\times \cdots\times
+S_n\)</span> into <span class="math inline">\(A\)</span>, and then we
+add one more in the final iteration of the algorithm. The size of <span
+class="math inline">\(A\)</span> is enough to give us a lower bound for
+the probability of choosing a non-root.  ∎</p>
+<h3 id="subgraphs-of-multigraphs">Subgraphs of multigraphs</h3>
+<p>The next two exercises in MPR deal with applications of the
+Nullstellensatz. The first is an easy problem about covering a discrete
+grid with lines, which we’ll skip here. The second is a bit more
+complicated:</p>
+<p><strong>Proposition.</strong> Let <span
+class="math inline">\(p\)</span> be a prime. Any multigraph on <span
+class="math inline">\(n\)</span> vertices with more than <span
+class="math inline">\((p-1)n\)</span> edges contains a nonempty subgraph
+in which the degree of every vertex is a multiple of <span
+class="math inline">\(p\)</span>.</p>
+<p><em>Proof.</em> Let <span class="math inline">\(G\)</span> be a
+multigraph satisfying the hypotheses. We construct a polynomial <span
+class="math inline">\(f\)</span> over the finite field on <span
+class="math inline">\(p\)</span> elements with a variable <span
+class="math inline">\(x_e\)</span> for every edge <span
+class="math inline">\(e\)</span> in the multigraph. For each vertex
+<span class="math inline">\(v\)</span> in the multigraph, form a
+polynomial <span class="math inline">\(f_v = \sum_{v\in e} x_e\)</span>,
+where <span class="math inline">\(x_e\)</span> is represented twice if
+<span class="math inline">\(e\)</span> is a loop from <span
+class="math inline">\(v\)</span> to itself. Note that <span
+class="math inline">\(f_v\)</span> has degree no more than 1 in each
+variable. Let <span class="math inline">\(x\)</span> be a vector indexed
+by <span class="math inline">\(e\in E(G)\)</span>.</p>
+<p><span class="math display">\[f(x) = \prod_{v\in V(G)}
+(1-{f_v}(x)^{p-1}) - \prod_{e\in E(G)} (1-x_e).\]</span></p>
+<p>The first term has degree <span class="math inline">\((p-1)n &lt;
+|E(G)|\)</span> and the second term has degree <span
+class="math inline">\(|E(G)|\)</span>, so if we let <span
+class="math inline">\(d_e =1\)</span> for every edge <span
+class="math inline">\(e\)</span>, the whole polynomial has degree <span
+class="math inline">\(|E(G)| = \sum_{e\in E} d_e\)</span>. The
+coefficient of <span class="math inline">\(\prod_{e\in E(G)}
+x_e\)</span> is <span class="math inline">\((-1)^{|E(G)|}\)</span>,
+which is nonzero, so letting <span class="math display">\[S_e =
+\{0,1\}\]</span> for all <span class="math inline">\(e\)</span>, by the
+combinatorial Nullstellensatz there is a subset <span
+class="math inline">\(E&#39;\)</span> of <span
+class="math inline">\(E(G)\)</span> such that setting <span
+class="math inline">\(x_e = 1\)</span> for all <span
+class="math inline">\(e\in E&#39;\)</span> and <span
+class="math inline">\(x_e = 0\)</span> otherwise, we have <span
+class="math inline">\(f(x)\neq 0\)</span>. Let <span
+class="math inline">\(G&#39;\)</span> be the subgraph of <span
+class="math inline">\(G\)</span> defined by taking the same vertex set
+and the subset <span class="math inline">\(E&#39;\)</span> of edges.</p>
+<p>Note that <span class="math inline">\(f_v(x)\)</span> is the degree
+of the vertex <span class="math inline">\(v\)</span> in the subgraph
+<span class="math inline">\(G&#39;\)</span>, modulo <span
+class="math inline">\(p\)</span>. Picking none of the edges cannot be a
+solution, since then we would have <span class="math inline">\(f(x) = 1
+- 1 = 0\)</span>. Picking even one edge causes the second term to be
+zero, and by Fermat’s little theorem, the first term is nonzero only
+when <span class="math inline">\(f_v(x) = 0\)</span> for all <span
+class="math inline">\(v\)</span>, meaning that the degree of each vertex
+<span class="math inline">\(v\)</span> in the nonempty subgraph is a
+multiple of <span class="math inline">\(p\)</span>.  ∎</p>
+<p>This exercise is related to a result of Alon, Friedland, and Kalai
+(1984). Next we will present two classical theorems that can easily be
+proven using the Nullstellensatz; in fact, Alon included both as
+examples in his original 1999 paper.</p>
+<h3 id="the-cauchy-davenport-theorem">The Cauchy-Davenport theorem</h3>
+<p>This theorem about sumsets is rather oddly named because A. Cauchy
+died in 1857 and H. Davenport was only born in 1907. Given two subsets
+<span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> of the finite field with <span
+class="math inline">\(p\)</span> elements (for a prime <span
+class="math inline">\(p\)</span>), the <em>sumset</em> <span
+class="math inline">\(A+B\)</span> is the set of all elements of the
+form <span class="math inline">\(a+b\)</span>, where <span
+class="math inline">\(a\in A\)</span> and <span
+class="math inline">\(b\in B\)</span>. The Cauchy-Davenport theorem
+gives a lower bound on the size of <span
+class="math inline">\(A+B\)</span>:</p>
+<p><strong>Theorem</strong> (Cauchy-Davenport). <em>Let <span
+class="math inline">\(k={\bf F}_p\)</span> be a finite field of prime
+order. If <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are two subsets of <span
+class="math inline">\(k\)</span>, then</em></p>
+<p><span class="math display">\[|A+B| \geq \min\{p,
+|A|+|B|-1\}.\]</span></p>
+<p><em>Proof.</em> If <span class="math inline">\(|A|+|B|&gt;p\)</span>,
+then for every <span class="math inline">\(s\in k\)</span>, the size of
+the set <span class="math display">\[s-B = \{s - b: b\in B\}\]</span>
+has the same size as <span class="math inline">\(B\)</span>, so it must
+intersect <span class="math inline">\(A\)</span> in some element. This
+means that <span class="math inline">\(s\)</span> can be written as
+<span class="math inline">\(a+b\)</span> for some <span
+class="math inline">\(a\in A\)</span> and <span
+class="math inline">\(b\in B\)</span>; that is, <span
+class="math inline">\(A+B = F\)</span> and has size <span
+class="math inline">\(p\)</span>. Now assume <span
+class="math inline">\(|A|+|B|\leq p\)</span> and let <span
+class="math inline">\(C\)</span> be any subset of <span
+class="math inline">\(k\)</span> with size <span
+class="math inline">\(|C| = |A|+|B|-2\)</span>. Let <span
+class="math inline">\(f\)</span> be the bivariate polynomial</p>
+<p><span class="math display">\[f(x_1,x_2) = \prod_{c\in C}
+(x_1+x_2-c).\]</span></p>
+<p>Let <span class="math inline">\(d_1 = |A|-1\)</span>, <span
+class="math inline">\(d_2 = |B|-1\)</span>, and note that the
+coefficient of <span
+class="math inline">\({x_1}^{d_1}{x_2}^{d_2}\)</span> is, by the
+binomial theorem, <span class="math inline">\({|A|+|B|-2\choose
+|A|-1}\)</span>, and this is nonzero modulo <span
+class="math inline">\(p\)</span>, since <span
+class="math inline">\(|A|+|B|-2 &lt; p\)</span>. Taking <span
+class="math inline">\(S_1 = A\)</span> and <span
+class="math inline">\(S_2 = B\)</span> in the Nullstellensatz, we find
+that there must be some <span class="math inline">\(a\in A\)</span> and
+<span class="math inline">\(b\in B\)</span> such that</p>
+<p><span class="math display">\[f(a,b) = \prod_{c\in C} (a+b-c) \neq
+0,\]</span></p>
+<p>implying that <span class="math inline">\(a+b\notin C\)</span>. Since
+<span class="math inline">\(C\)</span> was an arbitrary set of size
+<span class="math inline">\(|A|+|B|-2\)</span> and we found that <span
+class="math inline">\(A+B\not\subseteq C\)</span>, this means that <span
+class="math inline">\(|A+B|\geq |A|-|B|-1\)</span>.  ∎</p>
+<h3 id="chevalleys-theorem">Chevalley’s theorem</h3>
+<p>This theorem was proved by C. Chevalley in 1935, and strengthened the
+same year by E. Warning. The strong version states that given a set of
+polynomials <span class="math display">\[\{f_i\}\]</span> over a finite
+field <span class="math inline">\(k\)</span>, if the number of variables
+is sufficiently large in comparison to the degrees of the polynomials,
+the set of points <span class="math inline">\(A\)</span> on which every
+<span class="math inline">\(f_i\)</span> is zero must be a multiple of
+<span class="math inline">\({\rm char}\,k\)</span>. Chevalley’s original
+formulation simply stated that if the set <span
+class="math inline">\(A\)</span> is nonempty, then it must have at least
+two elements (which follows from the stronger version, since for a
+finite field <span class="math inline">\(k\)</span>, <span
+class="math inline">\({\rm char}\,k\geq 2\)</span>). This is the version
+of the theorem we will state and prove.</p>
+<p><strong>Theorem</strong> (Chevalley). <em>Let <span
+class="math inline">\(k = {\bf F}_q\)</span> be the finite field on
+<span class="math inline">\(q\)</span> elements, where <span
+class="math inline">\(q\)</span> is a prime power, and let <span
+class="math inline">\(f_1, \ldots, f_m\)</span> be polynomials in <span
+class="math inline">\(k[x_1,\ldots,x_n]\)</span>. If <span
+class="math inline">\(n &gt; \deg f_1 + \cdots + \deg f_m\)</span> and
+there exists a point <span class="math inline">\(a = (a_1,\ldots,a_n)
+\in k^n\)</span> such that <span class="math inline">\(f_i(a) =
+0\)</span> for all <span class="math inline">\(f_i\)</span>, then there
+is another point <span class="math inline">\(a&#39;\neq a\)</span> such
+that <span class="math inline">\(f_i(a&#39;) = 0\)</span> for all <span
+class="math inline">\(f_i\)</span>.</em></p>
+<p><em>Proof.</em> Let</p>
+<p><span class="math inline">\(g(x_1, \ldots,x_n) = \prod_{i=1}^m
+(1-f_i(x_1,\ldots,x_n)^{q-1})\quad\hbox{and}\quad h(x_1,\ldots,x_n) =
+\prod_{i=1}^n\prod_{s\in k\setminus\{a_i\}} (x_i - s),\)</span></p>
+<p>and let</p>
+<p><span class="math display">\[ f(x_1, \ldots,x_n) = g(x_1,\ldots,x_n)
+- \lambda h(x_1,\ldots,x_n),\]</span></p>
+<p>where <span class="math inline">\(\lambda\in k\)</span> is a scalar
+chosen such that <span class="math inline">\(f(a) = 0\)</span>. Since
+<span class="math inline">\(g(a) = 1\)</span> and and <span
+class="math inline">\(h(a)\neq 0\)</span>, <span
+class="math inline">\(\lambda\neq 0\)</span> is exactly <span
+class="math inline">\(h(a)^{-1}\)</span>. The total degree of <span
+class="math inline">\(f\)</span> is <span
+class="math inline">\((q-1)n\)</span>, since <span
+class="math inline">\(h\)</span> has exactly this degree and <span
+class="math inline">\(g\)</span> has degree</p>
+<p><span class="math display">\[(q-1)(\deg f_1 + \cdots + \deg f_m) &lt;
+(q-1)n.\]</span></p>
+<p>Let <span class="math inline">\(d_i = q-1\)</span> for all <span
+class="math inline">\(1\leq i\leq n\)</span> and note that the
+coefficient of <span class="math inline">\(\prod_{i=1}^n
+{x_i}^{d_i}\)</span> is <span class="math inline">\(-\lambda\neq
+0\)</span>. By the Nullstellensatz with <span
+class="math inline">\(S_i\)</span> set to the entire field for all <span
+class="math inline">\(i\)</span>, we find that there must be a point
+<span class="math inline">\(a&#39; = (a_1&#39;,\ldots,
+a_n&#39;)\)</span> with <span class="math inline">\(f(a&#39;)\neq
+0\)</span>. Of course, <span class="math inline">\(a&#39;\)</span>
+cannot equal <span class="math inline">\(a\)</span> since <span
+class="math inline">\(f(a)=0\)</span>. But since there exists <span
+class="math inline">\(i\)</span> for which <span
+class="math inline">\(a_i&#39; \neq a_i\)</span>, we must have <span
+class="math inline">\(h(a&#39;) =0\)</span>. So <span
+class="math inline">\(g(a&#39;)\neq 0\)</span>, meaning that <span
+class="math inline">\(f_i(a&#39;)\)</span> is zero for all <span
+class="math inline">\(i\)</span>, since any nonzero element of <span
+class="math inline">\(k\)</span> equals 1 when taken to the <span
+class="math inline">\((q-1)\)</span>st power.  ∎</p>
+<h3 id="references">References</h3>
+<ul>
+<li>Noga Alon, “Combinatorial Nullstellensatz”, <em>Combinatorics,
+Probability, and Computing</em> <strong>8</strong> (1999), 7-29.</li>
+<li>Noga Alon, Shmuel Friedland, and Gil Kalai, “Regular subgraphs of
+almost regular graphs,” <em>Journal of Combinatorial Theory, Series
+B</em> <strong>37</strong> (1984), 79-91.</li>
+<li>Richard A. DeMillo and Richard J. Lipton, “A probabilistic remark on
+algebraic program testing,” <em>Information Processing Letters</em>
+<strong>7</strong> (1978), 193-195.</li>
+<li>Donald E. Knuth, <em>The Art of Computer Programming, Volume 2:
+Seminumerical Algorithms,</em> (Addison-Wesley, 1969).</li>
+<li>Donald E. Knuth, <em>The Art of Computer Programming, Volume 4,
+Fascicle 5: Mathematical Preliminaries Redux; Introduction to
+Backtracking; Dancing Links</em>, (Addison-Wesley, 2019).</li>
+<li>Jack Schwartz, “Fast probabilistic algorithms for verification of
+polynomial identities,” <em>Journal of the ACM</em> (1980),
+701-717.</li>
+<li>Terence Tao and Van Ha Vu, <em>Additive Combinatorics</em>
+(Cambridge University Press, 2006).</li>
+<li>Richard Zippel, “Probabilistic algorithms for sparse polynomials,”
+<em>Lecture Notes in Computer Science</em> <strong>72</strong> (1979),
+216-226.</li>
+</ul>
+</div>
+
+</body>
+</html>

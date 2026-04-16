@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Orthogonal groups of four-dimensional real quadratic spaces &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h2 class="page-title">Orthogonal groups of four-dimensional real quadratic spaces</h2>
+<p class="date">24 September 2021</p>
+
+<div class="content">
+<p>I’m taking a class on quadratic forms, orthogonal groups, and modular
+forms this semester, and the class is formatted such that students
+present extended solutions to exercises in pairs on a rotating basis.
+Well, this week it is my turn to present a description of four
+dimensional real quadratic spaces over <span class="math inline">\({\bf
+R}\)</span>, along with my comrade <a
+href="https://jadhamdan.github.io/">Jad Hamdan</a>. Neither Jad nor I
+had had any exposure to Lie groups before this week, so we worked out
+the following with a great deal of guidance from the instructor of the
+course, Prof. Henri Darmon. I’m writing this blog post to organise and
+collect my thoughts before the actual presentation. I’ll go ahead and
+assume a level of mathematical background equal to my own before the
+class started, namely, an undergraduate understanding of group theory,
+linear algebra, and topology but no experience with differential
+geometry or topological groups. <!--more--></p>
+<h3 id="quadratic-forms">Quadratic forms</h3>
+<p>We start with some basic facts about quadratic forms. These were
+given in class, but can also be found in many textbooks (see, e.g.,
+Chapter IV of Serre (1973)). For a vector space <span
+class="math inline">\(V\)</span> over a field <span
+class="math inline">\(k\)</span> of characteristic not equal to <span
+class="math inline">\(2\)</span>, a <em>quadratic form</em> is a
+function <span class="math inline">\(Q:V\to k\)</span> such that</p>
+<ol type="1">
+<li><span class="math inline">\(Q(\lambda v) = \lambda^2 Q(v)\)</span>
+for all <span class="math inline">\(\lambda \in k\)</span> and <span
+class="math inline">\(v\in V\)</span>; and</li>
+<li>the function <span class="math inline">\(Q(x+y) - Q(x) -
+Q(y)\)</span> is bilinear.</li>
+</ol>
+<p>We let <span class="math inline">\(x\cdot y = (Q(x+y) - Q(x) -
+Q(y))/2\)</span> and note that <span class="math inline">\(x\cdot x =
+Q(x)\)</span> for all <span class="math inline">\(x\)</span>. The pair
+<span class="math inline">\((V,Q)\)</span> is called a <em>quadratic
+space</em>, and for the remainder of this post we will look at the case
+<span class="math inline">\(k={\bf R}\)</span>. We assume that <span
+class="math inline">\(V\)</span> is <em>nondegenerate</em>, i.e., if
+<span class="math inline">\(v\in V\)</span> is such that <span
+class="math inline">\(v\cdot w\)</span> for all <span
+class="math inline">\(w\in V\)</span>, then <span
+class="math inline">\(v=0\)</span>. In this case, <span
+class="math inline">\(({\bf R}, Q)\)</span> has an orthogonal basis
+<span class="math display">\[e_1, \ldots, e_r, e_{r+1}, \ldots,
+e_{r+s}\]</span> with <span class="math inline">\(e_i\cdot e_i=
+1\)</span> for <span class="math inline">\(1\le i\le r\)</span> and
+<span class="math inline">\(e_i\cdot e_i=-1\)</span> for <span
+class="math inline">\(r+1\le i\le r+s\)</span>. The pair <span
+class="math inline">\((r,s)\)</span> is called the <em>signature</em> of
+the quadratic space. Since we can always multiply every element in the
+basis by <span class="math inline">\(-1\)</span>, we assume that <span
+class="math inline">\(r\ge s\)</span>.</p>
+<h3 id="orthogonal-groups">Orthogonal groups</h3>
+<p>The orthogonal group <span class="math inline">\({\rm O}(V)\)</span>
+of a quadratic space <span class="math inline">\(V\)</span> over <span
+class="math inline">\(R\)</span> is the of linear transformations that
+preserve the dot product; that is,</p>
+<p><span class="math display">\[ {\rm O}(V) = \{ g\in {\rm Aut}(V) : gv
+\cdot gw = v\cdot w\ \hbox{for all}\ v,w\in V\}\]</span></p>
+<p>Letting <span class="math inline">\(n=\dim V\)</span> and letting
+<span class="math inline">\((r,s)\)</span> be the signature of the
+space, this can be viewed as the set of <span
+class="math inline">\(n\times n\)</span> matrices</p>
+<p><span class="math display">\[ {\rm O}(V) =
+\biggl\{ A \in M_n({\bf R}) : A^{\rm T} A = AA^{\rm T} = \pmatrix{ I_r
+&amp; 0\cr 0 &amp; -I_s } \biggr\},\]</span></p>
+<p>where the <span class="math inline">\(I_r\)</span> and <span
+class="math inline">\(I_s\)</span> that appear in the block matrix are
+the <span class="math inline">\(r\times r\)</span> and <span
+class="math inline">\(s\times s\)</span> identity matrices,
+respectively. The condition implies that <span
+class="math inline">\((\det A)^2 = 1\)</span>, meaning that <span
+class="math inline">\(\det A = \pm 1\)</span> for all <span
+class="math inline">\(A\in {\rm O}(V)\)</span>. The subgroup of <span
+class="math inline">\(A\in {\rm O}(V)\)</span> with <span
+class="math inline">\(\det A = 1\)</span> is called <span
+class="math inline">\({\rm SO}(V)\)</span>. It was proven in class (by a
+standard inductive argument), that <span class="math inline">\({\rm
+O}(V)\)</span> is a real manifold of dimension <span
+class="math inline">\(n(n-1)/2\)</span>, and so is the subgroup <span
+class="math inline">\({\rm SO}(V)\)</span>.</p>
+<p>The problem we shall tackle in this post is the following:</p>
+<p><strong>Exercise.</strong> <em>Let <span
+class="math inline">\(V\)</span> be a four-dimensional real quadratic
+space. Describe the connected component of the identity in each of the
+three cases <span class="math inline">\((r,s) = (4,0)\)</span>, <span
+class="math inline">\((r,s) = (3,1)\)</span>, and <span
+class="math inline">\((r,s) = (2,2)\)</span>.</em></p>
+<p>We were also asked to count how many connected components the whole
+group <span class="math inline">\({\rm O}(V)\)</span> has. The number of
+components is <span class="math inline">\(2\)</span> when <span
+class="math inline">\((r,s) = (4,0)\)</span> and <span
+class="math inline">\(4\)</span> in the other two cases, but the proof
+is of a rather different flavour than the characterisation of the
+identity component and we won’t go into it here.</p>
+<h3 id="quaternions">Quaternions</h3>
+<p>To deal with the case <span class="math inline">\((r,s) =
+(4,0)\)</span>, we will need to recall the definition of the
+quaternions. The <em>Hamilton quaternions</em> are members of the set
+<span class="math inline">\({\bf H} = {\bf R} + {\bf R}i + {\bf R}j +
+{\bf R}k\)</span> where we impose the relation <span
+class="math inline">\(i^2 = j^2 = k^2 = ijk = -1\)</span>. (Since the
+field we’re working in is always <span class="math inline">\({\bf
+R}\)</span>, we allow the letter <span class="math inline">\(k\)</span>
+to be used for the third imaginary unit.) If <span
+class="math inline">\(a = x+yi + zj + wk\)</span> then the
+<em>conjugate</em> of <span class="math inline">\(a\)</span> is <span
+class="math inline">\(\overline a = x-yi-zj-wk\)</span> and the
+<em>norm</em> of <span class="math inline">\(a\)</span> is</p>
+<p><span class="math display">\[N(a) = a\overline a = \overline a
+a=x^2+y^2+z^2+w^2.\]</span></p>
+<p>We see from this that every nonzero element of <span
+class="math inline">\(a\)</span> has a multiplicative inverse, namely
+<span class="math inline">\(a^{-1} = \overline a /N(a)\)</span>, with
+<span class="math inline">\(N(a^{-1}) = N(a)^{-1}\)</span>. Hence <span
+class="math inline">\({\bf H}^\times = {\bf H}/setminus \{0\}\)</span>.
+Lastly, we define the <em>trace</em> of <span
+class="math inline">\(a\)</span> to be its real coordinate given by the
+formula <span class="math inline">\({\rm tr}(a) = (a+\overline
+a)/2\)</span>.</p>
+<h3 id="the-case-rs-40">The case <span class="math inline">\((r,s) =
+(4,0)\)</span></h3>
+<p>This is the situation we’re most familiar with, when the dot product
+of a vector <span class="math inline">\((x,y,z,w)\)</span> with itself
+is given by <span class="math inline">\(Q(x,y,z,w) =
+x^2+y^2+z^2+w^2\)</span>. Here we can identify <span
+class="math inline">\((V,Q)\)</span> with <span
+class="math inline">\(({\bf H}, N)\)</span>. Note that the group <span
+class="math inline">\({\bf H}^\times \times {\bf H}^\times\)</span>
+defines a group action <span class="math inline">\(\star\)</span> on
+<span class="math inline">\(V\)</span> by setting <span
+class="math inline">\((g,h)\star v = gvh^{-1}\)</span>. The norm of
+<span class="math inline">\((g,h)\star v = N(g)N(h^{-1})N(v)\)</span>,
+so for an element <span class="math inline">\((g,h)\)</span> to preserve
+the norm, it is necessary and sufficient that <span
+class="math inline">\(N(g) = N(h)\)</span>. We can also assume that
+<span class="math inline">\(g\)</span> and <span
+class="math inline">\(h\)</span> have norm <span
+class="math inline">\(1\)</span>, since if <span
+class="math inline">\(\lambda = N(g) = N(h)\)</span>, then <span
+class="math inline">\(g = \lambda g&#39;\)</span> and <span
+class="math inline">\(h=\lambda h&#39;\)</span> for some unit
+quaternions <span class="math inline">\(g&#39;\)</span> and <span
+class="math inline">\(h&#39;\)</span> and</p>
+<p><span class="math display">\[(g,h)\star v=(\lambda g&#39;,\lambda
+h&#39;)\star v = \lambda g&#39; v \lambda^{-1}h&#39;^{-1} =
+g&#39;vh&#39;^{-1} = (g&#39;,h&#39;)\star v.\]</span></p>
+<p>In particular, if <span class="math inline">\(g\)</span> and <span
+class="math inline">\(h\)</span> are both real, then <span
+class="math inline">\((g,h)\)</span> sends any <span
+class="math inline">\(v\in V\)</span> to itself. Thus, letting <span
+class="math inline">\({\bf H}_1\)</span> denote the set of quaternions
+with norm <span class="math inline">\(1\)</span>, we have the exact
+sequence</p>
+<p><span class="math display">\[ 1 \to \{(-1,-1), (1,1)\} \to {\bf
+H}_1\times {\bf H}_1 \buildrel\phi\over\to {\rm O}(V).\]</span></p>
+<p>Note that the last map <span class="math inline">\(\phi\)</span> in
+the sequence is not surjective. Indeed, <span class="math inline">\({\bf
+H}_1\)</span> is isomorphic to the <span
+class="math inline">\(3\)</span>-sphere <span
+class="math inline">\(S^3\)</span>, which is compact and connected, so
+its image under <span class="math inline">\(\phi\)</span> must be as
+well. But <span class="math inline">\({\rm O}(V)\)</span> is not
+connected, because the inverse images of <span
+class="math inline">\((1/2,3/2)\)</span> and <span
+class="math inline">\((-3/2,-1/2)\)</span> under the continuous map
+<span class="math inline">\(\det : {\rm O}(V) \to {\bf R}\)</span> are
+disjoint open sets whose union is the whole domain. In fact, the image
+of <span class="math inline">\(\phi\)</span> is contained in <span
+class="math inline">\({\rm SO}(V)\)</span>, since if we interpret the
+action of <span class="math inline">\((g,h) = (a_1 + a_2 i + a_3 j + a_4
+k, b_1 + b_2 i + b_3 j + b_4 k)\)</span> on a quaternion <span
+class="math inline">\(v\)</span>, viewed as a vector in <span
+class="math inline">\({\bf R}^4\)</span>, the matrix of the
+transformation is <span class="math inline">\(AB\)</span>, where</p>
+<p><span class="math display">\[ A = \pmatrix {
+a_1 &amp; -a_2 &amp; -a_3 &amp; -a_4 \cr
+a_2 &amp; a_1 &amp; -a_4 &amp; a_3 \cr
+a_3 &amp; a_4 &amp; a_1 &amp; -a_2 \cr
+a_4 &amp; -a_3 &amp; a_2 &amp; a_1 \cr
+}\qquad\hbox{and}\qquad
+B = \pmatrix {
+b_1 &amp; -b_2 &amp; -b_3 &amp; -b_4 \cr
+b_2 &amp;  b_1 &amp;  b_4 &amp; -b_3 \cr
+b_3 &amp; -b_4 &amp;  b_1 &amp;  b_2 \cr
+b_4 &amp;  b_3 &amp; -b_2 &amp;  b_1 \cr
+}\]</span></p>
+<p>We have <span class="math inline">\(AA^{\rm T} = I\)</span> and <span
+class="math inline">\(BB^{\rm T} = I\)</span> so <span
+class="math inline">\((AB)(AB)^{\rm T} = I\)</span>, as prescribed for a
+member of <span class="math inline">\({\rm O}(V)\)</span>. But we can
+also see that <span class="math inline">\(\det A = N(g) = 1 = N(h) =
+\det B\)</span>, so that <span class="math inline">\(\det(AB) =
+1\)</span> as well. It remains to show that <span
+class="math inline">\(\phi\)</span> is surjective.</p>
+<h3 id="infinitesimals-and-the-tangent-space">Infinitesimals and the
+tangent space</h3>
+<p>We pause here to talk about the <em>tangent space</em> of a group at
+the identity. We will restrict ourselves to the case where the group is
+a subgroup of the group of invertible elements in a unital associative
+algebra over <span class="math inline">\({\bf R}\)</span>, and we will
+stay somewhat informal and heuristic. The tangent space of such a
+topological group <span class="math inline">\(M\)</span> at the
+multiplicative identity <span class="math inline">\(1\)</span> is the
+space of all directions one can take to pass through <span
+class="math inline">\(1\)</span>. In one-dimensional real calculus, we
+approximated a tangent line at a point <span
+class="math inline">\(p\)</span> by secant lines passing through <span
+class="math inline">\(p\)</span> and <span
+class="math inline">\(q\)</span> as <span class="math inline">\(|p-q|\to
+0\)</span>, and here we’ll do the same thing. Let <span
+class="math inline">\(M\)</span> be a topological group that is also a
+subgroup of the multiplicative group of an algebra <span
+class="math inline">\(A\)</span>. The tangent space <span
+class="math inline">\(T_1 M\)</span> at the point <span
+class="math inline">\(1\)</span> is the space of all <span
+class="math inline">\(a\in A\)</span> such that <span
+class="math inline">\(1 + \epsilon a\)</span> is still in <span
+class="math inline">\(M\)</span>, and here we encapsulate the fact that
+<span class="math inline">\(\epsilon\)</span> goes to zero by letting
+<span class="math inline">\(\epsilon\)</span> be a nonzero formal
+parameter whose square is zero. The tangent space is closed under
+addition, since if <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are elements of <span
+class="math inline">\(T_1 M\)</span>, then</p>
+<p><span class="math display">\[ (1+\epsilon a)(1+\epsilon b) = 1 +
+\epsilon a + \epsilon b + \epsilon^2 ab = 1+\epsilon(a+b) \]</span></p>
+<p>and we see that <span class="math inline">\(a+b\)</span> is also in
+the space. It is also clear that <span class="math inline">\(T_p
+M\)</span> is closed under multiplication by scalars in the field, so
+that <span class="math inline">\(T_pM\)</span> is a real vector space.
+The tangent space of a point <span class="math inline">\((p,q)\in
+M\times N\)</span> is the product of spaces <span
+class="math inline">\(T_pM\times T_q N\)</span>.</p>
+<p>Let <span class="math inline">\(M\)</span> and <span
+class="math inline">\(N\)</span> be two such groups with identities
+<span class="math display">\(1_M\)</span> and <span
+class="math display">\(1_N\)</span> respectively and let <span
+class="math inline">\(\phi : M\to N\)</span> be a group homomorphism. We
+define the <em>differential</em> <span
+class="math inline">\(d\phi\)</span> to be the map from <span
+class="math display">\(T_{1_M} M\)</span> to <span
+class="math display">\(T_{1_N} N\)</span> such that the diagram</p>
+<p><span class="math display">\[\matrix{
+T_{1_M} M &amp; \buildrel d\phi\over\longrightarrow &amp; T_{1_N} N \cr
+\quad\Big\downarrow\pi_N &amp; &amp; \quad\Big\downarrow\pi_N \cr
+M &amp; \buildrel \phi\over\longrightarrow &amp; N \cr
+}\]</span></p>
+<p>commutes, where <span class="math display">\(\pi_M(a) = 1_M +\epsilon
+a\)</span> and <span class="math display">\(\pi_N(b) = 1_N + \epsilon
+b\)</span>. The commutativity of the above diagram tells us that <span
+class="math inline">\(d\phi(a)\)</span> is given by the formula <span
+class="math display">\[1_N + \epsilon d\phi(a) = \phi(1_M+\epsilon
+a)\]</span> for <span class="math inline">\(a\in T_{1_M} M\)</span>.</p>
+<h3 id="surjectivity-of-phi-on-the-identity-component">Surjectivity of
+<span class="math inline">\(\phi\)</span> on the identity component</h3>
+<p>The tangent spaces are relevant because the inverse function theorem
+in calculus tells us that if <span class="math inline">\(\phi : {\bf
+R}^n\to{\bf R}^n\)</span> is a differentiable map and its derivative
+(Jacobian) at a point <span class="math inline">\(x\)</span> is
+invertible, then there exists an open neighbourhood <span
+class="math inline">\(U\)</span> of <span
+class="math inline">\(x\)</span> that is homeomorphic to its image <span
+class="math inline">\(\phi(U)\)</span>. If <span
+class="math inline">\(\phi\)</span> is also a group homomorphism, then
+we have the following lemma.</p>
+<p><strong>Lemma.</strong> <em>Let <span class="math inline">\(\phi:G\to
+H\)</span> be a homomorphism of topological groups and suppose that
+there is an open neighbourhood <span class="math inline">\(S\subseteq
+\phi(G)\)</span> that contains the identity of <span
+class="math inline">\(H\)</span>. If <span
+class="math inline">\(G\)</span> is connected, then <span
+class="math inline">\(\phi(G)\)</span> is the connected component of the
+identity in <span class="math inline">\(H\)</span>.</em></p>
+<p><em>Proof.</em> Since the function <span
+class="math inline">\(h\mapsto h^{-1}\)</span> is a continuous
+involution, <span class="math inline">\(S^{-1}\)</span> is also open and
+so is <span class="math inline">\(S\cap S^{-1}\)</span>, which still
+contains the identity. Thus we may assume without loss of generality
+that <span class="math inline">\(S\)</span> is closed under inverses.
+Let <span class="math inline">\(\langle S\rangle\)</span> be the
+smallest subgroup of <span class="math inline">\(\phi(G)\)</span> with
+<span class="math inline">\(S\subseteq \langle S\rangle\)</span>. It is
+easy to see that <span class="math display">\[\langle S\rangle =
+\bigcup_{h\in \langle S\rangle} hS\]</span>. For all <span
+class="math inline">\(h\in \phi(G)\)</span>, left multiplication by
+<span class="math inline">\(h\)</span> is a homeomorphism from <span
+class="math inline">\(\phi(G)\)</span> to itself, so <span
+class="math inline">\(\langle S \rangle\)</span> is open.</p>
+<p>It remains to show that <span class="math inline">\(\langle
+S\rangle\)</span> is closed, so let <span class="math inline">\(h\in
+\langle S\rangle^c\)</span> be given. If <span
+class="math inline">\(hs\in \langle S\rangle\)</span> for some <span
+class="math inline">\(s\in S\)</span>, then <span
+class="math inline">\(h = hss^{-1}\in \langle S\rangle\)</span>. So
+<span class="math inline">\(hS\)</span> is an open neighbourhood of
+<span class="math inline">\(h\)</span> contained in <span
+class="math inline">\(\langle S\rangle^c\)</span>, proving that <span
+class="math inline">\(\langle S\rangle\)</span> is indeed closed. Since
+<span class="math inline">\(\langle S\rangle\)</span> is nonempty, open,
+and closed in the connected group <span
+class="math inline">\(\phi(G)\)</span>, <span
+class="math inline">\(\langle S\rangle = \phi(G)\)</span> and <span
+class="math inline">\(\phi (G)\)</span> is the connected component of
+the identity.  ∎</p>
+<h3 id="finishing-up-the-rs-40-case">Finishing up the <span
+class="math inline">\((r,s) = (4,0)\)</span> case</h3>
+<p>First we need to find the tangent space of the identity in <span
+class="math inline">\({\bf H}_1\)</span>. If <span
+class="math inline">\(1 + \epsilon (x+yi+zj+wk)\)</span> has norm <span
+class="math inline">\(1\)</span>, then we must have <span
+class="math display">\[ (1+\epsilon x)^2 + \epsilon^2 y^2 + \epsilon^2
+z^2 + \epsilon^2 w^2  = (1+\epsilon x)^2 = 1,\]</span> so the trace
+<span class="math inline">\(x\)</span> must equal zero. Thus <span
+class="math inline">\(T_1{\bf H}\)</span> is <span
+class="math inline">\(3\)</span>-dimensional and <span
+class="math inline">\(T_1({\bf H}_1\times {\bf H}_1)\)</span> is <span
+class="math inline">\(6\)</span>-dimensional. The tangent space of the
+identity matrix <span class="math inline">\(I\)</span> in <span
+class="math inline">\({\rm SO}(V)\)</span> is the set of all matrices
+with <span class="math inline">\(A^T = -A\)</span>, since the condition
+that <span class="math inline">\((I+\epsilon A)(I+\epsilon A)^{\rm
+T}\)</span> implies that <span class="math inline">\(I + \epsilon (A +
+A^{\rm T}) = I\)</span>. This is a <span
+class="math inline">\(6\)</span>-dimensional space as well, since the
+diagonal of <span class="math inline">\(A\)</span> must have all entries
+zero, and the rest of the matrix is determined by the choice of the six
+remaining entries in the upper triangle. Thus to show that <span
+class="math inline">\(d\phi\)</span> is invertible, it suffices to show
+that it is injective.</p>
+<p>Now for <span class="math inline">\((a,b)\in T_1( {\bf H}_1\times{\bf
+H}_1)\)</span>, we note that <span class="math inline">\(\phi(1+\epsilon
+a, 1+\epsilon b)\)</span> is a map on <span class="math inline">\({\bf
+H}\)</span> that sends <span class="math inline">\(v\)</span> to <span
+class="math inline">\((1+\epsilon a) v (1+\epsilon b)^{-1}\)</span>.
+Since <span class="math inline">\(b\)</span> has zero trace, <span
+class="math inline">\((1+\epsilon b)^{-1}\)</span> is <span
+class="math inline">\(1-\epsilon b\)</span> and</p>
+<p><span class="math display">\[\phi(1+\epsilon a, 1+\epsilon b)(v)
+=(1+\epsilon a)v(1+\epsilon b)^{-1} = (v+ \epsilon av)(1-\epsilon b) = v
++ \epsilon (av-vb).\]</span></p>
+<p>Then since <span class="math inline">\(\epsilon d\phi(a,b) =
+\phi(1+\epsilon a, 1+\epsilon b) - {\rm id}\)</span>, we conclude that
+<span class="math inline">\(d\phi(a,b)(v) = av-vb\)</span>. If <span
+class="math inline">\((a,b)\in \ker(d\phi)\)</span>, then <span
+class="math inline">\(av-vb=0\)</span> for all <span
+class="math inline">\(v\in {\bf H}\)</span>, and taking <span
+class="math inline">\(v=1\)</span> in particular, we have <span
+class="math inline">\(a = b\)</span>. Thus <span
+class="math inline">\(av = va\)</span> for all <span
+class="math inline">\(v\in {\bf H}\)</span> and we see that <span
+class="math inline">\(a\in {\bf R}\)</span>. But we assumed that <span
+class="math inline">\(a\)</span> has trace zero, so <span
+class="math inline">\((a,b) = (0,0)\)</span>.</p>
+<p>We have found that <span class="math inline">\(d\phi\)</span> is
+injective, so it must be surjective as well, since the tangent spaces
+both have dimension <span class="math inline">\(6\)</span>. So by the
+lemma of the previous section, the image of <span
+class="math inline">\(\phi\)</span> is the entire component of the
+identity in <span class="math inline">\({\rm O}(V)\)</span>. In fact, in
+this case, this component is all of <span class="math inline">\({\rm
+SO}(V)\)</span>, which we conclude is isomorphic to <span
+class="math display">\[({\bf H_1}\times {\bf H_1})/\{\pm
+1\}\]</span>.</p>
+<h3 id="the-case-rs-31">The case <span class="math inline">\((r,s) =
+(3,1)\)</span></h3>
+<p>Here <span class="math inline">\(Q(x,y,z,w) = x^2 + y^2 + z^2 -
+w^2\)</span> but we can perform a change of basis with <span
+class="math inline">\(u = z+w\)</span> and <span
+class="math inline">\(v=z-w\)</span> to get <span
+class="math inline">\(Q(x,y,u,v) = x^2 + y^2 + uv\)</span>. Since <span
+class="math inline">\(x^2 + y^2 = (x+iy)(x-iy)\)</span>, we can identify
+<span class="math inline">\((V,Q)\)</span> with the set of all
+matrices</p>
+<p><span class="math display">\[\biggl\{ \pmatrix{x+iy &amp; u \cr v
+&amp;  iy-x} : x,y,u,v\in {\bf R}\biggr\},\]</span></p>
+<p>with the negative determinant as the norm. Letting <span
+class="math display">\(M^* = \det(M) M^{-1}\)</span>, we find that <span
+class="math inline">\(V\)</span> is precisely the set of <span
+class="math inline">\(M\in M_2({\bf C})\)</span> with <span
+class="math inline">\(M^* = -\overline M\)</span>. We have <span
+class="math display">\((AB)^* = B^*A^*\)</span> for <span
+class="math inline">\(A,B\in M_2({\bf C})\)</span>, and this operation
+is also linear. The group <span class="math inline">\({\rm SL}_2({\bf
+C})\)</span> acts on <span class="math inline">\(V\)</span> by <span
+class="math inline">\(g\star M = gM\overline g^{-1}\)</span>.
+Indeed,</p>
+<p><span class="math display">\[(g\star M)^* = (gM\overline g^{-1})^* =
+\overline g M^* g^* = - \overline g\overline M g^* = -
+\overline{gM\overline g^*} -\overline{g\star M},\]</span></p>
+<p>so <span class="math inline">\(g\star M\)</span> is in <span
+class="math inline">\(V\)</span>. Note that the center of <span
+class="math inline">\({\rm SL}_2({\bf C})\)</span> is <span
+class="math display">\(\{\pm I\}\)</span>, and we have the exact
+sequence</p>
+<p><span class="math display">\[ 1\to \{\pm I\} \to {\bf SL}_2({\bf C})
+\buildrel\phi\over\to {\rm O}(V).\]</span></p>
+<p>Once again, the image of <span class="math inline">\(\phi\)</span> is
+connected.</p>
+<p>Now we find the tangent space of <span class="math inline">\({\rm
+SL}_2({\bf C})\)</span> at the identity. An element</p>
+<p><span class="math display">\[A = \pmatrix{ a &amp; b \cr c &amp; d
+}\]</span></p>
+<p>in this space satisfies <span class="math inline">\(I + \epsilon A\in
+{\rm SL}_2({\bf C})\)</span>, so <span class="math inline">\(\det
+(I+\epsilon A) = 1+\epsilon a + \epsilon d = 1\)</span>. This implies
+that <span class="math inline">\(d=-a\)</span>. In other words, the
+trace of <span class="math inline">\(A\)</span> is zero, and in
+particular we see that <span class="math inline">\(A^* = -A\)</span>.
+Now we examine what <span class="math inline">\(I+\epsilon A\)</span>
+does to a matrix <span class="math inline">\(M\in V\)</span>. We note
+first that</p>
+<p><span class="math display">\[(I+\epsilon \overline A)^{-1} =
+\pmatrix{ 1 + \epsilon \overline a &amp; \epsilon \overline b \cr
+\epsilon\overline c &amp; 1-\epsilon \overline a }^{-1}
+=\pmatrix{ 1 - \epsilon \overline a &amp; -\epsilon \overline b \cr
+-\epsilon\overline c &amp; 1+\epsilon \overline a } = I+\epsilon
+\overline{A^*}\]</span></p>
+<p>So</p>
+<p><span class="math display">\[(I+\epsilon A)M\overline{(I+\epsilon
+A)}^{-1} = (M+\epsilon AM)(I+\epsilon \overline{A^*})
+= M + \epsilon AM + \epsilon M \overline{A^*} = M+
+\epsilon(AM-M\overline A),\]</span></p>
+<p>telling us that <span class="math inline">\(d\phi(A)\)</span> takes
+matrices <span class="math inline">\(M\)</span> to <span
+class="math inline">\(AM-M\overline A\)</span>. We now investigate what
+it means for <span class="math inline">\(A\)</span> to be in the kernel
+of <span class="math inline">\(d\phi\)</span>. If <span
+class="math inline">\(MA - M\overline A\)</span> for all matrices <span
+class="math inline">\(M\)</span>, then taking <span
+class="math inline">\(M = I\)</span>, we see that <span
+class="math inline">\(A = \overline A\)</span>, meaning that <span
+class="math inline">\(A\)</span> has all real entries and <span
+class="math inline">\(AM = MA\)</span> for all <span
+class="math inline">\(M\)</span>. This implies that <span
+class="math inline">\(A\)</span> is a scalar multiple of the identity
+and since it has zero trace, <span class="math inline">\(A\)</span> must
+be <span class="math inline">\(0\)</span>. We have found that <span
+class="math inline">\(\ker(d\phi) = 0\)</span>, so the connected
+component of the identity is isomorphic to <span
+class="math display">\[{\rm SL}_2({\bf C}) / \{\pm I\}\]</span>.</p>
+<h3 id="the-case-rs-22.">The case <span class="math inline">\((r,s) =
+(2,2)\)</span>.</h3>
+<p>The third and last case feels a bit like a combination of the two
+cases above. We have <span class="math inline">\(Q(x,y,z,w) = x^2 + y^2
+- z^2 - w^2\)</span> and with the substitutions <span
+class="math inline">\(x = x+z, y=x-z, z = w+y, w= w-y\)</span> (the
+variables on the left-hand side are not the same as the ones on the
+right-hand side), we have</p>
+<p><span class="math display">\[Q(x,y,z,w) = xy-zw,\]</span></p>
+<p>so we can identify <span class="math inline">\((V,Q)\)</span> with
+<span class="math inline">\((M_2({\bf R}), \det)\)</span>. The group
+<span class="math inline">\({\rm GL}_2({\bf R})\times{\rm GL}_2({\bf
+R})\)</span> defines an action on <span class="math inline">\(M_2({\bf
+R})\)</span> given by <span class="math inline">\((g,h)\star M =
+gMh^{-1}\)</span>. For <span class="math inline">\((g,h)\)</span> to
+preserve the determinant we must have <span class="math inline">\(\det g
+= \det h\)</span>. We can also require that <span
+class="math inline">\(g\)</span> and <span
+class="math inline">\(h\)</span> have determinant <span
+class="math inline">\(1\)</span>, because for any <span
+class="math inline">\(\lambda\in {\bf R}\)</span> we have <span
+class="math inline">\(\det(\lambda g) = \det(\lambda h)\)</span> and</p>
+<p><span class="math display">\[ \lambda g M(\lambda h)^{-1} = \lambda^2
+g M \lambda^{-2} h^{-1} = gMh^{-1}.\]</span></p>
+<p>Thus we have the exact sequence</p>
+<p><span class="math display">\[1 \to \{(I,I), (-I, -I)\} \to {\rm
+SL}_2({\bf R})\times{\rm SL}_2({\bf R}) \buildrel\phi\over\to {\rm
+O}(V).\]</span></p>
+<p>The computation we performed above for the tangent space of <span
+class="math inline">\({\rm SL}_2({\bf C})\)</span> works when the
+entries are real as well, so we find that the tangent space of <span
+class="math inline">\({\rm SL}_2({\bf R})\times{\rm SL}_2({\bf
+R})\)</span> is the set of <span class="math inline">\((A,B)\)</span>
+such that <span class="math inline">\({\rm tr}\,A = {\rm tr}\,B =
+0\)</span>. In particular, since the trace of <span
+class="math inline">\(B\)</span> is zero, we can write</p>
+<p><span class="math display">\[ B = \pmatrix{a &amp; b \cr c &amp; -a}
+\]</span></p>
+<p>and the fact that <span class="math inline">\(\det(I + \epsilon B) =
+1\)</span> implies that</p>
+<p><span class="math display">\[(I + \epsilon B)^{-1} = \pmatrix{ 1+a
+&amp; b \cr c &amp; 1-a }^{-1} = \pmatrix{1-a &amp; -b \cr -c &amp; 1+a}
+= I - \epsilon B.\]</span></p>
+<p>So</p>
+<p><span class="math display">\[\phi(I+\epsilon A, I+\epsilon B)(M) =
+(I+\epsilon A)M(I+\epsilon B)^{-1}
+= (M + \epsilon AM)(I-\epsilon B) = M+\epsilon (AM-MB),\]</span></p>
+<p>and <span class="math inline">\(d\phi(A,B)(M) = AM-MB\)</span>. We
+argue as before to find that for <span class="math inline">\((A,B)\in
+\ker(d\phi)\)</span>, <span class="math inline">\(A=B\)</span> and <span
+class="math inline">\(A\)</span> is a scalar of the identity with trace
+zero and thus <span class="math inline">\((A,B) = (0,0)\)</span>. So
+<span class="math inline">\(d\phi\)</span> is injective and the image of
+<span class="math inline">\(\phi\)</span> is isomorphic to <span
+class="math display">\[{\rm SL}_2({\bf R})\times{\rm SL}_2({\bf
+R})/\{(I,I), (-I,-I)\}\]</span>.</p>
+<h3 id="references">References</h3>
+<ul>
+<li>Jean-Pierre Serre, <em>A Course in Arithmetic</em> (New York:
+Springer-Verlag, 1973)</li>
+</ul>
+</div>
+
+</body>
+</html>

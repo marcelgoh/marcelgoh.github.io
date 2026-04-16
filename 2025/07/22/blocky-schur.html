@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Blocky matrices and idempotent Schur multipliers &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Blocky matrices and idempotent Schur multipliers</h1>
+<p class="date">22 July 2025</p>
+
+<div class="content">
+<p>My supervisor <a href="https://www.cs.mcgill.ca/~hatami/">Hamed
+Hatami</a> and I have just uploaded to the arXiv two new preprints: “<a
+href="https://arxiv.org/pdf/2506.21752">Block complexity and idempotent
+Schur multipliers</a>” and “<a
+href="https://arxiv.org/abs/2507.00872">Block structure in boolean
+matrices with bounded factorization norm</a>”. These papers are strongly
+related, and this blog post I’ll introduce their common background
+before discussing what have recently managed to prove.</p>
+<!--more-->
+<h3 id="cohens-idempotent-theorem">Cohen’s idempotent theorem</h3>
+<p>We begin with some background on Cohen’s celebrated idempotent
+theorem, which we import (in abbreviated form) from Chapter 3 of Rudin’s
+1962 book <em>Fourier Analysis on Groups</em>.</p>
+<p>Let <span class="math inline">\(G\)</span> be a locally compact
+abelian group. The set of all measures <span
+class="math inline">\(\mu\)</span> on <span
+class="math inline">\(G\)</span> forms a topological semigroup under
+convolution, and we shall say that a measure <span
+class="math inline">\(\mu\)</span> is <em>idempotent</em> if <span
+class="math inline">\(\mu * \mu = \mu\)</span>. By Parseval’s identity,
+we have <span class="math inline">\(\widehat\mu^2 =
+\widehat\mu\)</span>, so <span class="math inline">\(\widehat\mu(\gamma)
+= 1\)</span> or <span class="math inline">\(\widehat\mu(\gamma) =
+0\)</span> for all <span class="math inline">\(\gamma\)</span> in the
+dual group <span class="math inline">\(\Gamma\)</span> of <span
+class="math inline">\(G\)</span>, and to <span
+class="math inline">\(\mu\)</span> we can identify the set</p>
+<p><span class="math display">\[S(\mu) = \{ \gamma\in \Gamma:
+\widehat\mu(\gamma) = 1\}.\]</span></p>
+<p>Let <span class="math inline">\(\Lambda\)</span> be an open subgroup
+of <span class="math inline">\(\Gamma\)</span>. Let <span
+class="math inline">\(H\)</span> be the annihilator subgroup</p>
+<p><span class="math display">\[H = \{ x\in G : \gamma(x) = 1\ \hbox{for
+all}\ \gamma\in \Lambda\}\]</span></p>
+<p>of <span class="math inline">\(\Lambda\)</span>. It can be shown that
+<span class="math inline">\(H\)</span> must be compact (since <span
+class="math inline">\(\Lambda\)</span> is open), and we can normalise
+the Haar measure <span class="math inline">\(m_H\)</span> on <span
+class="math inline">\(H\)</span> so that <span
+class="math inline">\(m_H(H) = 1\)</span>, which yields a measure on
+<span class="math inline">\(G\)</span> as well. By orthogonality, we
+have <span class="math inline">\(\widehat{m_H}(\gamma) = 1\)</span> for
+all <span class="math inline">\(\gamma\in \Lambda\)</span> and <span
+class="math inline">\(\widehat{m_H}(\gamma) = 0\)</span> for all <span
+class="math inline">\(\gamma\notin \Lambda\)</span>, so <span
+class="math inline">\(S(m_H) = \Lambda\)</span>. Likewise, if <span
+class="math inline">\(E = \Lambda + \gamma_0\)</span>, then <span
+class="math inline">\(E = S(\mu)\)</span> for the measure <span
+class="math inline">\(\mu\)</span> on <span
+class="math inline">\(G\)</span> with <span
+class="math inline">\(d\mu(x) = \gamma_0(x)\;dm_H\)</span>. We have
+shown that every open coset of <span class="math inline">\(G\)</span> is
+equal to <span class="math inline">\(S(\mu)\)</span> for some idempotent
+measure on <span class="math inline">\(G\)</span>.</p>
+<p>Note that if <span class="math inline">\(\mu\)</span> and <span
+class="math inline">\(\nu\)</span> are idempotent measures, then so are
+<span class="math inline">\(\mu* \nu\)</span>, <span
+class="math inline">\(\mu \vee \nu = \mu+\nu - \mu* \nu\)</span>, and
+<span class="math inline">\(\delta_0 - \mu\)</span>, where <span
+class="math inline">\(\delta_0\)</span> is the point measure of norm
+<span class="math inline">\(1\)</span> concentrated at the point <span
+class="math inline">\(0\in G\)</span>. We have</p>
+<p><span class="math display">\[S(\mu * \nu) = S(\mu) \cap S(\nu),
+\qquad S(\mu \vee \nu) = S(\mu)\cup S(\nu),\]</span></p>
+<p>and <span class="math inline">\(S(\delta_0 - \mu)\)</span> is the
+complement of <span class="math inline">\(S(\mu)\)</span>. Let <span
+class="math inline">\(\Omega\)</span> be the set of all <span
+class="math inline">\(S(\mu)\)</span>, where <span
+class="math inline">\(\mu\)</span> is an idempotent measure on <span
+class="math inline">\(G\)</span>. We saw earlier that all open cosets of
+<span class="math inline">\(\Gamma\)</span> are in <span
+class="math inline">\(\Omega\)</span>, so now we know that all finite
+intersections, unions, and complements of open cosets are in <span
+class="math inline">\(\Omega\)</span>. Cohen’s idempotent theorem states
+that this is it.</p>
+<p><strong>Theorem C</strong> (<em>Cohen,</em> 1960). <em>Let <span
+class="math inline">\(G\)</span> be a locally compact abelian group and
+let <span class="math inline">\(\Gamma\)</span> be its dual group. A
+subset <span class="math inline">\(E\)</span> of <span
+class="math inline">\(\Gamma\)</span> is equal to <span
+class="math inline">\(S(\mu)\)</span> for some idempotent measure <span
+class="math inline">\(\mu\)</span> on <span
+class="math inline">\(G\)</span> if and only if <span
+class="math inline">\(E\)</span> can be (finitely) expressed in terms of
+open cosets using the intersection, union, and complement
+operators.</em></p>
+<h3 id="the-greensanders-theorem">The Green–Sanders theorem</h3>
+<p>We now discuss a 2008 theorem of Green and Sanders. A good starting
+point is to think about what Cohen’s theorem means for finite groups. It
+is easy to see that, while obviously still true, Cohen’s theorem offers
+no content here, since now <span class="math inline">\(\Gamma\)</span>
+is finite and any subset <span class="math inline">\(E\)</span> in it
+can obviously be expressed as a finite union of cosets of <span
+class="math display">\(\{0\}\)</span>. So instead of characterising
+subsets that can be finitely expressed in terms of cosets, we should
+perhaps try to characterise subsets that can be thus expressed with a
+<em>small number</em> of terms.</p>
+<p>Before, we were working with subsets of <span
+class="math inline">\(\Gamma\)</span>, but in the finite case, subsets
+of <span class="math inline">\(\Gamma\)</span> can really be interpreted
+as subsets of <span class="math inline">\(G\)</span>, and we can regard
+any subset of <span class="math inline">\(G\)</span> as a boolean
+function <span class="math display">\(f : G\to \{0,1\}\)</span>. Then it
+makes sense to define the <em>Fourier algebra norm</em></p>
+<p><span class="math display">\[\Vert f\Vert_A = \sum_{\gamma\in \Gamma}
+|\hat f(\gamma)|\]</span></p>
+<p>of <span class="math inline">\(f\)</span>. Since <span
+class="math inline">\(\Vert fg\Vert_A\le \Vert f\Vert_A \cdot \Vert
+g\Vert_A\)</span>, the set of boolean functions is a Banach algebra
+under addition and pointwise product. It was shown by Kawada and Itô in
+1940 that <span class="math inline">\(\Vert f\Vert_A \le 1\)</span> if
+and only if <span class="math inline">\(f\)</span> is the indicator
+function of a coset. So we see that (subsets corresponding to) functions
+with algebra norm at most <span class="math inline">\(1\)</span> are
+exactly cosets of <span class="math inline">\(G\)</span>. The
+Green–Sanders theorem extends this to functions with <span
+class="math inline">\(\Vert f\Vert_A \le M\)</span> for <span
+class="math inline">\(M\ge 1\)</span>.</p>
+<p><strong>Theorem G</strong> (<em>Green–Sanders,</em> 2008). <em>Let
+<span class="math inline">\(G\)</span> be a finite abelian group and let
+<span class="math display">\[f : G\to \{0,1\}\]</span> be a boolean
+function with <span class="math inline">\(\Vert f\Vert_A \le M\)</span>.
+Then <span class="math inline">\(f\)</span> can be expressed as the
+signed sum</em></p>
+<p><span class="math display">\[f = \sum_{i=1}^L \pm{\bf
+1}_{E_i},\]</span></p>
+<p><em>where the <span class="math inline">\(E_i\)</span> are cosets of
+<span class="math inline">\(G\)</span> and <span
+class="math inline">\(L\)</span> depends only on <span
+class="math inline">\(M\)</span>.</em></p>
+<p>In other words, Theorem G tells us that in some quantitative sense,
+the subsets of <span class="math inline">\(G\)</span> that can be
+expressed in terms of a small number of cosets are those with small
+Fourier algebra norm.</p>
+<h3 id="schur-multipliers">Schur multipliers</h3>
+<p>In our papers, we investigate an analogue of Cohen’s idempotent
+theorem in the algebra of Schur multipliers, which we now introduce.</p>
+<p>Let <span class="math inline">\(l_2\)</span> denote the Hilbert space
+of all square-summable complex sequences, and let <span
+class="math inline">\(B(l_2)\)</span> be the space of bounded linear
+operators, equipped with the operator norm</p>
+<p><span class="math display">\[\Vert A\Vert_{\rm op} = \sup_{y\ne 0}
+{\Vert Ay\Vert_2 \over \Vert y\Vert_2}.\]</span></p>
+<p>Every operator <span class="math inline">\(A\in B(l_2)\)</span> is
+uniquely identified by its associated matrix <span
+class="math display">\((a_{i,j})_{i,j\in {\bf N}}\)</span> , where <span
+class="math display">\(a_{i,j} = \langle Ae_i, e_j\rangle\)</span> for
+the standard orthonormal basis <span
+class="math display">\(\{e_i\}_{i\in {\bf N}}\)</span> of <span
+class="math inline">\(l_2\)</span>. Each matrix <span
+class="math display">\({\bf N}\times {\bf N}\to {\bf C}\)</span> gives
+rise to a linear transformation on the space of all matrices <span
+class="math display">\(A : {\bf N}\times {\bf N} \to {\bf C}\)</span> by
+mapping <span class="math inline">\(A \mapsto M\circ A\)</span>, where
+<span class="math inline">\(\circ\)</span> denotes the entrywise (Schur)
+product. The matrix <span class="math inline">\(M\)</span> is called a
+<em>Schur multiplier</em> if <span class="math inline">\(M\circ A\in
+B(l_2)\)</span> for every <span class="math inline">\(A\in
+B(l_2)\)</span>. Equivalently, <span class="math inline">\(M\)</span> is
+a Schur multiplier if its <em>Schur multiplier norm</em>, defined by</p>
+<p><span class="math display">\[\Vert A\Vert_{\rm m} = \sup_{y\ne 0}
+{\Vert Ay\Vert_{\rm op} \over \Vert y\Vert_{\rm op}},\]</span></p>
+<p>is finite. The set of Schur multipliers is closed under addition and
+Schur product, and thus forms a Banach algebra.</p>
+<p>An element of an algebra is said to be <em>idempotent</em> if <span
+class="math inline">\(a^2 = a\)</span>. Any matrix satisfying <span
+class="math inline">\(M\circ M = M\)</span> must be boolean, but not all
+infinite boolean matrices are Schur multipliers. The boolean matrix
+<span class="math inline">\(M\)</span> corresponds to the operation that
+maps a matrix <span class="math inline">\(A\)</span> to a new matrix
+that agrees with <span class="math inline">\(A\)</span> everywhere <span
+class="math inline">\(M\)</span> equals <span
+class="math inline">\(1\)</span>, and is <span
+class="math inline">\(0\)</span> everywhere <span
+class="math inline">\(M\)</span> is <span
+class="math inline">\(0\)</span>. This is the natural question that our
+papers investigate: <em>What are the idempotent elements of the Schur
+multiplier algebra?</em></p>
+<h3 id="contractive-idempotents-and-block-complexity">Contractive
+idempotents and block complexity</h3>
+<p>As we did before with the Fourier algebra norm, we now characterise
+the <em>contractive</em> idempotent elements, that is, those with Schur
+multiplier norm at most <span class="math inline">\(1\)</span>. We call
+a boolean matrix <span class="math inline">\(B\)</span> <em>blocky</em>
+if there exist families <span class="math display">\(\{S_i\}_{i\in {\bf
+N}}\)</span> and <span class="math display">\(\{T_i\}_{i\in {\bf
+N}}\)</span> of pairwise disjoint subsets of <span
+class="math inline">\({\bf N}\)</span> such that the support of <span
+class="math inline">\(B\)</span> is exactly <span
+class="math display">\(\bigcup_{i\in {\bf N}} S_i\times T_i\)</span>.
+Simple examples of blocky matrices are the zero matrix, <span
+class="math inline">\(m\times n\)</span> all-ones matrices, and <span
+class="math inline">\(n\times n\)</span> identity matrices. The
+following proposition of Livshits shows that set of contractive
+idempotent Schur multipliers is exactly the set of blocky matrices.</p>
+<p><strong>Proposition L</strong> (<em>Livshits</em>, 1995). <em>A
+nonzero boolean matrix satisfies <span class="math display">\(\Vert
+A\Vert_{\rm m} = 1\)</span> if and only if it is blocky.)</em></p>
+<p>In the same way that Cohen’s idempotent theorem shows that any
+idempotent element of the Fourier algebra can be written as a finite sum
+of contractive idempotents, it is an open problem, dating back to at
+least 2005, whether any idempotent Schur multiplier can be written as a
+finite sum of contractive idempotents. A straightforward compactness
+argument of Hambardzumyan, Hatami, and Hatami shows that a positive
+resolution to this problem, while only being meaningful for infinite
+matrices, is equivalent to the following conjecture for finite
+matrices.</p>
+<p><strong>Conjecture H</strong> (<em>Hambardzumyan–Hatami–Hatami,</em>
+2023). <em>Suppose that <span class="math inline">\(A\)</span> is a
+finite boolean matrix with <span class="math display">\(\Vert
+A\Vert_{\rm m} \le \gamma\)</span>. Then we may express <span
+class="math inline">\(A\)</span> as the signed sum</em></p>
+<p><span class="math display">\[A = \sum_{i=1}^L \pm B_i,\]</span></p>
+<p><em>where the <span class="math inline">\(B_i\)</span> are blocky
+matrices and <span class="math inline">\(L\)</span> depends only on
+<span class="math inline">\(\gamma\)</span>.</em></p>
+<p>Given a finite group and a boolean function, define the matrix <span
+class="math inline">\(M_f : G\times G\to {\bf C}\)</span> by setting
+<span class="math inline">\(M_f(x,y) = f(y^{-1} x)\)</span>. We have
+<span class="math inline">\(\Vert M_f\Vert_{\rm m} = \Vert
+f\Vert_A\)</span>, so Theorem G (along with its subsequent extension of
+Sanders to nonabelian groups) shows that Conjecture H is true for this
+special case of boolean matrices.</p>
+<p>We define the <em>block complexity</em> <span
+class="math inline">\({\rm block}(A)\)</span> of an <span
+class="math inline">\(m\times n\)</span> (integer) matrix <span
+class="math inline">\(A\)</span> to be the smallest integer <span
+class="math inline">\(A\)</span> such that there exist blocky matrices
+<span class="math inline">\(B_1,\ldots, B_l\)</span> and signs <span
+class="math inline">\(\sigma_1,\ldots,\sigma_L\)</span> such that <span
+class="math inline">\(A = \sum_{i=1}^L \sigma_iB_i\)</span>. It is
+immediate from the definition of block complexity (as well as
+Proposition L and the triangle inequality) that <span
+class="math inline">\(\Vert A\Vert_{\rm m} \le {\rm block}(A)\)</span>.
+Conjecture H claims that, conversely the block complexity can be bounded
+by a function of the Schur multiplier norm.</p>
+<p>In the first of our new preprints, Hamed and I proved that the any
+boolean matrix with bounded Schur multiplier norm has block complexity
+at most polylogarithmic in its dimension.</p>
+<p><strong>Theorem P</strong> (<em>G.–Hatami</em>, 2025). Let <span
+class="math inline">\(A\)</span> be an <span
+class="math inline">\(m\times n\)</span> integer matrix with <span
+class="math inline">\(\Vert A\Vert_{\rm m}\le \gamma\)</span>. Denoting
+<span class="math display">\(k= \min\{m,n\}\)</span>, the block
+complexity of <span class="math inline">\(A\)</span> satisfies</p>
+<p><span class="math display">\[{\rm block}(A) \le 2^{O(\gamma^7)}
+\log(k)^2.\]</span></p>
+<p>Our proof of this result bears some resemblance to Green and Sanders’
+proof for boolean functions. One important similarity is that its
+induction step partitions the matrix and takes averages within the
+individual partitions, so we must consider real-valued matrices (and, in
+particular, we employ the definition of <em>almost integer-valued
+matrix</em> in much the same way that Green and Sanders work with almost
+integer-valued functions). Another notion we use in our proof is that of
+the Littlestone dimension of a (sign) matrix, and we develop a weighted
+generalisation of this parameter for real matrices.</p>
+<h3 id="monochromatic-rectangles-and-block-substructure">Monochromatic
+rectangles and block substructure</h3>
+<p>It should be noted that we mostly work with the <em><span
+class="math inline">\(\gamma_2\)</span> norm</em> or <em>factorisation
+norm</em>, which is defined to be <span class="math display">\[\Vert
+A\Vert_{\gamma_2} = \min_{UV=A} \Vert U\Vert_{\rm row} \Vert V\Vert_{\rm
+col},\]</span> where the minimum is taken over all factorisations <span
+class="math inline">\(A = UV\)</span> of <span
+class="math inline">\(A\)</span>, <span class="math inline">\(\Vert
+U\Vert_{\rm row}\)</span> is the maximum <span
+class="math inline">\(l_2\)</span>-norm of any row in <span
+class="math inline">\(U\)</span>, and <span class="math inline">\(\Vert
+V\Vert_{\rm col}\)</span> is the maximum <span
+class="math inline">\(l_2\)</span>-norm of any column in <span
+class="math inline">\(V\)</span>. It is a result of Grothendieck (proved
+in 1954) that the Schur multiplier norm of any matrix equals its
+factorisation norm.</p>
+<p>If Conjecture H is true, then for any boolean matrix <span
+class="math inline">\(A\)</span> of bounded factorisation norm, one
+should expect to find a large block inside <span
+class="math inline">\(A\)</span> that either comprised entirely of <span
+class="math inline">\(1\)</span>s or entirely of <span
+class="math inline">\(0\)</span>s. In other words, there should be a
+large <em>monochromatic rectangle</em> in <span
+class="math inline">\(A\)</span>. This is exactly what Balla,
+Hambardzumyan, and Tomon showed in a very recent preprint.</p>
+<p><strong>Theorem B</strong> (<em>Balla–Hambardzumyan–Tomon,</em>
+2025). <em>Suppose that <span class="math inline">\(A\)</span> is an
+<span class="math inline">\(m\times n\)</span> boolean matrix with <span
+class="math display">\(\Vert A\Vert_{\gamma_2} \le \gamma\)</span>.
+There is a monochromatic rectangle <span class="math inline">\(S\times
+T\)</span> in <span class="math inline">\(A\)</span>, where <span
+class="math inline">\(S\subseteq [m]\)</span> and <span
+class="math inline">\(T\subseteq[n]\)</span> satisfy</em></p>
+<p><span class="math display">\[{|S|\cdot |T|\over mn} \ge
+2^{-O(\gamma^2)}.\]</span></p>
+<p><em>Specifically, if more than half of <span
+class="math inline">\(A\)</span>’s entries are <span
+class="math inline">\(1\)</span>, then <span
+class="math inline">\(S\times T\)</span> is a rectangle of <span
+class="math inline">\(1\)</span>s, and otherwise it is a rectangle of
+<span class="math inline">\(0\)</span>s.</em></p>
+<p>The density of <span class="math inline">\(A\)</span> determines
+whether this theorem furnishes a rectangle of <span
+class="math inline">\(0\)</span>s or a rectangle of <span
+class="math inline">\(1\)</span>s. Thus, given a sparse blocky matrix
+such as the identity matrix, the theorem simply identifies a large <span
+class="math inline">\(0\)</span>-rectangle and we gain little
+information regarding a purported blocky decomposition of <span
+class="math inline">\(A\)</span>. The main theorem of our second
+preprint, whose proof relies on Theorem B above, shows that in any
+boolean matrix of bounded <span class="math display">\(\gamma_2\)</span>
+norm, one can pick out a constant fraction of the <span
+class="math inline">\(1\)</span>-entries to form a blocky matrix.</p>
+<p><strong>Theorem S</strong> (<em>G.–Hatami</em>, 2025). Let <span
+class="math inline">\(A\)</span> be an <span
+class="math inline">\(m\times n\)</span> boolean matrix <span
+class="math inline">\(A\)</span> with <span class="math display">\(\Vert
+A\Vert_{\gamma_2}\le \gamma\)</span> in which the number of <span
+class="math inline">\(1\)</span>-entries is <span
+class="math inline">\(F\)</span>. There exists an <span
+class="math inline">\(m\times n\)</span> blocky matrix <span
+class="math inline">\(B\)</span> containing at least <span
+class="math inline">\(F/2^{2^{O(\gamma)}}\)</span> entries, such that,
+for all <span class="math inline">\((i,j)\in [m]\times[n]\)</span>,
+<span class="math inline">\(B(i,j) = 1\)</span> only if <span
+class="math inline">\(A(i,j) = 1\)</span>.</p>
+<p>To compare our theorem to Theorem B, it is perhaps illuminating to
+narrow our focus to the case where <span class="math display">\(A(x,y) =
+f(x-y)\)</span> for some boolean function <span
+class="math display">\(f:{\bf Z}_2^n \to \{0,1\}\)</span>, where <span
+class="math display">\(\Vert A\Vert_{\gamma_2} = \Vert f\Vert_A \le
+\gamma\)</span>. (This is the abelian case of the construction above,
+with <span class="math inline">\(A = M_f\)</span>.) In this setting, a
+2017 theorem of Shpilka, Tal, and Volk states that there must exist some
+affine subspace <span class="math inline">\(V \subseteq {\bf
+Z}_2^n\)</span> of codimension at most <span
+class="math inline">\(\gamma^2\)</span> such that <span
+class="math inline">\(f\)</span> is constant on <span
+class="math inline">\(V\)</span>. One can view Theorem B as an analogue
+of this theorem, as it guarantees the existence of a large submatrix on
+which the matrix is constant.</p>
+<p>On the other hand, Theorem G implies that <span
+class="math inline">\(f\)</span> must be identically equal to <span
+class="math inline">\(1\)</span> on an affine subspace <span
+class="math inline">\(V\subseteq {\bf Z}_2^n\)</span> whose size is at
+least a constant fraction (depending on <span
+class="math inline">\(\gamma\)</span>) of the support of <span
+class="math inline">\(f\)</span>. Theorem S can be viewed as the matrix
+analogue of this latter statement.</p>
+<p>Our proof of Theorem S uses the notion of the threshold dimension of
+a matrix, a well-known parameter closely connected with the ideas of
+stability in model theory.</p>
+<h3 id="references">References</h3>
+<ul>
+<li>Igor Balla, Lianna Hambardzumyan, and István Tomon, “Factorization
+norms and an inverse theorem for MaxCut,” <em>arXiv:2506.23989</em>
+(2025), 23 pp.</li>
+<li>Paul Joseph Cohen, “On a conjecture of Littlewood and idempotent
+measures,” <em>American Journal of Mathematics</em> <strong>82</strong>
+(1960), 191–212.</li>
+<li>Ben Green and Tom Sanders, “Boolean functions with small spectral
+norm,” <em>Geometric and Functional Analysis</em> <em>18</em> (2008),
+144–162].</li>
+<li>Alexander Grothendieck, “Résumé des résultats essentiels dans la
+théorie des produits tensoriels topologiques et des espaces nucléaires,”
+<em>Annales de l’institut Fourier</em> <strong>4</strong> (1954),
+73–112.</li>
+<li>Lianna Hambardzumyan, Hamed Hatami, and Pooya Hatami,
+“Dimension-free bounds and structural results in communication
+complexity” <em>Israel Journal of Mathematics</em> <strong>253</strong>
+(2023), 555–616.</li>
+<li>Leo Livshits, “A note on 0-1 Schur multipliers,” <em>Linear Algebra
+and its Applications</em> <strong>222</strong> (1995), 15–22.</li>
+<li>Yukiyosi Kawada and Kiyosi Itô, “On the probability distribution on
+a compact group. I,” <em>Proceedings of the Physico-Mathematical Society
+of Japan</em> <strong>22</strong> (1940), 977–998</li>
+<li>Walter Rudin, <em>Fourier Analysis on Groups</em> (New York: Dover
+Publications, 2017).</li>
+<li>Amir Shpilka, Avishay Tal, and Ben Lee Volk, “On the structure of
+boolean functions with small spectral norm,” <em>Computational
+Complexity</em> <strong>26</strong> (2017), 229–273.</li>
+</ul>
+</div>
+
+</body>
+</html>

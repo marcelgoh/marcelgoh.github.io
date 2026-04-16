@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HackPrinceton and CourseTalk &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">HackPrinceton and CourseTalk</h1>
+<p class="date">14 November 2018</p>
+
+<div class="content">
+<p>This past weekend, I had the amazing opportunity to attend <a
+href="https://hackprinceton.com">HackPrinceton</a> at Princeton
+University! It was nice to drive seven hours away from Montreal and get
+away from school for a while, but the actual competition was far from
+relaxing! It was the first hackathon for me and my two teammates, so we
+decided to try something simple and presentable. I thought it’d be fun
+in this post to go through what it was like working on <a
+href="https://github.com/marcelgoh/hackprinceton-2018">CourseTalk</a>, a
+web-based chat app and my first real team project.</p>
+<!--more-->
+<h3 id="background">Background</h3>
+<p>The motivation for CourseTalk (link to the hosted demo <a
+href="https://course-talk.herokuapp.com">here</a>) is the general lack
+of engagement and enthusiasm in school discussion boards. Many
+universities’ course-management systems have some kind of forum for
+students to post questions or talk amongst themselves, but the
+permanency and formality of having to submit posts means that most
+students resort to Facebook groups and chats for collaboration. Some
+students are unaware of the existence of these groups and working
+through social media makes the average student extremely liable to
+distraction. The success of platforms like Slack made us think that
+perhaps if something more informal and immediate were integrated into
+students’ default course pages, students would have an easier time
+chatting with other students about schoolwork.</p>
+<h3 id="the-demo">The demo</h3>
+<p>We implemented the demo as a single-page web application that asks
+the user for a username and gives them a list of chat rooms they can
+join. In real life, we imagine this would be implemented via the same
+database that shows the correct courses on a student’s course page. It
+simply links the user to the chat rooms of the courses they’re currently
+enrolled in. Within the chat app, users chat in real-time, and the chat
+has features like online status buttons, autoscrolling, and typing
+status notifications. The application only supports text in our demo,
+but the <a href="https://pusher.com/chatkit">Chatkit</a> API we used can
+be extended to host multimedia as well.</p>
+<p><img class="fullwidth" src="/media/coursetalk/chat.jpg" alt="chat" /></p>
+<h3 id="how-it-was-made">How it was made</h3>
+<p>CourseTalk was made using <a href="https://reactjs.org">React.js</a>.
+Because we were new to JavaScript and React, we spent the first half of
+the hackathon watching and following online tutorials and then tweaking
+as needed. By 4 a.m. on the second morning, we basically had the chat
+page above working. However, that’s when everything started to fall
+apart. The tutorial we’d followed used two instances of <a
+href="https://nodejs.org">Node.js</a> as its backend: one to run the web
+application on <a href="https://expressjs.com">Express.js</a> and one to
+support the React front-end. (At least that’s what we sort of deduced.
+I’m still don’t fully understand how everything works.) This meant that
+our app would work on our localhost server, which happily supplies two
+ports, but wouldn’t work when uploaded to GitHub Pages, which (we think)
+only gives you one port to work with.</p>
+<p>We spent much of the second day tinkering with different parts of the
+app, trying to see if we could make everything work without the second
+port, but we couldn’t figure it out. In the end, a friend from a
+different team came and helped us port our project to <a
+href="https://webpack.js.org">Webpack</a>. He also suggested we use <a
+href="https://heroku.com">Heroku</a>, which ended up being much easier
+to host our app on, because it works out-of-the-box with apps hosted on
+GitHub. Finally, our app was on the actual internet!</p>
+<p>The last part of the project was the most difficult but also the most
+rewarding. We wanted to have a landing page in between the login page
+and the chat app that allows you to switch between different chat rooms.
+At this point we couldn’t rely on video tutorials anymore, we were
+sleep-deprived and stressed and time was running out. I learned the most
+about React during this part, because we had so many different
+components that all had to pass information to one another. I learned
+that mutating state is a frustrating and largely wrong approach in React
+programming, because the <code>setState()</code> function is
+asynchronous! (I wasted an inordinate amount of time because I didn’t
+know this.) At around 5 a.m. the second night, four hours before the
+submission deadline, we had the app functionality working. During this
+time, my teammates worked on making the login page more presentable
+using CSS.</p>
+<p><img class="fullwidth" src="/media/coursetalk/login.jpg" alt="login" /></p>
+<p>We pushed the final project to Heroku and it didn’t work. In the end
+we found out that the app would work without the new CSS, and by that
+time we were already falling asleep at our desks, so we just created a
+<code>stable</code> branch with the old CSS stylesheet and posted that
+to Heroku. It didn’t look as nice as we wanted, but at least it worked.
+The <code>master</code> branch still contains the nice CSS and works
+locally but not on Heroku for some reason.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p><del>Web development sucks and should be avoided at all costs.</del>
+This was my first proper exposure to web development, and though I had
+known that we would have to use some APIs, I completely underestimated
+how frustrating that would be under a time limit. It didn’t feel like we
+had enough time to learn anything properly, so we just slapped together
+a bunch of different frameworks and tools. We did manage to create a
+working result, but in the future I think a bit more preparation would
+probably be a good idea. In a future hackathon, I would be hesitant to
+make another web application because of how many dependencies and
+components there were to keep track of, and also because I’d want to try
+something new, like maybe making a small game. But overall, I’m happy
+with what I learned over the weekend and I’m still really proud of the
+simple, slightly janky chat app we created in 36 hours!</p>
+</div>
+
+</body>
+</html>

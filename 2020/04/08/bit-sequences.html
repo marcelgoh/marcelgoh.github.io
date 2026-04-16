@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bit sequences and Hamiltonian cycles &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Bit sequences and Hamiltonian cycles</h1>
+<p class="date">8 April 2020</p>
+
+<div class="content">
+<p>With the coronavirus pandemic currently sweeping the globe, most of
+us here in Montréal are shut at home. But social distancing hasn’t kept
+my friends and I from discussing cool math (some school-related, some
+not) over videochat. The subject of today’s article is a little exercise
+that <a href="http://luc.devroye.org">Prof. Luc Devroye</a> gave some of
+us in his virtual office hours yesterday. After thinking on it overnight
+and working it out on paper this morning, I found a solution that I
+thought was pretty nice. <!--more--></p>
+<h3 id="bit-sequences">Bit sequences</h3>
+
+<p>The exercise went as follows. Starting with a sequence of <span
+class="math inline">\(k\)</span> bits (either <span
+class="math inline">\(0\)</span> or <span
+class="math inline">\(1\)</span>), we repeatedly add a bit to the end
+and lop off a bit from the beginning. Each time we do so, we get a new
+<span class="math inline">\(k\)</span>-sequence. <em>Is it possible to
+cycle through all \(2^k!\) possible
+bit-sequences in this manner, in exactly <span
+class="math inline">\(2^k!\)</span> steps?</em> The answer is yes, as
+we shall soon prove.</p>
+<p>As always, it is instructive to work out a couple small examples.
+When <span class="math inline">\(k=1\)</span>, this is very easy,
+because we can start with <span class="math inline">\(0\)</span> and
+then replace it with a <span class="math inline">\(1\)</span>. For <span
+class="math inline">\(k=2\)</span>, we might start with the sequence
+<span class="math inline">\(00\)</span>. Adding a <span
+class="math inline">\(1\)</span>, we obtain the sequence <span
+class="math inline">\(01\)</span>. Now adding a <span
+class="math inline">\(0\)</span>, we get <span
+class="math inline">\(10\)</span>. But here we’re stuck, because whether
+we add <span class="math inline">\(0\)</span> or <span
+class="math inline">\(1\)</span>, we’ll get a sequence we’ve already
+seen. The correct thing would have been to add a <span
+class="math inline">\(1\)</span>, giving us <span
+class="math inline">\(11\)</span>, and then a <span
+class="math inline">\(0\)</span>, giving us <span
+class="math inline">\(10\)</span>. All <span class="math inline">\(2^2 =
+4\)</span> sequences of length <span class="math inline">\(2\)</span>
+have been obtained.</p>
+<img class="fullwidth" src="/media/bit-sequences/arrows.png" alt="arrows" />
+<p>So we know that the statement is true for <span
+class="math inline">\(k = 1\)</span> and <span
+class="math inline">\(2\)</span>. But of course, for larger values of
+<span class="math inline">\(k\)</span> we don’t want to be stuck
+guessing and checking, so we will have to develop a proof that works for
+all <span class="math inline">\(k\)</span>. To this end, we need to
+introduce a couple of concepts from graph theory. (Feel free to skip the
+next section if you’re already acquainted with graphs.)</p>
+<h3 id="graphs-and-cycles">Graphs and cycles</h3>
+<p>Graph theory is the study of networks consisting of
+<strong>vertices</strong> (also called <strong>nodes</strong>) and
+<strong>edges</strong> between them. Often we have edges that are
+undirected in that one can travel along them in both directions, but our
+graphs will be <strong>directed</strong>, so every edge can be seen as a
+one-way street. For this article, we are concerned with
+<strong>cycles</strong> in a graph, i.e. paths that start at a vertex,
+travel around for a bit along edges, then return to the starting
+vertex.</p>
+<p>Some natural questions to ask about graphs are as follows:</p>
+<ol type="1">
+<li>Starting at a vertex, is it possible to traverse the graph <em>using
+every edge</em> exactly once and return to the starting point?</li>
+<li>Starting at a vertex, is it possible to traverse the graph
+<em>hitting every node</em> exactly once and return to the starting
+point?</li>
+</ol>
+<p>In fact, <a
+href="https://en.wikipedia.org/wiki/Seven_Bridges_of_Königsberg">an
+instance of the first question</a> is one of the earliest problems in
+graph theory, and was solved by Leonhard Euler in 1736. In his honour, a
+cycle that uses every edge exactly once is called an <strong>Euler
+tour</strong>, while a cycle that visits every vertex exactly once is
+named a <strong>Hamiltonian cycle</strong>, after the Irish
+mathematician William Rowan Hamilton.</p>
+<p>Although these questions about graphs seem very similar, the first is
+very easy and the second is very hard. It turns out that a graph has an
+Euler tour if and only if every vertex has as many edges coming in as
+going out. I won’t give the proof of this, but if you work out a couple
+examples, you might see why. Having an Euler tour means that it is
+impossible, in some sense, to “get stuck” by following an edge into a
+vertex and then having no way out. If every vertex has the same number
+of in-edges as out-edges, this can’t happen.</p>
+<h3 id="representing-bits-as-graphs">Representing bits as graphs</h3>
+<p>Graphs are relevant to our problem because we can represent the
+operation of adding a new bit to the end and dropping one off the
+beginning as a walk in a graph. For any <span
+class="math inline">\(k\geq 1\)</span>, we can create a graph with <span
+class="math inline">\(2^k\)</span> vertices, representing all possible
+<span class="math inline">\(k\)</span>-sequences of bits. Then we draw
+an edge from a vertex to another if it is possible to go from one
+sequence to the other with exactly one bit-adding operation. We let
+<span class="math inline">\(G_k\)</span> denote the graph representation
+for the <span class="math inline">\(k\)</span>-sequence problem; here
+are <span class="math inline">\(G_1\)</span> and <span
+class="math inline">\(G_2\)</span>:</p>
+<img class="fullwidth" src="/media/bit-sequences/graphs1.png" alt="g1" />
+<p>Now it is clear why we have represented the sequences in this way.
+The original problem asked us to cycle through all <span
+class="math inline">\(2^k\)</span> possible bit-sequences by performing
+the bit-shift operation one at a time. This reduces to the problem of
+finding a Hamiltonian cycle in the graph representation. However, like I
+said earlier, proving the existence of Hamiltonian cycles isn’t as easy
+as finding Euler tours. So it isn’t immediately obvious that for any
+<span class="math inline">\(k\)</span>, the graph representing <span
+class="math inline">\(k\)</span>-sequences should have a Hamiltonian
+cycle.</p>
+<h3 id="from-euler-to-hamilton">From Euler to Hamilton</h3>
+<p>However, we note that every vertex has exactly two edges leading out
+(corresponding to adding either a <span class="math inline">\(0\)</span>
+or a <span class="math inline">\(1\)</span>) and two leading in from
+other sequences. This means that for all <span
+class="math inline">\(k\)</span>, <span
+class="math inline">\(G_k\)</span> has an Euler tour! This wouldn’t help
+us, except that we can draw a correspondence between the <em>edges</em>
+of <span class="math inline">\(G_k\)</span> and the <em>vertices</em> of
+<span class="math inline">\(G_{k+1}\)</span>. The correspondence runs as
+follows:</p>
+<p>If an edge, labelled with a bit <span class="math inline">\(b\in
+\{0,1\}\)</span> in <span class="math inline">\(G_k\)</span> connects
+vertices <span class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span>, then we create a vertex in <span
+class="math inline">\(G_{k+1}\)</span> with the same label as <span
+class="math inline">\(u\)</span>, but with the extra bit <span
+class="math inline">\(b\)</span> added to the end. This is illustrated
+in the diagram above, where the four edges in <span
+class="math inline">\(G_1\)</span> correspond to the four nodes in <span
+class="math inline">\(G_2\)</span>. Then we draw an edge between nodes
+<span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> in <span
+class="math inline">\(G_{k+1}\)</span> if and only if in the original
+graph <span class="math inline">\(G_k\)</span>, the destination of the
+edge corresponding to <span class="math inline">\(a\)</span> is the
+starting point of edge <span class="math inline">\(b\)</span>. This is
+less complicated than it sounds when you look at the picture. As an
+example, the orange node connects to the green one in <span
+class="math inline">\(G_2\)</span> because in <span
+class="math inline">\(G_1\)</span>, the orange arrow leads to a node
+that the green arrow starts from.</p>
+<p>Notice that an Euler tour in <span class="math inline">\(G_k\)</span>
+is exactly a Hamiltonian cycle in <span
+class="math inline">\(G_{k+1}\)</span>! Because we know that every <span
+class="math inline">\(G_k\)</span> has an Euler tour for all <span
+class="math inline">\(k\geq 1\)</span>, we know that for all <span
+class="math inline">\(k\geq 2\)</span>, <span
+class="math inline">\(G_k\)</span> has a Hamiltonian cycle (<span
+class="math inline">\(G_1\)</span> does as well, but we can check that
+manually).</p>
+<h3 id="back-to-bits">Back to bits</h3>
+<p>We now have a way to read off the bit sequences that solve the
+original problem. <span class="math inline">\(G_1\)</span> and <span
+class="math inline">\(G_2\)</span> give us the solutions for <span
+class="math inline">\(k=2\)</span> and <span
+class="math inline">\(k=3\)</span> respectively:</p>
+<img class="fullwidth" src="/media/bit-sequences/graphs2.png" alt="g2" />
+<p>The bit sequences at the bottom contain every possible <span
+class="math inline">\(k\)</span>-sequence as a substring and each
+corresponds to an Euler tour of <span
+class="math inline">\(G_{k-1}\)</span>. Neat!</p>
+<h3 id="links-and-references">Links and references</h3>
+<p>I later found out that the sequences above are called <a
+href="https://en.wikipedia.org/wiki/De_Bruijn_sequence">de Bruijn
+sequences</a> and the graphs are called de Bruijn graphs. So the
+solution I found is quite well-known (it’s in the Wikipedia page I just
+linked). The construction of taking a graph and producing another graph
+whose vertices correspond to the edges of the original is detailed in
+Donald Knuth’s <em>The Art of Computer Programming, Vol. 1</em>, in an
+exercise on oriented trees (Section 2.3.4.2, Exercise 21).</p>
+<p><strong>A postscript on PostScript.</strong> I drew the graphs above
+by hand-coding them in PostScript. Click for the source code of the <a
+href="https://github.com/marcelgoh/marcelgoh.github.io/blob/master/media/bit-sequences/graphs1.ps">first
+one</a>, and of the <a
+href="https://github.com/marcelgoh/marcelgoh.github.io/blob/master/media/bit-sequences/graphs2.ps">second
+one</a>.</p>
+</div>
+
+</body>
+</html>

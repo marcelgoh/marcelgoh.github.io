@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Arithmetic subsequences in permutations &bull; Marcel Goh</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+<script id="replace_with_navbar" src="/includes/nav.js"></script>
+
+<h1 class="page-title">Arithmetic subsequences in permutations</h1>
+<p class="date">26 December 2020</p>
+
+<div class="content">
+<p><a href="https://rosieyzh.github.io">Rosie Zhao</a> and I have just
+uploaded our paper “<a
+href="https://arxiv.org/abs/2012.12339">Arithmetic subsequences in a
+random ordering of an additive set</a>” to the arXiv. In its simplest
+form, the problem we consider is the following. Given an ordering of the
+numbers <span class="math inline">\(1\)</span> through <span
+class="math inline">\(n\)</span>, what is the length of the longest
+arithmetic subsequence that is embedded in this permutation? For
+example, in the ordering <span
+class="math inline">\((2,7,1,6,3,4,5)\)</span>, the longest arithmetic
+subsequence is <span class="math inline">\((2,3,4,5)\)</span>, which has
+length <span class="math inline">\(4\)</span>. If we store the
+permutation in an array, the problem of finding the length of the
+longest arithmetic subsequence is a popular programming interview
+question that can be solved efficiently using dynamic programming (it is
+a <a
+href="https://leetcode.com/problems/longest-arithmetic-subsequence/">medium-difficulty
+problem</a> on LeetCode). But if we take the ordering to be random, with
+each of the <span class="math inline">\(n!\)</span> possibilities
+occurring with equal probability, then the length <span
+class="math inline">\(L_n\)</span> of the longest arithmetic subsequence
+becomes a random variable. Our paper studies the asymptotic behaviour of
+<span class="math inline">\(L_n\)</span> as <span
+class="math inline">\(n\)</span> gets large.</p>
+<p><strong>Update.</strong> (<em>28 Sep 2021</em>) Our paper was
+accepted to <em>Integers: Electronic Journal of Combinatorial Number
+Theory</em>! There were some small errors in the original lemmas, which
+have been corrected in both the <a
+href="http://math.colgate.edu/~integers/v89/v89.pdf">published</a> and
+<a href="https://arxiv.org/abs/2012.12339">arXiv</a> versions as well as
+in the blog post below. <!--more--></p>
+<h3 id="the-integer-case">The integer case</h3>
+<p>Let <span class="math inline">\([1,n]\)</span> denote the discrete
+interval <span class="math inline">\(\{1,2,\ldots,n\}\)</span>. We
+regard an <em>arithmetic progression</em> in a sequence to be a
+subsequence</p>
+<p><span
+class="math display">\[\big(a,a+r,a+2r,\ldots,a+(k-1)r\big),\]</span></p>
+<p>where <span class="math inline">\(a\)</span> is called the <em>base
+point</em>, <span class="math inline">\(r\)</span> is the <em>step
+size</em>, and <span class="math inline">\(k\)</span> is the
+<em>length</em>. Traditionally, arithmetic progressions are studied as
+<em>subsets</em> of some larger set, and one is interested in finding
+out if sets contain long arithmetic progressions as subsets. In our
+case, we start with the arithmetic progression <span
+class="math inline">\([1,n]\)</span>, scramble its elements into a
+sequence, and look for a long subsequence. For small <span
+class="math inline">\(n\)</span>, using the dynamic programming
+techniques mentioned above, one can exhaustively compute the
+distribution of the longest arithmetic subsequence <span
+class="math inline">\(L_n\)</span>. Letting <span
+class="math inline">\(f_n(k)\)</span> denote the number of permutations
+of <span class="math inline">\([1,n]\)</span> whose longest arithmetic
+subsequence is of length <span class="math inline">\(k\)</span>, we have
+the following table (click to enlarge):</p>
+<p><a href="/media/arithmetic-subsequences-permutation/table1.png"><img
+      class="fullwidth"
+src="/media/arithmetic-subsequences-permutation/table1.png" /></a></p>
+<p>Notice that each row sums to <span class="math inline">\(n!\)</span>,
+since there are <span class="math inline">\(n!\)</span> orderings of
+<span class="math inline">\([1,n]\)</span>, and we can compute
+probabilities by simply dividing; for example, the probability that
+<span class="math inline">\(L_9 = 3\)</span> is <span
+class="math inline">\(168368/(9!)\approx 46.4\%\)</span>. The first main
+result of our paper is the following theorem:</p>
+<p><strong>Theorem 4.</strong> <em>Let <span
+class="math inline">\(L_n\)</span> denote the longest arithmetic
+sequence in an ordering of <span class="math inline">\([1,n]\)</span>,
+chosen uniformly at random. There exists a function <span
+class="math inline">\(\psi(n)\)</span> with <span
+class="math inline">\(\psi(n)\sim 2\log n/\log\log n\)</span> such that
+the probabilility that <span class="math inline">\(L_n\)</span> is not
+in the interval <span class="math inline">\([\psi(n)-6,
+\psi(n)+1]\)</span> tends to <span class="math inline">\(0\)</span> as
+<span class="math inline">\(n\)</span> approaches infinity.</em></p>
+<p>(In fact, we proved a slightly more general form of this theorem in
+the paper, considering <span class="math inline">\([1,n]^d\subseteq {\bf
+Z}^d\)</span> for <span class="math inline">\(d\geq 1\)</span> and
+finding a function <span class="math inline">\(\psi(n,d)\sim 2d\log
+n/\log\log n\)</span>.) To prove the theorem, we let <span
+class="math inline">\(N_k\)</span> denote the number of arithmetic
+subsequences of length <span class="math inline">\(k\)</span> in the
+random ordering. By the union bound, we have <span
+class="math display">\[{\bf P}\{L_n\geq k\}\leq {\bf E}\{N_k\}\]</span>,
+which goes to <span class="math inline">\(0\)</span> if <span
+class="math inline">\(k\geq \psi(n)+1\)</span>. Then by the second
+moment method, it can be shown that</p>
+<p><span class="math display">\[{\bf P}\{L_n &lt; k\} = {\bf P}\{N_k=
+1\} \le { {\bf V}\{N_k\}\over {\bf E}\{ {N_k} \}^2 } =
+{k^5\over P_n(k)/k!},\]</span></p>
+<p>where <span class="math inline">\(P_n(k)\)</span> is the number of
+arithmetic sequences of length <span class="math inline">\(k\)</span>
+that use elements of the set <span class="math inline">\([1,n]\)</span>.
+This approaches <span class="math inline">\(0\)</span> when <span
+class="math inline">\(k&lt;\psi(n)-6\)</span>. By a counting argument,
+one can show that</p>
+<p><span class="math display">\[{\bf E}\{N_k\} \sim {n^2\over
+k!(k-1)},\]</span></p>
+<p>which can be inverted to show that <span
+class="math inline">\(\psi(n)\sim 2\log n/\log\log n\)</span>.</p>
+<h3 id="cyclic-groups">Cyclic groups</h3>
+<p>If we consider addition in the cyclic group <span
+class="math inline">\({\bf Z}/n{\bf Z}\)</span>, then <span
+class="math inline">\(L_n\)</span> is larger, since any arithmetic
+progression in <span class="math inline">\([1,n]\subseteq {\bf
+Z}\)</span> is also a progression in <span class="math inline">\({\bf
+Z}/n{\bf Z}\)</span>, but not the other way around. For example, the
+sequence <span class="math inline">\((0,2,6,1,3,5,4)\)</span> has the
+<span class="math inline">\(4\)</span>-term arithmetic subsequence <span
+class="math inline">\((0,6,5,4)\)</span> when addition is taken modulo
+<span class="math inline">\(7\)</span> (the base point is <span
+class="math inline">\(0\)</span> and the step size is <span
+class="math inline">\(6\)</span>), but it has no arithmetic subsequence
+of length <span class="math inline">\(4\)</span> when the addition is
+ordinary integer addition. The distribution of <span
+class="math inline">\(L_n\)</span> for small <span
+class="math inline">\(n\)</span> in the cyclic case looks like this
+(<span class="math inline">\(g_n(k)\)</span> is the cyclic analogue of
+<span class="math inline">\(f_n(k)\)</span> from Table 1):</p>
+<p><a href="/media/arithmetic-subsequences-permutation/table2.png"><img
+      class="fullwidth"
+src="/media/arithmetic-subsequences-permutation/table2.png" /></a></p>
+<p>We prove the following analogue of Theorem 4 in the cyclic case:</p>
+<p><strong>Theorem 7.</strong> For a positive integer <span
+class="math inline">\(n\)</span>, let <span
+class="math inline">\(L_n\)</span> denote the longest arithmetic
+subsequence in an ordering of <span class="math inline">\({\bf Z}/n{\bf
+Z}\)</span>, chosen uniformly at random. There exists a function <span
+class="math inline">\(\chi(n)\)</span> with <span
+class="math inline">\(\chi(n)\sim 2\log n/\log\log n\)</span> such that
+<span class="math inline">\(L_n\)</span> is in the interval <span
+class="math inline">\([\chi(n)-6, \chi(n)+1]\)</span> with probability
+tending to <span class="math inline">\(1\)</span> as <span
+class="math inline">\(n\to\infty\)</span>.</p>
+<p>Note that while both <span class="math inline">\(\psi(n)\)</span>
+from Theorem 4 and <span class="math inline">\(\chi(n)\)</span> from
+Theorem 7 both have the same leading asymptotic term, we always have
+<span class="math inline">\(\psi(n)&lt;\chi(n)\)</span>. A closer look
+at Table 2 also reveals some interesting curiosities regarding <span
+class="math inline">\(L_n\)</span> in the cyclic case. Firstly, <span
+class="math display">\[{\bf E}\{L_n\}\]</span> does not increase
+monotonically with <span class="math inline">\(n\)</span> as in the
+integer case. For example, we have <span class="math display">\[{\bf
+E}\{L_7\} = 4.25\]</span> and <span class="math display">\[{\bf
+E}\{L_8\}\approx 4.136\]</span>. This is because there are “more ways”
+to form arithmetic subsequences in permutations of <span
+class="math inline">\({\bf Z}/n{\bf Z}\)</span> when <span
+class="math inline">\(n\)</span> is prime. We also notice that there are
+only permutations without arithmetic subsequences of length <span
+class="math inline">\(3\)</span> when <span
+class="math inline">\(n\)</span> is a power of <span
+class="math inline">\(2\)</span>. This can be formulated as the
+following theorem:</p>
+<p><strong>Theorem 8.</strong> <em>The number <span
+class="math inline">\(g_n(2)\)</span> of orderings of <span
+class="math inline">\({\bf Z}/n{\bf Z}\)</span> that do not contain any
+arithmetic subsequence of length <span class="math inline">\(3\)</span>
+equals <span class="math inline">\(2^{n-1}\)</span> if <span
+class="math inline">\(n=2^m\)</span> for some <span
+class="math inline">\(m\geq 1\)</span>, and is zero otherwise. Any
+ordering of <span class="math inline">\({\bf Z}/2^m{\bf Z}\)</span> that
+contains no progression of length <span class="math inline">\(3\)</span>
+consists of <span class="math inline">\(2^{m-1}\)</span> elements of the
+same parity, followed by the remaining <span
+class="math inline">\(2^{m-1}\)</span> elements of the opposite
+parity.</em></p>
+<p>The proof was by induction in the case that <span
+class="math inline">\(n\)</span> is a power of <span
+class="math inline">\(2\)</span>, and for <span
+class="math inline">\(n\)</span> not a power of <span
+class="math inline">\(2\)</span> we can reduce to the case where <span
+class="math inline">\(n\)</span> is an odd prime.</p>
+<h3 id="possible-noncommutative-generalisations">Possible noncommutative
+generalisations</h3>
+<p>The first and second moment methods we used did not rely on the fact
+that the groups we considered (<span class="math inline">\({\bf
+Z}^d\)</span> and <span class="math inline">\({\bf Z}/n{\bf Z}\)</span>)
+are abelian. One could extend these results to random orderings of other
+finite groups, such as the dihedral group <span
+class="math inline">\(D_n\)</span> or the symmetric group <span
+class="math inline">\(S_n\)</span>. In the noncommutative case, one
+needs to specify whether the step size is multiplied by the base point
+on the left or on the right, but if the sequence contains every element
+of the (finite) group, then the distribution of <span
+class="math inline">\(L_n\)</span> will be the same for both
+choices.</p>
+</div>
+
+</body>
+</html>
