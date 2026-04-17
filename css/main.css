@@ -121,7 +121,6 @@ li {
     gap: 21px;
     font-family: AdobeCaslonPro;
     font-size: 18px;
-    width: 140px;
 }
 
 #bloxNav,
@@ -135,7 +134,7 @@ li {
 }
 
 .bloxBlock {
-    background-color: #fff3db;
+    background-color: #e3ddd2;
     padding: 11px 15px;
     border: 4px double #039699;
     border-radius: 0px;
@@ -145,7 +144,7 @@ li {
     justify-content: center;
     flex-flow: row;
     gap: 3px;
-    width: 108px;
+    width: 148px;
 }
 
 .bloxBlock img,
@@ -155,7 +154,7 @@ li {
 }
 
 .bloxBlock img {
-    width: 38px;
+    height=16px;
     image-rendering: pixelated;
 }
 
