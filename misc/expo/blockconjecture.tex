@@ -1,0 +1,510 @@
+\input fontmac
+\input mathmac
+
+\def\FF{{\bf F}}
+\def\II{{\bf I}}
+\def\JJ{{\bf J}}
+
+\def\tr{\op{\rm tr}}
+\def\bar{\overline}
+\def\tilde{\widetilde}
+\def\hat{\widehat}
+\def\matr#1#2#3#4{%
+\big({#1\atop #3}{#2\atop #4}\big)%
+}
+\def\one{{\bf 1}}
+\def\norm#1{\left|\!\left|#1\right|\!\right|}
+\def\normm#1{\biggl|\!\biggl|#1\biggr|\!\biggr|}
+\def\Norm#1{\Bigl|\!\Bigl|#1\Bigr|\!\Bigr|}
+\def\bignorm#1{\bigl|\!\bigl|#1\bigr|\!\bigr|}
+\def\eps{\epsilon}
+\def\argmax{\limitop{\rm{arg$\,$max}}}
+\def\del{\partial}
+\def\normtr#1{\left|\!\left|#1\right|\!\right|_{\rm tr}}
+\def\normntr#1{\left|\!\left|#1\right|\!\right|_{\rm ntr}}
+\def\normF#1{\left|\!\left|#1\right|\!\right|_{\rm F}}
+\def\normmax#1{\left|\!\left|#1\right|\!\right|_{\rm max}}
+\def\normrow#1{\left|\!\left|#1\right|\!\right|_{\rm row}}
+\def\normcol#1{\left|\!\left|#1\right|\!\right|_{\rm col}}
+\def\normgamma#1{\left|\!\left|#1\right|\!\right|_{\gamma_2}}
+\def\normmu#1{\left|\!\left|#1\right|\!\right|_\mu}
+\def\normop#1{\left|\!\left|#1\right|\!\right|_{\rm op}}
+\def\normschur#1{|\!|#1|\!|_{\rm m}}
+\def\T{{\rm T}}
+\def\Rect{\op{\rm Rect}}
+\def\Dg{\op{\rm Dg}}
+\def\rk{\op{\rm rk}}
+\def\sgn{\op{\rm sgn}}
+\def\supp{\op{\rm supp}}
+\def\block{\op{\rm block}}
+\def\Ldim{\op{\rm Ldim}}
+\def\DEQ{D^{\rm EQ}}
+\def\sevenrk{\op{\sevenrm rk}}
+\def\advthm{\the\sectcount.\the\thmcount\global\advance \thmcount by 1}
+\def\advsect{\global\advance\sectcount by 1\section\the\sectcount\global\thmcount=1. }
+\sectcount=0
+
+\widemargins
+\bookheader{THE BLOCK COMPLEXITY CONJECTURE}{MARCEL K. GOH}
+
+\maketitle{The block complexity conjecture}{}{Marcel K. Goh}{29 April 2026}
+
+\vskip30pt
+
+\advsect Cohen's idempotent theorem
+
+We begin with some background on Cohen's idempotent theorem [{\sl American Journal
+of Mathematics} {\bf 82} (1960), 191--212]. Let $G$ be a locally compact abelian group, and let
+$M(G)$ be the set of all bounded measures on $G$ (non-negative, countably additive
+set functions $\mu$ on $G$ with $\mu(\emptyset) = 0$). We can view $M(G)$ as a
+topological semigroup under the convolution operation
+$$\mu*\nu(A) = \int_G\int_G \one_A(x+y)\d\mu(x)\d\nu(y),$$
+where $\one_A$ is the characteristic function of the set $A\subseteq G$.
+An {\it idempotent} in this algebra is a measure $\mu$ with $\mu*\mu=\mu$; in the middle of the 20th
+century, there was a programme surrounding the problem of characterising the idempotent elements of $M(G)$.
+
+Something we can see right away is that for any measure $\mu$ with $\mu*\mu=\mu$, the Fourier--Stieltjes
+transform $\hat\mu$ given by
+$$\hat\mu(\chi) = \int_G \bar{\chi(x)} \d\mu(x)$$
+satisfies $\hat\mu^2 = \hat \mu$ by the convolution law and must hence be boolean.
+We are then left with the task of
+determining which boolean functions on $\hat G$ (or equivalently, which subsets of $\hat G$) are the
+Fourier--Stieltjes transforms of idempotent measures on $G$. A starting point is the following.
+
+\proclaim Proposition \advthm.
+Let $E = \psi\Gamma$ be a coset of the dual group $\hat G$ of a locally compact abelian group $G$.
+Then $\one_E = \hat\mu$ for some idempotent measure $\mu$ on $G$ with $\norm\mu = 1$.
+
+\proof Let $H$ be the annihilator subgroup
+$$H = \{x\in G : \chi(x) = 1\ \hbox{for all}\ \chi\in \Gamma\}.$$
+It can be shown that $H$ is compact, since $\Gamma$ is open (hence $\Gamma/\Lambda = \hat H$ is
+discrete), and we can normalise the Haar measure
+$m_H$ on $H$ so that $m_H(H)=1$, which yields a measure (which we also call $m_H$) on $G$ as well.
+Define $\mu$ by $d\mu(x) = \psi(x)\d m_H(x)$.
+
+Note that if $\bar\psi\chi\notin \Gamma$, then there is some $y\in H$ with $\bar{\psi(y)}\chi(y)\ne 1$,
+and we have
+$$\eqalign{
+\hat\mu(\chi) &= \int_G \bar{\chi(x)}\psi(x)\d m_H(x) \cr
+&= \bar{\chi(y)}\psi(y) \int_H \bar{\chi(x-y)}\psi(x-y)\d m_H(x) \cr
+&= \chi(y)\hat\mu(\chi) \cr
+}$$
+for the Fourier--Stieltjes transform $\hat\mu$ of $\mu$,
+by the invariance of Haar measure under translation.
+This gives the orthogonality relation
+$$\hat\mu(\chi) = \cases{1, & if $\chi \in \psi\Gamma$; \cr 0,& otherwise\cr }.$$
+In other words, $\hat\mu = \one_{\psi\Gamma}$, and $\mu$ is idempotent by the convolution law.
+Lastly, note that
+$$\norm\mu = |\mu|(G) = \int_G \bigl|\bar{\chi(x)}\bigr| \d m_H(x) = m_H(G) = 1.\noskipslug$$
+
+Let $\Omega$ be the set of all subsets of $\hat G$ whose indicator functions are Fourier--Stieltjes
+transforms of idempotent measures on $G$.
+
+\proclaim Proposition \advthm.
+The set $\Omega$ contains the ring of cosets of $\hat G$; that is,
+the smallest collection that contains all cosets of $\hat G$ and is closed under
+finite intersections, unions, and complements.
+
+\proof
+If $E$ and $F$ are cosets of $\hat G$ with $\one_E = \hat\mu$ and $\one_F = \hat\nu$ for some
+idempotent measures $\mu$ and $\nu$ on $G$, then we have $\hat{\mu*\nu} = \one_{E\cap F}$
+by the convolution law. Then since the Fourier--Stieltjes transform is linear, we see that
+$$\hat{\mu\vee\nu} = \hat\mu + \hat\nu - \hat\mu\cdot\hat\nu = \one_{E\cup F},$$
+where $\mu\vee\nu = \mu + \nu - \mu*\nu$. Finally, letting $\delta_0$ be the Dirac measure that assigns
+$1$ to precisely those sets containing $0$, we have
+$$\hat{\delta_0}(\chi) = \int_G \bar{\chi(x)}\d\delta_0(x) = \bar{\chi(0)} = 1$$
+for all $\chi\in \hat G$, so
+$$\hat{\delta_0 - \mu} = 1 - \one_E = \one_{\hat G \setminus E}.$$
+The full proposition now follows by induction.\slug
+
+Cohen's idempotent theorem states that $\Omega$ is in fact equal to the ring of cosets of $\hat G$.
+
+\edef\thmcohen{\the\sectcount.\the\thmcount}
+\parenproclaim Theorem {\advthm} (Cohen, {\rm 1960}).
+A measure $\mu$ is idempotent if and only if $\hat\mu$ belongs to the coset ring of $\hat G$.
+
+\advsect The Green--Sanders theorem
+
+Another way of stating (the difficult direction of) Cohen's idempotent theorem is that the
+Fourier--Stieltjes transform $\hat\mu$ of an idempotent measure $\mu$ on a locally compact abelian group
+$G$ can be written as a finite signed sum
+$$\hat\mu = \sum_{i=1}^L \pm\one_{E_i},$$
+where each $E_i$ is a coset of $\hat G$. When $G$ is finite, this statement has no content, since
+{\it any} function on $\hat G$ can be expressed as a finite sum in that manner.
+
+Hence we want to develop a quantitative version of Cohen's idempotent theorem, that bounds the number
+$L$ of summands in terms of some parameter of $\mu$. The natural parameter turns out to be its norm
+$\norm\mu$. To see this, note that the {\it contractive} idempotent measures (that is, those with norm
+at most $1$) are exactly the idempotents $\mu$ with
+$\hat\mu = \one_E$ for some open coset $E$ of $\hat G$. (We saw one direction of this earlier, and the converse
+is not terribly difficult, but we omit it in this exposition.)
+
+The quantitative idempotent theorem of Green and Sanders [{\sl Annals of Mathematics} {\bf 168} (2008),
+1025--1054] tells us that any idempotent measure can be written as a signed sum of contractive idempotents.
+It turns out to be possible to prove this theorem by first doing so for finite abelian groups; we shall state
+the theorem in the latter case. When writing out the idempotent theorem for finite groups it is customary
+to exchange the roles of $G$ and $\hat G$. Hence one writes $f = \hat\mu$ and assumes that $f$ is boolean
+(which is equivalent to the idempotence of $\mu$). Then the norm $\norm\mu$ is exactly the $l_1$ norm
+of the Fourier transform of $f$. This is sometimes denoted $\norm{f}_A$ and
+called the {\it algebra norm} of $f$, because for any $f,g:G\to\CC$ one has
+$$\norm{fg}_A\le \norm{f}_A\cdot\norm{g}_A.$$
+In any case we have dawdled enough. Let us now state the finitary form of the Green--Sanders quantitative
+idempotent theorem.
+
+\parenproclaim Theorem {\advthm} (Green--Sanders, {\rm 2008}).
+Let $G$ be a finite abelian group and let $f:G\to \{0,1\}$ have $\norm{f}_A\le M$. Then we may write
+\global\edef\eqgreensanders{\the\eqcount}
+$$f = \sum_{i=1}^L \pm \one_{a_i + H_i},\adveq$$
+where each $a_i+H_i$ is a coset of $G$ and $L\le \exp(\exp(CM^4))$ for some absolute constant $C$.
+
+Of course, if $f$ can be expressed as a signed sum~\refeq{\eqgreensanders}, then $\norm{f}_A\le L$
+by the triangle inequality. The Green--Sanders theorem is a (quantitatively weaker) converse to this.
+
+\advsect Schur multipliers
+
+We now shift gears entirely and introduce a different problem in matrix analysis, which at first seems
+only related to the idempotent theorem by analogy.
+Consider the Hilbert space $l_2$ of square-summable complex sequences, and let
+$B(l_2)$ be the space of bounded linear operators on $l_2$, endowed with the operator norm
+$$\normop T = \sup_{y\ne 0} {\norm{Ty}_2\over \norm{y}_2}.$$
+Each operator $T$ in $B(l_2)$ uniquely determines an associated matrix $(t_{i,j})_{i,j\in \NN}$,
+where $t_{i,j} = \langle Te_i, e_j\rangle$ for the standard orthonormal basis $\{e_i\}_{i\in \NN}$
+of $l_2$, and vice versa.
+
+So every infinite matrix $T:\NN\times\NN\to\CC$ represents an element of $B(l_2)$, but we can also
+view infinite matrices $A:\NN\times\NN\to\CC$ as operators on $B(l_2)$, via the mapping
+$T\mapsto A\circ T$, where $\circ$ denotes the Schur (entrywise) product. The matrix $A$ is called
+a {\it Schur multiplier} if $A\circ T\in B(l_2)$ for all $T\in B(l_2)$, or equivalently, if
+its {\it Schur multiplier norm}, defined by
+$$\normschur A = \sup_{T\ne 0} {\normop{A\circ T}\over \normop T},$$
+is finite.
+The set of Schur multipliers is closed under addition, and the inequality
+$$\normschur{A\circ B} \le \normschur A \cdot \normschur B,$$
+proved by Schur [{\sl Crelle} {\bf 140} (1911), 1--28],
+verifies that it is closed under Schur product.
+Hence this set with these two operations forms a Banach algebra.
+
+As before, we might like to characterise the idempotents in this algebra. Any matrix $A$ that
+satisfies $A\circ A = A$ must be boolean, but not all infinite boolean matrices are Schur multipliers.
+One example is the infinite upper triangular matrix (the normalised
+trace norm of an $n\times n$ upper triangular matrix is roughly $\log n$, and the Schur multiplier
+norm is bounded from below by the normalised trace norm).
+Hence the question can be restricted to: {\sl Which boolean matrices have finite Schur multiplier norm?}
+
+The simplest idempotent Schur multipliers are the ones with norm $1$ (since any idempotent element
+must have norm at least $1$). This leads us to define the following class of matrices. A matrix
+$B:X\times Y\to \{0,1\}$ is called {\it blocky} if there exist pairwise disjoint subsets $S_i$ of $X$
+and pairwise disjoint subsets $T_i$ of $Y$ such that the support of $B$ is exactly
+$$\bigcup_{i=1}^\infty S_i \times T_i.$$
+Simple examples of blocky matrices are the zero matrix, $m\times n$ all-ones matrices, and identity matrices.
+The following proposition of Livshits [{\sl Linear Algebra and its Applications} {\bf 222} (1995), 15--22]
+shows that blocky matrices are precisely the contractive idempotent Schur multipliers.
+
+\proclaim Proposition \advthm. A nonzero boolean matrix satisfies $\normschur A = 1$ if and only if $A$
+is blocky.
+
+It is an open problem, dating back at least to a 2003 preprint of Katavolos and Paulsen
+(the journal version is [{\sl Canadian Mathematical Bulletin} {\bf 48} (2005), 97--111]), whether
+any idempotent Schur multiplier can be written as a finite sum of contractive idempotents.
+A compactness argument of Hambardzumyan, Hatami, and Hatami
+[{\sl Israel Journal of Mathematics} {\bf 253} (2023), 555--616]
+shows that a positive resolution to this
+problem, while only being meaningful for infinite matrices, is equivalent to the following
+structural conjecture concerning finite matrices with bounded Schur multiplier norm.
+
+\edef\conjHHH{\the\sectcount.\the\thmcount}
+\parenproclaim Conjecture {\advthm} (Hambardzumyan--Hatami--Hatami, {\rm 2023}).
+Suppose that $A$ is a finite boolean matrix with $\normschur A\le \gamma$. Then we may express $A$ as
+the signed sum
+$$A = \sum_{i=1}^L \pm B_i,$$
+where each $B_i$ is a blocky matrix and $L$ depends only on $\gamma$.
+
+Given a finite abelian group $G$ and a boolean function $f:G\to\{0,1\}$, we may define the matrix
+$A_f : G\times G\to \{0,1\}$ by letting $A_f(x,y) = f(x-y)$. It can be shown that
+$\normschur{M_f} = \norm{f}_A$, so the Green--Sanders theorem verifies Conjecture~{\conjHHH}
+for this special case of ``convolution'' matrices.
+
+To simplify the discussion below, we define the {\it block complexity} $\block(A)$ of a
+matrix $A$ (it turns out to be just as easy to allow this matrix to take integer values rather
+than boolean ones) to be the smallest integer $L$ such that there exist blocky matrices
+$B_1,\ldots,b_L$ and signs $\sigma_1,\ldots,\sigma_L$ such that $A = \sum_{i=1}^L \sigma_i B_i$.
+It is immediate from the definition (and the triangle inequality) that $\normschur A\le \block(A)$.
+Conjecture~{\conjHHH} claims that conversely, the block complexity can be bounded by a function
+of the Schur multiplier norm.
+
+\advsect Consequences of the block complexity conjecture
+
+In this section we note two consequences that follow from Conjecture~{\conjHHH}. The first one,
+regarding the ranges of Schur idempotents, we shall record only very briefly, as even giving a full
+definition of the term ``hyperreflexive'' is outside the scope of these notes.
+In any case, a paper of Eleftherakis, Levene, and Todorov
+[{\sl Israel Journal of Mathematics} {\bf 215} (2016), 317--337] shows that the range
+$A\bigl(B(l_2)\bigr)$ is hyperreflexive whenever the Schur multiplier $A$ is a
+finite sum of contractive idempotents,
+and asks whether all Schur idempotents have hyperreflexive ranges. Conjecture~{\conjHHH} would
+imply a positive answer to this question.
+
+The second consequence is in the realm of communication complexity, and this we shall describe
+more fully. Let $f(x,y)$ be a boolean function taking two $n$-bit strings as input.
+Suppose that Alice is in possession of the bitstring $x$ and Bob is in possession of the bitstring $y$.
+The {\it communication complexity} $D(f)$ of the function $f$ is the minimum number of bits
+that Alice and Bob need to exchange in order for either of them to work out the value
+of the function $f(x,y)$.
+
+A simple example of a function with low communication complexity
+is the parity function $p$, which asks whether there are odd number of $1$s
+in the bitstring $x \oplus y$, where $\oplus$ denotes vector addition modulo $2$. We have
+$D(p) = 1$, since Alice just need to send Bob a $1$ if the number of bits in $x$ is odd, and $0$ otherwise.
+Then Bob computes the same with $y$ and adds the two bits together (modulo $2$) to obtain $p(x,y)$.
+
+But there are very simple functions with very high communication complexity as well. Take for instance
+the equality function $e(x,y) = \one_{[x=y]}$. It is not hard to see that $e(x,y) = n$.
+There is another communication complexity model that in some sense ``defines'' this example to be
+simple. We suppose that Alice and Bob have access to $e(x,y)$ (of up to $n$ bits at a time)
+as an oracle.
+The {\it communication complexity with access to an equality oracle} of a boolean function
+$f$, denoted $\DEQ(f)$, is the number of calls to this oracle required to compute $f$.
+Since Alice and Bob can use this oracle to communicate individual bits
+as they were able to before (for example,
+Alice sends the pertinent bit of $x$, and Bob sends the bit $1$), it is always true
+that $\DEQ(f) \le D(f)$.
+We also now have $\DEQ(e) = 1$.
+
+One can express any function $f:\{0,1\}^n\times \{0,1\}^n \to \{0,1\}$ as a boolean matrix $A$
+and by an abuse of notation write $\block(f)$ for the block complexity of this boolean matrix
+(we might similarly write $\DEQ(A)$).
+Under this representation, the function $e(x,y)$ is simply the $n\times n$ identity matrix;
+hence $\block(e) = 1$.
+It turns out that all blocky matrices $B$ have $\DEQ(B) = 1$.
+(If $x$ belongs to the set $S_i\subseteq \{0,1\}^n$,
+then Alice can send $\one_{T_i}$, and Bob sends $\one_{T_j}$ for the set $T_j\subseteq\{0,1\}^n$
+containing $y$. These two are equal if and only if the $(x,y)$ entry of the blocky matrix is $1$.)
+Hence $\DEQ(f)\le \block(A_f)$. It was also shown by Hambardzumyan, Hatami, and Hatami that
+$${1\over 2} \log \block(A) \le \DEQ(A),$$
+so these two notions are qualitatively equivalent.
+
+Conjecture~{\conjHHH} would imply that $\DEQ(A)$ is constant whenever $\normschur A$ is.
+
+\advsect A polylogarithmic upper bound
+
+A recent paper of Hatami and the author [to appear in {\sl International Mathematics Research Notices}]
+gives a polylogarithmic upper bound on the block complexity
+of a matrix in terms of its Schur multiplier norm.
+
+\edef\thmGH{\the\sectcount.\the\thmcount}
+\parenproclaim Theorem {\advthm} (G.--Hatami, {\rm 2025}).
+Let $A$ be an integer $n\times n$ matrix with $\normschur A\le \gamma$. Then
+$$\block(A) \le 2^{O(\gamma^7)}( \log n)^2.$$
+
+While not a strong enough result for either of the applications discussed in the previous section,
+this already provides a case for matrices with small Schur multiplier norm having atypical block
+complexity, as evidenced by this
+probabilistic result in the other direction, due to Avraham and Yehudayoff [{\sl Computational Complexity}
+{\bf 33} (2024), 1--18].
+
+\parenproclaim Theorem {\advthm} (Avraham--Yehudayoff, {\rm 2024}).
+Let $A$ be an $n\times n$ boolean matrix chosen uniformly at random. Then
+$$\pr\bigl\{ \block(A) \ge n/(4 \log (2n))\bigr\} \ge 1-2^{-n^2/2}.$$
+
+In other words, with high probability a boolean matrix has block complexity $\Omega(n/\log n)$.
+
+The proof of Theorem~{\thmGH} is inductive and very much mirrors the proof of Green and Sanders
+in the boolean case $G=\FF_2^n$ [{\sl Geometric and Functional Analysis} {\bf 18} (2008), 144--162].
+We find a suitable matrix $\hat A$ with $\block(\hat A) \ll_\gamma (\log n)^2$, and express
+$A = \hat A+ (A-\hat A)$. By showing that $\normschur{A-\hat A}^2$ drops by a constant, we only need to
+iterate a constant number of times (in terms of $\gamma$)
+before we must have $\normschur A <1$, in which case $A = 0$.
+
+Let us outline the proof in more detail. First, we note
+that our original definition of the Schur multiplier norm, as a norm for operators
+on Hilbert spaces, does not admit easy analysis. Instead,
+we define the {\it $\gamma_2$-norm} of a matrix $A:X\times Y\to \CC$ to be
+$$\normgamma A = \min_{UV=A} \normrow U\normcol V,$$
+where $\normrow U$ is the maximum $l_2$ norm of any row in $U$, and $\normcol V$ is the maximum
+$l_2$ norm of any column in $V$. It is clear from this definition that duplicating any row or column
+does not increase the $\gamma_2$-norm, and neither can passing to a submatrix.
+By an old theorem of Grothendieck [{\sl Annales de l’institut Fourier} {\bf 4} (1954), 73--112],
+the $\gamma_2$ norm is in fact equal to the Schur multiplier norm; i.e., $\normgamma A = \normschur A$.
+The way we shall use the definition of the $\gamma_2$ norm is to express $A$ with $\normschur A\le \gamma$
+as $A = UV$ with all the rows $u_x$ of $U$ satisfying $\norm{u_x}_2\le 1$ and all the columns
+$v_y$ of $V$ satisfying $\norm{v_y}_2\le \gamma$. This is called a {\it $\gamma$-factorisation}
+of $A$.
+
+\medskip\boldlabel Littlestone dimension.
+We shall also require the notion of the Littlestone dimension of a matrix. A {\it mistake tree} of depth
+$d$ over a domain $X$ is a complete binary tree of depth $d$ in which
+\medskip
+\item{i)} each internal node $\nu$ is labelled with an element $x(\nu)\in X$; and
+\smallskip
+\item{ii)} each edge $e$ is labelled with a sign $\sigma(e)\in \{-1,1\}$, where $\sigma(e) = -1$
+indicates a left child and $\sigma(e) = 1$ indicates a right child.
+\medskip
+For the purposes of the Littlestone dimension, a sign matrix $A : X\times Y \to \{-1,1\}$ is
+said to {\it shatter} a mistake tree over $X$ if for every root-to-leaf path
+$(\nu_1,\ldots,\nu_{d+1})$, there exists a column $y\in Y$ such that
+$A\bigl( x(\nu_i), y\bigr) = \sigma(\nu_i\nu_{i+1})$ for all $i\in [d]$. Then the {\it Littlestone
+dimension} of a matrix $A$, denoted by $\Ldim(A)$, is the largest integer $d$ for which
+there exists a mistake tree of depth $d$ that is shattered by $A$.
+
+The first proposition we record
+bounds the Littlestone dimension of a sign matrix in terms of its Schur multiplier norm.
+
+\edef\propldimbound{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Every matrix $A : X\times Y \to \{-1,1\}$ satisfies
+$$\Ldim(A) \le \normschur{A}^2.$$
+
+The property of matrices with small Littlestone dimension that we need is the following.
+For any sign matrix $A$ with $\Ldim(A) = d$ and any small $\eps$, one can find a
+vector that matches an $\eps^d$ proportion of the columns of $A$, with error at most $\eps$.
+
+\edef\propfixedvector{\the\sectcount.\the\thmcount}
+\proclaim Proposition \advthm. Let $A : X\times Y \to \{-1,1\}$ be a matrix with $\Ldim(A) = d$
+and let $0<\eps<1/2$. There exists a function $\sigma : X\to \{-1,1\}$ and some subset
+$S\subseteq Y$ iwth $|S|\ge \eps^d |Y|$ such that
+$$\pr_{y\in S} \bigl\{ A(x,y)\ne \sigma(x)\bigr\} \le \eps.$$
+
+We are being slightly misleading here; it is not exactly the Littlestone dimension that is
+used in the real proof. More on this later.
+
+\medskip\boldlabel Three lemmas.
+We now list three miscellaneous lemmas that will be used to prove Theorem~{\thmGH}.
+Earlier, we claimed that we were going to prove the theorem by expressing $A = \hat A + (A-\hat A)$,
+bounding the block complexity of $\hat A$, and then inducting on the multiplier norm of $A-\hat A$.
+Well, the following lemma is the tool with which we bound the block complexity of $\hat A$.
+
+\edef\lemblockbound{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Every integer matrix $A:X\times Y\to \ZZ$ satisfies
+$$\block(A) \le 2\max_{x\in X} \sum_{y\in Y} \bigl| A(x,y)\bigr|.$$
+
+Next, we observe that if a set of bounded-length vectors has a large average vector $\hat v$,
+then subtracting $\hat v$ from many of the individual vectors significantly reduces their
+lengths. This will help us obtain a bound on $\normschur{A-\hat A}$.
+
+\edef\lemaveragevector{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Let $v_1,\ldots,v_r$ be vectors in a Hilbert space,
+and let $\hat v = \ex_{i\in [r]} v_i$ denote their average. If $\norm{v_i}_2\le \gamma$ for all
+$1\le i\le r$, and $\norm{\hat v} = c$, then
+$$S = \bigl\{ i\in [r] : \norm{v_i - \hat v}_2^2 \le \norm{v_i}_2^2 - c^2/2\bigr\}$$
+satisfies $|S| \ge c^2 r/(2\gamma^2)$, and for every $i\in S$,
+$$\norm{v_i - \hat v}_2^2 \le \norm{v_i}_2^2 - {c^2\over 2}.$$
+
+Lastly, we have the following lemma which, in some sense, extracts an approximately blocky matrix
+out of any matrix.
+
+\edef\lempartition{\the\sectcount.\the\thmcount}
+\proclaim Lemma \advthm. Let $A:X\times Y\to \{-1,1\}$ be a sign matrix with $|Y|=n$. There exists
+a partition $Y = \bigcup_{i=1}^k S_i$ such that
+\medskip
+\item{i)} for every $i$ there is a row $x_i$ such that $A(x_i,y) = 1$ for all $y\in S_i$; and
+\smallskip
+\item{ii)} for every row $x$ and every $\delta > 0$, there are at most $O_\delta(\log n)$ sets $S_i$
+with
+$$\pr_{y\in S_i} \bigl\{ A(x,y) = 1\bigr\} \ge \delta.$$
+
+\medskip\boldlabel A simplified account of the proof.
+We now give an account of the proof of Theorem~{\thmGH}, suppressing some very important
+technical details. The downside of this is that we will be forced at some stage simply to admit defeat
+and handwave the modifications needed to make the argument sound.
+We do this in order to illuminate the skeleton of the real proof, which may be obscured by the
+technical machinery used therein; our approach here also highlights the need for this
+machinery in the first place.
+
+Let $A:X\times Y\to \{0,1\}$ be a boolean matrix with
+$\normschur A \le \gamma$. By applying the
+$A \mapsto 2A - J$ where $J$ is the all-$1$s matrix, we can view $A$ as a sign matrix, with
+multiplier norm at most $2\gamma + 1$. So we may reasonably assume that
+$A$ takes values in $\{-1,1\}$ instead, and let $\gamma$
+now denote the multiplier norm of this sign matrix.
+We will let $A_{X'\times Y'}$
+denote the matrix $A$ restricted to the rows in the subset $X'\subseteq X$ and the columns
+$Y'\subseteq Y$.
+
+First we invoke Lemma~{\lempartition} to obtain a partition $Y = \bigcup_{i=1}^k S_i$
+for every $i$ there is a row $x_i$ such that $A(x_i,y) = 1$ for all $y\in S_i$. (The second statement
+in that lemma will not be used until later.)
+We then observe the bound
+$\Ldim(A) \le \gamma^2$ on the Littlestone dimension given by Proposition~{\propldimbound}.
+By then applying Proposition~{\propfixedvector}, with the parameter $\eps_1>0$ to be chosen later
+(in fact, our proof will stop working before we get a chance to choose $\eps_1$),
+on each of the matrices $A_{X\times S_i}$, we obtain subsets $S_i'\subseteq S_i$ with
+$$|S_i'| \ge \eps_1^{\gamma^2} |S_i|$$
+and functions $g_i : X\to \{-1,1\}$ with
+$$\pr_{y\in S_i'} \bigl\{ A(x,y) \ne g_i(x) \bigr\} \le \eps_1$$
+for all $1\le i\le k$.
+
+For each $i$, let $\hat v_i$ denote the average $\ex_{y\in S_i'} v_y$, and observe that
+$$\bigl| \langle u_{x_i}, \hat v_i\rangle\bigr|
+= \Bigl| \ex_{y\in S_i'} \langle u_{x_i}, v_y\rangle \Bigr|
+= \Bigl| \ex_{y\in S_i'} \langle A(x_i,y) \Bigr|
+= 1,$$
+since $A(x_i, y) = 1$ for all $y\in S_i$. This gives us the bound $\norm{\hat v_i}_2 \ge 1$ by the
+Cauchy--Schwarz inequality. We may then apply Lemma~{\lemaveragevector} with $c=1$ to obtain subsets
+$S_i''\subseteq S_i'$ with
+$$|S_i''| \ge {|S_i'|\over 2\gamma^2}$$
+and
+$$\norm{v_i - \hat v}_2^2 \le \norm{v_i}_2^2 - {1\over 2}.$$
+Hence if we define $Y' = \bigcup_{i=1}^k S_i'$ and $\tilde Y = \bigcup_{i=1}^k S_i''$,
+then we have
+\edef\eqthrowaway{\the\eqcount}
+$$|\tilde Y| \ge {|Y'| \over 2\gamma^2} \ge {\eps_1^{\gamma^2}\over 2\gamma^2}|Y|.\adveq$$
+We are then able to define the matrix $\hat A$ on the domain $X\times \tilde Y$ by setting
+$$\hat A(x,y) = \ex_{y'\in S_i'} A(x,y') = \langle u_x, \hat v_i\rangle$$
+for every $x\in X$ and $y\in S_i''$. (Note that the average is taken over $S_i'$ and not $S_i''$.)
+Letting $\tilde v_y = v_y - \hat v_i$ for all $y\in S_i''$, we have
+$\norm{\tilde v_y}_2^2\le \gamma^2 - 1/2$ for all $y\in \tilde Y$. Then the identity
+$$A(x,y)-\hat A(x,y) = \langle u_x, v_y - \hat v_i\rangle = \langle u_x,\tilde v_y\rangle,$$
+which holds for every pair $(x,y)\in X\times S_i''$, allows us to conclude that
+$$\normschur{A-\hat A}^2 \le \normschur A^2 - {1\over 2}.$$
+
+But we have reached a snag. (The careful reader would have realised this as soon as we defined $\hat A$
+in terms of averages.) The matrix $\hat A$ is not $\pm 1$-valued or even integer valued!
+It was promised earlier that we would bound $\block(\hat A)$, but we cannot reasonably do that for
+a real-valued matrix. The solution is to consider its {\it integer rounding} $\hat A_\ZZ$.
+Using Lemma~{\lemblockbound} and part (ii) of Lemma~{\lempartition}, one will be able
+to bound $\block(\hat A_\ZZ)$, which will turn out to be enough for our purposes.
+
+In order to repeat the procedure with $A-\hat A$, we must change our inductive step to admit
+real-valued matrices. In fact, we only need to consider matrices whose values are close to integers.
+A matrix $A$ shall be called
+{$\eps$-almost integer-valued} if $\norm{A-A_\ZZ}_\infty \le \eps$. (This $\eps$
+is related to the parameter $\eps_1$ above that we left woefully unspecified.) The inductive
+step in the {\it bona fide} proof of Theorem~{\thmGH} is the following.
+
+\proclaim Lemma \advthm. Let $A:X\times Y\to \RR$ be a real-valued matrix with $\normschur A=\gamma$.
+Suppose further that $A$ is $\eps$-almost integer-valued for $\eps = 2^{-20\gamma^2}$. If $\hat A_\ZZ$
+is not an all-$0$s matrix, then there exists a $2\eps$-almost integer-valued matrix $A':X\times Y\to \RR$
+such that
+$$\normschur{A-A'}^2 \le \gamma^2 - {1\over 8}$$
+and
+$$\block(A_\ZZ') \le 2^{O(\gamma^7)} \bigl(\log|Y|\bigr)^2.$$
+
+The proof of this lemma proceeds as in the sketch above, but everything is much uglier.
+In addition to the $\eps$-almost integer-valued business,
+one needs
+to define a generalised version of the Littlestone dimension for real-valued matrices, called the
+{\it $\alpha$-weighted Littlestone dimension}, and prove analogues of Propositions~{\propldimbound}
+and~{\propfixedvector} accordingly.
+At this stage the reader who is still unsatisfied with the details that are only vaguely
+alluded to here should simply consult the
+original paper.
+
+Note that this proof is in spirit very related to the proof of the Green--Sanders theorem
+for boolean functions with small spectral norm. There, one also subtracts averages and consequently
+has to deal with $\eps$-almost integer-valued functions.
+
+We close this section by noting that even in this bargain-bin account of the proof,
+it is already possible to trace where the two logarithmic factors in
+Theorem~{\thmGH} come from. One is due
+to the appearance of the logarithm in Lemma~{\lempartition}; this does not appear to be easily
+fixable, since under general hypotheses that lemma is tight. (An obvious thing to try is
+to use the hypothesis
+$\normschur A\le \gamma$ to improve it.) The other logarithmic factor is a result of
+the bound~\refeq{\eqthrowaway}, when we throw away a constant fraction of the columns to define $\tilde Y$
+and consequently $\hat A$. Getting around this also seems difficult, since discarding columns is
+very necessary in our construction of the matrix $\hat A$.
+
+%\section References
+%\frenchspacing
+
+
+\bye
