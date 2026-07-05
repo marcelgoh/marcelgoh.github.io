@@ -12,11 +12,7 @@
 
 @font-face {
     font-family: AdobeCaslonPro;
-    src: url(https://ahoyliterary.github.io/fonts/AdobeCaslonPro.woff);
-}
-@font-face {
-    font-family: Montserrat;
-    src: url(/fonts/Montserrat.woff);
+    src: url(/fonts/AdobeCaslonPro.woff);
 }
 
 
@@ -105,6 +101,13 @@ li {
 
 .figure {
     text-align: center;
+}
+table, th, td {
+  border: 1px solid;
+}
+th, td {
+    font-family: AdobeCaslonPro, Georgia, serif;
+    padding: 2px;
 }
 
 /* NavBlox style declarations */
