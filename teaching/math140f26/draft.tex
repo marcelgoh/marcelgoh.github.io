@@ -1,0 +1,105 @@
+\input fontmac
+\input mathmac
+
+\input epsf
+\widemargins
+\bookheader{\tenpoint\sc marcel goh}{\tenpoint\sc math {\oldstyle 140} fall {\oldstyle 2026}}
+
+\def\datestamp#1#2 {\llap{{\oldstyle #1}{\rm.}{\sc #2}\hskip12pt}}
+\def\bar{\overline}
+\def\symdiff{\mathrel{\triangle}}
+\def\To{\Rightarrow}
+\def\Gets{\Leftarrow}
+\font\titlefont=cmbx12 at 14 pt
+\def\cont#1#2{#1\hskip-2pt\leaders\hbox to 8pt{\hss.\hss}\hfil\hbox to 2em{\hss#2}}
+\def\divides{\mid}
+\def\percent{\mathrel{\%}}
+\def\norm#1{|\!|#1|\!|}
+\def\dist{\op{\rm dist}}
+
+\maketitle{MATH 140 Fall 2026}{notes by}{Marcel Goh}{}
+
+\floattext 4.5 \ninebf A note on these notes.
+\ninepoint After each class, this document will be updated with the new material that was
+just covered. The datestamps in the left margin indicate when the notes from each day start.
+Subsections labelled with a $*$ are optional.
+These notes should {\it not} be used as a substitute for the textbook. The best way to do well
+in this class is to do as many exercises from the textbook as you can stomach.
+This document may contain errors, typographical or mathematical.
+Please email me if you find any.
+
+\vskip36pt
+
+\vskip \medskipamount \hbox to\hsize
+{\relax \unhcopy \strutbox \cont
+{{\tenssbx I. Limits and derivatives \kern 3pt}}{2}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 1.\kern .5em Rates of change}{3}}
+\medskip
+
+%\vfill\eject
+%\begingroup\headline{\hfil}\footline{\hfil}
+%\vglue160pt
+%\centerline{\titlefont I. FOUNDATIONS}
+%\vskip220pt
+%\bigskip
+%\begingroup\obeylines\eightssi
+%\hfill Die Mathematik ist in ihrer Entwickelung v\"ollig frei
+%\hfill und nur an die selbstredende R\"ucksicht gebunden,
+%\hfill dass ihre Begriffe sowohl in sich widerspruchslos sind,
+%\hfill als auch in festen durch Definitionen geordeneten Beziehungen
+%\hfill zu den vorher gebildeten,
+%\hfill bereits vorhandenen und bew\"ahrten Begriffen stehen.
+%\eightss
+%\smallskip
+%\hfill --- GEORG CANTOR, {\eightssi Grundlagen einer allgemeinen Mannigfaltigkeits­lehre} (1883)
+%\endgroup%\obeylines
+%\bigskip\goodbreak
+%\vfill\eject
+
+
+\datestamp{31}{viii}
+\advsect Rates of change
+
+This set of notes assumes that the reader is familiar with all the pre-calculus concepts that one learns
+in the later years of secondary school:~functions, trigonometry, exponential functions, logarithms, etc.
+However, given that the very definition of what differential calculus is requires us to talk about functions
+and their inputs, it is perhaps prudent to begin with a refresher on real-valued functions with real-valued
+outputs.
+
+A {\it function} is a collection of ordered pairs $(x,y)$ with the rule that if $(x,y)$
+and $(x,z)$ are both in the collection, then $y=z$. We can view $x$ as the {\it input} to the function,
+and $y$ as the {\it output} of the function; under this view, the rule above is simply that the function
+never outputs two different values when given the same input. People like to use the letter
+$f$ to denote a function,
+and $f(x)$ to denote its value evaluated at a given input $x$. However, many particular functions are
+difficult to write without involving the input variable $x$ in the expression,
+and in these cases we'll write $f(x)$ to mean the function as well.
+
+Here are some examples of functions:
+\medskip
+\item{a)} The function $f(x) = 3x$, defined on all real numbers, that outputs triple its input value.
+\smallskip
+\item{b)} The function that assigns to each real number $x$ its square $x^2$.
+\smallskip
+\item{c)} The function $y=f(x)$ that equals $0$ whenever $x$ is a negative real number, and equals $x$
+whenever $x\ge 0$.
+\smallskip
+\item{d)} The function that takes as input any nonzero real number $x$ and outputs its reciprocal $1/x$.
+\smallskip
+\item{e)} The function $f(x)$, defined on all real numbers, given by
+$$f(x) = \cases{ 1, & if $x$ is rational;\cr 0, & if $x$ is irrational.}$$
+\medskip
+Note that in each case above, we were careful to specify what the inputs to the function were. Going back
+to the definition of a function as a collection of ordered pairs $(x,y)$, the set of all $x$ such
+that $(x,y)$ is in the function is called the {\it domain} of $f$; this is precisely the set of all valid
+inputs to the function $f$. (The set of all $y$ such that $(x,y)$
+is in $f$ is called the {\it range} of $f$, but this definition won't be as important to us.)
+
+The title of this section is ``rates of change.'' Determining the rate at which a given function changes
+is essentially what this entire class
+will be about. We want to study how much the output of a function changes when you change its input.
+
+To give a p
+
+\bye
