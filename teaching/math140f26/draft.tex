@@ -23,7 +23,10 @@
 \ninepoint After each class, this document will be updated with the new material that was
 just covered. The datestamps in the left margin indicate when the notes from each day start.
 Subsections labelled with a $*$ are optional.
-These notes should {\it not} be used as a substitute for the textbook. The best way to do well
+These notes should {\it not} be used as a substitute for the textbook or for attending class.
+(For instance, on the blackboard I will often draw graphs or diagrams, and these for the most part
+will be omitted from the notes.)
+The best way to do well
 in this class is to do as many exercises from the textbook as you can stomach.
 This document may contain errors, typographical or mathematical.
 Please email me if you find any.
@@ -71,7 +74,7 @@ A {\it function} is a collection of ordered pairs $(x,y)$ with the rule that if 
 and $(x,z)$ are both in the collection, then $y=z$. We can view $x$ as the {\it input} to the function,
 and $y$ as the {\it output} of the function; under this view, the rule above is simply that the function
 never outputs two different values when given the same input. People like to use the letter
-$f$ to denote a function,
+$f$ (or $g$ or $h$, but really we can use any letter) to denote a function,
 and $f(x)$ to denote its value evaluated at a given input $x$. However, many particular functions are
 difficult to write without involving the input variable $x$ in the expression,
 and in these cases we'll write $f(x)$ to mean the function as well.
@@ -90,16 +93,272 @@ whenever $x\ge 0$.
 \item{e)} The function $f(x)$, defined on all real numbers, given by
 $$f(x) = \cases{ 1, & if $x$ is rational;\cr 0, & if $x$ is irrational.}$$
 \medskip
-Note that in each case above, we were careful to specify what the inputs to the function were. Going back
+Note that in each case above, we were careful to specify what the possible inputs to the function were. Going back
 to the definition of a function as a collection of ordered pairs $(x,y)$, the set of all $x$ such
 that $(x,y)$ is in the function is called the {\it domain} of $f$; this is precisely the set of all valid
 inputs to the function $f$. (The set of all $y$ such that $(x,y)$
 is in $f$ is called the {\it range} of $f$, but this definition won't be as important to us.)
 
-The title of this section is ``rates of change.'' Determining the rate at which a given function changes
-is essentially what this entire class
-will be about. We want to study how much the output of a function changes when you change its input.
+The title of this section is ``rates of change,'' but determining the rate at which a given function changes
+is actually what this {\it entire class}
+will essentially be about. We want to study how much the output of a function changes when you change its input.
 
-To give a p
+For example, consider a car moving from Montreal to Quebec City. As time goes on, it gets further away from
+Montreal and closer to Quebec City. So we can model the trip as a function $d(t)$, where for each positive
+real number $t$ we let $d(t)$ equal the distance of the car from Montreal (in kilometres),
+exactly $t$ minutes since it
+set off. The rate of change of this function at any given point in time $t$ is the car's {\it velocity} at that
+point.
+
+How do we calculate velocity? Well, we know that it is measured in units such as ``kilometres per hour''
+or ``metres per second,'' so it is not too hard to see that velocity is calculated by dividing distance
+over time.
+
+Let's go back to the car example. Suppose your car is equipped with a very good GPS that can measure your
+distance from Montreal; however, it does not have a working speedometer. Your friend (who is driving) asks
+you, ``How fast am I driving?'' You have taken high school physics, so you know how to solve this problem.
+You get out a stopwatch and start it exactly when the GPS measures your distance at $135.2$ kilometres
+from Montreal. After one
+minute on the stopwatch, the GPS reads $137.4$, so you report to your friend that she is driving
+$137.4-135.2 = 2.2$ kilometres per minute, or $132$ kilometres per hour.
+
+But your friend is not satisfied. ``You told me my average speed over the course of a minute, not my speed
+at the moment I asked you the question. During that minute, I had to speed up to overtake a U-Haul and then
+slow down because someone cut me off in the fast lane.''
+
+So you try and do better. You get out the stopwatch again, and when you start it the GPS reads $137.7$.
+You wait ten seconds, then observe that the GPS reads $138.1$. So you report your friend's new speed at
+$138.1-137.7 = 0.4$ kilometres every ten seconds, or $2.4$ kilometres per minute, or $144$ kilometres per
+hour.
+
+Your friend is a little more satisfied, but wonders if you can do better. So you try one last time. You
+start the stopwatch when the GPS reads $138.5$, wait exactly one second, and then check the GPS again.
+To everyone's surprise and disappointment, it still reads $138.5$, because it only measures distance to the
+tenth part of a kilometre. So the calculation would report
+that the car has moved $0$ kilometres in that one second, that is, it's going $0$ kilometres per hour.
+
+Obviously in this example you were hamstrung by the precision of your measuring instruments, but it is still
+worth pondering the following point. Your friend was asking for her speed at some particular instant.
+However, during any particular instant she does not move, nor does time move. So any na{\"\i}ve calculation
+as to her speed would go along the lines of $0/0$, which is an undefined value.
+
+Yet it is undeniable that something's ``speed at a particular instant'' is a concept that holds meaning
+in everyday life. If you are in a plane and your friend is in a car below you, then it's certainly
+not nonsensical to say that you are moving faster than your friend at that moment, even though technically it
+could also be said that both of you have moved ``$0$ kilometres over $0$ hours.''
+
+The way we make this precise is suggested by your technique in the first scenario. To avoid dividing by zero,
+we let time elapse just a tiny bit, then measure how much the object's position has changed in that minute
+interval, and perform the division. Assuming we have arbitrarily sophisticated measuring instruments,
+we can keep taking smaller and smaller intervals, and arrive at something closer and closer to the
+``instantaneous velocity.'' But it is worth stating that ``instantaneous velocity'' is a theoretical concept,
+and not one that can be measured exactly. So when you are driving in a real car, and your speedometer
+reads some value, say, $127$ kilometres per hour, what it's really doing is measuring your car's
+change in distance over a very small period of time, and reporting to you the quotient (not unlike what
+you were doing in that first scenario!).
+
+\medskip\boldlabel Secants and tangents.
+The average rate of change of a function $f(x)$
+between the input $x$ and the input $x+h$ (for
+some small $h>0$) is
+the total amount it changes, namely $f(x+h) - f(x)$, divided by the amount the input changed, namely
+$(x+h)-x = h$.
+If you graph the function $f(x)$ on the $(x,y)$ plane, then geometrically
+what you are doing is drawing a line between the points
+$\bigl( x, f(x)\bigr)$ and $\bigl( x+h, f(x+h)\bigr)$ and calculating its {\it slope} (the ``rise over
+run''). Such a line cutting through the function's graph is called a {\it secant line}, because
+it {\it cuts} through the function, at the very least at those two aforementioned points.
+
+By taking $h$ smaller and smaller (but never zero!) we continue to obtain secant lines, but the distance
+between the two points $\bigl( x, f(x)\bigr)$ and $\bigl( x+h, f(x+h)\bigr)$ will get smaller and smaller.
+You can imagine these points getting so close that it's as if the {\sl line touches the function exactly
+once}, at the point $\bigl(x, f(x)\bigr)$ and nowhere else. This line, if it exists, will be called
+the {\it tangent line}, but we're not ready to precisely define it just yet.
+
+All we note at this point is that if we admit the concept of the ``instantaneous rate of change,'' and
+allow that it can be approximated by taking the the average rate of change over smaller and smaller
+intervals, then the slope of this tangent line (if it exists!) is exactly the instantaneous rate of change
+that we seek. So it seems that the slope of the tangent line should be the value of the quotient
+$$ {f(x+h) - f(x) \over (x+h) - x} = {f(x+h) - f(x) \over h}$$
+when $h=0$, if only we could plug in $h=0$. But we cannot, since division by zero is undefined.
+
+What we have learned from this preliminary section is that to understand rates of change,
+we shall have to develop a precise concept of what it means to take a function
+close to some input at which it is not necessarily defined. This is the notion of a {\it limit}.
+
+\advsect Limits
+
+To understand the definition of a limit, it might be helpful to think about it as a generalisation of the concept
+of a continuous function $f$ equalling some value $y$ at the input $f(x)$.
+
+Consider the very simple function $f(x) = x^2$. We know $f(3) = 3^2 = 9$. But since the function is continuous,
+it is also the case that if you want the output to be close to $9$, then all you have to do is get the input
+close to $3$. This is true in a {\it quantitative} sense!
+
+If you want to get $f(x)$ to be within $0.1$ of $9$, then you just need to get $x$ within $0.01$ of the
+input value $3$. How do we know this? Well $2.99^2 = 8.9401$ and $3.01^2 = 9.0601$, so (since the function
+$x^2$ is nondecreasing for positive inputs) for any $x$
+in the range $(2.99, 3.01)$, the value of $f(x)$ is in the range $(8.9, 9.1)$.
+
+To sum up the previous paragraph in one sentence, you could say that in order for $f(x)$ to get
+$0.1$-close to $9$, it suffices to pick any input $x$ that is $0.01$-close to $3$.
+But since $f(3) = 9$ and $f$ is continuous, we can do much better. To guarantee that $f(x)$ be
+$0.01$-close to $9$, we just need to ensure that $x$ is within $0.0001$ of $3$.
+And in fact, for any small number $\eps>0$, there exists some $\delta$ such that whenever
+$x\in (3-\delta, 3+\delta)$, we must have $f(x) \in (9-\eps, 9+\eps).$
+(In math, we often use the Greek letters $\eps$ and $\delta$ to denote very small numbers.)
+
+\medskip\boldlabel The formal definition of a limit.
+First we define what a {\it neighbourhood} of a number
+is; it is simply some (open) interval containing that number. For example, the interval $(2.5, 3.5)$
+is a neighbourhood of the number $3$. So is $(2.9, 3.2)$, but $(10,100)$ is not, and neither is $(1.5, 3)$,
+since we are considering open intervals.
+
+Suppose that $f$ is defined on all inputs in some neighbourhood of the number $a$, except possibly at $a$ itself.
+We say that the the {\it limit} of the function $f$ at the input $a$ is equal to $L$, and write
+$$\lim_{x\to a} f(x) = L,$$
+if for every $\eps > 0$, there exists some $\delta > 0$ such that whenever $x\ne a$ and
+$x\in (a-\delta, a+\delta)$, we have $f(x) \in (L-\eps, L+\eps)$.
+
+(If the use of the ``element of'' symbol $\in$
+disturbs you,
+you can write the latter two expressions as $a-\delta < x < a+\delta$ and $L-\eps < f(x) < L+\eps$,
+respectively. Another way to write the definition of a limit is: For every $\eps >0$ there is some
+$\delta >0$ such that whenever $0< |x-a| < \delta$, we have
+$\bigl| f(x) - L\bigr| < \eps$. Convince yourself that this means the exact same thing mathematically as
+the definition in terms of intervals that we had above---where
+is the condition $x\ne a$ encoded in the second definition?)
+
+Because the formal definition of a limit is rather cumbersome, involving parameters $\eps$ and $\delta$,
+in many cases we can make do with the following ``simplified'' or ``intuitive'' definition of a limit.
+{\sl
+The limit of a function $f$ at the input $a$ is $L$ if we can make $f(x)$ as close as we like to $L$ by
+requiring that $x$ be sufficiently close (but not necessarily equal to) $a$.}
+
+In the example at the beginning of this section, we were convincing ourselves that
+$$\lim_{x\to 3} x^2 = 9.$$
+This should not be a mindblowing fact, since we of course have $3^2 = 9$. But we were careful in defining
+the concept of a limit in such a way that it now applies to many more situations as well, not just when
+$f(a)$ equals $L$.
+
+\medskip\boldlabel A slightly harder example.
+Let us now show an example of a function $f$ and an input $a$ such that $\lim_{x\to a} f(x)$ exists and equals
+some number $L$, even when $f$ is not defined at the input $a$ itself. Suppose we let
+$$f(x) = {3x^2-2x-1 \over x-1}.$$
+Then we see that $f(x)$ is not defined at the input $x=1$, since $1-1 = 0$ and dividing by $0$ is
+illegal. Nevertheless, if you graph this function $f$ using a graphing calculator or something like
+Desmos, you will see that the function $f$ appears very simple. It is defined everywhere except at
+$x=1$, and besides that little gap, its graph is simply a line; it is the unique line passing through
+the points $(0,1)$ and $(2,7)$. So even though $f$ is not defined when $x=1$, we might suspect from this
+picture that
+$\lim_{x\to 1} f(x) = 4$.
+Let us state this as a proposition and prove it rigorously (via the formal definition of a limit).
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 1} {3x^2-2x-1 \over x-1} = 4.$$
+
+\proof Let $f(x) = (3x^2 - 2x-1)/(x-1)$ again for short. Suppose that $\eps > 0$ is given to us;
+we need to prescribe some $\delta>0$ such that whenever $0<|x-1|<\delta$, we have
+$0< \bigl| f(x) - 4\bigr| < \eps$. We shall show that picking $\delta = \eps/3$ works.
+
+Here's why. Assume that $0<|x-1|<\delta = \eps/3$. Multiplying the second inequality by $3$ gives us
+$$|3x-3| < \eps.$$
+We want a term of $-4$ inside the absolute-value bars, so let's just add and subtract $1$ in that expression
+to make that happen:
+\edef\eqlimitexample{\the\eqcount}
+$$|3x+1 - 4| < \eps\adveq$$
+Now we're almost done---we would be done if we had $f(x)$ instead of $3x+1$. But note that
+$$3x^2 - 2x-1 = (3x+1)(x-1),$$
+so it's time to use the other assumption we had,
+which was $|x-1| > 0$, to see that $(x-1)/(x-1) = 1$. In other words, under the assumption $|x-1|>0$,
+we have
+$$ 3x+1 = (3x+1)\cdot 1 = {(3x+1)(x-1)\over x-1} = {3x^2-2x-1\over x-1} = f(x).$$
+Substituting this into~\refeq{\eqlimitexample} gives us
+$0< \bigl| f(x) - 4\bigr| < \eps$,
+which is precisely what we wanted to show.\slug
+
+Picking $\delta = \eps/3$ seemed to require a great deal of algebraic ingenuity here; let's try to convince
+ourselves that it's not so mysterious a choice.
+If you draw the graph of $f$, you'll note that the slope near $x=1$ is $3$
+(well it's actually $3$ everywhere!). So to guarantee no more than $\eps$ error in the output, we need
+to be three times as precise in the input: we can have no more than $\eps/3$ error in the input.
+This leads to the choice $\delta = \eps/3$. Note that the proof would also
+work if we picked $\delta$ even smaller, e.g., $\delta = \eps/10$. But $\delta = \eps/3$ is the
+largest one can take
+$\delta$ for the proof to work, and it is a common stylistic choice for a mathematician to pick a maximal value
+such as this.
+
+\medskip\boldlabel Formal negation of limit definition.
+To fully understand the meaning of $\lim_{x\to a} f(x)$, it may be enlightening for us to
+consider the negation of this statement. Concretely, what does it mean
+for a number $L$ {\it not} to be the limit of a function $f$ at some input $a$?
+Negating long mathematical statements (such as the definition of limit)
+properly is not an easy task, and the untrained mathematician is liable to make errors especially concerning
+quantifiers such as ``for all'' and ``there exists.''
+
+The correct formal negation is the following: {\sl The real number $L$ is {\it not} a
+limit of $f$ at the input $a$ if there exists some $\eps>0$ such that for all $\delta > 0$, there is
+some $x$ in the domain of $f$ satisfying $0<|x-a|<\delta$ with the property that
+$\bigl| f(x) - L\bigr| \ge \eps$.}
+
+This is a fairly convoluted statement, but if you ponder it for a while you will convince yourself that
+it does mean the opposite of what the limit definition says. When we write $\lim_{x\to a} f(x) = L$, we mean
+that you can get the values of $f(x)$ arbitrarily close to $L$ by taking $x$ sufficiently close to $a$,
+and the opposite of this statement is there is some fixed positive distance $\eps$ such that even if you take
+$x$ arbitrarily close to $a$, there will always be some badly-behaved choices of $x$ that result in
+$f(x)$ being too far (at a distance at least $\eps$) from $f(x)$.
+
+(Note that the negation of the mathematical statement $\lim_{x\to a} f(x) = L$ should not be recorded as
+$\lim_{x\to a} f(x)\ne L$, since even writing down the left-hand side of this inequality suggests that it
+exists (is a real number), and as we shall see in the next subsection,
+the limit of a function $f$ need not always exist at some given $a$.)
+
+Here's an example to illustrate how you disprove the claim that the limit of a function $f$ at some $a$
+is $L$.
+
+\edef\proplimfnotzero{\the\thmcount}
+\proclaim Proposition \advthm. Let
+$$f(x) = \cases{-1, & if $x<0$; \cr 1, & if $x\ge 0$}.$$
+Then the limit of $f$ at $0$ is not $0$.
+
+\proof We just need to find some $\eps>0$ such that for any choice of $\delta > 0$, there will always
+be some real number $x$ with $0<|x-0|<\delta$ but $\bigl| f(x) - 0 \bigr| \ge \eps$. It turns out that
+choosing $\eps = 1/2$ works.
+
+To see this, let $\delta>0$ be given. We need to pick some $x$ with $|x-0|<\delta$ but with
+$\bigl| f(x) -0\bigr| \ge 1/2$. This is not so hard---we have lots of choices! Choosing $x = \delta/2$ works,
+since $f(x) = f(\delta/2) = 1$, and $|1| \ge 1/2$.
+
+Hence the limit of $f$ at $0$ is not $0$.\slug
+
+\medskip\boldlabel Nonexistent limits.
+We alluded earlier to the possibility of a function $f$ not having any limits at some point $a$.
+We say that the limit of $f$ at $a$ {\it does not exist} if
+for all real numbers $L$, the limit of $f$ at $a$ is not $L$. In fact, the function $f$ from
+the previous proposition has this property at $a=0$.
+The proof is largely unchanged from the easier case above when we had just set $L$ to $0$, requiring only
+a little more care in the second paragraph.
+
+\proclaim Proposition \advthm. Let
+$$f(x) = \cases{-1, & if $x<0$; \cr 1, & if $x\ge 0$}.$$
+Then the limit of $f$ at $0$ does not exist.
+
+\proof Let $L$ be arbitrary. We need to show that the limit of $f$ at $0$ is not $L$.
+To do this, we shall pick $\eps>0$ such that for any choice of $\delta > 0$, there is
+some real number $x$ with $0<|x-0|<\delta$ but $\bigl| f(x) - L\bigr| \ge \eps$.
+Just as in the previous proof for the special case $L=0$, the choice $\eps = 1/2$ works.
+
+Let $\delta > 0$ be given. We need to pick some $x$ with $|x-0|<\delta$ but with
+$\bigl| f(x) -L\bigr| \ge 1/2$. Here it matters whether $L$ is positive or negative (if $L=0$ then
+just appeal to the proof of Proposition~{\proplimfnotzero}). If $L$ is positive,
+then choose $x=-\delta/2$. We have $0<|-\delta/2 - 0| <\delta$ as required, and also
+$$\bigl| f(-\delta/2) - L\bigr| = \biggl| -1 - L\biggr| \le  \biggl| -1 - 0\biggr|
+\ge 1/2 = \eps.$$
+On the other hand, if $L$ is negative, we instead choose $x=\delta/2$, so that
+
+
+
+Hence the limit of $f$ at $0$ is not $0$.\slug
+
 
 \bye
