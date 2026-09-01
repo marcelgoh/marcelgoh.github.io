@@ -27,7 +27,7 @@ These notes should {\it not} be used as a substitute for the textbook or for att
 (For instance, on the blackboard I will often draw graphs or diagrams, and these for the most part
 will be omitted from the notes.)
 The best way to do well
-in this class is to do as many exercises from the textbook as you can stomach.
+in this class is to do as many exercises from Stewart's textbook as you can stomach.
 This document may contain errors, typographical or mathematical.
 Please email me if you find any.
 
@@ -189,8 +189,6 @@ What we have learned from this preliminary section is that to understand rates o
 we shall have to develop a precise concept of what it means to take a function
 close to some input at which it is not necessarily defined. This is the notion of a {\it limit}.
 
-\bye
-
 \advsect Limits
 
 To understand the definition of a limit, it might be helpful to think about it as a generalisation of the concept
@@ -317,7 +315,7 @@ $f(x)$ being too far (at a distance at least $\eps$) from $f(x)$.
 
 (Note that the negation of the mathematical statement $\lim_{x\to a} f(x) = L$ should not be recorded as
 $\lim_{x\to a} f(x)\ne L$, since even writing down the left-hand side of this inequality suggests that it
-exists (is a real number), and as we shall see in the next subsection,
+exists (is a real number), and as we shall see later in this section,
 the limit of a function $f$ need not always exist at some given $a$.)
 
 Here's an example to illustrate how you disprove the claim that the limit of a function $f$ at some $a$
@@ -338,6 +336,36 @@ since $f(x) = f(\delta/2) = 1$, and $|1| \ge 1/2$.
 
 Hence the limit of $f$ at $0$ is not $0$.\slug
 
+\medskip\boldlabel \llap{*}A game with the Adversary.
+Let $f$ be a function, let $L$ be a number, and let $a$ be a number such that $f$ is defined in some
+neighbourhood of $a$.
+The statement ``$\lim_{x\to a} f(x) = L$'' is either true or
+false (the ``law of the excluded middle'' tells us that every mathematical statement is either true or false).
+We can interpret its truthhood or falsity as the result of a game played between ourselves and a
+supernatural Adversary. Here's the how the game goes.
+\algbegin Game L (The limit game). Let $f$ be a function, $L$ a number, and $a$ a number with a neighbourhood
+contained in the domain of $f$.
+\algstep L1. [Adversary's turn.] The Adversary is allowed to pick any $\eps > 0$.
+\algstep L2. [Our turn.] We can then pick any $\delta > 0$.
+\algstep L3. [Adversary's turn.] The Adversary is then
+allowed to pick any $x$ in the domain of $f$ that satisfies
+$$0<|x-a|<\delta.$$
+(This means that $x$ is at distance less than $\delta$ from $a$, but doesn't equal $a$.)
+\algstep L4. [Verdict?] If
+$$\bigl| f(x) - L\bigr| < \eps,$$
+that is, if the distance between $f(x)$ and $L$ is less than $\eps$,
+then we win; otherwise the Adversary wins.\slug
+
+If $\lim_{x\to a} f(x)= L$ is true, then we can always win; the very definition of limit tells us
+that no matter what $\eps$ is chosen in step L1 by the Adversary,
+in step L2 there is always a choice of $\delta$ that will force the Adversary into letting us win in step
+L3.
+On the other hand, if $\lim_{x\to a} f(x) = L$ is false (either because
+this limit does not exist or because it equals
+something else), then the Adversary can always win. There is a choice of $\eps$ in step L1 such that
+no matter what we pick in step L2, the Adversary can beat us by making a further nefarious choice for $x$
+in step L3.
+
 \medskip\boldlabel Nonexistent limits.
 We alluded earlier to the possibility of a function $f$ not having any limits at some point $a$.
 We say that the limit of $f$ at $a$ {\it does not exist} if
@@ -346,11 +374,16 @@ the previous proposition has this property at $a=0$.
 The proof is largely unchanged from the easier case above when we had just set $L$ to $0$, requiring only
 a little more care in the second paragraph.
 
-\proclaim Proposition \advthm. Let
-$$f(x) = \cases{-1, & if $x<0$; \cr 1, & if $x\ge 0$}.$$
-Then the limit of $f$ at $0$ does not exist.
+\edef\proplimdne{\the\thmcount}
+\proclaim Proposition \advthm. For $x\ne 0$, let
+$$f(x) = {|x|\over x}.$$
+Then the limit of $f$ as $x$ approaches $0$ does not exist.
 
-\proof Let $L$ be arbitrary. We need to show that the limit of $f$ at $0$ is not $L$.
+\proof
+We can re-express $f$ by writing
+$$f(x) = \cases{-1, & if $x<0$; \cr 1, & if $x> 0$},$$
+which may be clearer to some readers.
+Let $L$ be arbitrary. We need to show that the limit of $f$ at $0$ is not $L$.
 To do this, we shall pick $\eps>0$ such that for any choice of $\delta > 0$, there is
 some real number $x$ with $0<|x-0|<\delta$ but $\bigl| f(x) - L\bigr| \ge \eps$.
 Just as in the previous proof for the special case $L=0$, the choice $\eps = 1/2$ works.
@@ -359,13 +392,100 @@ Let $\delta > 0$ be given. We need to pick some $x$ with $|x-0|<\delta$ but with
 $\bigl| f(x) -L\bigr| \ge 1/2$. Here it matters whether $L$ is positive or negative (if $L=0$ then
 just appeal to the proof of Proposition~{\proplimfnotzero}). If $L$ is positive,
 then choose $x=-\delta/2$. We have $0<|-\delta/2 - 0| <\delta$ as required, and also
-$$\bigl| f(-\delta/2) - L\bigr| = \biggl| -1 - L\biggr| \le  \biggl| -1 - 0\biggr|
+$$\bigl| f(-\delta/2) - L\bigr| = | -1 - L| \le  | -1 - 0|
 \ge 1/2 = \eps.$$
-On the other hand, if $L$ is negative, we instead choose $x=\delta/2$, so that
+On the other hand, if $L$ is negative, we instead choose $x=\delta/2$, so we still
+have $0<|\delta/2 - 0|<\delta$ as needed, and this time
+$$\bigl| f(\delta/2) - L\bigr| = | 1 - L| \le  | 1 - 0|
+\ge 1/2 = \eps.$$
+Either way, we have satisfied the criterion of the limit at $f$ at $a$ not being $L$.
 
+But the previous paragraph works for all numbers $L$, so the limit of $f$ at $a$ cannot equal
+any number! Hence we have proved that it does not exist.\slug
 
+In the example just given, we now know that the limit of $f$ at $0$ does not exist. However, we
+often think of a limit intuitively as the function ``approaching'' some value, and it's wrong to
+say that $f$ doesn't approach anything at all when the input gets close to $0$. When you approach from
+the right, it is equal to $1$. And when you approach from
+the left, the function equals $-1$. This leads us to the concept of a one-sided limit.
 
-Hence the limit of $f$ at $0$ is not $0$.\slug
+\medskip\boldlabel One-sided limits.
+Let $f$ be a function, let $L$ be a number, and let $a$ be a number such that $f$ is defined to the right of $a$.
+(More precisely, we assume that $f$ is defined on the interval $[a,a+\eta)$ for some $\eta>0$.)
+We say that {\it limit of $f(x)$ as $x$ approaches $a$ from the right is $L$}, and write
+$$\lim_{x\to a^+} f(x) = L,$$
+if for all $\eps>0$ there is $\delta>0$ such that any number $x$ in the domain of $f$ with
+$$a < x < a+\delta$$
+must satisfy
+$$ \bigl| f(x) - L\bigr| < \eps.$$
+We might say in this case that $L$ is the {\it right-hand limit} of $f$.
 
+Likewise, let $f$ be a function, $L$ be a number, and suppose that $a$ is such that $f$ is defined
+to the {\it left} of $a$.
+We say that {\it limit of $f(x)$ as $x$ approaches $a$ from the left is $L$}, and write
+$$\lim_{x\to a^-} f(x) = L,$$
+if for all $\eps>0$ there is $\delta>0$ such that any number $x$ in the domain of $f$ with
+$$a-\delta < x < a$$
+must satisfy
+$$ \bigl| f(x) - L\bigr| < \eps.$$
+If this is true then we say $L$ is the {\it left-hand limit} of $f$.
+
+More loosely, $L$ is the right-hand limit of $f$ at $a$ if you can get $f(x)$ to be arbitrarily close to $L$ by
+requiring that $x$ be sufficiently close to $a$ {\it and greater than $a$},
+and it's the left-hand limit of $f$ at $a$ if you can get $f(x)$ as close as you like to $L$
+by requiring that $x$ be sufficiently close to $a$ {\it and smaller than $a$}.
+
+Both of these definitions are relaxations of the definition of limit; it is ``easier'' to be a left-hand
+limit than it is to be a {\it bona fide} limit). For example, we saw in Proposition~{\proplimdne}
+that $1$ is not a limit of $f$ from that proposition, because $f$ has no limits.
+However, once you have digested the definitions of one-sided limits, you should be able to
+check that $1$ is the right-hand limit of $f$ at $0$, and $-1$ is the left-hand limit at $0$.
+
+If the actual limit of $f$ at a point $a$ is $L$, then it is a consequence of the definitions that
+the right-hand limit and the left hand limit are also $L$. Conversely, if the one-sided limits both equal
+the same $L$, then the limit is actually $L$. This can be summed up symbolically in the following proposition.
+
+\proclaim Proposition \advthm. For any function $f$ and numbers $a$ and $L$, we have
+$$\lim_{x\to a} f(x) = L$$
+if and only if
+$$\lim_{x\to a^+} f(x) = L\qquad\hbox{and}\qquad \lim_{x\to a^-} f(x) = L.\noskipslug$$
+
+Here's a related proposition (no less useful) that tells us what happens if the one-sided limits
+of a function do not agree at some given point. It shows that the example exhibited by Proposition~{\proplimdne}
+is an instance of a very general phenomenon.
+
+\edef\proponesideddiff{\the\thmcount}
+\proclaim Proposition \advthm. If
+$$\lim_{x\to a^+} f(x) = L,\qquad \lim_{x\to a^-} f(x) = M,$$
+and $L\ne M$, then $\lim_{x\to a} f(x)$ does not exist.
+
+\proof We skip this proof as it's beyond the scope of this course (you would see it in, e.g., {\mc MATH} 242
+or {\mc MATH} 254), but it is not so different in spirit
+to the proof of Proposition~{\proplimdne}. The motivated student is encouraged to try it as an
+advanced exercise. (If you try for a while and get stuck, email me or come to office hours with what
+you have and I could help you fill in the details.)\slug
+
+If we were told Proposition~{\proponesideddiff} from the start, we could have used it to prove
+Proposition~{\proplimdne} without much ado.
+
+\medskip\noindent{\it Proof of Proposition~{\proplimdne} using Proposition~{\proponesideddiff}.}\enspace
+Recall that we are trying to prove that the limit of the function $f(x) = |x|/x$ does not exist
+as $x$ approaches $0$.
+Since $|x|  = x$ for all $x>0$, we see that
+$$\lim_{x\to 0^+} {|x|\over x} = lim_{x\to 0^+} {x\over x} = \lim_{x\to 0^+} 1 = 1.$$
+(The last equality is easy to see if you just graph the constant function $1$. If you are a serious
+student and insist on a rigorous proof, then please do Exercise 2.4.24 in the textbook,
+which invites you to furnish
+a proof that $\lim_{x\to a} c = c$ for all numbers $a$ and $c$.)
+
+On the other hand, since $|x| = -x$ for all $x<0$, we have
+$$\lim_{x\to 0^-} {|x|\over x} = lim_{x\to 0^-} {-x\over x} = \lim_{x\to 0^+} -1 = -1.$$
+So the left- and right-hand limits do not agree, and Proposition~{\proponesideddiff} applies in
+this situation to tell us that the limit does not exist.\slug
+
+In this proof, we used the fact that $\lim_{x\to 0^+} 1 = 1$, which is easy to see if you draw the graph
+of the constant function $1$, b
+haven't stated or proved a rule like this yet. Establishing {\it limit laws} of this sort is precisely what
+we'll do in the next section.
 
 \bye
