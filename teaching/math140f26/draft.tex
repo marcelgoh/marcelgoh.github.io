@@ -191,6 +191,9 @@ close to some input at which it is not necessarily defined. This is the notion o
 
 \advsect Limits
 
+\datestamp{02}{ix}
+In this section we establish the notion of a limit, which will be a rigorous way of formalising
+the idea of a function approaching a value at some point where it may or may not be defined.
 To understand the definition of a limit, it might be helpful to think about it as a generalisation of the concept
 of a continuous function $f$ equalling some value $y$ at the input $f(x)$.
 
@@ -210,6 +213,25 @@ $0.01$-close to $9$, we just need to ensure that $x$ is within $0.0001$ of $3$.
 And in fact, for any small number $\eps>0$, there exists some $\delta$ such that whenever
 $x\in (3-\delta, 3+\delta)$, we must have $f(x) \in (9-\eps, 9+\eps).$
 (In math, we often use the Greek letters $\eps$ and $\delta$ to denote very small numbers.)
+
+\medskip\boldlabel The quintessential non-example.
+Here is an example to illustrate what we {\it don't} mean when we. Let
+$$f(x) = \sin\Bigl({\pi\over x}\Bigr);$$
+this function is defined everywhere except at $x=0$. The question is, does it ``approach'' anything
+This function oscillates between $-1$ and $1$, but as $x$ approaches $0$ it oscillates very wildly.
+You might be fooled into thinking that as $x$ approaches $0$, the function $f$ approaches $0$.
+This is because
+$$0 = \sin(\pi) = \sin(2\pi) = \sin(3\pi) = \cdots,$$
+so
+$f(1) = 0$, $f(1/2) = 0$, $f(1/3) = 0$, and so on.
+But we also have
+$$1 = \sin\Bigl({\pi\over 2}\Bigr) = \sin\Bigl({5\pi\over 2}\Bigr) = \sin\Bigl({9\pi\over 2}\Bigr) = \cdots,$$
+giving us
+$f(2) = 1$, $f(2/5) = 1$, $f(2/9) = 1$, etc., and so this is a case of $x$ approaching $0$ but
+$f(x)$ {\it not} getting closer and closer to $0$.
+
+So the notion we end up defining for $f$ getting close to something as $x$ approaches something should
+not accidentally apply to this instance of $f$ above. We are just about ready to state this notion formally.
 
 \medskip\boldlabel The formal definition of a limit.
 First we define what a {\it neighbourhood} of a number
@@ -292,6 +314,8 @@ work if we picked $\delta$ even smaller, e.g., $\delta = \eps/10$. But $\delta =
 largest one can take
 $\delta$ for the proof to work, and it is a common stylistic choice for a mathematician to pick a maximal value
 such as this.
+
+\bye
 
 \medskip\boldlabel Formal negation of limit definition.
 To fully understand the meaning of $\lim_{x\to a} f(x)$, it may be enlightening for us to
