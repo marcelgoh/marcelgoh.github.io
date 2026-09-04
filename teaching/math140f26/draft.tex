@@ -317,9 +317,13 @@ largest one can take
 $\delta$ for the proof to work, and it is a common stylistic choice for a mathematician to pick a maximal value
 such as this.
 
-\bye
+Before moving on, we note here that you may at some point encounter authors who
+write ``$f(x)\to L$ as $x\to a$.'' This is just an alternative way of writing $\lim_{x\to a} f(x) = L$.
+We will try to stick with the $\lim_{x\to a}$ version in these notes, as that is the convention the textbook
+uses, but there is a strong argument for the $f(x)\to L$ notation as well, as it makes it clear that
+$f(x)$ is not required to actually equal $L$ at any stage, it just needs to get arbitrarily close to it.
 
-\medskip\boldlabel Formal negation of limit definition.
+\medskip\boldlabel \datestamp{04}{ix} Formal negation of limit definition.
 To fully understand the meaning of $\lim_{x\to a} f(x)$, it may be enlightening for us to
 consider the negation of this statement. Concretely, what does it mean
 for a number $L$ {\it not} to be the limit of a function $f$ at some input $a$?
@@ -349,7 +353,7 @@ is $L$.
 
 \edef\proplimfnotzero{\the\thmcount}
 \proclaim Proposition \advthm. Let
-$$f(x) = \cases{-1, & if $x<0$; \cr 1, & if $x\ge 0$}.$$
+$$f(x) = \cases{-1, & if $x<0$; \cr 1, & if $x> 0$}.$$
 Then the limit of $f$ at $0$ is not $0$.
 
 \proof We just need to find some $\eps>0$ such that for any choice of $\delta > 0$, there will always
@@ -408,7 +412,8 @@ Then the limit of $f$ as $x$ approaches $0$ does not exist.
 \proof
 We can re-express $f$ by writing
 $$f(x) = \cases{-1, & if $x<0$; \cr 1, & if $x> 0$},$$
-which may be clearer to some readers.
+which may be clearer to some readers (and also shows this is the same function from
+Proposition~{\proplimfnotzero}).
 Let $L$ be arbitrary. We need to show that the limit of $f$ at $0$ is not $L$.
 To do this, we shall pick $\eps>0$ such that for any choice of $\delta > 0$, there is
 some real number $x$ with $0<|x-0|<\delta$ but $\bigl| f(x) - L\bigr| \ge \eps$.
@@ -437,7 +442,7 @@ the left, the function equals $-1$. This leads us to the concept of a one-sided 
 
 \medskip\boldlabel One-sided limits.
 Let $f$ be a function, let $L$ be a number, and let $a$ be a number such that $f$ is defined to the right of $a$.
-(More precisely, we assume that $f$ is defined on the interval $[a,a+\eta)$ for some $\eta>0$.)
+(More precisely, we assume that $f$ is defined on the interval $(a,a+\eta)$ for some $\eta>0$.)
 We say that {\it limit of $f(x)$ as $x$ approaches $a$ from the right is $L$}, and write
 $$\lim_{x\to a^+} f(x) = L,$$
 if for all $\eps>0$ there is $\delta>0$ such that any number $x$ in the domain of $f$ with
@@ -498,20 +503,124 @@ Proposition~{\proplimdne} without much ado.
 Recall that we are trying to prove that the limit of the function $f(x) = |x|/x$ does not exist
 as $x$ approaches $0$.
 Since $|x|  = x$ for all $x>0$, we see that
-$$\lim_{x\to 0^+} {|x|\over x} = lim_{x\to 0^+} {x\over x} = \lim_{x\to 0^+} 1 = 1.$$
+$$\lim_{x\to 0^+} {|x|\over x} = \lim_{x\to 0^+} {x\over x} = \lim_{x\to 0^+} 1 = 1.$$
 (The last equality is easy to see if you just graph the constant function $1$. If you are a serious
-student and insist on a rigorous proof, then please do Exercise 2.4.24 in the textbook,
+student and insist on a rigorous proof, then please do Exercise 24 of Section 2.4 in the textbook,
 which invites you to furnish
 a proof that $\lim_{x\to a} c = c$ for all numbers $a$ and $c$.)
 
 On the other hand, since $|x| = -x$ for all $x<0$, we have
-$$\lim_{x\to 0^-} {|x|\over x} = lim_{x\to 0^-} {-x\over x} = \lim_{x\to 0^+} -1 = -1.$$
+$$\lim_{x\to 0^-} {|x|\over x} = \lim_{x\to 0^-} {-x\over x} = \lim_{x\to 0^+} -1 = -1.$$
 So the left- and right-hand limits do not agree, and Proposition~{\proponesideddiff} applies in
 this situation to tell us that the limit does not exist.\slug
 
-In this proof, we used the fact that $\lim_{x\to 0^+} 1 = 1$, which is easy to see if you draw the graph
-of the constant function $1$, b
-haven't stated or proved a rule like this yet. Establishing {\it limit laws} of this sort is precisely what
-we'll do in the next section.
+\bye
+
+One-sided limits not agreeing is one way that the limit of a function at a given point can fail to exist.
+To round out this section, we discuss one more way.
+
+\medskip\boldlabel Infinite limits and vertical asymptotes.
+We say that the {\it limit of $f(x)$ is infinity as $x$ approaches $a$ from the right}, and write
+$$\lim_{x\to a^+} f(x) = \infty,$$
+if for every large (positive) number $M$, there exists $\delta > 0$ such that every $x$ satisfying
+$$a < x < a+\delta$$
+has
+$$f(x) > M.$$
+If, instead, for every large positve number $M$ there is $\delta > 0$ such that every $x$ with
+$$a < x < a+\delta$$
+satisfies
+$$f(x) < -M,$$
+then we say that the limit of $f(x)$ is {\it minus infinity} as $x$ approaches $a$ from the right,
+and write
+$$\lim_{x\to a-} f(x) = -\infty.$$
+The same definition can be made for left-hand limits by replacing the assumption $a<x<a+\delta$
+with the assumption $a-\delta<x<a$ above.
+This makes for four situations in total, and if any one of these situations occurs, then $f$ is
+said to have a {\it vertical asymptote} at the line $x=a$.
+
+Just as in the case of finite limits, when the left- and right-hand limits agree (and are both
+the same type of infinity), then we simply say that the {\it limit} is infinity
+(or minus infinity, accordingly). In other words,
+we have
+$$\lim_{x\to a} f(x) = \infty$$
+if and only if
+$$\lim_{x\to a^-} f(x) = \infty\qquad\hbox{and}\qquad \lim_{x\to a^+} f(x) = \infty,$$
+and we have
+$$\lim_{x\to a} f(x) = -\infty$$
+if and only if
+$$\lim_{x\to a^-} f(x) = -\infty\qquad\hbox{and}\qquad \lim_{x\to a^+} f(x) = -\infty.$$
+
+One should not interpret the symbol $\infty$ above as a number, since there is no such number.
+When we write $\lim_{x\to a} f(x) = \infty$,
+we simply mean that this expression can be made arbitrarily large as by requiring that $x$ be sufficiently
+close to $a$. It should also be stressed that the equality symbol in this expression should {\it not}
+be interpreted
+as meaning that the limit of $f$ at $a$ exists, because the terminology of a limit ``existing'' is reserved
+for when the limit equals a number (and, once again, $\infty$ is not a number). As with finite limits,
+sometimes authors write, e.g., $f(x)\to -\infty$ as $x\to a$ instead of $\lim_{x\to a} f(x) = -\infty$.
+This notation is also valid, and in some sense preferable as it does not suggest that $f(x)$ ever ``equals''
+some ``number'' $\infty$.
+
+Let's look at a couple of simple examples of functions with vertical asymptotes.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 0^+} {1\over x} = \infty$$
+and
+$$\lim_{x\to 0^-} {1\over x} = -\infty.$$
+
+\proof We prove both statements separately. The first asserts that $1/x$ can be made
+arbitrarily large by taking $x\to 0$ from the right. To prove it, let $M>0$ be an arbitrarily large number
+(given to us). Pick $\delta = 1/M$, and assume that $0<x<\delta = 1/M$. Because $x>0$, we are allowed to
+write $1/x$, and the fact that $x < 1/M$ implies that $1/x > M$, which is what we needed to prove
+in the definition of infinite limit.
+
+The second statement is proved extremely similarly, but we include the full proof for completeness.
+Let $M$ be given, and pick $\delta = 1/M$. Assume that $-\delta < x<0$; the right inequality here
+assures us that the expression $1/x$ is well-defined, and the left inequality here can be rewritten as
+$x > -\delta = -1/M$. Rearranging the equation now yields $1/x < -M$, which is what we needed to show
+in order to prove that the limit is $-\infty$.\slug
+
+To sum up this proof, we can make $1/x$ arbitrarily large to the right of $0$ by requiring that $x>0$
+be sufficiently close to $0$, and we can make $1/x$ an arbitrarily large negative number by requiring
+that $x<0$ be sufficiently close to (the left of) $0$.
+
+Here's another example where the left- and right-hand limits agree on the type of infinity.
+
+\proclaim Proposition \advthm. The limit of
+$$f(x) = {1\over (x-3)^2}$$
+is infinity as $x$ approaches $3$.
+
+\proof We can do the left- and right-hand limits separately, but it is not hard to prove
+this whole thing all at once (i.e., to consider both sides of $3$ at the same time).
+
+Let $M>0$ be given. We want to prescribe $\delta > 0$ such that all $x\ne 3$ with
+$$3-\delta < x < 3+\delta$$
+satisfy
+$${1\over (x-3)^2} > M.$$
+(The assumption $3-\delta < x < 3+\delta$ is what we mean by considering both sides of $3$ at the same time;
+note that this assumption together with the assumption that $x\ne 3$ can be summed up in the single inequality
+$0<|x-3|<\delta$.)
+Setting $\delta = 1/\sqrt M$ works this time, so our assumption on $x$ will be
+$$3-{1\over \sqrt M} < x < 3+{1\over \sqrt M},$$
+and that $x\ne 3$ of course, so that $f(x)$ is even defined.
+The difference $x-3$ may be positive or negative; we don't know which. But what we do know, from our assumption,
+is that the distance $|x-3|$ between $x$ and $3$ satisfies
+$$|x-3| < {1\over \sqrt M}.$$
+Squaring both sides (and using the fact that $|x-3|^2 = (x-3)^2$, since the square of a negative number is
+positive anyway) gives us
+$$(x-3)^2 < {1\over M},$$
+and rearranging yields
+$$f(x) = {1\over (x-3)^2} > M,$$
+which is what we needed to show. (The number $M$ was arbitrary in this proof, so we can keep repeating
+with larger and larger $M$ to show that $f(x)$ can be made arbitrarily large in the way shown above.)\slug
+
+Once again, picking $\delta = 1/\sqrt M$ made the algebra work out nicely, but you could have written
+a valid proof by picking, say, $\delta = 1/M$ instead. (Try it! You'll have to assume that $M>1$, but that
+is O.K, since if you can prove the statement for all $M>1$, then those $M$ also trivially satisfy $M>0$.)
+Don't stress too much about picking the ``best''
+value for $\delta$. The more important thing is to understand that no matter what $M$ is given, you can
+pick {\it some} $\delta$ that makes the proof work out.
+
+
 
 \bye
