@@ -434,7 +434,8 @@ Either way, we have satisfied the criterion of the limit at $f$ at $a$ not being
 But the previous paragraph works for all numbers $L$, so the limit of $f$ at $a$ cannot equal
 any number! Hence we have proved that it does not exist.\slug
 
-In the example just given, we now know that the limit of $f$ at $0$ does not exist. However, we
+In the example just given, we now know that the limit of $f$ at $0$ does not exist
+theorem.
 often think of a limit intuitively as the function ``approaching'' some value, and it's wrong to
 say that $f$ doesn't approach anything at all when the input gets close to $0$. When you approach from
 the right, it is equal to $1$. And when you approach from
@@ -474,19 +475,25 @@ check that $1$ is the right-hand limit of $f$ at $0$, and $-1$ is the left-hand 
 
 If the actual limit of $f$ at a point $a$ is $L$, then it is a consequence of the definitions that
 the right-hand limit and the left hand limit are also $L$. Conversely, if the one-sided limits both equal
-the same $L$, then the limit is actually $L$. This can be summed up symbolically in the following proposition.
+the same $L$, then the limit is actually $L$. This can be summed up symbolically in the following statement,
+which we'll call a theorem since it comes in handy now and again.
 
-\proclaim Proposition \advthm. For any function $f$ and numbers $a$ and $L$, we have
+\edef\thmonesidedsame{\the\thmcount}
+\proclaim Theorem \advthm. For any function $f$ and numbers $a$ and $L$, we have
 $$\lim_{x\to a} f(x) = L$$
 if and only if
 $$\lim_{x\to a^+} f(x) = L\qquad\hbox{and}\qquad \lim_{x\to a^-} f(x) = L.\noskipslug$$
 
-Here's a related proposition (no less useful) that tells us what happens if the one-sided limits
+A simple application of this theorem is to prove that the function $f(x) = |x|$ goes to $0$ as $x$
+approaches $0$. (Try proving this yourself! Show that the one-sided limits both approach $0$, and then
+invoke Theorem~{\thmonesidedsame}.)
+
+Here's a related theorem (no less useful) that tells us what happens if the one-sided limits
 of a function do not agree at some given point. It shows that the example exhibited by Proposition~{\proplimdne}
 is an instance of a very general phenomenon.
 
-\edef\proponesideddiff{\the\thmcount}
-\proclaim Proposition \advthm. If
+\edef\thmonesideddiff{\the\thmcount}
+\proclaim Theorem \advthm. If
 $$\lim_{x\to a^+} f(x) = L,\qquad \lim_{x\to a^-} f(x) = M,$$
 and $L\ne M$, then $\lim_{x\to a} f(x)$ does not exist.
 
@@ -496,10 +503,10 @@ to the proof of Proposition~{\proplimdne}. The motivated student is encouraged t
 advanced exercise. (If you try for a while and get stuck, email me or come to office hours with what
 you have and I could help you fill in the details.)\slug
 
-If we were told Proposition~{\proponesideddiff} from the start, we could have used it to prove
+If we were told Theorem~{\thmonesideddiff} from the start, we could have used it to prove
 Proposition~{\proplimdne} without much ado.
 
-\medskip\noindent{\it Proof of Proposition~{\proplimdne} using Proposition~{\proponesideddiff}.}\enspace
+\medskip\noindent{\it Proof of Proposition~{\proplimdne} using Theorem~{\thmonesideddiff}.}\enspace
 Recall that we are trying to prove that the limit of the function $f(x) = |x|/x$ does not exist
 as $x$ approaches $0$.
 Since $|x|  = x$ for all $x>0$, we see that
@@ -511,13 +518,10 @@ a proof that $\lim_{x\to a} c = c$ for all numbers $a$ and $c$.)
 
 On the other hand, since $|x| = -x$ for all $x<0$, we have
 $$\lim_{x\to 0^-} {|x|\over x} = \lim_{x\to 0^-} {-x\over x} = \lim_{x\to 0^+} -1 = -1.$$
-So the left- and right-hand limits do not agree, and Proposition~{\proponesideddiff} applies in
+So the left- and right-hand limits do not agree, and Theorem~{\thmonesideddiff} applies in
 this situation to tell us that the limit does not exist.\slug
 
-\bye
-
 One-sided limits not agreeing is one way that the limit of a function at a given point can fail to exist.
-To round out this section, we discuss one more way.
 
 \medskip\boldlabel Infinite limits and vertical asymptotes.
 We say that the {\it limit of $f(x)$ is infinity as $x$ approaches $a$ from the right}, and write
@@ -563,6 +567,7 @@ some ``number'' $\infty$.
 
 Let's look at a couple of simple examples of functions with vertical asymptotes.
 
+\edef\propvertasymp{\the\thmcount}
 \proclaim Proposition \advthm. We have
 $$\lim_{x\to 0^+} {1\over x} = \infty$$
 and
@@ -620,6 +625,175 @@ is O.K, since if you can prove the statement for all $M>1$, then those $M$ also 
 Don't stress too much about picking the ``best''
 value for $\delta$. The more important thing is to understand that no matter what $M$ is given, you can
 pick {\it some} $\delta$ that makes the proof work out.
+
+\medskip\boldlabel Limits at infinity and horizontal asymptotes.
+There is one last type of limit that remains to be defined. This is the case in which the values of
+$f(x)$ can be taken arbitrarily close to a value by making $x$ sufficiently large, either in the positive
+direction or the negative direction. Formally, we write
+$$\lim_{x\to \infty} f(x) = L$$
+and say that the {\it limit of $f(x)$ is $L$ as $x$ approaches infinity} if for all $\eps > 0$
+there exists some large $M>0$ such that every $x$ with $x>M$ has $\bigl| f(x) - L\bigr| < \eps$.
+Likewise, we say the {\it limit of $f(x)$ is $L$ as $x$ approaches negative infinity} and write
+$$\lim_{x\to -\infty} f(x) = L$$
+if the same condition applies, except the inequality $x>M$ is replaced by $x<-M$.
+In either of these situations, we say that $y=f(x)$ has a {\it horizontal asymptote} at the line
+$y=L$.
+
+Note that the same example from Proposition~{\propvertasymp} also exhibits a horizontal asymptote.
+
+\edef\prophorasymp{\the\thmcount}
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to \infty} 1/x = 0\qquad\hbox{and}\qquad \lim_{x\to-\infty} 1/x = 0.$$
+
+\proof Let $\eps >0$ and pick $M = 1/\eps$. Then any number $x$ with $x>M$ has
+$$\biggl|{1\over x} - 0\biggr| = {1\over x} < {1\over M} = \eps,$$
+so $\lim_{x\to \infty} 1/x = 0$.
+
+For the other inequality, the proof is very similar. Let $\eps > 0$ and again we choose $M = 1/\eps$.
+Now any (negative) number $x$ with $x < -M$ has
+$$\biggl|{1\over x} - 0\biggr| = \biggl|{1\over x}\biggr| = {1\over -x} < {1\over M} = \eps,$$
+so $\lim_{x\to -\infty} 1/x = 0$.\slug
+
+Since $\infty$ is not a number, it does not make sense to write an expression such as, say, $1/\infty$.
+On the other hand, you may have heard people say, informally, something like ``anything divided by infinity
+is zero.'' This statement can be made into a proper mathematical one by expressing it in terms of limits.
+It is true that for any fixed number $K$, the limit $\lim_{x\to \infty} K/x$ equals $0$. (As an exercise,
+prove this directly by very slightly modifying the proof of Proposition~{\prophorasymp} above.
+Hint: The proposition already gives a proof when $K=1$. So for the general case, instead of setting
+$M = 1/\eps$, you might try choosing something very similar but involving $K$.)
+
+\medskip\boldlabel Infinite limits at infinity.
+As with limits as $x$ approaches some finite $a$, the infinite limit is said not to exist if it does
+not equal any finite number $L$. There is one special case of this worth mentioning, which is when
+the function $f(x)$ can be made arbitrarily large (positive or negative) by requiring that $x$
+be sufficiently large (positive or negative). Hence there are four cases of infinite limits at infinity,
+namely
+$$\lim_{x\to \infty} f(x) = \infty,\qquad
+\lim_{x\to -\infty} f(x) = \infty,$$
+$$\lim_{x\to \infty} f(x) = -\infty,\qquad\hbox{and}\qquad
+\lim_{x\to -\infty} f(x) = -\infty.$$
+Tedious as it is, let us formally define all four of these statements, for the sake of completeness.
+\medskip
+\item{a)}
+We say that {\it $f(x)$ goes to infinity as $x$ goes to infinity} and write
+$$\lim_{x\to\infty} f(x) = \infty$$
+if for all $M>0$, there exists $N>0$ such
+that for all $x$ with $x > N$, we have $f(x) > M$.
+\smallskip
+\item{b)}
+We say that {\it $f(x)$ goes to infinity as $x$ goes to negative infinity} and
+write
+$$\lim_{x\to-\infty} f(x) = \infty$$
+if for all $M>0$, there exists $N>0$ such
+that for all $x$ with $x < -N$, we have $f(x) > M$.
+\smallskip
+\item{c)}
+We say that {\it $f(x)$ goes to negative infinity as $x$ goes to infinity} and
+write
+$$\lim_{x\to\infty} f(x) = -\infty$$
+if for all $M>0$, there exists $N>0$ such
+that for all $x$ with $x > N$, we have $f(x) < -M$.
+\smallskip
+\item{d)}
+We say that {\it $f(x)$ goes to negative infinity as $x$ goes to negative infinity} and
+write
+$$\lim_{x\to-\infty} f(x) = -\infty$$
+if for all $M>0$, there exists $N>0$ such
+that for all $x$ with $x < -N$, we have $f(x) < -M$.
+\medskip\noindent
+That was a mouthful. But by this point it is hoped that the reader would be comfortable enough with these
+formal definitions to be able to formulate, say (a), (c), and (d) after being shown (b).
+
+We finish off this very long section by presenting
+an example of a function that seems to grow fairly slowly $x\to\infty$, but nevertheless still goes to
+infinity as $x$ is taken to be large.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to\infty} \root 3\of x = \infty$$
+and
+$$\lim_{x\to-\infty} \root 3\of x = -\infty.$$
+
+\proof Let $M>0$ be a large positive number given to us.
+We want to pick $N$ such that for all $x>N$, we have $\root 3\of x = x^{1/3} > M$.
+After a moment's pause we see that choosing $N = M^3$ works, since if we assume that $x>N$, then
+$$x^{1/3} > N^{1/3} = (M^3)^{1/3} = M.$$
+
+The negative infinite limit is proved similarly; we choose $N = M^3$ this time as well, so that
+whenever $x<-N$, we have
+$$x^{1/3} < (-N)^{1/3} = (-M^3)^{1/3} = -M.$$
+This completes the proof.\slug
+
+\advsect Rules for evaluating limits
+
+In the previous section, we already encountered two rules (namely, Theorems~{\thmonesidedsame}
+and~{\thmonesideddiff}) that can help us find limits of functions
+or determine that they do not exist. This section will be devoted to establishing a few more useful laws.
+First we record a list of algebraic laws, which show that the limit behaves well under a number of algebraic
+operations such as addition, multiplication, etc.
+
+\parenproclaim Theorem {\advthm} (Algebraic limit laws).
+Let $c$ be any fixed number, and suppose that $f$ and $g$ are functions such that
+$$\lim_{x\to a} f(x)\qquad\hbox{and}\qquad \lim_{x\to a} g(x)$$
+both exist. Then
+\medskip
+\item{i)} $\lim_{x\to a} \bigl( f(x) + g(x)\bigr) = \lim_{x\to a} f(x) + \lim_{x\to a} g(x)$;
+\smallskip
+\item{ii)} $\lim_{x\to a} \bigl( f(x) - g(x)\bigr) = \lim_{x\to a} f(x) - \lim_{x\to a} g(x)$;
+\smallskip
+\item{iii)} $\lim_{x\to a} cf(x) = c\cdot \lim_{x\to a} f(x)$;
+\smallskip
+\item{iv)} $\lim_{x\to a} \bigl( f(x)g(x)\bigr) = \lim_{x\to a} f(x) \cdot \lim_{x\to a} g(x)$; and
+\smallskip
+\item{v)} $\lim_{x\to a} f(x)/g(x) = \lim_{x\to a} f(x) \bigl/ \lim_{x\to a} g(x)$, provided
+that $\lim_{x\to a} g(x)\ne 0$.
+\medskip
+These identities all hold even when $x\to a$ is replaced with $x\to\infty$ or $x\to-\infty$.
+
+The identites above
+are known as (i) the sum law, (ii) the difference law, (iii) the constant multiple law,
+(iv) the product law, and (v) the quotient law, respectively.
+They can be expressed in words as well:~the limit of a sum is the sum of the limits,
+the limit of a difference is the difference
+of the limits, and so on.
+
+\proof We only prove (i) in the case that $x\to a$ for some finite number $a$ (as opposed to $x\to\infty$).
+Laws (ii) through (v) are proved in Appendix~F of the textbook. In the proof of (i) we shall require the
+{\it triangle inequality}, which says that for any numbers $a$, $b$, and $c$, we have
+$$|a-c| \le |a-b| + |b-c|.$$
+In other words, the length of any side in a triangle is always smaller than the sum of the other two sides.
+
+Suppose $\lim_{x\to a} f(x) = L_1$ and $\lim_{x\to a} g(x) = L_2$. We want to show that the limit
+of $f(x) + g(x)$ as $x\to a$ is $L_1 + L_2$.
+Let $\eps>0$. We wish to pick a $\delta>0$ such that for all $x$ with $0<|x-a|<\delta$, we have
+$$\bigl| f(x) + g(x) - (L_1 + L_2) \bigr| <\eps.$$
+Well, since $\lim_{x\to a} f(x) = L_1$, we can make $f(x)$ arbitrarily close to $L_1$ by prescribing
+that $x$ be sufficiently close to $a$. So there is some $\delta_1 > 0$ such that if we assume
+$0<|x-a|<\delta_1$, then
+$$\bigl| f(x) - L_1\bigr| < {\eps\over 2}.$$
+(We choose $\eps/2$ so that there is some additional room for error when we deal with $g$.)
+Likewise, there is some $\delta_2>0$ such that if we assume
+$0<|x-a|<\delta_2$, then
+$$\bigl| g(x) - L_2\bigr| < {\eps\over 2}.$$
+
+Now, set $\delta = \min(\delta_1, \delta_2)$. This guarantees both $\delta\le \delta_1$ and
+$\delta\le \delta_2$, so that if we assume $0<|x-a|<\delta$,
+then the inequalities
+$$0<|x-a|<\delta_1\qquad\hbox{and}\qquad 0<|x-a|<\delta_2$$
+{\it both} hold. As a result, by our observations in the previous paragraph,
+both of the inequalities
+$$\bigl| f(x) - L_1\bigr| < {\eps\over 2}
+\qquad\hbox{and} \bigl| g(x) - L_2\bigr| < {\eps\over 2}$$
+are true as well.
+Finally we see that
+$$\eqalign{
+\bigl| f(x) + g(x) - (L_1 + L_2) \bigr| &= \bigl| f(x) - L_1 + g(x) - L_2\bigr| \cr
+&\le \bigl| f(x) - L_1\bigr| + \bigl| g(x) - L_2\bigr| \cr
+&\le {\eps\over 2} + {\eps \over 2} \cr
+&= \eps, \cr
+}$$
+where the second line follows from the aforementioned triangle inequality. This completes the proof.\slug
+
+
 
 
 
