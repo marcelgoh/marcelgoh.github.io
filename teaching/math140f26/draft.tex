@@ -39,6 +39,7 @@ Please email me if you find any.
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 1.\kern .5em Rates of change}{3}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 2.\kern .5em Limits}{5}}
+%\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 3.\kern .5em Rules for evaluating limits}{18}}
 \medskip
 
 \vfill\eject
@@ -434,9 +435,9 @@ Either way, we have satisfied the criterion of the limit at $f$ at $a$ not being
 But the previous paragraph works for all numbers $L$, so the limit of $f$ at $a$ cannot equal
 any number! Hence we have proved that it does not exist.\slug
 
-In the example just given, we now know that the limit of $f$ at $0$ does not exist
-theorem.
-often think of a limit intuitively as the function ``approaching'' some value, and it's wrong to
+In the example just given, we now know that the limit of $f$ at $0$ does not exist.
+However, we
+often think of a limit intuitively as the function ``approaching'' some value, and in this sense it's wrong to
 say that $f$ doesn't approach anything at all when the input gets close to $0$. When you approach from
 the right, it is equal to $1$. And when you approach from
 the left, the function equals $-1$. This leads us to the concept of a one-sided limit.
@@ -484,9 +485,10 @@ $$\lim_{x\to a} f(x) = L$$
 if and only if
 $$\lim_{x\to a^+} f(x) = L\qquad\hbox{and}\qquad \lim_{x\to a^-} f(x) = L.\noskipslug$$
 
-A simple application of this theorem is to prove that the function $f(x) = |x|$ goes to $0$ as $x$
-approaches $0$. (Try proving this yourself! Show that the one-sided limits both approach $0$, and then
-invoke Theorem~{\thmonesidedsame}.)
+
+A simple application of Theorem~{\thmonesidedsame} is to prove that the function $f(x) = |x|$ goes to $0$ as $x$
+approaches $0$. We'll see this as an example in the next section, but it's really not a difficult proof,
+so you could try it now. Show that both one-sided limits approach $0$, then simply invoke the theorem.
 
 Here's a related theorem (no less useful) that tells us what happens if the one-sided limits
 of a function do not agree at some given point. It shows that the example exhibited by Proposition~{\proplimdne}
@@ -522,15 +524,16 @@ So the left- and right-hand limits do not agree, and Theorem~{\thmonesideddiff} 
 this situation to tell us that the limit does not exist.\slug
 
 One-sided limits not agreeing is one way that the limit of a function at a given point can fail to exist.
+Another way is for the limit to get arbitrarily large, which is the situation we tackle next.
 
-\medskip\boldlabel Infinite limits and vertical asymptotes.
+\medskip\boldlabel \datestamp{09}{ix} Infinite limits and vertical asymptotes.
 We say that the {\it limit of $f(x)$ is infinity as $x$ approaches $a$ from the right}, and write
 $$\lim_{x\to a^+} f(x) = \infty,$$
 if for every large (positive) number $M$, there exists $\delta > 0$ such that every $x$ satisfying
 $$a < x < a+\delta$$
 has
 $$f(x) > M.$$
-If, instead, for every large positve number $M$ there is $\delta > 0$ such that every $x$ with
+If, instead, for every large positive number $M$ there is $\delta > 0$ such that every $x$ with
 $$a < x < a+\delta$$
 satisfies
 $$f(x) < -M,$$
@@ -553,6 +556,10 @@ and we have
 $$\lim_{x\to a} f(x) = -\infty$$
 if and only if
 $$\lim_{x\to a^-} f(x) = -\infty\qquad\hbox{and}\qquad \lim_{x\to a^+} f(x) = -\infty.$$
+
+(Let $p$ and $q$ be mathematical statements. The phrase ``$p$ if $q$'' means that $q$ implies $p$,
+and the phrase ``$p$ only if $q$'' means that $p$ implies $q$---think about it for a second, it makes sense!
+So the statement ``$p$ if and only if $q$'' means that $p$ is true exactly when $q$ is true, and vice versa.)
 
 One should not interpret the symbol $\infty$ above as a number, since there is no such number.
 When we write $\lim_{x\to a} f(x) = \infty$,
@@ -620,11 +627,18 @@ which is what we needed to show. (The number $M$ was arbitrary in this proof, so
 with larger and larger $M$ to show that $f(x)$ can be made arbitrarily large in the way shown above.)\slug
 
 Once again, picking $\delta = 1/\sqrt M$ made the algebra work out nicely, but you could have written
-a valid proof by picking, say, $\delta = 1/M$ instead. (Try it! You'll have to assume that $M>1$, but that
-is O.K, since if you can prove the statement for all $M>1$, then those $M$ also trivially satisfy $M>0$.)
+a valid proof by picking, say, $\delta = 1/M$ instead, but then there'd be some issues with having to
+assume that $M>1$. (Morally this
+is {\mc O.K.}, since we're only worried about what happens when $M$ is very large, but {\it technically}
+our definition had $M>0$.)
 Don't stress too much about picking the ``best''
-value for $\delta$. The more important thing is to understand that no matter what $M$ is given, you can
+value for $\delta$. Generally, you find $\delta$ by first trying out various values of $M$ and seeing what
+$\delta$ is necessary to deal with that $M$; after a few tries you should be able to come up with a formula
+that works generally. The broader thing to take away from reading this proof or trying to do it yourself
+is that no matter what $M$ is given, you can
 pick {\it some} $\delta$ that makes the proof work out.
+
+\bye
 
 \medskip\boldlabel Limits at infinity and horizontal asymptotes.
 There is one last type of limit that remains to be defined. This is the case in which the values of
@@ -646,12 +660,12 @@ Note that the same example from Proposition~{\propvertasymp} also exhibits a hor
 $$\lim_{x\to \infty} 1/x = 0\qquad\hbox{and}\qquad \lim_{x\to-\infty} 1/x = 0.$$
 
 \proof Let $\eps >0$ and pick $M = 1/\eps$. Then any number $x$ with $x>M$ has
-$$\biggl|{1\over x} - 0\biggr| = {1\over x} < {1\over M} = \eps,$$
+$$\biggl|{1\over x} - 0\,\biggr| = {1\over x} < {1\over M} = \eps,$$
 so $\lim_{x\to \infty} 1/x = 0$.
 
 For the other inequality, the proof is very similar. Let $\eps > 0$ and again we choose $M = 1/\eps$.
 Now any (negative) number $x$ with $x < -M$ has
-$$\biggl|{1\over x} - 0\biggr| = \biggl|{1\over x}\biggr| = {1\over -x} < {1\over M} = \eps,$$
+$$\biggl|{1\over x} - 0\,\biggr| = \biggl|{1\over x}\biggr| = {1\over -x} < {1\over M} = \eps,$$
 so $\lim_{x\to -\infty} 1/x = 0$.\slug
 
 Since $\infty$ is not a number, it does not make sense to write an expression such as, say, $1/\infty$.
@@ -731,6 +745,7 @@ or determine that they do not exist. This section will be devoted to establishin
 First we record a list of algebraic laws, which show that the limit behaves well under a number of algebraic
 operations such as addition, multiplication, etc.
 
+\edef\thmalglaws{\the\thmcount}
 \parenproclaim Theorem {\advthm} (Algebraic limit laws).
 Let $c$ be any fixed number, and suppose that $f$ and $g$ are functions such that
 $$\lim_{x\to a} f(x)\qquad\hbox{and}\qquad \lim_{x\to a} g(x)$$
@@ -742,22 +757,35 @@ both exist. Then
 \smallskip
 \item{iii)} $\lim_{x\to a} cf(x) = c\cdot \lim_{x\to a} f(x)$;
 \smallskip
-\item{iv)} $\lim_{x\to a} \bigl( f(x)g(x)\bigr) = \lim_{x\to a} f(x) \cdot \lim_{x\to a} g(x)$; and
+\item{iv)} $\lim_{x\to a} \bigl( f(x)g(x)\bigr) = \lim_{x\to a} f(x) \cdot \lim_{x\to a} g(x)$;
 \smallskip
 \item{v)} $\lim_{x\to a} f(x)/g(x) = \lim_{x\to a} f(x) \bigl/ \lim_{x\to a} g(x)$, provided
-that $\lim_{x\to a} g(x)\ne 0$.
+that $\lim_{x\to a} g(x)\ne 0$;
+\smallskip
+\item{vi)} for all positive integers $n$, $\lim_{x\to a} f(x)^n = \bigl(\lim_{x\to a} f(x)\bigr)^n$; and
+\smallskip
+\item{vii)} for all positive integers $n$, $\lim_{x\to a} \root n\of{f(x)} = \root n\of{\lim_{x\to a} f(x)}$,
+(provided that $\lim_{x\to a} f(x)>0$ in the case that $n$ is even ,so that the $n$th root is well-defined).
 \medskip
-These identities all hold even when $x\to a$ is replaced with $x\to\infty$ or $x\to-\infty$.
+These statements are all true even when $x\to a$ is replaced with $x\to\infty$ or $x\to-\infty$.
 
-The identites above
+The identities above
 are known as (i) the sum law, (ii) the difference law, (iii) the constant multiple law,
-(iv) the product law, and (v) the quotient law, respectively.
+(iv) the product law, (v) the quotient law, (vi) the power law, and (vii) the root law, respectively.
 They can be expressed in words as well:~the limit of a sum is the sum of the limits,
 the limit of a difference is the difference
 of the limits, and so on.
 
-\proof We only prove (i) in the case that $x\to a$ for some finite number $a$ (as opposed to $x\to\infty$).
-Laws (ii) through (v) are proved in Appendix~F of the textbook. In the proof of (i) we shall require the
+\proof We only prove (i) in these notes.
+Laws (ii) through (v) are proved in Appendix~F of the textbook. Law (vi) is a consequence of repeating
+law (iv) $n$ times (formally, you would need to use the {\it principle of mathematical induction},
+which is outside the scope of this course), and the proof of law (vii) is assigned to you in the textbook
+as Exercise~69 of Section~2.5.
+All of these proofs only deal with the case that $x\to a$ for some finite number $a$,
+as opposed to $x\to\infty$; it is an instructive exercise to try and adapt the proof below for the
+$x\to \infty$ case, to test that you have fully digested this proof and the definition of limits at infinity.
+
+Enough talk. On to the proof of (i). We shall make use of the
 {\it triangle inequality}, which says that for any numbers $a$, $b$, and $c$, we have
 $$|a-c| \le |a-b| + |b-c|.$$
 In other words, the length of any side in a triangle is always smaller than the sum of the other two sides.
@@ -782,7 +810,7 @@ $$0<|x-a|<\delta_1\qquad\hbox{and}\qquad 0<|x-a|<\delta_2$$
 {\it both} hold. As a result, by our observations in the previous paragraph,
 both of the inequalities
 $$\bigl| f(x) - L_1\bigr| < {\eps\over 2}
-\qquad\hbox{and} \bigl| g(x) - L_2\bigr| < {\eps\over 2}$$
+\qquad\hbox{and}\qquad \bigl| g(x) - L_2\bigr| < {\eps\over 2}$$
 are true as well.
 Finally we see that
 $$\eqalign{
@@ -793,8 +821,109 @@ $$\eqalign{
 }$$
 where the second line follows from the aforementioned triangle inequality. This completes the proof.\slug
 
+These laws are extremely powerful in general, allowing us to express the limit of a complex expression
+in terms of the limits of simpler expressions. For example, using laws (i), (iii), and (iv), we can deduce that
+\edef\eqlimpoly{\the\eqcount}
+$$\lim_{x\to 3} 4x^2-7 = 4\cdot \Bigl( \lim_{x\to 3} x\Bigr) \Bigl( \lim_{x\to 3} x\Bigr) -
+\lim_{x\to 3} 7.\adveq$$
+We already encountered
+an expression of the form $\lim_{x\to a} c$, where $c$ is a constant number, in an earlier proof.
+It should be obvious that this limit is $c$, and that $\lim_{x\to a} x = a$. Let us state these two facts,
+along with two more as a theorem, so that we can easily invoke them later on. (We continue the numbering
+from Theorem~{\thmalglaws} in order to remain consistent with the textbook.)
 
+\parenproclaim Theorem {\advthm} (Special limits). For any positive integer $n$ and any numbers $a$ and $c$,
+\medskip
+\begingroup\parindent=22pt
+\item{viii)} $\lim_{x\to a} c = c$;
+\smallskip
+\item{ix)} $\lim_{x\to a} x = a$;
+\smallskip
+\item{x)} $\lim_{x\to a} x^n = a^n$; and
+\smallskip
+\item{xi)} $\lim_{x\to a} \root n\of x = \root n\of a$.
+\endgroup
+\medskip
 
+\proof As mentioned before, the proof of law (viii) is presented to you as Exercise~24 in Section~2.4;
+the proof of law (ix) is Exercise~23 in the same section.
 
+Laws (x) and (xi) are easy to prove once we have
+all the other laws established.
+To prove law (x), apply the power law with $f(x) = x$ and then law (ix) to obtain
+$$\lim_{x\to a} x^n = \Bigl( \lim_{x\to a} x\Bigr)^n = a^n.$$
+To prove law (xi), apply the root law with $f(x) = x$ and then law (ix) to obtain
+$$\lim_{x\to a} \root n\of x = \root n\of{ \lim_{x\to a} x} = \root n\of a.\noskipslug$$
+
+With these new laws in hand, we can revisit the polynomial $4x^2-7$ from earlier and conclude that
+$$\lim_{x\to 3} (4x^2 - 7) = 4\cdot 3^2 - 7 = 29.$$
+In fact, we don't even need to break up $x^2$ into $x\cdot x$ like we did
+in \refeq{\eqlimpoly}, as law (x) takes care of monomials
+such as these.
+
+When applying the limit laws to a determine what happens when $x\to 3$ to a
+simple polynomial such as $4x^2-7$, it seemed like
+we could just substitute in $x=3$ in the expression and get the right answer. This turns out to be true in
+the general case $x\to a$ as long as $a$ is in the domain of $f$.
+
+\parenproclaim Theorem {\advthm} (Direct substitution).
+Let $f$ be a polynomial or a rational function (a quotient of two polynomials). If $a$ is in the domain of
+$f$, then
+$$\lim_{x\to a} f(x) = f(a).$$
+
+\proof Every rational function $f$ is of the form
+$$f(x) = {a_m x^m + a_{m-1} x^{m-1} + \cdots + a_1 x + a_0
+\over b_n x^n + b_{n-1}x^{n-1} + \cdots + b_1 x + b_0},$$
+where $m$ and $n$ are nonnegative integers, and $a_0,a_1,\ldots,a_m,b_0,b_1,\ldots,b_n$
+are real (possibly negative or zero) coefficients.
+Taking the limit of both sides, the
+quotient law deals with the fraction, the sum law splits the limit of the sum into the sum of limits, and
+from there we use law (x) and the constant multiple law to break up these terms further. We then apply
+laws (viii) and (ix) as to finish off the proof.\slug
+
+Using the direct substitution rule is fairly easy whenever it applies, so we will not dwell on it.
+There is, however, a more advanced version of this rule that is useful in certain cases, such as when
+$f(x)$ is a rational
+function and $a$ is {\it not} in the domain of $f$ (e.g., because plugging in $x=a$ makes the denominator $0$).
+Then we may have to invoke the following theorem in order to use the direct substitution rule.
+
+\proclaim Theorem \advthm. Let $a$ be a number, and suppose that $f$ and $g$ are two functions
+that are equal for all $x$ in some interval containing $a$, except possibly at $a$ itself.
+Then if $\lim_{x\to a} f(x)$ and $\lim_{x\to a} g(x)$ both exist, we must have
+$$\lim_{x\to a} f(x) = \lim_{x\to a} g(x).$$
+
+\proof This proof is a bit more advanced than you should fairly be expected to follow in this course,
+though if you take a second-year mathematics class such as {\mc MATH} 242 one day,
+you'd find it a routine exercise by the end of that course.
+We include it in these notes for completeness.
+
+We know that $f$ and $g$ agree in some interval containing $a$, except possibly at $a$ itself.
+To be concrete, this means there exists some number $\eta>0$ be such that $f(x) = g(x)$ for every
+$x$ with $0<|x-a|<\eta$.
+Suppose $\lim_{x\to a} f(x) = L$ and $\lim_{x\to a} = M$. We want to show that $L=M$; we shall show
+that $|L-M|<\eps$ for all $\eps > 0$, which is an equivalent statement (a nonnegative quantity that is
+less than any positive quantity must be zero).
+
+Let $\eps > 0$. We will use an ``$\eps/2$ trick'' again, just as in the proof of the sum law above.
+Since $\lim_{x\to a} f(x) = L$, there is $\delta_1$ such that for all $x$ with $0<|x-a|<\delta_1$,
+we have
+\edef\eqfxL{\the\eqcount}
+$$\bigl| f(x) - L\bigr| < \eps/2.\adveq$$
+Likewise, since $\lim_{x\to a} g(x) = M$, there is $\delta_2$
+such that for all $x$ with $0<|x-a|<\delta_2$, we have
+\edef\eqgxM{\the\eqcount}
+$$\bigl| g(x) - M\bigr| < \eps/2.\adveq$$
+Now pick $\delta = \min\{\eta, \delta_1, \delta_2\}$,
+so that every $x$ with $0<|x-a|<\delta$ has $f(x) = g(x)$ {\it and} satisfies both~\refeq{\eqfxL}
+and~\refeq{\eqgxM}. We now combine all three of these facts and invoke the triangle inequality to obtain
+$$\eqalign{
+|L-M| &= \bigl|L - g(x) + g(x) - M\bigr| \cr
+&\le \bigl|L-g(x)\bigr| + \bigl|g(x) - M\bigr| \cr
+&= \bigl| f(x) - L\bigr| + \bigl| g(x) - M\bigr| \cr
+&< {\eps\over 2} + {\eps\over 2} \cr
+&= \eps. \cr
+}$$
+As we said above, since this proof shows that $|L-M|<\eps$ for every $\eps > 0$, we must have $|L-M| = 0$;
+that is, $L=M$.\slug
 
 \bye
