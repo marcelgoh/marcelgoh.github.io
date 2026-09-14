@@ -16,6 +16,7 @@
 \def\percent{\mathrel{\%}}
 \def\norm#1{|\!|#1|\!|}
 \def\dist{\op{\rm dist}}
+\def\optproof{\medbreak\noindent\llap{*}{\it Proof.}\xskip\ignorespaces}
 
 \maketitle{MATH 140 Fall 2026}{notes by}{Marcel Goh}{}
 
@@ -284,6 +285,7 @@ picture that
 $\lim_{x\to 1} f(x) = 4$.
 Let us state this as a proposition and prove it rigorously (via the formal definition of a limit).
 
+\edef\proplimfirstexample{\the\thmcount}
 \proclaim Proposition \advthm. We have
 $$\lim_{x\to 1} {3x^2-2x-1 \over x-1} = 4.$$
 
@@ -485,7 +487,6 @@ $$\lim_{x\to a} f(x) = L$$
 if and only if
 $$\lim_{x\to a^+} f(x) = L\qquad\hbox{and}\qquad \lim_{x\to a^-} f(x) = L.\noskipslug$$
 
-
 A simple application of Theorem~{\thmonesidedsame} is to prove that the function $f(x) = |x|$ goes to $0$ as $x$
 approaches $0$. We'll see this as an example in the next section, but it's really not a difficult proof,
 so you could try it now. Show that both one-sided limits approach $0$, then simply invoke the theorem.
@@ -514,7 +515,7 @@ as $x$ approaches $0$.
 Since $|x|  = x$ for all $x>0$, we see that
 $$\lim_{x\to 0^+} {|x|\over x} = \lim_{x\to 0^+} {x\over x} = \lim_{x\to 0^+} 1 = 1.$$
 (The last equality is easy to see if you just graph the constant function $1$. If you are a serious
-student and insist on a rigorous proof, then please do Exercise 24 of Section 2.4 in the textbook,
+student and insist on a rigorous proof, then please do Exercise~24 of Section~2.4 in the textbook,
 which invites you to furnish
 a proof that $\lim_{x\to a} c = c$ for all numbers $a$ and $c$.)
 
@@ -766,7 +767,8 @@ that $\lim_{x\to a} g(x)\ne 0$;
 \item{vii)} for all positive integers $n$, $\lim_{x\to a} \root n\of{f(x)} = \root n\of{\lim_{x\to a} f(x)}$,
 (provided that $\lim_{x\to a} f(x)>0$ in the case that $n$ is even ,so that the $n$th root is well-defined).
 \medskip
-These statements are all true even when $x\to a$ is replaced with $x\to\infty$ or $x\to-\infty$.
+These statements are all true even when $x\to a$ is replaced with $x\to\infty$, $x\to-\infty$,
+$x\to a^+$, or $x\to a^-$.
 
 The identities above
 are known as (i) the sum law, (ii) the difference law, (iii) the constant multiple law,
@@ -775,7 +777,8 @@ They can be expressed in words as well:~the limit of a sum is the sum of the lim
 the limit of a difference is the difference
 of the limits, and so on.
 
-\proof We only prove (i) in these notes.
+\medskip\noindent{\it \datestamp{14}{ix} Proof.}\xskip\ignorespaces
+We only prove (i) in these notes.
 Laws (ii) through (v) are proved in Appendix~F of the textbook. Law (vi) is a consequence of repeating
 law (iv) $n$ times (formally, you would need to use the {\it principle of mathematical induction},
 which is outside the scope of this course), and the proof of law (vii) is assigned to you in the textbook
@@ -802,7 +805,7 @@ Likewise, there is some $\delta_2>0$ such that if we assume
 $0<|x-a|<\delta_2$, then
 $$\bigl| g(x) - L_2\bigr| < {\eps\over 2}.$$
 
-Now, set $\delta = \min(\delta_1, \delta_2)$. This guarantees both $\delta\le \delta_1$ and
+Now, set $\delta = \min\{\delta_1, \delta_2\}$. This guarantees both $\delta\le \delta_1$ and
 $\delta\le \delta_2$, so that if we assume $0<|x-a|<\delta$,
 then the inequalities
 $$0<|x-a|<\delta_1\qquad\hbox{and}\qquad 0<|x-a|<\delta_2$$
@@ -843,9 +846,12 @@ from Theorem~{\thmalglaws} in order to remain consistent with the textbook.)
 \item{xi)} $\lim_{x\to a} \root n\of x = \root n\of a$.
 \endgroup
 \medskip
+Laws (viii) and (ix) remain true when $x\to a$ is replaced by $x\to\infty$ or $x\to-\infty$.
 
 \proof As mentioned before, the proof of law (viii) is presented to you as Exercise~24 in Section~2.4;
-the proof of law (ix) is Exercise~23 in the same section.
+the proof of law (ix) is Exercise~23 in the same section. This is in the case where $x$ approaches some
+finite $a$; you might like to prove the corresponding
+limits at infinity to test your understanding of those definitions.
 
 Laws (x) and (xi) are easy to prove once we have
 all the other laws established.
@@ -853,6 +859,7 @@ To prove law (x), apply the power law with $f(x) = x$ and then law (ix) to obtai
 $$\lim_{x\to a} x^n = \Bigl( \lim_{x\to a} x\Bigr)^n = a^n.$$
 To prove law (xi), apply the root law with $f(x) = x$ and then law (ix) to obtain
 $$\lim_{x\to a} \root n\of x = \root n\of{ \lim_{x\to a} x} = \root n\of a.\noskipslug$$
+
 
 With these new laws in hand, we can revisit the polynomial $4x^2-7$ from earlier and conclude that
 $$\lim_{x\to 3} (4x^2 - 7) = 4\cdot 3^2 - 7 = 29.$$
@@ -865,6 +872,7 @@ simple polynomial such as $4x^2-7$, it seemed like
 we could just substitute in $x=3$ in the expression and get the right answer. This turns out to be true in
 the general case $x\to a$ as long as $a$ is in the domain of $f$.
 
+\edef\thmdirectsub{\the\thmcount}
 \parenproclaim Theorem {\advthm} (Direct substitution).
 Let $f$ be a polynomial or a rational function (a quotient of two polynomials). If $a$ is in the domain of
 $f$, then
@@ -880,18 +888,22 @@ quotient law deals with the fraction, the sum law splits the limit of the sum in
 from there we use law (x) and the constant multiple law to break up these terms further. We then apply
 laws (viii) and (ix) as to finish off the proof.\slug
 
-Using the direct substitution rule is fairly easy whenever it applies, so we will not dwell on it.
+This theorem applies to functions involving roots as well, thanks to the root law. (It more generally
+applies to all {\it continuous} functions---we will discuss the notion of continuity very soon.)
+Using the direct substitution rule is fairly easy whenever its hypotheses are satisfied,
+so we will not dwell on this.
 There is, however, a more advanced version of this rule that is useful in certain cases, such as when
 $f(x)$ is a rational
 function and $a$ is {\it not} in the domain of $f$ (e.g., because plugging in $x=a$ makes the denominator $0$).
 Then we may have to invoke the following theorem in order to use the direct substitution rule.
 
+\edef\thmlimequal{\the\thmcount}
 \proclaim Theorem \advthm. Let $a$ be a number, and suppose that $f$ and $g$ are two functions
 that are equal for all $x$ in some interval containing $a$, except possibly at $a$ itself.
 Then if $\lim_{x\to a} f(x)$ and $\lim_{x\to a} g(x)$ both exist, we must have
 $$\lim_{x\to a} f(x) = \lim_{x\to a} g(x).$$
 
-\proof This proof is a bit more advanced than you should fairly be expected to follow in this course,
+\optproof This proof is a bit more advanced than you should fairly be expected to follow in this course,
 though if you take a second-year mathematics class such as {\mc MATH} 242 one day,
 you'd find it a routine exercise by the end of that course.
 We include it in these notes for completeness.
@@ -924,5 +936,160 @@ $$\eqalign{
 }$$
 As we said above, since this proof shows that $|L-M|<\eps$ for every $\eps > 0$, we must have $|L-M| = 0$;
 that is, $L=M$.\slug
+
+If we'd had these theorems from the start, we wouldn't have had to use so much elbow grease in
+proving Proposition~{\proplimfirstexample}. Here's how we could have proceeded.
+
+\medskip\noindent{\it Proof of Proposition~{\proplimfirstexample} using Theorems~{\thmdirectsub}
+and~{\thmlimequal}.}\enspace
+Let
+$$f(x) = {3x^2 -2x-1\over x-1};$$
+recall that we are trying to show that $\lim_{x\to 1} f(x) = 4$.
+We factor $3x^2 - 2x-1 = (3x+1)(x-1)$ and observe that for any $x\ne 1$,
+$$f(x) = {3x^2 -2x-1\over x-1} = 3x+1.$$
+Letting $g(x) = 3x+1$, on any open interval containing $1$ we have $f(x) = g(x)$ everywhere except at
+$x=1$, so Theorem~{\thmlimequal} applies to inform us that $\lim_{x\to 1} f(x) = \lim_{x\to 1} g(x)$.
+Moreover, $g(x)$ is a polynomial with $x=1$ in its domain, so
+$$\lim_{x\to 1} g(x) = 3\cdot 1 + 1 = 4$$
+by Theorem~{\thmdirectsub}.\slug
+
+Here's another example in which we use the root law.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 0} {\sqrt{x^2+4}-2\over x^2} = {1\over 4}.$$
+
+\proof
+We cannot use the quotient law, since $x^2\to 0$ as $x\to 0$. If we can massage the expression to obtain
+a factor of $x^2$ in the numerator, then (in an open interval containing $0$ but not at $0$ itself), we
+can cancel the $x^2$ in the denominator and perhaps make some headway. This strategy is facilitated by
+the observation that
+$$ \Bigl(\sqrt{x^2 + 4} - 2\Bigr) \Bigl( \sqrt{x^2 - 4} + 2\Bigr) = \Bigl(\sqrt{x^2 - 4}\Bigr)^2 - 2^2
+= x^2.$$
+Hence we have
+$$\eqalign{
+\lim_{x\to 0} {\sqrt{x^2+4}-2\over x^2} &= \lim_{x\to 0} {\sqrt{x^2+4}-2\over x^2} \cdot {\sqrt{x^2 + 4} + 2
+\over \sqrt{x^2 + 4} + 2} \cr
+&=  \lim_{x\to 0} {x^2\over x^2 \bigl( \sqrt{x^2 + 4} + 2\bigr)} \cr
+&= \lim_{x\to 0} {1\over \sqrt{x^2 + 4} + 2}. \cr
+}$$
+We no longer have the issue of the limit of the denominator being $0$, and can happily apply the algebraic
+limit laws as well as the direct substitution property:
+$$\eqalign{
+\lim_{x\to 0} {1\over \sqrt{x^2 + 4} + 2}
+&= {1\over \lim_{x\to 0} \bigl( \sqrt{x^2 + 4} + 2\bigr)} \cr
+&= {1\over \lim_{x\to 0} \sqrt{x^2 + 4} + \lim_{x\to 0}  2} \cr
+&= {1\over \sqrt{\lim_{x\to 0} (x^2 + 4)} +  2} \cr
+&= {1\over \sqrt{4} +  2} \cr
+&= {1\over 4} \noskipslug\cr
+}$$
+
+\medskip\boldlabel Using one-sided limits.
+Recall Theorem~{\thmonesidedsame}, which states that a limit exists and equals some $L$ if and only if
+both one-sided limits exist and equal $L$. This can be used to compute $\lim_{x\to 0} |x|$, even
+though the algebraic limit laws do not apply to the function $|x|$ directly.
+
+\edef\proplimabs{\the\thmcount}
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 0} |x| = 0.$$
+
+\proof Towards the invocation of Theorem~{\thmonesidedsame}, we calculate the one-sided limits of
+$|x|$ using the direct substitution rule.
+When $x>0$, we have $|x| = x$, so
+$$\lim_{x\to 0^+} |x| = \lim_{x\to 0^+} x = 0,$$
+since
+For all $x<0$ we instead have $|x| = -x$, so
+$$\lim_{x\to 0^-} |x| = \lim_{x\to 0^-} -x = 0.$$
+Both one-sided limits agree, so we conclude that the limit is $0$.\slug
+
+\medskip\boldlabel Evaluating limits at infinity.
+Recall that most of the algebraic limit laws established earlier in this section apply to limits at
+infinity. Hence we can combine the root and power laws with Proposition~{\prophorasymp} to prove the following
+useful theorem.
+
+\edef\thminfratpower{\the\thmcount}
+\proclaim Theorem \advthm. Let $r>0$ be a rational number. Then
+$$\lim_{x\to \infty} {1\over x^r} = 0.$$
+If $r>0$ is such that $x^r$ is defined for negative values of $x$ as well, then
+$$\lim_{x\to -\infty} {1\over x^r} = 0.$$
+
+\proof Let $r>0$ be a rational number. This means there are positive integers $m$ and $n$ such that
+$r = m/n$, so we can write
+$$\lim_{x\to \infty} {1\over x^r} = \lim_{x\to \infty} \root n\of{\Bigl({1\over x}\Bigr)^m}
+=\root n\of{\Bigl(\lim_{x\to \infty} {1\over x} \Bigr)^m} = 0,$$
+where the third equality follows from the root and power laws, and the last follows from
+Proposition~{\prophorasymp}.
+
+This works for $x\to-\infty$ as well, as long as $x^r$ is defined for negative values of $x$. (If
+$n$ is even and $m$ is odd, $x^m$ is negative and the $n$th root of a negative is not defined,
+so it does not makes sense to write $x^r = \root n\of {x^m}$ in this case.)\slug
+
+\bye
+
+When studying the behaviour of a function $f(x)$ as $x\to\infty$, we can always multiply the whole
+expression by $x^r/x^r$ for any $r$, since we are interested in the case where $x$ is large and don't
+have to worry about the denominator possibly being $0$. This is very useful in practice when applying
+Theorem~{\thminfratpower}.
+
+\medskip\boldlabel The squeeze theorem.
+We end this section by highlighting the following intuitive theorem, which also goes by the names
+{\it sandwich theorem} or {\it two policemen and a drunk theorem}.
+
+\parenproclaim Theorem {\advthm} (Squeeze theorem).
+Let $a$ be a number and suppose that for all $x\ne a$ in an open interval containing $a$, we have
+$$f(x) \le g(x) \le h(x).$$
+If
+$$\lim_{x\to a} f(x) =  \lim_{x\to a} h(x) = L,$$
+then $\lim_{x\to a} g(x)$ exists and equals $L$.
+
+\optproof This proof is given in Appendix~F of the textbook, but we include it in the notes as well for
+completeness.
+
+Let $\eps > 0$. Since $\lim_{x\to a} f(x) = L$, there is $\delta_1 > 0$ such that every $x$ with
+$0<|x-a|<\delta_1$ satisfies
+\edef\eqsqueezeone{\the\eqcount}
+$$\bigl| f(x) - L\bigr| <\eps.\adveq$$
+Likewise, there is $\delta_2>0$ such that every $x$ with
+$0<|x-a|<\delta_2$ satisfies
+\edef\eqsqueezetwo{\the\eqcount}
+$$\bigl| h(x) - L\bigr| <\eps.\adveq$$
+Let $\eta>0$ be a number such that for all $x$ with $0<|x-a|<\eta$, we have $f(x)\le g(x)\le h(x)$.
+Subtracting $L$ from this inequality gives us
+\edef\eqsqueezethree{\the\eqcount}
+$$f(x) -L \le g(x) - L \le h(x) - L\adveq$$
+for all such $x$. Hence, letting $\delta = \min\{\delta_1,\delta_2,\eta\}$, every $x$ with
+$0<|x-a|<\delta$ satisfies all three of~\refeq{\eqsqueezeone},~\refeq{\eqsqueezetwo},
+and~\refeq{\eqsqueezethree}. Combining these three inequalities yields
+$$-\eps < f(x) -L \le g(x) - L \le h(x) - L<\eps,$$
+which implies that
+$$\bigl|g(x) - L\bigr| < \eps,$$
+as desired.\slug
+
+Near the beginning of the course we encountered the perverse function $\sin(\pi/x)$ and convinced
+ourselves that it does not possess a limit as $x\to 0$. However, by combining the squeeze theorem
+with Proposition~{\proplimabs}, we can show that a modification of $\sin(\pi/x)$ does in fact approach a
+limit.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 0}\, x\sin\Bigl({\pi\over x}\Bigr) = 0.$$
+
+\proof It looks like this follows from the product law, but we cannot actually apply that law because
+$\lim_{x\to 0}\sin(\pi/x)$ does not exist.
+
+The thing to note is that the function $\sin$ is bounded from above by the constant function $1$ and
+bounded from below by the constant function $-1$. In other words, for all real numbers $t$ we have
+$$-1\le \sin(t)\le 1.$$
+So for all $x> 0$ we have
+$$ -x\le x\sin\Bigl({\pi\over x}\Bigr) \le x $$
+and for all $x<0$ we have
+$$ x\le x\sin\Bigl({\pi\over x}\Bigr) \le -x.$$
+In other words, the inequality
+$$ -|x| \le x\sin\Bigl({\pi\over x}\Bigr) \le |x|$$
+holds for all $x\ne 0$.
+By Proposition~{\proplimabs}, $\lim_{x\to 0} |x| = 0$, so we also have
+$\lim_{x\to 0} -|x| = 0$ by the constant multiple law.
+Hence by the squeeze theorem (with $f(x) = -|x|$, $g(x) = x\sin(\pi/x)$, and $h(x) = |x|$),
+we have
+$$\lim_{x\to 0}\, x\sin\Bigl({\pi\over x}\Bigr) = 0.$$
+which is what we wanted to show.\slug
 
 \bye
