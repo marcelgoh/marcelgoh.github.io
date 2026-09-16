@@ -1023,12 +1023,88 @@ This works for $x\to-\infty$ as well, as long as $x^r$ is defined for negative v
 $n$ is even and $m$ is odd, $x^m$ is negative and the $n$th root of a negative is not defined,
 so it does not makes sense to write $x^r = \root n\of {x^m}$ in this case.)\slug
 
-\bye
-
 When studying the behaviour of a function $f(x)$ as $x\to\infty$, we can always multiply the whole
 expression by $x^r/x^r$ for any $r$, since we are interested in the case where $x$ is large and don't
 have to worry about the denominator possibly being $0$. This is very useful in practice when applying
 Theorem~{\thminfratpower}.
+
+Here's a simple example.
+
+\proclaim \datestamp{16}{ix} Proposition \advthm. We have
+$$\lim_{x\to \infty} {5x^2 - 3x + 4\over 3x^2 + 10x-3} = {5\over 3}$$
+
+\proof Since we're only interested in the behaviour when $x$ is very large, we can assume $x>0$, so that
+$x^2/x^2$ is defined. We divide by this function, obtaining
+$$\lim_{x\to \infty} {5x^2 - 3x + 4\over 3x^2 + 10x-3}
+=\lim_{x\to \infty} {(5x^2 - 3x + 4)/x^2\over (3x^2 + 10x-3)/x^2}
+=\lim_{x\to \infty} {5- 3/x + 4/x^2\over 3 + 10/x-3/x^2}.$$
+Invoking the quotient and sum laws now, we take the limits of each term in the numerator and denominator
+individually, and Theorem~{\thminfratpower} applies to give us
+$$\lim_{x\to \infty} {5- 3/x + 4/x^2\over 3 + 10/x-3/x^2}
+=\lim_{x\to \infty} {5-0 + 0\over 3 + 0-0} = {5\over 3}.$$
+(We technically used the constant multiple law here too, e.g., when performing the operation
+$\lim_{x\to\infty} 4/x^2 = 4\cdot\lim_{x\to\infty} 1/x^2$.)\slug
+
+The limit as $x\to-\infty$ of the function in the above proposition is also $5/3$ (work it out!),
+but it is not always the case that the limits as $x\to\infty$ and $x\to-\infty$ agree.
+
+\proclaim Proposition \advthm. Let
+$$f(x) = {\sqrt{2x^2+1} \over 5x-1}.$$
+We have
+\medskip
+\item{i)} $\lim_{x\to \infty} f(x) = \sqrt 2/5$;
+\smallskip
+\item{ii)} $\lim_{x\to -\infty} f(x) = -\sqrt 2/5$;
+\smallskip
+\item{iii)} $\lim_{x\to (1/5)^+} f(x) = \infty$; and
+\smallskip
+\item{iv)} $\lim_{x\to (1/5)^-} f(x) = -\infty$.
+\medskip
+
+\proof To prove part (i), we perform the same strategy. The largest power of $x$ in the denominator is just
+$x$, so we divide top and bottom by $x$, noting that for $x>0$ one has $x = \sqrt{x^2}$:
+$$\eqalign{
+\lim_{x\to\infty} {\bigl(\sqrt{2x^2+1}\bigr)/x \over (5x-1)/x}
+&=\lim_{x\to\infty} {\bigl(\sqrt{2x^2+1}\bigr)/\sqrt{x^2} \over 5-1/x} \cr
+&=\lim_{x\to\infty} {\bigl(\sqrt{2+1/x^2}\bigr) \over 5-1/x} \cr
+&={\sqrt{2+0} \over 5-0} \cr
+&= {\sqrt 2\over 5}\cr
+}$$
+It looks like we can do the same thing when $x<0$, and morally we can, except we have to remember that
+for negative $x$ one instead has $x = -\sqrt{x^2}$. So
+$$\eqalign{
+\lim_{x\to-\infty} {\bigl(\sqrt{2x^2+1}\bigr)/x \over (5x-1)/x}
+&=\lim_{x\to-\infty} {\bigl(\sqrt{2x^2+1}\bigr)/\bigl(-\sqrt{x^2}\bigr) \over 5-1/x} \cr
+&=\lim_{x\to-\infty} {-\bigl(\sqrt{2+1/x^2}\bigr) \over 5-1/x} \cr
+&={-\sqrt{2+0} \over 5-0} \cr
+&= {-\sqrt 2\over 5},\cr
+}$$
+settling claim (ii).
+We might as well take a moment here to practise finding infinite limits. Note that $x=1/5$ is outside
+the domain of $f$, since it makes the denominator $0$. Note that when $x=1/5$, the numerator is a positive
+number (since squaring a positive number preserves its positivity, and all the other operations in that
+expression do as well---if you were extra insecure, you'd calculate the numerator fully and see that it
+equals $\sqrt{27}/5$, a positive quantity). Hence slightly to the left of $x=1/5$ and slightly to the right,
+$f$ is also positive. When $x$ just slightly to the right of $1/5$, the denominator is a very small positive
+number, and we can make this denominator arbitrarily small by taking $x$ sufficiently close to $x$ from the
+right. So
+$$\lim_{x\to (1/5)^+} = \infty,$$
+since the numerator is positive as well.
+On the other hand, when $x$ is very close to $1/5$ from the left, the denominator is a very small negative
+number, and again this can be taken arbitrarily close to $0$ by taking $x$ sufficiently close to $x$ from
+the left. So
+$$\lim_{x\to (1/5)^-} = -\infty.\noskipslug$$
+
+The examples we've seen of limits at infinity have been finite, so before moving on,
+let's see an example where the limit at infinity is infinite.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to\infty} x-x^2 = -\infty.$$
+
+\proof We might be tempted to try the difference law here, but since the limits are both infinite we get
+$\infty-\infty$, which is nonsense. A better thing to do is to factor $x-x^2 = x(1-x)$. When $x$ gets
+large, $x$ is a large positive number and $(1-x)$ is a large negative number. Hence the product
+is a (very) large negative number. We conclude that the limit must be $-\infty$.\slug
 
 \medskip\boldlabel The squeeze theorem.
 We end this section by highlighting the following intuitive theorem, which also goes by the names
@@ -1041,7 +1117,7 @@ If
 $$\lim_{x\to a} f(x) =  \lim_{x\to a} h(x) = L,$$
 then $\lim_{x\to a} g(x)$ exists and equals $L$.
 
-\optproof This proof is given in Appendix~F of the textbook, but we include it in the notes as well for
+\proof This proof is given in Appendix~F of the textbook, but we include it in the notes as well for
 completeness.
 
 Let $\eps > 0$. Since $\lim_{x\to a} f(x) = L$, there is $\delta_1 > 0$ such that every $x$ with
@@ -1064,7 +1140,7 @@ which implies that
 $$\bigl|g(x) - L\bigr| < \eps,$$
 as desired.\slug
 
-Near the beginning of the course we encountered the perverse function $\sin(\pi/x)$ and convinced
+Near the beginning of the course we encountered the pathological function $\sin(\pi/x)$ and convinced
 ourselves that it does not possess a limit as $x\to 0$. However, by combining the squeeze theorem
 with Proposition~{\proplimabs}, we can show that a modification of $\sin(\pi/x)$ does in fact approach a
 limit.
@@ -1091,5 +1167,12 @@ Hence by the squeeze theorem (with $f(x) = -|x|$, $g(x) = x\sin(\pi/x)$, and $h(
 we have
 $$\lim_{x\to 0}\, x\sin\Bigl({\pi\over x}\Bigr) = 0.$$
 which is what we wanted to show.\slug
+
+We will see more applications of the squeeze theorem in the future, for example, when we work out the derivative
+(whatever that is) of the sine function.
+
+\bye
+
+\advsect Continuity
 
 \bye
