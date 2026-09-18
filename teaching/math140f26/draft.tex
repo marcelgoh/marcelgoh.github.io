@@ -41,6 +41,7 @@ Please email me if you find any.
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 1.\kern .5em Rates of change}{3}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 2.\kern .5em Limits}{5}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 3.\kern .5em Rules for evaluating limits}{18}}
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 4.\kern .5em Continuity}{29}}
 \medskip
 
 \vfill\eject
@@ -834,6 +835,7 @@ It should be obvious that this limit is $c$, and that $\lim_{x\to a} x = a$. Let
 along with two more as a theorem, so that we can easily invoke them later on. (We continue the numbering
 from Theorem~{\thmalglaws} in order to remain consistent with the textbook.)
 
+\edef\thmspeciallimits{\the\thmcount}
 \parenproclaim Theorem {\advthm} (Special limits). For any positive integer $n$ and any numbers $a$ and $c$,
 \medskip
 \begingroup\parindent=22pt
@@ -1080,8 +1082,9 @@ $$\eqalign{
 &= {-\sqrt 2\over 5},\cr
 }$$
 settling claim (ii).
-We might as well take a moment here to practise finding infinite limits. Note that $x=1/5$ is outside
-the domain of $f$, since it makes the denominator $0$. Note that when $x=1/5$, the numerator is a positive
+We might as well take a moment here to practise finding infinite limits. The input $x=1/5$ is outside
+the domain of $f$, since it makes the denominator $0$, so we should investigate the behaviour of this function
+around this point. Note that when $x=1/5$ exactly, the numerator is a positive
 number (since squaring a positive number preserves its positivity, and all the other operations in that
 expression do as well---if you were extra insecure, you'd calculate the numerator fully and see that it
 equals $\sqrt{27}/5$, a positive quantity). Hence slightly to the left of $x=1/5$ and slightly to the right,
@@ -1171,8 +1174,258 @@ which is what we wanted to show.\slug
 We will see more applications of the squeeze theorem in the future, for example, when we work out the derivative
 (whatever that is) of the sine function.
 
+\goodbreak
+\advsect Continuity
+
+\datestamp{18}{ix}
+We have spent the entire course so far discussing the limit of functions $f(x)$ at numbers $a$. We now understand
+that this is the
+value (if any) that the outputs $f(x)$ must approach as $x$ is taken closer and closer to $a$.
+This definition of a limit
+does not concern itself with $f(a)$ equalling this value that the function approaches,
+or in fact equalling any value
+at all. But in many cases, $f(a)$ does equal the limit of $f$ at $a$, and this situation turns out to be
+pleasant and important enough to warrant significant attention.
+
+We say that a function $f$ is {\it continuous} at a number $a$ if
+\medskip
+\item{i)} $f(a)$ is defined (i.e., $a$ is in the domain of $f$);
+\smallskip
+\item{ii)} $\lim_{x\to a} f(x)$ exists; and
+\smallskip
+\item{iii)} $\lim_{x\to a} f(x) = f(a)$.
+\medskip
+If $f$ is defined near $a$ (on some interval containing $a$ but not necessarily at $a$ itself) and yet fails
+to be continuous by violating one or more of these three conditions, then we say $f$ is {\it discontinuous}
+at $a$.
+
+Clearly by this definition there are various ways for a function to be discontinuous, and some
+of these cases have special names.
+\medskip
+\item{a)} If $\lim_{x\to a} f(x)$ exists but $f(a)$ is either undefined or does not
+equal this limit, we say that $f$ has a {\it removable discontinuity} at $a$, because we could eliminate
+this discontinuity by (re)defining the value of $f$ at the single point $a$. For instance,
+the function $f(x) = 3x^2 - 2x-1/(x-1)$ we saw before has a removable discontinuity at $x=1$.
+\smallskip
+\item{b)} If (ii) fails to hold because
+$\lim_{x\to a} f(x) = \pm\infty$, then we say $f$ has an {\it infinite discontinuity} at $a$ (regardless
+of whether $f(a)$ is defined or not). The function $f(x) = 1/(x-3)^2$ has an infinite discontinuity at
+$x=3$.
+\smallskip
+\item{c)} Lastly, if the one-sided limits of $f$ at $a$ both exist, but (ii) fails because they
+do not agree, then we say $f$ has a
+{\it jump discontinuity} at $a$---the function ``jumps'' from having some value directly to the left of $a$ to
+having some other value directly to the right of $a$. The function
+\edef\eqjumpdis{\the\eqcount}
+$$f(x) = \cases{0, & if $x\le 0$; \cr 1, & if $x > 0$}\adveq$$
+exhibits this behaviour at $x=0$.
+\medskip
+
+The appearance of one-sided limits in the definition of a jump discontinuity suggests
+that we should have a special name for the general case when
+$f(a)$ equals a one-sided limit of $f$ at $a$ but perhaps not the other. We say that a function $f$
+is {\it continuous from the right} at a number $a$ if
+$$\lim_{x\to a^+} f(x),$$
+and {\it continuous from the left} at $a$ if
+$$\lim_{x\to a^-} f(x).$$
+For example, the
+function $f(x)$ appearing in~\refeq{\eqjumpdis} is continuous from the left but not from the right.
+Of course, a function is continuous at $a$ if and only if it is continuous from the right and from the left
+at $a$, by Theorem~{\thmonesidedsame}.
+
+Since the definition of continuous is given directly in terms of the definition of limit, we can use
+the algebraic limit laws in order to prove corresponding algebraic laws for continuity.
+
+\proclaim Theorem \advthm. Suppose that $f$ and $g$ are continuous at $a$. Then
+\medskip
+\item{i)} $f+g$;
+\smallskip
+\item{ii)} $f-g$;
+\smallskip
+\item{iii)} $cf$, where $c$ is any real number; and
+\smallskip
+\item{iv)} $fg$
+\medskip\noindent
+are all continuous at $a$. Furthermore, if $g(a)\ne 0$, then
+\medskip\noindent
+\item{v)} $f/g$
+\medskip\noindent
+is also continuous at $a$.
+
+\proof We just prove (i), leaving the rest to the reader as they are similarly easy now that we have access
+to the algebraic limit laws.
+
+Let $f$ and $g$ be continuous at $a$. This means that
+$$\lim_{x\to a} f(x) = f(a)\qquad\hbox{and}\qquad \lim_{x\to a} g(x) = g(a).$$
+By the sum law for limits, we have
+$$\eqalign{
+\lim_{x\to a} (f+g)(x) &= \lim_{x\to a} \bigl(f(x) + g(x)\bigr) \cr
+&= \lim_{x\to a} f(x) + \lim_{x\to a} g(x) \cr
+&= f(a) + g(a) \cr
+&= (f+g)(a),\cr
+}$$
+which is what we needed to prove.\slug
+
+So if we know certain functions are continuous, then combining them algebraically in the five ways listed
+above preserves the property of being continuous. This begs the question of which basic functions
+are continuous. We already know about one class of examples, because
+the direct substitution property we learned in the previous section directly asserts that any rational function
+is continuous at all points in its domain. (Go back and read this theorem and you'll see for yourself!)
+In particular, since every polynomial is a rational function and
+the domain of a polynomial is the entire real line, polynomials are continuous
+everywhere.
+
+The following theorem presents a more exhaustive catalogue of continuous functions.
+
+\proclaim Theorem \advthm. If a function $f$ is a
+\medskip
+\item{i)} polynomial (e.g., $3x^5 - 4x +1$);
+\smallskip
+\item{ii)} rational function (e.g., $(4x^2 -3)/(5x-1)$);
+\smallskip
+\item{iii)} root function (e.g., $\sqrt{x}, \root 3\of x$);
+\smallskip
+\item{iv)} trigonometric function (e.g., $\sin x$, $\tan x$);
+\smallskip
+\item{v)} inverse trigonometric function (e.g., $\arcsin x$, $\arccos x$);
+\smallskip
+\item{vi)} exponential function (e.g., $e^x, 2^x$); or
+\smallskip
+\item{vii)} logarithmic function (e.g., $\log_{10} x, \ln x$);
+\medskip\noindent
+then $f$ is continuous at all points in its domain.
+
+\proof We shall skip the proofs of (iv) through (vii) since giving them rigorously would take far too much time,
+but as we noted before, (i) and (ii) are simply a restatement of the direct substitution property.
+We have also already seen (iii), since limit law (xi) from Theorem~{\thmspeciallimits}
+asserts precisely that root functions are continuous.\slug
+
+For any set $S$ of numbers, we say that $f$ is {\it continuous on $S$} if $f$ is continuous at $a$ for all
+elements $a$ of $S$. In particular, we say that $f$ is continuous on the interval $(c,d)$ if $f$ is continuous
+at $a$ for all $c<a<d$. (Similar definitions can be made for intervals of the form
+$(c,d]$, $[c,d)$, and $[c,d]$ by changing $<$ to $\le$ accordingly.)
+
+Knowing which types of functions are continuous now lets us determine many limits without straining our
+brain very much at all.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to \pi/2} {\sin x - 4\cos x\over 3x} = {2\over 3\pi}.$$
+
+\proof We expand
+$$\lim_{x\to \pi/2} {\sin x - 4\cos x\over 3x}
+= {\lim_{x\to\pi/2} \sin x - 4\cdot \lim_{x\to \pi/2}\cos x\over \lim_{x\to \pi/2} 3x}$$
+by using the algebraic limit laws. In the numerator, we apply the fact that the sine and cosine functions
+are continuous,
+and in the denominator we use the direct substitution property of the polynomial $4x$. This yields
+$$\lim_{x\to \pi/2} {\sin x - 4\cos x\over 3x}
+= {\sin(\pi/2) + 4\cos(\pi/2) \over 3\pi/2} = {1+4\cdot 0 \over 3\pi/2} = {2\over 3\pi}.\noskipslug $$
+
+Often we wish to combine functions not just by adding or multiplying them, etc., but instead by {\it composing}
+them. For instance, the function $\sin(\pi/x)$ is the composition $f\circ g$ where $f(x) = \sin x$ and
+$g(x)=\pi/x$. For this operation we have the following theorem.
+
+\edef\thmcontcomp{\the\thmcount}
+\proclaim Theorem \advthm. Suppose that $g(x)$ is continuous at $a$ and that $f(x)$ is continuous at $g(a)$.
+Then $f\circ g$ is continuous at $a$; in other words,
+$$\lim_{x\to a} (f\circ g)(x) = (f\circ g)(a) = f\bigl( g(a)\bigr).$$
+
+\proof This proof, which proceeds directly via the formal definition of the limit,
+is found in Appendix F of the textbook.\slug
+
+This theorem shows that, erratic though its behaviour may be near the vertical line $x=0$, the function
+$\sin(\pi/x)$ is continuous at all $a\ne 0$, since it is the composition of the sine function with a
+rational function, which is continuous on its domain. We can also use the theorem to compute limits that seem
+difficult to compute otherwise.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 1} \arccos\biggl( {1\over \sqrt{x+1}}\biggr) = {\pi\over 4}.$$
+
+\proof
+First, we observe that $g(x) = 1/\sqrt{x+1}$ is continuous on its domain.
+To see this, note that by Theorem~{\thmcontcomp},
+since $\sqrt x$ and $x+1$ are both continuous, their composition
+$\sqrt{x+1}$ is, and by the quotient law so is $1/\sqrt{x+1}$ at all points except at $a=-1$.
+
+To apply
+Theorem~{\thmcontcomp} again with $f(x)$ and $g(x)$, we must check that $\arccos$ is continuous at
+$g(1) = 1/\sqrt{1+1} = 1/\sqrt 2$. Well, $\arccos$ is continuous on its domain, which is the interval
+$[-1,1]$, and $1/\sqrt 2$ falls within this interval. So by Theorem~{\thmcontcomp}, we have
+$$\lim_{x\to 1} f\bigl(g(x)\bigr) = f\bigl(g(a)\bigr) = \arccos\Bigl({1\over \sqrt 2}\Bigr) = {\pi\over 4},$$
+which is what we wanted to show.\slug
+
 \bye
 
-\advsect Continuity
+\medskip\boldlabel The intermediate value theorem.
+We are now ready to state a very important theorem. It expresses the intuitive idea that for a continuous
+function to get from one value to another, it must pass through all values in between.
+
+\parenproclaim Theorem {\advthm} (Intermediate value theorem).
+Let $f$ be a function that is continuous on some closed interval $[a,b]$ and either
+$$f(a) < c < f(b) \qquad\hbox{or}\qquad f(b) < c < f(a),$$
+then there is some $x$ in the open interval $(a,b)$ such that $f(x) = c$.
+
+The proof of this theorem is non-trivial and takes several lectures of a second-year math course
+to set up properly. In this class we'll simply use it as a black box.
+
+An easy first application is to show that certain polynomials have roots.
+
+\proclaim Proposition \advthm. The polynomial
+$$f(x) = 3x^4 - 3x^3 + 4x^2 - 9x + 4$$
+has a root.
+
+\proof We wish to show that
+$$3x^4 - 3x^3 + 4x^2 - 9x + 4 = 0$$
+has a solution. There is a quartic formula (akin to the quadratic formula but for polynomials of degree
+$4$), but it is horrendously complicated. One could also try to factorise the polynomial but it is difficult
+to figure out where to start.
+But we are just tasked with showing that there {\it exists} a root; we are not asked to find out what
+the root is exactly. So we can use the intermediate value theorem.
+
+Note that the constant term of the polynomial is $4$, so $f(0) = 4$. This means that at some point, the
+graph of the function is above the $x$-axis. Now let's try to find an input that makes $f$ negative. An
+easy thing to try is $f(1)$, since we just have to add up all the coefficients:
+$$f(1) = 3 - 3 + 4 - 9 + 4 = -1$$
+Since $f$ is a polynomial, it is continuous everywhere and in particular is continuous on the interval
+$[0,1]$. By the intermediate value theorem with $a=0$ and $b=1$ then, since
+$$f(0) = 4 > 0 > -1 = f(1),$$
+there must be some $0 < x < 1$ such that $f(x) = 0$. This completes the proof.\slug
+
+Here is a fun ``real-world'' application.
+
+\parenproclaim Theorem {\advthm} (Temperature theorem).
+Show that at any given point in time, there is some location in the world
+that has the same temperature as the opposite point on the globe (assume that temperature varies
+continuously with position on the globe).
+
+\proof For any point $x$ on the globe, let $f(x)$ be the temperature at that point. Pick any starting point
+$p$ and call the opposite point on the globe $-p$. (Strictly speaking, we're now working in $3$-dimensional
+space. Think of the centre of the earth as the origin. Then the negative of any point is just its opposite
+point on the globe. Don't worry about this point too much. We can still define continuity for functions
+on $3$-dimensional space, and the intermediate value theorem still holds on
+curves---the equivalent of intervals---in space.)
+
+If $f(p) = f(-p)$, then we're done (the point we sought is just $p$).
+If $f(p)\ne f(p')$, then we have to be a bit more clever and invoke the intermediate value theorem.
+Let
+$$g(x) = f(x) - f(-x)$$
+for all points $x$ on the earth. Since $f$ is continuous, by the limit laws $g$ is continuous as well.
+For the point $p$ that we chose initially, we have
+$$g(p) = f(p) - f(-p) \ne 0.$$
+We don't know if $g(p)$ is positive or negative. We just know it's not zero. But now what about $g(-p)$?
+It turns out that
+$$g(-p) = f(-p) - f\bigl(-(-p)\bigr) = f(-p) - f(p) = -g(p),$$
+so whatever sign $g(p)$ had, $g(-p)$ has the opposite sign.
+
+We're almost there. Draw any line on the surface of the earth (this is actually a curve, since the earth
+is round)
+between $p$ and $-p$. The function $g$ is continuous on this curve, so the intermediate theorem applies.
+At one endpoint of the curve, $-p$, the function $g$ has one sign, and at the other endpoint $g$ has
+the opposite sign. So by the intermediate value theorem, there must be some point $x$ on this curve
+with $g(x) = 0$. But what does this mean for $f$? By the original definition of $g$, we have
+$$0 = g(x) = f(x) - f(-x),$$
+so $f(x) = f(-x)$, and this point $x$ has the same temperature as its opposite point on the globe.\slug
+
+
+
 
 \bye
