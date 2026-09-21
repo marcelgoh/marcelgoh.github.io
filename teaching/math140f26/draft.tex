@@ -42,6 +42,7 @@ Please email me if you find any.
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 2.\kern .5em Limits}{5}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 3.\kern .5em Rules for evaluating limits}{18}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 4.\kern .5em Continuity}{29}}
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 5.\kern .5em Derivatives}{34}}
 \medskip
 
 \vfill\eject
@@ -1353,10 +1354,9 @@ $[-1,1]$, and $1/\sqrt 2$ falls within this interval. So by Theorem~{\thmcontcom
 $$\lim_{x\to 1} f\bigl(g(x)\bigr) = f\bigl(g(a)\bigr) = \arccos\Bigl({1\over \sqrt 2}\Bigr) = {\pi\over 4},$$
 which is what we wanted to show.\slug
 
-\bye
-
-\medskip\boldlabel The intermediate value theorem.
-We are now ready to state a very important theorem. It expresses the intuitive idea that for a continuous
+\medskip\boldlabel \datestamp{21}{ix} The intermediate value theorem.
+The remainder of this section is devoted to
+a very important theorem. It expresses the intuitive idea that for a continuous
 function to get from one value to another, it must pass through all values in between.
 
 \parenproclaim Theorem {\advthm} (Intermediate value theorem).
@@ -1376,7 +1376,7 @@ has a root.
 \proof We wish to show that
 $$3x^4 - 3x^3 + 4x^2 - 9x + 4 = 0$$
 has a solution. There is a quartic formula (akin to the quadratic formula but for polynomials of degree
-$4$), but it is horrendously complicated. One could also try to factorise the polynomial but it is difficult
+$4$), but it is terrifically complicated. One could also try to factorise the polynomial but it is difficult
 to figure out where to start.
 But we are just tasked with showing that there {\it exists} a root; we are not asked to find out what
 the root is exactly. So we can use the intermediate value theorem.
@@ -1392,6 +1392,7 @@ there must be some $0 < x < 1$ such that $f(x) = 0$. This completes the proof.\s
 
 Here is a fun ``real-world'' application.
 
+\edef\thmtemp{\the\thmcount}
 \parenproclaim Theorem {\advthm} (Temperature theorem).
 Show that at any given point in time, there is some location in the world
 that has the same temperature as the opposite point on the globe (assume that temperature varies
@@ -1425,7 +1426,120 @@ with $g(x) = 0$. But what does this mean for $f$? By the original definition of 
 $$0 = g(x) = f(x) - f(-x),$$
 so $f(x) = f(-x)$, and this point $x$ has the same temperature as its opposite point on the globe.\slug
 
+This theorem applies not just to the temperature, but to any continuous function, and we didn't use the whole
+globe, but just a single circle on it. The general version of Theorem~{\thmtemp}
+for any function on a sphere in any dimension is called the Borsuk--Ulam theorem; it was first proved in~1933.
 
+\advsect Derivatives
 
+Equipped now with a more robust idea of what it means for a function to approach a value but not necessarily
+get there, we revisit the rate-of-change problem introduced in the first lecture, which is
+the broad motivating topic for this course as a whole.
+
+Recall that we were considering a function $f$ and wanted to know the rate at which it is changing
+near some input $a$ (for now, assume that $f(a)$ is well defined).
+We convinced ourselves geometrically that this rate of change could be modelled
+as the slope of a line ``tangent'' to the graph of $f(a)$ at the point $\bigl(a,f(a)\bigr)$. We couldn't
+rigorously define this line at the time, but it seemed that its slope should be the value of the quotient
+$${f(x+h) - f(x)\over h}$$
+``when'' $h=0$, even though we knew that $h$ cannot be zero, being in the denominator.
+
+Now that we are comfortable with limits, however, it is abundantly clear to us that we can overcome this
+impasse by declaring the slope to be
+$$\lim_{h\to 0} {f(a+h) - f(a) \over h},$$
+provided this slope is defined. And of course, once we know the slope, we simply remember that this
+so-called ``tangent line'' is supposed to touch the function at the point $\bigl(a,f(a)\bigr)$, so we already
+know a point on the line. Knowing just one point as well as the slope determines the line completely.
+Hence the {\it tangent line} of a function $f$ at the point $P = \bigl(a, f(a)\bigr)$ can be defined to be
+the line through $P$ with slope
+$$m= \lim_{h\to 0} {f(a+h) - f(a) \over h},$$
+so long as this limit exists.
+
+Here's an example demonstrating how to find the equation of a tangent line.
+
+\proclaim Proposition \advthm. For the function
+$$f(x) = x^3,$$
+the tangent line passing through the point $\bigl( -1, f(-1)\bigr) = (-1, -1)$ is given by the equation
+$$y=3x+2,$$
+or alternatively
+$$3x-y+2 = 0.$$
+
+\proof
+To find the slope of the tangent line at $a=-1$, we compute
+$$m = \lim_{h\to 0} {f(-1+h) - f(-1)\over h} = \lim_{h\to 0} {(h-1)^3 - (-1)^3\over h}.$$
+Expanding $(h-1)^3$ and then simplifying gives us
+$$m = \lim_{h\to 0} { h^3 - 3h^2 + 3h -1 - (-1)\over h} = 
+\lim_{h\to 0} {h^3 - 3h^2 + 3h \over h},$$
+and since
+we're only interested in values of $h$ near $0$ but not {\it at} $0$,
+we can divide by $h$ on the top and bottom and apply
+the direct substitution property to get
+$$m = \lim_{h\to 0}(h^2 - 2h + 3) = 0-0+3 = 3.$$
+So the slope of the line is $3$ and the equation of the line must be of the form
+$$y= 3x+b$$
+for some number $b$. We solve for this $b$ by substituting
+one known point on the line, namely $(-1,-1)$.
+We have
+$$-1 = 3(-1) + b,$$
+whence $b=2$ and we see that the tangent line can be expressed by the equation
+$$3x-y+2 = 0,$$
+as claimed.\slug
+
+\bye
+
+\medskip\boldlabel Instantaneous velocity.
+Back at the beginning of the course, we considered the example of finding the speed of a moving car at some
+given point in time, and pondered the paradoxical nature of trying to calculate speed, which is distance
+divided by time, at some instant (that is, when the elapsed time is zero). We concluded that any concept of
+instantaneous velocity must be theoretical and not measurable in any empirical way. However, such a definition
+is still extremely useful in modelling the position of objects for various applications.
+
+Let $s(t)$ be the position of some object at time $t$.
+We deduced earlier that, whatever the instantaneous velocity is at some time $a$,
+it can be approximated by taking averages
+$${s(a+h) - s(a) \over h},$$
+over smaller and smaller time intervals $h$. Now that we know what a limit is, we can simply {\it define}
+the {\it instantaneous velocity} at some time $t=a$ of an object with position function $s(t)$ to be
+\edef\eqvdef{\the\eqcount}
+$$v(a) = \lim_{h\to 0} {s(a+h) - s(a) \over h}.\adveq$$
+
+This is best illustrated by an example.
+Ha Ling Peak in the Rocky Mountains is 2407 metres above sea level, and the town
+of Canmore below it is at roughly 1400 metres above sea level. (Let's say it's an even 1400 metres just
+for the sake of the example.)
+At the top of the peak there is a sign
+telling you not to throw rocks off the cliff as they could hit someone down below and cause grave injury.
+Suppose you could throw a rock off Ha Ling Peak
+with enough horizontal velocity to make it to town. Let's find out what its
+vertical velocity would be once it reached the ground (ignoring factors such as air drag, etc.).
+
+The elevation of the rock after $t$ seconds of free fall is modelled by the function
+$$s(t) = 2407 - 4.9 t^2,$$
+assuming its initial vertical velocity is zero, and it starts falling from 2407 metres above sea level.
+First, we find out how long it takes for the rock to reach the ground in town, which is at 1400 metres.
+We need to solve the equation
+$$1400 = 2407 - 4.9 t^2;$$
+this rearranges to
+$$t = \sqrt{{1400\over 4.9}} \approx 14.3$$
+seconds.
+
+So we want to calculate $v(14.3)$, where $v(a)$ is the instantaneous velocity at time $t=a$. First we need
+to derive a formula for $v$. Plugging our formula for $s$ into the definition~\refeq{\eqvdef} of $v$,
+we solve the resulting limit to obtain
+$$\eqalign{
+v(a) &= \lim_{h\to 0} {2407 - 4.9(a+h)^2 -(2407 - 4.9a^2)\over h} \cr
+&= \lim_{h\to 0} {-4.9a^2 - 9.8 ah - h^2 + 4.9a^2\over h} \cr
+&= \lim_{h\to 0} {-9.8 ah - h^2 \over h} \cr
+&= \lim_{h\to 0} (-9.8 a - h) \cr
+&= -9.8a. \cr
+}$$
+The negative sign here simply expresses that the rock will be moving downwards (losing elevation). From here
+we can simply plug in $a=14.3$ to conclude that the vertical velocity of the rock right before it hits the ground
+is
+$$v(14.3) = -9.8(14.3) = -140.5$$
+metres per second. (Of course in real life this could not happen because the terminal velocity of the rock
+is likely much lower than this, and you would have to throw the rock at well over 100 metres per second to
+even reach the town in the first place. Also because you would never do this for fear of landing in Alberta
+jail.)
 
 \bye
