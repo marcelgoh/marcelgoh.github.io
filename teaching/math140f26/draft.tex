@@ -1591,7 +1591,7 @@ even reach the town in the first place. Also because you would never do this for
 jail.)
 
 \medskip\boldlabel The derivative.
-In the situation above, the equation of the tangent line was not totally
+In the situation above, the actual equation of the tangent line was not totally
 necessary to solve the corresponding motivating problem. We only needed to know the slope of this line.
 Hence for a given function $f(x)$ we have a special name for the slope
 \edef\eqderivativedef{\the\eqcount}
@@ -1636,6 +1636,8 @@ f'(a) &= \lim_{h\to 0} {f(a+h) - f(a)\over h} \cr
 }$$
 instead.\slug
 
+\bye
+
 \medskip\boldlabel The derivative as a function.
 The second calculation in the previous proposition completely characterised the values of $f'(a)$ for different
 values of $a$. This, along with the notation $f'$ we employed, suggests that $f'$ is itself a function---plug
@@ -1645,8 +1647,6 @@ so substituting $x$ for $a$ in the definition~\refeq{\eqderivativedef} of the de
 $$f'(x) = \lim_{h\to 0} {f(x+h) - f(x) \over h},\adveq$$
 wherever this limit exists.
 Hence taking the derivative or {\it differentiating} the function $f$ resulted in another function, $f'$.
-
-\bye
 
 Let us calculate the derivatives of several simple functions, to get a sense of this idea.
 
@@ -1763,8 +1763,27 @@ $$\eqalign{
 }$$
 which is exactly the criterion for $f$ to be continuous at $a$.\slug
 
-Recall the function $\sin(\pi/x)$, which does not have a limit as $x\to 0$. We saw that if we modify
-the function slightly by multiplying it by the function $x$, the resulting function $x\sin(\pi/x)$
+Recall the function $\sin(\pi/x)$, which does not have a limit as $x\to 0$. Using the squeeze theorem,
+we saw that if we modify
+the function slightly by multiplying $x$, the resulting function $x\sin(\pi/x)$,
+while still not {\it defined} at $0$, does go to $0$ as $x\to 0$. So if we artifically adjoin the point
+$(0,0)$ to this graph, then the resulting functionl
+is continuous. However, it is not differentiable, as we now proceed
+to show.
+
+\proclaim Proposition \advthm. The function
+$$f(x) = \cases{ x\sin(\pi/x), & if $x\ne 0$;\cr 0, & if $x=0$}$$
+is not differentiable at $0$.
+
+\proof We compute
+$$\eqalign{
+f'(0) &= \lim_{h\to 0}  {f(0+h) - f(0)\over h} \cr
+&= \lim_{h\to 0} { (0+h)\sin\bigl(\pi/(0+h)\bigr) - 0\over h} \cr
+&= \lim_{h\to 0} { h\sin(\pi/h)\over h} \cr
+&= \lim_{h\to 0} \sin\Bigl({\pi\over h}\Bigr),\cr
+}$$
+and we have already seen that this limit does not exist.\slug
+
 
 
 
