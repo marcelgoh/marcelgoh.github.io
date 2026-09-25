@@ -1149,6 +1149,7 @@ ourselves that it does not possess a limit as $x\to 0$. However, by combining th
 with Proposition~{\proplimabs}, we can show that a modification of $\sin(\pi/x)$ does in fact approach a
 limit.
 
+\edef\propxsin{\the\thmcount}
 \proclaim Proposition \advthm. We have
 $$\lim_{x\to 0}\, x\sin\Bigl({\pi\over x}\Bigr) = 0.$$
 
@@ -1530,7 +1531,7 @@ baffling the first time you see it,
 but the best way to interpret this, borrowing numbers from the previous
 example, is to imagine all $21$ litres of fuel (which is three-dimensional)
 stretched out over the $300\,\hbox{km}$ stretch of highway as a very long skinny rectangular prism. The
-average fuel usage, then, is the average cross-sectional area of this rectangular prism---namely $0.007$
+average fuel usage, then, is the average cross-sectional area of this rectangular prism---namely $0.07$
 square millimetres in the example.  If we now
 imagine the amount of fuel used varying smoothly as the driver manages the throttle, then the thickness
 of this imaginary long rectangular prism of liquid varies along the drive as well, and
@@ -1636,9 +1637,7 @@ f'(a) &= \lim_{h\to 0} {f(a+h) - f(a)\over h} \cr
 }$$
 instead.\slug
 
-\bye
-
-\medskip\boldlabel The derivative as a function.
+\medskip\boldlabel \datestamp{25}{ix} The derivative as a function.
 The second calculation in the previous proposition completely characterised the values of $f'(a)$ for different
 values of $a$. This, along with the notation $f'$ we employed, suggests that $f'$ is itself a function---plug
 in different inputs $a$ and you get different outputs. We like to indicate inputs of functions by $x$,
@@ -1743,7 +1742,23 @@ To prove the second assertion, assume that $x\ne 0$ and show that $f'(x)$ does e
 This is a simple exercise and we leave it to the reader [{\it Hint:} Split up the proof into
 one case where $x>0$ and the other case where $x<0$.]\slug
 
-This brings up an important point. The function $f(x) = |x|$ is continuous at $0$, but not differentiable
+Graphically, the function $|x|$ does not have a derivative at $0$ because the slope of the tangent line
+near $0$ jumps drastically from being $-1$ for negative $x$ to $1$ for positive $x$. Anytime you
+see such a ``kink'' in a graph, you'll know the graph is not differentiable there.
+
+But that is not
+the only way a function can fail to be differentiable. Consider the function
+$$f(x) = \cases{\sqrt x, & if $x\ge 0$; \cr -\sqrt{-x}, & if $x<0$.}$$
+This function is continuous everywhere and if you graph it you'll see that the picture is ``smooth'' everywhere;
+there are no kinks. And yet we saw in Proposition~{\propsqrtderiv} that
+its derivative did not exist at $0$ because the limit defining the derivative approaches infinity at $a=0$.
+(This was strictly speaking only for the positive half of $f$, but you can convince yourself that the
+negative half does the same thing near $0$ as well.) In other words, this example is not differentiable
+at $0$ because its {\it tangent line is vertical} there.
+
+There is an important point here to be made about the relationship between differentiability and
+continuity. Both $|x|$ and the function $f$ from the previous paragraph are continuous at $0$
+but not differentiable
 there. Therefore continuity at a point does not guarantee differentiability at that point. However,
 the opposite implication does hold.
 
@@ -1783,6 +1798,126 @@ f'(0) &= \lim_{h\to 0}  {f(0+h) - f(0)\over h} \cr
 &= \lim_{h\to 0} \sin\Bigl({\pi\over h}\Bigr),\cr
 }$$
 and we have already seen that this limit does not exist.\slug
+
+To illustrate that the matter of differentiability is fairly subtle, consider that if we multiply
+$\sin(\pi/x)$ by $x^2$ instead of $x$ (and artificially adjoin $(0,0)$ as before,
+then the result {\it is} differentiable at $0$.
+
+\proclaim Proposition \advthm. The function
+$$f(x) = \cases{ x^2\sin(\pi/x), & if $x\ne 0$;\cr 0, & if $x=0$}$$
+is both continuous and differentiable at $0$.
+
+\proof To prove that $f(x)$ is continuous at $0$, we need to show that
+$$\lim_{x\to 0} x^2\sin\Bigl({\pi\over x}\Bigr) = 0.$$
+This follows from the squeeze theorem and the fact that $-x^2 \le f(x) \le x^2$ for all numbers $x$. (Fill
+in the details here as an exercise.)
+
+To show that $f$ is differentiable at $0$, we just need to show that $f'(0)$ exists. So we compute
+$$\eqalign{
+f'(0) &= \lim_{h\to 0}  {f(0+h) - f(0)\over h} \cr
+&= \lim_{h\to 0} { (0+h)^2\sin\bigl(\pi/(0+h)\bigr) - 0\over h} \cr
+&= \lim_{h\to 0} { h^2\sin(\pi/h)\over h} \cr
+&= \lim_{h\to 0}\, h \sin\Bigl({\pi\over h}\Bigr),\cr
+}$$
+but this last limit equals $0$, by Proposition~{\propxsin}.\slug
+
+\medskip\goodbreak\boldlabel Higher derivatives.
+We said earlier that the operator $d/dx$ takes in a function and spits out another function (which
+may have a different domain than the original one). It is natural, then, to consider applying
+the operator again to the resulting function. If the original function is $f$, then its derivative
+is denoted by $df/dx$ or $f'$, and taking the derivative again gives us {\it second derivative} of $f$,
+denoted by
+$${d^2 \over dx^2} f(x)\qquad\hbox{or}\qquad f''(x).$$
+If we write $y=f(x)$, which we often do when considering the graph of the function $f$, then we
+can also denote the second derivative by $d^2y/dx^2$ or $y''$.
+
+We can keep repeating the process, obtaining the third derivative, fourth derivative, and so on.
+We denote the $n$th derivative of $f$ by
+$${d^n \over dx^n} f(x)\qquad\hbox{or}\qquad f^{(n)}(x),$$
+because writing the $'$ symbol $n$ times can become tedious (though it's not uncommon to see $f'''(x)$
+instead of $f^{(3)}(x)$.
+
+There are many uses for higher derivatives, which we'll see as the course progresses. At this juncture
+we'll just note one function whose second derivative has a very intuitive interpretation. This is
+the position function $s(t)$ of a moving object with respect to time. We already convinced ourselves
+earlier that its derivative $s'(t)$ describes the object's velocity with respect to time, since velocity
+is the rate of change of position. Taking another derivative tells us how much the velocity changes
+with respect to time, so $s''(t)$ is the object's {\it acceleration}.
+
+For instance, the elevation of the rock in our Ha Ling Peak example was described by the function
+$$s(t) = 2407 - 4.9t^2,$$
+and we calculated its velocity function
+$$v(t) = s'(t) = -9.8t.$$
+Taking the derivative once more (we'll spare the limit calculations, because soon we'll develop strategies
+to compute derivatives very quickly) gives us the acceleration
+$$a(t) = s''(t) = -9.8,$$
+which is just a constant, namely the constant of acceleration due to gravity.
+
+This discussion concludes the section we've devoted to defining the derivative and various other
+notions pertaining to it. It also concludes the first third of this course, which introduced a number of
+foundational topics, namely limits, continuity, and differentiation. In the next
+third of the course, we build up a toolbox of techniques that will allow us to quickly calculate derivatives
+of a large class of functions that are commonly used in science and engineering.
+
+\vfill\eject
+
+\bye
+
+\advsect Derivatives of trigonometric functions
+
+The bulk of the derivations in this section rely on the following two special limits.
+
+\proclaim Theorem \advthm. We have
+$$\lim_{\theta\to 0} {\sin\theta \over\theta} = 1$$
+and
+$$\lim_{\theta\to 0} {\cos\theta - 1\over \theta} = 0.$$
+
+\proof We prove these statements in order. First, we calculate the right-hand limit $\lim_{\theta\to 0^+}
+\sin \theta / \theta$. We shall do this using the squeeze theorem.
+(This proof is significantly easier if you have access to a piece of paper
+on which to draw. Alternatively, refer to Figure~6 in Section~3.3 of the textbook.)
+
+Assume that $0<\theta<\pi/2$, which we can do since we want to take $\theta$ to $0$.
+Draw a line segment $AC$ along the $x$-axis of length $1$, and draw a line segment of length $1$
+$AB$ above it so that the angle $BAC$ is $\theta$.
+Enclosing this angle with an arc of a circle of radius $1$, we now have a slice of a circle.
+To calculate the area of this slice, we note that the arc of the circle has length $\theta$, and so its length
+is $\theta/(2\pi)$ proportion of the full circumference of the circle. Thus the area of the slice must be
+$\theta/(2pi)$ times the area of a full circle with radius $1$, which is $\pi$. In other words, the
+area of the slice is $\theta/2$.
+
+Now draw a line from $B$ down to the $x$-axis, perpendicular to the line $AC$. Call this intersection point $D$.
+The right triangle $ABD$ lies entirely within the slice of the circle we considered above. The area
+of this right triangle is easy to calculate, since it is a right triangle with hypotenuse $1$ and angle
+$\theta$. Thus $AD$ has length $\cos\theta$ and $BD$ has length $\sin\theta$, and the triangle $ABD$ has
+area $(\sin\theta\cos\theta)/2$. Since this triangle lies completely within the circle slice, we have
+\edef\eqsincostheta{\the\eqcount}
+$${\sin\theta\cos\theta\over 2} \le {\theta\over 2}.\adveq$$
+
+Lastly, draw a vertical line extending up from the point $C$ (perpendicular to the $x$-axis). At the same
+time, extend the line $AB$ so that it intersects with this new vertical line; call this intersection point
+$E$. The triangle $ACE$ completely contains the circle slice from earlier. Moreover, the length
+of $AC$ is $1$ and we have a right angle at $C$, so the length of $CE$ must be $\tan\theta$. This shows that
+the area of $ACE$ is $\tan\theta/2$, so we have
+\edef\eqthetatan{\the\eqcount}
+$${\theta\over 2} \le \tan\theta,\adveq$$
+since this bigger triangle contains the circle slice. Combining the inequalities~\refeq{\eqsincostheta}
+and~\refeq{\eqthetatan} and dividing through by $2$, we obtain
+$$\sin\theta\cos\theta \le \theta \le \tan\theta.$$
+Now, dividing by $\sin\theta$ yields
+$$\cos\theta \le {\theta\over \sin\theta} \le {\tan\theta\over \sin\theta} = {1\over \cos\theta},$$
+and taking the reciprocal of the whole inequality gives us
+$${1\over \cos\theta} \ge {\sin\theta\over\theta} \ge {\tan\theta\over \sin\theta} = \cos\theta.$$
+By the squeeze theorem, we must have
+$$\lim_{\theta\to 0^+} {1\over \cos\theta} \ge \lim_{\theta\to0^+} {\sin\theta\over\theta} \ge
+\lim_{\theta\to0^+} \cos\theta,$$
+but both the left- and right-hand sides go to $1$, so $\sin\theta/\theta\to 1$ as well, as $x\to 0$
+from the right.
+
+To see that the limit is also $1$ from the left, note that
+$${\sin(-\theta)\over -\theta} = {-\sin(-\theta)\over \theta} = {\sin\theta\over\theta},$$
+since $\sin$ is an odd function. In short, the function $\sin\theta/\theta$ is even, so its one-sided limits
+are equal. This shows that $\lim_{\theta\to 0} \sin\theta / \theta = 1$.
 
 
 
