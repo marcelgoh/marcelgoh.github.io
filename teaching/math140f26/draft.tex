@@ -44,6 +44,10 @@ Please email me if you find any.
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 4.\kern .5em Continuity}{29}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 5.\kern .5em Derivatives}{34}}
 \medskip
+\noindent\hbox to\hsize{\relax \unhcopy \strutbox \cont
+{{\tenssbx II. Techniques \kern 3pt}}{46}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 6.\kern .5em Algebraic laws for differentiation}{47}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -1607,6 +1611,7 @@ than not, the definition~\refeq{\eqderivativedef} leads to simpler calculations.
 
 Here's an example.
 
+\edef\propeasyderivative{\the\thmcount}
 \proclaim Proposition \advthm. Let
 $$f(x) = x^2 - x + 1.$$
 We have $f'(3) = 5$, and more generally for every number $a$ we have
@@ -1760,8 +1765,9 @@ There is an important point here to be made about the relationship between diffe
 continuity. Both $|x|$ and the function $f$ from the previous paragraph are continuous at $0$
 but not differentiable
 there. Therefore continuity at a point does not guarantee differentiability at that point. However,
-the opposite implication does hold.
+the opposite implication {\it does} hold.
 
+\edef\thmdiffimpliescont{\the\thmcount}
 \proclaim Theorem \advthm. Suppose $f$ is a function and $a$ is a number such that $f(a)$ is defined.
 If $f$ is differentiable at $a$, then it is continuous at $a$.
 
@@ -1835,7 +1841,7 @@ We can keep repeating the process, obtaining the third derivative, fourth deriva
 We denote the $n$th derivative of $f$ by
 $${d^n \over dx^n} f(x)\qquad\hbox{or}\qquad f^{(n)}(x),$$
 because writing the $'$ symbol $n$ times can become tedious (though it's not uncommon to see $f'''(x)$
-instead of $f^{(3)}(x)$.
+instead of $f^{(3)}(x)$).
 
 There are many uses for higher derivatives, which we'll see as the course progresses. At this juncture
 we'll just note one function whose second derivative has a very intuitive interpretation. This is
@@ -1860,17 +1866,369 @@ third of the course, we build up a toolbox of techniques that will allow us to q
 of a large class of functions that are commonly used in science and engineering.
 
 \vfill\eject
+\begingroup\headline{\hfil}\footline{\hfil}
+\vglue160pt
+\centerline{\titlefont II. TECHNIQUES}
+\vskip220pt
+\bigskip
+\begingroup\obeylines\eightssi
+\hfill Sit {\eightss a} quantitas data constans,
+\hfill erit {\eightss da} {\ae}qualis {\eightss 0},
+\hfill et {\eightss d$\overline{\hbox{\eightss ax}}$} {\ae}qualis {\eightss adx}:
+\hfill si sit {\eightss y} {\ae}qualis {\eightss v}
+\hfill (seu ordinata qu{\ae}vis curv{\ae} {\eightss Y},
+\hfill {\ae}qualis cuivis ordinat{\ae} respondenti {\eightss V})
+\hfill erit {\eightss dy} {\ae}qualis {\eightss dv}.
+\eightss
+\smallskip
+\hfill --- GOTTFRIED WILHELM LEIBNIZ, {\eightssi Nova methodus pro maximis et minimis} (1684)
+\endgroup%\obeylines
+\bigskip\goodbreak
+\vfill\eject
+\endgroup%blank headline and footline
+
+\advsect Algebraic rules for differentiation
+
+\datestamp{28}{ix}
+Early in our study of limits we proved simple algebraic laws like $\lim (f+g) = \lim f + \lim g$. The
+goal of this section is to repeat this exercise for derivatives, though as we shall see, some of the
+algebraic rules for differentiation are not as simple as their counterparts in the limit world.
+
+We begin with the easy stuff.
+A constant function has a completely flat graph; it does not change with respect to its input.
+Hence its derivative should be $0$ everywhere. Let us prove this simple fact.
+
+\proclaim Theorem \advthm. Let $c$ be any number and consider it to be a constant
+function of $x$ (no matter what number
+$x$ it is given, the function just outputs the number $c$). Then
+$${d\over dx} c = 0.$$
+
+\proof Let $f(x) = c$ for all $x$. For any number $x$,
+$$f'(x) = \lim_{h\to 0} {f(x+h) - f(x)\over h} = \lim_{h\to 0} {c-c\over h} = 0.\noskipslug$$
+
+Next, we record the sum, difference, and constant multiple
+rules for differentiation, which follow directly from the corresponding limit laws.
+
+\parenproclaim Theorem {\advthm} (Sum, difference, and constant multiple rules).
+Suppose that $f$ and $g$ are both differentiable at some number $x$. Then
+the function $f+g$ and $f-g$ are also differentiable at $x$,
+and we have
+$$(f+g)'(x) = f'(x) + g'(x)\qquad\hbox{as well as}\qquad
+(f-g)'(x) = f'(x) - g'(x).$$
+Furthermore, for any constant $c$, the function $cf$ is differentiable at $x$, and
+$$(cf)'(x) = cf'(x).$$
+
+\proof
+For the sum rule, we simply expand
+$$\eqalign{
+(f+g)'(x) &= \lim_{h\to 0} {(f+g)(x+h) - (f+g)(x)\over h} \cr
+&= \lim_{h\to 0} {f(x+h) + g(x+h) - f(x) - g(x)  \over h}  \cr
+&= \lim_{h\to 0} {f(x+h) - f(x) \over h} + \lim_{h\to 0} {g(x+h) - g(x) \over h} \cr
+&= f'(x) + g'(x), \cr
+}$$
+where the third equality is a consequence of the sum law for limits. The difference and constant multiple rules
+are proved similarly. Try them as an exercise.\slug
+
+The sum law in particular can be used to prove the power rule for monomials of the form $x^n$, where $n$
+is a positive integer.
+
+\edef\thmpowerrule{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Power rule). Let $n\ge 1$ be an integer and let
+$$f(x) = x^n.$$
+Then for any number $a$, we have
+$$f'(a) = na^{n-1}.$$
+
+\proof This proof will make use of the identity
+$$ x^n - a^n = (x-a) (x^{n-1} + ax^{n-2} + a^2x^{n-3} +\cdots + a^{n-3} x^2 + a^{n-2} x + a^{n-1}).$$
+It can be verified by simply multiplying out the right-hand side. Now we expand
+$$\eqalign{
+f'(a) &= \lim_{x\to a} {x^n - a^n \over x-a} \cr
+&= \lim_{x\to a}
+\bigl(x^{n-1} + ax^{n-2} + a^2x^{n-3} +\cdots + a^{n-3} x^2 + a^{n-2} x + a^{n-1}\bigr). \cr
+}$$
+Note that there are exactly $n$ terms in the limit, and in each term, the power of $a$ and the power of
+$x$ together add up to $n-1$. So by applying the sum rule to distribute the limit over the sum before
+taking $x\to a$ in each term, we obtain
+$$f'(a) = na^{n-1},$$
+which is what we wanted.\slug
+
+Using the theorems we've proved so far in this section, we can very easily recompute the derivative
+of the function $x^2-x+1$ that appeared in Proposition~{\propeasyderivative}. We simply have
+$${d\over dx}(x^2 + x+1) = {d\over dx} x^2 - {d\over dx}x + {d\over dx} 1 
+= 2x - 1,$$
+which we proved with greater difficulty earlier.
+Other polynomials are dealt with similarly. Let's see one more example.
+
+Suppose we want to find all points on the curve
+$$y= -{x^3\over 3} + 9x + 5$$
+at which the tangent line is parallel to the line $y=5x$ (if any such points exist). In other words,
+where does this curve have a tangent line with a slope of $5$? We compute
+the derivative
+$${dy\over dx} = 9-x^2  = (3-x)(3+x).$$
+From here it's easy to see that this equals $5$ when $x = 2$ or $x=-2$. (Alternatively you could solve for
+$9-x^2 = 5$, which is equivalent to $x^2 = 4$, which has the same solutions.)
+To find the exact points on the curve, we now plug these points into the original function. When $x=2$,
+we have
+$$ y = -{2^3\over 3} + 9\cdot 2 + 5 = 23-{8\over 3} = {61\over 3},$$
+and when $x=-2$ we have
+$$ y = -{(-2)^3\over 3} + 9\cdot(-2) + 5 = {8\over 3} - 13 = {-31\over 3}.$$
+We conclude that the two points on the curve $y=-x^3/3 + 9x + 5$ at which the tangent line has slope
+equal to $5$ are $(2,61/3)$ and $(-2, -31/3)$.
+
+Returning to the formula given for the power rule, you may have noticed something interesting.
+In Proposition~{\propsqrtderiv}, we showed that
+$${d\over dx} x^{1/2} = {d\over dx} \sqrt x = {1\over 2\sqrt x} = {1\over 2} x^{-1/2}.$$
+One might speculate, then, that the power rule holds even when $n$ is not a positive integer. This is
+in fact true, but we don't have the tools to prove it yet, so we defer it until later.
+
+\medskip\boldlabel The product and quotient rules. The next algebraic rules to consider are
+multiplication and division. Because $\lim fg = (\lim f)(\lim g)$ and $\lim f/g = (\lim f)/(\lim g)$
+wherever these limits (and the division) make sense, you might guess that we have something like
+$(fg)' = f'\cdot g'$. This turns out to be off the mark.
+
+To derive the correct answer, you need to draw a rectangle.
+Imagine $f$ and $g$ as quantities depending on some independent variable $x$. To make your life easy,
+assume both $f$ and $g$ are positive. Draw a rectangle whose length is $f$ and whose height is $g$,
+so the area of this rectangle is exactly the quantity $fg$ we want to study. In particular, we want
+to know how much its area changes if you perturb $x$ very slightly.
+Suppose that if you increase $x$ very slightly, the value of $f$ increases very slightly and the
+value of $g$ increases very slightly as well. Call these increases $\Delta f$ and $\Delta g$, respectively.
+(In general, $f$ could actually decrease, or $g$ could
+decrease, or both, but this is just a sketch for the sake of intuition, so ignore these possibilities
+for now.) What has happened to the area of the rectangle; in other words, what is $\Delta(fg)$?
+Well, three new rectangles have been added to it
+whose areas are $f\cdot \Delta g$, $g\cdot \Delta f$, and $(\Delta f)(\Delta g)$. Leibniz reasoned
+that the area $(\Delta f)(\Delta g)$, because it is ``infinitely smaller'' than
+the other terms, can simply be ignored. Hence he claimed that
+$$\Delta (fg) = f\Delta g + g \Delta f,$$
+whence
+$${\Delta (fg)\over \Delta x} = f{\Delta g\over \Delta x} + g {\Delta f\over \Delta x},$$
+and since $d(fg)/dx$ is the limit of $\Delta(fg)/\Delta x$ as $\Delta x \to 0$, we can simply replace all
+instances of $\Delta$ with $d$ above to obtain
+$${d\over dx} (fg) = f{dg\over dx} + g{df\over dx}.$$
+
+Leibniz was correct, though his ``proof'' does not hold up to modern standards. (If we are throwing away the
+quantity $(\Delta f)(\Delta g)$ simply because its area is ``infinitely small'' as $\Delta x\to 0$, why
+not throw away the other thin rectangles too?---these areas also go to $0$.) Let us now
+restate the product rule in alternative notation (using $f'$ and $g'$) and also give a rigorous proof
+with our modern definition of derivative.
+
+\parenproclaim Theorem {\advthm} (Product rule). If $f$ and $g$ are both differentiable at $x$,
+then the product $fg$ is also differentiable at $x$, and
+$$(fg)'(x) = f(x)g'(x) + g(x)f'(x).$$
+
+\proof There is only one step in this proof that is not entirely obvious. First we expand
+$$\eqalign{
+(fg)'(x) &= \lim_{h\to 0} {(fg)(x+h) - (fg)(x) \over h} \cr
+&= \lim_{h\to 0} {f(x+h) g(x+h) - f(x)g(x) \over h} \cr
+}$$
+The nonobvious thing to do is to add $-g(x)f(x+h) + g(x)f(x+h)$ into the numerator. This will
+help us factor things out and make the formulas for $f'(x)$ and $g'(x)$ both appear. Picking up where
+we left off, we have
+\edef\eqproductruleproof{\the\eqcount}
+$$\eqalign{
+(fg)'(x)
+&= \lim_{h\to 0} {f(x+h) g(x+h) -g(x)f(x+h) + g(x) f(x+h) - f(x)g(x) \over h} \cr
+&= \lim_{h\to 0} {f(x+h)\bigl(g(x+h) -g(x)\bigr) + g(x) \bigl(f(x+h) - f(x) \bigr)\over h} \cr
+&= \Bigl(\lim_{h\to 0} f(x+h) \Bigr)
+   \lim_{h\to 0} {g(x+h) -g(x)\over h}  + g(x) \lim_{h\to 0} {f(x+h) - f(x) \over h} \cr
+&= \Bigl(\lim_{h\to 0} f(x+h)\Bigr)g'(x)  + g(x) f'(x).\cr
+}\adveq$$
+The last thing to deal with is the limit $\lim_{h\to 0} f(x+h)$. Since $f$ is differentiable at $x$, it
+is also continuous at $x$ by Theorem~{\thmdiffimpliescont}. So
+$$\lim_{h\to 0} f(x+h) = f(x),$$
+and substituting this into~\refeq{\eqproductruleproof} proves the theorem.\slug
 
 \bye
 
-\advsect Derivatives of trigonometric functions
+Next we set our sights on proving a quotient rule, that is, a formula for $(f/g)'$.
+This doesn't have quite a nice geometric
+interpretation like the derivative $(fg)'$ did. However, letting $1/g$ denote the reciprocal of $g$,
+we do have $f/g = f\cdot (1/g)$, so supposing we can figure out what the derivative of $1/g$ should
+be, we can use the product rule to figure out what the quotient rule should be.
 
-The bulk of the derivations in this section rely on the following two special limits.
+The formula for the derivative of the reciprocal of a function is more complicated that you might expect,
+though if you have taken calculus before in high school and know the derivative of $1/x$ as well as the
+chain rule, then you should understand why this formula makes sense. If this is your first time taking calculus,
+don't worry, we'll learn those other things soon, and you can revisit this at a later stage.
+For now, let's just get on with the theorem and its proof.
 
-\proclaim Theorem \advthm. We have
-$$\lim_{\theta\to 0} {\sin\theta \over\theta} = 1$$
+\edef\thmreciprocalrule{\the\thmcount}
+\proclaim Theorem \advthm. Suppose that $g$ is differentiable at $x$ and that $g(x)\ne 0$, so that
+$1/g(x)$ is defined.
+Then the function $1/g$ is differentiable at $x$ as well, and
+$$\Bigl({1\over g}\Bigr)'(x) = {-g'(x)\over g(x)^2}.$$
+
+\proof Though the formula is a little bit gruesome, the proof is not. Expanding, putting
+everything over a common denominator, and then rearranging yields
+\edef\eqreciprocalruleproof{\the\eqcount}
+$$\eqalign{
+\Bigl({1\over g}\Bigr)'(x)
+&= \lim_{h\to 0} {1/g(x+h) - 1/g(x)\over h} \cr
+&= \lim_{h\to 0} {g(x)- g(x+h) \over h g(x+h) g(x)} \cr
+&= - \lim_{h\to 0} {g(x+h)- g(x) \over h} \cdot \lim_{h\to 0} {1\over g(x+h) g(x)} \cr
+&= - g'(x) \cdot \lim_{h\to 0} {1\over g(x+h) g(x)}. \cr
+}\adveq$$
+From here we once again use Theorem~{\thmdiffimpliescont} to see that $g$ is continuous at $x$, so that
+$$\lim_{h\to 0} {1\over g(x+h) g(x) } = {1\over g(x)^2},$$
+and substituting this fact into~\refeq{\eqreciprocalruleproof} now yields the claimed identity.\slug
+
+From here, the quotient rule is derived simply by applying the product rule with the functions $f$
+and $1/g$.
+
+\parenproclaim Theorem {\advthm} (Quotient rule). Suppose that $f$ and $g$ are differentiable
+at $x$, and assume that $g(x)\ne 0$, so that $f/g$ is defined at $x$. Then $f/g$ is differentiable at $x$, and
+$$\Bigl({f\over g}\Bigr)'(x) = {g(x) f'(x) - f(x)g'(x)\over g(x)^2}.$$
+
+\proof Since $f/g = f\cdot (1/g)$, we use the product rule to obtain
+\edef\eqreciprocalruleproof{\the\eqcount}
+$$ \Bigl(f\cdot {1\over g}\Bigr)'(x) = f(x)\Bigl({1\over g}\Bigr)'(x) + \Bigl({1\over g}\Bigr)(x) f'(x).$$
+By Theorem~{\thmreciprocalrule}, we have
+$$\Bigl({1\over g}\Bigr)'(x) = {-g'(x)\over g(x)^2};$$
+substituting this into~\refeq{\eqreciprocalruleproof} gives us
+$$\eqalign{
+\Bigl(f\cdot {1\over g}\Bigr)'(x) &= f(x) \biggl({-g'(x)\over g(x)^2}\biggr) + {f'(x)\over g(x)} \cr
+&= {f'(x)\over g(x)} - {f(x) g'(x) \over g(x)^2} \cr
+&= {g(x) f'(x) - f(x) g'(x) \over g(x)^2},\cr
+}$$
+which is exactly what we wanted.\slug
+
+We are now able to find derivatives of any rational function. Here's an example. Suppose we are asked
+to find the points on the curve
+$$y = {x\over x^2 + 1}$$
+at which the tangent line to the curve is is horizontal, i.e., has slope equal to $0$.
+Since $x^2$ is always nonnegative, the denominator here is
+always nonzero, so $y$ is defined for all values of $x$. By the quotient rule, the derivative of $y$ is
+$$y' = {(x^2 + 1) - x(2x)\over (x^2 + 1)^2} = {1-x^2 \over (x^2 + 1)^2}.$$
+This equals $0$ when $x^2 = 1$, or when $x$ equals either $1$ or $-1$.
+When $x=1$, we have
+$$y = {1\over 1^2 + 1} = {1\over 2},$$
+and when $x=-1$, we have
+$$y = {-1\over (-1)^2 + 1} = {-1\over 2},$$
+so we see that the two points on the curve $y= x/(x^2+1)$ whose tangent lines are horizontal are
+$(1,1/2)$ and $(-1,-1/2)$.
+
+\advsect Derivatives of exponential and trigonometric functions
+
+We now have a great number of rules that allow us to find the derivatives of algebraic expressions like
+$f+g$ and $fg$, assuming we know the derivatives of $f$ and~$g$. But our inventory of basic functions
+whose derivative we know is still rather meagre. We only know how to deal with polynomials and rational
+functions, and adding, subtracting, multiplying and dividing
+polynomials or rational functions will only give us more rational functions.
+So we'll have to go back to basics in order to build up our stockpile of functions.
+
+The first class of functions we look at is exponential functions like $2^x$ or $10^x$.
+More generally, let $b$ be any number; we shall take it for granted that the quantity $b^x$ varies smoothly
+as one changes the inputs $x$. So we can consider the function
+$$f(x) = b^x$$
+and ask how it changes as $x$ varies.
+Using the formula $b^{x+y} = b^xb^y$, we compute
+$$f'(x) = \lim_{h\to 0} {b^{x+h} - b^x\over h} 
+= \lim_{h\to 0} {b^x b^h - b^x\over h} = \lim_{h\to 0} {b^x(b^h-1)\over h}
+= b^x \lim_{h\to 0} {b^h-1\over h}.$$
+The limit on the right-hand side doesn't depend on $x$ at all, and we see that the original function
+$f(x) = b^x$ has reappeared on the right-hand side. Plugging in $x=0$, we obtain the identity
+$${d \over dx} b^x \bigg|_{x=0} = f'(0) = \lim_{h\to 0} {b^h - 1\over h},$$
+which tells us that
+\edef\eqexpderiv{\the\eqcount}
+$${d\over dx} b^x  = b^x \cdot {d \over dx} b^x \bigg|_{x=0},\adveq$$
+assuming the derivative exists.
+This means that the derivative of an exponental function is proportional to the function itself;
+the slope of the tangent line is some constant (namely the derivative of the function at zero)
+times the function's height at that point.
+
+In light of~\refeq{\eqexpderiv}, it is natural to wonder if there is some base $b$ such that
+the derivative
+\edef\eqexplimit{\the\thmcount}
+$$\lim_{h\to 0} {b^h - 1\over h}$$
+equals $1$; if this is true for some $b$, then
+the derivative of $b^x$ would be $b^x$ again, which seems like a pleasant
+thing to have.
+To see that such a base does exist, note that if you take $b=2$ and estimate the resulting
+limit~\refeq{\eqexplimit} by taking smaller and smaller values of $h$, the limit seems to be something
+less than $1$ (in fact, it is roughly $0.693$). Likewise, if you take $b=3$ and do the same thing,
+the limit seems to be larger than $1$ (in fact, it is roughly $1.099$). So by the intermediate value
+theorem, there must be some number between $2$ and $3$, call it $e$, with
+$$\lim_{h\to 0} {e^h - 1\over h} = 1.$$
+By taking better approximations one can compute the value
+$$e \approx 2.71828\ldots$$
+with better precision, but the numerical value of $e$ doesn't come up in this class very often.
+A more important observation to record at this point is that this number $e$ satisfies
+$${d\over dx} e^x = e^x.$$
+We'll prove more facts about $e$
+and its associated exponential function $e^x$ (which is so important that we call it
+{\it the} exponential function) as the course progresses.
+
+\medskip\boldlabel \llap{*}Formally defining the exponential.
+We now go off on a tangent intended for the reader who is
+unhappy with the fact that we have swept the continuity of $b^x$ under the rug.
+The problem
+with trying to prove such a thing now is that we don't yet have a proper definition of what the expression
+$b^x$ means when $x$ is not a rational number.
+If $x$ is
+rational---say $x=p/q$ for positive integers $p$ and $q$---then $b^x = \root q\of{b^p}$, and $b^p$
+is simply the product of $b$ with itself $p$ times. But this breaks apart if $x$ is irrational.
+For example, if $x=\pi$, what does it mean to
+multiply $x$ by itself ``$\pi$ times?''
+The reason we cannot formally resolve this yet is that a precise definition of exponentials
+requires the concept of the integral, which
+is only introduced in {\mc MATH} 141.
+Fortunately, most of you will take this next semester, but if you have never seen integrals before,
+the following paragraph will be gibberish to you.
+
+To define $b^x$ for general real values of $b$ and $x$, we start by
+defining the (natural) logarithm of any $x>0$ as the value of the definite integral
+$$\ln x = \int_1^x {1\over t} \,dt.$$
+It can be shown that this is continuous, and
+there is a unique number $x$ that makes this integral $x$. We call this number $e$, and if we define
+$\exp$ as the inverse of $\ln$, which exists because $\ln$ as we have defined it is one-to-one,
+then we have $\exp(1) = e$. (This is the same $e$ that we defined earlier in the section.)
+From here, one can prove that
+$$\exp(x) = \bigl(\exp(1)\bigr)^x = e^x,$$
+and finally we {\it define}
+$$b^x = \exp\bigl(\ln(b^x)\bigr) =  e^{ x\ln b}.$$
+By this definition, it is clear that this is a continuous function of $x$, since $\ln$ is and therefore
+its inverse $\exp$ must be. From here you can rederive all the facts about exponentials and logarithms
+that you already know.
+
+\medskip\boldlabel Trigonometric derivatives.
+So much for exponentials.
+The rest of this section is devoted to finding
+formulas for the derivatives of the six basic trigonometric functions
+$$\sin,\quad\cos,\quad\tan,\quad\csc,\quad\sec,\quad\hbox{and}\quad\cot.$$
+Because the latter four functions can all be expressed as quotients involving $\sin$ and $\cos$, we only
+need to differentiate $\sin$ and $\cos$ from scratch; the rest of the formulas will then follow from the
+quotient rule.
+
+Differentiating the sine and cosine functions will require us to recall some important facts from trigonometry
+class. First, note that $\sin$ is odd and $\cos$ is even; in other words,
+$$\sin(-\theta) = -\sin\theta \qquad\hbox{and}\qquad \cos(-\theta) = \cos\theta.$$
+Next, by drawing a unit circle and invoking the Pythagorean theorem, we see that
+$$\sin^2\theta + \cos^2\theta = 1$$
+for all $\theta$.
+It is a bit harder to prove the {\it addition formulas}
+\edef\eqsinaddition{\the\eqcount}
+$$\sin(\alpha + \beta) = \sin\alpha\cos\beta + \sin\beta\cos\alpha\adveq$$
 and
-$$\lim_{\theta\to 0} {\cos\theta - 1\over \theta} = 0.$$
+\edef\eqcosaddition{\the\eqcount}
+$$\cos(\alpha + \beta) = \cos\alpha\cos\beta - \sin\alpha\sin\beta;\adveq$$
+if you want to practise your trigonometric skills, these facts are
+proved in Exercises~89 to~91 of Appendix~D of the book. (In those exercises, you actually end up proving
+$$\sin(\alpha - \beta) = \sin\alpha\cos\beta - \sin\beta\cos\alpha$$
+instead of~\refeq{\eqsinaddition},
+but from this subtraction formula one can recover~\refeq{\eqsinaddition} by substituting $-\beta$ instead
+of $\beta$, and remembering that the sine function is odd.)
+
+In addition to the aforementioned trigonometric propositions, we shall also need the following two
+special limits.
+
+\edef\thmspeciallimits{\the\thmcount}
+\proclaim Theorem \advthm. We have
+\global\edef\eqsinspecial{\the\eqcount}
+$$\lim_{\theta\to 0} {\sin\theta \over\theta} = 1\adveq$$
+and
+\global\edef\eqcosspecial{\the\eqcount}
+$$\lim_{\theta\to 0} {\cos\theta - 1\over \theta} = 0.\adveq$$
 
 \proof We prove these statements in order. First, we calculate the right-hand limit $\lim_{\theta\to 0^+}
 \sin \theta / \theta$. We shall do this using the squeeze theorem.
@@ -1883,10 +2241,11 @@ $AB$ above it so that the angle $BAC$ is $\theta$.
 Enclosing this angle with an arc of a circle of radius $1$, we now have a slice of a circle.
 To calculate the area of this slice, we note that the arc of the circle has length $\theta$, and so its length
 is $\theta/(2\pi)$ proportion of the full circumference of the circle. Thus the area of the slice must be
-$\theta/(2pi)$ times the area of a full circle with radius $1$, which is $\pi$. In other words, the
+$\theta/(2\pi)$ times the area of a full circle with radius $1$, which is $\pi$. In other words, the
 area of the slice is $\theta/2$.
 
-Now draw a line from $B$ down to the $x$-axis, perpendicular to the line $AC$. Call this intersection point $D$.
+Now draw a line from $B$ down to the $x$-axis so that it intersects $AC$ perpendicularly.
+Call this intersection point $D$.
 The right triangle $ABD$ lies entirely within the slice of the circle we considered above. The area
 of this right triangle is easy to calculate, since it is a right triangle with hypotenuse $1$ and angle
 $\theta$. Thus $AD$ has length $\cos\theta$ and $BD$ has length $\sin\theta$, and the triangle $ABD$ has
@@ -1898,7 +2257,7 @@ Lastly, draw a vertical line extending up from the point $C$ (perpendicular to t
 time, extend the line $AB$ so that it intersects with this new vertical line; call this intersection point
 $E$. The triangle $ACE$ completely contains the circle slice from earlier. Moreover, the length
 of $AC$ is $1$ and we have a right angle at $C$, so the length of $CE$ must be $\tan\theta$. This shows that
-the area of $ACE$ is $\tan\theta/2$, so we have
+the area of $ACE$ is $\tan\theta/2$, and hence
 \edef\eqthetatan{\the\eqcount}
 $${\theta\over 2} \le \tan\theta,\adveq$$
 since this bigger triangle contains the circle slice. Combining the inequalities~\refeq{\eqsincostheta}
@@ -1907,7 +2266,7 @@ $$\sin\theta\cos\theta \le \theta \le \tan\theta.$$
 Now, dividing by $\sin\theta$ yields
 $$\cos\theta \le {\theta\over \sin\theta} \le {\tan\theta\over \sin\theta} = {1\over \cos\theta},$$
 and taking the reciprocal of the whole inequality gives us
-$${1\over \cos\theta} \ge {\sin\theta\over\theta} \ge {\tan\theta\over \sin\theta} = \cos\theta.$$
+$${1\over \cos\theta} \ge {\sin\theta\over\theta} \ge \cos\theta.$$
 By the squeeze theorem, we must have
 $$\lim_{\theta\to 0^+} {1\over \cos\theta} \ge \lim_{\theta\to0^+} {\sin\theta\over\theta} \ge
 \lim_{\theta\to0^+} \cos\theta,$$
@@ -1917,7 +2276,91 @@ from the right.
 To see that the limit is also $1$ from the left, note that
 $${\sin(-\theta)\over -\theta} = {-\sin(-\theta)\over \theta} = {\sin\theta\over\theta},$$
 since $\sin$ is an odd function. In short, the function $\sin\theta/\theta$ is even, so its one-sided limits
-are equal. This shows that $\lim_{\theta\to 0} \sin\theta / \theta = 1$.
+are equal. This proves~\refeq{\eqsinspecial}.
+
+It still remains to prove~\refeq{\eqcosspecial}; fortunately, this can be derived from~\refeq{\eqsinspecial}
+without much further ado. We expand and multiply by the conjugate of $\cos\theta-1$,
+namely $\cos\theta +1$, on the top and bottom to obtain
+$$\eqalign{
+\lim_{\theta\to 0} {\cos\theta - 1\over \theta}
+&= \lim_{\theta\to 0} {\cos\theta - 1\over \theta}\cdot {\cos\theta +1\over \cos\theta +1} \cr
+&= \lim_{\theta\to 0} {\cos^2\theta - 1 \over \theta (\cos\theta + 1)}.\cr
+}$$
+From here, we use the fact that $\sin^2 \theta + \cos^2 \theta = 1$ to write
+$$\eqalign{
+\lim_{\theta\to 0} {\cos^2\theta - 1 \over \theta (\cos\theta + 1)}
+&= \lim_{\theta\to 0} {\sin^2\theta \over \theta(\cos\theta+1)} \cr
+&= \lim_{\theta\to 0} {\sin\theta \over \theta} \cdot \lim_{\theta\to 0} {\sin\theta \over \cos\theta+1} \cr
+&= 1\cdot {0\over 1+1}\cr
+&= 0, \cr
+}$$
+where the third equality follows from~\refeq{\eqsinspecial}.\slug
+
+We are now able to find formulas for all six trigonometric functions. We state this as one megatheorem.
+
+\parenproclaim Theorem {\advthm} (Derivatives of trigonometric functions). We have
+\medskip
+\item{i)} $\sin' = \cos$;
+\smallskip
+\item{ii)} $\cos' = -\sin $;
+\smallskip
+\item{iii)} $\tan' = \sec^2$;
+\smallskip
+\item{iv)} $\csc' = -\csc\cdot\cot$;
+\smallskip
+\item{v)} $\sec' = \sec\cdot\tan$; and
+\smallskip
+\item{vi)} $\cot' = -\csc^2$.
+\medskip\noindent
+wherever these derivatives exist. (The derivatives $\sin'$ and $\cos'$ exist everywhere;
+$\tan'$ and $\sec'$ are defined wherever $\cos \ne 0$, that is, everywhere except at inputs of the form
+$n\pi/2$ for all odd integers $n$; and $\csc$ and $\cot$ are defined wherever $\sin\ne 0$, so they are defined
+everywhere except at integer multiples of $\pi$.)
+
+\proof By the addition formula~\refeq{\eqsinaddition} for sine, we have
+$$\eqalign{
+\sin'(x) &= \lim_{h\to 0} {\sin(x+h) -\sin x \over h} \cr
+&= \lim_{h\to 0} {\sin x \cos h + \sin h\cos x - \sin x\over h} \cr
+&= \lim_{h\to 0} {\sin x (\cos h - 1) + \sin h\cos x \over h} \cr
+&= \sin x\lim_{h\to 0} {\cos h - 1 \over h} +\cos x\lim_{h\to 0} {\sin h \over h} \cr
+&= \sin x\cdot 0 +\cos x\cdot 1 \cr
+&= \cos x \cr
+}$$
+for all numbers $x$, where the fifth line follows from the special limits computed in Theorem~{\thmspeciallimits}.
+Likewise, by the addition formula~\refeq{\eqcosaddition} for cosine,
+$$\eqalign{
+\cos'(x) &= \lim_{h\to 0} {\cos(x+h) - \cos x \over h} \cr
+&= \lim_{h\to 0} {\cos x \cos h - \sin x \sin h - \cos x\over h} \cr
+&= \lim_{h\to 0} {\cos x (\cos h - 1) - \sin x\sin h \over h} \cr
+&= \cos x \lim_{h\to 0} {\cos h - 1\over h}  - \sin x\lim_{h\to 0} {\sin h \over h} \cr
+&= \cos x \cdot 0 - \sin x \cdot 1 \cr
+&= -\sin x \cr
+}$$
+for all $x$, where again we have invoked Theorem~{\thmspeciallimits} in the fifth line. This proves both
+(i) and (ii).
+
+To prove (iii), we apply the quotient rule to the identity $\tan = \sin/\cos$. Wherever the cosine function
+is not $0$, we have
+$$\tan' = \Bigl({\sin\over \cos}\Bigr)' = {\cos\cdot\sin' - \sin\cdot\cos'\over \cos^2}
+= {\cos^2 - \sin\cdot (-\sin) \over \cos^2} = {1\over \cos^2} = \sec^2,$$
+where we have once again used the Pythagorean identity $\cos^2 + \sin^2 = 1$.
+
+Because the cosecant, secant, and cotangent functions are defined as reciprocals of
+the sine, cosine, and tangent functions, respectively, we shall use the reciprocal rule
+$(1/g)' = -g'/g^2$ given by Theorem~{\thmreciprocalrule}
+to prove (iv), (v), and (vi). For the cosecant function, we compute
+$$\csc' = \Bigl({1\over \sin}\Bigr)' = {-\sin'\over \sin^2} = {-\cos\over \sin^2} = -\csc\cdot\cot,$$
+which settles (iv). Finally we have
+$$\sec' = \Bigl({1\over \cos}\Bigr)' = {-\cos'\over \cos^2} = {-(-\sin)\over \cos^2} = \sec\cdot \tan$$
+and
+$$\cot' = \Bigl({1\over \tan}\Bigr)' = {-\tan'\over \tan^2} = {-\sec^2\cdot \cos^2\over \sin^2} = -\csc^2,$$
+which proves the rest of the theorem.\slug
+
+Depending on how much you trust your memory, you may be able to store all these formulas safely in your
+brain. At minimum, you should commit the derivatives of sine and cosine to memory, along with the quotient and
+reciprocal rules. Then you can rederive the rest of the trigonometric derivatives in a matter of seconds.
+Whatever strategem you employ, a good sanity check to keep in mind is that the ``co-'' functions
+$\cos$, $\csc$, and $\cot$ are the ones whose derivatives have a negative sign in their formulas.
 
 
 
