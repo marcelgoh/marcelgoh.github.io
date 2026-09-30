@@ -48,6 +48,8 @@ Please email me if you find any.
 {{\tenssbx II. Techniques \kern 3pt}}{46}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 6.\kern .5em Algebraic laws for differentiation}{47}}
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 7.\kern .5em Derivatives of the exponential
+and trigonometric functions}{52}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -2042,12 +2044,11 @@ and substituting this into~\refeq{\eqproductruleproof} proves the theorem.\slug
 \noindent
 \datestamp{30}{ix} \hskip\parindent
 Next we set our sights on proving a quotient rule, that is, a formula for $(f/g)'$.
-This doesn't have quite a nice geometric
-interpretation like the derivative $(fg)'$ did. However, letting $1/g$ denote the reciprocal of $g$,
-we do have $f/g = f\cdot (1/g)$, so supposing we can figure out what the derivative of $1/g$ should
-be, we can use the product rule to compute what the quotient rule is.
+Because we can write a quotient
+$f/g$ as $f\cdot (1/g)$, supposing we can figure out what the derivative of $1/g$ is,
+we can use the product rule to compute what the quotient rule should be.
 
-The formula for the derivative of the reciprocal of a function is more complicated that you might expect,
+The formula for the derivative of the reciprocal of a function is more complicated than you might expect,
 though if you have taken calculus before in high school and know the derivative of $1/x$ as well as the
 chain rule, then you should understand why this formula makes sense. If this is your first time taking calculus,
 don't worry, we'll learn those other things soon, and you can revisit this at a later stage.
@@ -2073,7 +2074,8 @@ From here we once again use Theorem~{\thmdiffimpliescont} to see that $g$ is con
 $$\lim_{h\to 0} {1\over g(x+h) g(x) } = {1\over g(x)^2},$$
 and substituting this fact into~\refeq{\eqreciprocalruleproof} now yields the claimed identity.\slug
 
-From here, the quotient rule is derived simply by applying the product rule with the functions $f$
+Now that we have the reciprocal rule, a general quotient rule for functions $f$ and $g$
+can be derived simply by applying the product rule with the functions $f$
 and $1/g$.
 
 \parenproclaim Theorem {\advthm} (Quotient rule). Suppose that $f$ and $g$ are differentiable
@@ -2159,6 +2161,10 @@ We'll prove more facts about $e$
 and its associated exponential function $e^x$ (which is so important that we call it
 {\it the} exponential function) as the course progresses.
 
+\bye
+
+\noindent
+\datestamp{02}{x} \hskip\parindent
 For now let's see a more complicated example involving exponentials.
 If nothing else, this will help us practise using the product and quotient rules from earlier.
 
@@ -2182,6 +2188,12 @@ f'(x) &= {2e^x \cdot (d/dx)(e^{2x} - 1) - (e^{2x} -1) (d/dx) (2e^x) \over (2e^x)
 &= {e^{2x} +1 \over 2e^{x}},\cr
 }$$
 which is exactly the claim.\slug
+
+So the derivative $f'$ of $f(x) = (e^{2x} - 1)/2e^x$ admits an expression that is very similar to the formula
+for $f$ itself. If you have
+some spare time and want to practise the quotient rule some more, try finding $f''(x)$. You might
+notice a pattern that will make it easy to determine $f^{(3)}$ and $f^{(4)}$ as well. We'll revisit
+these functions at a later date.
 
 \medskip\boldlabel \llap{*}Formally defining the exponential.
 This small subsection is intended for the reader who is
