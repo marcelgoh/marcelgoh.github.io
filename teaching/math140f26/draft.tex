@@ -237,7 +237,7 @@ $f(1) = 0$, $f(1/2) = 0$, $f(1/3) = 0$, and so on.
 But we also have
 $$1 = \sin\Bigl({\pi\over 2}\Bigr) = \sin\Bigl({5\pi\over 2}\Bigr) = \sin\Bigl({9\pi\over 2}\Bigr) = \cdots,$$
 giving us
-$f(2) = 1$, $f(2/5) = 1$, $f(2/9) = 1$, etc., and so this is a case of $x$ approaching $0$ but
+$f(2) = 1$, $f(2/5) = 1$, $f(2/9) = 1$, etc., so this is a case of $x$ approaching $0$ but
 $f(x)$ {\it not} getting closer and closer to $0$.
 
 So the notion we end up defining for $f$ getting close to something as $x$ approaches something should
@@ -1947,7 +1947,7 @@ f'(a) &= \lim_{x\to a} {x^n - a^n \over x-a} \cr
 \bigl(x^{n-1} + ax^{n-2} + a^2x^{n-3} +\cdots + a^{n-3} x^2 + a^{n-2} x + a^{n-1}\bigr). \cr
 }$$
 Note that there are exactly $n$ terms in the limit, and in each term, the power of $a$ and the power of
-$x$ together add up to $n-1$. So by applying the sum rule to distribute the limit over the sum before
+$x$ together add up to $n-1$. So by applying the sum law for limits to distribute the limit over the sum before
 taking $x\to a$ in each term, we obtain
 $$f'(a) = na^{n-1},$$
 which is what we wanted.\slug
@@ -2039,13 +2039,13 @@ is also continuous at $x$ by Theorem~{\thmdiffimpliescont}. So
 $$\lim_{h\to 0} f(x+h) = f(x),$$
 and substituting this into~\refeq{\eqproductruleproof} proves the theorem.\slug
 
-\bye
-
+\noindent
+\datestamp{30}{ix} \hskip\parindent
 Next we set our sights on proving a quotient rule, that is, a formula for $(f/g)'$.
 This doesn't have quite a nice geometric
 interpretation like the derivative $(fg)'$ did. However, letting $1/g$ denote the reciprocal of $g$,
 we do have $f/g = f\cdot (1/g)$, so supposing we can figure out what the derivative of $1/g$ should
-be, we can use the product rule to figure out what the quotient rule should be.
+be, we can use the product rule to compute what the quotient rule is.
 
 The formula for the derivative of the reciprocal of a function is more complicated that you might expect,
 though if you have taken calculus before in high school and know the derivative of $1/x$ as well as the
@@ -2123,7 +2123,7 @@ as one changes the inputs $x$. So we can consider the function
 $$f(x) = b^x$$
 and ask how it changes as $x$ varies.
 Using the formula $b^{x+y} = b^xb^y$, we compute
-$$f'(x) = \lim_{h\to 0} {b^{x+h} - b^x\over h} 
+$$f'(x) = \lim_{h\to 0} {b^{x+h} - b^x\over h}
 = \lim_{h\to 0} {b^x b^h - b^x\over h} = \lim_{h\to 0} {b^x(b^h-1)\over h}
 = b^x \lim_{h\to 0} {b^h-1\over h}.$$
 The limit on the right-hand side doesn't depend on $x$ at all, and we see that the original function
@@ -2159,8 +2159,32 @@ We'll prove more facts about $e$
 and its associated exponential function $e^x$ (which is so important that we call it
 {\it the} exponential function) as the course progresses.
 
+For now let's see a more complicated example involving exponentials.
+If nothing else, this will help us practise using the product and quotient rules from earlier.
+
+\edef\propsinhderiv{\the\thmcount}
+\proclaim Proposition \advthm. Let
+$$f(x) = {e^{2x} - 1\over 2e^x},$$
+which is defined for all numbers $x$. We have
+$$f'(x) = {e^{2x} + 1\over 2e^x}.$$
+
+\proof We would like to use the quotient rule, but first we should deal with the fact that there is an
+expression in the formula for $f(x)$ we don't immediately know the derivative of, namely $e^{2x}$. We'll
+learn how to properly deal with function compositions such as these soon, but for now, just note that
+$e^{2x} = e^xe^x$ and invoke the product rule to obtain
+\edef\eqetwox{\the\eqcount}
+$${d\over dx} e^{2x} = {d\over dx} (e^x e^x) = e^xe^x + e^xe^x = 2e^{2x}.\adveq$$
+Now we're in a better position to invoke the quotient rule on $f$ itself. We compute
+$$\eqalign{
+f'(x) &= {2e^x \cdot (d/dx)(e^{2x} - 1) - (e^{2x} -1) (d/dx) (2e^x) \over (2e^x)^2} \cr
+&= {2e^x \cdot 2e^{2x} - (e^{2x} -1) 2e^x \over 4e^{2x}} \cr
+&= {2e^x (2e^{2x} - e^{2x} +1) \over 4e^{2x}} \cr
+&= {e^{2x} +1 \over 2e^{x}},\cr
+}$$
+which is exactly the claim.\slug
+
 \medskip\boldlabel \llap{*}Formally defining the exponential.
-We now go off on a tangent intended for the reader who is
+This small subsection is intended for the reader who is
 unhappy with the fact that we have swept the continuity of $b^x$ under the rug.
 The problem
 with trying to prove such a thing now is that we don't yet have a proper definition of what the expression
@@ -2239,7 +2263,7 @@ Assume that $0<\theta<\pi/2$, which we can do since we want to take $\theta$ to 
 Draw a line segment $AC$ along the $x$-axis of length $1$, and draw a line segment of length $1$
 $AB$ above it so that the angle $BAC$ is $\theta$.
 Enclosing this angle with an arc of a circle of radius $1$, we now have a slice of a circle.
-To calculate the area of this slice, we note that the arc of the circle has length $\theta$, and so its length
+To calculate the area of this slice, we note that the arc of the circle has length $\theta$, so its length
 is $\theta/(2\pi)$ proportion of the full circumference of the circle. Thus the area of the slice must be
 $\theta/(2\pi)$ times the area of a full circle with radius $1$, which is $\pi$. In other words, the
 area of the slice is $\theta/2$.
@@ -2362,9 +2386,142 @@ reciprocal rules. Then you can rederive the rest of the trigonometric derivative
 Whatever strategem you employ, a good sanity check to keep in mind is that the ``co-'' functions
 $\cos$, $\csc$, and $\cot$ are the ones whose derivatives have a negative sign in their formulas.
 
+We end off this section by observing a curious pattern. The derivative of $\sin$ is $\cos$
+and the derivative of $\cos$ is $-\sin$. Hence $\sin''' = -\cos$ and $\sin^{(4)}$ is $\sin$.
+Repeating this process again, we see that $\sin^{(n)} = \sin$ whenever $n$ is a multiple of $4$.
+This allows us to compute huge higher derivatives of the sine function (and the cosine function) without
+having to actually take the derivative so many times. For instance, say we want to know the $439$th derivative
+of $\sin$. By long division, we have
+$$439 = 436 + 3 = 109\cdot 4 + 3.$$
+The number $436$ is a multiple of $4$, meaning that $\sin^{(436)}$ is just $\sin$. Taking the derivative
+three more times, we get $\sin^{(437)} = \cos$, $\sin^{(438)} = -\sin$, so $\sin^{(439)} = -\cos$.
 
+\advsect The chain rule
 
+We are now equipped to differentiate rational functions, the exponential function $e^x$,
+and trigonometric functions, as well as all sums, products, and quotients thereof. However, there are still
+plenty of functions we don't know how to deal with. For instance, we got lucky with the function
+$e^{2x}$, which we saw in Proposition~{\propsinhderiv}, since this could be factored into $e^xe^x$ and then
+differentiated using the product rule. But what if we'd had $e^{x^2}$ instead? Or $\sin^2(e^x)$?
+These do not admit easy factoring tricks, and yet it seems like we should know how to differentiate them,
+given that we know how to differentiate the functions $\sin x$, $e^x$, and $x^2$.
+More generally, suppose we know how to differentiate the functions $f(x)$ and $g(x)$. Can we derive a formula
+for the derivative of $f\circ g$ (defined by $(f\circ g)(x) = f\bigl( g(x)\bigr)$)?
 
+Let's return to the example of $e^{2x}$ that we had earlier. Since $(d/dx) e^x = e^x$, by just na\"{\i}vely
+substituting $2x$ in place of $x$, we might
+think that $(d/dx) e^{2x} = e^{2x}$. But this is not the case, as shown by the formula~\refeq{\eqetwox}
+we derived in the last section. To organise our work properly, let us switch letters when discussing
+the input to the exponential function. We know that $(d/du) e^u = e^u$, which gives us a description of
+how the function $\exp$ changes if you tweak its input $u$. But $u=2x$ in our example above,
+and we want to know how the entire function $e^{2x}$ reacts when we perturb $x$, not $u$. We can solve
+this by calculating the derivative $(du/dx) 2x = 2 $, which tells that when $x$ changes by a little bit,
+$u$ changes by twice as much. So whatever $(d/du) e^u$ was, the derivative $(d/dx)e^{2x}$ should be twice
+as much. Hence we have
+$${d\over dx} e^{2x} = 2e^u = 2e^{2x},$$
+which exactly matches what we derived in~\refeq{\eqetwox}.
+
+How can we generalise this? Well, say $f$ is a function of $u$ and $u$ is a function of $x$. Suppose
+further that we know $df/du$ and $du/dx$. Then to find out how much $f$ responds to a change in $x$
+we need to multiply how much $u$ responds to $x$ by how much
+$f$ responds to $u$. In other words.
+\edef\eqleibnizchainrule{\the\eqcount}
+$${df\over dx} = {df\over du}\cdot {du\over dx}.\adveq$$
+(You can remember this formula by pretending that it was derived by simply ``multiplying by $dx$''
+in the numerator and denominator.)
+This phenomenon is known as the {\it chain rule}. Though we shall now
+restate it as a theorem more formally in modern function notation with proper hypotheses, the reader
+may choose to commit~\refeq{\eqleibnizchainrule} to memory, as it is is a n
+
+\parenproclaim Theorem {\advthm} (Chain rule).
+Suppose that $f$ and $g$ are functions and $a$ is a number such that
+such that $g$ is differentiable at $a$ and $f$ is differentiable at $g(a)$. Then the function composition
+$f\circ g$ is differentiable at $a$, and
+\global\edef\eqchainrule{\the\eqcount}
+$$(f\circ g)'(a) = f'\bigl(g(a)\bigr) g'(a).\adveq$$
+
+Let us first expand out the definitions of the three derivatives
+that appear in~\refeq{\eqchainrule} to really understand what we're trying to prove. It can be rewritten
+$$ \lim_{x\to a} { f\bigl(g(x)\bigr) - f\bigl(g(a)\bigr)\over x-a}
+= \lim_{x\to a} {f\bigl(g(x)\bigr) - f\bigl(g(a)\bigr) \over g(x) - g(a)}
+\cdot \lim_{x\to a} {g(x) - g(a)\over x-a}.$$
+At first, proving this seems extremely easy.
+Can we not just multiply the left-hand side by $g(x) - g(a)$ in
+both the numerator and denominator and then apply the product law for limits to obtain the right-hand side?
+The answer is yes if $g(x) - g(a)$ is always nonzero for $x$ sufficiently close to $a$, but no
+in general, since even if $g$ is differentiable at $a$,
+it may be the case that $g(x) - g(a)$ is zero for some
+$x\ne a$ close to $a$. (Even if we only consider $x$ very close to
+$a$, it could happen that this occurs for $x$ {\it arbitrarily} close to $a$;
+take for example the case of $g(x) = x^2\sin(\pi/x)$ and $a=0$.)
+
+The real proof of the chain rule
+is constructed much more carefully in order to get around this obstruction. It is therefore
+fairly complicated---the formal definition of a limit has a starring role in this proof---and
+may be regarded as optional for this course. (That said, the reader is encouraged to
+skim through it at least once. Most of the proof's difficulty lies in precisely expanding out definitions and
+organising variables, both mathematical skills that are broadly useful in this course and beyond.)
+
+\optproof We assumed that $f'$ is differentiable at $g(a)$, so $f'\bigl(g(a)\bigr)$ is defined, and we
+define a new function $s$ by
+$$s(x) = \cases{ \displaystyle{f\bigl(g(x)\bigr) - f\bigl( g(a)\bigr) \over g(x) - g(a)}, & if $g(x) \ne g(a)$;\cr
+f'\bigl(g(a)\bigr), & otherwise.}$$
+Note that $s(a)$ is simply $f'\bigl(g(a)\bigr)$, since $g(a) - g(a) = 0$.
+The first (and hardest) step in this proof is
+to show that $s$ is continuous at $a$, i.e., that
+$$\lim_{x\to a} s(x) = s(a) = f'\bigl(g(a)\bigr).$$
+
+We prove this directly from the definition of a limit. Let $\eps > 0$. We wish to find
+$\delta$ such that for all $x$ with $0<|x-a| < \delta$ one has $\bigl| s(x) - f'(g(a))\bigr| <\eps$.
+Writing out the definition of $f'\bigl(g(a)\bigr)$, we have
+$$\lim_{h\to 0} {f\bigl( g(a) + h\bigr) - f\bigl(g(a)\bigr)\over h} = f'\bigl(g(a)\bigr).$$
+By the precise definition of a limit, this means that there exists $\delta_1 > 0$
+such that for all $h$ with $0< |h-0| < \delta_1$, we have
+\edef\eqchainruleproof{\the\eqcount}
+$$ \Biggl|{f\bigl( g(a) + h\bigr) - f\bigl(g(a)\bigr)\over h} - f'\bigl(g(a)\bigr)\Biggr| < \eps.\adveq$$
+Another thing we know is that $g$ is differentiable at $a$. Hence by Theorem~{\thmdiffimpliescont},
+the function $g$ is also continuous at $a$, meaning that
+$$\lim_{x\to a} g(x) = g(a).$$
+By the precise definition of a limit once again, we know that there is $\delta_2>0$ such that
+for all $x$ with $0<|x-a|< \delta_2$, we have
+$$\bigl| g(x) - g(a)\bigr| < \delta_1.$$
+(The limit definition says ``for all $\eps$,'' and we have chosen to put $\eps = \delta_1$ here.)
+
+Set $\delta=\delta_2$ and assume that $0<|x-a|<\delta$. If $g(x) = g(a)$, then $s(x) = f'\bigl(g(a)\bigr)$
+and we are done. If $g(x) \ne g(a)$, then we know that
+$$0< \bigl| g(x) - g(a)\bigr| < \delta_1,$$
+so we can let $h=g(x) - g(a)$ in~\refeq{\eqchainruleproof} to obtain
+$$ \Biggl|{f\bigl( g(a) + g(x) - g(a)\bigr) - f\bigl(g(a)\bigr)\over g(x) - g(a)} -
+f'\bigl(g(a)\bigr)\Biggr| < \eps.$$
+But now we notice (after simplifying) that this is precisely the statement
+$$\bigl| s(x) - f'(g(a))\bigr| < \eps.$$
+So $s(x)\to f'\bigl(g(a)\bigr) = s(a)$ as $x\to a$ and we conclude that $s$ is continuous at $a$.
+
+With this fact in hand, the rest of the proof is easy. So long as $x\ne a$, we have
+$$ {f\bigl( g(x) \bigr) - f\bigl(g(a)\bigr)\over x-a} = s(x) {g(x) - g(a)\over x-a}.$$
+(If $g(x) \ne g(a)$, then expand out the definition of $s(x)$ and cancel out terms to prove this.
+If $g(x)=g(a)$, then both sides equal $0$.) So taking the limit on both sides of this equality, we have
+$$\eqalign{
+(f\circ g)'(a) &= \lim_{x\to a} {f\bigl( g(x) \bigr) - f\bigl(g(a)\bigr)\over x-a}  \cr
+&= \lim_{x\to a} s(x) {g(x) - g(a)\over x-a} \cr
+&= \lim_{x\to a} s(x) \cdot \lim_{x\to a} {g(x) - g(a)\over x-a} \cr
+&= s(a) \cdot g'(a) \cr
+&= f'\bigl(g(a)\bigr) \cdot g'(a),\cr
+}$$
+which at last proves the theorem.\slug
+
+Let us try our hand at an example. Consider the function $\sin(2x)$. If we let $f(x) = 2x$, then
+this is the composition $\sin\circ f$. Hence by the chain rule then, we have
+\edef\eqdoubleangleone{\the\eqcount}
+$${d\over dx} \sin(2x) = (\sin \circ f)(x) = \sin'\bigl(f(x)\bigr) f'(x) = \cos(2x)\cdot 2.\adveq$$
+This shows that if we can remember the {\it double angle formula} for sine, which
+is
+$$\sin(2x) = 2\sin x\cos x,$$
+we can easily recover the double angle formula for cosine using the product rule. We have
+\edef\eqdoubleangletwo{\the\eqcount}
+$${d\over dx} \sin(2x) = {d\over dx} 2\sin x\cos x = 2(\cos^2 x - \sin^2 x).\adveq$$
+So by equating~\refeq{\eqdoubleangleone} and~\refeq{\eqdoubleangletwo}, we see that
+$$\cos(2x) = \cos^2 x - \sin^2 x.$$
 
 
 \bye
