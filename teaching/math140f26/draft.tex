@@ -16,6 +16,10 @@
 \def\percent{\mathrel{\%}}
 \def\norm#1{|\!|#1|\!|}
 \def\dist{\op{\rm dist}}
+\def\arccsc{\op{\rm arccsc}}
+\def\arcsec{\op{\rm arcsec}}
+\def\arccot{\op{\rm arccot}}
+\def\dist{\op{\rm dist}}
 \def\optproof{\medbreak\noindent\llap{*}{\it Proof.}\xskip\ignorespaces}
 
 \maketitle{MATH 140 Fall 2026}{notes by}{Marcel Goh}{}
@@ -50,6 +54,7 @@ Please email me if you find any.
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 6.\kern .5em Algebraic laws for differentiation}{47}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 7.\kern .5em Derivatives of the exponential
 and trigonometric functions}{52}}
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 8.\kern .5em Compositions and inverses}{60}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -2159,7 +2164,9 @@ A more important observation to record at this point is that this number $e$ sat
 $${d\over dx} e^x = e^x.$$
 We'll prove more facts about $e$
 and its associated exponential function $e^x$ (which is so important that we call it
-{\it the} exponential function) as the course progresses.
+{\it the} exponential function) as the course progresses. We sometimes write $\exp(x)$ instead
+of $e^x$, so that we can talk about the {\it function} $\exp$ and use the ``prime'' notation
+more effectively. (We can write, for instance, $\exp' = \exp$.)
 
 \noindent
 \datestamp{02}{x} \hskip\parindent
@@ -2256,13 +2263,16 @@ of $\beta$, and remembering that the sine function is odd.)
 In addition to the aforementioned trigonometric propositions, we shall also need the following two
 special limits.
 
-\edef\thmspeciallimits{\the\thmcount}
-\proclaim Theorem \advthm. We have
+\edef\lemtrigspeciallimits{\the\thmcount}
+\proclaim Lemma \advthm. We have
 \global\edef\eqsinspecial{\the\eqcount}
 $$\lim_{\theta\to 0} {\sin\theta \over\theta} = 1\adveq$$
 and
 \global\edef\eqcosspecial{\the\eqcount}
 $$\lim_{\theta\to 0} {\cos\theta - 1\over \theta} = 0.\adveq$$
+
+(A {\it lemma} is a special name for a proposition that is not seen as overly important in and of itself,
+but is a vital step in the proof of a more useful theorem.)
 
 \proof We prove these statements in order. First, we calculate the right-hand limit $\lim_{\theta\to 0^+}
 \sin \theta / \theta$. We shall do this using the squeeze theorem.
@@ -2360,7 +2370,8 @@ $$\eqalign{
 &= \sin x\cdot 0 +\cos x\cdot 1 \cr
 &= \cos x \cr
 }$$
-for all numbers $x$, where the fifth line follows from the special limits computed in Theorem~{\thmspeciallimits}.
+for all numbers $x$, where the fifth line follows from the special limits computed in
+Lemma~{\lemtrigspeciallimits}.
 Likewise, by the addition formula~\refeq{\eqcosaddition} for cosine,
 $$\eqalign{
 \cos'(x) &= \lim_{h\to 0} {\cos(x+h) - \cos x \over h} \cr
@@ -2370,7 +2381,7 @@ $$\eqalign{
 &= \cos x \cdot 0 - \sin x \cdot 1 \cr
 &= -\sin x \cr
 }$$
-for all $x$, where again we have invoked Theorem~{\thmspeciallimits} in the fifth line. This proves both
+for all $x$, where again we have invoked Lemma~{\lemtrigspeciallimits} in the fifth line. This proves both
 (i) and (ii).
 
 To prove (iii), we apply the quotient rule to the identity $\tan = \sin/\cos$. Wherever the cosine function
@@ -2406,9 +2417,7 @@ $$439 = 436 + 3 = 109\cdot 4 + 3.$$
 The number $436$ is a multiple of $4$, meaning that $\sin^{(436)}$ is just $\sin$. Taking the derivative
 three more times, we get $\sin^{(437)} = \cos$, $\sin^{(438)} = -\sin$, so $\sin^{(439)} = -\cos$.
 
-\bye
-
-\advsect The chain rule
+\advsect Compositions and inverses
 
 \datestamp{07}{ix}
 We are now equipped to differentiate rational functions, the exponential function $e^x$,
@@ -2524,9 +2533,9 @@ $$\eqalign{
 which at last proves the theorem.\slug
 
 Let us try our hand at an example. Consider the function $\sin(2x)$. If we let $f(x) = 2x$, then
-this is the composition $\sin\circ f$. Hence by the chain rule then, we have
+this is the composition $\sin\circ f$. By the chain rule, we have
 \edef\eqdoubleangleone{\the\eqcount}
-$${d\over dx} \sin(2x) = (\sin \circ f)(x) = \sin'\bigl(f(x)\bigr) f'(x) = \cos(2x)\cdot 2.\adveq$$
+$${d\over dx} \sin(2x) = (\sin \circ f)'(x) = \sin'\bigl(f(x)\bigr) f'(x) = \cos(2x)\cdot 2.\adveq$$
 This shows that if we can remember the {\it double angle formula} for sine, which
 is
 $$\sin(2x) = 2\sin x\cos x,$$
@@ -2536,5 +2545,283 @@ $${d\over dx} \sin(2x) = {d\over dx} 2\sin x\cos x = 2(\cos^2 x - \sin^2 x).\adv
 So by equating~\refeq{\eqdoubleangleone} and~\refeq{\eqdoubleangletwo}, we see that
 $$\cos(2x) = \cos^2 x - \sin^2 x.$$
 
+Here's another fun trigonometric example. By using the chain rule, we can give a ``proof'' that
+\edef\eqpythagoras{\the\eqcount}
+$$(\sin\theta)^2 + (\cos\theta)^2 = 1$$
+for all $\theta$. Here's how this ``proof'' goes. The derivative of the left hand side is
+$${d\over d\theta} \Bigl((\sin \theta)^2 + (\cos\theta)^2\Bigr)
+= 2\sin\theta \cos\theta + 2\cos\theta(-\sin\theta) = 0,$$
+by the chain rule applied to both terms. This doesn't immediately tell us the function is equal
+to $1$, but it does tell us that it's {\it constant}; that is, the expression $(\sin\theta)^2 + (\cos\theta)^2$
+is the same, no matter what $\theta$ we plug in. So let's pick an easy choice of $\theta$, like $0$.
+We have $\sin\theta = 0$ and $\cos\theta = 1$, so the function is equal to $1$ at $\theta = 0$
+and must therefore be equal to $1$ for all $\theta$.
+
+Why is ``proof'' written in quotation marks? Should you be sceptical about the
+logic used in the previous paragraph? Don't worry, there's no issue with the logic there. The problem is
+that we used the formulas for the derivatives of $\sin$ and $\cos$ in this ``proof''
+of~\refeq{\eqpythagoras}, but to prove those derivative formulas we used this very equation!
+If you use a statement $P$ to prove a statement $Q$, then you cannot use statement $Q$ to prove
+statement $P$. This would be an example of {\it circular reasoning}, which is the proof equivalent of
+pulling oneself up by one's bootstraps:~a logical fallacy, to say the least. If you want to show that
+$Q$ is true using $P$, then you'd better have a completely separate proof that $P$ is true, without
+using $Q$ anywhere in it. Luckily in the case above, we already
+have a completely separate proof of~\refeq{\eqpythagoras} that doesn't use derivatives;
+simply draw a right triangle with one of the
+(other) angles equal to $\theta$, and invoke the Pythagorean theorem.
+
+\medskip\boldlabel General exponential functions.
+The chain rule also allows us to figure out the derivative of general exponential functions $b^x$ (for
+any number $b>0$)
+just from knowing that $(d/dx) e^x = e^x$. Recall that the inverse of the function $e^x$ is $\ln x$;
+that is, if $e^x = y$, then $\ln y = x$.
+
+\proclaim Theorem \advthm. For any positive number $b$, we have
+$${d\over dx} b^x = (\ln b) b^x.$$
+
+\proof Since $b>0$, the logarithm $\ln b$ of $b$ is a well defined number,
+and we have $b = e^{\ln b}$. So
+$$b^x = (e^{\ln b})^x = e^{(\ln b) x}.$$
+Letting $f(x) = (\ln b) x$, the expression on the right-hand side here is simply the composition
+$\exp\circ f$ applied to $x$. Hence the chain rule gives
+$${d\over dx} b^x = (\exp \circ f)'(x) = \exp'\bigr(f(x)\bigr) f'(x) = e^{(\ln b) x} \cdot (\ln b).$$
+But recall that $e^{(\ln b)x}$ is just $b^x$, so substituting that back in, we arrive at the theorem
+statement.\slug
+
+The sudden appearance of the function $\ln$ in our lives might
+make us wonder what the derivative of $\ln$ is. We'll do better than just computing this derivative---
+the function $\ln$ is the inverse of $\exp$, a function we're already acquainted with, so we'll
+give a general rule for computing the derivatives of {\it inverses} of functions whose derivative
+we already know.
+
+\medskip\boldlabel Inverse functions. This is the last ``fundamental'' differentiation formula
+that we'll cover.
+Since we know how to differentiate $e^x$, we ought to be able to differentiate
+its inverse $\ln x$, since the slope of a tangent line on the graph of $\ln$ should be related in some way to the
+slope of a tangent line on the graph of $\exp$.
+Likewise, we figured out from scratch that $(d/dx) \sqrt x = 1/(2\sqrt x)$,
+but we should learn how to differentiate $n$th roots like $\root 3\of x$, $\root 4\of x$, and so on. This
+should follow from our knowledge of the derivatives of $x^3$ and $x^4$, etc.
+
+Let's remind ourselves what the inverse of a function is. Suppose $f$ is defined on some domain $D$
+and $R$ is the set of possible values it outputs---this set is called its range. (It's been a long time since we
+have defined it, so you might well have forgotten that definition.) We say that $f$ is {\it one-to-one}
+if every input $x$ has a unique output; formally, this means that whenever we have $f(x_1) = f(x_2)$ we must
+have $x_1 = x_2$. You can think about this as passing the ``horizontal line test.'' If a horizontal line passes
+$f$ at two different points $x_1$ and $x_2$, then $f(x_1) = f(x_2)$ for different $x_1$ and $x_2$, so
+$f$ is {\it not} one-to-one. But if the opposite of this occurs, and every horizontal line passes through
+$f$ at at most one point, then we say that it passes the horizontal line test and it is one-to-one.
+
+If this rings a bell and reminds you of the ``vertical line test'' for checking if a (purported) function is even
+well defined, then you might have some idea as to the property of being one-to-one relates to inverses.
+If a function is one-to-one, every $x$ in its domain gets mapped to a unique $y$ in its range. So given
+some $y$ in the range, there is only one $x$ that could possibly have been fed into $f$ in order to
+receive output $y$. This means that if we define a function $g$ whose domain is the range of $f$ by setting,
+for all $y$,
+$$g(y) = \hbox{the unique $x$ such that $f(x) = y$},$$
+then the range of $g$ is the domain of $f$, and we have $f\bigl(g(y)\bigr) = y$ for all $y$ in the domain
+of $g$, and $g\bigl( f(x)\bigr) = x$ for all $x$ in the domain of $f$. This function $g$ is usually
+denoted by $f^{-1}$, and is called the {\it inverse} of $f$.
+
+If we draw $f$ as a graph on the $(x,y)$ plane, then since $f^{-1}$ reverses the roles of $x$ and $y$ (we
+have $f^{-1}(x) = y$ whenever $f(x) = y$, the graph of $f^{-1}$ can be obtained from the graph of $f$ by
+{\it reflecting it across the line $y=x$}. Think about this with some inverse pairs you already know,
+like $f = \exp $ and $f^{-1}=\ln$, or $f(x) = x^2$ and $f^{-1}(x) = \sqrt x$.
+
+\bye
+
+This graphical interpretation allows us to intuitively reason about what the derivative of $f^{-1}$ should be.
+Draw a smooth curve in the plane, representing the graph of $f$ in some interval, and then pick a point
+on the curve. This is the point $\bigl(a, f(a)\bigr)$ for some number $a$. Draw the tangent line
+to the curve at that point; what we learned about derivatives tells us that this line has slope $f'(a)$.
+
+Now reflect the whole picture across the line $y=x$. The new curve is the graph of $f^{-1}$, and the
+reflected counterpart to the point on the curve we had is $\bigl( f(a), a\bigr)$. The tangent line has
+also been reflected. What is its slope? Well, whatever the ``rise over run'' was for the original line
+has been flipped on its head! The slope of this new line is the ``run over rise'' of the original line---in
+other words, {\sl the slope of the tangent line to the curve $f^{-1}$ at the point $\bigl( f(a), a\bigr)$
+is $1/f'(a)$}. Writing this out in terms of the derivative gives us the formula
+\edef\eqfirstinverseformula{\the\eqcount}
+$$ (f^{-1})'\bigl( f(a)\bigr) = {1\over f'(a)}.\adveq$$
+But it's a bit cumbersome to express the input of $f^{-1}$ in terms of the output of $f$, so let's give
+the number $f(a)$ its own letter, say $b$, and we know that since $f^{-1}$ is the inverse of $f$, we
+must have $f^{-1}(b) = a$. This allows us to express the following theorem in a format that's a bit
+more useful.
+
+\edef\thmderivinverse{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Derivatives of inverses). Suppose that $f$ is one-to-one on some domain
+containing the number $a$, so that if we let $b=f(a)$, then the inverse function $f^{-1}$ is defined
+at $b$ (and we have $f^{-1}(b) = a$). If $f$ is differentiable at $a$ and $f'(a) \ne 0$,
+then $f^{-1}$ is differentiable at $b$, and its derivative is given by the formula
+$$(f^{-1})'(b) = {1\over f'(a)} =  {1\over f'\bigl( f^{-1}(b)\bigr)}.$$
+
+We'll now proceed to give a proof in terms of the formal definition of the derivative in terms
+of limits, but it is marked as optional, not because it's long but because it's a bit finicky
+with the precise definitions of inverses.
+As before, try to skim the proof at least once, but if you
+understand the intuitive graphical reasoning given above
+for why Theorem~{\thmderivinverse} is true, that should be enough
+to carry you through this course.
+
+\optproof We'll write $g = f^{-1}$ just to simplify notation in this proof; so we have $f(a) = b$ and
+$g(b) = a$, and we want to show that $g'(b) = 1/ f'\bigl( g(b)\bigr)$.
+For every small $h$, there is a unique $k_h$ such that
+\edef\eqkformula{\the\eqcount}
+$$g(b+h) = a+k_h\adveq$$
+(we subscript the $k$ with $h$ to
+remind ourselves that the value of this number $k_h$ depends on $h$).
+We can rearrange~\refeq{\eqkformula} to $k_h = g(b+h) - a$, and since
+$g$ is continuous, we have
+$$ \lim_{h\to 0} k_h = \lim_{h\to 0} g(b+h) - a = g\Bigl(\lim_{h\to 0} (b+h)\Bigr) - a = g(b) - a = 0.$$
+In other words, $k_h$ goes to $0$ as $h$ goes to $0$.
+
+Since $f$ is the inverse of $g$,
+we have $f(a+k_h) = b+h$, which we can rearrange to obtain
+$$ h = f(a+k_h) - b = f(a+k_h) - f(a).$$
+This allows us to expand
+$$
+g'(b) = \lim_{h\to 0} { g(b+h) - g(b) \over h} 
+= \lim_{h\to 0} { a+k_h - a\over f(a+k_h) - f(a) }
+= \lim_{h\to 0} { k_h\over f(a+k_h) - f(a) }.
+$$
+But this just looks like the definition of a derivative upside down, and we already
+observed that $k_h$ goes to $0$ as $h$ goes to $0$. We conclude that
+$$g'(b) = \lim_{k_h\to 0} {k_h\over f(a+k_h) - f(a)} = {1\over f'(a)},$$
+which proves the theorem.\slug
+
+Note that if we already knew that $f^{-1}$ is differentiable at $f(a)$ and we just wanted to find out
+what that derivative is, then we could have invoked the chain rule. For all $x$ in the domain of $f^{-1}$,
+we have
+$$x = f\bigl( f^{-1}(x)\bigr).$$
+Taking the derivative of both sides (using the chain rule on the right-hand side) yields
+$$1 = f'\bigl( f^{-1}(x)\bigr) (f^{-1})'(x),$$
+which, after rearranging, is exactly~\refeq{\eqfirstinverseformula}. But of course in order
+to use the chain rule we had to already
+know that $f^{-1}$ is differentiable, which leads us towards having to prove Theorem~{\thmderivinverse}
+properly anyway.
+
+This formula given by Theorem~{\thmderivinverse}
+for the derivatives of inverses allows us to find the derivatives of a great deal more functions.
+
+\medskip\boldlabel Roots. First we obtain a formula for the derivative of $n$th roots, where $n$ is a positive
+integer.
+
+\proclaim Theorem \advthm. For any positive integer $n$, we have
+$${d\over dx} \root n\of x = {\root n\of x\over nx} = {1\over n} x^{1/n -1}.$$
+
+\proof Let $f(x) = x^n$. By Theorem~{\thmpowerrule} (the power rule) we know that $f'(x) = nx^{n-1}$.
+Then we have $f^{-1}(x) = \root n\of x$, since $\root n\of {x^n} = x$ for all $x$.
+So by Theorem~{\thmderivinverse}, we have
+$${d\over dx} \root n\of x = {1\over f'\bigl( f^{-1}(x) \bigr)}
+= {1\over f'\bigl( \root n\of x \bigr)} = {1\over n \bigl(\root n\of x\bigr)^{n-1}} = {1\over n x^{(n-1)/n}},$$
+which rearranges to the theorem statement, since $(n-1)/n = 1-1/n$.\slug
+
+Note that plugging $n=2$ into this theorem gives us
+$${d\over dx} \sqrt x = {1\over 2} x^{1/2-1} = {1\over 2} x^{-1/2} = {1\over 2\sqrt x},$$
+which matches what we derived (from first principles) as Proposition~{\propsqrtderiv}. We can now take
+the derivative of $x^r$ whenever $r$ is rational by expressing $r$ as $p/q$ for some integers $p/q$,
+writin $x^r = x^{p/q} = \root q\of {x^p}$,
+and then invoking the chain rule. This gives the correct answer (try it and see what you get), but
+this method is messy and we'll soon develop a much easier
+way to get the same formula for general powers (including irrational powers!) very soon.
+
+\medskip\boldlabel Logarithms. Let $b$ be any positive number. If $b^x = y$, then we have $\log_b y = x$.
+In other words, the inverse of the function $f(x) = b^x$ is $f^{-1}(x) = \log_b (x)$. Since we know
+the derivative of $e^x$, we can easily calculate the derivative of its inverse function $\ln = \log_e$
+by using Theorem~{\thmderivinverse}.
+
+\proclaim Theorem \advthm. We have
+$${d\over dx} \ln x = {1\over x}.$$
+
+\proof Let $f(x) = e^x$, so that $f^{-1}(x) = \ln x$. Then $f'(x)$ is also $e^x$,
+so by Theorem~{\thmderivinverse}, we have
+$$\ln'(x) = {1\over f'\bigl(f^{-1} x\bigr)} = {1\over e^{\ln x}} = {1\over x},$$
+and we are done.\slug
+
+The function $\ln$ is not defined for negative $x$, but perhaps you might be asked to find
+$\ln(-x)$ in this case, which is allowed. Then by the chain rule we have
+$${d\over dx} \ln(-x) = {1\over -x} \cdot (-1) = {1\over x},$$
+which is the same formula that we had
+for $\ln'(x)$ in the case that $x$ is positive. We can sum this up by writing
+$${d\over dx} \ln|x| = {1\over x},$$
+a formula that covers both positive and negative cases at once (but not $x=0$, of course, since $\ln 0$ is
+not defined).
+
+Using the formula $(d/dx)\ln x = 1/x$ and the fact that $\log_b(x) = (\ln x)/(\ln b)$ for any $b>0$,
+it is very easy to show (do it!) that the derivative of a general logarithmic
+function $\log_b(x)$ is given by
+$${d\over dx} \log_b|x| = {1\over x\ln b}.$$
+
+\medskip\boldlabel Inverse trigonometric functions. Our formula for the derivatives of inverses naturally
+leads us to the calculation of the derivatives of the inverse trigonometric functions. Recall that
+if we restrict its domain to the interval $[-\pi/2, \pi/2]$, then the sine function is one-to-one,
+so it has an inverse, called $\arcsin$ or $\sin^{-1}$. The other inverse trigonometric functions are defined
+similarly, and denoted $\arccos$, $\arctan$, $\arccsc$, $\arcsec$, and $\arccot$, respectively. Visit
+Section~1.5 of the textbook for a refresher on these functions and the correct restrictions of their domains.
+(Instead of the ``arc'' notation, you might see the $^{-1}$ notation---both are valid. In fact,
+the latter three functions mentioned above are possibly {\it more often}
+denoted by $\csc^{-1}$, $\sec^{-1}$, and
+$\cot^{-1}$, respectively, on the rare occasion that they are even mentioned,
+but in these notes we'll use the ``arc'' versions.)
+
+Now that we have Theorem~{\thmderivinverse}, determining the derivatives of the six inverse trigonometric
+functions becomes a routine (but instructive) exercise in trigonometry.
+
+\proclaim Theorem \advthm. We have
+\medskip
+\item{i)} $\displaystyle {d\over dx} \arcsin x = {1\over \sqrt{1-x^2}}$;
+\smallskip
+\item{ii)} $\displaystyle {d\over dx} \arccos x = -{1\over \sqrt{1-x^2}}$;
+\medskip
+\item{iii)} $\displaystyle {d\over dx} \arctan x = {1\over 1+x^2}$;
+\medskip
+\item{iv)} $\displaystyle {d\over dx} \arccsc x = -{1\over x\sqrt{x^2-1}}$;
+\medskip
+\item{v)} $\displaystyle {d\over dx} \arcsec x = {1\over x\sqrt{x^2-1}}$; and
+\medskip
+\item{vi)} $\displaystyle {d\over dx} \arccot x = -{1\over 1+x^2}$;
+\medskip
+
+\proof We prove (i), (iii), and (v); the other three are left to you to do in private.
+In each case, our invocation
+of Theorem~{\thmderivinverse} will leave us with the composition of a trigonometric function and an inverse
+trigonometric function. Whenever you see such a beast you will always be able to simplify it by reasoning
+with a suitably constructed right triangle.
+
+For (i), Theorem~{\thmderivinverse} gives us
+\edef\eqarcsin{\the\eqcount}
+$$\arcsin'(x) = {1\over \sin'(\arcsin x)} = {1\over \cos(\arcsin x)}.\adveq$$
+To simplify this, we must draw a right triangle with angle $\theta = \arcsin x$. This means that
+$\sin\theta = x$, so the opposite divided by the
+hypotenuse must equal $x$. An easy choice is to make the opposite $x$ and the hypotenuse
+$1$. By the Pythagorean theorem, the adjacent is therefore $\sqrt{1-x^2}$, and
+$$\cos(\arcsin x) = \cos\theta = {\sqrt{1-x^2}\over 1} = \sqrt{1-x^2}.$$
+Plugging this into~\refeq{\eqarcsin} yields exactly the claimed formula in (i).
+
+For (iii), we begin with
+$$\arctan'(x) = {1\over \tan'(\arctan x)} = {1\over \sec^2(\arctan x)}.$$
+Draw a right triangle with angle $\theta$, opposite $x$, and adjacent $1$, so that $\tan\theta = x$,
+and so $\arctan x = \theta$. Then the Pythagorean theorem tells us that the hypotenuse is $\sqrt{1+x^2}$,
+so
+$$\cos\theta = {1\over \sqrt{1+x^2}},$$
+whence
+$$\sec(\arctan x) = \sec\theta = \sqrt{1+x^2}$$
+and
+$$\arctan'(x) = {1\over \sec^2(\arctan x)} = {1\over 1+x^2}.$$
+
+Finally, for (v) we expand
+\edef\eqarcsec{\the\eqcount}
+$$\arcsec'(x) = {1\over \sec(\arcsec x) \tan(\arcsec x)} = {1\over x\tan(\arcsec x)}.\adveq$$
+Draw a right triangle with angle $\theta$, hypotenuse $x$, and adjacent $1$. This makes $\cos\theta = 1/x$,
+so $\sec\theta = x$ and thus $\theta = \arcsec x$.
+We observe
+that the opposite must be $\sqrt{x^2 - 1}$ by the Pythagorean theorem, so
+$$\tan(\arcsec x) = \tan\theta = {\sqrt{x^2 -1}\over 1} = \sqrt{x^2-1}.$$
+Plugging this into~\refeq{\eqarcsec} gives us exactly the claim of (v).\slug
+
+As with the derivatives of the trigonometric functions, you may elect not to commit all of these derivative
+formulas to memory if you trust your ability to reprove them on the spot. To aid in checking your work
+if you prefer to go by this route, remember that once again it is the functions with ``-co-'' in their names
+that have negative signs in their derivatives.
 
 \bye
