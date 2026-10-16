@@ -2597,7 +2597,7 @@ we already know.
 \medskip\boldlabel Inverse functions. This is the last ``fundamental'' differentiation formula
 that we'll cover.
 Since we know how to differentiate $e^x$, we ought to be able to differentiate
-its inverse $\ln x$, since the slope of a tangent line on the graph of $\ln$ should be related in some way to the
+its inverse $\ln x$---the slope of a tangent line on the graph of $\ln$ should be related in some way to the
 slope of a tangent line on the graph of $\exp$.
 Likewise, we figured out from scratch that $(d/dx) \sqrt x = 1/(2\sqrt x)$,
 but we should learn how to differentiate $n$th roots like $\root 3\of x$, $\root 4\of x$, and so on. This
@@ -2613,7 +2613,7 @@ $f$ is {\it not} one-to-one. But if the opposite of this occurs, and every horiz
 $f$ at at most one point, then we say that it passes the horizontal line test and it is one-to-one.
 
 If this rings a bell and reminds you of the ``vertical line test'' for checking if a (purported) function is even
-well defined, then you might have some idea as to the property of being one-to-one relates to inverses.
+well defined, then you might have some idea as to how the property of being one-to-one relates to inverses.
 If a function is one-to-one, every $x$ in its domain gets mapped to a unique $y$ in its range. So given
 some $y$ in the range, there is only one $x$ that could possibly have been fed into $f$ in order to
 receive output $y$. This means that if we define a function $g$ whose domain is the range of $f$ by setting,
@@ -2628,8 +2628,8 @@ have $f^{-1}(x) = y$ whenever $f(x) = y$, the graph of $f^{-1}$ can be obtained 
 {\it reflecting it across the line $y=x$}. Think about this with some inverse pairs you already know,
 like $f = \exp $ and $f^{-1}=\ln$, or $f(x) = x^2$ and $f^{-1}(x) = \sqrt x$.
 
-\bye
-
+\noindent\datestamp{16}{x}
+\hskip\parindent
 This graphical interpretation allows us to intuitively reason about what the derivative of $f^{-1}$ should be.
 Draw a smooth curve in the plane, representing the graph of $f$ in some interval, and then pick a point
 on the curve. This is the point $\bigl(a, f(a)\bigr)$ for some number $a$. Draw the tangent line
@@ -2657,7 +2657,7 @@ $$(f^{-1})'(b) = {1\over f'(a)} =  {1\over f'\bigl( f^{-1}(b)\bigr)}.$$
 
 We'll now proceed to give a proof in terms of the formal definition of the derivative in terms
 of limits, but it is marked as optional, not because it's long but because it's a bit finicky
-with the precise definitions of inverses.
+with the precise definitions related to inverses.
 As before, try to skim the proof at least once, but if you
 understand the intuitive graphical reasoning given above
 for why Theorem~{\thmderivinverse} is true, that should be enough
@@ -2823,5 +2823,62 @@ As with the derivatives of the trigonometric functions, you may elect not to com
 formulas to memory if you trust your ability to reprove them on the spot. To aid in checking your work
 if you prefer to go by this route, remember that once again it is the functions with ``-co-'' in their names
 that have negative signs in their derivatives.
+
+\bye
+
+\medskip\boldlabel Lines tangent to the unit circle.
+Let's practise the chain rule and our understanding of trigonometric inverses with a geometric example.
+Suppose we are asked to find the lines tangent to the unit circle with a slope of $-1/\sqrt 3$. Sketching a
+circle, we notice that for any given slope, there are exactly two points on the unit circle
+where the tangent line will have that slope,
+and these points will be opposite one another. So we first restrict ourselves to the upper semicircle; we
+do this because to calculate the slope, we need to find the derivative, and we only know how to find
+derivatives of well-defined functions at the moment.
+(The graph of the upper semicircle is a function, whereas the graph of the whole unit circle
+is not a function---it fails the vertical line test.)
+In other words, there is a function $f(x)$ such that whenever $(x,y)$ is a point on the
+upper half of the semicircle, we have $y=f(x)$.
+We will express $f$ in two ways and calculate its derivative $f'$ in two different ways as
+well.
+
+We can express $f$ in terms of trigonometric functions as follows. Let $(x,y)$ be any point on the upper
+half of the unit circle. We want to determine what $y$ is as a function of $x$. Well,
+the line segment (of unit length) between the origin and $(x,y)$ creates
+an angle of $\arccos x$ from the $x$-axis. So since $y$ is equal to the sine of this angle, divided by the
+length of the hypotenuse (which is $1$), we see that $y=\sin(\arccos x)$.
+So by the chain rule, we simply compute
+$$y' = \sin'(\arccos x)\arccos'x = \cos(\arccos x) \cdot {-1\over \sqrt{1-x^2}} = {-x\over \sqrt{1-x^2}}.$$
+
+There is another way to express the equation of $y$ as a function of $x$. We notice that the triangle
+whose vertices are $(0,0)$, $(x,0)$, and $(x,y)$ is a right triangle, so we have $x^2 + y^2 = 1$. From
+here, we just isolate $y=\sqrt{1-x^2}$, where we take the positive branch of the square root because
+we are considering the upper half of the circle. Hence we have
+$$y'={d\over dx} (1-x^2)^{1/2} = {1\over 2} (1-x^2)^{-1/2} \cdot (-2x) = {-x\over \sqrt{1-x^2}}$$
+by the chain rule (and the power rule for rational powers, or the reciprocal rule combined with the root
+rule if you prefer). This is exactly the same formula for the derivative that we computed in the previous
+paragraph.
+
+So much for calculating the derivative. How does this help us find the point? Well, we are looking for
+the point $(x,y)$ where the slope is $-1/\sqrt 3$. So we have
+$${-x\over \sqrt{1-x^2}} = {-1\over \sqrt 3},$$
+and after some routine algebra, we find that $x=1/2$ satisfies this equation. When $x=1/2$, we have
+$$y = \sqrt{1-x^2} = \sqrt{1-(1/2)^2} = \sqrt{3\over 4} = {\sqrt 3\over 2}.$$
+We are now ready to find the equation of the first line. In slope-intercept form, the line has an equation
+of the form $y=mx+b$, where $m={-1/\sqrt 3}$, and we know the point $\bigl(1/2, \sqrt 3/2\bigr)$ lies on
+this line, so we have the equation
+$$ {\sqrt 3\over 2} = -{1\over \sqrt 3}\cdot {1\over 2} + b,$$
+and we find that $b=2/\sqrt 3$, after some more algebra. Hence the line we seek is given by the equation
+$$y = -{1\over \sqrt 3} x + {2\over \sqrt 3}.$$
+
+As we noted above, this is only one of the two lines with slope $1/\sqrt 3$ that is tangent to the unit
+circle. There will be another line with the same slope that is tangent to the point opposite to
+$\bigl( 1/2, \sqrt 3/2\bigr)$, which is $\bigl(-1/2, -\sqrt 3/2)$. We repeat the procedure to find
+the $y$-intercept $b$ of this new line. We have
+$${-\sqrt 3\over 2} = {-1\over \sqrt 3} \cdot {-1\over 2} + b,$$
+whence $b = -2/\sqrt 3$, and we see that the second line is given by the equation
+$$y = -{1\over \sqrt 3} x - {2\over \sqrt 3}.$$
+
+
+
 
 \bye
