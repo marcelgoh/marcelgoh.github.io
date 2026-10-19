@@ -55,6 +55,7 @@ Please email me if you find any.
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 7.\kern .5em Derivatives of the exponential
 and trigonometric functions}{52}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 8.\kern .5em Compositions and inverses}{60}}
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 9.\kern .5em Implicit differentiation}{74}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -2706,6 +2707,7 @@ for the derivatives of inverses allows us to find the derivatives of a great dea
 \medskip\boldlabel Roots. First we obtain a formula for the derivative of $n$th roots, where $n$ is a positive
 integer.
 
+\edef\thmrootrule{\the\thmcount}
 \proclaim Theorem \advthm. For any positive integer $n$, we have
 $${d\over dx} \root n\of x = {\root n\of x\over nx} = {1\over n} x^{1/n -1}.$$
 
@@ -2767,6 +2769,7 @@ but in these notes we'll use the ``arc'' versions.)
 Now that we have Theorem~{\thmderivinverse}, determining the derivatives of the six inverse trigonometric
 functions becomes a routine (but instructive) exercise in trigonometry.
 
+\edef\thminversetrig{\the\thmcount}
 \proclaim Theorem \advthm. We have
 \medskip
 \item{i)} $\displaystyle {d\over dx} \arcsin x = {1\over \sqrt{1-x^2}}$;
@@ -2824,10 +2827,108 @@ formulas to memory if you trust your ability to reprove them on the spot. To aid
 if you prefer to go by this route, remember that once again it is the functions with ``-co-'' in their names
 that have negative signs in their derivatives.
 
-\bye
+\medskip\boldlabel \datestamp{19}{x} The Mercator projection.
+Now that we know how to take the derivative of the logarithm, we are able to understand one of the most
+important mathematical problems of the seventeenth century, the century during which much of calculus was
+developed.
+
+Early mapmakers spaced lines of latitude and lines of longitude equally on their maps. This caused issues
+with maritime navigation over large distances:~travelling at a forty-five degree angle on the map didn't
+exactly correspond with going north-east. Early sailors (and their precious cargo) were liable to get lost.
+In 1569, Gerardus Mercator drew a map that seemingly fixed this problem. Lines that were at (say) a right
+angle to each other in real life were drawn as right angles on the map.
+
+It became clear that Mercator's projection was the best projection to use for maritime navigation, and
+all cartographers of the time wanted to map out newly explored areas of the world with this new projection.
+But Mercator had been vague with how exactly to perform the projection. All he'd written was that the
+map had had to be stretched more and more as you got closer to the poles.
+This is obvious to anyone who has ever beheld a sphere. How far exactly?~was the big question.
+
+In 1599, Edward Wright mathematically reverse-engineered Mercator's projection. His reasoning was as
+follows. Scale all our units so that the radius of the earth is $1$; then the length of the equator is
+$2\pi$. Moving up along the earth's surface to a latitude of $\theta$ (in real life we are used
+to expressing latitude in degrees, but for this discussion, $\theta$ will be assumed to be in radians),
+the line of latitude $\theta$ is a circle as well. It is a smaller circle than the equator, but on
+the map it will have the same length, so that the map is a rectangle. Hence this circle must be scaled
+up by some factor. To find out how much, note that the radius of this circle is $\cos \theta$ (draw it,
+remembering that the radius of the earth is set to be $1$). So the line of latitude $\theta$ is a circle
+of length $2\pi\cos\theta$, and to scale it up to $2\pi$ like the equator on our map, we have to multiply
+horizontal distances by $1/\cos\theta = \sec\theta$.
+
+Imagine you are an early European explorer who has just arrived on Montreal Island. You want to know where
+to place it on your partially filled-in world map. You have done some diligent tracking of distances,
+and estimate that you are $3500$ miles west of the prime meridian. (Let us gloss over the calculation
+of longitude, which was actually extremely difficult in the old days without precise timekeeping technology.)
+You know that the equator is roughly $25000$
+miles long. If Montreal had been on the equator, you'd have placed it $3500/25000 = 14\%$ of the equator's
+distance left of the prime meridian on the map. But you also know that the latitude of Montreal is around
+$45$ degrees, or $\pi/4$ radians, so the scale factor is $\sec(\pi/4) = \sqrt 2$, and you should instead
+place it at $\sqrt 2\cdot 14\% \approx 20\%$ of the way around the globe at the $45$th parallel.
+
+So calculating the $x$-coordinate of a point on the map isn't too hard.
+But knowing how far up the map (at what $y$-coordinate) to draw Montreal is much more difficult,
+and is the part that Edward Wright was the first to mathematically describe in 1599.
+Here's the key insight. To preserve angles, all small shapes have to be preserved. A square farm in the world
+should be square on the map. We already know that if you move a small distance eastward or westward at
+latitude $\theta$, then $x$ should change by that distance times $\sec\theta$.
+Hence small northward distances at latitude $\theta$ should be scaled by $\sec\theta$
+as well. In other words, if we increase $\theta$ by some small amount, call it $d\theta$, then the
+$y$ coordinate should change by $\sec\theta\cdot d\theta$. So $dy = \sec\theta\cdot d\theta$ and we have
+$${dy\over d\theta} = \sec\theta.$$
+In modern parlance, $y$ should be a function of $\theta$ whose derivative is $\sec\theta$.
+
+{\sl What is a function of that changes by $\sec\theta$ as you tweak it slightly near $\theta$?} This was
+one of the famous mathematical problems of the age, as solving it would immediately make
+it possible to draw accurate maps, and thus conquer the world. Wright calculated
+a big table of values of $y$ for various $\theta$, which was a useful enough for the time. But he wouldn't
+have been able to write down a formula, as it involves the logarithm, which wasn't invented until 1614 by
+John Napier. People started compiling tables of values of logarithms (calculated by hand!)~as they were
+useful for many different applications. A book came out in 1620 compiling values of logarithms of
+trigonometric functions.
+
+In 1645 Henry Bond noticed a curious coincidence. Wright's table of $y$ values for various $\theta$ in
+Mercator's projection seemed to appear in the table for the logarithm of the tangent function, but shifted
+by a bit. In particular, it seemed to him that $y(\theta) = \ln\bigl( \tan(\theta/2 + \pi/4)\bigr)$.
+This caused a big stir after it was published, but was still only a conjecture. Remember, the first calculus
+texts only appeared in the 1670s, so people in the 1640s the time hadn't even developed the notation to write
+the conjecture down as $(d/d\theta) \ln\bigl( \tan(\theta/2+\pi/4)\bigr) = \sec\theta$, let alone prove it
+using the chain rule.
+Some rich people offered prize money to anyone who could prove the conjecture.
+In fact, one of the first inventors of calculus, Isaac Newton, wrote in a 1665 letter
+that he was aware of the problem,
+This is smack in the middle of the time period when he was also writing his first private notes on what was to
+become calculus.
+
+In the end, James Gregory was the first to prove the conjecture in 1668. His explication was horribly
+complicated, and
+a simpler method was published by Isaac Barrow in 1670. Both of these proofs, predating calculus notation by
+several years, would have been written out more or less in words. With our modern understanding of
+calculus, the proof simply follows from two applications of the chain rule and the identity
+$\sin(2x) = 2\sin x\cos x$.
+
+\proclaim Theorem \advthm. On the interval $(0,\pi/2)$, the derivative of
+$$y(\theta) = \ln\Biggl(\tan\biggl( {\theta\over 2} + {\pi\over 4}\biggr)\Biggr)$$
+is $\sec\theta$.
+
+\proof By the chain rule, we have
+$$\eqalign{
+y'(\theta) &= {1\over \tan(\theta/2 + \pi/4)}\cdot \tan'\biggl( {\theta\over 2} + {\pi\over 4}\biggr) \cr
+&= {1\over \tan(\theta/2 + \pi/4)}\cdot \sec^2\biggl( {\theta\over 2} + {\pi\over 4}\biggr)\cdot {1\over 2} \cr
+&= {\cos(\theta/2+\pi/4) \over \sin(\theta/2 + \pi/4)}\cdot {1\over 2\cos^2(\theta/2+\pi/4)} \cr
+&= {1\over 2\sin(\theta/2+\pi/4)\cos(\theta/2+\pi/4)} \cr
+&= {1\over \sin(\theta+\pi/2)} \cr
+&= {1\over \cos\theta},\cr
+}$$
+which is exactly $\sec\theta$.\slug
+
+So to finish off our example of trying to place Montreal on the world map, we need only plug in the latitude
+$\theta = \pi/4$ into this equation, and calculate $y(\theta) = \ln\bigl(\tan(3\pi/8)\bigr) \approx 0.88$.
+Then we know that the equator is supposed to be $2\pi$ long, so we find that $y(\theta)$ should be roughly
+$0.88/(2\pi) \approx 14\%$
+of however long the equator is drawn on our map, and that's how high on the map we shall draw Montreal.
 
 \medskip\boldlabel Lines tangent to the unit circle.
-Let's practise the chain rule and our understanding of trigonometric inverses with a geometric example.
+Let's practise the chain rule and our understanding of trigonometric inverses with one more geometric example.
 Suppose we are asked to find the lines tangent to the unit circle with a slope of $-1/\sqrt 3$. Sketching a
 circle, we notice that for any given slope, there are exactly two points on the unit circle
 where the tangent line will have that slope,
@@ -2853,7 +2954,8 @@ There is another way to express the equation of $y$ as a function of $x$. We not
 whose vertices are $(0,0)$, $(x,0)$, and $(x,y)$ is a right triangle, so we have $x^2 + y^2 = 1$. From
 here, we just isolate $y=\sqrt{1-x^2}$, where we take the positive branch of the square root because
 we are considering the upper half of the circle. Hence we have
-$$y'={d\over dx} (1-x^2)^{1/2} = {1\over 2} (1-x^2)^{-1/2} \cdot (-2x) = {-x\over \sqrt{1-x^2}}$$
+\edef\equppersemicircle{\the\eqcount}
+$$y'={d\over dx} (1-x^2)^{1/2} = {1\over 2} (1-x^2)^{-1/2} \cdot (-2x) = {-x\over \sqrt{1-x^2}}\adveq$$
 by the chain rule (and the power rule for rational powers, or the reciprocal rule combined with the root
 rule if you prefer). This is exactly the same formula for the derivative that we computed in the previous
 paragraph.
@@ -2878,7 +2980,165 @@ $${-\sqrt 3\over 2} = {-1\over \sqrt 3} \cdot {-1\over 2} + b,$$
 whence $b = -2/\sqrt 3$, and we see that the second line is given by the equation
 $$y = -{1\over \sqrt 3} x - {2\over \sqrt 3}.$$
 
+Because we only know how to find derivatives of functions, to find the tangent lines to the circle
+from this example, we had to exploit the symmetry of the circle in order to sidestep the fact that the
+equation $x^2 + y^2 = 1$ defining a
+circle is not a well-defined function of $x$.
+For more complicated curves that are also well-defined functions of $x$, this kind of reasoning (using the
+fact that opposite points on a circle should have tangent lines with the same slope) may not work, and
+want to have a way to determine the slopes (and equations)
+of lines tangent to all such curves. In the next section, we introduce a technique for doing so.
 
+\advsect Implicit differentiation
 
+If $f$ and $g$ are two functions that are both differentiable and equal to each other
+on some interval $(a,b)$ (i.e.,
+$f(x) = g(x)$ for every $a<x<b$), then we have $f'(x) = g'(x)$. This is obvious because if the graphs are
+the same on this interval, then the tangent lines must also be the same. This fairly innocuous statement
+forms the basis of a very powerful technique called {\it implicit differentiation}.
+
+Consider again the equation defining the unit circle, namely $x^2+y^2 = 1$. If we think of $x$ as a variable
+that changes, then $y$ must change whenever $x$ does in order to maintain the validity of the equation.
+Hence we can think of both sides as functions of $x$ whose derivatives must be equal; in other words,
+\edef\equnitcircle{\the\eqcount}
+$${d\over dx} (x^2 + y^2) = {d\over dx} 1.\adveq$$
+When calculating this derivative, we must be careful to think of $y$ as a function of $x$. This means
+that we must use the chain rule when calculating $(d/dx) y^2$. We have $(d/dy) y^2 = 2y$, so by the chain
+rule, $(d/dx) y^2 = 2y(dy/dx)$. Hence taking the derivatives of both sides
+in the equation~\refeq{\equnitcircle} yields the equation
+$$2x + 2y{dy\over dx} = 0,$$
+which means that
+$${dy\over dx} = {-x\over y}.$$
+Does this tally with the equation~\refeq{\equppersemicircle} that we derived earlier? Well, recall that
+that equation was solely for the upper semicircle, where we have $y=\sqrt{1-x^2}$, so yes, indeed it does.
+But our new formula works equally well on the lower semicircle, where $y=-\sqrt{1-x^2}$. It tells us that
+on the lower semicircle we have $dy/dx = x/\sqrt{1-x^2}$. (Think about how the sign of the slope of the
+tangent line changes as you move around the unit circle, and convince yourself that this change in sign
+for the derivative of the lower semicircle makes sense.)
+
+\bye
+
+\medskip\boldlabel Rederiving old formulas implicitly.
+With this technique of implicit differentiation, we could actually have worked out the derivatives of
+the natural logarithm, roots, and inverse trigonometric functions without appealing to
+Theorem~{\thmderivinverse}. The only downside to this approach is that it does not actually tell us that the
+functions $\ln$, $\root n\of x$, $\arcsin$, etc.~are differentiable, unlike Theorem~{\thmderivinverse}.
+We have to assume they are differentiable in order to use the technique. Putting that nitpick aside,
+rederiving some of these formulas is a good way to practise implicit differentiation, so let us do that now.
+
+The natural logarithm $\ln$ is such that
+$$e^{\ln x} = x$$
+for all real numbers $x$. By differentiating both sides (using the chain rule on the left-hand side),
+we see that
+$$e^{\ln x}\cdot {d\over dx}\ln x = 1,$$
+whence $(d/dx)\ln x = 1/e^{\ln x} = 1/x$, as we found out last section.
+
+Let's try an inverse trigonometric function now. We'll find the derivative of $\arccsc$, which was skipped
+over in the proof of Theorem~{\thminversetrig} above. We have
+$$\csc(\arccsc x) = x,$$
+so by the chain rule,
+$$-\csc(\arccsc x)\cot(\arccsc x)\cdot {d\over dx}\arccsc x = 1$$
+follows from differentiating both sides. By drawing a suitable triangle, we see that
+$\cot(\arccsc x) = \sqrt{x^2-1}$, and of course $\csc(\arccsc x) = x$, so we find that
+$${d\over dx} \arccsc x = {-1\over x\sqrt{x^2-1}},$$
+which is exactly claim~(iv) of Theorem~{\thminversetrig}.
+
+It is possible to
+rederive Theorem~{\thmrootrule} as well using implicit differentiation, but as we hinted at before,
+one can actually state and prove a
+general formula for the derivative of the function $x^r$, where $r$ is any real number
+(so this applies to all integer powers $r=n$ as well as all roots $r=1/n$). The following theorem subsumes
+Theorems~{\thmpowerrule} and~{\thmrootrule}.
+
+\edef\thmgeneralpowerrule{\the\thmcount}
+\parenproclaim Theorem {\advthm} (General power rule). Let $r$ be any real number. Then
+\global\edef\eqpowerrule{\the\eqcount}
+$${d\over dx} x^r = rx^{r-1}.\adveq$$
+(We define $0^0 = 1$ to make this formula work for $r=1$ and $x=0$.)
+
+\proof We wish to find $dy/dx$, where
+$$y = x^r.$$
+The trick is to take the logarithm on both sides (we cannot take the logarithm of a negative number, but
+we get around this by taking the logarithm of the {\it absolute value} of both sides).
+We have
+$$\ln|y| = \ln|x^r| = \ln \bigl( |x|^r\bigr) = r\ln |x|,$$
+which, after differentiating both sides, yields
+$$ {1\over y} {dy\over dx} = {r\over x}.$$
+Isolating for $dy/dx$ gives us
+$$ {dy\over dx} = {ry\over x} = {rx^r\over x} = rx^{r-1}.$$
+
+The alert reader will notice that this does not allow us to find the derivative at $x=0$, since in that
+case $y = x^r = 0$ and $\ln|y|$ is undefined. This special case has to be dealt with separately, directly
+from the definition of limits. If $r=1$, then $x^r$ is just $x$, and the derivative is $1$ everywhere,
+even at $x=0$, which is what~\refeq{\eqpowerrule} prescribes.j
+When $r\ne 0$, we have
+$${d\over dx} x^r \Big|_{x=0} = \lim_{x\to 0} {x^r - x^0 \over x-0} = \lim_{x\to 0} x^{r-1} = 0,$$
+which means the claim is still true. (This is because
+$r\cdot 0^{r-1}$ is equal to $0$ when $r>1$ and blows up
+to infinity when $r<1$, which the right-hand side of~\refeq{\eqpowerrule} does as well.)\slug
+
+\medskip\boldlabel Logarithmic differentiation. To prove the general power rule, we took the logarithm
+of both sides of the equation before differentiating. This allowed us to pull the exponent $r$ of $x$
+down in front. Taking the logarithm before differentiating implicitly is useful in other cases as well.
+The laws
+$$\ln(ab) = \ln a + \ln b\qquad\hbox{and}\qquad \ln\Bigl({a\over b}\Bigr) = \ln a - \ln b$$
+tell us that if we take the logarithm before differentiating, then a complicated product or quotient
+can reduce to a sum or a difference instead, which is easier to take the derivative of.
+Of course this manoeuvre adds a bit of complexity because we have to invoke
+the chain rule with all the resulting logarithms,
+but anyone who has tried applying the product and quotient rules multiple times to a
+convoluted expression will be convinced that exchanging these two rules for the chain rule may be worth it.
+Let's see an example.
+
+\proclaim Proposition \advthm. The derivative of the function
+$$ f(x) = {(x-3)^5 x^{3/2} \over \sqrt{1+x^2}}$$
+is
+$$ f'(x) = {(x-3)^5 x^{3/2} \over \sqrt{1+x^2}} \biggl( {5\over x-3} + {3\over 2x} - {x\over 1+x^2}\biggr).$$
+
+\proof Let $y=f(x)$;
+we want to find $dy/dx$, but first let us take the logarithm of (the absolute value of)
+both sides. This results in
+$$\eqalign{
+\ln |y| &= \ln\Biggl(\biggl|{(x-3)^5 x^{3/2} \over \sqrt{1+x^2}}\biggr|\Biggr) \cr
+&= \ln\bigl(|x-3|^5\bigr) + \ln\bigl(|x|^{3/2}\bigr) - \ln\bigl( |1+x^2|^{1/2}\bigr) \cr
+&= 5\ln|x-3| + {3\over 2} \ln |x| -  {1\over 2} \ln |1+x^2|.\cr
+}$$
+(The identities
+$$|ab| = |a|\cdot |b|, \qquad
+\Bigl|{a\over b}\Bigr| = {|a|\over |b|},\qquad\hbox{and}\qquad
+|a^r| = |a|^r$$
+are useful to keep in mind when carrying out logarithmic differentiation.)
+Now, taking the derivative of both sides gives us
+$$ {1\over y}\cdot{dy\over dx} = {5\over x-3} + {3\over 2x} - {1\over 2(1+x^2)}\cdot 2x,$$
+from which we see that
+$$ {dy\over dx} = y\biggl( {5\over x-3} + {3\over 2x} - {x\over 1+x^2} \biggr).$$
+Substituting the definition of $y = f(x)$ into this equation gives exactly the proposition
+statement.\slug
+
+You could use the product and quotient rules to derive exactly the same result, but the intermediate
+expressions are rather complicated and you'd be in danger of making algebraic errors trying to simplify
+the answer. It is a good exercise in being careful and methodical---give it a try if you have the time.
+Ultimately it is a matter of taste which approach you choose to follow for problems like these.
+
+Here is another derivative that is easy to find using logarithmic differentiation.
+
+\proclaim Proposition \advthm. The function
+$$f(x) = x^x$$
+has as its derivative the function
+$$f'(x) = x^x(1+\ln x).$$
+
+\proof Let $y=f(x)$ and observe that
+$$\ln|y| = \ln\bigl(|x^x|\bigr) = x\ln|x|.$$
+This means that
+$${1\over y} \cdot {dy\over dx} = x\cdot {1\over x} + 1\cdot\ln x,$$
+whence
+$${dy\over dx} = y (1+\ln x).$$
+But $y=f(x) = x^x$, so the proposition follows.\slug
+
+This confirms our intuition that, for large $x$, the function $x^x$ grows much faster than $b^x$
+for any constant $b$; whereas $(d/dx)b^x$ was $b^x$ times a constant (namely, $\ln b$),
+the derivative of $x^x$ is itself times something that still continues to grow with $x$.
+You could also try differentiating $x^x$ without resorting to logarithmic differentiation by writing
+$x^x = e^{x\ln x}$, and then using the chain rule.
 
 \bye
