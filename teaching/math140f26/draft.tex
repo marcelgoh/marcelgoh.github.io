@@ -3252,12 +3252,14 @@ $$ {dy\over dx} = {ry\over x} = {rx^r\over x} = rx^{r-1}.$$
 The alert reader will notice that this does not allow us to find the derivative at $x=0$, since in that
 case $y = x^r = 0$ and $\ln|y|$ is undefined. This special case has to be dealt with separately, directly
 from the definition of limits. If $r=1$, then $x^r$ is just $x$, and the derivative is $1$ everywhere,
-even at $x=0$, which is what~\refeq{\eqpowerrule} prescribes.j
+even at $x=0$, which is what~\refeq{\eqpowerrule} prescribes.
 When $r\ne 0$, we have
 $${d\over dx} x^r \Big|_{x=0} = \lim_{x\to 0} {x^r - x^0 \over x-0} = \lim_{x\to 0} x^{r-1} = 0,$$
 which means the claim is still true. (This is because
 $r\cdot 0^{r-1}$ is equal to $0$ when $r>1$ and blows up
 to infinity when $r<1$, which the right-hand side of~\refeq{\eqpowerrule} does as well.)\slug
+
+\bye
 
 \medskip\boldlabel Logarithmic differentiation. To prove the general power rule, we took the logarithm
 of both sides of the equation before differentiating. This allowed us to pull the exponent $r$ of $x$
