@@ -2827,7 +2827,7 @@ formulas to memory if you trust your ability to reprove them on the spot. To aid
 if you prefer to go by this route, remember that once again it is the functions with ``-co-'' in their names
 that have negative signs in their derivatives.
 
-\medskip\boldlabel \datestamp{19}{x} The Mercator projection.
+\medskip\boldlabel \datestamp{19}{x} \llap{*}The Mercator projection.
 Now that we know how to take the derivative of the logarithm, we are able to understand one of the most
 important mathematical problems of the seventeenth century, the century during which much of calculus was
 developed.
@@ -3016,7 +3016,185 @@ on the lower semicircle we have $dy/dx = x/\sqrt{1-x^2}$. (Think about how the s
 tangent line changes as you move around the unit circle, and convince yourself that this change in sign
 for the derivative of the lower semicircle makes sense.)
 
-\bye
+\medskip\boldlabel \datestamp{21}{x} Another algebraic curve.
+An {\it algebraic curve} is the set of all points $(x,y)$ that
+make an algebraic equation $f(x,y) = 0$ true. The unit circle is an algebraic curve; its defining algebraic
+equation is $x^2 + y^2 = 0$, so $f(x,y)$ here is $x^2 + y^2 - 1$.
+Let us find a tangent line on a curve
+whose defining equation is slightly more complicated than that of a circle.
+
+\edef\propelliptic{\the\thmcount}
+\proclaim Proposition \advthm. The line tangent to the curve
+$$y^2 = x^3 -2x + 5$$
+at the point $(2,3)$ is
+$$y = {5\over 3} x - {1\over 3}.$$
+Apart from being tangent to the curve at $(2,3)$, this tangent line intersects the curve at exactly
+one more point, namely, $(-11/9,-64/27)$.
+
+\proof Let us first check that $(2,3)$ is even on the curve. We have
+$$2^3-2\cdot 2 + 5 = 8-4+5 = 9,$$
+and of course $3^2 =9$, so the point is indeed on the curve.
+
+Now we want to find the slope $dy/dx$ of the tangent line, so let us take the derivative with respect
+to $x$ of both sides of the curve's defining equation. We have
+$$2y{dy\over dx} = 3x^2 - 2,$$
+so that
+$${dy\over dx} = {3x^2 - 2\over 2y}.$$
+To find the slope of the tangent line at the point $(2,3)$, we simply plug in $x=2$ and $y=3$ into this
+formula for $dy/dx$, obtaining
+$${dy\over dx}\bigg|_{x=2, y=3} = {3\cdot 2^2 - 2\over 2\cdot 3} = {10\over 6} = {5\over 3}.$$
+Hence the tangent line has equation $y=(5/3)x + b$ for some real number $b$. We can find the $y$-intercept
+$b$ by noting that $(2,3)$ lies on this tangent line. We have $3 = (5/3)\cdot 2 + b$, so
+$$b=3-{10\over 3} = {9\over 3} - {10\over 3} = {-1\over 3}.$$
+This proves the first claim in the proposition.
+
+\noindent\llap{*}\hskip\parindent
+The rest of the proof from here
+onwards is marked as optional, as it is fairly long and relatively light on calculus concepts.
+The goal is to find the intersection points between a cubic equation and a line, which is high school
+material (though probably on the more complex end). It is good to skim through at least once to make
+sure you are familiar with these techniques.
+
+We wish to find out where the curve $y^2 = x^3 - 2x + 5$ and the line $y = (5/3)x-1/3$ intersect,
+besides at $(2,3)$, where we already know the line is tangent to the curve.
+To do this, we substitute the tangent line
+equation into the curve equation and find all solutions.
+The substitution yields
+$$\biggl( {5\over 3} x - {1\over 3}\biggr)^2 = x^3 - 2x + 5,$$
+which means that
+$${25\over 9} x^2 - 2\cdot {5\over 9} x + {1\over 9} = x^3 - 2x + 5;$$
+moving all the terms to the right-hand side and then multiplying through by $9$ lets us
+simplify this to
+$$9x^3 - 25 x^2 - 8x + 1 = 0.$$
+This on the left-hand side here is a cubic polynomial, so finding all its solutions would be hard,
+except that we already know that $x=2$ is a solution. So we can divide the cubic polynomial by the polynomial
+$x-2$ to obtain $9x^2 - 7x - 22$.
+
+From here, we can use the quadratic formula to find the roots of this quadratic polynomial.
+But here's a shortcut: $x=2$ will be a root again, since it is a repeated root of $9x^3 - 25x^2 - 8x + 1$!
+One way to see this is to reason about the original cubic curve being tangent to the tangent line (naturally)
+at $x=2$. This means if you substitute one equation into the other you will get a cubic curve that just touches
+the $x$-axis at $x=2$, but doesn't cross it. The other way to see this is to calculate
+$${d\over dx} (9x^3 - 25x^2 - 8x + 1) = 27x^2 - 25x - 8,$$
+so the derivative of this polynomial is $0$ at $x=2$. Hence its graph is flat when $x=2$, and we already
+know it equals $0$ at $x=2$. Hence it has a repeated root at $x=2$. Either way, we now know that
+$x=2$ is a root of the quadratic polynomial $9x^2 - 7x - 22$ we obtained in the previous paragraph,
+and dividing it by $x-2$ once more results in the linear polynomial $9x+11$. This has a zero at $x=11/9$,
+meaning that original curve $y^2 = x^3 - 2x + 5$ and the tangent line to this curve at $(2,3)$ intersect
+again when $x=11/9$. It remains to find the $y$-value(s) when $x=-11/9$. To do this we simply use
+the equation
+$$y={5\over 3}\cdot {-11\over 9} - {1\over 3} = {-55\over 27} - {9\over 27} = {-64\over 27}$$
+to find that $y=-64/27$, or $y=(-4/3)^3$ if you like.\slug
+
+\medskip\boldlabel \llap{*}Elliptic curves and cryptography.
+Any curve of the form
+$$y^2 = x^2 + ax + b$$
+is called an {\it elliptic curve}, as long as $4a^3 + 27b^2\ne 0$. You may check that the curve from
+Proposition~{\propelliptic} is an elliptic curve (there we have $a=-2$ and $b=5$). Elliptic curves
+are {\it smooth}---their graphs don't have self-intersections or cusps. To see what cubic curves that
+fail the elliptic condition $4a^3 + 27b^2 \ne 0$ look like,
+use an online graphical calculator like Desmos to graph $y^2 = x^3$ and $y^2 = x^3 -3x + 2$.
+
+In general, the
+secant line between two points that lie on an elliptic curve will cross the elliptic curve exactly
+one more time, and lines tangent to an elliptic curve will cross the elliptic curve exactly once more,
+like we saw in Proposition~{\propelliptic}. (There are some exceptions, like vertical tangent lines and
+tangent lines at inflection points, but we'll gloss over these exceptions as they won't come up for
+our cryptographic purposes.) This means that we can define a sort of ``addition'' for points on elliptic
+curves that will spit out another point on the elliptic curve. Here are the rules for this special addition.
+\medskip
+\item{i)} If $P$ and $Q$ are two different points, then
+the secant line passing through these two points intersects the curve at one more point, call it $R$, and
+we define $P+Q = -R$. (Note the minus sign!)
+\smallskip
+\item{ii)} If $Q = P$, then we cannot take a secant line, but we can find the tangent line at $P$, and
+it will cross the elliptic curve at exactly one more point, call it $R$, and we defined $P+P=-R$.
+We can also write $P+P$ as $2 P$, hence $2P=-R$.
+\medskip
+If we want to find some larger multiple of $P$, we can combine methods (i) and (ii). Let's say we want
+to calculate $7P$. Well, we can calculate $2 P$ by finding the tangent line to $P$, seeing where
+it crosses the curve again, and then taking the negative of that point. Now we can find $4 P$
+by noting that
+$$4P = P+P+P+P = (P+P) + (P+P) = 2P + 2P,$$
+and we know what $2P$ is, so we can find the tangent line to $2P$ and so on to find $4P$. Knowing
+what $P$, $2P$, and $4P$ all are, we may calculate
+$$7P = (P + 2P) + 4P$$
+using secant lines.
+
+Before we get into how this helps with cryptography, let's briefly go over what cryptography even is.
+{\it Cryptography} is the study of keeping secret data
+safe from potential bad actors. Whenever you send your password to a website over a secure connection,
+you're not actually sending your password as a string to the website, since anyone intercepting
+the communication channel would then be able to steal your password and (since you use the same password
+for everything) hack your bank accounts, etc. The way to get around this is to {\it encrypt} it with
+a secret encryption key. In our simplified account of things, let's say that your password (after
+converting to binary) is $p = 10100111$. Suppose the secret encryption key, that both you and the website know
+but no one else does, is $k = 11011101$. Instead of sending your password, you first scramble it by performing
+{\it bit addition} $\oplus$ with the secret key. To do bit addition, line up the two binary numbers,
+and add them like you would ordinary numbers, but $1+1 =0$ and you never have to carry anything:
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$ \cr
+& 10100111 \cr
+\oplus & 11011101 \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+& 01111010 \cr
+}}
+$$
+So instead of sending $p$, you send the {\it encrypted}
+string $s = 01111010$. How can the website recover your password
+$p$ from this? Very conveniently, you can get $p$ back from $s$ (i.e., you can {\it decrypt} the
+message) by just doing bit addition with the secret key
+$k$ once more! Behold:
+$$
+\vbox{
+\tabskip=1em plus.2em minus .2em
+\halign{
+\hfil$#$\hfil & \hfil$#$ \cr
+& 01111010 \cr
+\oplus & 11011101 \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+& 10100111 \cr
+}}
+$$
+It seems like we have found a safe method for sending passwords. But this begs the question: {\sl How do we
+communicate the secret key to each other?} The website can't possibly use the same secret key with all
+users, since then we could all steal each other's passwords. We also can't just send the secret key
+beforehand over the communication channel beforehand, since any malicious agents listening would then
+know the key, and could perform the decryption process for themselves.
+
+This is where elliptic curves come in. It provides us a way for your computer and the website to collectively
+decide upon a secret key {\sl without actually sending any sensitive data over the communication channel}.
+The key insight is that if you have a point $P$ on an elliptic curve, and you calculate $P+P$ using
+the tangent line method, then knowing $2\cdot P = P+P$, it's kind of difficult to find out what $P$ was in the
+first place. Here's something that's even harder. If you pick some largish integer $n$ and calculate
+$R = nP$, which is some other point on the elliptic curve, and then show me both $P$ and $R$,
+it is very difficult for me to find out what $n$ is.
+
+So here's the scheme. You want to send a password to a website securely. The website picks some suitably
+large number $m$ randomly, and sends you both the point $P$ and the point $mP$ (after encoding this data
+in binary).
+You pick some suitably
+large number $n$ randomly, and send the website the binary string representing the
+point $nP$. Any evil person tapping the communication
+channel now knows $P$, $mP$, and $nP$, but as discussed earlier
+this does not allow them to find out what the numbers
+$m$ and $n$ are.
+Now you know $n$ and you know $mP$, so you can calculate $n(mP) = (nm)P$ using elliptic curve addition.
+The website knows $m$ and it knows $nP$, so it can calculate $m(nP) = (mn)P$. There's no difference
+between $(nm)P$ and $(mn)P$, because both just mean $P$ (elliptically) added to itself $mn = nm$ times.
+You and the website now have access to the exact same binary string, namely the binary representation
+of the point $(mn)P$! You can safely use this as the secret key, encrypt your password with it, and send
+that encrypted message over the communication channel. Any hackers listening in will see only the encrypted
+message but not know the secret key, so your password is safe from them, and the website can decrypt
+the message using the same secret key, in order to see your password.
+
 
 \medskip\boldlabel Rederiving old formulas implicitly.
 With this technique of implicit differentiation, we could actually have worked out the derivatives of
@@ -3026,12 +3204,16 @@ functions $\ln$, $\root n\of x$, $\arcsin$, etc.~are differentiable, unlike Theo
 We have to assume they are differentiable in order to use the technique. Putting that nitpick aside,
 rederiving some of these formulas is a good way to practise implicit differentiation, so let us do that now.
 
-The natural logarithm $\ln$ is such that
-$$e^{\ln x} = x$$
-for all real numbers $x$. By differentiating both sides (using the chain rule on the left-hand side),
+The natural logarithm $\ln$ is such that if
+$$y=\ln x,$$
+then
+$$e^y = x.$$
+By differentiating both sides (using the chain rule on the left-hand side),
 we see that
-$$e^{\ln x}\cdot {d\over dx}\ln x = 1,$$
-whence $(d/dx)\ln x = 1/e^{\ln x} = 1/x$, as we found out last section.
+$$e^y{dy\over dx} = 1,$$
+whence
+$${dy\over dx} = {1\over e^y} = {1\over x},$$
+as we found out in the previous section.
 
 Let's try an inverse trigonometric function now. We'll find the derivative of $\arccsc$, which was skipped
 over in the proof of Theorem~{\thminversetrig} above. We have
