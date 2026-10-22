@@ -3259,9 +3259,8 @@ which means the claim is still true. (This is because
 $r\cdot 0^{r-1}$ is equal to $0$ when $r>1$ and blows up
 to infinity when $r<1$, which the right-hand side of~\refeq{\eqpowerrule} does as well.)\slug
 
-\bye
-
-\medskip\boldlabel Logarithmic differentiation. To prove the general power rule, we took the logarithm
+\medskip\boldlabel \datestamp{23}{x} Logarithmic differentiation.
+To prove the general power rule, we took the logarithm
 of both sides of the equation before differentiating. This allowed us to pull the exponent $r$ of $x$
 down in front. Taking the logarithm before differentiating implicitly is useful in other cases as well.
 The laws
@@ -3272,20 +3271,24 @@ Of course this manoeuvre adds a bit of complexity because we have to invoke
 the chain rule with all the resulting logarithms,
 but anyone who has tried applying the product and quotient rules multiple times to a
 convoluted expression will be convinced that exchanging these two rules for the chain rule may be worth it.
-Let's see an example.
 
-\proclaim Proposition \advthm. The derivative of the function
-$$ f(x) = {(x-3)^5 x^{3/2} \over \sqrt{1+x^2}}$$
-is
-$$ f'(x) = {(x-3)^5 x^{3/2} \over \sqrt{1+x^2}} \biggl( {5\over x-3} + {3\over 2x} - {x\over 1+x^2}\biggr).$$
+In the following example that demonstrates logarithmic differentiation, we find the {\it normal line}
+to a graph at a point instead of the tangent line. This is the unique line intersecting the curve at that
+point {\it perpendicularly} to the tangent line. If the slope of the tangent line is $m$, then the slope
+of the normal line is $-1/m$. (If the tangent line is horizontal, then the normal line is vertical.)
+
+\proclaim Proposition \advthm. The normal line to the graph
+$$ f(x) = {(x-3)^5 x^{3/2} \over \sqrt{3+x^2}}$$
+at the point $(1,-16)$ is given by the equation
+$$y+16 = -{1\over 20} (x-1)$$
 
 \proof Let $y=f(x)$;
 we want to find $dy/dx$, but first let us take the logarithm of (the absolute value of)
 both sides. This results in
 $$\eqalign{
-\ln |y| &= \ln\Biggl(\biggl|{(x-3)^5 x^{3/2} \over \sqrt{1+x^2}}\biggr|\Biggr) \cr
-&= \ln\bigl(|x-3|^5\bigr) + \ln\bigl(|x|^{3/2}\bigr) - \ln\bigl( |1+x^2|^{1/2}\bigr) \cr
-&= 5\ln|x-3| + {3\over 2} \ln |x| -  {1\over 2} \ln |1+x^2|.\cr
+\ln |y| &= \ln\Biggl(\biggl|{(x-3)^5 x^{3/2} \over \sqrt{3+x^2}}\biggr|\Biggr) \cr
+&= \ln\bigl(|x-3|^5\bigr) + \ln\bigl(|x|^{3/2}\bigr) - \ln\bigl( |3+x^2|^{1/2}\bigr) \cr
+&= 5\ln|x-3| + {3\over 2} \ln |x| -  {1\over 2} \ln |3+x^2|.\cr
 }$$
 (The identities
 $$|ab| = |a|\cdot |b|, \qquad
@@ -3293,16 +3296,27 @@ $$|ab| = |a|\cdot |b|, \qquad
 |a^r| = |a|^r$$
 are useful to keep in mind when carrying out logarithmic differentiation.)
 Now, taking the derivative of both sides gives us
-$$ {1\over y}\cdot{dy\over dx} = {5\over x-3} + {3\over 2x} - {1\over 2(1+x^2)}\cdot 2x,$$
+$$ {1\over y}\cdot{dy\over dx} = {5\over x-3} + {3\over 2x} - {1\over 2(3+x^2)}\cdot 2x,$$
 from which we see that
-$$ {dy\over dx} = y\biggl( {5\over x-3} + {3\over 2x} - {x\over 1+x^2} \biggr).$$
-Substituting the definition of $y = f(x)$ into this equation gives exactly the proposition
-statement.\slug
+$$ {dy\over dx} = y\biggl( {5\over x-3} + {3\over 2x} - {x\over 3+x^2} \biggr).$$
+Substituting the definition of $y = f(x)$ into this equation tells us that
+$$ f'(x) = {(x-3)^5 x^{3/2} \over \sqrt{3+x^2}} \biggl( {5\over x-3} + {3\over 2x} - {x\over 3+x^2}\biggr).$$
+To find the slope of the normal line at $(1,-16)$,
+we first find the slope of the tangent line at that point, which is
+$$\eqalign{
+f'(x) &= {(1-3)^5 1^{3/2} \over \sqrt{3+1^2}} \biggl( {5\over 1-3} + {3\over 2} - {1\over 3+1^2}\biggr) \cr
+&= {(-2)^5 \over 2} \biggl( -{5\over 2} + {3\over 2} - {1\over 4}\biggr) \cr
+&= -16 {-5\over 4} \cr
+&= 20. \cr
+}$$
+Hence the slope of the normal line is the negative reciprocal $-1/20$ of $20$, and of course $(1,-16)$ lies
+on this line, so the equation of the normal line, in slope-point form,
+is $y-(-16) = -(1/20) (x-1)$, as claimed.\slug
 
 You could use the product and quotient rules to derive exactly the same result, but the intermediate
-expressions are rather complicated and you'd be in danger of making algebraic errors trying to simplify
-the answer. It is a good exercise in being careful and methodical---give it a try if you have the time.
-Ultimately it is a matter of taste which approach you choose to follow for problems like these.
+expression would be slightly more complicated. That said,
+if you're just going to plug in $x=1$, maybe it doesn't matter
+so much---ultimately it is a matter of taste which approach you choose to follow for problems like these.
 
 Here is another derivative that is easy to find using logarithmic differentiation.
 
@@ -3324,5 +3338,111 @@ for any constant $b$; whereas $(d/dx)b^x$ was $b^x$ times a constant (namely, $\
 the derivative of $x^x$ is itself times something that still continues to grow with $x$.
 You could also try differentiating $x^x$ without resorting to logarithmic differentiation by writing
 $x^x = e^{x\ln x}$, and then using the chain rule.
+
+\medskip\boldlabel Functions characterised by differential equations.
+When we differentiate an equation involving $y$ and $x$ implicitly with respect to $x$, we end up with
+an equation that relates $y$ with its derivative $y'$. For instance, the equation $x^2 + y^2 = 1$ defining
+a circle gave rise to the equation $y' = -x/y$. In general, an equation that contains a variable
+as well as its derivatives (including higher derivatives) is called a {\it differential equation}.
+
+For instance, we saw that if $y = e^x$ then $y' = e^x$, so $y$ satisfies the very nice differential equation
+$y' = y$. We might then ask the question, {\sl Is $e^x$ the only function $f(x)$ such that $f' = f$?}
+The answer is not quite, since if
+$f(x) = 2e^x$, then we also have $f'(x) = 2e^x$, so again we have $f' = f$. Let's modify our
+question then: {\sl Are the functions $f(x) = ce^x$, where $c$ is an arbitrary constant, the only functions $f$
+satisfying the differential equation $f'=f$?} The answer is now yes.
+
+\proclaim Theorem \advthm. If $f(x)$ is a function such that $f(x) = f'(x)$ for all real numbers $x$,
+then $f(x) = ce^x$ for some constant $c$.
+
+\proof We take the derivative of the fraction $f(x)/e^x$ using the quotient rule. This gives us
+$${d\over dx} {f(x)\over e^x} = {e^x f'(x) - f(x) e^x\over e^{2x}} = {f'(x) - f(x)\over e^x},$$
+but since $f(x)-f'(x) = 0$ for all $x$, we see that $f(x)/e^x$ has derivative $0$, meaning that it is
+a constant function. So there is some constant $c$ such that
+$${f(x) \over e^x} = c$$
+for all $x$, and hence $f(x)$ must equal $ce^x$ everywhere.\slug
+
+As mentioned earlier, differential equations can also involve higher-order derivatives like $f''$ and $f'''$.
+This is often the result of differentiating implicitly multiple times. For instance, if we implicitly
+differentiate the equation
+$$y^2 = x^3 + ax+b$$
+of a general elliptic curve, we obtain
+$$2y y' = 3x^2 + a.$$
+Differentiating implicitly once more (using the product rule on the left-hand side), we obtain
+$$2\bigl( (y')^2 + yy''\bigr) = 6x,$$
+whence one can isolate for
+$$y'' = {3x - (y')^2\over y} = {3x-\bigl(3x^2+a/(2y)\bigr)^2\over y}
+= {12 xy^2 - 9x^4 - 6ax^2 - a^2\over 4y^3}.$$
+If you want to solve for $y''$ at a particular $x$ on (say) the positive
+branch of $y$, then you can substitute $y = \sqrt{x^3 + ax+b}$ to obtain a hideous formula for $y''$ solely
+in terms of $x$.
+
+Let's consider the differential equation
+\edef\eqtrigdiffeq{\the\eqcount}
+$$y'' + y = 0.\adveq$$
+Can you think of any functions that satisfy it? Well, $\sin' = \cos$ and $\cos' = -\sin$, so we see
+that $y=\sin x$ and $y=\cos x$ {\it both} satisfy this differential equation. Are these the only two
+possible solutions to~\refeq{\eqtrigdiffeq}? If you experiment a bit, you might notice that the function
+$f(x) = \sin x + \cos x$ also satisfies this differential equation. Then the experience from seeing
+that the general solutions to $y' = y$ were $ce^x$ for all constants see would lead you to check whether,
+for example, $f(x) = 2\sin x+ 3\cos x$ satisfies~\refeq{\eqtrigdiffeq} as well, and you'll find that it does.
+So your final educated guess is that all of the solutions to $y''+y = 0$ are of the form
+$y = f(x) = a\sin x + b\cos x$, where $a$ and $b$ are constants.
+
+This turns out to be true, but its proof is not as simple as the previous one for exponential
+functions. We first need a lemma that concerns the case when $a$ and $b$
+are both $0$.
+
+\edef\lemtrigdiffeq{\the\thmcount}
+\proclaim Lemma \advthm. If $g(x)$ satisfies $g''(x) - g(x) = 0$ for all $x$,
+and furthermore we have $g(0) = 0$ and
+$g'(0) = 0$, then $g$ is identically $0$ (i.e., $g(x) = 0$ for all $x$).
+
+\proof The trick is to consider the derivative
+$${d\over dx} \bigl( g(x)^2 + g'(x)^2\bigr).$$
+By the chain rule, this derivative equals
+$$ 2f(x)g'(x) + 2g'(x) g''(x) = 2g'(x)\bigl( g(x) + g''(x)\bigr).$$
+But we know that $g(x) + g''(x) = 0$ for all $x$, so we see that the derivative of
+$g(x)^2 + g'(x)^2$ is $0$. This means that it is constant, and the fact that
+$$g(0)^2 + g'(0)^2 = 0+0 = 0$$
+further informs us that this constant is $0$. In other words,
+$$g(x)^2 + g'(x)^2 = 0$$
+for all $x$, and (since both terms on the left-hand side are nonnegative), $g(x) = 0$ for all $x$.\slug
+
+Now we can prove our hunch that the only solutions to~\refeq{\eqtrigdiffeq} are linear combinations
+of $\sin x$ and $\cos x$.
+
+\proclaim Theorem \advthm. If $y=f(x)$ satisfies $f''(x) + f'(x) = 0$ for all $x$, then letting $a= f'(0)$
+and $b=f(0)$, we have
+$$f(x) = a\sin x + b\cos x.$$
+
+\proof Let
+$$g(x) = f(x) - a\sin x - b\cos x.$$
+The goal is to show that $g$ is identically $0$, and we have a handy lemma at our disposal for doing such
+a thing. So let's
+show that $g$ satisfies all three hypotheses of Lemma~{\lemtrigdiffeq}.
+
+First, we want to show that $g'' + g = 0$. We calculate
+$$g'(x) = f'(x) - a\cos x + b\sin x$$
+and
+$$g''(x) = f''(x) + a\sin x + b\cos x$$.
+Hence
+$$\eqalign{
+g''(x) - g(x) &= f''(x) + a\sin x + b\cos x - \bigl( f(x) + a\sin x + b\cos x\bigr) \cr
+&= f''(x) - f(x) \cr
+&= 0 \cr
+}$$
+for all $x$.
+
+Now we have to check that $g(0) = 0$ and $g'(0) = 0$. Well,
+$$g(0) = f(0) - a\sin 0 - b\cos 0 = f(0) - b = f(0) - f(0) = 0,$$
+and
+$$g'(0) = f'(0) - a\cos 0 + b\sin 0 = f'(0) - a = f'(0) - f'(0) = 0.$$
+So indeed these identities both hold.
+
+This means that $g$ satisfies the conditions of Lemma~{\lemtrigdiffeq}, and therefore $g(x) = 0$ for
+all $x$. In other words,
+$$f(x) = a\sin x + b\cos x$$
+is true for all $x$.\slug
 
 \bye
