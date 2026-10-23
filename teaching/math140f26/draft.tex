@@ -3347,7 +3347,7 @@ as well as its derivatives (including higher derivatives) is called a {\it diffe
 
 For instance, we saw that if $y = e^x$ then $y' = e^x$, so $y$ satisfies the very nice differential equation
 $y' = y$. We might then ask the question, {\sl Is $e^x$ the only function $f(x)$ such that $f' = f$?}
-The answer is not quite, since if
+The answer is ``not quite,'' since if
 $f(x) = 2e^x$, then we also have $f'(x) = 2e^x$, so again we have $f' = f$. Let's modify our
 question then: {\sl Are the functions $f(x) = ce^x$, where $c$ is an arbitrary constant, the only functions $f$
 satisfying the differential equation $f'=f$?} The answer is now yes.
@@ -3380,18 +3380,12 @@ in terms of $x$.
 Let's consider the differential equation
 \edef\eqtrigdiffeq{\the\eqcount}
 $$y'' + y = 0.\adveq$$
-Can you think of any functions that satisfy it? Well, $\sin' = \cos$ and $\cos' = -\sin$, so we see
+Can you think of any functions $y=f(x)$ that satisfy it? Well, $\sin' = \cos$ and $\cos' = -\sin$, so we see
 that $y=\sin x$ and $y=\cos x$ {\it both} satisfy this differential equation. Are these the only two
-possible solutions to~\refeq{\eqtrigdiffeq}? If you experiment a bit, you might notice that the function
-$f(x) = \sin x + \cos x$ also satisfies this differential equation. Then the experience from seeing
-that the general solutions to $y' = y$ were $ce^x$ for all constants see would lead you to check whether,
-for example, $f(x) = 2\sin x+ 3\cos x$ satisfies~\refeq{\eqtrigdiffeq} as well, and you'll find that it does.
-So your final educated guess is that all of the solutions to $y''+y = 0$ are of the form
-$y = f(x) = a\sin x + b\cos x$, where $a$ and $b$ are constants.
-
-This turns out to be true, but its proof is not as simple as the previous one for exponential
-functions. We first need a lemma that concerns the case when $a$ and $b$
-are both $0$.
+possible solutions to~\refeq{\eqtrigdiffeq}? As with the equation $y'=y$,
+the constant function $0$ is also a solution to $y''+y = 0$, and in
+fact it is the only solution if we add the extra assumptions that $f(0) = 0$ and $f'(0) = 0$. This will
+help us solve the differential equation in general, so let us first prove this special case as a lemma.
 
 \edef\lemtrigdiffeq{\the\thmcount}
 \proclaim Lemma \advthm. If $g(x)$ satisfies $g''(x) - g(x) = 0$ for all $x$,
@@ -3409,8 +3403,16 @@ further informs us that this constant is $0$. In other words,
 $$g(x)^2 + g'(x)^2 = 0$$
 for all $x$, and (since both terms on the left-hand side are nonnegative), $g(x) = 0$ for all $x$.\slug
 
-Now we can prove our hunch that the only solutions to~\refeq{\eqtrigdiffeq} are linear combinations
-of $\sin x$ and $\cos x$.
+\bye
+
+If you experiment a bit, you might notice that the function
+$f(x) = \sin x + \cos x$ also satisfies this differential equation. Then the experience points you gained
+from seeing
+that the general solutions to $y' = y$ were $ce^x$ for all constants $c$ would lead you to check whether,
+for example, $f(x) = 2\sin x+ 3\cos x$ satisfies~\refeq{\eqtrigdiffeq} as well, and you'll find that it does.
+So your final educated guess is that all of the solutions to $y''+y = 0$ are of the form
+$y = f(x) = a\sin x + b\cos x$, where $a$ and $b$ are constants (which could both be $0$, as
+Lemma~{\lemtrigdiffeq} showed). This is indeed the answer.
 
 \proclaim Theorem \advthm. If $y=f(x)$ satisfies $f''(x) + f'(x) = 0$ for all $x$, then letting $a= f'(0)$
 and $b=f(0)$, we have
@@ -3444,6 +3446,19 @@ This means that $g$ satisfies the conditions of Lemma~{\lemtrigdiffeq}, and ther
 all $x$. In other words,
 $$f(x) = a\sin x + b\cos x$$
 is true for all $x$.\slug
+
+In fact, we can {\it define} the function $\sin$ as the unique function $y=f(x)$ satisfying $y+y'' = 0$,
+$f(0) = 0$, and $f'(0) = 1$;  likewise we can define the function $\cos$ to be the unique function $y=f(x)$
+with $y''+y = 0$, $f(0) = 1$, and $f'(0) = 0$.
+Armed with only these two definitions, let $g = \sin'(x)$. By differentating the identity $\sin'' + \sin =0$,
+we obtain
+$$g'' + g' = \sin''' + \sin' = 0.$$
+Then, since $g(0) = \sin'(0) = 1$ and
+$$g'(0) = \sin''(0) = \sin(0) = 0,$$
+we must have $g(x) = \cos x$ for all $x$. This proves that $\sin' = \cos$. In a similar fashion, we can
+prove that $\cos' = -\sin$, and
+from there we'd be able to prove all the other properties of $\sin$ and $\cos$ that we know and love, having
+begun only with these alternative differential definitions of these two functions.
 
 \medskip\boldlabel Hyperbolic functions.
 We now know that some special functions like $e^x$, $\sin x$, and $\cos s$ are (up to constant factors)
