@@ -3462,11 +3462,30 @@ prove that $\cos' = -\sin$, and
 from there we'd be able to prove all the other properties of $\sin$ and $\cos$ that we know and love, having
 begun only with these alternative differential definitions of these two functions.
 
+\medskip\boldlabel \llap{*}A famous identity due to Euler. We all know
+that there is no real number whose square
+is $-1$; in other words, the polynomial $x^2 + 1$ has no real roots. We can artificially define a number
+whose square is $-1$. It is customary to call this number $i$ (except in some engineering disciplines, where
+it is called $j$ instead). It is not a real number, but instead is used to construct the {\it complex numbers}.
+A full description of the rules governing $i$ and its complex brethren falls outside the scope of this course,
+but what we are able to do is prove a very famous identity of Euler.
+
+Consider the function $y=e^{i x}$. Since $i$ is just a number, we can differentiate this function (applying
+the chain rule) to get $y' = i e^{ix}$ and $y''= i^2 e^{ix}$. But we defined $i^2 = -1$, so in fact
+$y'' = -e^{ix}$, and we see that $y''+y = 0$. Aha! So Theorem~{\thmcharacterisetrig} applies to this function
+$f(x) =e^{ix}$. We have $f'(0) = i e^{i0} = i$ and $f(0) = e^{i0} = 1$, so the theorem gives
+$$e^{ix} = i\sin x + \cos x$$
+for all real numbers $x$. Some people call this {\it Euler's formula}, after Leonhard Euler.
+The famous special case known as {\it Euler identity} results from setting $x=\pi$ in this formula. We have
+$$e^{i\pi} = i\sin \pi + \cos \pi = 0i + (-1) = -1.$$
+Complex numbers have plenty of applications in the natural sciences and engineering.
+To learn more about them, you could take a class such as {\mc MATH} 316 Complex Variables.
+
 \medskip\boldlabel Hyperbolic functions.
 This last portion of the section does not contain much actual implicit differentiation per se, but is
 very intimately linked with this idea we've just introduced
 of finding general solutions to differential equations.
-We now know that any function $y = f(x)$ that is a
+We now know that any function $y = f(x)$ which is a
 solution to the differential equation $y' = y$ must be equal to $ce^x$ for some
 constant $c$, and any solution to $y'' + y = 0$ must be equal to $a\sin x + b\cos x$
 for some constants $a$ and $b$. We now derive something similar for
@@ -3562,7 +3581,7 @@ e^x + e^{-x}
 &= {\sin^2(\theta/2 + \pi/4) + \cos^2(\theta/2+\pi/4) \over \sin(\theta/2+\pi/4)\cos(\theta/2+\pi/4)} \cr
 &= {1 \over (1/2) \sin(\theta + \pi/2) }\cr
 &= {2\over \cos\theta} \cr
-&= 2\sec\theta.
+&= 2\sec\theta \cr
 }$$
 But $\sec\theta = y$, so can finally obtain an equation $e^x +  e^{-x} = 2y$ relating $x$ and $y$.
 Isolating for $y$, we obtain the formula
@@ -3570,14 +3589,14 @@ $$y = {e^x + e^{-x}\over 2}$$
 for the {\it catenary}\/:~an idealised model of a rope or wire hanging between two poles
 supporting only its own weight.
 
+
 We now define the {\it hyperbolic cosine} function by
 $$\cosh x = {e^x + e^{-x}\over 2};$$
 so the catenary created by the very specific wire under ideal tension
 conditions is exactly described by $y=\cosh x$.
-For general weight-per-unit-length and tension parameters $w$ and $h$, respectively the equation of the resulting
+For general weight-per-unit-length and tension parameters $w$ and $h$, respectively, the equation of the resulting
 catenary is given by
 $$\cosh x = {h\over w} \cosh \Bigl( {w\over h}\Bigr).$$
-
 By multiplying the numerator and denominator by $e^x$, we obtain the alternative formula
 $$\cosh x = {e^{2x} + 1\over 2e^x}.$$
 Maybe now you realise where you've seen this expression before---it is the derivative of the function
@@ -3585,7 +3604,11 @@ $${e^{2x} - 1\over 2e^x}$$
 from Proposition~{\propsinhderiv}. Let us define the {\it hyperbolic sine}
 $$\sinh x = {e^x-e^{-x}\over 2} = {e^{2x} - 1\over 2e^x}$$
 to be the function from that proposition; then we know that
-$\sinh' = \cosh$, and the calculation
+$\sinh' = \cosh$.
+
+\bye
+
+Furthermore, the calculation
 $${d\over dx} {e^x + e^{-x}\over 2}
 = {e^x\over 2} + {-e^{-x}\over 2} = {e^x-e^{-x}\over 2}$$
 tells us that $\cosh'=\sinh$. This should remind you of the relationships between the derivatives
