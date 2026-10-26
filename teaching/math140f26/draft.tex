@@ -2198,7 +2198,7 @@ which is exactly the claim.\slug
 So the derivative $f'$ of $f(x) = (e^{2x} - 1)/2e^x$ admits an expression that is very similar to the formula
 for $f$ itself. If you have
 some spare time and want to practise the quotient rule some more, try finding $f''(x)$. You might
-notice a pattern that will make it easy to determine $f^{(3)}$ and $f^{(4)}$ as well. We'll revisit
+notice a pattern that will make it (very) easy to determine $f^{(3)}$ and so on as well. We'll revisit
 these functions at a later date.
 
 \medskip\boldlabel \llap{*}Formally defining the exponential.
@@ -3403,8 +3403,8 @@ further informs us that this constant is $0$. In other words,
 $$g(x)^2 + g'(x)^2 = 0$$
 for all $x$, and (since both terms on the left-hand side are nonnegative), $g(x) = 0$ for all $x$.\slug
 
-If you experiment a bit, you might notice that the function
-$f(x) = \sin x + \cos x$ also satisfies this differential equation. Then the experience points you gained
+\noindent\datestamp{26}{x} \hskip\parindent If you mess around a bit, you might notice that the function
+$y = \sin x + \cos x$ also satisfies $y + y'' = 0$. Then the experience points you gained
 from seeing
 that the general solutions to $y' = y$ were $ce^x$ for all constants $c$ would lead you to check whether,
 for example, $f(x) = 2\sin x+ 3\cos x$ satisfies~\refeq{\eqtrigdiffeq} as well, and you'll find that it does.
@@ -3412,7 +3412,8 @@ So your final educated guess is that all of the solutions to $y''+y = 0$ are of 
 $y = f(x) = a\sin x + b\cos x$, where $a$ and $b$ are constants (which could both be $0$, as
 Lemma~{\lemtrigdiffeq} showed). This is indeed the answer.
 
-\proclaim Theorem \advthm. If $y=f(x)$ satisfies $f''(x) + f'(x) = 0$ for all $x$, then letting $a= f'(0)$
+\edef\thmcharacterisetrig{\the\thmcount}
+\proclaim Theorem \advthm. If $y=f(x)$ satisfies $f''(x) + f(x) = 0$ for all $x$, then letting $a= f'(0)$
 and $b=f(0)$, we have
 $$f(x) = a\sin x + b\cos x.$$
 
@@ -3428,8 +3429,8 @@ and
 $$g''(x) = f''(x) + a\sin x + b\cos x$$.
 Hence
 $$\eqalign{
-g''(x) - g(x) &= f''(x) + a\sin x + b\cos x - \bigl( f(x) + a\sin x + b\cos x\bigr) \cr
-&= f''(x) - f(x) \cr
+g''(x) + g(x) &= f''(x) + a\sin x + b\cos x + \bigl( f(x) - a\sin x - b\cos x\bigr) \cr
+&= f''(x) + f(x) \cr
 &= 0 \cr
 }$$
 for all $x$.
@@ -3460,6 +3461,150 @@ have $g(x) = \cos x$ for all $x$. This proves that $\sin' = \cos$. In a similar 
 prove that $\cos' = -\sin$, and
 from there we'd be able to prove all the other properties of $\sin$ and $\cos$ that we know and love, having
 begun only with these alternative differential definitions of these two functions.
+
+\medskip\boldlabel Hyperbolic functions.
+This last portion of the section does not contain much actual implicit differentiation per se, but is
+very intimately linked with this idea we've just introduced
+of finding general solutions to differential equations.
+We now know that any function $y = f(x)$ that is a
+solution to the differential equation $y' = y$ must be equal to $ce^x$ for some
+constant $c$, and any solution to $y'' + y = 0$ must be equal to $a\sin x + b\cos x$
+for some constants $a$ and $b$. We now derive something similar for
+the differential equation  $y'' = y$, which can also be written $y'' - y = 0$. In other words,
+we will find two functions $s(x)$ and $c(x)$ such that any function $y=f(x)$ satisfying $y'' = y$ must
+be equal to $a s(x) = bc(x)$ for some constants $a$ and $b$.
+
+It's easy to see that the constant function $y=0$ satsifies $y'' = y$, and so does $y=e^x$. So whatever the
+mysterious functions
+$s(x)$ and $c(x)$ end up being, we must have $e^x = a s(x)  + bc(x)$ for some constants $a$ and $b$.
+We'll refrain from giving the formulas for $s(x)$ and $c(x)$ right away, but eagle-eyed readers will
+notice that already in these notes we have seen another function $y=f(x)$ that satisfies $y'' = y$. This is
+actually the function $s(x)$. You can try to find this function by scrolling back in the notes, or you
+can just strap yourself in for the ride.
+
+To motivate the fact that $s(x)$ and $c(x)$ are important, we'll introduce $c(x)$ as the solution to a
+real-life physics problem. Suppose that a wire is suspended between the tops of two tall poles (as
+on a telephone line). Let us take the origin to be the lowest point on the wire, so that as $x$ increases
+or decreases, $y$ increases. The question is, {\sl What is an expression for $y$ in terms of $x$?}
+You might think that this shape is a parabola, and in fact the correct function describing $y$ is very
+close (in shape, not in formula) to a parabola, but ultimately it is not a parabola.
+
+Let's make our lives easier by considering only half of this picture:~the side where $x$ is positive.
+To determine what $y$ in terms of $x$, it would be prudent to analyse the angle at which the wire hangs,
+at any given point on the wire. This is because this angle controls how fast $y$ changes in terms of $x$
+(if the angle is $\theta$, then the slope of the tangent line is $dy/dx = \tan \theta$).
+
+Consider any point $P$ on the wire, and note that the point is stationary. Therefore, all of the forces
+acting upon $P$ are balanced. A moment's consideration convinces us that the downward force
+acting on that point must come solely from all the weight of the wire that is beneath that point.
+This depends on the weight wire used, but if the wire has a weight of $w$ per unit length, and the
+length of the wire below $P$ is $s$, then a downward force of $ws$ acts upon $P$ (and is counteracted
+by the tension of the wire above $P$, so that $P$ does not move along the $y$-direction).
+
+The horizontal forces are also balanced. There is some horizontal force $h$ coming from the line being tied
+to the pole. The exact quantity $h$ depends on the type of wire
+used and how tightly it is strung at the top of the pole. What we do know is that since all the forces
+are balanced, we have $\tan\theta = ws/h$. (We reasoned earlier that $dy/dx = \tan\theta$, so we already
+have a formula for $dy/dx = ws/h$. But since we don't have a formula for $s$ in terms of $x$ yet, and
+since we might still not be able to find out a formula for $y$ even if we had $dy/dx$, this isn't so helpful
+at the moment.)
+
+Between the bottom of the wire and the top, $\theta$ varies from $0$ to $\pi/2$, and $s$ increases as well.
+We have an exact formula for $s$ in terms of $\theta$, namely
+$$ s= {h\over w} \tan \theta.$$
+The parameters $h$ and $w$ depend only on the wire and how much slack it's given when it's tied to the pole,
+so let us suppose that we have an ideal wire under ideal conditions, making $h/w = 1$. Then we just
+have $s = \tan \theta$, which will make calculations a lot easier. From here, we can very easily
+calculate
+$${ds\over d\theta} = \sec^2\theta.$$
+But we want to find formulas for $x$ and $y$ (in the hopes
+of writing $y=f(x)$), so let's start by deriving formulas for $dx/d\theta$ and $dy/d\theta$. First we see that
+at any point on the wire where the angle is $\theta$, if we change $s$ by some small amount $ds$,
+then $x$ changes by $\cos\theta$ times that small amount, and $y$
+changes by $\sin\theta$ times that small amount. In other words,
+$${dx\over ds} = \cos\theta\qquad\hbox{and}\qquad {dy\over ds} = \sin\theta.$$
+By the chain rule we then observe that
+$${dx\over d\theta} = {dx\over ds}\cdot {ds\over d\theta} = \cos\theta \sec^2\theta = \sec\theta$$
+and
+$${dy\over d\theta} = {dy\over ds}\cdot {ds\over d\theta} = \sin\theta\sec^2\theta = \sec\theta\tan\theta.$$
+
+We are now faced with the challenging task of determining what the functions $x(\theta)$ and $y(\theta)$
+are. In other words, what is the function $x(\theta)$ whose derivative is $dx/d\theta =\sec\theta$, and what is
+the function $y(\theta)$ whose derivative is $dy/d\theta = \sec\theta\tan\theta$. If you paid attention
+during our discussion of the Mercator projection, you'll remember that
+$$x(\theta) = \ln\Biggl( \tan\biggl( {\theta\over 2} + {\pi\over 4}\biggr)\Biggr)$$
+has derivative $dx/d\theta = \sec\theta$,
+and if you know the derivatives of the trigonometric functions well, you'll
+remember that
+$$y(\theta) = \sec\theta$$
+has derivative $dy/d\theta = \sec\theta\tan\theta$.
+(Technically we have to add an arbitrary constant to each of the formulas for $x(\theta)$ and $y(\theta)$,
+since arbitrary constants have derivative $0$,
+but let's not worry about this too much. Rest assured that the extra constant doesn't matter here.)
+We now have formulas for $x$ and $y$! The final step is to try and find a nice formula for $y$ in terms of
+$x$.
+
+Let's clean things up a bit. The formula for $x$ in terms of $\theta$
+has a $\ln$ in it, so taking exponentials of both sides,
+we find that
+$$e^x = \tan\biggl({\theta\over 2} + {\pi\over 4}\biggr) = {\sin(\theta/2 + \pi/4) \over \cos(\theta/2+\pi/4)}.$$
+The angle $\theta/2 + \pi/4$ is a bit of a pest here; but one might notice that
+it is half of the ``nice'' angle $\theta + \pi/2$. We might try to use
+the double angle formula $\sin(2\alpha) = 2\sin\alpha\cos\alpha$ somehow, but we'd need $\sin$ times $\cos$
+to appear somewhere. Well why don't we try flipping the fraction around? We have
+$$e^{-x} = {\cos(\theta/2 + \pi/4) \over \sin(\theta/2+\pi/4)},$$
+and now if we add $e^x$ to $e^{-x}$ and cross-multiply,
+everything simplifies very nicely:
+$$\eqalign{
+e^x + e^{-x}
+&= {\sin(\theta/2 + \pi/4) \over \cos(\theta/2+\pi/4)} + {\cos(\theta/2 + \pi/4) \over \sin(\theta/2+\pi/4)} \cr
+&= {\sin^2(\theta/2 + \pi/4) + \cos^2(\theta/2+\pi/4) \over \sin(\theta/2+\pi/4)\cos(\theta/2+\pi/4)} \cr
+&= {1 \over (1/2) \sin(\theta + \pi/2) }\cr
+&= {2\over \cos\theta} \cr
+&= 2\sec\theta.
+}$$
+But $\sec\theta = y$, so can finally obtain an equation $e^x +  e^{-x} = 2y$ relating $x$ and $y$.
+Isolating for $y$, we obtain the formula
+$$y = {e^x + e^{-x}\over 2}$$
+for the {\it catenary}\/:~an idealised model of a rope or wire hanging between two poles
+supporting only its own weight.
+
+We now define the {\it hyperbolic cosine} function by
+$$\cosh x = {e^x + e^{-x}\over 2};$$
+so the catenary created by the very specific wire under ideal tension
+conditions is exactly described by $y=\cosh x$.
+For general weight-per-unit-length and tension parameters $w$ and $h$, respectively, the equation of the resulting
+catenary is given by
+$$\cosh x = {h\over w} \cosh \Bigl( {w\over h}\Bigr).$$
+
+By multiplying the numerator and denominator by $e^x$, we obtain the alternative formula
+$$\cosh x = {e^{2x} + 1\over 2e^x}.$$
+Maybe now you realise where you've seen this expression before---it is the derivative of the function
+$${e^{2x} - 1\over 2e^x}$$
+from Proposition~{\propsinhderiv}. Let us define the {\it hyperbolic sine}
+$$\sinh x = {e^x-e^{-x}\over 2} = {e^{2x} - 1\over 2e^x}$$
+to be the function from that proposition; then we know that
+$\sinh' = \cosh$, and the calculation
+$${d\over dx} {e^x + e^{-x}\over 2}
+= {e^x\over 2} + {-e^{-x}\over 2} = {e^x-e^{-x}\over 2}$$
+tells us that $\cosh'=\sinh$. This should remind you of the relationships between the derivatives
+of $\sin$ and $\cos$, but note that this time there is no negative sign in the derivative of $\cosh$.
+A moment's further contemplation reveals that
+$$\sinh'' = \sinh\qquad\hbox{and}\qquad\cosh'' = \cosh,$$ so $y = \sinh x$
+and $y = \cosh x$ are both solutions to $y'' = y$.
+The following theorem is the hyperbolic analogue to Theorem~{\thmcharacterisetrig}.
+
+\proclaim Theorem \advthm. If $y=f(x)$ satisfies $f''(x) = f(x)$ for all $x$, then letting $a= f'(0)$
+and $b=f(0)$, we have
+$$f(x) = a\sinh x + b\cosh x.$$
+
+\optproof The full proof is a little outside the scope of this course. The idea is to copy the proofs
+of Lemma~{\lemtrigdiffeq} and Theorem~{\thmcharacterisetrig}. First we show that if $g''(x) = g(x)$
+for all $x$ and $g(0) = 0 = g'(0)$, then $f$ must be identically zero. This mirrors Lemma~{\lemtrigdiffeq}
+but the details are a bit harder. (See Problem~43 in Chapter~18 of Spivak's book for a roadmap.)
+From there the proof is extremely similar to that of Theorem~{\thmcharacterisetrig}. We let
+$$g(x) = f(x) - a\sinh x - b \cosh b,$$
+and show that this choice of $g$ has $g'' = g$ and $g(0) = 0 = g'(0)$.\slug
 
 \advsect Related rates
 
@@ -3515,11 +3660,5 @@ $dV/dt = 10$ cubic metres per minute, so we see that
 $$10 = {\sqrt{225\pi} \over 2\sqrt\pi}\cdot {dA\over dt} = {15\over 2}\cdot {dA\over dt},$$
 and we conclude that $dA/dt = 20/15 = 4/3$ square metres per minute.
 
-\medskip\boldlabel Hyperbolic functions.
-We now know that some special functions like $e^x$, $\sin x$, and $\cos s$ are (up to constant factors)
-uniquely defined as being the solutions to some differential equations. We close this section with one last
-class of examples:~the hyperbolic functions.
-
-Just as 
 
 \bye
