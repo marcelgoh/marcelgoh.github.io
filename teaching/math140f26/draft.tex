@@ -3523,7 +3523,8 @@ at any point on the wire where the angle is $\theta$, if we change $s$ by some s
 then $x$ changes by $\cos\theta$ times that small amount, and $y$
 changes by $\sin\theta$ times that small amount. In other words,
 $${dx\over ds} = \cos\theta\qquad\hbox{and}\qquad {dy\over ds} = \sin\theta.$$
-By the chain rule we then observe that
+This is very nice, except for the fact that the derivatives are with respect to $s$ and yet the formulas
+are stated in terms of $\theta$. So we use the chain rule to observe that
 $${dx\over d\theta} = {dx\over ds}\cdot {ds\over d\theta} = \cos\theta \sec^2\theta = \sec\theta$$
 and
 $${dy\over d\theta} = {dy\over ds}\cdot {ds\over d\theta} = \sin\theta\sec^2\theta = \sec\theta\tan\theta.$$
@@ -3573,7 +3574,7 @@ We now define the {\it hyperbolic cosine} function by
 $$\cosh x = {e^x + e^{-x}\over 2};$$
 so the catenary created by the very specific wire under ideal tension
 conditions is exactly described by $y=\cosh x$.
-For general weight-per-unit-length and tension parameters $w$ and $h$, respectively, the equation of the resulting
+For general weight-per-unit-length and tension parameters $w$ and $h$, respectively the equation of the resulting
 catenary is given by
 $$\cosh x = {h\over w} \cosh \Bigl( {w\over h}\Bigr).$$
 
