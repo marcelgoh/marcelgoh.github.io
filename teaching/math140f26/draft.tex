@@ -21,6 +21,12 @@
 \def\arccot{\op{\rm arccot}}
 \def\dist{\op{\rm dist}}
 \def\optproof{\medbreak\noindent\llap{*}{\it Proof.}\xskip\ignorespaces}
+\def\csch{\op{\rm csch}}
+\def\sech{\op{\rm sech}}
+\def\coth{\op{\rm coth}}
+\def\arsinh{\op{\rm arsinh}}
+\def\arcosh{\op{\rm arcosh}}
+\def\artanh{\op{\rm artanh}}
 
 \maketitle{MATH 140 Fall 2026}{notes by}{Marcel Goh}{}
 
@@ -3481,10 +3487,7 @@ $$e^{i\pi} = i\sin \pi + \cos \pi = 0i + (-1) = -1.$$
 Complex numbers have plenty of applications in the natural sciences and engineering.
 To learn more about them, you could take a class such as {\mc MATH} 316 Complex Variables.
 
-\medskip\boldlabel Hyperbolic functions.
-This last portion of the section does not contain much actual implicit differentiation per se, but is
-very intimately linked with this idea we've just introduced
-of finding general solutions to differential equations.
+\medskip\boldlabel The catenary.
 We now know that any function $y = f(x)$ which is a
 solution to the differential equation $y' = y$ must be equal to $ce^x$ for some
 constant $c$, and any solution to $y'' + y = 0$ must be equal to $a\sin x + b\cos x$
@@ -3501,7 +3504,8 @@ notice that already in these notes we have seen another function $y=f(x)$ that s
 actually the function $s(x)$. You can try to find this function by scrolling back in the notes, or you
 can just strap yourself in for the ride.
 
-To motivate the fact that $s(x)$ and $c(x)$ are important, we'll introduce $c(x)$ as the solution to a
+To motivate the fact that $s(x)$ and $c(x)$ have some important applications,
+we'll introduce $c(x)$ as the solution to a
 real-life physics problem. Suppose that a wire is suspended between the tops of two tall poles (as
 on a telephone line). Let us take the origin to be the lowest point on the wire, so that as $x$ increases
 or decreases, $y$ increases. The question is, {\sl What is an expression for $y$ in terms of $x$?}
@@ -3528,7 +3532,7 @@ have a formula for $dy/dx = ws/h$. But since we don't have a formula for $s$ in 
 since we might still not be able to find out a formula for $y$ even if we had $dy/dx$, this isn't so helpful
 at the moment.)
 
-Between the bottom of the wire and the top, $\theta$ varies from $0$ to $\pi/2$, and $s$ increases as well.
+At the lowest point of the wire, $\theta = 0$, and as it increases $s$ increases as well.
 We have an exact formula for $s$ in terms of $\theta$, namely
 $$ s= {h\over w} \tan \theta.$$
 The parameters $h$ and $w$ depend only on the wire and how much slack it's given when it's tied to the pole,
@@ -3583,12 +3587,11 @@ e^x + e^{-x}
 &= {2\over \cos\theta} \cr
 &= 2\sec\theta \cr
 }$$
-But $\sec\theta = y$, so can finally obtain an equation $e^x +  e^{-x} = 2y$ relating $x$ and $y$.
-Isolating for $y$, we obtain the formula
+But $\sec\theta = y$, so we finally obtain an equation $e^x +  e^{-x} = 2y$ relating $x$ and $y$.
+Isolating for $y$ yields the equation
 $$y = {e^x + e^{-x}\over 2}$$
-for the {\it catenary}\/:~an idealised model of a rope or wire hanging between two poles
+of the {\it catenary}\/:~an idealised model of a rope or wire hanging between two poles
 supporting only its own weight.
-
 
 We now define the {\it hyperbolic cosine} function by
 $$\cosh x = {e^x + e^{-x}\over 2};$$
@@ -3606,29 +3609,166 @@ $$\sinh x = {e^x-e^{-x}\over 2} = {e^{2x} - 1\over 2e^x}$$
 to be the function from that proposition; then we know that
 $\sinh' = \cosh$.
 
-\bye
-
+\noindent\datestamp{28}{x} \hskip\parindent
 Furthermore, the calculation
 $${d\over dx} {e^x + e^{-x}\over 2}
 = {e^x\over 2} + {-e^{-x}\over 2} = {e^x-e^{-x}\over 2}$$
 tells us that $\cosh'=\sinh$. This should remind you of the relationships between the derivatives
 of $\sin$ and $\cos$, but note that this time there is no negative sign in the derivative of $\cosh$.
-A moment's further contemplation reveals that
+Further contemplation reveals that
 $$\sinh'' = \sinh\qquad\hbox{and}\qquad\cosh'' = \cosh,$$ so $y = \sinh x$
 and $y = \cosh x$ are both solutions to $y'' = y$.
 The following theorem is the hyperbolic analogue to Theorem~{\thmcharacterisetrig}.
 
+\edef\thmcharacterisehyp{\the\thmcount}
 \proclaim Theorem \advthm. If $y=f(x)$ satisfies $f''(x) = f(x)$ for all $x$, then letting $a= f'(0)$
 and $b=f(0)$, we have
 $$f(x) = a\sinh x + b\cosh x.$$
 
-\optproof The full proof is a little outside the scope of this course. The idea is to copy the proofs
+\optproof The full proof is a little outside the scope of this course. The main idea is to mimic the proofs
 of Lemma~{\lemtrigdiffeq} and Theorem~{\thmcharacterisetrig}. First we show that if $g''(x) = g(x)$
-for all $x$ and $g(0) = 0 = g'(0)$, then $f$ must be identically zero. This mirrors Lemma~{\lemtrigdiffeq}
+for all $x$ and $g(0) = 0 = g'(0)$, then $g$ must be identically zero. This mirrors Lemma~{\lemtrigdiffeq}
 but the details are a bit harder. (See Problem~43 in Chapter~18 of Spivak's book for a roadmap.)
 From there the proof is extremely similar to that of Theorem~{\thmcharacterisetrig}. We let
 $$g(x) = f(x) - a\sinh x - b \cosh b,$$
 and show that this choice of $g$ has $g'' = g$ and $g(0) = 0 = g'(0)$.\slug
+
+If $f(x) = a\sinh x + b\cosh x$, then since both $\sinh$ and $\cosh$ are defined in terms of $e^x$ and
+$e^{-x}$, then we can alternatively express any solution to $y''+y = 0$ as a linear combination of
+$e^x$ and $e^{-x}$.
+
+\proclaim Corollary \advthm. If $y=f(x)$ satisfies $f''(x) = f(x)$ for all $x$, then
+$$f(x) = Ae^x + Be^{-x},$$
+where
+$$ A = {f'(0) + f(0)\over 2} \qquad\hbox{and}\qquad B = {f(0) - f'(0)\over 2} .$$
+
+\proof Since $f''(x) = f(x)$ for all $x$, by Theorem~{\thmcharacterisehyp} we have
+$$f(x) = a\sinh x + b\cosh x,$$
+where $a = f'(0)$ and $b=f(0)$
+Expanding the definitions of $\sinh$ and $\cosh$, we find that
+$$\eqalign{
+f(x) &= a\cdot {e^x - e^{-x}\over 2} + b\cdot {e^x + e^{-x}\over 2} \cr
+&= {a + b\over 2} \cdot e^x + {b-a\over 2}\cdot e^{-x}, \cr
+}$$
+which is exactly the claim.\slug
+
+\medskip\boldlabel \llap{*}A linear-algebraic interlude.
+If you are taking (or have taken) {\mc MATH} 133 or any other linear algebra class, you might feel that
+these statements have some kind of linear-algebraic flavour. Let us summarise the results of the preceding
+few pages in the language of linear algebra. The set of functions $y=f(x)$ that are
+solutions to $y' = y$ is a one-dimensional vector space. The function $e^x$ is a nonzero element
+of this vector space, and hence all elements in the vector space can be written as some multiple
+of $e^x$. Likewise, the set of functions solving $y'' + y = 0$ form a two-dimensional vector space,
+and a basis for this space is given by the two functions $\sin$ and $\cos$. Lastly, the set of functions
+satisfying $y'' = y$ is also two-dimensional, and there are two different but equally
+natural choices for bases we can choose
+from, namely $\{\sinh, \cosh\}$ and $\{ e^x, e^{-x}\}$. The computation in the preceding corollary tells
+us that a vector written as $(a,b)$ under the first coordinate system can be converted to the
+second coordinate system by means of the matrix-vector equation
+$$\pmatrix{A\cr B} = \pmatrix{ 1/2 & 1/2 \cr -1/2 & 1/2 } \pmatrix{a\cr b}.$$
+If you're wondering why the set of solutions to $y' = y$ is one-dimensional whereas the sets of solutions
+to $y'' + y=0$ and $y''=y$ are both two-dimensional, you'll have to take a higher-level course
+on differential equations, e.g., {\mc MATH} 315. Suffice it to say, it isn't a coincidence that
+we saw an equation involving only the first derivative giving rise to a space of
+dimension $1$, and the equations involving second derivatives creating spaces of dimension $2$.
+
+\medskip\boldlabel Hyperbolic functions.
+We now know the definitions of $\sinh x$ and $\cosh x$. They are analogous to $\sin$ and $\cos$, but
+for the differential equation $y''-y=0$ instead of $y''+y=0$. The ordinary sine and cosine functions
+are used to define four more trigonometric functions, and we can do something analogous for hyperbolic functions.
+We define the {\it hyperbolic tangent} function $\tanh$ by
+$$\tanh = {\sinh \over \cosh };$$
+since $\cosh x > 1$ for all $x$, $\tanh x$ is well defined for all real numbers $x$. As $x\to-\infty$
+we have $\tanh x \to -1$, and as $x\to \infty$ we have $\tanh x \to 1$. This function is used for many
+statistical regression problems, including machine learning. (Often, $\tanh$ is shifted and scaled
+to something like $\tanh/2 +1/2$ so that its range is $(0,1)$ instead of $(-1,1)$. Then it can be used
+to model {\it probabilities}. For example, the probability of passing a calculus exam graphed as a function
+of time spent learning the material looks a bit like this function.)
+
+Just as we defined $\csc$, $\sec$, and $\cot$ as the inverses of $\sin$, $\cos$, and $\tan$ respectively,
+we can define
+$$\csch = {1\over \sinh},\qquad \sech = {1\over \cosh}, \qquad\hbox{and}\qquad \coth = {1\over \tanh}.$$
+Here are some important identities for hyperbolic functions. Note the similarities and differences with
+the analogous trigonometric identities.
+
+\edef\prophyperbolicrules{\the\thmcount}
+\proclaim Proposition \advthm. We have
+\medskip
+\item{i)} $\sinh(-x) = -\sinh x$ for all $x$;
+\smallskip
+\item{ii)} $\cosh(-x) = \cosh x$ for all $x$;
+\smallskip
+\item{iii)} $\cosh^2 - \sinh^2 = 1$;
+\smallskip
+\item{iv)} $\tanh^2 + \sech^2 = 1$;
+\smallskip
+\item{v)} $\sinh(x+y) = \sinh x \cosh y + \cosh x \sinh y$ for all $x$ and $y$; and
+\smallskip
+\item{vi)} $\cosh(x+y) = \cosh x\cosh y + \sinh x \sinh y$ for all $x$ and $y$.
+\smallskip
+
+\proof Identities (i) and (ii) are easy to verify and left as an exercise. We prove (iii) in the same way
+that we ``proved''~\refeq{\eqpythagoras} with calculus, only this time the argument isn't circular.
+Without using identity (iii), we know that $\sinh' = \cosh$ and $\cosh' = \sinh$, so by the chain rule
+we have
+$${d\over dx} (\cosh^2 x - \sinh^2 x) = 2\cosh x\sinh - 2\sinh \cosh = 0.$$
+This means that $\cosh^2 - \sinh^2$ is a constant function. Now we plug in, say, $x=0$ to find that this
+constant is $1$.
+Identity (iv) follows from dividing both sides of identity (iii) by $\cosh^2$.
+
+To prove identity (v), it is perhaps best to expand the right-hand side and then simplify:
+$$\eqalign{
+\sinh x \cosh y + \cosh x \sinh y
+&=
+ {e^x-e^{-x}\over 2} \cdot {e^y+e^{-y}\over 2} + {e^x+e^{-x}\over 2} \cdot {e^y-e^{-y}\over 2} \cr
+&= {e^{x+y} - e^{-x+y}  + e^{x-y} - e^{-x-y} \over 4} \cr
+&\qquad\qquad +
+   {e^{x+y} + e^{-x+y}  - e^{x-y} - e^{-x-y} \over 4} \cr
+&= {2e^{x+y} - 2e^{-x-y}\over 4} \cr
+&= \sinh(x+y) \cr
+}$$
+Identity (vi) is proved similarly; this is left as an exercise.\slug
+
+The following proposition records the derivatives of all the hyperbolic functions.
+
+\proclaim Theorem \advthm. We have
+\medskip
+\item{i)} $\sinh' = \cosh$;
+\smallskip
+\item{ii)} $\cosh' = \sinh$;
+\smallskip
+\item{iii)} $\tanh' = \sech^2$;
+\smallskip
+\item{iv)} $\csch' = -\coth\cdot \csch$;
+\smallskip
+\item{v)} $\sech' = -\sech\cdot \tanh$; and
+\smallskip
+\item{vi)} $\coth' = -\csch^2$.
+
+\proof We already proved (i) and (ii) in the preceding discussion. To prove (iii) we use the quotient rule;
+it gives
+$$\tanh' =\biggl({\sinh\over\cosh}\biggr)' = {\cosh^2 - \sinh^2\over \cosh^2} = \sech^2,$$
+where in the last equality we have invoked identity (iii) from Proposition~{\prophyperbolicrules}.
+
+The derivatives (iv), (v), and (vi) are proved using the reciprocal law. We prove (v) here and leave the
+other two as an exercise. We have
+$$\sech' = \biggl({1\over \cosh}\biggr)' = {-\cosh'\over \cosh^2} = {-\sinh\over \cosh^2} = -\sech\tanh.
+\noskipslug$$
+
+We finish our discussion of hyperbolic functions by briefly mentioning the inverse hyperbolic functions.
+These are often denoted by $\sinh^{-1}$, $\cosh^{-1}$, etc., but we will use the notation
+$\arsinh$, $\arcosh$, etc.\ instead. The reason the prefix is ``ar-'' and not ``arc-'' is pedantry.
+If $x = \cos\theta$, then $\theta$ is the length of the arc of the unit circle from $(1,0)$ to
+$\bigl(x, \sin(\arccos x)\bigr)$, which is where the term $\arccos x$ comes from.
+By analogy, people started using terms like ``arcsinh'' and ``arccosh''
+for hyperbolic inverses as well.
+But technically none of these functions represent the arc of anything,
+so eventually this was corrected to $\arsinh$ and so on, where ``ar-'' is short for ``argument.''
+If $y = \sinh x$, then $x$ is the argument of the $\sinh$ function that yields $y$, so $x = \arsinh y$.
+
+Since the hyperbolic functions admit explicit formulas in terms of $x$, their inverse functions can be
+solved explicitly.
+
 
 \advsect Related rates
 
@@ -3680,9 +3820,9 @@ $${dV\over dt} = {1\over 3\sqrt\pi} \cdot  {3\over 2} A^{1/2} {dA\over dt} = {\s
 \cdot {dA\over dt}.$$
 We want to know what $dA/dt$ is when $h=15$ metres, at which time $A = \pi h^2 = 225\pi$ square metres.
 We also know that
-$dV/dt = 10$ cubic metres per minute, so we see that
-$$10 = {\sqrt{225\pi} \over 2\sqrt\pi}\cdot {dA\over dt} = {15\over 2}\cdot {dA\over dt},$$
-and we conclude that $dA/dt = 20/15 = 4/3$ square metres per minute.
+$dV/dt = -10$ cubic metres per minute, so we see that
+$$-10 = {\sqrt{225\pi} \over 2\sqrt\pi}\cdot {dA\over dt} = {15\over 2}\cdot {dA\over dt},$$
+and we conclude that the area changes by $dA/dt = 20/15 = -4/3$ square metres per minute.
 
 
 \bye
