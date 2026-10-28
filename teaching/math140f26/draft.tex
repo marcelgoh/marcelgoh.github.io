@@ -27,6 +27,9 @@
 \def\arsinh{\op{\rm arsinh}}
 \def\arcosh{\op{\rm arcosh}}
 \def\artanh{\op{\rm artanh}}
+\def\arcsch{\op{\rm arcsch}}
+\def\arsech{\op{\rm arsech}}
+\def\arcoth{\op{\rm arcoth}}
 
 \maketitle{MATH 140 Fall 2026}{notes by}{Marcel Goh}{}
 
@@ -3769,6 +3772,90 @@ If $y = \sinh x$, then $x$ is the argument of the $\sinh$ function that yields $
 Since the hyperbolic functions admit explicit formulas in terms of $x$, their inverse functions can be
 solved explicitly.
 
+\proclaim Proposition \advthm. The explicit formulas for the inverse hyperbolic functions are
+\medskip
+\item{i)} $\arsinh x = \ln\bigl( x + \sqrt{x^2+1}\bigr)$;
+\smallskip
+\item{ii)} $\arcosh x = \ln\bigl( x + \sqrt{x^2-1}\bigr)$;
+\smallskip
+\item{iii)} $\artanh x = (1/2) \ln\bigl( (1+x)/(1-x)\bigr)$;
+\smallskip
+\item{iv)} $\arcsch x = \ln\bigl( 1/x + \sqrt{1/x^2 + 1}\bigr)$;
+\smallskip
+\item{v)} $\arsech x = \ln\bigl( 1/x + \sqrt{1/x^2 - 1}\bigr)$; and
+\smallskip
+\item{vi)} $\arcoth x = (1/2) \ln\bigl( (x+1) / (x-1)\bigr)$.
+\medskip
+
+\proof All of these formulas are proved the same way, but the method is fairly tedious and involves
+no calculus, so we only prove
+(i) and leave the rest as an exercise. The idea is to substitute a variable in for $e^y$, and then use the
+quadratic formula.
+
+Let $y = \arsinh x$. We want a formula for $y$. By the definition of inverses, we have
+$$x = \sinh y = {e^y - e^{-y}\over 2} = {e^{2y} - 1\over 2e^y}.$$
+To make things notationally easier, write $u=e^y$. Then we have
+$$ x = {u^2 - 1\over 2u},$$
+or equivalently
+$$ 2x u = u^2 - 1.$$
+Now we can use the quadratic formula to solve the equation $u^2 - 2x u - 1 = 0$. We get
+$$u = {2x \pm \sqrt{ (-2x)^2 - 4(-1) }\over 2} = x \pm {\sqrt{4x^2 + 4}\over 2}
+= x \pm \sqrt{x^2 + 1}.$$
+To check which branch of the $\pm$ we take, note that $u = e^y > 0$, but $x-\sqrt{x^2 + 1} < 0$, so only
+the positive branch makes sense. We find that
+$$e^y = u = x + \sqrt{x^2 + 1},$$
+so
+$$y = \ln\bigl( x+ \sqrt{x^2+1}\bigr),$$
+proving (i).\slug
+
+From these formulas it is clear that we can also find the derivatives of all the inverse hyperbolic functions
+using the chain rule. We could also use implicit differentiation or the formula for the derivatives of inverses.
+
+\proclaim Proposition \advthm. The derivatives of the inverse hyperbolic functions are
+\medskip
+\item{i)} $\arsinh' x = 1/\sqrt{1+x^2}$;
+\smallskip
+\item{ii)} $\arcosh' x = 1/\sqrt{x^2-1}$;
+\smallskip
+\item{iii)} $\artanh' x = 1/(1-x^2)$;
+\smallskip
+\item{iv)} $\arcsch' x = -1/ \bigl( |x| \sqrt{x^2+1}\bigr)$;
+\smallskip
+\item{v)} $\arsech' x = -1/\bigl( x\sqrt{1-x^2}\bigr)$; and
+\smallskip
+\item{vi)} $\arcoth' x = 1/(1-x^2)$.
+\medskip
+
+\proof We'll sketch three different ways to prove (i). The first way is to simply use the explicit formula
+$$\arsinh x = \ln\bigl( x + \sqrt{x^2+1}\bigr).$$
+Differentiating the right-hand side using the chain rule gives the desired formula, after a rumble and a tumble.
+
+The second way is to use implicit differentiation. If $y=\arsinh x$, then $x = \sinh y$. Differentiating
+both sides of this, we have
+$$1 = \cosh y {dy\over dx},$$
+so
+\edef\eqarsinh{\the\eqcount}
+$${dy\over dx} = {1\over \cosh y}.\adveq$$
+But $\cosh y = \sqrt{1+\sinh^2 y} = \sqrt{1+x^2}$, so we see that $dy/dx = 1/\sqrt{1+x^2}$.
+
+The third way is to simply use the formula for the derivatives of inverses. We have
+$$\arsinh' x = (\sinh^{-1})'(x) = {1\over \sinh'(\arsinh x)} = {1\over \cosh(\arsinh x)},$$
+which is exactly the same thing as~\refeq{\eqarsinh}. From there we could use the identity
+$\cosh^2 y - \sinh^2 y = 1$ to get the correct answer as in the previous paragraph. There is a more
+geometric interpretation of this argument. Since $\cosh^2  - \sinh^2 = 1$, you can draw a right triangle
+with hypotenuse $\cosh (\arsinh x)$ and the other sides set to the lengths $\sinh (\arsinh x) = x$ and $1$.
+This means that
+$$\cosh (\arsinh x) = \sqrt{1+x^2}.$$
+
+Proving (ii) through (vi)---using whatever method you wish---is left as an exercise.
+If you use the triangle method, you may have to draw a triangle using the identity $\tanh^2 + \sech^2 = 1$
+instead, but the ideas remain the same.
+\slug
+
+Note that the derivatives of $\artanh$ and $\arcoth$ have exactly the same formula, but they have disjoint
+domains:~$\artanh$ is defined only on $(-1,1)$ and $\arcoth$ is defined only {\it outside} this interval.
+
+\bye
 
 \advsect Related rates
 
