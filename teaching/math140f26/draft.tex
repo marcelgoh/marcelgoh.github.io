@@ -3725,6 +3725,9 @@ $$\eqalign{
 &=
  {e^x-e^{-x}\over 2} \cdot {e^y+e^{-y}\over 2} + {e^x+e^{-x}\over 2} \cdot {e^y-e^{-y}\over 2} \cr
 &= {e^{x+y} - e^{-x+y}  + e^{x-y} - e^{-x-y} \over 4} \cr
+\def\arccsc{\op{\rm arccsc}}
+\def\arcsec{\op{\rm arcsec}}
+\def\arccot{\op{\rm arccot}}
 &\qquad\qquad +
    {e^{x+y} + e^{-x+y}  - e^{x-y} - e^{-x-y} \over 4} \cr
 &= {2e^{x+y} - 2e^{-x-y}\over 4} \cr
@@ -3855,10 +3858,9 @@ instead, but the ideas remain the same.
 Note that the derivatives of $\artanh$ and $\arcoth$ have exactly the same formula, but they have disjoint
 domains:~$\artanh$ is defined only on $(-1,1)$ and $\arcoth$ is defined only {\it outside} this interval.
 
-\bye
-
 \advsect Related rates
 
+\datestamp{30}{x}
 In the previous section we got used to looking at equations involving two variables and differentiating
 both sides with respect to one of the variables in order to obtain some relation between the other variable
 and its derivative.
@@ -3909,7 +3911,89 @@ We want to know what $dA/dt$ is when $h=15$ metres, at which time $A = \pi h^2 =
 We also know that
 $dV/dt = -10$ cubic metres per minute, so we see that
 $$-10 = {\sqrt{225\pi} \over 2\sqrt\pi}\cdot {dA\over dt} = {15\over 2}\cdot {dA\over dt},$$
-and we conclude that the area changes by $dA/dt = 20/15 = -4/3$ square metres per minute.
+and we conclude that the area changes by $dA/dt = -20/15 = -4/3$ square metres per minute.
+
+\medskip\boldlabel A pedestrian under a streetlamp. A $2$-metre-tall man walks away from
+a $6$-metre-tall streetlamp at a constant rate of $3/2$ metres per second. Let's calculate
+how fast the tip of the man's shadow is moving.
+
+Call the distance between the tip of the shadow $s$ and the distance between the person and the streetlamp
+$x$. We know that $dx/dt = 3/2$ and want to find $ds/dt$.
+The triangle formed by the top of the streetlamp, the base of the streetlamp, and the shadow's tip
+is similar to the triangle formed by the person's foot, his head, and the tip of the shadow.
+Since the streetlamp is $6$ metres tall and the person is $2$ metres tall, the first triangle is exactly
+three times as large as the second. In other words, $s = 3(x-s)$, which means that $s = 3x/2$.
+Differentiating both sides of this equation with respect to $t$ gives us
+$${ds\over dt} = {3\over 2}\cdot {dx\over dt} = {3\over 2}\cdot {3\over 2} = {9\over 4}$$
+metres per second. (Note that in this problem it did not matter how far the man was from the streetlamp,
+since $x$ disappeared from the equation after differentiating.)
+
+\medskip\boldlabel James Bond and Jaws. In this example, we will use the fact that the position
+of a freefalling object $t$ seconds after being dropped is $s = 4.9t^2$ metres.
+James Bond and Jaws are in a plane that is cruising at $100$ metres per second. Suppose Jaws pushes James Bond
+out of a plane, then jumps out himself one second later. At what rate is the distance between Jaws
+and James changing one more second after that? (Ignore the effects of air drag.)
+
+Because Jaws exits the plane exactly one second after James, the horizontal distance between the two men
+is $100$ metres, and remains that way throughout their fall. Let $t$ be the number of seconds that
+has elapsed since Jaws pushed James out of the plane. Let $y_1$ be the distance that James
+has fallen, and let $y_2$ be the distance that Jaws has fallen. For all $t\ge 0$, we have
+$$y_1 = 4.9t^2,$$
+and for all $t\ge 1$, we have
+$$y_2 = 4.9(t-1)^2 = 4.9t^2 - 9.8t + 4.9.$$
+So the vertical distance, call it $h$, between the two men at any time $t\ge 1$, is
+$$h = |y_1 - y_2| = |{-9.8 t} + 4.9| = 9.8t-4.9.$$
+We can easily calculate ${dh\over dt} = 9.8$,
+but this is just the rate of change of the vertical distance between the two men, not the total distance.
+
+By the Pythagorean theorem, the actual distance $r$ between the two men is equal to
+$$r^2 = 100^2 + h^2 = 10000 + h^2.$$
+Differentiating both sides with respect to $t$ gives
+$$2r{dr\over dt} = 2h{dh\over dt},$$
+whence
+$${dr\over dt} = {h\over r}\cdot {dh\over dt} = {9.8h\over r}.$$
+It remains to plug in $h$ and $r$ at time $t=2$. We have
+$$h= 9.8\cdot 2 - 4.9 = 14.7$$
+metres and
+$$r = \sqrt{10000 + (14.7)^2} \approx 98.9$$
+metres,
+so
+$${dr\over dt} = {9.8 \cdot h\over r} \approx 1.46$$
+metres per second.
+
+\medskip\boldlabel The distance between hands on a watch. Suppose that you have a watch whose second hand
+and minute hand both have the same length of $1$ centimetre. At exactly ten minutes past the hour, at what
+rate is the distance between the tip of the second hand and the tip of the minute hand changing?
+
+Because both hands have the same length, drawing an imaginary line between the tips of the two hands
+completes an isosceles triangle. Let $h$ be the length of this imaginary line. If the angle between the
+two hands is in the interval $(0,\pi)$---which it is at exactly ten past the hour---then $h$ satisfies
+the formula
+$$ h = 2\sin\Bigl({\theta\over 2}\Bigr).$$
+(Draw a picture to see this!)
+We want to know $dh/dt$, and differentiating both sides of this formula tells us that
+\edef\eqwatchrate{\the\eqcount}
+$${dh\over dt} = 2\cos\Bigl({\theta\over 2}\Bigr) {1\over 2}\cdot {d\theta\over dt}
+= \cos\Bigl({\theta\over 2}\Bigr){d\theta\over dt}.\adveq$$
+So we try and reason about the rate of change of $\theta$ with respect to time.
+
+The second hand moves around the watch once per minute, or at a speed of $2\pi$ radians a minute.
+Meanwhile the second hand only moves $1/60$ of the way around the watch every minute, or $\pi/30$ radians
+per minute. Hence the angle between the two hands, measured clockwise from the second hand to the minute hand,
+changes at a rate of $\pi/30-2\pi = -59\pi/60$ radians per minute.
+To use~\refeq{\eqwatchrate}, we'll also need to know $\cos\theta$ at ten minutes past the hour. This
+is a sixth of the way around the clock; that is, $\theta= \pi/3$.
+Hence we see that
+$${dh\over dt} = \cos\Bigl({\pi\over 3}\Bigr) {-59\pi\over 60} = {-59\pi\over 120}$$
+centimetres per minute, or
+$$ {-59\pi \over 120\cdot 60} = {-59\pi\over 7200} \approx -0.0257$$
+centimetres per second.
+
+
+
+
+
+
 
 
 \bye
