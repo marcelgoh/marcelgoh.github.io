@@ -66,6 +66,12 @@ and trigonometric functions}{52}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip15pt 8.\kern .5em Compositions and inverses}{60}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip15pt 9.\kern .5em Implicit differentiation}{74}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 10.\kern .5em Related rates}{96}}
+\medskip
+\noindent\hbox to\hsize{\relax \unhcopy \strutbox \cont
+{{\tenssbx III. Applications \kern 3pt}}{100}}
+\smallskip
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 11.\kern .5em Extreme values and
+the mean value theorem}{101}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -3947,9 +3953,7 @@ so
 $${dr\over dt} = {9.8 \cdot h\over r} \approx 1.43$$
 metres per second.
 
-\bye
-
-\medskip\boldlabel A pedestrian under a streetlamp. A $2$-metre-tall man walks away from
+\medskip\boldlabel \datestamp{02}{xi} A pedestrian under a streetlamp. A $2$-metre-tall man walks away from
 a $6$-metre-tall streetlamp at a constant rate of $3/2$ metres per second. Let's calculate
 how fast the tip of the man's shadow is moving.
 
@@ -3963,7 +3967,6 @@ Differentiating both sides of this equation with respect to $t$ gives us
 $${ds\over dt} = {3\over 2}\cdot {dx\over dt} = {3\over 2}\cdot {3\over 2} = {9\over 4}$$
 metres per second. (Note that in this problem it did not matter how far the man was from the streetlamp,
 since $x$ disappeared from the equation after differentiating.)
-
 
 \medskip\boldlabel The distance between hands on a watch. Suppose that you have a watch whose second hand
 and minute hand both have the same length of $1$ centimetre. At exactly ten minutes past the hour, at what
@@ -3993,16 +3996,120 @@ centimetres per minute, or
 $$ {-59\pi \over 60\cdot 60} = {-59\pi\over 3600} \approx -0.05$$
 centimetres per second.
 
-\medskip\boldlabel A falling ladder. Suppose a $5$-metre ladder, propped against a wall, is slipping
-such that the top of the ladder is moving at a constant rate of $2$ metres per second. At what rate is the
-bottom of the ladder moving when it is $4$ metres from the wall?
+\vfill\eject
+\begingroup\headline{\hfil}\footline{\hfil}
+\vglue160pt
+\centerline{\titlefont III. APPLICATIONS}
+\vskip160pt
+\bigskip
+\begingroup\obeylines\eightssi
+\hfill \"Uberhaupt verh\"alt es sich
+\hfill mit allen solchen neuen Calculs so,
+\hfill dass man durch sie nichts leisten kann,
+\hfill was nicht auch ohne sie zu leisten w\"are;
+\hfill der Vortheil ist aber der, dass {\eightss[...]}
+\hfill jeder, der sich ihn ganz angeeignet hat,
+\hfill auch ohne die gleichsam unbewussten
+\hfill Inspirationen des Genies,
+\hfill die niemand erzwingen kann,
+\hfill die dahin geh\"origen Aufgaben l\"osen,
+\hfill ja selbst in so verwickelten F\"allen
+\hfill gleichsam mechanisch l\"osen kann,
+\hfill wo ohne eine solche H\"ulfe
+\hfill auch das Genie ohnm\"achtig wird.
+\eightss
+\smallskip
+\hfill --- CARL FRIEDRICH GAUSS (1843)
+\endgroup%\obeylines
+\bigskip\goodbreak
+\vfill\eject
+\endgroup%blank headline and footline
 
+\advsect Extreme values and the mean value theorem
 
+At this point of the course, we are no stranger to the concept of modelling some quantity or phenomenon
+by means of a function. For many such applications, it may be desirable to find a point at which
+the function is {\it maximised} or {\it minimised}. In other words, we may want to find the
+{\it extreme values} of a function and where they are attained.
 
+First we must precisely define what we mean by a maximum or a minimum value. Let $f$ be any function, with some
+domain $D$. For $c$ in this domain $D$, we say that $f(c)$ is the {\it absolute maximum} of $f$
+on $D$ if $f(c)\ge f(x)$ for all $x$ in $D$. Likewise we say that $f(c)$ is the {\it absolute minimum}
+of $f$ on $D$ if $f(c) \le f(x)$ for all $x\in D$. Note that a function may not have an absolute
+or minimum value (an example is the function $f(x) = 1/x$). Even if a function attains an absolute
+maximum or minimum value, it may be the case that these values are attained by multiple choices of $c$
+in the domain. For example, the absolute maximum of the function $f(x) =\cos x$ is $1$, but we could
+pick $c$ to be $0$, $2\pi$, $4\pi$, and so on in order to attain this extreme value.
 
+For certain functions, a number $c$ may be such that $f(c)$ is not an
+absolute maximum or minimum, and yet $f(c)$ is an extreme value if we only consider a small neighbourhood
+around $c$. Concretely, we say that $f(c)$ is a {\it local maximum} of $f$ if there exists some $\delta>0$
+such that $f(c) \ge f(x)$ for all $x$ with $|x-c|<\delta$. And we say that $f(c)$ is a {\it local minimum}
+of $f$ if there is some $\delta > 0$ such that $f(c) \ge f(x)$ for all $x$ with $|x-c|<\delta$.
 
+As an example, consider the polynomial $f(x) = x^3 - x^2 - x + 1$. By graphing the
+function we see that $f(1) = 0$, and moreover in some small interval around $1$, say $(0,2)$, $f$ is nonnegative.
+(Here we have picked $\delta = 1$, since $1-1 = 0$ and $1+1 = 2$.)
+That means that every $x$ in the interval $(0,2)$ satisfies $f(x) \ge 0 = f(1)$, and $1$ is a local minimum
+of $f$. But $1$ is not an {\it absolute minimum} of $f$, since $f(x)\to -\infty$ as $x\to -\infty$. If you want
+a concrete counterexample, take $x=-2$; one has $f(-2) = -8-4-(-2)+1 = -9$, which is less than $0 = f(1)$.
 
+In many applications, it is fitting to restrict the domain of the function. (For instance, $x$ might
+be the amount of some resource, so $x<0$ doesn't make sense, and $x$ might have some limit from
+above representing how much we can afford.) Once the domain is restricted, it may be the case that
+some function that does not have an absolute maximum or minimum over all of $\RR$ does have an absolute
+maximum or minimum over this smaller domain.
 
+For instance, if we restrict $f(x) = x^3 - x^2 - x + 1$ to the range $(-1, 2)$, then the absolute minimum
+of $f$ is $0$ (attained at $x=1$). On the other hand, $f$ still does not have an absolute maximum
+on this interval. As $x$ increases towards $2$, the values $f(x)$ increase towards $3$. But since the number
+$2$ itself is not in the range $(1,2)$, we see that $f(x)$ never actually equals $3$ on this domain.
+
+The issue in the preceding discussion lies in the fact that the endpoint $2$ is not included in the interval.
+The absolute maximum of $f$ on $(-1,2]$ is $3$, attained at $x=2$. So you might suspect that
+if we restrict the domain of a continuous function to a {\it closed} interval (endpoints included on {\it both}
+sides)
+then the following theorem guarantees the existence of both an absolute maximum
+and minimum.
+
+\parenproclaim Theorem {\advthm} (Extreme value theorem). Let $f$ be continuous on an interval
+$[a,b]$. Then there are numbers $c$ and $d$ in $[a,b]$ such that $f(c)$ is the absolute maximum
+of $f$ on $[a,b]$ and $f(d)$ is the absolute minimum of $f$ on $[a,b]$.
+
+\proof Take {\mc MATH} 242 Analysis 1 or {\mc MATH 254} Honours Analysis 1 to see this proof.\slug
+
+Just like the intermediate value theorem, the extreme value theorem is {\it nonconstructive}---it asserts
+the existence of a maximum $f(c)$ and a minimum $f(d)$ without telling you what $c$ and $d$ are.
+(In fact, the extreme value theorem is closely related to the intermediate value theorem; their proofs
+both use something called the {\it least upper bound property} of the real numbers.)
+
+Unlike with the intermediate value theorem however, the methods of calculus can help us find out where
+these extreme values are attained, so long as the function $f$ is differentiable. This is due to the following
+theorem of Pierre de Fermat, which is found in some treatises dating to between 1636 and 1642. (Because
+derivatives hadn't formally been invented at that point, the actual wording Fermat used differs quite
+a lot from the proof given below, but nevertheless the germ of these ideas originate with him.)
+
+\parenproclaim Theorem {\advthm} (Fermat's interior extremum theorem).
+If $f$ has a local maximum or a local minimum at $c$ and $f'(c)$ exists, then $f'(c) = 0$.
+
+\proof First we do the proof when $f$ has a local maximum at $c$. By definition, this means that there is some
+$\delta > 0$ such that $f(c)\ge f(x)$ for all $x$ with $|x-c|<\delta$. Since $f(x) \le f(c)$ for all
+$c-\delta < x<c$, the numerator in the left-hand limit
+$$\lim_{x\to c^-} {f(x) - f(c)\over x-c}$$
+must be negative, and since the denominator $x-c$ is negative as well, we have
+$$\lim_{x\to c^-} {f(x) - f(c)\over x-c} \ge 0.$$
+Similar logic tells us that the numerator in the right-hand limit
+$$\lim_{x\to c^+} {f(x) - f(c) \over x-c}$$
+is also negative, but this time the denominator $x-c$ is positive, so
+$$\lim_{x\to c^+} {f(x) - f(c) \over x-c} \le 0.$$
+But $f'(c)$ exists and equals both of these one-sided limits, so both $f'(c) \ge 0$ and $f'(c)\le 0$
+hold at the same time. This forces $f'(c) = 0$.
+
+We have proved the theorem in the case that $f(c)$ is a local maximum. If instead $f(c)$ is a local
+{\it minimum}, then one could repeat the argument above with slight modifications to show that
+$f'(c) = 0$ in this case as well. More simply, one can consider the function $-f$, which now has a local
+maximum at $c$, and use
+the above paragraph to see that $-f(c) = 0$. This implies that $f'(c) = 0$ as well.\slug
 
 
 
