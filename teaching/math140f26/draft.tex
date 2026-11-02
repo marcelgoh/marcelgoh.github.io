@@ -68,10 +68,10 @@ and trigonometric functions}{52}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 10.\kern .5em Related rates}{96}}
 \medskip
 \noindent\hbox to\hsize{\relax \unhcopy \strutbox \cont
-{{\tenssbx III. Applications \kern 3pt}}{100}}
+{{\tenssbx III. Applications \kern 3pt}}{101}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 11.\kern .5em Extreme values and
-the mean value theorem}{101}}
+the mean value theorem}{102}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -3991,9 +3991,9 @@ changes at a rate of $\pi/30-2\pi = -59\pi/30$ radians per minute.
 To use~\refeq{\eqwatchrate}, we'll also need to know $\cos\theta$ at ten minutes past the hour. This
 is a sixth of the way around the clock; that is, $\theta= \pi/3$.
 Hence we see that
-$${dh\over dt} = \cos\Bigl({\pi\over 3}\Bigr) {-59\pi\over 30} = {-59\pi\over 60}$$
+$${dh\over dt} = \cos\Bigl({\pi\over 3}\cdot {1\over 2}\Bigr) {-59\pi\over 30} = {-59\pi\sqrt 3\over 60}$$
 centimetres per minute, or
-$$ {-59\pi \over 60\cdot 60} = {-59\pi\over 3600} \approx -0.05$$
+$$ {-59\pi \over 60\cdot 60} = {-59\pi\sqrt 3\over 3600} \approx -0.089$$
 centimetres per second.
 
 \vfill\eject
@@ -4041,26 +4041,30 @@ maximum or minimum value, it may be the case that these values are attained by m
 in the domain. For example, the absolute maximum of the function $f(x) =\cos x$ is $1$, but we could
 pick $c$ to be $0$, $2\pi$, $4\pi$, and so on in order to attain this extreme value.
 
-For certain functions, a number $c$ may be such that $f(c)$ is not an
-absolute maximum or minimum, and yet $f(c)$ is an extreme value if we only consider a small neighbourhood
-around $c$. Concretely, we say that $f(c)$ is a {\it local maximum} of $f$ if there exists some $\delta>0$
-such that $f(c) \ge f(x)$ for all $x$ with $|x-c|<\delta$. And we say that $f(c)$ is a {\it local minimum}
-of $f$ if there is some $\delta > 0$ such that $f(c) \ge f(x)$ for all $x$ with $|x-c|<\delta$.
-
-As an example, consider the polynomial $f(x) = x^3 - x^2 - x + 1$. By graphing the
-function we see that $f(1) = 0$, and moreover in some small interval around $1$, say $(0,2)$, $f$ is nonnegative.
-(Here we have picked $\delta = 1$, since $1-1 = 0$ and $1+1 = 2$.)
-That means that every $x$ in the interval $(0,2)$ satisfies $f(x) \ge 0 = f(1)$, and $1$ is a local minimum
-of $f$. But $1$ is not an {\it absolute minimum} of $f$, since $f(x)\to -\infty$ as $x\to -\infty$. If you want
-a concrete counterexample, take $x=-2$; one has $f(-2) = -8-4-(-2)+1 = -9$, which is less than $0 = f(1)$.
-
 In many applications, it is fitting to restrict the domain of the function. (For instance, $x$ might
 be the amount of some resource, so $x<0$ doesn't make sense, and $x$ might have some limit from
 above representing how much we can afford.) Once the domain is restricted, it may be the case that
 some function that does not have an absolute maximum or minimum over all of $\RR$ does have an absolute
 maximum or minimum over this smaller domain.
 
-For instance, if we restrict $f(x) = x^3 - x^2 - x + 1$ to the range $(-1, 2)$, then the absolute minimum
+
+\bye
+
+For certain functions, a number $c$ may be such that $f(c)$ is not an
+absolute maximum or minimum, and yet $f(c)$ is an extreme value if we only consider a small neighbourhood
+around $c$. Concretely, we say that $f(c)$ is a {\it local maximum} of $f$ if there exists some $\delta>0$
+such that $f(c) \ge f(x)$ for all $x$ with $|x-c|<\delta$. And we say that $f(c)$ is a {\it local minimum}
+of $f$ if there is some $\delta > 0$ such that $f(c) \ge f(x)$ for all $x$ with $|x-c|<\delta$.
+
+As an example, consider the polynomial $f(x) = x^3 - x^2 - x + 1$, whose domain is $\RR=(-\infty,\infty)$.
+By graphing the
+function we see that $f(1) = 0$, and moreover in some small interval around $1$, say $(0,2)$, $f$ is nonnegative.
+(Here we have picked $\delta = 1$, since $1-1 = 0$ and $1+1 = 2$.)
+That means that every $x$ in the interval $(0,2)$ satisfies $f(x) \ge 0 = f(1)$, and $1$ is a local minimum
+of $f$. But $1$ is not an {\it absolute minimum} of $f$, since $f(x)\to -\infty$ as $x\to -\infty$. If you want
+a concrete counterexample, take $x=-2$; one has $f(-2) = -8-4-(-2)+1 = -9$, which is less than $0 = f(1)$.
+
+If we restrict $f(x) = x^3 - x^2 - x + 1$ to the range $(-1, 2)$, then the absolute minimum
 of $f$ is $0$ (attained at $x=1$). On the other hand, $f$ still does not have an absolute maximum
 on this interval. As $x$ increases towards $2$, the values $f(x)$ increase towards $3$. But since the number
 $2$ itself is not in the range $(1,2)$, we see that $f(x)$ never actually equals $3$ on this domain.
