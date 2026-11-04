@@ -4048,7 +4048,7 @@ some function that does not have an absolute maximum or minimum over all of $\RR
 \infty)$ does have an absolute
 maximum or minimum over this smaller domain.
 
-\noindent\datestamp{03}{xi} \hskip\parindent
+\noindent\datestamp{04}{xi} \hskip\parindent
 For certain functions $f$, a number $c$ may be such that $f(c)$ is not an
 absolute maximum or minimum, and yet $f(c)$ is an extreme value if we restrict $f$ to a small interval
 around $c$. Concretely, we say that $f(c)$ is a {\it local maximum} of $f$ if there exists some $\delta>0$
@@ -4163,6 +4163,13 @@ does not exist to the list of candidates.
 \algstep E6. [Output.] The smallest value calculated in step E5 is the absolute minimum of $f$
 on $[a,b]$, and the largest is the absolute maximum.\slug
 
+\bye
+
+\noindent\datestamp{06}{xi} \hskip\parindent
+An input $c$ in the domain of $f$ such that $f'(c) = 0$ or $f'(c)$ does not exist is called a {\it critical
+number}. The closed interval method can be summarised thus: {\sl Evaluate $f$ on the two endpoints on
+the interval and on all the critical numbers in the interval, then output the maximum and minimum.}
+
 \medskip\boldlabel The mean value theorem.
 Imagine you toss a ball into the air and catch it. The ball starts in your hand, ends in your hand, and
 moves continuously over time, so by the extreme value theorem, it attains a maximum height at some point.
@@ -4181,7 +4188,7 @@ This exact line of reasoning can be generalised to give us the following theorem
 \item{ii)} $f$ is differentiable on $(a,b)$; and
 \smallskip
 \item{iii)} $f(a) = f(b)$.
-\medskip
+\medskip\noindent
 Then there is a number $c$ in $(a,b)$ such that $f'(c) = 0$.
 
 \proof The proof is morally the same argument as the ball-tossing example given above, but to be completely
