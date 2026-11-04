@@ -4044,19 +4044,18 @@ pick $c$ to be $0$, $2\pi$, $4\pi$, and so on in order to attain this extreme va
 In many applications, it is fitting to restrict the domain of the function. (For instance, $x$ might
 be the amount of some resource, so $x<0$ doesn't make sense, and $x$ might have some limit from
 above representing how much we can afford.) Once the domain is restricted, it may be the case that
-some function that does not have an absolute maximum or minimum over all of $\RR$ does have an absolute
+some function that does not have an absolute maximum or minimum over all of $\RR = (-\infty,
+\infty)$ does have an absolute
 maximum or minimum over this smaller domain.
 
-
-\bye
-
-For certain functions, a number $c$ may be such that $f(c)$ is not an
-absolute maximum or minimum, and yet $f(c)$ is an extreme value if we only consider a small neighbourhood
+\noindent\datestamp{03}{xi} \hskip\parindent
+For certain functions $f$, a number $c$ may be such that $f(c)$ is not an
+absolute maximum or minimum, and yet $f(c)$ is an extreme value if we restrict $f$ to a small interval
 around $c$. Concretely, we say that $f(c)$ is a {\it local maximum} of $f$ if there exists some $\delta>0$
 such that $f(c) \ge f(x)$ for all $x$ with $|x-c|<\delta$. And we say that $f(c)$ is a {\it local minimum}
 of $f$ if there is some $\delta > 0$ such that $f(c) \ge f(x)$ for all $x$ with $|x-c|<\delta$.
 
-As an example, consider the polynomial $f(x) = x^3 - x^2 - x + 1$, whose domain is $\RR=(-\infty,\infty)$.
+As an example, consider the polynomial $f(x) = x^3 - x^2 - x + 1$, whose domain is $\RR$.
 By graphing the
 function we see that $f(1) = 0$, and moreover in some small interval around $1$, say $(0,2)$, $f$ is nonnegative.
 (Here we have picked $\delta = 1$, since $1-1 = 0$ and $1+1 = 2$.)
@@ -4146,8 +4145,10 @@ then $f'(c) = 0$. The converse is not true! It is possible for $f'(c)$ to equal 
 is not a local extreme value. A concrete example is given by the function $f(x) = x^3$. Then $f'(0) = 0$,
 but $f$ is increasing on both sides of $0$.
 
-\medskip\boldlabel The closed interval method. We can sum up what we know about extreme values in the
-the following procedure.
+\medskip\boldlabel The closed interval method. We have seen that a continuous function must
+attain a maximum value and a minimum value on a closed interval, and that this must happen either
+at the endpoints, or at some $c$ in the interior with $f'(c) = 0$ or $f'(c)$ nonexistent.
+So we can sum up what we know about extreme values in the the following procedure.
 
 \algbegin Algorithm E (Find extreme values in a closed interval). Given an interval $[a,b]$ and a
 function $f$ that is continous on $[a,b]$ and differentiable on $(a,b)$, this procedure finds
@@ -4161,6 +4162,45 @@ does not exist to the list of candidates.
 \algstep E5. [Evaluate $f$ on candidates.] Calculate $f(c)$ for all candidates $c$ in the list.
 \algstep E6. [Output.] The smallest value calculated in step E5 is the absolute minimum of $f$
 on $[a,b]$, and the largest is the absolute maximum.\slug
+
+\medskip\boldlabel The mean value theorem.
+Imagine you toss a ball into the air and catch it. The ball starts in your hand, ends in your hand, and
+moves continuously over time, so by the extreme value theorem, it attains a maximum height at some point.
+Because the ball rises to this height and then starts falling after it reaches it, a local maximum
+is reached at this point, and (assuming the ball's position is a differentiable function)
+Fermat's theorem says that the derivative of the ball's vertical
+position must be zero at that point. In other words, there is some point in time at which the ball's velocity
+is zero along the vertical axis.
+
+This exact line of reasoning can be generalised to give us the following theorem.
+
+\parenproclaim Theorem {\advthm} (Rolle's theorem). Let $a$ and $b$ be numbers with $a<b$. Suppose that
+\medskip
+\item{i)} $f$ is continuous on $[a,b]$;
+\smallskip
+\item{ii)} $f$ is differentiable on $(a,b)$; and
+\smallskip
+\item{iii)} $f(a) = f(b)$.
+\medskip
+Then there is a number $c$ in $(a,b)$ such that $f'(c) = 0$.
+
+\proof The proof is morally the same argument as the ball-tossing example given above, but to be completely
+precise we have to consider three cases. Either $f$ is completely flat, or it increases at some point
+(as in the example above), or it decreases at some point. The first case is easy.
+If $f$ is completely flat on $[a,b]$, then $f'$ is equal to some constant on the whole interval, and any $x$
+in $(a,b)$ satisfies $f'(x) = 0$.
+
+If $f$ is not constant on $[a,b]$, then there is some $x$ in $(a,b)$ such that $f(x)\ne f(a)$. Either
+$f(x) > f(a)$ or $f(x)<f(a)$. If $f(x) > f(a)$, then $f(a) = f(b)$ is not the maximum value of $f$
+in $[a,b]$. By the extreme value theorem, $f$ must attain a maximum value in $[a,b]$, and we know it doesn't
+do so at the endpoints, so it must attain a maximum $f(c)$ at some input $c$
+in the interior $(a,b)$. We assumed that $f$ is differentiable on $(a,b)$, so $f'(c)$ exists, and
+by Fermat's interior extremum theorem, we must have $f'(c) = 0$.
+
+The case where $f(x) < f(a)$ is extremely similar. It tells us that $f(a) = f(b)$ is not the {\it minimum
+value} of $f$ in $[a,b]$, but $f$ must attain a minimum value by the extreme value theorem, so this happens
+at some $c\in (a,b)$. The derivative $f'(c)$ exists by hypothesis (ii), so $f'(c) = 0$ by Fermat's
+theorem.\slug
 
 
 
