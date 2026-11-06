@@ -4252,19 +4252,22 @@ value} of $f$ in $[a,b]$, but $f$ must attain a minimum value by the extreme val
 at some $c\in (a,b)$. The derivative $f'(c)$ exists by hypothesis (ii), so $f'(c) = 0$ by Fermat's
 theorem.\slug
 
+\bye
+
 Rolle's theorem is actually a special case of a very important theorem called the mean value theorem.
 The full mean value theorem is also not very difficult to prove, once we know Rolle's theorem.
 
-\parenproclaim Theorem {\advthm} (Rolle's theorem). Let $a$ and $b$ be numbers with $a<b$. Suppose that
+\parenproclaim Theorem {\advthm} (The mean value theorem).
+Let $a$ and $b$ be numbers with $a<b$. Suppose that
 \medskip
 \item{i)} $f$ is continuous on $[a,b]$;
 \smallskip
 \item{ii)} $f$ is differentiable on $(a,b)$; and
-\smallskip
-\item{iii)} $f(a) = f(b)$.
 \medskip\noindent
-Then there is a number $c$ in $(a,b)$ such that $f'(c) = 0$.
+Then there is a number $c$ in $(a,b)$ such that
+$$f'(c) = {f(b) - f(a)\over b-a}.$$
 
+\proof [TODO: add.]\slug
 
 To prove
 Theorem~{\thmexpdiffeq}, Lemma~{\lemtrigdiffeq}, and Proposition~{\prophyperbolicrules}, we used the
@@ -4281,7 +4284,7 @@ Then $f$ is constant on $[a,b]$; that is, there is some number $c$ such that $f(
 $x\in [a,b]$.
 
 \proof Let $c=f(a)$. We want to show that $f(x) = c$ for all $x\in (a,b]$. Let such an $x$ be given.
-By Rolle's theorem, 
+By the mean value theorem,
 
 
 
