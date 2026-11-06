@@ -1922,6 +1922,7 @@ We begin with the easy stuff.
 A constant function has a completely flat graph; it does not change with respect to its input.
 Hence its derivative should be $0$ everywhere. Let us prove this simple fact.
 
+\edef\thmconstantderiv{\the\thmcount}
 \proclaim Theorem \advthm. Let $c$ be any number and consider it to be a constant
 function of $x$ (no matter what number
 $x$ it is given, the function just outputs the number $c$). Then
@@ -3368,6 +3369,7 @@ $f(x) = 2e^x$, then we also have $f'(x) = 2e^x$, so again we have $f' = f$. Let'
 question then: {\sl Are the functions $f(x) = ce^x$, where $c$ is an arbitrary constant, the only functions $f$
 satisfying the differential equation $f'=f$?} The answer is now yes.
 
+\edef\thmexpdiffeq{\the\thmcount}
 \proclaim Theorem \advthm. If $f(x)$ is a function such that $f(x) = f'(x)$ for all real numbers $x$,
 then $f(x) = ce^x$ for some constant $c$.
 
@@ -4163,14 +4165,53 @@ does not exist to the list of candidates.
 \algstep E6. [Output.] The smallest value calculated in step E5 is the absolute minimum of $f$
 on $[a,b]$, and the largest is the absolute maximum.\slug
 
-\bye
-
 \noindent\datestamp{06}{xi} \hskip\parindent
 An input $c$ in the domain of $f$ such that $f'(c) = 0$ or $f'(c)$ does not exist is called a {\it critical
-number}. The closed interval method can be summarised thus: {\sl Evaluate $f$ on the two endpoints on
-the interval and on all the critical numbers in the interval, then output the maximum and minimum.}
+number}. (The value $f(c)$ is sometimes called a {\it critical value}.)
+The closed interval method can be summarised thus: {\sl Evaluate $f$ on the two endpoints on
+the interval and on all the critical numbers in the interval, then output the maximum and minimum
+critical values.}
 
-Before moving on to bigger and better things, let's apply the closed interval method to a concrete example.
+Before moving on to bigger and better things, let's apply the closed interval method to a couple of
+concrete examples.
+Suppose we want to find the maximum and minimum values of the function
+$$f(x) = \cases{x\ln x, & if $x > 0$; \cr 0, & if $x=0$}$$
+on the closed
+interval $[0,e]$. This function is continuous, since $x\ln x\to 0$ as $x\to 0$ from the right. (The easiest
+way to prove this is using L'Hospital's Rule, which we'll see in a few classes' time.) So by the extreme
+value theorem there is both a maximum and minimum on this interval.
+We take the derivative $f'(x) = x(1/x) + 1\cdot\ln x = 1 + \ln x$, and observe that
+the equation $\ln x + 1 = 0$ is equivalent to $\ln x = -1$. Taking the exponential of both sides,
+$f'(x) = 0$ only if $x = e^{\ln x} = e^{-1} = 1/e$. This critical number lies in the range $[0,e]$, so
+we evaluate
+$$f\Bigl({1\over e}\Bigr) = {1\over e} \ln {1\over e} = -1/e.$$
+We also evaluate $f$ on the endpoints:
+$$f(0) = 0\qquad\hbox{and}\qquad f(e) = e\ln e = e.$$
+The largest number in the set $\{0,-1/e, e\}$ is $e$ and the smallest is $-1/e$, so those are the
+extreme values of $f$ on $[0,e]$.
+
+Here's a harder one. Let's find the maximum and minimum values of the function $f(x) = x-\root3\of x$
+on the interval $[-1,4]$. The derivative of $f$ is
+$$f'(x) = 1-{1\over 3} x^{-2/3} = 1-{1\over 3 t^{2/3}}.$$
+Solving for $f'(x) = 0$ leads us to the equation
+$$x^{2/3} = {1\over 3},$$
+whence we find that two of the critical numbers are $c = \pm 1/\sqrt{27}$. There is a third critical
+number, namely $c=0$, since $f'(0) = -\infty$.
+So in the closed interval method,
+the set of points on which we evaluate $f$ is $\bigl\{-1, -1/\sqrt{27}, 0, 1/\sqrt{27}, 4\}$.
+We calculate
+$$f(-1) = (-1) - \root 3\of{-1} = -1 - (-1) = 0
+\qquad\hbox{and}\qquad f(0) = 0 - \root 3\of 0 = 0,$$
+as well as
+$$f\Bigl({-1\over \sqrt{27}}\Bigr) = {-1\over \sqrt{27}} - \root 3\of{-1\over \sqrt{27}}
+= {-1 \over 3^{3/2}} - {-1\over \sqrt 3} = {-1 - (-3)\over \sqrt{27}} = {2\over \sqrt{27}}.$$
+Then since both $x$ and $\root 3\of x$ are odd functions, we easily deduce that
+$$f\Bigl({1\over \sqrt{27}}\Bigr) = -{2\over \sqrt{27}},$$
+and it's also easy to plug in
+$$f(4) = 4-\root 3\of 4.$$
+The only negative number here was $-2/\sqrt{27}$, so this is the minimum of $f$ on $[-1,4]$.
+The maximum is $4-\root 3\of 4$, since this number is greater than $4-\sqrt 4 = 2$ whereas
+$2/ \sqrt{27} = 2/ \bigl(3\sqrt 3\bigr)$ is less than $1$.
 
 \medskip\boldlabel The mean value theorem.
 Imagine you toss a ball into the air and catch it. The ball starts in your hand, ends in your hand, and
@@ -4210,6 +4251,38 @@ The case where $f(x) < f(a)$ is extremely similar. It tells us that $f(a) = f(b)
 value} of $f$ in $[a,b]$, but $f$ must attain a minimum value by the extreme value theorem, so this happens
 at some $c\in (a,b)$. The derivative $f'(c)$ exists by hypothesis (ii), so $f'(c) = 0$ by Fermat's
 theorem.\slug
+
+Rolle's theorem is actually a special case of a very important theorem called the mean value theorem.
+The full mean value theorem is also not very difficult to prove, once we know Rolle's theorem.
+
+\parenproclaim Theorem {\advthm} (Rolle's theorem). Let $a$ and $b$ be numbers with $a<b$. Suppose that
+\medskip
+\item{i)} $f$ is continuous on $[a,b]$;
+\smallskip
+\item{ii)} $f$ is differentiable on $(a,b)$; and
+\smallskip
+\item{iii)} $f(a) = f(b)$.
+\medskip\noindent
+Then there is a number $c$ in $(a,b)$ such that $f'(c) = 0$.
+
+
+To prove
+Theorem~{\thmexpdiffeq}, Lemma~{\lemtrigdiffeq}, and Proposition~{\prophyperbolicrules}, we used the
+seemingly intuitive
+fact that if a function's derivative is identically zero, then the function must be constant.
+This is something we didn't actually prove. (Theorem~{\thmconstantderiv} asserts that the derivative
+of a constant function is identically
+zero, but that is the converse statement.) Now that we have Rolle's theorem,
+we finally can. You can check that none of the aforementioned statements are required in the following
+proof, so there is no circularity here.
+
+\proclaim Theorem \advthm. Let $f$ be a function such that $f'(x) = 0$ for all $x\in [a,b]$.
+Then $f$ is constant on $[a,b]$; that is, there is some number $c$ such that $f(x) = c$ for all
+$x\in [a,b]$.
+
+\proof Let $c=f(a)$. We want to show that $f(x) = c$ for all $x\in (a,b]$. Let such an $x$ be given.
+By Rolle's theorem, 
+
 
 
 
