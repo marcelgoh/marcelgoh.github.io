@@ -4252,12 +4252,37 @@ value} of $f$ in $[a,b]$, but $f$ must attain a minimum value by the extreme val
 at some $c\in (a,b)$. The derivative $f'(c)$ exists by hypothesis (ii), so $f'(c) = 0$ by Fermat's
 theorem.\slug
 
-\bye
+\noindent\datestamp{09}{xi} \hskip\parindent
+Rolle's theorem is a special case of a very important theorem called the mean value theorem.
+In the ball-tossing scenario above, the net displacement of the ball was zero, and there was some point
+at which its velocity was zero as well---its instantaneous velocity matched its average velocity.
 
-Rolle's theorem is actually a special case of a very important theorem called the mean value theorem.
-The full mean value theorem is also not very difficult to prove, once we know Rolle's theorem.
+It is an intuitive fact that this should generalise to situations where the net displacement isn't zero.
+Let's revisit the scenario from our very first class back in August,
+in which you and your friend were driving from Montreal
+to Quebec City. Suppose your car was photographed by a traffic camera in Montreal at 9:00 {\mc P.M.} and then
+by another traffic camera in Quebec City at 10:40 {\mc P.M}. You weren't speeding on either of these occasions,
+but they recorded your location and the time you were there.
+A week later, you receive a speeding ticket in the mail.
+Do the traffic cops have a case?
 
-\parenproclaim Theorem {\advthm} (The mean value theorem).
+Of course in real life this would not happen because the cops seemingly have other important
+things to do like roam around McGill campus. But let's follow the logic here. The time between the
+two photos is $100$ minutes, and during that time, your car's displacement was roughly $230$ kilometres (the
+distance as the crow flies between Montreal and Quebec). So your average velocity throughout your journey
+was $2.3$ kilometres per minute, or $138$ kilometres per hour.
+Your average {\it speed} is at least this, and in fact it should be even higher,
+because the highway between the two cities isn't perfectly straight so you surely drove more than $230$
+kilometres.
+
+Traffic tickets are issued not for high average (or {\it mean})
+speed, but instead for high instantaneous speed. But is it possible for you
+to have driven at an average speed of $138$ kilometres per hour without {\it at some point} having
+gone {\it exactly} $138$ kilometres per hour? The mean value theorem, which is a generalisation of Rolle's
+theorem, says that this is not possible.
+The full mean value theorem is not very difficult to prove now that we have access to Rolle's theorem.
+
+\parenproclaim Theorem {\advthm} (Mean value theorem).
 Let $a$ and $b$ be numbers with $a<b$. Suppose that
 \medskip
 \item{i)} $f$ is continuous on $[a,b]$;
@@ -4267,24 +4292,91 @@ Let $a$ and $b$ be numbers with $a<b$. Suppose that
 Then there is a number $c$ in $(a,b)$ such that
 $$f'(c) = {f(b) - f(a)\over b-a}.$$
 
-\proof [TODO: add.]\slug
+\proof The trick is to try and reduce the statement to Rolle's theorem. In that setting,
+the line segment connecting $f(a)$ and $f(b)$ was horizontal, since $f(a) = f(b)$, and we wanted
+to find a horizontal tangent line somewhere on the graph of $f$. This time the line segment
+connecting $f(a)$ and $f(b)$ has slope $\bigl( f(b) - f(a)\bigr) / (b-a)$, and we want to find
+some tangent line to the graph of $f$ with this slope.
+
+The right thing to do is to consider the line passing through $\bigl(a, f(a)\bigr)$ and $\bigl( b, f(b)\bigr)$
+as a function $g(x)$, and then subtract this function from $f$. Since the slope of the line is
+$$ m = {f(b) - f(a)\over b-a}$$
+and $\bigl( a, f(a)\bigr)$ is a point on this line, we have
+$$g(x) - f(a) = {f(b) - f(a)\over b-a} (x-a),$$
+and we have
+$$g(x) = f(a) + {f(b) - f(a)\over b-a} (x-a).$$
+We then define
+$$h(x) = f(x) - g(x)$$
+for all $x$ in $[a,b]$;
+the claim is that $h(x)$ satisfies the hypotheses of Rolle's theorem.
+
+Since $g(x)$ is the equation of a line, it is both continuous and differentiable on $[a,b]$.
+Hence $h = f-g$ is continuous on $[a,b]$ and differentiable on $(a,b)$ by our hypotheses on $f$
+and the fact that continuity and differentiability are preserved by the subtraction operation.
+Furthermore, the graph of $g$ passes through the two points $\bigl(a, f(a)\bigr)$ and $\bigl(b, f(b)\bigr)$,
+so $g(a) = f(a)$ and $g(b) = f(b)$. This means that
+$$h(a) = f(a) - g(a) = 0\qquad\hbox{and}\qquad h(b) = f(b) - g(b) = 0.$$
+So $h$ does satisfy the conditions of Rolle's theorem, and we deduce that there must be some $c\in (a,b)$
+with $h'(c) = 0$.
+
+What does it mean for $h'(c)$ to be zero? We have $h' = f' - g'$, so the fact that $h'(c) = 0$ implies
+that $f'(c) = g'(c)$.
+But $g$ is the equation of a line, with slope $m = \bigl( f(b) - f(a)\bigr) / (b-a)$ everywhere, so we have
+$$f'(c) = g'(c) = {f(b) - f(a) \over b-a},$$
+which is what we wanted.\slug
 
 To prove
 Theorem~{\thmexpdiffeq}, Lemma~{\lemtrigdiffeq}, and Proposition~{\prophyperbolicrules}, we used the
-seemingly intuitive
+seemingly obvious
 fact that if a function's derivative is identically zero, then the function must be constant.
 This is something we didn't actually prove. (Theorem~{\thmconstantderiv} asserts that the derivative
 of a constant function is identically
 zero, but that is the converse statement.) Now that we have Rolle's theorem,
-we finally can. You can check that none of the aforementioned statements are required in the following
+we finally can. You can check that none of the results listed above are invoked in the following
 proof, so there is no circularity here.
 
-\proclaim Theorem \advthm. Let $f$ be a function such that $f'(x) = 0$ for all $x\in [a,b]$.
-Then $f$ is constant on $[a,b]$; that is, there is some number $c$ such that $f(x) = c$ for all
+\proclaim Theorem \advthm. Let $f$ be a function such that $f'(c) = 0$ for all $c\in [a,b]$.
+Then $f$ is constant on $[a,b]$; that is, $f(x) = f(a)$ for all
 $x\in [a,b]$.
 
-\proof Let $c=f(a)$. We want to show that $f(x) = c$ for all $x\in (a,b]$. Let such an $x$ be given.
-By the mean value theorem,
+\proof Let $x$ in $[a,b]$ be given. If $x = a$, then clearly $f(x) = f(a)$, so we may assume
+for the rest of the proof that $x>a$.
+By the mean value theorem, there is some $c$ in $(a,x)$ such that
+$$f'(c) = {f(x) - f(a)\over x-a}.$$
+But by hypothesis, $f'(c) = 0$, so the right-hand side in the equation above must also be zero.
+This tells us that $f(x) - f(a) = 0$. Hence $f(x) = f(a)$.\slug
+
+\bye
+
+\advsect Linearisation and approximation
+
+Suppose we want to find out what $\sqrt{145}$ is without a calculator. Of course, since $\sqrt{144} = 12$,
+we know the answer should be a little bit more than $12$. The methods of calculus allow us to give a very
+good estimation of $\sqrt{145}$ from this information. If we zoom in very near $x=144$,
+the graph of $\sqrt x$ looks almost like a line---this is because this function is differentiable. We can very
+easily find the tangent line, call it $L(x)$, to $f$ at the point $(144,12)$, and the idea is that this
+line stays very close to the graph of $f$ for a while. This means that $L(145)$ is very close to $\sqrt{145}$.
+
+Let's carry this out in full. The derivative of $f(x) = \sqrt x$ is $f'(x) = 1/\bigl(2\sqrt x)$, so
+the slope of the tangent line to $f$ at the point $(144,12)$ is
+$$f'(144) = {1\over 2\sqrt{144}} = {1\over 24}.$$
+The equation of the tangent line is therefore $y-12 = (1/24)(x-144)$, and if we view $y=L(x)$ as a function
+of $x$, then we can rearrange this to
+$$L(x) = {1\over 24} x + 6.$$
+(Check that $L(144) = 12$ to see that this line actually does touch the graph of $f$ at $x=144$.)
+Now to obtain an approximation of $\sqrt{145}$, we simply evaluate
+$$L(145) = {145\over 24} + 6 = 12.041666\ldots.$$
+This approximation is accurate to about three decimal places; you could ask a calculator to compute
+$$\sqrt{145} = 12.041594\ldots.$$
+
+Laying out the procedure more generally, imagine you have a function $f$ that is differentiable at some
+input $a$ where $f(a)$ is fairly easy to compute. Suppose $x$ is close to $a$ but $f(x)$ is not as easy
+to compute. We compute the {\it linearisation} $L_a(x)$ of $f$ at the input $a$. This is given by
+$$L_a(x) = f(a) + f'(a) (x-a);$$
+$L_a(x)$ is simply the tangent line to $f$ at the point $\bigl(a, f(a)\bigr)$.
+Then we evaluate $L_a(x)$, which should not be too far off from the actual value of $f(x)$.
+
+
 
 
 
