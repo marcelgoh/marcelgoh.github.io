@@ -4319,11 +4319,19 @@ $$h(a) = f(a) - g(a) = 0\qquad\hbox{and}\qquad h(b) = f(b) - g(b) = 0.$$
 So $h$ does satisfy the conditions of Rolle's theorem, and we deduce that there must be some $c\in (a,b)$
 with $h'(c) = 0$.
 
-What does it mean for $h'(c)$ to be zero? We have $h' = f' - g'$, so the fact that $h'(c) = 0$ implies
+What does it mean for $h'(c)$ to be zero? We have $h' = f' - g'$, so $h'(c) = 0$ implies
 that $f'(c) = g'(c)$.
 But $g$ is the equation of a line, with slope $m = \bigl( f(b) - f(a)\bigr) / (b-a)$ everywhere, so we have
 $$f'(c) = g'(c) = {f(b) - f(a) \over b-a},$$
 which is what we wanted.\slug
+
+Throughout much of this course so far, the statements we've been establishing about derivatives
+mostly told us that if
+$f$ had some property, then $f'$ must have some (other) property. Rolle's theorem and the mean value
+theorem are no different in this regard. The miracle of the mean value theorem is that now the information
+we gain about $f'$ is so strong that it can give us information {\it in the other direction}. In other
+words, what we know about the derivative $f'$ can now tell us something about the function $f$ itself.
+Here's an example.
 
 To prove
 Theorem~{\thmexpdiffeq}, Lemma~{\lemtrigdiffeq}, and Proposition~{\prophyperbolicrules}, we used the
@@ -4331,11 +4339,12 @@ seemingly obvious
 fact that if a function's derivative is identically zero, then the function must be constant.
 This is something we didn't actually prove. (Theorem~{\thmconstantderiv} asserts that the derivative
 of a constant function is identically
-zero, but that is the converse statement.) Now that we have Rolle's theorem,
+zero, but that is the converse statement.) Now that we have the mean value theorem,
 we finally can. You can check that none of the results listed above are invoked in the following
 proof, so there is no circularity here.
 
-\proclaim Theorem \advthm. Let $f$ be a function such that $f'(c) = 0$ for all $c\in [a,b]$.
+\edef\thmzeroderivimpliesconstant{\the\thmcount}
+\proclaim Theorem \advthm. Let $f$ be a function such that $f'(c) = 0$ for all $c\in (a,b)$.
 Then $f$ is constant on $[a,b]$; that is, $f(x) = f(a)$ for all
 $x\in [a,b]$.
 
@@ -4345,6 +4354,279 @@ By the mean value theorem, there is some $c$ in $(a,x)$ such that
 $$f'(c) = {f(x) - f(a)\over x-a}.$$
 But by hypothesis, $f'(c) = 0$, so the right-hand side in the equation above must also be zero.
 This tells us that $f(x) - f(a) = 0$. Hence $f(x) = f(a)$.\slug
+
+\noindent\datestamp{11}{ix} \hskip\parindent
+As a corollary, two functions with the same derivative must have the exact same
+shape; if they are not the same function then they must differ by exactly a constant.
+
+\proclaim Corollary \advthm. Let $f$ and $g$ be continuous on $[a,b]$ and differentiable on $(a,b)$.
+If $f' = g'$, then there is a constant $c$ such that
+$$f(x) = g(x) + c$$
+for all $x$ in $[a,b]$.
+
+\proof Let $h = f-g$. Since $f' = g'$, we have $h' = f'-g' = 0$, so by Theorem~{\thmzeroderivimpliesconstant},
+$h$ is a constant function; there is some constant $c$ such that $h(x) = c$ for all $x\in [a,b]$.
+Then we have
+$$f(x) = g(x) + h(x) = g(x) + c$$
+for all $x$ in $[a,b]$.\slug
+
+A similar type of statement is encapsulated by the following scenario. Suppose two cars participate in a
+drag race. At time $t=0$, the cars are at the same horizontal position. If, for all $t\ge 0$,
+Car~A's velocity at time $t$ is always greater than Car~B's velocity at the same time, then Car~A will always
+have travelled a greater horizontal distance than Car~B.
+The precise mathematical formulation of this principle is the following theorem. Its proof is
+another consequence of the mean value theorem.
+
+\proclaim Theorem \advthm. Let $f$ and $g$ be continuous of $[a,b]$ and differentiable on $(a,b)$.
+If $f(a) = g(a)$ and $f'(x) > g'(x)$ for all $x$ in $(a,b)$, then
+$$f(x) > g(x)$$
+for all $x$ in $(a,b)$.
+
+\proof Let $h=f-g$ as in the previous proof.
+Let $x$ in $(a,b)$ be arbitrary. By the mean value theorem applied to the function $h$ on the
+interval $[a,x]$, there is some $c$ in $(a,x)$ such that
+$$h'(c) = {h(x) - h(a)\over x-a}.$$
+Since
+$$h'(c) = f'(c) - g'(c) > 0$$
+and $x-a > 0$, we see that $h(x) - h(a) > 0$ as well. But
+$$h(a) = f(a) - g(a) = 0,$$
+so we conclude that
+$$f(x) - g(x) = h(x) > 0.$$
+This means that $f(x) > g(x)$.\slug
+
+\medskip\boldlabel Increasing and decreasing functions.
+A function $f$ is said to be {\it increasing}
+on an interval $[a,b]$ if for all numbers $s$ and $t$ in $[a,b]$ with $s<t$, we have $f(s) < f(t)$.
+Likewise, $f$ is {\it decreasing} on $[a,b]$ if for all $s$ and $t$ with $a\le s < t\le b$ one has
+$f(s) > f(t)$. A differentiable function $f$ that is increasing on some interval $[a,b]$ has positive
+derivative everywhere on the open interval $(a,b)$. (This can be proved from the limit definition
+of the derivative---for $x$ in $(a,b)$, expand $f'(x)$ as a limit and reason about the signs of the numerator
+and denominator.) Similarly, a decreasing function has negative derivative.
+In the spirit of Theorem~{\thmzeroderivimpliesconstant}, we prove converses to these two statements.
+
+\edef\thmincrdecr{\the\thmcount}
+\proclaim Theorem \advthm. Let $f$ be a function that is continuous on $[a,b]$.
+\medskip
+\item{i} If $f'(c) > 0$ for all $c\in (a,b)$, then $f$ is increasing on $[a,b]$.
+\smallskip
+\item{ii)} If $f'(c) < 0$ for all $c\in (a,b)$ then $f$ is decreasing on $[a,b]$.
+\medskip
+
+\proof
+The first part of
+the proof is common to both (i) and (ii).
+Let $s$ and $t$ be any two numbers in $[a,b]$ with $s<t$.
+Since $f$ is continuous on $[s,t]$ and differentiable
+on $(s,t)$ by the mean value theorem there is some $c$ in $(s,t)$ with
+$$f'(c) = {f(t) - f(s) \over t-s}.$$
+Since $s<t$< the denominator on the right-hand side is positive.
+
+First we prove part (i). If $f'(c) > 0$, then $f(t) - f(s)$ must be positive, so $f(s)  <f(t)$
+and since $s$ and $t$ were arbitrary, we see that $f$ is increasing. For part (ii), we assumed
+that $f'(c) < 0$, so $f(t) - f(s)$ is negative this time and hence $f$ is decreasing.\slug
+
+This method of determining when a function is increasing or decreasing can help us determine whether
+a critical number $c$ gives rise to a local maximum or a local minimum.
+
+\edef\corfirstderivtest{\the\thmcount}
+\parenproclaim Corollary {\advthm} (First derivative test for local extrema).
+Let $c$ be a critical number of a continuous
+function $f$.
+\medskip
+\item{i)} If $f'(x)$ changes sign from positive to negative at $x=c$, then $f$ attains a local maximum
+at $c$.
+\smallskip
+\item{i)} If $f'(x)$ changes sign from negative to positive at $x=c$, then $f$ attains a local minimum
+at $c$.
+\smallskip
+\item{iii)} If $f'$ has the same sign on both sides of $c$, then $f$ attains neither a local maximum nor
+a local minimum at $c$.
+\medskip
+
+\proof In case (i), Theorem~{\thmincrdecr} tells us that $f$ is an increasing function immediately to the
+left of $c$ and a decreasing function on the interval to the right of $c$, so $f(c)$ is a local maximum.
+Case (ii) is similar but with the roles of ``increasing'' and ``decreasing'' swapped, so $f(c)$ is a local
+minimum. In case (iii), $f$ is either increasing on both sides of $c$ or decreasing on both sides of $c$.
+In either of these two situations, $f(c)$ is not a local maximum or minimum.\slug
+
+Let's see an example. Suppose we want to find out where the function
+$$f(x) = {1\over 2}x^4 + x^3 - x^2 + 3,$$
+which is defined on the whole real line $\RR$ has local maxima and minima.
+To do this we might like to chart out where it is increasing and where it is decreasing.
+We compute its derivative
+$$f'(x) = 2x^3 + 3x^2 - 2x,$$
+which admits the factorisation
+$$f'(x) = x(2x-1)(x+2).$$
+The critical numbers of $f$ are the roots of the derivative, which are $0$, $1/2$, and $-2$.
+
+To the left of $-2$, the factor $x$ is negative, $2x-1$ is negative,
+and $x+2$ is negative, so $f'(x)$ is negative. This means that $f$ is decreasing on $(-\infty, -2)$.
+On the interval $(-2,0)$, the factors $x$ and $2x-1$ are still negative but now the factor $x+2$ is positive,
+so $f'(x)$ is positive and $f$ is increasing.
+On the interval $(0,1/2)$, $x$ and $x+2$ are both positive, but $2x-1$ is negative,
+so $f'(x)$ is negative and $f$ is decreasing. And lastly, to the right of $1/2$, all three factors are
+positive, so $f'$ is positive and $f$ is increasing. The results of this paragraph are summarised in the
+following table:
+$$
+\vbox{\ninepoint
+\tabskip=2em plus.2em minus .2em
+\halign{
+\hfil $#$ \hfil & \hfil$#$\hfil & \hfil$#$\hfil & \hfil$#$\hfil  & \hfil#\hfil\cr
+\hbox{interval} & x+2 & x & 2x-1 & behaviour of $f$\cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+(-\infty, -2) & - & - & - & decreasing\cr
+\noalign{\smallskip}
+(-2,0)        & + & - & - & increasing\cr
+\noalign{\smallskip}
+(0,1/2) & + & + & - & decreasing\cr
+\noalign{\smallskip}
+(1/2,\infty) & + & + & + & increasing\cr
+}}
+$$
+By the first derivative test, we see that $f(x)$ attains local minima when $x=-2$ and $x=1/2$,
+as well as a local maximum when $x=0$. Because $f$ goes to $\infty$ as $x\to \pm\infty$, there is no
+absolute maximum of $f$. But there is an absolute minimum, which must be one of the local minima
+$f(-2)$ and $f(1/2)$. We compute
+$$f(-2) = -1\qquad\hbox{and}\qquad f\Bigl({1\over 2}\Bigr) = {93\over 32}$$
+and conclude that $f(-2) = -1$ is the absolute minimum of the function $f$ over the domain $\RR$.
+
+\medskip\boldlabel Concavity. The derivative of a differentiable function $f$ contains enough information
+for us to find its local extreme values as well as the intervals on which it is increasing or decreasing.
+This lets one make a rudimentary sketch of the graph of $f$. However, there is a subtler aspect to the shape
+of a function's graph that can only be ascertained by means of the second derivative.
+
+We say that a function $f$ is {\it concave upward} or {\it convex} on an interval $I$ if for all
+$x$ in $I$, the graph of $f$ lies {\it above} the tangent line to $f$ at the point $\bigl( x,f(x)\bigr)$.
+Similarly, we say that a function $f$ is {\it concave downward} or simply {\it concave} on an interval $I$
+if $f$ lies {\it below} all of its tangents in $I$.
+
+The following theorem, which ties the second derivative to concavity, is another consequence of the
+mean value theorem.
+
+\edef\thmconcavity{\the\thmcount}
+\parenproclaim Theorem {\advthm} (Concavity test).
+Let $f$ be a differentiable function such that $f'$ is also differentiable
+on some interval $I$.
+\medskip
+\item{i)} If $f''(x) > 0$ for all $x$ in $I$, then the graph of $f$ is concave upward on $I$.
+\smallskip
+\item{ii)} If $f''(x) < 0$ for all $x$ in $I$, then the graph of $f$ is concave downward on $I$.
+\medskip
+
+\proof We shall spend the bulk of this proof proving (i); the proof of (ii) will follow easily after that.
+
+Let $a$ be any number in $I$ and let $L$ denote the tangent line to $f$ at $a$. This line has slope
+$f'(a)$ and contains the point $\bigl(a, f(a)\bigr)$, so $L$ admits the expression
+$$L(x) = f(a) + f'(a) (x-a)$$
+as a function of $x$. We wish to show that on the domain $I$,
+the graph of $f$ lies entirely above the tangent line $L$, except at
+$x=a$ where it touches the graph exactly once. In other words,
+we want to prove that
+\edef\eqwtsconcavity{\the\eqcount}
+$$f(x) > L(x) = f(a) + f'(a) (x-a)\adveq$$
+for all $x$ in $I$ with $x\ne a$.
+
+First we consider numbers $x$ with $x>a$. By applying the mean value theorem to the interval $[a,x]$,
+we find that there is some $c$ in the interval $(a,x)$ for which
+$$f'(c) = {f(x) - f(a)\over x-a}.$$
+Since the derivative $f''$ of $f'$ is positive on all of $I$, the function $f'$ must be increasing on $I$.
+So the inequality $a<c$ implies that $f'(a) < f'(c)$, and we have
+$$f'(a) < f'(c) = {f(x) - f(a)\over x-a}.$$
+Multiplying both sides by $x-a$ (which is a positive quantity), we obtain
+$$ f'(a)(x-a) < f(x) - f(a),$$
+which rearranges to~\refeq{\eqwtsconcavity}.
+
+The case where $x<a$ is not so different. The mean value theorem, this time applied to the interval
+$[x,a]$, furnishes some $c$ in $(x,a)$ with
+$$f'(c) = {f(x) - f(a)\over x-a}.$$
+Again, the function $f'$ is increasing on all of $I$, so the inequality $a>c$ implies that $f'(a) > f'(c)$.
+Hence we have
+$$f'(a) > f'(c) = {f(x) - f(a) \over x-a}.$$
+This time, we multiply both sides by the negative number $x-a$, which necessitates flipping the inequality
+$>$ to $<$. Once again, we obtain
+$$ f'(a)(x-a) < f(x) - f(a),$$
+which is equivalent to~\refeq{\eqwtsconcavity} and settles the proof of (i).
+
+To prove (ii), we assume that $f''$ is negative on $I$. Since
+$$(-f)'' = (-f')' = -f'',$$
+we see that the second derivative of $-f$ is {\it positive} on $I$. By (i), the graph of $-f$ must
+be concave upward on $I$; the graph of
+$-f$ lies above all of its tangents. Hence the graph of $f$ lies below all of its
+tangents, and $f$ must be concave downward.\slug
+
+Let us apply Theorem~{\thmconcavity} to analyse the concavity of the function
+$f(x) = x^4 / 2 + x^3 - x^2 + 3$ from the previous example. We had already calculated its derivative
+$f'(x) = 2x^3 + 3x^2 - 2x$, and we take the derivative one more time to obtain
+$$f''(x) = 6x^2 + 6x - 2 = 2(3x^2  + 3x - 1).$$
+The factor $2$ obviously has no roots, so the roots of $f''$ occur at the roots of
+$3x^2 - 3x-1$. By the quadratic formula, these are
+$$x = {-3 \pm \sqrt{3^2 - 4\cdot 6(-1)}\over 2\cdot 3}
+= -{1\over 2} \pm {\sqrt{21}\over 6},$$
+and the sign of $f''$ can only change at these two points.
+When $x < -1/2 - \sqrt{21}/6$, we have $f''(x) > 0$ (you can choose a very large negative number to test
+this fact). Since $\sqrt{21}/ 6 > \sqrt{9}/ 6 = 1/2$, the number $0$ lies in the interval
+\edef\eqconcaveinterval{\the\eqcount}
+$$\biggl( -{1\over 2} - {\sqrt{21}\over 6} ,\  -{1\over 2} + {\sqrt{21}\over 6}\biggr),\adveq$$
+so we can test $f''(0) = -2$ to see that $f''$ is negative on this whole interval. Lastly, it's
+not hard to check that $f''(x) > 0$ for $x > -1/2 + \sqrt{21}/6$. Here's a chart of our findings
+$$
+\vbox{\ninepoint
+\tabskip=2em plus.2em minus .2em
+\halign{
+\hfil $#$ \hfil & \hfil$#$\hfil  & \hfil#\hfil\cr
+\hbox{interval} & f''(x) & behaviour of $f$\cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+\bigl(-\infty,\ -1/2-\sqrt{21}/6\bigr) & + & concave upward\cr
+\noalign{\smallskip}
+\bigl(-1/2-\sqrt{21}/6,\ -1/2 + \sqrt{21}/6\bigr)    & - & concave downward\cr
+\noalign{\smallskip}
+\bigl(-1/2 + \sqrt{21}/6,\ \infty\bigr) & + & concave upward\cr
+}}
+$$
+
+By Theorem~{\thmconcavity}, we conclude that $f$ is concave downward on the interval~\refeq{\eqconcaveinterval},
+and concave upward elsewhere.
+The numbers $x = -1/2 \pm \sqrt{21}/6$ are points at which the concavity of $f$ changes. Such points
+are called {\it inflection points}.
+
+Recall that the critical numbers of $f$ were $-2$, $0$, and $1/2$. We discovered earlier that $f(-2)$
+and $f(1/2)$ were local minima, and $f(0)$ was a local maximum. Keen-eyed readers might look at the
+concavity chart above for $f$ and notice that $-2$ and $1/2$ both belong to intervals where $f$
+is concave upward, and $0$ belongs to an interval where $f$ is concave downward. This observation generalises
+to other functions as well, and provides an
+alternative test for determining whether a critical number $c$ with $f'(c) = 0$ gives rise to a local
+maximum or a local minimum.
+
+\parenproclaim Theorem {\advthm} (Second derivative test for local extrema). Suppose that $f$
+is a twice differentiable function with $f'(c) = 0$.
+\medskip
+\item{i)} If $f''(c) > 0$, then $f(c)$ is a local minimum of $f$.
+\smallskip
+\item{ii)} If $f''(c) < 0$, then $f(c)$ is a local maximum of $f$.
+\medskip
+
+\proof This follows fairly easily from Theorem~{\thmconcavity} and the definitions of concavity.
+By hypothesis, we know that $f'(c) = 0$, which means that the tangent line to $f$ at $c$ has slope $0$;
+it must therefore be the horizontal line $y=f(c)$. If $f''(c) > 0$, then since $f$ is continuous there must
+be some interval $I$ containing $c$ where $f''$ is positive. By Theorem~{\thmconcavity},
+$f$ is concave upward on $I$, meaning that the graph of $f$ lies above all of its tangents on
+this interval.
+In particular, it lies above the line $y = f(c)$, and we see that $f(x) \ge f(c)$ for all $x$ in $I$.
+Hence $f(c)$ is a local minimum, proving part (i).
+
+If on the other hand we had $f''(c) < 0$, then
+$$(-f)''(c) = (-f')'(c) = -f''(c) > 0,$$
+so $-f(c)$ is a local
+minimum of $-f$ by (i). This means that $f(c)$ is a local maximum of $f$, proving part (ii).\slug
+
+Note that the converse to the second derivative test does not hold. For instance, it is possible
+for $f(c)$ to be a local minimum without $f''(c)$ being greater than $0$, even if it exists. To see
+this, simply consider $f(x) = x^4$, which achieves a local (and absolute) minimum at $f(0) = 0$.
+On the other hand, $f'(x) = 4x^3$ and $f''(x) = 12x^2$, so $f''(0) = 0$.
 
 \bye
 
