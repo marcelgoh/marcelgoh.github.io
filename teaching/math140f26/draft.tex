@@ -4356,15 +4356,17 @@ But by hypothesis, $f'(c) = 0$, so the right-hand side in the equation above mus
 This tells us that $f(x) - f(a) = 0$. Hence $f(x) = f(a)$.\slug
 
 \noindent\datestamp{11}{ix} \hskip\parindent
-As a corollary, two functions with the same derivative must have the exact same
-shape; if they are not the same function then they must differ by exactly a constant.
+As a corollary, two functions with the same derivative have the same
+shape; if they are not identical, then they must differ by exactly a constant.
 
 \proclaim Corollary \advthm. Let $f$ and $g$ be continuous on $[a,b]$ and differentiable on $(a,b)$.
 If $f' = g'$, then there is a constant $c$ such that
 $$f(x) = g(x) + c$$
 for all $x$ in $[a,b]$.
 
-\proof Let $h = f-g$. Since $f' = g'$, we have $h' = f'-g' = 0$, so by Theorem~{\thmzeroderivimpliesconstant},
+\proof Let $h = f-g$; this function is continuous on $[a,b]$ and differentiable on $(a,b)$ by
+the subtraction law for continuous and differentiable functions.
+Since $f' = g'$, we have $h' = f'-g' = 0$, so by Theorem~{\thmzeroderivimpliesconstant},
 $h$ is a constant function; there is some constant $c$ such that $h(x) = c$ for all $x\in [a,b]$.
 Then we have
 $$f(x) = g(x) + h(x) = g(x) + c$$
@@ -4372,7 +4374,8 @@ for all $x$ in $[a,b]$.\slug
 
 A similar type of statement is encapsulated by the following scenario. Suppose two cars participate in a
 drag race. At time $t=0$, the cars are at the same horizontal position. If, for all $t\ge 0$,
-Car~A's velocity at time $t$ is always greater than Car~B's velocity at the same time, then Car~A will always
+Car~A's velocity at time $t$ is always greater than Car~B's velocity at the same time, then at any point
+in time Car~A will always
 have travelled a greater horizontal distance than Car~B.
 The precise mathematical formulation of this principle is the following theorem. Its proof is
 another consequence of the mean value theorem.
@@ -4407,7 +4410,7 @@ In the spirit of Theorem~{\thmzeroderivimpliesconstant}, we prove converses to t
 \edef\thmincrdecr{\the\thmcount}
 \proclaim Theorem \advthm. Let $f$ be a function that is continuous on $[a,b]$.
 \medskip
-\item{i} If $f'(c) > 0$ for all $c\in (a,b)$, then $f$ is increasing on $[a,b]$.
+\item{i)} If $f'(c) > 0$ for all $c\in (a,b)$, then $f$ is increasing on $[a,b]$.
 \smallskip
 \item{ii)} If $f'(c) < 0$ for all $c\in (a,b)$ then $f$ is decreasing on $[a,b]$.
 \medskip
@@ -4419,9 +4422,9 @@ Let $s$ and $t$ be any two numbers in $[a,b]$ with $s<t$.
 Since $f$ is continuous on $[s,t]$ and differentiable
 on $(s,t)$ by the mean value theorem there is some $c$ in $(s,t)$ with
 $$f'(c) = {f(t) - f(s) \over t-s}.$$
-Since $s<t$< the denominator on the right-hand side is positive.
+Since $s<t$, the denominator on the right-hand side is positive.
 
-First we prove part (i). If $f'(c) > 0$, then $f(t) - f(s)$ must be positive, so $f(s)  <f(t)$
+Now we prove part (i). If $f'(c) > 0$, then $f(t) - f(s)$ must be positive, so $f(s)  <f(t)$
 and since $s$ and $t$ were arbitrary, we see that $f$ is increasing. For part (ii), we assumed
 that $f'(c) < 0$, so $f(t) - f(s)$ is negative this time and hence $f$ is decreasing.\slug
 
@@ -4451,7 +4454,7 @@ In either of these two situations, $f(c)$ is not a local maximum or minimum.\slu
 
 Let's see an example. Suppose we want to find out where the function
 $$f(x) = {1\over 2}x^4 + x^3 - x^2 + 3,$$
-which is defined on the whole real line $\RR$ has local maxima and minima.
+which is defined on the whole real line $\RR$, has local maxima and minima.
 To do this we might like to chart out where it is increasing and where it is decreasing.
 We compute its derivative
 $$f'(x) = 2x^3 + 3x^2 - 2x,$$
@@ -4492,6 +4495,8 @@ $f(-2)$ and $f(1/2)$. We compute
 $$f(-2) = -1\qquad\hbox{and}\qquad f\Bigl({1\over 2}\Bigr) = {93\over 32}$$
 and conclude that $f(-2) = -1$ is the absolute minimum of the function $f$ over the domain $\RR$.
 
+\bye
+
 \medskip\boldlabel Concavity. The derivative of a differentiable function $f$ contains enough information
 for us to find its local extreme values as well as the intervals on which it is increasing or decreasing.
 This lets one make a rudimentary sketch of the graph of $f$. However, there is a subtler aspect to the shape
@@ -4500,7 +4505,9 @@ of a function's graph that can only be ascertained by means of the second deriva
 We say that a function $f$ is {\it concave upward} or {\it convex} on an interval $I$ if for all
 $x$ in $I$, the graph of $f$ lies {\it above} the tangent line to $f$ at the point $\bigl( x,f(x)\bigr)$.
 Similarly, we say that a function $f$ is {\it concave downward} or simply {\it concave} on an interval $I$
-if $f$ lies {\it below} all of its tangents in $I$.
+if $f$ lies {\it below} all of its tangents in $I$. (The terms ``concave upward'' and ``concave downward''
+are mostly unused outside of calculus courses; in mathematical and scientific research papers, one
+tends to see the terms ``convex'' and ``concave'' instead.)
 
 The following theorem, which ties the second derivative to concavity, is another consequence of the
 mean value theorem.
@@ -4626,7 +4633,11 @@ minimum of $-f$ by (i). This means that $f(c)$ is a local maximum of $f$, provin
 Note that the converse to the second derivative test does not hold. For instance, it is possible
 for $f(c)$ to be a local minimum without $f''(c)$ being greater than $0$, even if it exists. To see
 this, simply consider $f(x) = x^4$, which achieves a local (and absolute) minimum at $f(0) = 0$.
-On the other hand, $f'(x) = 4x^3$ and $f''(x) = 12x^2$, so $f''(0) = 0$.
+On the other hand, $f'(x) = 4x^3$ and $f''(x) = 12x^2$, so $f''(0) = 0$, so the second derivative test
+tells us nothing.
+
+In fact, it is possible for both the first derivative test {\it and} the second derivative test to fail.
+
 
 \bye
 
