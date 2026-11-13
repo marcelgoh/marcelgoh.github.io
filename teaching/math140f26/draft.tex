@@ -4495,9 +4495,8 @@ $f(-2)$ and $f(1/2)$. We compute
 $$f(-2) = -1\qquad\hbox{and}\qquad f\Bigl({1\over 2}\Bigr) = {93\over 32}$$
 and conclude that $f(-2) = -1$ is the absolute minimum of the function $f$ over the domain $\RR$.
 
-\bye
-
-\medskip\boldlabel Concavity. The derivative of a differentiable function $f$ contains enough information
+\medskip\boldlabel \datestamp{13}{xi} Concavity.
+The derivative of a differentiable function $f$ contains enough information
 for us to find its local extreme values as well as the intervals on which it is increasing or decreasing.
 This lets one make a rudimentary sketch of the graph of $f$. However, there is a subtler aspect to the shape
 of a function's graph that can only be ascertained by means of the second derivative.
@@ -4636,8 +4635,40 @@ this, simply consider $f(x) = x^4$, which achieves a local (and absolute) minimu
 On the other hand, $f'(x) = 4x^3$ and $f''(x) = 12x^2$, so $f''(0) = 0$, so the second derivative test
 tells us nothing.
 
-In fact, it is possible for both the first derivative test {\it and} the second derivative test to fail.
+In fact, it is possible for both the first derivative test {\it and} the second derivative test to fail
+simultaneously on the same function.
+Let
+$$f(x) = \cases{x^4\sin^2(1/x), & if $x\ne 0$; \cr 0, & if $x=0$.}$$
+We can compute
+$$f'(0) = \lim_{x\to 0} {f(x) - f(0)\over x-0} = \lim_{x\to 0} {x^4\sin^2(1/x)\over x}
+= \lim_{x\to 0} x^3\sin^2\Bigl({1\over x}\Bigr) = 0,$$
+where the last equality follows from the squeeze theorem; this tells us that $0$ is a critical number of $f$.
+Taking the derivative
+$$\eqalign{
+f'(x)
+&= 4x^3\sin^2\Bigl( {1\over x}\Bigr) + x^4 2\sin\Bigl({1\over x}\Bigr) \cos\Bigl({1\over x}\Bigr)
+\bigl(-x^{-2}\bigr) \cr
+&= 4x^3\sin^2\Bigl( {1\over x}\Bigr) - x^2 \sin\Bigl({2\over x}\Bigr) \cr 
+&= x^2 \biggl( 4x\sin^2\Bigl({1\over x}\Bigr) - \sin\Bigl({2\over x}\Bigr) \biggr)\cr
+}$$
+for $x\ne 0$, we see that as $x\to 0$ from either side, the sign of $f'(x)$ changes infinitely many times.
+So there is no interval around $0$ on which $f$ is decreasing to the left of $0$ and increasing to the right
+of $0$, and the first derivative test tells us nothing. Likewise, we may compute
+$$\eqalign{
+f''(0) &= \lim_{x\to 0} {f'(x) - f'(0) \over x-0} \cr
+&= \lim_{x\to 0} {x^2 \bigl(4x\sin^2(1/x) - \sin(2/x)\bigr)\over x} \cr
+&= \lim_{x\to 0} x \biggl( 4x\sin^2\Bigl({1\over x}\Bigr) - \sin\Bigl({2\over x}\Bigr) \biggr)\cr
+&= 0,\cr
+}$$
+again by the squeeze theorem. So the second derivative test also tells us nothing
 
+But in fact it is easy to show, without taking any derivatives at all, that $f(0)$ is a local minimum!
+Picking any interval containing $0$, we have $f(x) \ge 0$ for all $x$ in the interval, and $f(0) =0$,
+so $f$ attains a local minimum at $x=0$.
+
+Fortunately, for most functions we'll encounter, either the first or second derivative test will be
+sufficient to tell us whether a critical value is a local minimum or a local maximum (or neither).
+We'll make use of both tests in the coming sections.
 
 \bye
 
