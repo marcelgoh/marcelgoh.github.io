@@ -72,6 +72,7 @@ and trigonometric functions}{52}}
 \smallskip
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 11.\kern .5em Extreme values and
 the mean value theorem}{102}}
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 12.\kern .5em Optimisation}{116}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -4678,7 +4679,7 @@ of finding extreme values of functions. It's time to put these tools to use.
 It is helpful for many applications to find out the maximum value of some function, subject to a certain
 constraint. For instance, perhaps we want to know the maximum area we can bound by a rectangular fence,
 provded we only have 40 feet of fencing material. Or maybe we want to minimise the amount of tin used
-to produce a can that will still be able to hold 500 millilitres of soup. We'll tackle such word problems
+to produce a can that will still be able to hold a certain volume. We'll tackle such word problems
 later on in this section. For now, let's just start with more abstract optimisation problems, in order
 to work out a general strategy for solving them.
 
@@ -4707,13 +4708,6 @@ If the fact that $f$ is a function of {\it two variables} scares you, worry not!
 $c(x,y) = 0$ to help us eliminate one of the variables in $f(x,y)$, leaving us with a single-variable
 function $f$, and a resulting optimisation problem that looks more like~\refeq{\eqopttypeone}.
 
-(One might conceive of more complex optimisation problems with three or more variables, but we then
-just need enough constraint equations to eliminate all the variables except for one. For example,
-it would be possible to maximise $f(x,y,z) = x^2 - y + 3z^3$ subject to $x+y = 1$ and $y+z = 0$.
-The first constraint tells us that $y=1-x$, and the second constraint tells us that $z=-y = x-1$,
-so $f(x,y,z)$ reduces to $x^2 -(1-x) + 3(x-1)^3$, which we can easily differentiate with respect to $x$.
-But this course mostly focuses on two-variable optimisation problems.)
-
 \medskip\boldlabel The distance between a point and a line.
 The simplest baby version of this problem is when $f(x,y)$ is the distance between $(x,y)$ and some
 distinguished point, and $c(x,y) = 0$ is the equation of a line. For example, suppose we
@@ -4727,7 +4721,7 @@ $$\matrix{
 \hbox{subject to} & 2x+y-1 = 0.\cr
 }$$
 (In practice we really don't have to pull everything to one side to make $c(x,y) = 0$. The equation $y=1-2x$
-is more readable than $2x+y-1=0$, especially since we are about to perform a substitution.)
+is more readable than $2x+y-1=0$, especially since we are about to eliminate $y$.)
 
 As mentioned before, we only know how to differentiate functions of one variable, so let us perform
 a substitution in order to eliminate $y$ in the expression for $f(x,y)$, and obtain a single variable
@@ -4743,7 +4737,8 @@ have to check critical numbers.
 
 We calculate
 $$f'(x) = {1\over 2\sqrt{5x^2 + 10x + 10}}\cdot (10x + 10) = {5x+5\over \sqrt{5x^2+10x+10}},$$
-and see that $f'(x) = 0$ only when $x=-1$. This is the only critical value of $f$. Let us
+and see that $f'(x) = 0$ only when $x=-1$. This is the only critical value of $f$, since the polynomial
+inside the square root in the denominator has no real roots. Let us
 use the first derivative test to make sure that it is a minimum and not a maximum.
 At $x=-1$, the denominator is of $f'(x)$ is positive (it equals $\sqrt 5$). When $x$ is slightly less
 than $-1$ (say $x=-1.01$) the numerator is slightly negative, so $f$ is decreasing to the left of $-1$,
@@ -4760,7 +4755,10 @@ $$f(-1) = \sqrt{5(-1)^2 + 10(-1) + 10} = \sqrt 5.$$
 (Or just manually calculate the distance between $(-1,3)$ and $(1,4)$ using the Pythagorean theorem to get
 the same number.)
 
-\medskip\boldlabel The distance between a point and an elliptic curve. Let's try a very similar example,
+\bye
+
+\medskip\boldlabel \datestamp{18}{xi} The distance between a point and an elliptic curve.
+Let's try a very similar example,
 but this time with an elliptic curve instead of a line. Suppose we want to find the points on the elliptic
 curve
 $y^2 = x^3 - 2x + 5$
@@ -4782,7 +4780,7 @@ $$\matrix{
 }$$
 Substituting the constraint equation into $f(x,y)$ yields the a function
 $$f(x) = x^2 - 14x + 49 + x^3 - 2x + 5 = x^3 + x^2 - 16x + 54,$$
-of just a single variable. We should also take note that
+in just one variable $x$,
 and we have the new single-variable optimisation problem
 $$\matrix{
 \hbox{minimise} &  x^3 + x^2 - 16x + 54 \cr
