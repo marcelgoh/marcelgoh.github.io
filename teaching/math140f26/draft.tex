@@ -4629,8 +4629,6 @@ $$(-f)''(c) = (-f')'(c) = -f''(c) > 0,$$
 so $-f(c)$ is a local
 minimum of $-f$ by (i). This means that $f(c)$ is a local maximum of $f$, proving part (ii).\slug
 
-\bye
-
 \noindent\datestamp{16}{xi} \hskip\parindent
 Note that the converse to the second derivative test does not hold. For instance, it is possible
 for $f(c)$ to be a local minimum without $f''(c)$ being greater than $0$, even if it exists. To see
@@ -4672,6 +4670,209 @@ so $f$ attains a local minimum at $x=0$.
 Fortunately, for most functions we'll encounter, either the first or second derivative test will be
 sufficient to tell us whether a critical value is a local minimum or a local maximum (or neither).
 We'll make use of both tests in the coming sections.
+
+\advsect Optimisation
+
+Using calculus, we have now successfully developed methods
+of finding extreme values of functions. It's time to put these tools to use.
+It is helpful for many applications to find out the maximum value of some function, subject to a certain
+constraint. For instance, perhaps we want to know the maximum area we can bound by a rectangular fence,
+provded we only have 40 feet of fencing material. Or maybe we want to minimise the amount of tin used
+to produce a can that will still be able to hold 500 millilitres of soup. We'll tackle such word problems
+later on in this section. For now, let's just start with more abstract optimisation problems, in order
+to work out a general strategy for solving them.
+
+The first type of optimisation problem looks like
+\edef\eqopttypeone{\the\eqcount}
+$$\matrix{
+\hbox{maximise/minimise} &  f(x)\cr
+\hbox{subject to} & x\in D, \cr
+}\adveq$$
+where $D$ is some domain of numbers $x$ where $f(x)$ is defined to be permissible. Most often,
+this domain will be some interval $D=(a,b)$ or $D=[a,b]$, or possibly the whole real line $D=\RR$.
+If the domain is a closed interval, then the extreme value theorem tells us that $f$ attains both
+a maximum and minimum value on the interval, and it suffices to carry out the closed interval method
+from the previous section (find all critical points and evaluate $f$ on them, as well as the endpoints,
+then take the max or the min).
+We'll see a couple of word problems later in this section that boil down to this method.
+
+First, let us introduce a different type of optimisation problem, which is of the form
+\edef\eqopttypetwo{\the\eqcount}
+$$\matrix{
+\hbox{maximise/minimise} &  f(x,y) \cr
+\hbox{subject to} & c(x,y) = 0.\cr
+}\adveq$$
+For the techniques in the previous section to apply, $f$ should be differentiable (ideally twice differentiable).
+If the fact that $f$ is a function of {\it two variables} scares you, worry not! We shall use the equation
+$c(x,y) = 0$ to help us eliminate one of the variables in $f(x,y)$, leaving us with a single-variable
+function $f$, and a resulting optimisation problem that looks more like~\refeq{\eqopttypeone}.
+
+(One might conceive of more complex optimisation problems with three or more variables, but we then
+just need enough constraint equations to eliminate all the variables except for one. For example,
+it would be possible to maximise $f(x,y,z) = x^2 - y + 3z^3$ subject to $x+y = 1$ and $y+z = 0$.
+The first constraint tells us that $y=1-x$, and the second constraint tells us that $z=-y = x-1$,
+so $f(x,y,z)$ reduces to $x^2 -(1-x) + 3(x-1)^3$, which we can easily differentiate with respect to $x$.
+But this course mostly focuses on two-variable optimisation problems.)
+
+\medskip\boldlabel The distance between a point and a line.
+The simplest baby version of this problem is when $f(x,y)$ is the distance between $(x,y)$ and some
+distinguished point, and $c(x,y) = 0$ is the equation of a line. For example, suppose we
+want to know which point on the line $y=1-2x$ is closest to the point $(1,4)$. By the Pythagorean
+theorem, the distance between an arbitrary point $(x,y)$ and the point $(1,4)$ is given by the function
+$$f(x,y) = \sqrt{(x-1)^2 + (y-4)^2}.$$
+The equation $y=1-2x$ can also be rewritten $2x+y-1=0$, so we see that the constraint function
+$c(x,y)$ here is $2x+y-1$ and the problem can be described as follows:
+$$\matrix{
+\hbox{minimise} &  \sqrt{(x-1)^2 + (y-4)^2} \cr
+\hbox{subject to} & 2x+y-1 = 0.\cr
+}$$
+(In practice we really don't have to pull everything to one side to make $c(x,y) = 0$. The equation $y=1-2x$
+is more readable than $2x+y-1=0$, especially since we are about to perform a substitution.)
+
+As mentioned before, we only know how to differentiate functions of one variable, so let us perform
+a substitution in order to eliminate $y$ in the expression for $f(x,y)$, and obtain a single variable
+function $f(x)$. Since $y=1-2x$, the function of $x$ that we want to minimise is
+$$f(x) =  \sqrt{(x-1)^2 + (1-2x-4)^2} = \sqrt{5x^2 + 10 x + 10}.$$
+The new single-variable optimisation problem is
+$$\matrix{
+\hbox{minimise} & \sqrt{5x^2 + 10 x + 10} \cr
+\hbox{subject to} & x\in \RR.\cr
+}$$
+Since $\RR$ is not a closed interval, we don't have any endpoints to worry about, but we still
+have to check critical numbers.
+
+We calculate
+$$f'(x) = {1\over 2\sqrt{5x^2 + 10x + 10}}\cdot (10x + 10) = {5x+5\over \sqrt{5x^2+10x+10}},$$
+and see that $f'(x) = 0$ only when $x=-1$. This is the only critical value of $f$. Let us
+use the first derivative test to make sure that it is a minimum and not a maximum.
+At $x=-1$, the denominator is of $f'(x)$ is positive (it equals $\sqrt 5$). When $x$ is slightly less
+than $-1$ (say $x=-1.01$) the numerator is slightly negative, so $f$ is decreasing to the left of $-1$,
+and when $x$ is slightly greater than $-1$, the numerator is positive, so $f$ is increasing to the right
+of $-1$ and by the first derivative test, we conclude that a minimum of $f$ must occur at $x=-1$.
+(We could also have just reasoned geometrically and said that it is obvious there should be a single
+minimum distance between a point and a line, and no maximum distance.)
+
+To finish off, recall that the question asked for the actual point on the line $y=1-2x$,
+not just its $x$ coordinate, so we calculate $y=1-2(-1) 1+2= 3$ to see that the point is $(-1,3)$.
+The question of what the minimum distance between $(-1,3)$ and $(1,4)$ actually is was not asked explicitly
+above, but for completeness we note here that it is
+$$f(-1) = \sqrt{5(-1)^2 + 10(-1) + 10} = \sqrt 5.$$
+(Or just manually calculate the distance between $(-1,3)$ and $(1,4)$ using the Pythagorean theorem to get
+the same number.)
+
+\medskip\boldlabel The distance between a point and an elliptic curve. Let's try a very similar example,
+but this time with an elliptic curve instead of a line. Suppose we want to find the points on the elliptic
+curve
+$y^2 = x^3 - 2x + 5$
+that are closest to the point $(7,0)$. The distance between an arbitrary point $(x,y)$ and the point
+$(5,0)$ is given by the formula
+$$\sqrt{(x-7)^2 + (y-0)^2} = \sqrt{x^2 - 14x + 49 + y^2}.$$
+Last time, we minimised this function, and saw how the square root is a bit cumbersome to deal with---it
+would have been even worse had we tried to apply the second derivative test!
+As a shortcut this time,
+instead of minimising this function directly (which we very well could do), we minimise its
+{\it square}
+$$f(x) = x^2 - 14x + 49 + y^2.$$
+You should convince yourself that minimising the square of a positive quantity is the same as minimising
+that positive quantity itself; this is attributed to the fact that the function $y=x^2$ is increasing on
+$(0,\infty)$. In any case, our optimisation problem now looks like
+$$\matrix{
+\hbox{minimise} &  x^2 - 14x + 49 + y^2\cr
+\hbox{subject to} & y^2 = x^3 - 2x + 5.\cr
+}$$
+Substituting the constraint equation into $f(x,y)$ yields the a function
+$$f(x) = x^2 - 14x + 49 + x^3 - 2x + 5 = x^3 + x^2 - 16x + 54,$$
+of just a single variable. We should also take note that
+and we have the new single-variable optimisation problem
+$$\matrix{
+\hbox{minimise} &  x^3 + x^2 - 16x + 54 \cr
+\hbox{subject to} & x\in \RR.\cr
+}$$
+If we're being pedantic, technically we should only consider the interval of numbers $x$ where
+$x^3 - 2x+5 \ge 0$, since otherwise $y^2 = x^3-2x+5$ would have no solutions in $y$. But we'll gloss
+over that detail as the answers end up being the same for this example. (You could add
+the constraint $x\in (0,\infty)$ instead of $x\in \RR$
+if you like, since it's fairly clear from a picture that the minimum
+distance to the point $(7,0)$ will occur at some point $(x,y)$ on the elliptic curve with $x>0$.)
+
+We now wish to find critical points of this function, so we take the derivative
+$$f'(x) = 3x^2 + 2x - 16.$$
+This factors as $(x-2)(3x+8)$, so the critical points of $f$ are $2$ and $-8/3$.
+Now we check, using the
+second derivative test this time---though you could use the first derivative test as well---which
+critical point gives a maximum and which a minimum. We compute
+$$f''(x) = 6x + 2$$
+to see that $f''(2) = 14 > 0$. This shows that the graph of $f$ is concave upward near $2$, and hence
+$f(2)$ really does give a local minimum. Note that $f''(-8/3) < 0$, which results in a local
+maximum there. But in fact
+for this elliptic curve example, $x=-8/3$ doesn't even make sense, as this input makes
+$x^3 - 2x+5$ negative, so there is no $y$ with $y^2$ equal to this number.
+
+Returning to the original question, the points on the elliptic curve $y^2 = x^3 - 2x+5$ that are closest to the
+point $(7,0)$ are those that arise when $x=2$. This gives $y^2 = 8-4+5 = 9$, so we see that $y = \pm 3$.
+Hence the two points on the elliptic curve minimising this distance are $(2,3)$ and $(2,-3)$.
+The distance at both of these points is $\sqrt{(7-2)^2+3^2} = \sqrt{34}\approx 5.83$.
+
+\medskip\boldlabel Canning coconut milk. This is the first of several optimisation-related word problems,
+which will round out the rest of the section. Suppose you are a coconut milk company and you sell
+cans containing $400$ millilitres of coconut milk. The cans are cylindrical, and you wish to minimise the
+amount of metal used to produce them. Therefore you are led to wonder, {\sl What is the minimum surface
+area of a cylindrical can whose volume is $400$ millilitres?}
+
+One millilitre is the same as a cubic centimetre, so if the radius $r$ and the height $h$
+of the cylinder are measured in centimetres, then these two variables must satisfy
+$$\pi r^2 h= 400.$$
+The parameter we would like to minimise is the surface area, which for a cylinder is given by the formula
+$$2\pi r^2 + 2\pi r h.$$
+So the optimisation problem is
+$$\matrix{
+\hbox{minimise} &  2\pi r^2 + 2\pi r h \cr
+\hbox{subject to} & \pi r^2 h = 400.\cr
+}$$
+The constraint equation is equivalent to $h = 400/( \pi r^2)$, so we can substitute this into the surface area
+formula to get a function
+$$f(r) = 2\pi r^2 + 2 \pi r \cdot {400\over \pi r^2} = 2\pi r^2 + {800\over r}.$$
+Technically is is permissible for $r$ to be any positive quantity, so we have the new single-variable
+optimisation problem
+$$\matrix{
+\hbox{minimise} &  2\pi r^2 + 800/ r \cr
+\hbox{subject to} & r\in (0,\infty).\cr
+}$$
+The minimum volume, should it exist, must occur at a critical point, so we take the derivative
+$$f'(r) = 4\pi r - {800 \over r^2},$$
+which is zero if and only if
+$$ 4\pi r = {800\over r^2}.$$
+Solving this equation for $r$ yields
+$$r = \root 3\of {200\over \pi}.$$
+To check that this is indeed a minimum and not a maximum, we take the second derivative
+$$f''(r) = 4\pi + {1600\over r^3},$$
+which is positive for all $r>0$, so it is certainly positive at $r=\root 3\of{200/\pi}$. This means
+the function is always concave upward and the critical point $\root 3\of{200/\pi} \approx 3.99$
+does result in a local minimum. The corresponding value of $h$ is
+$$h = {400\over \pi r^2} = 2{200\over \pi (200/\pi)^{2/3}}=  2 \root 3\of {200\over \pi} = 2r,$$
+so we see that the height of the can should be the same as twice its radius, or in other words
+equal to its diameter.
+
+However, the author reports that the $400$-millilitre can of coconut milk in his pantry
+has a diameter of
+$7$ centimetres and a height of roughly $10.5$. In general, cans you find at the supermarket tend
+to be taller than they are wide. This is explained at the very end of Section~4.7 in the textbook (after
+the exercises). The gist is that creating circles out of sheet metal is more wasteful than creating
+rectangles, so it is less costly to create our cylinders out of smaller circles and larger rectangles.
+Working out the details requires more calculus.
+
+\medskip\boldlabel Saving lives at the beach. Now you are a lifeguard at a beach where the shoreline is
+perfectly horizontal. You are stationed right at the edge of the water. Someone alerts you that there is
+someone in trouble in open water, 20 metres from the shore. The closest point on the shoreline to the
+person is 50 metres down the beach from you. You could run 50 metres down the beach and swim 20
+metres perpendicularly to reach the drowning person, or you could swim horizontally or you could run
+$x$ metres along the shoreline, for some $x$ in $(0,50)$, and then swim diagonally from there.
+Supposing that your running speed on sand is 6 metres per second and your
+speed in the water is about 1.5 metres per second (wading then swimming),
+what path should you take?
+
+
+
 
 \bye
 
