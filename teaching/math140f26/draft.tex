@@ -4858,11 +4858,11 @@ rectangles, so it is less costly to create our cylinders out of smaller circles 
 Working out the details requires more calculus.
 
 \medskip\boldlabel Saving lives at the beach. Now you are a lifeguard at a beach where the shoreline is
-perfectly horizontal. You are stationed right at the edge of the water. Someone alerts you that there is
+perfectly horizontal. You are stationed right at the edge of the water. You are alerted that there is
 someone in trouble in open water, 30 metres from the shore. The closest point on the shoreline to the
-person is 40 metres down the beach from you. You could run 40 metres down the beach and swim 15
+person is 40 metres down the beach from you. You could run 40 metres down the beach and swim 30
 metres perpendicularly to reach the drowning person, or you could swim horizontally or you could run
-$x$ metres along the shoreline, for some $x$ in $(0,50)$, and then swim diagonally from there.
+$x$ metres along the shoreline, for some $x$ in $(0,40)$, and then swim diagonally from there.
 Supposing that your running speed on sand is 4 metres per second and your
 speed in the water is about 1 metre per second (taking into account wading and swimming),
 what path should you take?
@@ -4903,7 +4903,16 @@ $$ 30^2 = 15 (40-x)^2.$$
 This simplifies to
 $$x = 40 - {30\over\sqrt{15}} = 40- 2\sqrt{15}\approx 32.25$$
 metres,
-and we conclude that this is the only critical value in the interval $[0,40]$. We check that
+and we conclude that this is the only critical value in the interval $[0,40]$.
+
+[{\it Note:} This is obviously not the end of the solution, but we ran out of class time.
+You are encouraged to finish
+off the closed interval method from here. We'll go over the last bit of this problem very quickly next
+class.]
+
+\bye
+
+We check that
 $$\eqalign{
 f\bigl( 40 - 2\sqrt{15}\bigr)  &= {40 - 2\sqrt{15} \over 4}
   + \sqrt{30^2 + \bigl(2\sqrt{15}\bigr)^2} \cr
@@ -4936,7 +4945,7 @@ that you choose from the goal line; since the opposing goal line is $178$ feet
 away, the constraint on $x$ is $x\in [0,178]$. You wish to maximise the angle between the two goal posts
 from your shooting point. The distance between the closer goal post and the boards is
 $${85-6\over 2} = 39.5$$
-feet, and the farther post is $39.5+6 = 45.6$ feet away from the boards on your side. We shall set
+feet, and the farther post is $39.5+6 = 45.5$ feet away from the boards on your side. We shall set
 $a= 39.5$ and $b=45.5$ just to make notation less cumbersome. Let us then
 call the angle between the boards and the closer post $\theta_1$ and the angle between the boards
 and the farther post $\theta_2$. These values depend on the distance $x$ that we choose; we have
