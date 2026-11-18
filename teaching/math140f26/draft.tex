@@ -4755,8 +4755,6 @@ $$f(-1) = \sqrt{5(-1)^2 + 10(-1) + 10} = \sqrt 5.$$
 (Or just manually calculate the distance between $(-1,3)$ and $(1,4)$ using the Pythagorean theorem to get
 the same number.)
 
-\bye
-
 \medskip\boldlabel \datestamp{18}{xi} The distance between a point and an elliptic curve.
 Let's try a very similar example,
 but this time with an elliptic curve instead of a line. Suppose we want to find the points on the elliptic
@@ -4861,13 +4859,139 @@ Working out the details requires more calculus.
 
 \medskip\boldlabel Saving lives at the beach. Now you are a lifeguard at a beach where the shoreline is
 perfectly horizontal. You are stationed right at the edge of the water. Someone alerts you that there is
-someone in trouble in open water, 20 metres from the shore. The closest point on the shoreline to the
-person is 50 metres down the beach from you. You could run 50 metres down the beach and swim 20
+someone in trouble in open water, 30 metres from the shore. The closest point on the shoreline to the
+person is 40 metres down the beach from you. You could run 40 metres down the beach and swim 15
 metres perpendicularly to reach the drowning person, or you could swim horizontally or you could run
 $x$ metres along the shoreline, for some $x$ in $(0,50)$, and then swim diagonally from there.
-Supposing that your running speed on sand is 6 metres per second and your
-speed in the water is about 1.5 metres per second (wading then swimming),
+Supposing that your running speed on sand is 4 metres per second and your
+speed in the water is about 1 metre per second (taking into account wading and swimming),
 what path should you take?
+
+Let $x$ be the distance you decide to run on the shore before getting into the water. The minimum
+$x$ can be is $0$ metres, and the maximum it should be is $40$ metres, so the constraint on the variable
+$x$ in this problem is $x\in [0,40]$.
+We wish to minimise the time it takes you to get to the drowning person. Let's call the time you spend
+land $t_1$ and the time you spend in the water $t_2$. If $d_1$ is the distance we travel on the beach,
+then we have $t_1 = d_1/4$, since you run at $4$ m/s on sand. If $d_2$ is the (diagonal) distance
+between the point you enter the water and the patient, then $t_2 = d_2$, since your speed in the water
+is $1$ m/s.
+
+The distance $d_1$ is easy to calculate in terms of $x$, since it's just $x$ itself, and we have
+$$t_1 = {d_1\over 4} = {x\over 4}.$$
+To calculate $d_2$, we see that this distance is the hypotenuse of a right triangle whose two other sides
+measure $30$ metres and $40-x$ metres respectively. So we have
+$$t_2 = d_2 = \sqrt{30^2 + (40-x)^2},$$
+and the function of $x$ that we with to minimise is
+$$f(x) = t_1 + t_2 = {x\over 4} + \sqrt{30^2 + (40-x)^2}.$$
+The optimisation problem representing this scenario is
+$$\matrix{
+\hbox{minimise} &  x/4 + \sqrt{30^2 + (40-x)^2} \cr
+\hbox{subject to} & x\in [0,40];\cr
+}$$
+this is already a single-variable optimisation problem. The function we wish to minimise is continuous,
+and its domain is a closed interval, so we may apply the closed interval method. We calculate
+$$\eqalign{
+f'(x) &= {1\over 4} + {1\over 2\sqrt{30^2 + (40-x)^2}} \cdot 2(40-x)\cdot (-1)\cr
+&= {1\over 4} - {40-x\over \sqrt{30^2 + (40-x)^2}}, \cr
+}$$
+and see that $f'(x) = 0$ only if
+$$\sqrt{30^2 + (40-x)^2} = 4(40-x).$$
+Squaring both sides, we have
+$$ 30^2 + (40-x)^2 = 16(40-x)^2,$$
+and we find that
+$$ 30^2 = 15 (40-x)^2.$$
+This simplifies to
+$$x = 40 - {30\over\sqrt{15}} = 40- 2\sqrt{15}\approx 32.25$$
+metres,
+and we conclude that this is the only critical value in the interval $[0,40]$. We check that
+$$\eqalign{
+f\bigl( 40 - 2\sqrt{15}\bigr)  &= {40 - 2\sqrt{15} \over 4}
+  + \sqrt{30^2 + \bigl(2\sqrt{15}\bigr)^2} \cr
+&= 10 - {\sqrt{15}\over 2} + \sqrt{900 + 60} \cr
+&= 10 - {\sqrt{15}\over 2}  + \sqrt{960} \cr
+&\approx 39.05,
+}$$
+so running $40-2\sqrt{15}$ metres on the beach then swimming diagonally will take roughly $39.04$ seconds.
+
+To finish off the closed interval method, we also need to check $f(0)$ and $f(40)$, since $0$ and
+$40$ are the endpoints of the closed interval that makes up the domain of $x$. We have
+$$f(0) = {0\over 4} + \sqrt{30^2 + 40^2} = \sqrt{2500} = 50,$$
+which tells us that simply swimming diagonally to the drowning person takes $50$ seconds, and
+running the $40$ metres down the shoreline before swimming $30$ metres takes a total of
+$$f(40) = {40\over 4} + \sqrt{30^2 + (40-40)^2} = 10 + \sqrt{30^2} = 40$$
+seconds. We conclude that the best decision is indeed to run approximately $32.25$ metres down the beach
+before swimming diagonally.
+
+\medskip\boldlabel A chance to win big at the hockey game. You are at an {\mc NHL} game and were randomly
+selected during intermission for the following challenge. You can choose any spot along the side boards,
+and your object is to score on an empty net from that point. The distance
+between the two goal lines is $178$ feet, the goal line itself is $85$ feet wide, and the net is $6$ feet
+wide, placed directly in the middle of the goal line. {\sl Where should you place yourself along the boards
+in order to have the easiest shot on goal?} (In real life the challenge would be too easy this way,
+so they put a wooden board in front of the net with just a small hole in it at the bottom. But for
+simplicity let's just solve the empty-net version.)
+
+Let $x$ be the distance, in feet,
+that you choose from the goal line; since the opposing goal line is $178$ feet
+away, the constraint on $x$ is $x\in [0,178]$. You wish to maximise the angle between the two goal posts
+from your shooting point. The distance between the closer goal post and the boards is
+$${85-6\over 2} = 39.5$$
+feet, and the farther post is $39.5+6 = 45.6$ feet away from the boards on your side. We shall set
+$a= 39.5$ and $b=45.5$ just to make notation less cumbersome. Let us then
+call the angle between the boards and the closer post $\theta_1$ and the angle between the boards
+and the farther post $\theta_2$. These values depend on the distance $x$ that we choose; we have
+$$\theta_1 = \arctan {1\over x}$$
+and
+$$\theta_2 = \arctan {b\over x}.$$
+The angle between the two goal posts, then, is
+$$f(x) = \theta_2 - \theta_1 = \arctan{b\over x} - \arctan {a\over x}.$$
+The single-variable optimisation problem encapsulating this scenario is
+$$\matrix{
+\hbox{maximise} &  \arctan(b/x) - \arctan(a/x) \cr
+\hbox{subject to} & x\in [0,178].\cr
+}$$
+(Technically $f(0)$ is not defined, but $\lim_{x\to 0} f(x) = 0$, so we can artificially set
+$f(0) = 0$ and maximise $f(x)$ on $[0,178]$.)
+
+We calculate
+$$\eqalign{
+f'(x) &= {1\over 1+ b^2/x^2} \cdot {-b\over x^2} - {1\over 1+ a^2/x^2} \cdot {-a\over x^2} \cr
+&= {-1\over x^2/b + b} - {-1\over x^2/a + a}\cr
+&= {a\over x^2 + a^2} - {b\over x^2 + b^2}\cr
+&= {a(x^2+b^2) - b(x^2+a^2) \over (x^2+a^2)(x^2+b^2)}.\cr
+}$$
+The denominator is always positive, so the only critical points occur when the numerator is zero, or
+equivalently when
+$$ a(x^2 + b^2) = b(x^2 + a^2).$$
+This simplifies to
+$$ ax^2 + ab^2 = bx^2 + a^2 b,$$
+whence we see that any such $x$ must have
+$$x^2 = {a^2b - ab^2\over a-b} = ab,$$
+or in other words
+$$x = \pm \sqrt{ab}.$$
+We must have $x\in [0,178]$, so only the positive square root works here. Plugging in the real
+values of $a$ and $b$ gives us a distance of
+$$x = \sqrt{(39.5)(45.5)} \approx 42.39$$
+feet from the goal line from which we should shoot.
+(For context, the blue line is 64 feet from the goal line.)
+
+We check
+$$\eqalign{
+f\Bigl( \sqrt{ab}\Bigr)
+&= \arctan {b\over \sqrt{ab}}  - \arctan  {a\over \sqrt{ab}} \cr
+&= \arctan\sqrt{b\over a}- \arctan\sqrt{a\over b} \cr
+&= \arctan\sqrt{45.5\over 39.5}- \arctan\sqrt{39.5\over 45.5} \cr
+&\approx 0.071,
+}$$
+which is the shooting angle in radians (in degrees this is $4.05^\circ$).
+
+Obviously, we have $f(0) = 0$, since shooting from the boards at goal line itself makes the shooting angle $0$.
+It remains to calculate $f$ at the other goal line; we have
+$$f(178) = \arctan{45.5\over 178} - \arctan{39.5\over 178} \approx 0.032$$
+radians, which in degrees is $1.83^\circ$. So we see that the optimal point on the boards to shoot from
+is in fact at $42.39$ feet from the goal line, which is approximately two-thirds of the way to the blue line.
+
+
 
 
 
