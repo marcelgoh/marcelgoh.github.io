@@ -892,7 +892,6 @@ $$\lim_{x\to a} x^n = \Bigl( \lim_{x\to a} x\Bigr)^n = a^n.$$
 To prove law (xi), apply the root law with $f(x) = x$ and then law (ix) to obtain
 $$\lim_{x\to a} \root n\of x = \root n\of{ \lim_{x\to a} x} = \root n\of a.\noskipslug$$
 
-
 With these new laws in hand, we can revisit the polynomial $4x^2-7$ from earlier and conclude that
 $$\lim_{x\to 3} (4x^2 - 7) = 4\cdot 3^2 - 7 = 29.$$
 In fact, we don't even need to break up $x^2$ into $x\cdot x$ like we did
@@ -4991,14 +4990,147 @@ $$f(178) = \arctan{45.5\over 178} - \arctan{39.5\over 178} \approx 0.032$$
 radians, which in degrees is $1.83^\circ$. So we see that the optimal point on the boards to shoot from
 is in fact at $42.39$ feet from the goal line, which is approximately two-thirds of the way to the blue line.
 
+\advsect L'Hospital's rule
 
+Limits of the form
+$$\lim_{x\to a} {f(x)\over g(x)},$$
+where $f(x)\to 0$ and $g(x)\to 0$ as $x\to a$, are some of the most common that arise in practice.
+For example, the limit definition of a derivative is always of this form. Many weeks ago we established some
+algebraic rules and techniques to massage the expression $f(x)/g(x)$ into a form whose limit readily admits
+evaluation. Now that we are comfortable with derivatives, we are able to add one more rule to our toolbox.
 
+The idea is that if $f(x)$ and $g(x)$ both go to $0$ as $x\to a$, then in a very small interval near $a$,
+the graphs of $f$ and $g$ both resemble their tangent lines. It stands to reason, then, that the ratio
+$f(x)/g(x)$ should be very close to $f'(x)/g'(x)$ for any $x$ close enough to $a$ (assuming this ratio
+is well defined), and we might suspect that $\lim_{x\to a} f(x)/g(x) = \lim_{x\to a} f'(x)/g'(x)$. This
+identity does turn out to be true under suitable conditions. It is called {\it l'Hospital's rule}, after
+the Marquis de l'Hospital who published the result in his 1696 textbook. However, he was not the originator
+of the theorem. It was actually proved by Johann Bernoulli, but l'Hospital and Bernoulli had an agreement
+whereby the Marquis would give Bernoulli an annual allowance in return for being able to publish the latter's
+mathematical results as his own.
+
+The modern proof of l'Hospital's rule proceeds by means of the following lemma. It is a souped-up version of
+the mean value theorem, due to Augustin Cauchy.
+
+\parenproclaim Lemma {\advthm} (Cauchy's mean value theorem).
+Let $a<b$. Suppose that $f$ and $g$ are functions that are continuous on $[a,b]$ and differentiable on
+$(a,b)$. Then there is a number $c$ in $(a,b)$ such that
+$$\bigl( g(b) - g(a)\bigr) f'(c) = \bigl(f(b) - f(a)\bigr) g'(c).$$
+
+\proof The proof, which uses Rolle's theorem, is no harder than that of the ordinary mean value theorem.
+We define
+$$h(x) = f(x)\bigl( g(b) - g(a)\bigr) - g(x) \bigl(f(b) - f(a)\bigr),$$
+which is continuous on $[a,b]$ and differentiable on $(a,b)$ by the algebraic laws for these classes
+of functions.
+Note that
+$$\eqalign{
+h(a) &= f(a)\bigl( g(b) - g(a) \bigr) - g(a)\bigl(f(b) - f(a)\bigr) \cr
+&= f(a) g(b) - g(a) f(b) \cr
+&= f(b)\bigl( g(b) - g(a) \bigr) - g(b) \bigl( f(b) - f(a)\bigr) \cr
+&= h(b),\cr
+}$$
+so Rolle's theorem applies to tell us that there is some $c$ in $(a,b)$ with $h'(c) = 0$.
+But
+$$h'(c) = \bigl( g(b) - g(a)\bigr) f'(c) - \bigl( f(b) - f(a)\bigr) g'(c),$$
+so the lemma follows easily from here.\slug
+
+If $g'(x) \ne 0$ for all $x$ in an interval $[a,b]$, then Cauchy's mean value theorem tells us that there is
+a $c$ in this interval with
+$${f'(c)\over g'(c) } = {f(b) - f(a)\over g(b) - g(a)}.$$
+As an exercise, prove the ordinary mean value theorem using this statement. (Your proof should only be one
+or two sentences long!)
+
+L'Hospital's rule follows from Cauchy's mean value theorem with a bit of extra elbow grease.
+
+\parenproclaim Theorem {\advthm} (L'Hospital's rule, zero over zero). Suppose that
+$$\lim_{x\to a} f(x) = 0 \qquad\hbox{and}\qquad \lim_{x\to a} g(x) = 0,$$
+where $a$ could be a number, positive infinity, or negative infinity.
+If the limit
+$$\lim_{x\to a} {f'(x) \over g'(x)}$$
+exists, then the limit
+$$\lim_{x\to a} {f(x) \over g(x)}$$
+also exists, and we have
+$$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)}.$$
+
+\proof First, we assume that $a$ is a finite number; the case where $a$ is infinite will follow.
+The assumption that $\lim_{x\to a} f'(x)/g'(x)$ exists tells us two things. First, there is
+some interval $I$ containing $a$ where $f'(x)$ and $g'(x)$ exist for all $x$ in $I$, except possibly
+at $x=a$. Second, in this interval we have $g'(x)\ne 0$ except possibly at $x=a$.
+On the other hand, $f$ and $g$ may not be defined at $a$, or if they are, we don't necessarily have
+$f(a) = 0$ or $g(a) = 0$. Let us fix this by defining
+$$F(x) = \cases{ f(x), & if $x\ne 0$; \cr 0, & if $x=0$}$$
+and
+$$G(x) = \cases{ g(x), & if $x\ne 0$; \cr 0, & if $x=0$.}$$
+These functions are continuous on all of $I$ (including at $a$)
+by construction, and for all $x$ in $I$ with $x\ne a$, we have $F' = f'$ and $G'=g'$.
+
+Now let $x$ in $I$ be greater than $a$.
+Both $F$ and $G$ are continuous on $[a,x]$ and differentiable on $(a,x)$, by Cauchy's mean value theorem
+there is some $c_x$ in $(a,x)$ such that
+$${F'(c_x)\over G'(c_x) } = {F(x) - F(a)\over G(x) - G(a)}
+= {F(x)\over G(x)}.$$
+Since $c_x> a$ and $x>a$, we have
+$${f'(c_x)\over g'(c_x)} = {F'(c_x)\over G'(c_x)} = {F(x)\over G(x)} = {f(x)\over g(x)}.$$
+If we let $x\to a^+$, we get different values $c_x$ for each different value of $x$, but since $c_x$
+is in the interval $(a,x)$ for all $x$, we have $c_x\to a$ as $x\to a$ as well. Hence
+$$\lim_{x\to a^+} {f(x)\over g(x)} = \lim_{x\to a^+} {f'(c_x)\over g'(c_x)} = \lim_{x\to a^+}
+{f'(x)\over g'(x)} .$$
+The argument for $x\to a^-$ is similar, so we have proved
+$$\lim_{x\to a} {f(x) \over g(x)} = \lim_{x\to a} {f'(x) \over g'(x)}$$
+for finite $a$.
+
+If $a=\infty$, then let $t=1/x$. As $x\to \infty$, we have $t\to 0^+$, so
+$$\eqalign{
+\lim_{x\to \infty} {f(x)\over g(x)} &= \lim_{t\to 0^+} {f(1/t) \over g(1/t)} \cr
+&= \lim_{t\to 0^+} {f'(1/t) (-1/t^2) \over g'(1/t) (-1/t^2)} \cr
+&= \lim_{t\to 0^+} {f'(1/t) \over g'(1/t)} \cr
+&= \lim_{x\to\infty} {f'(x)\over g'(x)},\cr
+}$$
+where the second equality follows from l'Hospital's rule for finite $a$ (as well as the chain rule).
+If $a=\infty$, the same logic works, but we have $t\to 0^-$ instead.\slug
+
+There is another version of l'Hospital's rule for situations in which the numerator and denominator
+both have infinite limits.
+
+\parenproclaim Theorem {\advthm} (L'Hospital's rule, infinity over infinity). Suppose that
+$$\lim_{x\to a} f(x) = \infty \qquad\hbox{and}\qquad \lim_{x\to a} g(x) = \infty,$$
+where $a$ could be a number, positive infinity, or negative infinity.
+If the limit
+$$\lim_{x\to a} {f'(x) \over g'(x)}$$
+exists, then the limit
+$$\lim_{x\to a} {f(x) \over g(x)}$$
+also exists, and we have
+$$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)}.$$
+
+\proof The full proof of this version of l'Hospital's rule is a bit more complicated, so we omit it.
+
+However, if we add the hypothesis that $\lim_{x\to a} f(x)/g(x)$ exists and we just
+want to know its {\it value}, then there
+is an easy proof that
+$$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)}.$$
+We simply write
+$$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {1/g(x)\over 1/f(x)}.$$
+Now both the numerator and denominator go to $0$, so by the zero-over-zero version of l'Hospital's rule,
+we have
+$$\eqalign{
+\lim_{x\to a} {f(x)\over g(x)}
+&= \lim_{x\to a} {-g'(x)/ g(x)^2 \over -f'(x)/ f(x)^2} \cr
+&=\lim_{x\to a} {g'(x)\over f'(x)} \cdot \lim_{x\to a} {f(x)^2\over g(x)^2} \cr
+&=\lim_{x\to a} {g'(x)\over f'(x)} \cdot \biggl(\lim_{x\to a} {f(x)\over g(x)}\biggr)^2. \cr
+}$$
+(The last equality is a consequence of the continuity of the function $x^2$.)
+Dividing both sides by $\lim_{x\to a} f(x)/g(x)$ yields
+$$1 = \lim_{x\to a} {g'(x)\over f'(x)}  \cdot \lim_{x\to a} {f(x)\over g(x)},$$
+so
+$$\lim_{x\to a} {f(x)\over g(x)} = 1\bigg/ \lim_{x\to a} {g'(x)\over f'(x)}
+= \lim_{x\to a} {f'(x)\over g'(x)},$$
+by the reciprocal law for limits.\slug
 
 
 
 \bye
 
-\advsect Linearisation and approximation
+\advsect Approximation
 
 Suppose we want to find out what $\sqrt{145}$ is without a calculator. Of course, since $\sqrt{144} = 12$,
 we know the answer should be a little bit more than $12$. The methods of calculus allow us to give a very
