@@ -5043,22 +5043,25 @@ a $c$ in this interval with
 $${f'(c)\over g'(c) } = {f(b) - f(a)\over g(b) - g(a)}.$$
 As an exercise, prove the ordinary mean value theorem using this statement. (Your proof should only be one
 or two sentences long!)
-\bye
 
+\noindent\datestamp{23}{xi} \hskip\parindent
 L'Hospital's rule follows from Cauchy's mean value theorem with a bit of extra elbow grease.
 
 \parenproclaim Theorem {\advthm} (L'Hospital's rule, zero over zero). Suppose that
 $$\lim_{x\to a} f(x) = 0 \qquad\hbox{and}\qquad \lim_{x\to a} g(x) = 0,$$
 where $a$ could be a number, positive infinity, or negative infinity.
 If the limit
-$$\lim_{x\to a} {f'(x) \over g'(x)}$$
-exists, then the limit
+$$\lim_{x\to a} {f'(x) \over g'(x)} = L,$$
+where $L$ may be a number, positive infinity, or negative infinity, then the limit
 $$\lim_{x\to a} {f(x) \over g(x)}$$
 also exists, and we have
-$$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)}.$$
+$$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)} = L.$$
 
-\proof First, we assume that $a$ is a finite number; the case where $a$ is infinite will follow.
-The assumption that $\lim_{x\to a} f'(x)/g'(x)$ exists tells us two things. First, there is
+\proof We shall only give the proof in the case that $L$ is a finite number. The infinite-limit cases
+are left to the reader as an exercise.
+
+First, we assume that $a$ is a finite number; the case where $a$ is infinite will follow.
+The assumption that $\lim_{x\to a} f'(x)/g'(x) = L$ tells us two things. First, there is
 some interval $I$ containing $a$ where $f'(x)$ and $g'(x)$ exist for all $x$ in $I$, except possibly
 at $x=a$. Second, in this interval we have $g'(x)\ne 0$ except possibly at $x=a$.
 On the other hand, $f$ and $g$ may not be defined at $a$, or if they are, we don't necessarily have
@@ -5101,11 +5104,11 @@ both have infinite limits.
 $$\lim_{x\to a} f(x) = \infty \qquad\hbox{and}\qquad \lim_{x\to a} g(x) = \infty,$$
 where $a$ could be a number, positive infinity, or negative infinity.
 If the limit
-$$\lim_{x\to a} {f'(x) \over g'(x)}$$
-exists, then the limit
+$$\lim_{x\to a} {f'(x) \over g'(x)} = L$$
+where $L$ may be finite, positive infinity, or negative infinity, then the limit
 $$\lim_{x\to a} {f(x) \over g(x)}$$
 also exists, and we have
-$$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)}.$$
+$$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)} = L.$$
 
 \proof The full proof of this version of l'Hospital's rule is a bit more complicated, so we omit it.
 
@@ -5131,11 +5134,89 @@ $$\lim_{x\to a} {f(x)\over g(x)} = 1\bigg/ \lim_{x\to a} {g'(x)\over f'(x)}
 = \lim_{x\to a} {f'(x)\over g'(x)},$$
 by the reciprocal law for limits.\slug
 
-So much for the proofs. Let's see a couple of examples. First we tackle one of the form $0/0$.
+So much for the proofs. Let's see a couple of examples. First we revisit the very first proposition
+in this course, which asserted that
+$$\lim_{x\to 1} {3x^2 - 2x-1\over x-1} = 4.$$
+We proved this directly from the formal definition of a limit, then again using algebraic limit laws. We
+see that it is of the form $0/0$, so we can give a third proof using l'Hospital's rule.
 
+\medskip\noindent{\it Proof of Proposition~{\proplimfirstexample} using l'Hospital's rule.}\enspace
+Let
+$$f(x) = 3x^2 - 2x-1\qquad\hbox{and}\qquad g(x) = x-1.$$
+Since 
+$\lim_{x\to 1} f(x) = 0$ and $\lim_{x\to 1} g(x) = 0$, we take the derivative of these
+polynomials separately, in the hopes of using l'Hospital's rule.
+We have
+$$f'(x) = 6x-2\qquad\hbox{and}\qquad g'(x) = 1,$$
+so
+$$\lim_{x\to 1} {f'(x)\over g'(x)} = \lim_{x\to 1} = {6x-2\over 1} = 4$$
+and all the requirements of l'Hospital's rule are satisfied.
+We conclude that
+$$\lim_{x\to 1} {3x^2 - 2x-1\over x-1} = \lim_{x\to 1} {f(x)\over g(x)} = 4$$
+as well.\slug
 
+Here's another, slightly more complicated example.
 
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 0} {\ln(\cos x)\over x^2} = -{1\over 2}.$$
 
+\proof Plugging in $x=0$ in the numerator and denominator shows that this is a limit of the form $0/0$,
+so, taking derivatives of both (separately), l'Hospital's rule tells us that
+$$\lim_{x\to 0} {\ln(\cos x)\over x^2} = \lim_{x\to 0} {(1/\cos x) (-\sin x) \over 2x},$$
+provided that the limit on the right-hand side exists. Simplifying
+$$\lim_{x\to 0} {(1/\cos x)(-\sin x) \over 2x} = -{1\over 2} \lim_{x\to 0} {\tan x\over x},$$
+we are faced with yet another indeterminate limit of the form $0/0$, so we take derivatives of the numerator
+and denominator once again, in the hopes of applying l'Hospital's rule. We have
+$$\lim_{x\to 0} {\tan x\over x} = \lim_{x\to 0} {\sec^2 x\over 1} = {1\over 1} = 1,$$
+and can conclude that
+$$\lim_{x\to 0} {\ln(\cos x)\over x^2} = \lim_{x\to 0} {(1/\cos x) (-\sin x) \over 2x}
+= -{1\over 2}\lim_{x\to 0} {\tan x\over x} = -{1\over 2},$$
+as claimed.\slug
+
+In the previous example, the first application of l'Hospital's rule resulted in another indeterminate
+form, so we had to apply l'Hospital's rule again. (Well, we didn't have to, since the limit of $\tan x/x$
+as $x\to 0$ can be computed in other ways.) It is important to check that the resulting limit is actually
+indeterminate. Otherwise it is easy to produce nonsense like
+$$\lim_{x\to 1} {3x^2 - 2x - 1\over x-1} =
+\lim_{x\to 1} {6x-2\over 1} = \lim_{x\to 1} {6\over 0} = \infty.$$
+(Here the second ``application'' of l'Hospital's rule is erroneous, since $(6x-2)/1$ is neither of the
+form $0/0$ nor $\infty/\infty$.)
+
+L'Hospital's rule can also help us remember the limit
+$$\lim_{x\to 0} {\sin x\over x} = \lim_{x\to 0} {\cos x\over 1} = {1\over 1} = 1.$$
+Note, however, that this is not a valid {\it proof} of this identity, since we used it to prove
+that $\sin' = \cos$. Using the derivative to prove this identity would be circular reasoning.
+
+Next, let's try a limit of the form $\infty/\infty$, to use the other form of l'Hospital's rule.
+If you look at a graph of $\ln x$ and a graph of $\sqrt x$, you might think they look fairly similar---they
+are both concave functions that go to infinity. However, as $x\to \infty$, one of them gets a lot larger,
+in the following sense.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to \infty} {\sqrt x\over \ln x} = \infty.$$
+
+\proof L'Hospital's rule yields
+$$\lim_{x\to \infty} {\sqrt x\over \ln x} = \lim_{x\to\infty} {1/(2\sqrt x)\over 1/x}
+= \lim_{x\to \infty} {x\over 2\sqrt x} = \lim_{x\to \infty} {\sqrt{x}\over 2} = \infty.\noskipslug$$
+
+This proposition shows that $\sqrt x$ grows much faster than $\ln x$ for large $x$.
+
+Sometimes, l'Hospital's rule is applicable but utterly useless. Consider the limit
+$$\lim_{x\to\infty} {x\over \sqrt{x^2+1}},$$
+which is of the form $\infty/\infty$. Applying l'Hospital's rule once, we obtain
+$$\lim_{x\to\infty} {x\over \sqrt{x^2+1}}
+= \lim_{x\to\infty} {1\over (1/2) (x^2+1)^{-1/2} (2x)}
+=\lim_{x\to\infty} {\sqrt{x^2 + 1}\over x}.$$
+This is another $\infty/\infty$ indeterminate form, so we are unfazed. By applying l'Hospital's rule again
+we obtain
+$$\lim_{x\to\infty} {\sqrt{x^2+1}\over x}
+= \lim_{x\to\infty} {(1/2) (x^2+1)^{-1/2} (2x)\over 1} = \lim_{x\to\infty} {x\over\sqrt{x^2+1}}.$$
+Two applications of l'Hospital's rule have joined forces to tell us that
+$$\lim_{x\to \infty} {x\over \sqrt{x^2+1}}
+= \lim_{x\to\infty} {\sqrt{x^2+1}\over x} = \lim_{x\to\infty} {x\over \sqrt{x^2+1}},$$
+provided the limit on the right-hand side exists! This is one of the true statements of all time.
+(The actual way find out that the limit equals $1$ is to simply divide the numerator and denominator by $x$,
+noting that $x = \sqrt{x^2}$ for all positive $x$.)
 
 \bye
 
