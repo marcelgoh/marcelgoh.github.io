@@ -5054,7 +5054,7 @@ If the limit
 $$\lim_{x\to a} {f'(x) \over g'(x)} = L,$$
 where $L$ may be a number, positive infinity, or negative infinity, then the limit
 $$\lim_{x\to a} {f(x) \over g(x)}$$
-also exists, and we have
+also exists or is infinite, and we have
 $$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)} = L.$$
 
 \proof We shall only give the proof in the case that $L$ is a finite number. The infinite-limit cases
@@ -5107,7 +5107,7 @@ If the limit
 $$\lim_{x\to a} {f'(x) \over g'(x)} = L$$
 where $L$ may be finite, positive infinity, or negative infinity, then the limit
 $$\lim_{x\to a} {f(x) \over g(x)}$$
-also exists, and we have
+also exists or is infinite, and we have
 $$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)} = L.$$
 
 \proof The full proof of this version of l'Hospital's rule is a bit more complicated, so we omit it.
@@ -5143,7 +5143,7 @@ see that it is of the form $0/0$, so we can give a third proof using l'Hospital'
 \medskip\noindent{\it Proof of Proposition~{\proplimfirstexample} using l'Hospital's rule.}\enspace
 Let
 $$f(x) = 3x^2 - 2x-1\qquad\hbox{and}\qquad g(x) = x-1.$$
-Since 
+Since
 $\lim_{x\to 1} f(x) = 0$ and $\lim_{x\to 1} g(x) = 0$, we take the derivative of these
 polynomials separately, in the hopes of using l'Hospital's rule.
 We have
@@ -5155,6 +5155,15 @@ We conclude that
 $$\lim_{x\to 1} {3x^2 - 2x-1\over x-1} = \lim_{x\to 1} {f(x)\over g(x)} = 4$$
 as well.\slug
 
+Note that l'Hospital's rule {\it only} applies if $\lim_{x\to a} f'(x)/g'(x)$ exists or
+is infinite. Consider the following example. If we try using l'Hospital's rule to evaluate the limit
+$$\lim_{x\to \infty} {x+\sin x\over x},$$
+then we are led to the limit
+$$\lim_{x\to\infty} {1+\cos x\over 1}.$$
+This latter limit does not exist. But that does not mean that $\lim_{x\to \infty} (x+\sin x)/x$ does not exist!
+(As an exercise, work out why this limit is actually equal to $1$.)
+
+Let's get back to situations where l'Hospital's rule does actually work.
 Here's another, slightly more complicated example.
 
 \proclaim Proposition \advthm. We have
@@ -5173,9 +5182,13 @@ $$\lim_{x\to 0} {\ln(\cos x)\over x^2} = \lim_{x\to 0} {(1/\cos x) (-\sin x) \ov
 = -{1\over 2}\lim_{x\to 0} {\tan x\over x} = -{1\over 2},$$
 as claimed.\slug
 
+\bye
+
+\noindent\datestamp{25}{xi} \hskip\parindent
 In the previous example, the first application of l'Hospital's rule resulted in another indeterminate
 form, so we had to apply l'Hospital's rule again. (Well, we didn't have to, since the limit of $\tan x/x$
-as $x\to 0$ can be computed in other ways.) It is important to check that the resulting limit is actually
+as $x\to 0$ can be computed in other ways.) It is important to check that the output of the first invocation
+of l'Hospital's rule is actually
 indeterminate. Otherwise it is easy to produce nonsense like
 $$\lim_{x\to 1} {3x^2 - 2x - 1\over x-1} =
 \lim_{x\to 1} {6x-2\over 1} = \lim_{x\to 1} {6\over 0} = \infty.$$
