@@ -4176,7 +4176,8 @@ critical values.}
 Before moving on to bigger and better things, let's apply the closed interval method to a couple of
 concrete examples.
 Suppose we want to find the maximum and minimum values of the function
-$$f(x) = \cases{x\ln x, & if $x > 0$; \cr 0, & if $x=0$}$$
+\edef\eqentropy{\the\eqcount}
+$$f(x) = \cases{x\ln x, & if $x > 0$; \cr 0, & if $x=0$}\adveq$$
 on the closed
 interval $[0,e]$. This function is continuous, since $x\ln x\to 0$ as $x\to 0$ from the right. (The easiest
 way to prove this is using L'Hospital's Rule, which we'll see in a few classes' time.) So by the extreme
@@ -5134,6 +5135,9 @@ $$\lim_{x\to a} {f(x)\over g(x)} = 1\bigg/ \lim_{x\to a} {g'(x)\over f'(x)}
 = \lim_{x\to a} {f'(x)\over g'(x)},$$
 by the reciprocal law for limits.\slug
 
+It is worth noting that both forms of l'Hospital's rule are also valid if we replace $x\to a$ by
+$x\to a^-$ everywhere or $x\to a^+$ everywhere.
+
 So much for the proofs. Let's see a couple of examples. First we revisit the very first proposition
 in this course, which asserted that
 $$\lim_{x\to 1} {3x^2 - 2x-1\over x-1} = 4.$$
@@ -5162,6 +5166,7 @@ $$\lim_{x\to 0} {\ln(\cos x)\over x^2} = -{1\over 2}.$$
 
 \proof Plugging in $x=0$ in the numerator and denominator shows that this is a limit of the form $0/0$,
 so, taking derivatives of both (separately), l'Hospital's rule tells us that
+The first one is 
 $$\lim_{x\to 0} {\ln(\cos x)\over x^2} = \lim_{x\to 0} {(1/\cos x) (-\sin x) \over 2x},$$
 provided that the limit on the right-hand side exists. Simplifying
 $$\lim_{x\to 0} {(1/\cos x)(-\sin x) \over 2x} = -{1\over 2} \lim_{x\to 0} {\tan x\over x},$$
@@ -5217,6 +5222,42 @@ $$\lim_{x\to \infty} {x\over \sqrt{x^2+1}}
 provided the limit on the right-hand side exists! This is one of the true statements of all time.
 (The actual way find out that the limit equals $1$ is to simply divide the numerator and denominator by $x$,
 noting that $x = \sqrt{x^2}$ for all positive $x$.)
+
+\medskip\boldlabel Other indeterminate forms.
+We now know how to deal with limits of the form $0/0$ or $\infty/\infty$. However, by suitably manipulating
+expressions, we can actually l'Hospital's rule to figure out many other indeterminate forms.
+
+For example, if we have an indeterminate {\it product} of the form $\lim_{x\to a} f(x) g(x)$,
+where $f(x) \to 0$ and $g(x)\to \infty$, this can very easily be turned into an indeterminate quotient
+of the form $0/0$ or $\infty/\infty$. One simply observes that
+$$ f(x) g(x) = {f(x)\over 1/g(x)},$$
+which is of the form $0/0$, or alternatively one could write
+$$ f(x) g(x) = {g(x)\over 1/f(x)},$$
+which is of the form $\infty/\infty$. The choice of which manipulation to perform is yours.
+
+We have already encountered the limit of an indeterminate product.
+Back when we were learning the closed interval method, we considered the function
+$x\ln x$, which isn't well defined at $0$. However, we got around this by defining $f(0) = 0$ and
+$f(x) = x\ln x$ for all $x>0$. (This was equation~\refeq{\eqentropy} further up in the notes.)
+The claim back then was that this function $f$ is continuous on the whole
+interval $[0,e]$, so that the closed interval method applies.
+As promised above t's finally time to prove that $f$ is continuous at $0$ (from the right)
+using l'Hospital's rule.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 0^+} x\ln x = 0.$$
+
+\proof We write
+$$\lim_{x\to 0^+} x\ln x = \lim_{x\to 0^+} {\ln x\over 1/x};$$
+this is of the form $0/0$, so towards an invocation of l'Hospital's rule,
+we take the derivative of the numerator and denominator. The limit
+$$\lim_{x\to 0^+} {1/x \over -1/x^{-2}} = \lim_{x\to 0^+} {-x^2\over x} = \lim_{x\to 0^+} -x = 0$$
+exists, so we must have
+$$\lim_{x\to 0^+} x\ln x = 0$$
+as well. This is what we wanted.\slug
+
+
+
 
 \bye
 
