@@ -1353,34 +1353,44 @@ $$\lim_{x\to \pi/2} {\sin x - 4\cos x\over 3x}
 
 Often we wish to combine functions not just by adding or multiplying them, etc., but instead by {\it composing}
 them. For instance, the function $\sin(\pi/x)$ is the composition $f\circ g$ where $f(x) = \sin x$ and
-$g(x)=\pi/x$. For this operation we have the following theorem.
+$g(x)=\pi/x$. For this operation we have the following theorem and its corollary.
 
-\edef\thmcontcomp{\the\thmcount}
-\proclaim Theorem \advthm. Suppose that $g(x)$ is continuous at $a$ and that $f(x)$ is continuous at $g(a)$.
-Then $f\circ g$ is continuous at $a$; in other words,
-$$\lim_{x\to a} (f\circ g)(x) = (f\circ g)(a) = f\bigl( g(a)\bigr).$$
+\edef\thmlimcontinterchange{\the\thmcount}
+\proclaim Theorem \advthm. Suppose that $\lim_{x\to a}$ exists and that $f$ is continuous. Then
+$$\lim_{x\to a} f\bigl( g(x)\bigr) = f\Bigl( \lim_{x\to a} g(x)\Bigr).$$
 
 \proof This proof, which proceeds directly via the formal definition of the limit,
 is found in Appendix F of the textbook.\slug
 
-This theorem shows that, erratic though its behaviour may be near the vertical line $x=0$, the function
+From here, it's easy to show that the composition of two continuous functions is continuous.
+
+\edef\corcontcomp{\the\thmcount}
+\proclaim Corollary \advthm. Suppose that $g(x)$ is continuous at $a$ and that $f(x)$ is continuous at $g(a)$.
+Then $f\circ g$ is continuous at $a$; in other words,
+$$\lim_{x\to a} (f\circ g)(x) = (f\circ g)(a) = f\bigl( g(a)\bigr).$$
+
+\proof Since $g$ is continuous, we have $\lim_{x\to a} g(x) = g(a)$. By Theorem~{\thmlimcontinterchange} then,
+we have
+$$\lim_{x\to a} f\bigl( g(x)\bigr) = f\Bigl( \lim_{x\to a} g(x)\Bigr) = f\bigl( g(a)\bigr).$$
+
+This corollary shows that, erratic though its behaviour may be near the vertical line $x=0$, the function
 $\sin(\pi/x)$ is continuous at all $a\ne 0$, since it is the composition of the sine function with a
-rational function, which is continuous on its domain. We can also use the theorem to compute limits that seem
-difficult to compute otherwise.
+rational function, which is continuous on its domain. We can also use these two results
+to compute limits that seem difficult to compute otherwise.
 
 \proclaim Proposition \advthm. We have
 $$\lim_{x\to 1} \arccos\biggl( {1\over \sqrt{x+1}}\biggr) = {\pi\over 4}.$$
 
 \proof
 First, we observe that $g(x) = 1/\sqrt{x+1}$ is continuous on its domain.
-To see this, note that by Theorem~{\thmcontcomp},
+To see this, note that by Corollary~{\corcontcomp},
 since $\sqrt x$ and $x+1$ are both continuous, their composition
 $\sqrt{x+1}$ is, and by the quotient law so is $1/\sqrt{x+1}$ at all points except at $a=-1$.
 
 To apply
-Theorem~{\thmcontcomp} again with $f(x)$ and $g(x)$, we must check that $\arccos$ is continuous at
+Corollary~{\corcontcomp} again with $f(x)$ and $g(x)$, we must check that $\arccos$ is continuous at
 $g(1) = 1/\sqrt{1+1} = 1/\sqrt 2$. Well, $\arccos$ is continuous on its domain, which is the interval
-$[-1,1]$, and $1/\sqrt 2$ falls within this interval. So by Theorem~{\thmcontcomp}, we have
+$[-1,1]$, and $1/\sqrt 2$ falls within this interval. So by Corollary~{\corcontcomp}, we have
 $$\lim_{x\to 1} f\bigl(g(x)\bigr) = f\bigl(g(a)\bigr) = \arccos\Bigl({1\over \sqrt 2}\Bigr) = {\pi\over 4},$$
 which is what we wanted to show.\slug
 
@@ -5055,7 +5065,7 @@ If the limit
 $$\lim_{x\to a} {f'(x) \over g'(x)} = L,$$
 where $L$ may be a number, positive infinity, or negative infinity, then the limit
 $$\lim_{x\to a} {f(x) \over g(x)}$$
-also exists, and we have
+also exists or is infinite, and we have
 $$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)} = L.$$
 
 \proof We shall only give the proof in the case that $L$ is a finite number. The infinite-limit cases
@@ -5108,7 +5118,7 @@ If the limit
 $$\lim_{x\to a} {f'(x) \over g'(x)} = L$$
 where $L$ may be finite, positive infinity, or negative infinity, then the limit
 $$\lim_{x\to a} {f(x) \over g(x)}$$
-also exists, and we have
+also exists or is infinite, and we have
 $$\lim_{x\to a} {f(x)\over g(x)} = \lim_{x\to a} {f'(x)\over g'(x)} = L.$$
 
 \proof The full proof of this version of l'Hospital's rule is a bit more complicated, so we omit it.
@@ -5147,7 +5157,7 @@ see that it is of the form $0/0$, so we can give a third proof using l'Hospital'
 \medskip\noindent{\it Proof of Proposition~{\proplimfirstexample} using l'Hospital's rule.}\enspace
 Let
 $$f(x) = 3x^2 - 2x-1\qquad\hbox{and}\qquad g(x) = x-1.$$
-Since 
+Since
 $\lim_{x\to 1} f(x) = 0$ and $\lim_{x\to 1} g(x) = 0$, we take the derivative of these
 polynomials separately, in the hopes of using l'Hospital's rule.
 We have
@@ -5159,6 +5169,20 @@ We conclude that
 $$\lim_{x\to 1} {3x^2 - 2x-1\over x-1} = \lim_{x\to 1} {f(x)\over g(x)} = 4$$
 as well.\slug
 
+L'Hospital's rule can also help us remember the limit
+$$\lim_{x\to 0} {\sin x\over x} = \lim_{x\to 0} {\cos x\over 1} = {1\over 1} = 1.$$
+Note, however, that this is not a valid {\it proof} of this identity, since we used it to prove
+that $\sin' = \cos$. Using the derivative to prove this identity would be circular reasoning.
+
+Note that l'Hospital's rule {\it only} applies if $\lim_{x\to a} f'(x)/g'(x)$ exists or
+is infinite. Consider the following example. If we try using l'Hospital's rule to evaluate the limit
+$$\lim_{x\to \infty} {x+\sin x\over x},$$
+then we are led to the limit
+$$\lim_{x\to\infty} {1+\cos x\over 1}.$$
+The latter limit does not exist. But that does not mean that $\lim_{x\to \infty} (x+\sin x)/x$ does not exist!
+(As an exercise, work out why this limit is actually equal to $1$.)
+
+Let's get back to situations where l'Hospital's rule does actually work.
 Here's another, slightly more complicated example.
 
 \proclaim Proposition \advthm. We have
@@ -5166,33 +5190,29 @@ $$\lim_{x\to 0} {\ln(\cos x)\over x^2} = -{1\over 2}.$$
 
 \proof Plugging in $x=0$ in the numerator and denominator shows that this is a limit of the form $0/0$,
 so, taking derivatives of both (separately), l'Hospital's rule tells us that
-The first one is 
 $$\lim_{x\to 0} {\ln(\cos x)\over x^2} = \lim_{x\to 0} {(1/\cos x) (-\sin x) \over 2x},$$
 provided that the limit on the right-hand side exists. Simplifying
 $$\lim_{x\to 0} {(1/\cos x)(-\sin x) \over 2x} = -{1\over 2} \lim_{x\to 0} {\tan x\over x},$$
 we are faced with yet another indeterminate limit of the form $0/0$, so we take derivatives of the numerator
-and denominator once again, in the hopes of applying l'Hospital's rule. We have
+and denominator in order to use l'Hospital's rule once again. We have
 $$\lim_{x\to 0} {\tan x\over x} = \lim_{x\to 0} {\sec^2 x\over 1} = {1\over 1} = 1,$$
 and can conclude that
 $$\lim_{x\to 0} {\ln(\cos x)\over x^2} = \lim_{x\to 0} {(1/\cos x) (-\sin x) \over 2x}
 = -{1\over 2}\lim_{x\to 0} {\tan x\over x} = -{1\over 2},$$
 as claimed.\slug
 
+\noindent\datestamp{25}{xi} \hskip\parindent
 In the previous example, the first application of l'Hospital's rule resulted in another indeterminate
 form, so we had to apply l'Hospital's rule again. (Well, we didn't have to, since the limit of $\tan x/x$
-as $x\to 0$ can be computed in other ways.) It is important to check that the resulting limit is actually
+as $x\to 0$ can be computed in other ways.) It is important to check that the output of the first invocation
+of l'Hospital's rule is actually
 indeterminate. Otherwise it is easy to produce nonsense like
 $$\lim_{x\to 1} {3x^2 - 2x - 1\over x-1} =
 \lim_{x\to 1} {6x-2\over 1} = \lim_{x\to 1} {6\over 0} = \infty.$$
-(Here the second ``application'' of l'Hospital's rule is erroneous, since $(6x-2)/1$ is neither of the
+(Here the second invocation of l'Hospital's rule is in error, since $(6x-2)/1$ is neither of the
 form $0/0$ nor $\infty/\infty$.)
 
-L'Hospital's rule can also help us remember the limit
-$$\lim_{x\to 0} {\sin x\over x} = \lim_{x\to 0} {\cos x\over 1} = {1\over 1} = 1.$$
-Note, however, that this is not a valid {\it proof} of this identity, since we used it to prove
-that $\sin' = \cos$. Using the derivative to prove this identity would be circular reasoning.
-
-Next, let's try a limit of the form $\infty/\infty$, to use the other form of l'Hospital's rule.
+On to another example.
 If you look at a graph of $\ln x$ and a graph of $\sqrt x$, you might think they look fairly similar---they
 are both concave functions that go to infinity. However, as $x\to \infty$, one of them gets a lot larger,
 in the following sense.
@@ -5223,11 +5243,12 @@ provided the limit on the right-hand side exists! This is one of the true statem
 (The actual way find out that the limit equals $1$ is to simply divide the numerator and denominator by $x$,
 noting that $x = \sqrt{x^2}$ for all positive $x$.)
 
-\medskip\boldlabel Other indeterminate forms.
+\medskip\boldlabel Indeterminate products.
 We now know how to deal with limits of the form $0/0$ or $\infty/\infty$. However, by suitably manipulating
 expressions, we can actually l'Hospital's rule to figure out many other indeterminate forms.
 
-For example, if we have an indeterminate {\it product} of the form $\lim_{x\to a} f(x) g(x)$,
+For example, if we have an {\it indeterminate product} of the form
+$$\lim_{x\to a} f(x) g(x),$$
 where $f(x) \to 0$ and $g(x)\to \infty$, this can very easily be turned into an indeterminate quotient
 of the form $0/0$ or $\infty/\infty$. One simply observes that
 $$ f(x) g(x) = {f(x)\over 1/g(x)},$$
@@ -5240,10 +5261,10 @@ Back when we were learning the closed interval method, we considered the functio
 $x\ln x$, which isn't well defined at $0$. However, we got around this by defining $f(0) = 0$ and
 $f(x) = x\ln x$ for all $x>0$. (This was equation~\refeq{\eqentropy} further up in the notes.)
 The claim back then was that this function $f$ is continuous on the whole
-interval $[0,e]$, so that the closed interval method applies.
-As promised above t's finally time to prove that $f$ is continuous at $0$ (from the right)
-using l'Hospital's rule.
+interval $[0,e]$, so that the closed interval method applies, but we deferred the proof until now
+because we didn't know l'Hospital's rule back then.
 
+\edef\propentropylimit{\the\thmcount}
 \proclaim Proposition \advthm. We have
 $$\lim_{x\to 0^+} x\ln x = 0.$$
 
@@ -5256,6 +5277,108 @@ exists, so we must have
 $$\lim_{x\to 0^+} x\ln x = 0$$
 as well. This is what we wanted.\slug
 
+The function $x\ln x$ has intimate ties to the notion of {\it entropy}, a concept in statistical physics
+that also has applications in economics and information theory.
+
+\medskip\boldlabel Indeterminate differences. A limit of the form
+$$\lim_{x\to a} \bigl( f(x) - g(x)\bigr),$$
+where $f(x) \to \infty$ and $g(x) \to \infty$ is called an {\it indeterminate difference}. Both $f$ and
+$g$ approach infinity, but depending of which functions ``grows'' faster, any number of situations may arise.
+If $f$ grows much faster, then the answer will be $\infty$; if $g$ grows much faster, then the answer will
+be $-\infty$. And if they grow at roughly the same rate, then $f-g$ will approach some finite value.
+Let's see a simple example that does not require l'Hospital's rule.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to \infty} \bigl(\sqrt x - \root 3\of x\bigr) = \infty.$$
+
+\proof Since $\sqrt x = x^{1/2} = x^{1/3}x^{1/6}$ and $\root 3\of x = x^{1/3}$, we can factor
+$$\lim_{x\to \infty} \bigl( \sqrt x - \root 3\of x\bigr)
+= \lim_{x\to \infty} x^{1/3}(x^{1/6} - 1).$$
+Both $x^{1/3}$ and $x^{1/6}-1$ go to positive infinity as $x\to \infty$, so their product does as well.\slug
+
+Here's another indeterminate difference whose computation l'Hospital's rule does faciliate.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 0} \biggl({1\over x} - \csc x\biggr) = 0.$$
+
+\proof First we expand $\csc x = 1/\sin x$ and write
+$$\lim_{x\to 0} \biggl({1\over x} - {1\over \sin x}\biggr)
+= \lim_{x\to 0} {\sin x - x\over x\sin x}.$$
+This is a limit of the form $0/0$. Taking the derivative of the numerator and denominator leaves us with
+$$\lim_{x\to 0} {\cos x - 1\over x\cos x + \sin x}.$$
+Once again, this is of the form $0/0$, so we repeat the procedure to obtain
+$$\lim_{x\to 0} {-\sin x \over -x\sin x + \cos x + \cos x} = \lim_{x\to 0} {-\sin x\over 2\cos x - x\sin x}
+= {0\over 2} = 0.$$
+Hence by l'Hospital's rule (twice), we have
+$$\lim_{x\to 0} {\sin x - x\over x\sin x} = \lim_{x\to 0} {\cos x - 1\over x\cos x + \sin x}
+= \lim_{x\to 0} {-\sin x\over 2\cos x - x\sin x} = 0,$$
+which proves the proposition.\slug
+
+\medskip\boldlabel Indeterminate powers. A limit of the form
+$$\lim_{x\to a} f(x)^{g(x)}$$
+is an {\it indeterminate power} if
+\medskip
+\item{a)} $f(x)\to 0$ and $g(x)\to 0$;
+\smallskip
+\item{b)} $f(x)\to \infty$ and $g(x)\to 0$; or
+\smallskip
+\item{c)} $f(x)\to 1$ and $g(x)\to \infty$.
+\medskip
+
+In all of these cases, the way to proceed is to remember that the functions $\exp$ and $\ln$ are
+inverse to one another. Hence
+$$f(x)^{g(x)} = \exp\Bigl( \ln \bigl( f(x)^{g(x)} \bigr)\Bigr)
+= \exp\bigl( g(x)\ln f(x)\bigr).$$
+Back when we first learned about continuity, we learned that the limit of a continuous function is
+the same as the continuous function applied to the limit (this was Theorem~{\thmlimcontinterchange}).
+So since the exponential function $\exp$ is continuous, we have
+$$\lim_{x\to a} f(x)^{g(x)} =
+\lim_{x\to a} \exp\bigl( g(x)\ln f(x)\bigr) = \exp \Bigl( \lim_{x\to a} g(x)\ln f(x) \Bigr).$$
+No matter which of the three cases (a), (b), or (c) we find ourselves in, the
+product $g(x)\ln f(x)$ is of the form $0\cdot\infty$ (or $\infty\cdot 0$),
+so our knowledge of how to solve indeterminate
+products comes to the rescue.
+
+Here's a simple example. For any number $b\ne 0$, we have $b^0 = 1$. On the other hand, for any $a> 0$
+we have $0^a = 0$, so it is sometimes a subject of contention whether the expression $0^0$ should be defined
+to be $0$ or defined to be $1$. The compromise is to simply say that $0^0$ is {\it undefined}, but here
+is a compelling reason why setting $0^0 = 1$ is in some sense the more natural choice.
+
+\proclaim Proposition \advthm. We have
+$$\lim_{x\to 0} x^x = 1.$$
+
+\proof Since $\exp$ and $\ln$ are inverse to one another, we have
+$$x^x = e^{\ln(x^x)} = e^{x\ln x}.$$
+Proposition~{\propentropylimit} told us that
+$$\lim_{x\to 0} x\ln x = 0,$$
+so since $e^x$ is continuous, we have
+$$\lim_{x\to 0} x^x = \lim_{x\to 0} \exp(x\ln x) = \exp\Bigl( \lim_{x\to 0} x\ln x \Bigr)
+= e^0 = 1.\noskipslug$$
+
+Note that a limit of the form $0^\infty$ (that is, a limit of the form $f(x)^{g(x)}$
+where $f(x)\to 0$ and $g(x)\to \infty$) is not indeterminate! This is because
+$g(x)\ln f(x)$ is of the form $\infty\cdot \ln 0 = -\infty$, which is not an indeterminate product.
+Taking the exponential of $-\infty$ then gives $0$, loosely speaking.
+More precisely, we have the following proposition.
+
+\proclaim Proposition \advthm. Suppose that
+$$\lim_{x\to a} f(x) = 0\qquad\hbox{and}\qquad \lim_{x\to a} g(x) = \infty,$$
+and furthermore suppose that $f(x) > 0$ for all $x$ in a neighbourhood of $a$ (except possibly at $a$
+itself). Then
+$$\lim_{x\to a} f(x)^{g(x)} = 0.$$
+
+\proof Since $\ln$ is continuous and $\lim_{x\to a} f(x) = 0$, we have
+$$\lim_{x\to a} \ln f(x) = \ln \Bigl( \lim_{x\to a} f(x) \Bigr) = -\infty.$$
+In other words, we can make $\ln f(x)$ arbitrarily large and negative by taking $x$ sufficiently close to $a$.
+Since $\lim_{x\to a} g(x) = \infty$, we see that
+$$\lim_{x\to a} g(x)\ln f(x) = -\infty$$
+as well. Then since $\exp$ is continuous, we have
+$$\lim_{x\to a} f(x)^{g(x)}
+= \lim_{x\to a} \exp\bigl(g(x)\ln f(x)\bigr)
+= \exp\Bigl(\lim_{x\to a} g(x)\ln f(x)\Bigr).$$
+By making $g(x)\ln f(x)$ arbitrarily large and negative, we can take $e^{g(x)\ln f(x)}$ arbitrarily close
+to $0$. So we see that $\lim_{x\to a} f(x)^{g(x)}  = 0$. (Feel free to augment this argument
+with formal definitions of the limits involved, to make things even more rigorous.)\slug
 
 
 
@@ -5288,7 +5411,6 @@ to compute. We compute the {\it linearisation} $L_a(x)$ of $f$ at the input $a$.
 $$L_a(x) = f(a) + f'(a) (x-a);$$
 $L_a(x)$ is simply the tangent line to $f$ at the point $\bigl(a, f(a)\bigr)$.
 Then we evaluate $L_a(x)$, which should not be too far off from the actual value of $f(x)$.
-
 
 
 
