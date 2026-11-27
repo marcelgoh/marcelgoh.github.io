@@ -74,6 +74,7 @@ and trigonometric functions}{52}}
 the mean value theorem}{102}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 12.\kern .5em Optimisation}{116}}
 \hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 13.\kern .5em Indeterminate forms}{125}}
+\hbox to\hsize {\relax \unhcopy \strutbox \cont {\hskip10pt 14.\kern .5em Sketching curves}{136}}
 
 \vfill\eject
 \begingroup\headline{\hfil}\footline{\hfil}
@@ -5382,17 +5383,339 @@ with formal definitions of the limits involved, to make things even more rigorou
 
 \advsect Sketching curves
 
+\datestamp{27}{xi}
 At the beginning of this chapter, we learned how taking derivatives can help us find extreme points
 of a function, and how the mean value theorem can tell us about the behaviour and shape of its graph.
 In this section we shall review all of these concepts by showing how they can be used to sketch all
 the most important aspects of a function's graph.
 
-Here is a rough, step-by-step breakdown of how to sketch a graph of a curve $y=f(x)$.
+Here is a rough, step-by-step breakdown of how to sketch a graph of a given curve $y=f(x)$. Not all steps
+will be necessary for every function $f$.
 
 \medskip
 \item{a)} {\it Domain.} First, figure out the largest possible set of all $x$ for which $f(x)$ exists.
+If $f(x)$ contains any fractions, then it will not be defined wherever the denominators of those fractions
+are $0$. For instance, the domain of
+$$f(x) = (3x^2 +1)/(2x-1)$$
+is $(-\infty, 1/2) \cup (1/2,\infty)$;
+it is not defined at $x=1/2$.
+Furthermore, if $f(x)$ contains any square roots (or even $n$th roots), then $f(x)$ does not exist
+wherever the argument of those roots are negative. An example of this is the function
+$$f(x) = \sqrt{x^2 - 4}.$$
+Since $x^2 - 4$ is less than $0$ for all $x$ in the range $(-2,2)$, we see that the domain of $x^2 - 4$
+is $(-\infty, -2)\cup (2,\infty)$.
+\smallskip
+\item{b)} {\it Intercepts.} Plug in $x=0$ (if this makes sense) to get the $y$-intercept of $x$.
+Set $f(x) = 0$ to try and figure out the $x$-intercept(s) of $f$ as well. You may skip this second part if
+it is too difficult for the particular function $f$ under consideration.
+\smallskip
+\item{c)} {\it Symmetry.} If $f(-x) = f(x)$ for all $x$, then $f$ is an {\it even} function, and you only
+need to draw the graph of $f$ to the right of the $y$-axis. The rest will be a mirror image. Likewise,
+if $f(-x) = -f(x)$ for all $x$, then $f$ is an {\it odd} function, and again you only need to work out the graph
+of $f$ to the right of the $y$-axis. The rest can be obtained by rotating the picture $180$ degrees about
+the origin. Another type of symmetry is {\it periodicity}.
+Some functions repeat themselves over and over infinitely many times. The
+quintessential examples of this phenomenon are the trigonometric functions. So for instance, if
+$$f(x) = 2\sin x + \cos(2x),$$
+both of the functions $\sin$ and $\cos$ repeat themselves every $2\pi$ units on the $x$-axis. So
+it suffices to graph this function on, say, the interval $[0,2\pi]$ and then simply repeat that graph
+over and over on both sides.
+\smallskip
+\item{d)} {\it Asymptotes.} Find vertical asymptotes by figuring out where the function goes to
+positive or negative infinity (usually this happens when a denominator approaches $0$). Draw these
+vertical asymptotes as dashed lines, and figure out whether $f(x)\to\infty$ or $f(x)\to-\infty$ to the
+left and to the right of them. Then find horizontal asymptotes by calculating the behaviour of $f$
+as $x\to -\infty$ or $x\to \infty$. If either of these two limits is a finite number $L$, then the
+horizontal line $y=L$ is a horizontal asymptote. (So there are between zero and two horizontal asymptotes.)
+\smallskip
+\item{e)} {\it Intervals of increase and decrease.} Take the derivative $f'$ of $f$, and map out the
+intervals where $f'(x) > 0$ and the intervals where $f'(x) < 0$. On the former, $f$ is increasing,
+and on the latter, $f$ is decreasing.
+\smallskip
+\item{f)} {\it Critical points.} List all the points where $f'(x)$ equals $0$ or does not exist. These
+are the possible local maximum or minimum points.
+\smallskip
+\item{g)} {\it Concavity.} Take the derivative $f''$ of $f'$. List the points where $f''(x) = 0$;
+these are the {\it inflection points} of $f$ and are the places where the concavity of $f$ may change.
+Then map out the intervals where $f'' > 0$ and $f''<0$. On the former, $f$ is concave upward, and on the
+latter, $f$ is concave downward.
+\smallskip
+\item{h)}\begingroup
+{\it Sketch the graph.} Plot the values of $f$ at all the critical points and inflection points.
+Also sketch out the behaviour of $f$ near its asymptotes.
+In the intervals between these points, $f'$ and $f''$ are both nonzero, so there are four possibilities:
+\smallskip
+\itemitem{i)} If $f' > 0$ and $f''>0$, then $f$ is both increasing and concave upward, so the shape of
+$f$ is roughly \epsfbox{incrup.ps}.
+\smallskip
+\itemitem{ii)} If $f'>0$ and $f''<0$, then $f$ is increasing and concave downward, so the shape of $f$
+is \epsfbox{incrdown.ps}.
+\smallskip
+\itemitem{iii)} If $f'<0$ and $f''>0$, then $f$ is decreasing and concave upward, so we draw \epsfbox{decrup.ps}.
+\smallskip
+\itemitem{iv)} If $f'<0$ and $f''<0$, then $f$ is decreasing and concave downward, so we draw
+\epsfbox{decrdown.ps}.
+\smallskip
+Join the critical and inflection points using these basic shapes (doing your best to keep the graph smooth)
+to complete your sketch.
+\endgroup
+\medskip
 
-\special{newpath 0 0 0 360 arc closepath}
+This checklist may seem daunting, but after a few examples you will get the hang of it.
+
+\medskip\boldlabel A simple cubic example.
+Let's start by graphing the cubic function
+$$f(x) = x^3-9x^2 + 24x -16.$$
+The domain of $f$ is all of $\RR$, and it's easy to see that it's $y$-intercept is $f(0) = -16$.
+The $x$-intercept(s) of a cubic are not as easy to find, so let us defer that until later (they will
+be easy to figure out once we have more information about $f$).
+There are no symmetries or periodicity, and $f$ doesn't have any horizontal asymptotes,
+since $\lim_{x\to \infty} f(x) = \infty$ and $\lim_{x\to -\infty} f(x) = -\infty$. We also know there are
+no vertical asymptotes, since there is no finite number $a$ such that $\lim_{x\to a} f(x)$ is infinite.
+
+Now let us take the derivative of $f$ to find all its critical points and intervals of increase and decrease.
+We have
+$$f'(x) = 3x^2 - 18x + 24 = 3(x^2-6x+8) = 3(x-2)(x-4).$$
+So we see that the critical numbers of $f$ are $2$ and $4$. For all $x$ in the interval $(-\infty, 2)$,
+both factors $x-2$ and $x-4$ of $f'$ are negative, so $f'(x) > 0$. On the interval $(2,4)$, the factor
+$x-2$ is positive but the factor $x-4$ is negative, so $f'(x) <0$. And on the interval $(4,\infty)$,
+$f'(x) > 0$ again. So $f$ is increasing to the left of $2$, decreasing between $2$ and $4$, and then
+increasing to the right of $4$. By the first derivative test, we see that $2$ is a local maximum and
+$4$ is a local minimum.
+
+Lastly, we find the second derivative of $f$ to gather information about its concavity. We have
+$$f''(x) = 6x-18 = 6(x-3),$$
+which is zero only when $x=3$, so the point $\bigl(3, f(3)\bigr)$ is an inflection point of $f$.
+When $x<3$, we have $f''(x) < 0$ and when $x>3$, we have $f''(x) > 0$. This means $f$ is concave
+downward to the left of $3$ and concave upward to the right of $3$.
+
+Before we're able to draw the graph, we need to compute $f$ at all of its critical and inflection points.
+We have
+$$f(2) = 4,\qquad f(3) = 2,\qquad\hbox{and}\qquad f(4) = 0,$$
+and recall that we already computed $f(0) = -16$. Since $f$ is continuous, the intermediate value
+theorem and the computations $f(0) = -16$ and $f(2) = 4$ tell us that $f$ crosses the $x$-axis somewhere
+in the interval $(0,2)$. In fact, since $f(4) =0$, the polynomial
+$x-4$ must be a factor of $f(x)$, so we can divide $f(x)$ by $x-4$ to see that
+$$f(x) = (x^2-5x+4)(x-4) = (x-1)(x-4)^2.$$
+This tells us that $f(1) = 0$.
+
+You can begin your picture by plotting the five points
+$$(0,-16),\qquad (1,0), \qquad (2,4), \qquad (3,2),\qquad\hbox{and}\qquad (4,0);$$
+the graph of $f$ will pass through all of these points. Then the following chart summarises all of
+the information we gained from the signs of $f'$ and $f''$.
+$$
+\vbox{\ninepoint
+\tabskip=2em plus.2em minus .2em
+\halign{
+\hfil $#$ \hfil & \hfil#\hfil & \hfil # \hfil  & \hfil#\hfil\cr
+\hbox{region} & sign of $f'$  & sign of $f''$ & shape of $f$ \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+(-\infty, 2) & $+$ & $-$ & \epsfbox{incrdown.ps} \cr
+\noalign{\smallskip}
+(2,3)        & $-$ & $-$ & \epsfbox{decrdown.ps} \cr
+\noalign{\smallskip}
+(3,4)        & $-$ & $+$ & \epsfbox{decrup.ps} \cr
+\noalign{\smallskip}
+(4,\infty)   & $+$ & $+$ & \epsfbox{incrup.ps} \cr
+}}
+$$
+With this data you should be able to draw a faithful sketch of the graph of $f$.
+
+\bye
+
+\medskip\boldlabel\datestamp{30}{xi} The exponential of a reciprocal.
+The next function we shall consider is
+$$f(x) = e^{1/x}.$$
+Since $1/x$ is not defined when $x=0$, the function $f$ is undefined at $x=0$, but all other
+values of $x$ produce a number, so the domain of $f$ is $(-\infty, 0)\cup (0,\infty)$.
+There is no $y$-intercept of $f$, and it's also easy to see that there is no $x$-intercept of
+$f$, since $e^{1/x}$ is never $0$.
+
+The function $f$ does not have any easy symmetries (it's neither even, odd, nor periodic). What we
+do note is that when $x$ is a very large negative number, $1/x$ is a number just slightly below $0$, so
+$e^{1/x}$ is just slightly less than $1$. As we take $x\to -\infty$, the value of $e^{1/x} \to 1$,
+so the line $y=1$ is a horizontal asymptote. Likewise, when $x$ is very large, $1/x$ is just above $0$,
+and thus $e^{1/x}$ is slightly greater than $1$. As $x\to \infty$, the value of $e^{1/x}\to 1$ again, so
+$f$ has just one horizontal asymptote $y=1$.
+
+To see if there are any vertical asymptotes, we should check the behaviour of $f$ near $0$ (where we
+already established that $f$ is undefined). When $x$ is a very small negative number,
+the fraction $1/x$ is a very large negative
+number, and $e^{1/x}$ is a very small positive number. So $\lim_{x\to 0^-} e^{1/x} = 0$. No reason to suspect
+$x=0$ is a vertical asymptote at this stage. But now let us check $\lim_{x\to 0} e^{1/x}$. When
+$x$ is a very small positive number, $1/x$ is a very large positive number, and $e^{1/x}$ is again a very large
+positive number. So $\lim_{x\to 0^+} = \infty$, and we see that $x=0$ is a vertical asymptote after all.
+
+Now to analyse the shape of $f$, let us take its first and second derivatives. We have
+$$f'(x) = e^{1/x} \cdot {-1\over x^2} = -{e^{1/x}\over x^2}$$
+and
+$$f''(x) = -{x^2 (-e^{1/x}/x^2) - (e^{1/x}) (2x)\over x^4}
+= {2xe^{1/x} + e^{1/x} \over x^4} = {e^{1/x}(2x+1)\over x^4}.$$
+Neither $f'$ nor $f''$ exist at $x=0$, which is fair since $f$ does not exist there either.
+We see that $f'(x) = 0$ has no solutions, since $e^{1/x}$ is never $0$. So the only critical point of
+$f$ is $0$, where $f'$ does not exist. It is possible for the sign of $f'$ to change here, but we find
+out that it does not, since $e^{1/x}$ and $x^2$ are both always positive, so $f'(x) < 0$ for all $x\ne 0$.
+In other words, $f$ is decreasing wherever it is defined, and there are no local maximum or minimum.
+
+What about the concavity of $f$? Well, we have $f''(x) = 0$ if and only if $e^{1/x}(2x+1) = 0$.
+Since $e^{1/x}$ is never $0$, the only solution to $f''(x) = 0$ is $x=-1/2$. So the point
+$(1/2, e^2)$ is a possible inflection point of $f$. When $x<-1/2$, the factor $2x+1$ is negative, so
+$$f''(x) = {e^{1/x} (2x-1) \over x^4}$$
+is negative. On the other hand, when $x>1/2$, the factor $2x+1$ is positive, so $f''(x) >0$. This shows
+that $f$ is concave downward on $(-\infty, -1/2)$ and concave upward on $(-1/2, 0)\cup (0,\infty)$.
+Remember to exclude $0$ from the domain of $f$!
+
+We now have all the information we need to sketch the graph of $f$.
+Draw a dashed horizontal line at $y=1$ and a dashed vertical line at $x=0$. These are the horizontal
+and vertical asymptotes. For very large negative $x$, the graph of $f$ is slightly below the line $y=1$, and
+$f(x)\to 1$ as $x\to-\infty$, so draw that leftmost section of the graph. Likewise, for very large positive
+$x$, the graph of $f$ is slightly above the line $y=1$, and $f(x)\to 1$ as $x\to \infty$, so draw that bit
+to the right-hand side of the graph. For the vertical asymptote, we only have $x\to \infty$ as $x\to 0^+$,
+so draw that part immediately to the right of the vertical line $y=0$. On the left of this line, we
+actually have $f(x)\to 0$ as $x\to 0^-$, so draw a circle at the point $(0,0)$, indicating that $f$
+is not actually defined here.
+The only point we computed that actually lies on the graph of $f$ was $(-1/2, 1/e^2)$. Draw that point,
+remembering that $e$ is between $2$ and $3$ so $1/e^2$ is fairly close to $0$
+(it is roughly $0.14$, but without access to a calculator you wouldn't know that).
+
+Finally, the information from the first and second derivatives
+is summarised in the chart below, and using these facts
+you can finish off your sketch.
+$$
+\vbox{\ninepoint
+\tabskip=2em plus.2em minus .2em
+\halign{
+\hfil $#$ \hfil & \hfil#\hfil & \hfil # \hfil  & \hfil#\hfil\cr
+\hbox{region} & sign of $f'$  & sign of $f''$ & shape of $f$ \cr
+\noalign{\medskip}
+\noalign{\hrule}
+\noalign{\medskip}
+(-\infty, -1/2) & $-$ & $-$ & \epsfbox{decrdown.ps} \cr
+\noalign{\smallskip}
+(-1/2,0)        & $-$ & $+$ & \epsfbox{decrup.ps} \cr
+\noalign{\smallskip}
+(0,\infty)      & $-$ & $+$ & \epsfbox{decrup.ps} \cr
+}}
+$$
+
+\medskip\boldlabel Oblique asymptotes. Recall that a function $f$ has a horizontal asymptote $y=b$ if we can
+make the values of $f$ arbitrarily close to $L$ by making $x$ arbitrarily large (positive or negative).
+This means that as $x\to \infty$ or $x\to -\infty$, the graph of $f$ gets arbitrarily close to the line
+$y=b$. This same phenomenon can happen for a line that is not horizontal or vertical; that is, for a
+line $y=mx+b$ where $m\ne 0$. More formally, we say that
+$f$ has an {\it oblique} or {\it slant} asymptote at infinity if
+$$ \lim_{x\to\infty} \bigl( f(x) - (mx+b)\bigr) = 0.$$
+Similarly, $f$ has an oblique asymptote at negative infinity if
+$$ \lim_{x\to-\infty} \bigl( f(x) - (mx+b) \bigr)= 0.$$
+
+Here's an example. The function
+\edef\eqoblique{\the\eqcount}
+$$f(x) = 2x-1 + {1\over x}\adveq$$
+gets closer and closer to the line $2x-1$ as $x\to\infty$, since when $x$ is very large the term $1/x$ is very
+close to $0$. As $x\to -\infty$, the same thing happens; $f$ gets closer and closer to the line $2x-1$.
+So the distance between $f(x)$ and the line $2x-1$ goes to $0$ as $x$ goes to (either) infinity,
+and we see that $2x-1$ is an oblique asymptote of the function $f(x)$.
+This isn't so hard to deduce when $f$ is expressed the way it is in~\refeq{\eqoblique}. But we can write
+$$f(x) = {(2x-1)x\over x} + {1\over x} = {2x^2-x+1\over x}.$$
+If we were just shown the rational function on the right-hand side, it might not be so what the oblique
+asymptote is, or even if it has an oblique asymptote at all.
+$f$ has an oblique asymptote at all, or what this asymptote is if it does.
+
+This first proposition helps us find the constant term of an oblique asymptote, assuming we already
+know the slope.
+
+\edef\propobliqueb{\the\thmcount}
+\proclaim Proposition \advthm. If
+$$\lim_{x\to \infty} \bigl( f(x) - mx\bigr) = b$$
+for some number $b$, then $mx+b$ is the oblique asymptote of $f$ at infinity.
+
+\proof Simply subtract $b$ from both sides to obtain
+$$\lim_{x\to \infty} \bigl( f(x) - mx\bigr) - b = 0,$$
+and rearrange the left-hand side to
+$$\lim_{x\to \infty} \bigl( f(x) - (mx+b)\bigr) = 0$$
+using the difference law and constant law for limits, referred to as laws (ii) and (viii) earlier
+in these notes.\slug
+
+This proposition is not so useful if we cannot figure out what the slope $m$ of the alleged oblique asymptote
+should be, so we need another proposition for that purpose. In order to prove that we require a lemma.
+
+\proclaim Lemma \advthm. If
+$$\lim_{x\to \infty} g(x) = b,$$
+for some finite number $b$,
+then
+$$\lim_{x\to \infty} {g(x)\over x} = 0.$$
+
+\optproof This proof is by contraposition (a technique which is outside the scope of this course but
+you would learn about in an introductory proof-based class like {\mc MATH} 235, {\mc MATH} 240, or
+{\mc MATH} 242, or in an introductory logic class like {\mc PHIL} 210).
+
+If $\lim_{x\to \infty} g(x)/x \ne 0$, then it is either infinity or some finite number. If it is
+infinity, then $g(x)/x$ can be made arbitrarily large in absolute value by taking $x$ sufficiently large,
+so
+\edef\lemgoverxzero{\the\eqcount}
+$$\lim_{x\to \infty} g(x) = \lim_{x\to \infty} {g(x)\over x}\cdot x\adveq$$
+cannot be finite. If $\lim_{x\to\infty} g(x)/x = L$ for some finite number $L$, then once again we see
+by~\refeq{\lemgoverxzero} that $\lim_{x\to\infty} g(x)$ must be infinite, because it is the limit of
+a product of something that goes to a finite number times something that goes to infinity.
+
+Hence $\lim_{x\to\infty} g(x)/x \ne 0$ implies that $\lim_{x\to\infty} g(x)$ is infinite,
+so by contraposition we are done.\slug
+
+\edef\propobliquem{\the\thmcount}
+\proclaim Proposition \advthm. Let $f$ be a function that is defined as $x\to\infty$. If $f$ has an oblique
+asymptote at $\infty$, then the slope of this oblique asymptote must equal
+$$\lim_{x\to \infty} {f(x)\over x}.$$
+
+\proof We assume that $f$ has an oblique asymptote at $\infty$; so there is some line $mx=b$ with $m\ne 0$
+such that
+$$\lim_{x\to\infty} \bigl( f(x) - (mx+b)\bigr) = 0.$$
+Adding $b$ to both sides gives us
+$$\lim_{x\to\infty} \bigl( f(x) - mx\bigr) = b,$$
+so by the previous lemma with $g(x)$ set to $f(x) - mx$, we have
+$$\lim_{x\to \infty} {f(x)-mx\over x} = 0,$$
+which rearranges to
+$$\lim_{x\to\infty} {f(x)\over x} = \lim_{x\to\infty} m = m.$$
+This is exactly the slope of the oblique asymptote.\slug
+
+The three preceding results all still hold if $x\to\infty$ is replaced by $x\to -\infty$ everywhere.
+These propositions give us the following algorithm to find the oblique asymptote of a function.
+
+\algbegin Algorithm O (Calculate oblique asymptote).
+Let $f$ be a function that is defined as $x\to\infty$. This algorithm finds the oblique asymptote
+$mx+b$ of $f$ at infinity if it exists, or outputs ``no oblique asymptote'' if $f$ has no oblique
+asymptote at infinity. (One may replace $\infty$ by $-\infty$ everywhere to get the oblique asymptote
+at negative infinity.)
+\algstep O1. [Calculate slope.] Determine the value of
+$$m = \lim_{x\to \infty} {f(x)\over x}.$$
+By Proposition~{\propobliquem}, if $f$ has an oblique asymptote at infinity,
+then its slope must be $m$.
+\algstep O2. [Invalid slope?] If $m$ does not exist, equals zero, or equals infinity (positive or negative),
+then output ``no oblique asymptote''
+and terminate the algorithm.
+\algstep O3. [Calculate constant term.] If $f$ has an oblique asymptote with slope $m$, then by
+Proposition~{\propobliqueb} the constant term of the line must be
+$$b = \lim_{x\to\infty} \bigl( f(x) - mx\bigr).$$
+Calculate this limit.
+\algstep O4. [Invalid line?] If $b$ does not exist or is infinite (positive or negative), then output
+``no oblique asymptote'' and terminate. Note that this time, $b=0$ is {\it not} invalid.
+\algstep O5. [Output asymptote.] At this stage,
+both $m$ and $b$ are finite numbers with $m\ne 0$, so $mx+b$ is the oblique asymptote of $f$ at infinity.
+Terminate with the line $mx+b$ as output.\slug
+
+To make sure you understand this procedure, run Algorithm~O by hand with the function
+$$f(x) = {2x^2-x+1\over x}$$
+from earlier, making sure that you get $m=2$ and $b=-1$ as output.
+
+
+
+
+
+
+
+
+
 
 
 \bye
